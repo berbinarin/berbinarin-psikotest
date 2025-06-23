@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PsikotesQuestion extends Model
@@ -22,8 +22,8 @@ class PsikotesQuestion extends Model
         'scoring',
     ];
 
-    public function response(): HasOne {
-        return $this->hasOne(PsikotesResponse::class, 'psikotes_question_id');
+    public function responses(): HasMany {
+        return $this->hasMany(PsikotesResponse::class, 'psikotes_question_id');
     }
 
     public function section(): BelongsTo {

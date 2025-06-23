@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('psikotes_sessions', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id', false, true);
-            $table->bigInteger('psikotes_tool_id', false, true);
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('psikotes_tool_id')->constrained('psikotes_tools');
             $table->timestamps();
             $table->softDeletes();
         });
