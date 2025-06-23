@@ -22,4 +22,8 @@ class PsikotesSection extends Model
     public function tool(): BelongsTo {
         return $this->belongsTo(PsikotesTool::class);
     }
+
+    public function questions() {
+        return $this->hasMany(PsikotesQuestion::class, 'test_section_id');
+    }
 }
