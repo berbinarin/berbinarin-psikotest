@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,13 +13,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // User and Role Seeder
         $this->call([
-            // Psikotes Tool
-            PsikotesToolSeeder::class,
+            // Role Seeder
+            RoleSeeder::class,
             
-            // Psikotes Section
-            PsikotesSectionSeeder::class,
-          
+            // User Seeder
+            UserSeeder::class,
+        ]);
+
+        // Psikotes Seeder
+        $this->call([
+            Tools\PsikotesToolSeeder::class,
+
+            // Papi Kostick
+            Tools\PapiKostick\PapiKostickSectionSeeder::class,
+            Tools\PapiKostick\PapiKostickQuestionSeeder::class,
+            
+            // RMIB
+            Tools\RMIB\RmibSectionSeeder::class,
+            Tools\RMIB\RmibQuestionSeeder::class,
         ]);
     }
 }

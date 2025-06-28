@@ -12,21 +12,28 @@ class PsikotesQuestion extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $casts = [
+        '' => 'array',
+        'scoring' => 'array',
+    ];
+
     protected $fillable = [
-        'test_section_id',
+        'psikotes_section_id',
         'order',
         'text',
         'image_path',
         'type',
-        'option',
+        'options',
         'scoring',
     ];
 
-    public function responses(): HasMany {
+    public function responses(): HasMany
+    {
         return $this->hasMany(PsikotesResponse::class, 'psikotes_question_id');
     }
 
-    public function section(): BelongsTo {
-        return $this->belongsTo(PsikotesSection::class, 'test_section_id');
+    public function section(): BelongsTo
+    {
+        return $this->belongsTo(PsikotesSection::class, 'psikotes_section_id');
     }
 }

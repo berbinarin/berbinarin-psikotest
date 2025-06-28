@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('psikotes_questions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('test_section_id')->constrained('psikotes_sections');
+            $table->foreignId('psikotes_section_id')->constrained('psikotes_sections');
             $table->integer('order', false, true);
             $table->text('text')->nullable();
             $table->string('image_path')->nullable();
-            $table->enum('type', ['multiple_choice', 'multiple_select', 'essay', 'likert', 'image_upload', 'ordering']);
-            $table->json('option')->nullable();
+            $table->enum('type', ['binary_choice', 'multiple_choice', 'multiple_select', 'essay', 'likert', 'image_upload', 'ordering']);
+            $table->json('options')->nullable();
             $table->json('scoring')->nullable();
             $table->timestamps();
             $table->softDeletes();

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->char('code')->nullable();
+            $table->char('token', 8)->nullable();
             $table->integer('duration', false, true);
             $table->boolean('is_active');
             $table->timestamps();
