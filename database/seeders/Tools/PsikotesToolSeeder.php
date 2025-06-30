@@ -25,6 +25,12 @@ class PsikotesToolSeeder extends Seeder
                 'token' => '2',
                 'duration' => 32,
                 'is_active' => true,
+            ],
+            [
+                'name'=> 'DASS-42',
+                'token'=> '3',
+                'duration'=> 20,
+                'is_active'=> true,
             ]
         ];
 
