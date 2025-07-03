@@ -31,6 +31,12 @@ class PsikotesToolSeeder extends Seeder
                 'token'=> '3',
                 'duration'=> 20,
                 'is_active'=> true,
+            ],
+            [
+                'name' => 'OCEAN',
+                'token' => '4',
+                'duration' => 10,
+                'is_active' => true,
             ]
         ];
 
