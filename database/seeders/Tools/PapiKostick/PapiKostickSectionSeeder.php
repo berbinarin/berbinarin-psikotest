@@ -14,7 +14,7 @@ class PapiKostickSectionSeeder extends Seeder
      */
     public function run(): void
     {
-        $papiKostick = PsikotesTool::where('name', 'Papi Kostick')->first();
+        $papiKostick = PsikotesTool::firstWhere('name', 'Papi Kostick');
 
         $sections = [
             [

@@ -32,7 +32,7 @@
                                 <div class="col">
                                     <div class="card h-100">
                                         <div class="card-body text-center">
-                                            <h5 class="card-title">{{ $tool->id }}</h5>
+                                            <h5 class="card-title">{{ $tool->order }}</h5>
                                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tokenModal" data-tool-id="{{ $tool->id }}">Use Tool</button>
                                         </div>
                                     </div>

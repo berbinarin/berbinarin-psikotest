@@ -14,7 +14,7 @@ class RmibSectionSeeder extends Seeder
      */
     public function run(): void
     {
-        $rmib = PsikotesTool::where('name', 'RMIB')->first();
+        $rmib = PsikotesTool::firstWhere('name', 'RMIB');
 
         $sections = [
             [

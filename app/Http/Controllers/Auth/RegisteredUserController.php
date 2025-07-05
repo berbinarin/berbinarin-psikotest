@@ -18,9 +18,21 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
-    public function create(): View
+    public function registerSchedule(): View
     {
-        return view('auth.register');
+        return view('auth.register-schedule');
+    }
+
+    public function registerScheduleStore(Request $request) {
+        
+    }
+
+    /**
+     * Display the registration view.
+     */
+    public function registerUser(): View
+    {
+        return view('auth.register-user');
     }
 
     /**

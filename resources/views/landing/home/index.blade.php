@@ -1,4 +1,5 @@
-@extends("landing.layouts.app",
+@extends(
+    "landing.layouts.app",
     [
         "title" => "Berbinar Insightful Indonesia",
     ]
@@ -39,15 +40,26 @@
 
     <div class="mx-4 mb-14 flex flex-col justify-center gap-6 sm:flex-row">
         <div class="flex items-center justify-center">
-            <a href="" class="flex w-full justify-center">
-                <button class="text-md w-full rounded-xl bg-gradient-to-r from-[#3986A3] to-[#225062] px-16 py-2 text-white max-sm:text-[15px] sm:w-auto">Daftar Tes Berbayar</button>
+            <a href="{{ route("register-schedule") }}" class="flex w-full justify-center">
+                <span class="text-md w-full rounded-xl bg-gradient-to-r from-[#3986A3] to-[#225062] px-16 py-2 text-white max-sm:text-[15px] sm:w-auto">Daftar Tes Berbayar</span>
             </a>
         </div>
 
-        <div class="flex items-center justify-center">
+        {{--
+            <div class="flex items-center justify-center">
             <a href="" class="flex w-full justify-center">
-                <button class="text-md w-full rounded-xl bg-gradient-to-r from-[#F7B23B] to-[#916823] px-8 py-2 text-white max-sm:text-[15px] sm:w-auto">Ikuti Test Kepribadian Gratis</button>
+            <span class="text-md w-full rounded-xl bg-gradient-to-r from-[#F7B23B] to-[#916823] px-8 py-2 text-white max-sm:text-[15px] sm:w-auto">Ikuti Test Kepribadian Gratis</span>
             </a>
+            </div>
+        --}}
+
+        <div class="flex items-center justify-center">
+            <form action="{{ route("logout") }}" method="post">
+                @csrf
+                <button class="flex w-full justify-center">
+                    <span class="text-md w-full rounded-xl bg-gradient-to-r from-[#f73b3b] to-[#912323] px-8 py-2 text-white max-sm:text-[15px] sm:w-auto">Logout</span>
+                </button>
+            </form>
         </div>
     </div>
 @endsection

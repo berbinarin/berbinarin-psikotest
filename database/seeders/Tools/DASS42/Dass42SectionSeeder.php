@@ -1,20 +1,20 @@
 <?php
 
-namespace Database\Seeders\Tools\DASS;
+namespace Database\Seeders\Tools\DASS42;
 
 use App\Models\PsikotesSection;
 use App\Models\PsikotesTool;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DassSectionSeeder extends Seeder
+class Dass42SectionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $dass42 = PsikotesTool::where('name', 'DASS-42')->first();
+        $dass42 = PsikotesTool::firstWhere('name', 'DASS-42');
 
         $sections = [
             [

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dashboard\PTPM;
 
+use App\Http\Controllers\Controller;
 use App\Models\PsikotesTool;
-use App\Http\Requests\StorePsikotesToolRequest;
-use App\Http\Requests\UpdatePsikotesToolRequest;
+use Illuminate\Http\Request;
+Use Illuminate\Support\Str;
 
 class PsikotesToolController extends Controller
 {
@@ -13,7 +14,8 @@ class PsikotesToolController extends Controller
      */
     public function index()
     {
-        //
+        $tools = PsikotesTool::all();
+        return view('dashboard.ptpm.psikotes-tools.index', compact('tools'));
     }
 
     /**
@@ -27,7 +29,7 @@ class PsikotesToolController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePsikotesToolRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -37,7 +39,7 @@ class PsikotesToolController extends Controller
      */
     public function show(PsikotesTool $psikotesTool)
     {
-        //
+        return view('dashboard.ptpm.psikotes-tools.show', compact('psikotesTool'));
     }
 
     /**
@@ -51,7 +53,7 @@ class PsikotesToolController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePsikotesToolRequest $request, PsikotesTool $psikotesTool)
+    public function update(Request $request, PsikotesTool $psikotesTool)
     {
         //
     }
@@ -62,5 +64,17 @@ class PsikotesToolController extends Controller
     public function destroy(PsikotesTool $psikotesTool)
     {
         //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function generateToken(PsikotesTool $psikotesTool)
+    {
+        $tool = PsikotesTool::findOrFail($psikotesTool->id);
+        $tool->token = Str::random(8);
+        $tool->save();
+
+        return redirect()->back()->with('success', 'Token generated successfully!');
     }
 }

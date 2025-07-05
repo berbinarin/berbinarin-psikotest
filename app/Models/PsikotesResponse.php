@@ -11,6 +11,10 @@ class PsikotesResponse extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $casts = [
+        'answer' => 'collection'
+    ];
+
     protected $fillable = [
         'psikotes_session_id',
         'psikotes_question_id',

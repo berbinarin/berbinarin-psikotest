@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PsikotesSection;
-use App\Http\Requests\StorePsikotesSectionRequest;
-use App\Http\Requests\UpdatePsikotesSectionRequest;
+use App\Models\PsikotesPaidProfile;
+use App\Http\Requests\StorePsikotesPaidProfileRequest;
+use App\Http\Requests\UpdatePsikotesPaidProfileRequest;
 
-class PsikotesSectionController extends Controller
+class PsikotesPaidProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class PsikotesSectionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePsikotesSectionRequest $request)
+    public function store(StorePsikotesPaidProfileRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class PsikotesSectionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(PsikotesSection $psikotesSection)
+    public function show(PsikotesPaidProfile $psikotesPaidProfile)
     {
         //
     }
@@ -43,7 +43,7 @@ class PsikotesSectionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PsikotesSection $psikotesSection)
+    public function edit(PsikotesPaidProfile $psikotesPaidProfile)
     {
         //
     }
@@ -51,7 +51,7 @@ class PsikotesSectionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePsikotesSectionRequest $request, PsikotesSection $psikotesSection)
+    public function update(UpdatePsikotesPaidProfileRequest $request, PsikotesPaidProfile $psikotesPaidProfile)
     {
         //
     }
@@ -59,7 +59,7 @@ class PsikotesSectionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PsikotesSection $psikotesSection)
+    public function destroy(PsikotesPaidProfile $psikotesPaidProfile)
     {
         //
     }

@@ -1,17 +1,17 @@
 <?php
 
-namespace Database\Seeders\Tools\DASS;
+namespace Database\Seeders\Tools\DASS42;
 
 use App\Models\PsikotesQuestion;
 use App\Models\PsikotesTool;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DassQuestionSeeder extends Seeder
+class Dass42QuestionSeeder extends Seeder
 {
     public function run(): void
     {
-        $dass42 = PsikotesTool::where('name', 'DASS-42')->with('sections')->first();
+        $dass42 = PsikotesTool::with('sections')->firstWhere('name', 'DASS-42');
         $questions = [
             [
                 'psikotes_section_id' => $dass42->sections[0]->id,
@@ -19,14 +19,14 @@ class DassQuestionSeeder extends Seeder
                 'type' => 'likert',
                 'text' => 'Saya merasa bahwa diri saya menjadi marah karena hal-hal sepele.',
                 'options' => [
-                    '0' => 'Tidak pernah',
-                    '1' => 'Kadang-Kadang',
-                    '2' => 'Lumayan Sering',
-                    '3' => 'Sering Sekali',
+                    ['value' => 0, 'text' => 'Tidak pernah'],
+                    ['value' => 1, 'text' => 'Kadang-Kadang'],
+                    ['value' => 2, 'text' => 'Lumayan Sering'],
+                    ['value' => 3, 'text' => 'Sering Sekali'],
                 ],
                 'scoring' => [
-                    "scale"=> "depression",
-                    "reverse_scored"=> false,
+                    "scale" => "depression",
+                    "reverse_scored" => false,
                 ],
             ],
             [
@@ -35,14 +35,14 @@ class DassQuestionSeeder extends Seeder
                 'type' => 'likert',
                 'text' => 'Saya merasa bibir saya sering kering.',
                 'options' => [
-                    '0' => 'Tidak pernah',
-                    '1' => 'Kadang-Kadang',
-                    '2' => 'Lumayan Sering',
-                    '3' => 'Sering Sekali',
+                    ['value' => 0, 'text' => 'Tidak pernah'],
+                    ['value' => 1, 'text' => 'Kadang-Kadang'],
+                    ['value' => 2, 'text' => 'Lumayan Sering'],
+                    ['value' => 3, 'text' => 'Sering Sekali'],
                 ],
                 'scoring' => [
-                    "scale"=> "anxiety",
-                    "reverse_scored"=> false,
+                    "scale" => "anxiety",
+                    "reverse_scored" => false,
                 ],
             ],
             [
@@ -51,14 +51,14 @@ class DassQuestionSeeder extends Seeder
                 'type' => 'likert',
                 'text' => 'Saya sama sekali tidak dapat merasakan perasaan positif. ',
                 'options' => [
-                    '0' => 'Tidak pernah',
-                    '1' => 'Kadang-Kadang',
-                    '2' => 'Lumayan Sering',
-                    '3' => 'Sering Sekali',
+                    ['value' => 0, 'text' => 'Tidak pernah'],
+                    ['value' => 1, 'text' => 'Kadang-Kadang'],
+                    ['value' => 2, 'text' => 'Lumayan Sering'],
+                    ['value' => 3, 'text' => 'Sering Sekali'],
                 ],
                 'scoring' => [
-                    "scale"=> "stress",
-                    "reverse_scored"=> false,
+                    "scale" => "stress",
+                    "reverse_scored" => false,
                 ],
             ],
             [
@@ -67,14 +67,14 @@ class DassQuestionSeeder extends Seeder
                 'type' => 'likert',
                 'text' => 'Saya mengalami kesulitan bernafas (misalnya: seringkali terengah-engah atau tidak dapat bernafas padahal tidak melakukan aktivitas fisik sebelumnya).',
                 'options' => [
-                    '0' => 'Tidak pernah',
-                    '1' => 'Kadang-Kadang',
-                    '2' => 'Lumayan Sering',
-                    '3' => 'Sering Sekali',
+                    ['value' => 0, 'text' => 'Tidak pernah'],
+                    ['value' => 1, 'text' => 'Kadang-Kadang'],
+                    ['value' => 2, 'text' => 'Lumayan Sering'],
+                    ['value' => 3, 'text' => 'Sering Sekali'],
                 ],
                 'scoring' => [
-                    "scale"=> "anxiety",
-                    "reverse_scored"=> false,
+                    "scale" => "anxiety",
+                    "reverse_scored" => false,
                 ],
             ],
             [
@@ -83,14 +83,14 @@ class DassQuestionSeeder extends Seeder
                 'type' => 'likert',
                 'text' => 'Saya sepertinya tidak kuat lagi untuk melakukan suatu kegiatan.',
                 'options' => [
-                    '0' => 'Tidak pernah',
-                    '1' => 'Kadang-Kadang',
-                    '2' => 'Lumayan Sering',
-                    '3' => 'Sering Sekali',
+                    ['value' => 0, 'text' => 'Tidak pernah'],
+                    ['value' => 1, 'text' => 'Kadang-Kadang'],
+                    ['value' => 2, 'text' => 'Lumayan Sering'],
+                    ['value' => 3, 'text' => 'Sering Sekali'],
                 ],
                 'scoring' => [
-                    "scale"=> "stress",
-                    "reverse_scored"=> false,
+                    "scale" => "stress",
+                    "reverse_scored" => false,
                 ],
             ],
             [
@@ -99,14 +99,14 @@ class DassQuestionSeeder extends Seeder
                 'type' => 'likert',
                 'text' => 'Saya cenderung bereaksi berlebihan terhadap suatu situasi.',
                 'options' => [
-                    '0' => 'Tidak pernah',
-                    '1' => 'Kadang-Kadang',
-                    '2' => 'Lumayan Sering',
-                    '3' => 'Sering Sekali',
+                    ['value' => 0, 'text' => 'Tidak pernah'],
+                    ['value' => 1, 'text' => 'Kadang-Kadang'],
+                    ['value' => 2, 'text' => 'Lumayan Sering'],
+                    ['value' => 3, 'text' => 'Sering Sekali'],
                 ],
                 'scoring' => [
-                    "scale"=> "depression",
-                    "reverse_scored"=> false,
+                    "scale" => "depression",
+                    "reverse_scored" => false,
                 ],
             ],
             [
@@ -115,14 +115,14 @@ class DassQuestionSeeder extends Seeder
                 'type' => 'likert',
                 'text' => 'Saya merasa goyah (misalnya, kaki terasa mau ’copot’).',
                 'options' => [
-                    '0' => 'Tidak pernah',
-                    '1' => 'Kadang-Kadang',
-                    '2' => 'Lumayan Sering',
-                    '3' => 'Sering Sekali',
+                    ['value' => 0, 'text' => 'Tidak pernah'],
+                    ['value' => 1, 'text' => 'Kadang-Kadang'],
+                    ['value' => 2, 'text' => 'Lumayan Sering'],
+                    ['value' => 3, 'text' => 'Sering Sekali'],
                 ],
                 'scoring' => [
-                    "scale"=> "anxiety",
-                    "reverse_scored"=> false,
+                    "scale" => "anxiety",
+                    "reverse_scored" => false,
                 ],
             ],
             [
@@ -131,14 +131,14 @@ class DassQuestionSeeder extends Seeder
                 'type' => 'likert',
                 'text' => 'Saya merasa sulit untuk bersantai.',
                 'options' => [
-                    '0' => 'Tidak pernah',
-                    '1' => 'Kadang-Kadang',
-                    '2' => 'Lumayan Sering',
-                    '3' => 'Sering Sekali',
+                    ['value' => 0, 'text' => 'Tidak pernah'],
+                    ['value' => 1, 'text' => 'Kadang-Kadang'],
+                    ['value' => 2, 'text' => 'Lumayan Sering'],
+                    ['value' => 3, 'text' => 'Sering Sekali'],
                 ],
                 'scoring' => [
-                    "scale"=> "depression",
-                    "reverse_scored"=> false,
+                    "scale" => "depression",
+                    "reverse_scored" => false,
                 ],
             ],
             [
@@ -147,14 +147,14 @@ class DassQuestionSeeder extends Seeder
                 'type' => 'likert',
                 'text' => 'Saya menemukan diri saya berada dalam situasi yang membuat saya merasa sangat cemas dan saya akan merasa sangat lega jika semua ini berakhir. ',
                 'options' => [
-                    '0' => 'Tidak pernah',
-                    '1' => 'Kadang-Kadang',
-                    '2' => 'Lumayan Sering',
-                    '3' => 'Sering Sekali',
+                    ['value' => 0, 'text' => 'Tidak pernah'],
+                    ['value' => 1, 'text' => 'Kadang-Kadang'],
+                    ['value' => 2, 'text' => 'Lumayan Sering'],
+                    ['value' => 3, 'text' => 'Sering Sekali'],
                 ],
                 'scoring' => [
-                    "scale"=> "anxiety",
-                    "reverse_scored"=> false,
+                    "scale" => "anxiety",
+                    "reverse_scored" => false,
                 ],
             ],
             [
@@ -163,14 +163,14 @@ class DassQuestionSeeder extends Seeder
                 'type' => 'likert',
                 'text' => 'Saya merasa tidak ada hal yang dapat diharapkan di masa depan. ',
                 'options' => [
-                    '0' => 'Tidak pernah',
-                    '1' => 'Kadang-Kadang',
-                    '2' => 'Lumayan Sering',
-                    '3' => 'Sering Sekali',
+                    ['value' => 0, 'text' => 'Tidak pernah'],
+                    ['value' => 1, 'text' => 'Kadang-Kadang'],
+                    ['value' => 2, 'text' => 'Lumayan Sering'],
+                    ['value' => 3, 'text' => 'Sering Sekali'],
                 ],
                 'scoring' => [
-                    "scale"=> "stress",
-                    "reverse_scored"=> false,
+                    "scale" => "stress",
+                    "reverse_scored" => false,
                 ],
             ],
             [
@@ -179,14 +179,14 @@ class DassQuestionSeeder extends Seeder
                 'type' => 'likert',
                 'text' => 'Saya menemukan diri saya mudah merasa kesal.',
                 'options' => [
-                    '0' => 'Tidak pernah',
-                    '1' => 'Kadang-Kadang',
-                    '2' => 'Lumayan Sering',
-                    '3' => 'Sering Sekali',
+                    ['value' => 0, 'text' => 'Tidak pernah'],
+                    ['value' => 1, 'text' => 'Kadang-Kadang'],
+                    ['value' => 2, 'text' => 'Lumayan Sering'],
+                    ['value' => 3, 'text' => 'Sering Sekali'],
                 ],
                 'scoring' => [
-                    "scale"=> "depression",
-                    "reverse_scored"=> false,
+                    "scale" => "depression",
+                    "reverse_scored" => false,
                 ],
             ],
             [
@@ -195,14 +195,14 @@ class DassQuestionSeeder extends Seeder
                 'type' => 'likert',
                 'text' => 'Saya merasa telah menghabiskan banyak energi untuk merasa cemas.',
                 'options' => [
-                    '0' => 'Tidak pernah',
-                    '1' => 'Kadang-Kadang',
-                    '2' => 'Lumayan Sering',
-                    '3' => 'Sering Sekali',
+                    ['value' => 0, 'text' => 'Tidak pernah'],
+                    ['value' => 1, 'text' => 'Kadang-Kadang'],
+                    ['value' => 2, 'text' => 'Lumayan Sering'],
+                    ['value' => 3, 'text' => 'Sering Sekali'],
                 ],
                 'scoring' => [
-                    "scale"=> "depression",
-                    "reverse_scored"=> false,
+                    "scale" => "depression",
+                    "reverse_scored" => false,
                 ],
             ],
             [
@@ -211,14 +211,14 @@ class DassQuestionSeeder extends Seeder
                 'type' => 'likert',
                 'text' => 'Saya merasa sedih dan tertekan.',
                 'options' => [
-                    '0' => 'Tidak pernah',
-                    '1' => 'Kadang-Kadang',
-                    '2' => 'Lumayan Sering',
-                    '3' => 'Sering Sekali',
+                    ['value' => 0, 'text' => 'Tidak pernah'],
+                    ['value' => 1, 'text' => 'Kadang-Kadang'],
+                    ['value' => 2, 'text' => 'Lumayan Sering'],
+                    ['value' => 3, 'text' => 'Sering Sekali'],
                 ],
                 'scoring' => [
-                    "scale"=> "stress",
-                    "reverse_scored"=> false,
+                    "scale" => "stress",
+                    "reverse_scored" => false,
                 ],
             ],
             [
@@ -227,14 +227,14 @@ class DassQuestionSeeder extends Seeder
                 'type' => 'likert',
                 'text' => 'Saya menemukan diri saya menjadi tidak sabar ketika mengalami penundaan (misalnya: kemacetan lalu lintas, menunggu sesuatu).',
                 'options' => [
-                    '0' => 'Tidak pernah',
-                    '1' => 'Kadang-Kadang',
-                    '2' => 'Lumayan Sering',
-                    '3' => 'Sering Sekali',
+                    ['value' => 0, 'text' => 'Tidak pernah'],
+                    ['value' => 1, 'text' => 'Kadang-Kadang'],
+                    ['value' => 2, 'text' => 'Lumayan Sering'],
+                    ['value' => 3, 'text' => 'Sering Sekali'],
                 ],
                 'scoring' => [
-                    "scale"=> "depression",
-                    "reverse_scored"=> false,
+                    "scale" => "depression",
+                    "reverse_scored" => false,
                 ],
             ],
             [
@@ -243,14 +243,14 @@ class DassQuestionSeeder extends Seeder
                 'type' => 'likert',
                 'text' => 'Saya merasa lemas seperti mau pingsan.',
                 'options' => [
-                    '0' => 'Tidak pernah',
-                    '1' => 'Kadang-Kadang',
-                    '2' => 'Lumayan Sering',
-                    '3' => 'Sering Sekali',
+                    ['value' => 0, 'text' => 'Tidak pernah'],
+                    ['value' => 1, 'text' => 'Kadang-Kadang'],
+                    ['value' => 2, 'text' => 'Lumayan Sering'],
+                    ['value' => 3, 'text' => 'Sering Sekali'],
                 ],
                 'scoring' => [
-                    "scale"=> "anxiety",
-                    "reverse_scored"=> false,
+                    "scale" => "anxiety",
+                    "reverse_scored" => false,
                 ],
             ],
             [
@@ -259,14 +259,14 @@ class DassQuestionSeeder extends Seeder
                 'type' => 'likert',
                 'text' => 'Saya merasa saya kehilangan minat akan segala hal.',
                 'options' => [
-                    '0' => 'Tidak pernah',
-                    '1' => 'Kadang-Kadang',
-                    '2' => 'Lumayan Sering',
-                    '3' => 'Sering Sekali',
+                    ['value' => 0, 'text' => 'Tidak pernah'],
+                    ['value' => 1, 'text' => 'Kadang-Kadang'],
+                    ['value' => 2, 'text' => 'Lumayan Sering'],
+                    ['value' => 3, 'text' => 'Sering Sekali'],
                 ],
                 'scoring' => [
-                    "scale"=> "stress",
-                    "reverse_scored"=> false,
+                    "scale" => "stress",
+                    "reverse_scored" => false,
                 ],
             ],
             [
@@ -275,14 +275,14 @@ class DassQuestionSeeder extends Seeder
                 'type' => 'likert',
                 'text' => 'Saya merasa bahwa saya tidak berharga sebagai seorang manusia.',
                 'options' => [
-                    '0' => 'Tidak pernah',
-                    '1' => 'Kadang-Kadang',
-                    '2' => 'Lumayan Sering',
-                    '3' => 'Sering Sekali',
+                    ['value' => 0, 'text' => 'Tidak pernah'],
+                    ['value' => 1, 'text' => 'Kadang-Kadang'],
+                    ['value' => 2, 'text' => 'Lumayan Sering'],
+                    ['value' => 3, 'text' => 'Sering Sekali'],
                 ],
                 'scoring' => [
-                    "scale"=> "stress",
-                    "reverse_scored"=> false,
+                    "scale" => "stress",
+                    "reverse_scored" => false,
                 ],
             ],
             [
@@ -291,14 +291,14 @@ class DassQuestionSeeder extends Seeder
                 'type' => 'likert',
                 'text' => 'Saya merasa bahwa saya mudah tersinggung.',
                 'options' => [
-                    '0' => 'Tidak pernah',
-                    '1' => 'Kadang-Kadang',
-                    '2' => 'Lumayan Sering',
-                    '3' => 'Sering Sekali',
+                    ['value' => 0, 'text' => 'Tidak pernah'],
+                    ['value' => 1, 'text' => 'Kadang-Kadang'],
+                    ['value' => 2, 'text' => 'Lumayan Sering'],
+                    ['value' => 3, 'text' => 'Sering Sekali'],
                 ],
                 'scoring' => [
-                    "scale"=> "depression",
-                    "reverse_scored"=> false,
+                    "scale" => "depression",
+                    "reverse_scored" => false,
                 ],
             ],
             [
@@ -307,14 +307,14 @@ class DassQuestionSeeder extends Seeder
                 'type' => 'likert',
                 'text' => 'Saya berkeringat secara berlebihan (misalnya: tangan berkeringat), padahal temperatur tidak panas atau tidak melakukan aktivitas fisik sebelumnya. ',
                 'options' => [
-                    '0' => 'Tidak pernah',
-                    '1' => 'Kadang-Kadang',
-                    '2' => 'Lumayan Sering',
-                    '3' => 'Sering Sekali',
+                    ['value' => 0, 'text' => 'Tidak pernah'],
+                    ['value' => 1, 'text' => 'Kadang-Kadang'],
+                    ['value' => 2, 'text' => 'Lumayan Sering'],
+                    ['value' => 3, 'text' => 'Sering Sekali'],
                 ],
                 'scoring' => [
-                    "scale"=> "anxiety",
-                    "reverse_scored"=> false,
+                    "scale" => "anxiety",
+                    "reverse_scored" => false,
                 ],
             ],
             [
@@ -323,14 +323,14 @@ class DassQuestionSeeder extends Seeder
                 'type' => 'likert',
                 'text' => 'Saya merasa takut tanpa alasan yang jelas.',
                 'options' => [
-                    '0' => 'Tidak pernah',
-                    '1' => 'Kadang-Kadang',
-                    '2' => 'Lumayan Sering',
-                    '3' => 'Sering Sekali',
+                    ['value' => 0, 'text' => 'Tidak pernah'],
+                    ['value' => 1, 'text' => 'Kadang-Kadang'],
+                    ['value' => 2, 'text' => 'Lumayan Sering'],
+                    ['value' => 3, 'text' => 'Sering Sekali'],
                 ],
                 'scoring' => [
-                    "scale"=> "anxiety",
-                    "reverse_scored"=> false,
+                    "scale" => "anxiety",
+                    "reverse_scored" => false,
                 ],
             ],
             [
@@ -339,14 +339,14 @@ class DassQuestionSeeder extends Seeder
                 'type' => 'likert',
                 'text' => 'Saya merasa bahwa hidup tidak bermanfaat.',
                 'options' => [
-                    '0' => 'Tidak pernah',
-                    '1' => 'Kadang-Kadang',
-                    '2' => 'Lumayan Sering',
-                    '3' => 'Sering Sekali',
+                    ['value' => 0, 'text' => 'Tidak pernah'],
+                    ['value' => 1, 'text' => 'Kadang-Kadang'],
+                    ['value' => 2, 'text' => 'Lumayan Sering'],
+                    ['value' => 3, 'text' => 'Sering Sekali'],
                 ],
                 'scoring' => [
-                    "scale"=> "stress",
-                    "reverse_scored"=> false,
+                    "scale" => "stress",
+                    "reverse_scored" => false,
                 ],
             ],
         ];

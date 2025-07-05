@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('order', false, true);
             $table->text('text')->nullable();
             $table->string('image_path')->nullable();
-            $table->enum('type', ['binary_choice', 'multiple_choice', 'multiple_select', 'essay', 'likert', 'image_upload', 'ordering']);
+            $table->enum('type', ['binary_choice', 'multiple_choice', 'multiple_select', 'essay', 'likert', 'image_upload', 'ordering', 'instruction', 'short_answer']);
             $table->json('options')->nullable();
             $table->json('scoring')->nullable();
             $table->timestamps();

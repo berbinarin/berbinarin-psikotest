@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Landing\PsikotesPaid;
 
 use App\Http\Controllers\Controller;
+use App\Models\PsikotesSession;
 use App\Models\PsikotesTool;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class PsikotesPaidController extends Controller
 {
@@ -17,29 +19,45 @@ class PsikotesPaidController extends Controller
     {
         $user = auth()->user();
         $tools = PsikotesTool::all();
+
         return view('landing.psikotes-paid.tools.index', compact('user', 'tools'));
     }
 
     public function verifyToken(Request $request, PsikotesTool $psikotesTool)
     {
-        // if ($tool->token === $token) {
-        //     $path = 'psikotest-paid.tool.' . $tool->name . '.showLanding';
-        //     Alert::toast('Valid Token!', 'success')->autoClose(5000);
-        //     return redirect()->route($path);
-        // }
-        // Alert::toast('Invalid Token!', 'error')->autoClose(5000);
-        // return back();
+        $validateData = $request->validate([
+            'token' => ['required', 'string'],
+        ]);
 
-        // Check token
-        if ($psikotesTool->token === $request->token) {
-            return redirect('psikotes-paid/tools/'. $psikotesTool->id);
-        } else {
-            return 'salah';
+        if ($psikotesTool->token === $validateData['token']) {
+            $session = PsikotesSession::create([
+                'user_id' => auth()->user()->id,
+                'psikotes_tool_id' => $psikotesTool->id,
+            ]);
+
+            session([
+                'session_id' => $session->id
+            ]);
+
+            return redirect('psikotes-paid/tools/' . $psikotesTool->id . '/introduce');
         }
+
+        // Jika gagal, kembalikan ke halaman sebelumnya dengan pesan error.
+        throw ValidationException::withMessages([
+            'token' => 'Token yang Anda masukkan tidak valid.',
+        ]);
     }
 
-    public function landing(PsikotesTool $psikotesTool) {
-        $progress = 60;
-        return view('landing.psikotes-paid.tools.types.index', compact('psikotesTool', 'progress'));
+    public function introduce(PsikotesTool $psikotesTool)
+    {
+
+        if (!session()->has('section_order') || !session()->has('question_order')) {
+            session([
+                'section_order' => 1,
+                'question_order' => 1
+            ]);
+        }
+
+        return view('landing.psikotes-paid.tools.introduce', compact('psikotesTool'));
     }
 }
