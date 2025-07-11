@@ -1,5 +1,5 @@
 # .github/workflows/deploy.yml
-name: Auto Deploy on Push via SSH (Deployment)
+name: Auto Deploy on Push via SSH (main)
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd /home/${{ secrets.SSH_USERNAME }}/psikotes.berbinar.in
-            git pull origin development
+            git pull origin main
             # Optional: Add other server commands here like composer install or artisan migrate
             # php artisan migrate --force
 
