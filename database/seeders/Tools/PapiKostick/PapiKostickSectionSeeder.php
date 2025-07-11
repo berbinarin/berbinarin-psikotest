@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\Tools\PapiKostick;
 
-use App\Models\PsikotesSection;
-use App\Models\PsikotesTool;
+use App\Models\Section;
+use App\Models\Tool;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,11 +14,11 @@ class PapiKostickSectionSeeder extends Seeder
      */
     public function run(): void
     {
-        $papiKostick = PsikotesTool::firstWhere('name', 'Papi Kostick');
+        $papiKostick = Tool::firstWhere('name', 'Papi Kostick');
 
         $sections = [
             [
-                'psikotes_tool_id' => $papiKostick->id,
+                'tool_id' => $papiKostick->id,
                 'title' => 'Main',
                 'order' => 1,
                 'duration' => 45
@@ -26,7 +26,7 @@ class PapiKostickSectionSeeder extends Seeder
         ];
 
         foreach ($sections as $section) {
-            PsikotesSection::create($section);
+            Section::create($section);
         }
     }
 }

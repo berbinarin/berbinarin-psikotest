@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\Tools\RMIB;
 
-use App\Models\PsikotesQuestion;
-use App\Models\PsikotesTool;
+use App\Models\Question;
+use App\Models\Tool;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,11 +14,11 @@ class RmibQuestionSeeder extends Seeder
      */
     public function run(): void
     {
-        $rmib = PsikotesTool::with('sections')->firstWhere('name', 'RMIB');
+        $rmib = Tool::with('sections')->firstWhere('name', 'RMIB');
 
         $questions = [
             [
-                'psikotes_section_id' => $rmib->sections[0]->id,
+                'section_id' => $rmib->sections[0]->id,
                 'order' => 1,
                 'type' => 'ordering',
                 'text' => 'Tim mengadakan persiapan perjalanan. Rapat-rapat perlu diadakan. Dana dari sponsor, kendaraan, peralatan dan sebagainya perlu diurus.
@@ -72,7 +72,7 @@ class RmibQuestionSeeder extends Seeder
                 ]
             ],
             [
-                'psikotes_section_id' => $rmib->sections[1]->id,
+                'section_id' => $rmib->sections[1]->id,
                 'order' => 1,
                 'type' => 'ordering',
                 'text' => 'Anggota yang melakukan tawar-menawar dana mengabarkan bahwa keduabelasan Anda diminta membantu pelaksanaan "bazar malam" untuk menjual barang-barang simpanan sponsor. Kedua-belasan Anda akan mendapat 20% hasil penjualan sebagai tambahan bekal.
@@ -129,7 +129,7 @@ class RmibQuestionSeeder extends Seeder
                 ]
             ],
             [
-                'psikotes_section_id' => $rmib->sections[2]->id,
+                'section_id' => $rmib->sections[2]->id,
                 'order' => 1,
                 'type' => 'ordering',
                 'text' => 'Persiapan berjalan mulus. Perjalanan juga menyenangkan. Di Kecamatan Depok, Pak Camat meminta agar tim WKN membenahi wisma padepokan KLH tempat tim Anda menginap serta mengadakan pameran dan kampanye KLH.
@@ -186,7 +186,7 @@ class RmibQuestionSeeder extends Seeder
                 ]
             ],
             [
-                'psikotes_section_id' => $rmib->sections[3]->id,
+                'section_id' => $rmib->sections[3]->id,
                 'order' => 1,
                 'type' => 'ordering',
                 'text' => 'Kampanye di Wisma direncanakan terdiri atas beberapa acara, antara lain penghijauan, kependudukan, dan masalah polusi.
@@ -243,7 +243,7 @@ class RmibQuestionSeeder extends Seeder
                 ]
             ],
             [
-                'psikotes_section_id' => $rmib->sections[4]->id,
+                'section_id' => $rmib->sections[4]->id,
                 'order' => 1,
                 'type' => 'ordering',
                 'text' => 'Bagi para remaja dan anak-anak, KLH diperkenalkan dengan mengadakan berbagai lomba.
@@ -300,7 +300,7 @@ class RmibQuestionSeeder extends Seeder
                 ]
             ],
             [
-                'psikotes_section_id' => $rmib->sections[5]->id,
+                'section_id' => $rmib->sections[5]->id,
                 'order' => 1,
                 'type' => 'ordering',
                 'text' => 'Guru SD perlu mendapat pengetahuan lebih mendalam mengenai KLH. Mereka mendapat penataran, dan Anda-Anda perlu menggantikan tugas mereka.
@@ -356,7 +356,7 @@ class RmibQuestionSeeder extends Seeder
                 ]
             ],
             [
-                'psikotes_section_id' => $rmib->sections[6]->id,
+                'section_id' => $rmib->sections[6]->id,
                 'order' => 1,
                 'type' => 'ordering',
                 'text' => 'Tim Anda diminta menjadi agen rahasia untuk menyelidiki satu keluarga pedagang kaya raya yang diduga terlibat dalam masalah narkotika. Keluarga ini akan mengadakan pesta besar-besaran di salah satu pulau di Pulau Seribu. Setiap anggota tim menyamar sebagai petugas.
@@ -413,7 +413,7 @@ class RmibQuestionSeeder extends Seeder
                 ]
             ],
             [
-                'psikotes_section_id' => $rmib->sections[7]->id,
+                'section_id' => $rmib->sections[7]->id,
                 'order' => 1,
                 'type' => 'ordering',
                 'text' => 'Di suatu daerah, terjadi musibah gempa yang diikuti dangan tanah longsor yang melanda daerah pemukiman. Tim Anda diminta membantu.
@@ -473,9 +473,9 @@ class RmibQuestionSeeder extends Seeder
 
         foreach ($questions as $questionData) {
             // Menggunakan updateOrCreate untuk menghindari duplikasi jika seeder dijalankan lagi
-            PsikotesQuestion::updateOrCreate(
+            Question::updateOrCreate(
                 [
-                    'psikotes_section_id' => $questionData['psikotes_section_id'],
+                    'section_id' => $questionData['section_id'],
                     'order' => $questionData['order'],
                 ],
                 $questionData

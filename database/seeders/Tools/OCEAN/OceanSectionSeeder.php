@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\Tools\Ocean;
 
-use App\Models\PsikotesSection;
-use App\Models\PsikotesTool;
+use App\Models\Section;
+use App\Models\Tool;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,11 +14,11 @@ class OceanSectionSeeder extends Seeder
      */
     public function run(): void
     {
-        $ocean = PsikotesTool::where('name', 'OCEAN')->first();
+        $ocean = Tool::where('name', 'OCEAN')->first();
 
         $sections = [
             [
-                'psikotes_tool_id' => $ocean->id,
+                'tool_id' => $ocean->id,
                 'title' => 'Main',
                 'order' => 1,
                 'duration' => 10
@@ -26,7 +26,7 @@ class OceanSectionSeeder extends Seeder
         ];
 
         foreach ($sections as $section) {
-            PsikotesSection::create($section);
+            Section::create($section);
         }
     }
 }

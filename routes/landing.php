@@ -9,20 +9,9 @@ Route::get('/', [LandingController::class, 'index']);
 
 // Psikotes Paid
 Route::middleware('auth')->prefix('psikotes-paid')->group(function() {
-    Route::get('/', );
-
-
-
-    Route::get('/tools/soal', function() {
-        $psikotesTool = App\Models\PsikotesTool::all()[0];
-        $psikotesTool->sections[0]->questions[0]->type = "multiple_select";
-        $progress = 60;
-        return view('landing.psikotes-paid.tools.question', compact('psikotesTool', 'progress'));
-    });
-
     Route::get('/tools', [PsikotesPaidController::class, 'tools']);
-    Route::get('/tools/{psikotesTool}/introduce', [PsikotesPaidController::class, 'introduce']);
-    Route::get('/tools/{psikotesTool}/question', [SubmittedResponseController::class, 'question']);
-    Route::post('/tools/{psikotesTool}/question', [SubmittedResponseController::class, 'store']);
-    Route::post('/tools/{psikotesTool}/verify-token', [PsikotesPaidController::class, 'verifyToken']);
+    Route::get('/tools/{tool}/introduce', [PsikotesPaidController::class, 'introduce']);
+    Route::get('/tools/{tool}/question', [SubmittedResponseController::class, 'queastion']);
+    Route::post('/tools/{tool}/question', [SubmittedResponseController::class, 'store']);
+    Route::post('/tools/{tool}/verify-token', [PsikotesPaidController::class, 'verifyToken']);
 });

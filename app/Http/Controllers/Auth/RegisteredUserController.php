@@ -3,28 +3,28 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRegistrationRequest;
+use App\Models\RegistrantProfile;
+use App\Models\TestCategory;
+use App\Models\TestType;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
 
 class RegisteredUserController extends Controller
 {
     /**
      * Display the registration view.
      */
-    public function registerSchedule(): View
+    public function create(): View
     {
-        return view('auth.register-schedule');
-    }
-
-    public function registerScheduleStore(Request $request) {
-        
+        $testCategories = TestCategory::all();
+        $testTypes = TestType::all();
+        return view('auth.register', compact('testCategories', 'testTypes'));
     }
 
     /**
@@ -40,23 +40,38 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(StoreRegistrationRequest $request): RedirectResponse
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $validateData = $request->validated();
 
-        event(new Registered($user));
+        try {
+            // 2. Bungkus semua operasi database dalam transaction
+            DB::transaction(function () use ($validateData) {
 
-        Auth::login($user);
+                // Buat user baru
+                $user = User::create([
+                    'name' => $validateData['name'],
+                    'email' => $validateData['email'],
+                    'password' => bcrypt(Str::random(10)),
+                ]);
+
+                RegistrantProfile::create([
+                    'user_id' => $user->id,
+                    'test_type_id' => $validateData['test_type_id'],
+                    'gender' => $validateData['gender'],
+                    'age' => $validateData['age'],
+                    'domicile' => $validateData['domicile'],
+                    'phone_number' => $validateData['phone_number'],
+                    'psikotes_service' => $validateData['service'],
+                    'reason' => $validateData['reason'],
+                    'schedule' => Carbon::createFromFormat('Y-m-d H:i', $validateData['psikotes_date'] . ' ' . $validateData['psikotes_time'])
+                ]);
+            });
+        } catch (\Exception $e) {
+            return back()->withInput()->with('error', 'Terjadi kesalahan saat pendaftaran. Silakan coba lagi.');
+        }
+
 
         return redirect(RouteServiceProvider::HOME);
     }

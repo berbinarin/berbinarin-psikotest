@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\Tools\SSCT;
 
-use App\Models\PsikotesSection;
-use App\Models\PsikotesTool;
+use App\Models\Section;
+use App\Models\Tool;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,10 +14,10 @@ class SsctSectionSeeder extends Seeder
      */
     public function run(): void
     {
-        $ssct = PsikotesTool::where('name', 'SSCT')->first();
+        $ssct = Tool::where('name', 'SSCT')->first();
 
-        PsikotesSection::create([
-            'psikotes_tool_id' => $ssct->id,
+        Section::create([
+            'tool_id' => $ssct->id,
             'title' => 'Instruksi Tes SSCT',
             'order' => 1,
             'duration' => 40,

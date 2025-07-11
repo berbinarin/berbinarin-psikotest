@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Landing\PsikotesPaid;
 
 use App\Http\Controllers\Controller;
-use App\Models\PsikotesSession;
-use App\Models\PsikotesTool;
+use App\Models\Session;
+use App\Models\Tool;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
@@ -18,28 +18,28 @@ class PsikotesPaidController extends Controller
     public function tools()
     {
         $user = auth()->user();
-        $tools = PsikotesTool::all();
+        $tools = Tool::all();
 
         return view('landing.psikotes-paid.tools.index', compact('user', 'tools'));
     }
 
-    public function verifyToken(Request $request, PsikotesTool $psikotesTool)
+    public function verifyToken(Request $request, Tool $tool)
     {
         $validateData = $request->validate([
             'token' => ['required', 'string'],
         ]);
 
-        if ($psikotesTool->token === $validateData['token']) {
-            $session = PsikotesSession::create([
+        if ($tool->token === $validateData['token']) {
+            $session = Session::create([
                 'user_id' => auth()->user()->id,
-                'psikotes_tool_id' => $psikotesTool->id,
+                'tool_id' => $tool->id,
             ]);
 
             session([
                 'session_id' => $session->id
             ]);
 
-            return redirect('psikotes-paid/tools/' . $psikotesTool->id . '/introduce');
+            return redirect('psikotes-paid/tools/' . $tool->id . '/introduce');
         }
 
         // Jika gagal, kembalikan ke halaman sebelumnya dengan pesan error.
@@ -48,7 +48,7 @@ class PsikotesPaidController extends Controller
         ]);
     }
 
-    public function introduce(PsikotesTool $psikotesTool)
+    public function introduce(Tool $tool)
     {
 
         if (!session()->has('section_order') || !session()->has('question_order')) {

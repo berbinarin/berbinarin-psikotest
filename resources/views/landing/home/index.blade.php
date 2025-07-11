@@ -40,7 +40,7 @@
 
     <div class="mx-4 mb-14 flex flex-col justify-center gap-6 sm:flex-row">
         <div class="flex items-center justify-center">
-            <a href="{{ route("register-schedule") }}" class="flex w-full justify-center">
+            <a href="{{ route("register") }}" class="flex w-full justify-center">
                 <span class="text-md w-full rounded-xl bg-gradient-to-r from-[#3986A3] to-[#225062] px-16 py-2 text-white max-sm:text-[15px] sm:w-auto">Daftar Tes Berbayar</span>
             </a>
         </div>

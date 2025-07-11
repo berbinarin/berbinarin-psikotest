@@ -1,7 +1,7 @@
 @extends(
     "landing.layouts.test",
     [
-        "title" => "Tes " . str_pad($psikotesTool->order, 2, "0", STR_PAD_LEFT),
+        "title" => "Tes " . str_pad($tool->order, 2, "0", STR_PAD_LEFT),
     ]
 )
 
@@ -16,18 +16,18 @@
                     <img class="h-11 w-11" src="{{ asset("assets/images/psikotes-paid/logo-berbinar-psikotes.png") }}" alt="Logo Berbinar Psikotest" />
                 </div>
                 <div>
-                    <h2 class="text-[28px] font-bold">Tes {{ str_pad($psikotesTool->order, 2, "0", STR_PAD_LEFT) }}</h2>
+                    <h2 class="text-[28px] font-bold">Tes {{ str_pad($tool->order, 2, "0", STR_PAD_LEFT) }}</h2>
                 </div>
             </div>
 
             <div class="mb-4 mt-10 flex flex-1">
                 <div class="mx-auto max-w-[871px] rounded-xl bg-white p-10 drop-shadow-[0_4px_12px_rgba(0,0,0,0.15)]">
                     <div class="prose font-medium">
-                        {!! $psikotesTool->introduce !!}
+                        {!! $tool->introduce !!}
                     </div>
 
                     <div class="flex justify-center mt-8">
-                        <a href="/psikotes-paid/tools/{{ $psikotesTool->id }}/question" class="rounded-full bg-[#6083F2] px-8 py-2 font-extrabold text-white">Selanjutnya</a>
+                        <a href="/psikotes-paid/tools/{{ $tool->id }}/question" class="rounded-full bg-[#6083F2] px-8 py-2 font-extrabold text-white">Selanjutnya</a>
                     </div>
                 </div>
             </div>

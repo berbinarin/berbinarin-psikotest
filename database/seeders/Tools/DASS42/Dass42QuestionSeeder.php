@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\Tools\DASS42;
 
-use App\Models\PsikotesQuestion;
-use App\Models\PsikotesTool;
+use App\Models\Question;
+use App\Models\Tool;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -11,10 +11,10 @@ class Dass42QuestionSeeder extends Seeder
 {
     public function run(): void
     {
-        $dass42 = PsikotesTool::with('sections')->firstWhere('name', 'DASS-42');
+        $dass42 = Tool::with('sections')->firstWhere('name', 'DASS-42');
         $questions = [
             [
-                'psikotes_section_id' => $dass42->sections[0]->id,
+                'section_id' => $dass42->sections[0]->id,
                 'order' => 1,
                 'type' => 'likert',
                 'text' => 'Saya merasa bahwa diri saya menjadi marah karena hal-hal sepele.',
@@ -30,7 +30,7 @@ class Dass42QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $dass42->sections[0]->id,
+                'section_id' => $dass42->sections[0]->id,
                 'order' => 2,
                 'type' => 'likert',
                 'text' => 'Saya merasa bibir saya sering kering.',
@@ -46,7 +46,7 @@ class Dass42QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $dass42->sections[0]->id,
+                'section_id' => $dass42->sections[0]->id,
                 'order' => 3,
                 'type' => 'likert',
                 'text' => 'Saya sama sekali tidak dapat merasakan perasaan positif. ',
@@ -62,7 +62,7 @@ class Dass42QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $dass42->sections[0]->id,
+                'section_id' => $dass42->sections[0]->id,
                 'order' => 4,
                 'type' => 'likert',
                 'text' => 'Saya mengalami kesulitan bernafas (misalnya: seringkali terengah-engah atau tidak dapat bernafas padahal tidak melakukan aktivitas fisik sebelumnya).',
@@ -78,7 +78,7 @@ class Dass42QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $dass42->sections[0]->id,
+                'section_id' => $dass42->sections[0]->id,
                 'order' => 5,
                 'type' => 'likert',
                 'text' => 'Saya sepertinya tidak kuat lagi untuk melakukan suatu kegiatan.',
@@ -94,7 +94,7 @@ class Dass42QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $dass42->sections[0]->id,
+                'section_id' => $dass42->sections[0]->id,
                 'order' => 6,
                 'type' => 'likert',
                 'text' => 'Saya cenderung bereaksi berlebihan terhadap suatu situasi.',
@@ -110,7 +110,7 @@ class Dass42QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $dass42->sections[0]->id,
+                'section_id' => $dass42->sections[0]->id,
                 'order' => 7,
                 'type' => 'likert',
                 'text' => 'Saya merasa goyah (misalnya, kaki terasa mau ’copot’).',
@@ -126,7 +126,7 @@ class Dass42QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $dass42->sections[0]->id,
+                'section_id' => $dass42->sections[0]->id,
                 'order' => 8,
                 'type' => 'likert',
                 'text' => 'Saya merasa sulit untuk bersantai.',
@@ -142,7 +142,7 @@ class Dass42QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $dass42->sections[0]->id,
+                'section_id' => $dass42->sections[0]->id,
                 'order' => 9,
                 'type' => 'likert',
                 'text' => 'Saya menemukan diri saya berada dalam situasi yang membuat saya merasa sangat cemas dan saya akan merasa sangat lega jika semua ini berakhir. ',
@@ -158,7 +158,7 @@ class Dass42QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $dass42->sections[0]->id,
+                'section_id' => $dass42->sections[0]->id,
                 'order' => 10,
                 'type' => 'likert',
                 'text' => 'Saya merasa tidak ada hal yang dapat diharapkan di masa depan. ',
@@ -174,7 +174,7 @@ class Dass42QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $dass42->sections[0]->id,
+                'section_id' => $dass42->sections[0]->id,
                 'order' => 11,
                 'type' => 'likert',
                 'text' => 'Saya menemukan diri saya mudah merasa kesal.',
@@ -190,7 +190,7 @@ class Dass42QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $dass42->sections[0]->id,
+                'section_id' => $dass42->sections[0]->id,
                 'order' => 12,
                 'type' => 'likert',
                 'text' => 'Saya merasa telah menghabiskan banyak energi untuk merasa cemas.',
@@ -206,7 +206,7 @@ class Dass42QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $dass42->sections[0]->id,
+                'section_id' => $dass42->sections[0]->id,
                 'order' => 13,
                 'type' => 'likert',
                 'text' => 'Saya merasa sedih dan tertekan.',
@@ -222,7 +222,7 @@ class Dass42QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $dass42->sections[0]->id,
+                'section_id' => $dass42->sections[0]->id,
                 'order' => 14,
                 'type' => 'likert',
                 'text' => 'Saya menemukan diri saya menjadi tidak sabar ketika mengalami penundaan (misalnya: kemacetan lalu lintas, menunggu sesuatu).',
@@ -238,7 +238,7 @@ class Dass42QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $dass42->sections[0]->id,
+                'section_id' => $dass42->sections[0]->id,
                 'order' => 15,
                 'type' => 'likert',
                 'text' => 'Saya merasa lemas seperti mau pingsan.',
@@ -254,7 +254,7 @@ class Dass42QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $dass42->sections[0]->id,
+                'section_id' => $dass42->sections[0]->id,
                 'order' => 16,
                 'type' => 'likert',
                 'text' => 'Saya merasa saya kehilangan minat akan segala hal.',
@@ -270,7 +270,7 @@ class Dass42QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $dass42->sections[0]->id,
+                'section_id' => $dass42->sections[0]->id,
                 'order' => 17,
                 'type' => 'likert',
                 'text' => 'Saya merasa bahwa saya tidak berharga sebagai seorang manusia.',
@@ -286,7 +286,7 @@ class Dass42QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $dass42->sections[0]->id,
+                'section_id' => $dass42->sections[0]->id,
                 'order' => 18,
                 'type' => 'likert',
                 'text' => 'Saya merasa bahwa saya mudah tersinggung.',
@@ -302,7 +302,7 @@ class Dass42QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $dass42->sections[0]->id,
+                'section_id' => $dass42->sections[0]->id,
                 'order' => 19,
                 'type' => 'likert',
                 'text' => 'Saya berkeringat secara berlebihan (misalnya: tangan berkeringat), padahal temperatur tidak panas atau tidak melakukan aktivitas fisik sebelumnya. ',
@@ -318,7 +318,7 @@ class Dass42QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $dass42->sections[0]->id,
+                'section_id' => $dass42->sections[0]->id,
                 'order' => 20,
                 'type' => 'likert',
                 'text' => 'Saya merasa takut tanpa alasan yang jelas.',
@@ -334,7 +334,7 @@ class Dass42QuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $dass42->sections[0]->id,
+                'section_id' => $dass42->sections[0]->id,
                 'order' => 21,
                 'type' => 'likert',
                 'text' => 'Saya merasa bahwa hidup tidak bermanfaat.',
@@ -352,7 +352,7 @@ class Dass42QuestionSeeder extends Seeder
         ];
 
         foreach ($questions as $question) {
-            PsikotesQuestion::create($question);
+            Question::create($question);
         }
     }
 }

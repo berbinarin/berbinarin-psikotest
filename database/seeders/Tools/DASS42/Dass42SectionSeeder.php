@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\Tools\DASS42;
 
-use App\Models\PsikotesSection;
-use App\Models\PsikotesTool;
+use App\Models\Section;
+use App\Models\Tool;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,11 +14,11 @@ class Dass42SectionSeeder extends Seeder
      */
     public function run(): void
     {
-        $dass42 = PsikotesTool::firstWhere('name', 'DASS-42');
+        $dass42 = Tool::firstWhere('name', 'DASS-42');
 
         $sections = [
             [
-                'psikotes_tool_id' => $dass42->id,
+                'tool_id' => $dass42->id,
                 'title' => 'Main',
                 'order' => 1,
                 'duration' => 20
@@ -26,7 +26,7 @@ class Dass42SectionSeeder extends Seeder
         ];
 
         foreach ($sections as $section) {
-            PsikotesSection::create($section);
+            Section::create($section);
         }
     }
 }

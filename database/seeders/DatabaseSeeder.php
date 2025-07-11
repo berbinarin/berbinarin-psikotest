@@ -17,12 +17,21 @@ class DatabaseSeeder extends Seeder
         $this->call([
             // Role Seeder
             RoleSeeder::class,
-            
+
             // User Seeder
             UserSeeder::class,
         ]);
 
-        // Psikotes Seeder
+        // Test
+        $this->call([
+            // Test Category
+            TestCategorySeeder::class,
+
+            // Test Type
+            TestTypeSeeder::class,
+        ]);
+
+        // Tool Seeder
         $this->call([
             Tools\PsikotesToolSeeder::class,
 
@@ -45,15 +54,15 @@ class DatabaseSeeder extends Seeder
             // SSCT
             Tools\SSCT\SsctSectionSeeder::class,
             Tools\SSCT\SsctQuestionSeeder::class,
-          
+
             // OCEAN
             Tools\OCEAN\OceanSectionSeeder::class,
             Tools\OCEAN\OceanQuestionSeeder::class,
-            
+
             // DASS-42
             Tools\DASS42\Dass42SectionSeeder::class,
             Tools\DASS42\Dass42QuestionSeeder::class,
-            
+
             // VAK
             Tools\VAK\VakSectionSeeder::class,
             Tools\VAK\VakQuestionSeeder::class,

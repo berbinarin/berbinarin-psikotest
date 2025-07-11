@@ -5,7 +5,7 @@
 <p class="text-center text-lg font-medium">oaiwjejoewaf</p>
 
 <div class="mx-auto mt-12 flex w-[700px] flex-wrap items-center justify-center gap-x-5 gap-y-6">
-    @foreach ($psikotesTool->sections[0]->questions[0]->options as $option)
+    @foreach ($tool->sections[0]->questions[0]->options as $option)
         <label for="{{ $option["key"] }}" class="card relative flex h-[180px] w-[330px] select-none items-center justify-center rounded-xl bg-[{{ $colors[$loop->index] }}] px-6 transition-all duration-[200ms] hover:scale-[1.03] hover:shadow-[0_8px_16px_rgba(0,0,0,0.25)]">
             <input class="hidden" type="checkbox" value="{{ $option["key"] }}" id="{{ $option["key"] }}" name="answer" required />
             <span class="text-center text-sm font-semibold text-white">{{ $option["text"] }}</span>

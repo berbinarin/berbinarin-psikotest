@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\Tools\HTP;
 
-use App\Models\PsikotesSection;
-use App\Models\PsikotesTool;
+use App\Models\Section;
+use App\Models\Tool;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,10 +14,10 @@ class HtpSectionSeeder extends Seeder
      */
     public function run(): void
     {
-        $htp = PsikotesTool::firstWhere('name', 'HTP');
+        $htp = Tool::firstWhere('name', 'HTP');
 
-        PsikotesSection::create([
-            'psikotes_tool_id' => $htp->id,
+        Section::create([
+            'tool_id' => $htp->id,
             'title' => 'Main',
             'order' => 1,
             'duration' => 7

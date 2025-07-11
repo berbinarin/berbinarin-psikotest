@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\Tools\OCEAN;
 
-use App\Models\PsikotesQuestion;
-use App\Models\PsikotesTool;
+use App\Models\Question;
+use App\Models\Tool;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -18,10 +18,10 @@ class OceanQuestionSeeder extends Seeder
      */
     public function run(): void
     {
-        $ocean = PsikotesTool::with('sections')->firstWhere('name', 'OCEAN');
+        $ocean = Tool::with('sections')->firstWhere('name', 'OCEAN');
         $questions = [
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 1,
                 'type' => 'likert',
                 'text' => 'Saya mudah berteman dengan siapapun',
@@ -38,7 +38,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 2,
                 'type' => 'likert',
                 'text' => 'Saya suka mencari-cari kesalahan orang lain',
@@ -55,7 +55,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 3,
                 'type' => 'likert',
                 'text' => 'Saya melakukan pekerjaan secara menyeluruh hingga selesai',
@@ -72,7 +72,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 4,
                 'type' => 'likert',
                 'text' => 'Saya sering merasa sedih',
@@ -89,7 +89,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 5,
                 'type' => 'likert',
                 'text' => 'Saya selalu memiliki ide-ide baru',
@@ -106,7 +106,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 6,
                 'type' => 'likert',
                 'text' => 'Saya sering merasa tertinggal',
@@ -123,7 +123,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 7,
                 'type' => 'likert',
                 'text' => 'Saya lebih suka untuk membantu orang lain, dibandingkan mementingkan diri sendiri',
@@ -140,7 +140,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 8,
                 'type' => 'likert',
                 'text' => 'Saya seorang yang ceroboh',
@@ -157,7 +157,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 9,
                 'type' => 'likert',
                 'text' => 'Saya mampu menangani stres dengan baik',
@@ -174,7 +174,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 10,
                 'type' => 'likert',
                 'text' => 'Saya memiliki rasa ingin tahu yang tinggi',
@@ -191,7 +191,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 11,
                 'type' => 'likert',
                 'text' => 'Saya seorang yang energik',
@@ -208,7 +208,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 12,
                 'type' => 'likert',
                 'text' => 'Saya suka memulai pertengkaran dengan orang lain',
@@ -225,7 +225,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 13,
                 'type' => 'likert',
                 'text' => 'Saya handal dalam pekerjaan yang saya lakukan',
@@ -242,7 +242,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 14,
                 'type' => 'likert',
                 'text' => 'Saya seorang yang tegang',
@@ -259,7 +259,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 15,
                 'type' => 'likert',
                 'text' => 'Saya seorang yang pemikir',
@@ -276,7 +276,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 16,
                 'type' => 'likert',
                 'text' => 'Saya seorang yang selalu meramaikan pesta',
@@ -293,7 +293,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 17,
                 'type' => 'likert',
                 'text' => 'Saya seorang yang pemaaf',
@@ -310,7 +310,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 18,
                 'type' => 'likert',
                 'text' => 'Saya cenderung tidak terorganisir',
@@ -327,7 +327,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 19,
                 'type' => 'likert',
                 'text' => 'Saya selalu merasa khawatir terhadap berbagai hal',
@@ -344,7 +344,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 20,
                 'type' => 'likert',
                 'text' => 'Saya seorang yang imaginatif',
@@ -361,7 +361,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 21,
                 'type' => 'likert',
                 'text' => 'Saya seorang yang tenang',
@@ -378,7 +378,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 22,
                 'type' => 'likert',
                 'text' => 'Saya mudah percaya dengan orang lain',
@@ -395,7 +395,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 23,
                 'type' => 'likert',
                 'text' => 'Saya seorang yang pemalas',
@@ -412,7 +412,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 24,
                 'type' => 'likert',
                 'text' => 'Saya tidak mudah marah',
@@ -429,7 +429,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 25,
                 'type' => 'likert',
                 'text' => 'Saya suka menciptakan hal-hal yang baru/inventif',
@@ -446,7 +446,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 26,
                 'type' => 'likert',
                 'text' => 'Saya seorang yang tegas',
@@ -463,7 +463,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 27,
                 'type' => 'likert',
                 'text' => 'Saya lebih suka untuk menyendiri',
@@ -480,7 +480,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 28,
                 'type' => 'likert',
                 'text' => 'Saya sukses dalam menyelesaikan tugas',
@@ -497,7 +497,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 29,
                 'type' => 'likert',
                 'text' => 'Saya suka moody',
@@ -514,7 +514,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 30,
                 'type' => 'likert',
                 'text' => 'Saya percaya terhadap pentingnya nilai seni dan estetika',
@@ -531,7 +531,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 31,
                 'type' => 'likert',
                 'text' => 'Saya seorang yang pemalu',
@@ -548,7 +548,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 32,
                 'type' => 'likert',
                 'text' => 'Saya perhatian dengan siapapun',
@@ -565,7 +565,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 33,
                 'type' => 'likert',
                 'text' => 'Saya melakukan berbagai hal secara efisien',
@@ -582,7 +582,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 34,
                 'type' => 'likert',
                 'text' => 'Saya mampu bersikap tenang di dalam situasi yang tegang',
@@ -599,7 +599,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 35,
                 'type' => 'likert',
                 'text' => 'Saya lebih suka dengan rutinitas',
@@ -616,7 +616,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 36,
                 'type' => 'likert',
                 'text' => 'Saya suka bersosialisasi dan jalan-jalan',
@@ -633,7 +633,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 37,
                 'type' => 'likert',
                 'text' => 'Terkadang saya kasar dengan orang lain',
@@ -650,7 +650,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 38,
                 'type' => 'likert',
                 'text' => 'Ketika saya memiliki rencana, saya cenderung menindaklanjutinya',
@@ -667,7 +667,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 39,
                 'type' => 'likert',
                 'text' => 'Saya mudah merasa gugup',
@@ -684,7 +684,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 40,
                 'type' => 'likert',
                 'text' => 'Saya suka merenung',
@@ -701,7 +701,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 41,
                 'type' => 'likert',
                 'text' => 'Saya memiliki ketertarikan terhadap seni',
@@ -718,7 +718,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 42,
                 'type' => 'likert',
                 'text' => 'Saya lebih suka bekerja sama dalam melakukan pekerjaan saya',
@@ -735,7 +735,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 43,
                 'type' => 'likert',
                 'text' => 'Saya mudah terdistraksi',
@@ -752,7 +752,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $ocean->sections[0]->id,
+                'section_id' => $ocean->sections[0]->id,
                 'order' => 44,
                 'type' => 'likert',
                 'text' => 'Saya ahli dalam seni, musik, atau sastra',
@@ -771,7 +771,7 @@ class OceanQuestionSeeder extends Seeder
         ];
 
         foreach ($questions as $question) {
-            PsikotesQuestion::create($question);
+            Question::create($question);
         }
     }
 }

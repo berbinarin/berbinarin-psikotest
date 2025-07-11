@@ -2,9 +2,9 @@
 
 namespace App\Services\PsikotesResponse;
 
-use App\Models\PsikotesQuestion;
-use App\Models\PsikotesResponse;
-use App\Models\PsikotesSession;
+use App\Models\Question;
+use App\Models\Response;
+use App\Models\Session;
 use App\Services\File\FileUploadService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -13,7 +13,7 @@ class PsikotesResponseService
 {
     public function __construct(private FileUploadService $fileUploadService) {}
 
-    public function store(Request $request, PsikotesQuestion $question, int $session)
+    public function store(Request $request, Question $question, int $session)
     {
         $methodName = Str::camel($question->type);
 
@@ -21,9 +21,9 @@ class PsikotesResponseService
 
         // Hanya buat response jika ada answer yang valid (bukan null)
         if ($answer !== null) {
-            PsikotesResponse::create([
+            Response::create([
                 'psikotes_session_id' => $session,
-                'psikotes_question_id' => $question->id,
+                'question_id' => $question->id,
                 'answer' => $answer,
             ]);
         }

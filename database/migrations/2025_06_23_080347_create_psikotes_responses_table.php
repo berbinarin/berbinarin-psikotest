@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('psikotes_responses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('psikotes_session_id')->constrained('psikotes_sessions');
-            $table->foreignId('psikotes_question_id')->constrained('psikotes_questions');
+            $table->foreignId('session_id')->constrained('sessions');
+            $table->foreignId('question_id')->constrained('questions');
             $table->json('answer');
             $table->timestamps();
             $table->softDeletes();

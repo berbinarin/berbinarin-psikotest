@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\Tools\PapiKostick;
 
-use App\Models\PsikotesQuestion;
-use App\Models\PsikotesTool;
+use App\Models\Question;
+use App\Models\Tool;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,10 +14,10 @@ class PapiKostickQuestionSeeder extends Seeder
      */
     public function run(): void
     {
-        $papiKostick = PsikotesTool::where('name', 'Papi Kostick')->with('sections')->first();
+        $papiKostick = Tool::where('name', 'Papi Kostick')->with('sections')->first();
         $questions = [
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 1,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -30,7 +30,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 2,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -43,7 +43,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 3,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -56,7 +56,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 4,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -69,7 +69,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 5,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -82,7 +82,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 6,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -95,7 +95,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 7,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -108,7 +108,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 8,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -121,7 +121,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 9,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -134,7 +134,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 10,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -147,7 +147,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 11,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -160,7 +160,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 12,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -173,7 +173,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 13,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -186,7 +186,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 14,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -199,7 +199,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 15,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -212,7 +212,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 16,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -225,7 +225,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 17,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -238,7 +238,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 18,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -251,7 +251,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 19,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -264,7 +264,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 20,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -277,7 +277,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 21,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -290,7 +290,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 22,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -303,7 +303,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 23,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -316,7 +316,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 24,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -329,7 +329,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 25,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -342,7 +342,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 26,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -355,7 +355,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 27,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -368,7 +368,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 28,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -381,7 +381,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 29,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -394,12 +394,12 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 30,
                 'type' => 'multiple_choice',
                 'options' => [
-                    ['key' => 'A', 'text' => 'Saya suka berteman secara intim'],
-                    ['key' => 'B', 'text' => 'Saya suka menasehati orang lain'],
+                    ['key' => 'A', 'text' => 'Saya senang diberitahu bagaimana melakukan sesuatu pekerjaan'],
+                    ['key' => 'B', 'text' => 'Saya mudah bosan'],
                 ],
                 'scoring' => [
                     'A' => 'W',
@@ -407,7 +407,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 31,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -420,7 +420,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 32,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -433,7 +433,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 33,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -442,11 +442,11 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
                 'scoring' => [
                     'A' => 'I',
-                    'B' => 'D',
+                    'B' => 'C',
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 34,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -459,7 +459,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 35,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -472,7 +472,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 36,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -485,7 +485,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 37,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -498,7 +498,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 38,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -511,7 +511,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 39,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -524,7 +524,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 40,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -537,7 +537,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 41,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -550,7 +550,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 42,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -563,7 +563,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 43,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -576,7 +576,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 44,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -589,7 +589,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 45,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -602,7 +602,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 46,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -615,7 +615,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 47,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -628,7 +628,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 48,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -641,7 +641,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 49,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -654,7 +654,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 50,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -667,7 +667,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 51,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -680,7 +680,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 52,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -693,7 +693,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 53,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -706,7 +706,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 54,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -719,7 +719,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 55,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -732,7 +732,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 56,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -745,7 +745,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 57,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -758,7 +758,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 58,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -771,7 +771,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 59,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -784,7 +784,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 60,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -797,12 +797,12 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 61,
                 'type' => 'multiple_choice',
                 'options' => [
-                    ['key' => 'A', 'text' => 'Bila saya berbicara kelompok mendengarkan'],
-                    ['key' => 'B', 'text' => 'Saya terampil menggunakan alat-alat kerja'],
+                    ['key' => 'A', 'text' => 'Saya biasanya bekerja sangat "keras"'],
+                    ['key' => 'B', 'text' => 'Saya biasanya bekerja cepat'],
                 ],
                 'scoring' => [
                     'A' => 'G',
@@ -810,7 +810,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 62,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -823,7 +823,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 63,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -836,7 +836,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 64,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -849,7 +849,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 65,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -862,7 +862,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 66,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -875,7 +875,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 67,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -888,7 +888,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 68,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -901,7 +901,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 69,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -914,7 +914,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 70,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -927,7 +927,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 71,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -940,7 +940,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 72,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -953,7 +953,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 73,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -966,7 +966,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 74,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -979,7 +979,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 75,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -992,7 +992,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 76,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -1005,7 +1005,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 77,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -1018,7 +1018,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 78,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -1031,7 +1031,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 79,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -1044,7 +1044,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 80,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -1057,7 +1057,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 81,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -1070,7 +1070,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 82,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -1083,7 +1083,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 83,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -1096,7 +1096,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 84,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -1109,7 +1109,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 85,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -1122,7 +1122,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 86,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -1135,7 +1135,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 87,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -1148,7 +1148,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 88,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -1161,7 +1161,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 89,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -1174,7 +1174,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 ],
             ],
             [
-                'psikotes_section_id' => $papiKostick->sections[0]->id,
+                'section_id' => $papiKostick->sections[0]->id,
                 'order' => 90,
                 'type' => 'multiple_choice',
                 'options' => [
@@ -1190,7 +1190,7 @@ class PapiKostickQuestionSeeder extends Seeder
         ];
 
         foreach ($questions as $question) {
-            PsikotesQuestion::create($question);
+            Question::create($question);
         }
     }
 }

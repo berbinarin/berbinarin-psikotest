@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\Tools\RMIB;
 
-use App\Models\PsikotesSection;
-use App\Models\PsikotesTool;
+use App\Models\Section;
+use App\Models\Tool;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,53 +14,53 @@ class RmibSectionSeeder extends Seeder
      */
     public function run(): void
     {
-        $rmib = PsikotesTool::firstWhere('name', 'RMIB');
+        $rmib = Tool::firstWhere('name', 'RMIB');
 
         $sections = [
             [
-                'psikotes_tool_id' => $rmib->id,
+                'tool_id' => $rmib->id,
                 'title' => 'A',
                 'order' => 1,
                 'duration' => 4
             ],
             [
-                'psikotes_tool_id' => $rmib->id,
+                'tool_id' => $rmib->id,
                 'title' => 'B',
                 'order' => 2,
                 'duration' => 4
             ],
             [
-                'psikotes_tool_id' => $rmib->id,
+                'tool_id' => $rmib->id,
                 'title' => 'C',
                 'order' => 3,
                 'duration' => 4
             ],
             [
-                'psikotes_tool_id' => $rmib->id,
+                'tool_id' => $rmib->id,
                 'title' => 'D',
                 'order' => 4,
                 'duration' => 4
             ],
             [
-                'psikotes_tool_id' => $rmib->id,
+                'tool_id' => $rmib->id,
                 'title' => 'E',
                 'order' => 5,
                 'duration' => 4
             ],
             [
-                'psikotes_tool_id' => $rmib->id,
+                'tool_id' => $rmib->id,
                 'title' => 'F',
                 'order' => 6,
                 'duration' => 4
             ],
             [
-                'psikotes_tool_id' => $rmib->id,
+                'tool_id' => $rmib->id,
                 'title' => 'G',
                 'order' => 7,
                 'duration' => 4
             ],
             [
-                'psikotes_tool_id' => $rmib->id,
+                'tool_id' => $rmib->id,
                 'title' => 'H',
                 'order' => 8,
                 'duration' => 4
@@ -68,7 +68,7 @@ class RmibSectionSeeder extends Seeder
         ];
 
         foreach ($sections as $section) {
-            PsikotesSection::create($section);
+            Section::create($section);
         }
     }
 }

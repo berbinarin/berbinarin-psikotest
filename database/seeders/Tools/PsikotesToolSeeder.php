@@ -2,7 +2,7 @@
 
 namespace Database\Seeders\Tools;
 
-use App\Models\PsikotesTool;
+use App\Models\Tool;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -97,7 +97,7 @@ class PsikotesToolSeeder extends Seeder
         ];
 
         foreach ($tools as $tool) {
-            PsikotesTool::create($tool);
+            Tool::create($tool);
         }
     }
 }
