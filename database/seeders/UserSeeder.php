@@ -15,13 +15,15 @@ class UserSeeder extends Seeder
     {
         User::create([
             'name' => 'PTPM',
+            'username' => 'ptpm',
             'email' => 'ptpm@gmail.com',
             'password' => bcrypt('berbinar123')
         ])->assignRole('ptpm');
 
         User::create([
-            'name' => 'Angelina Christy',
-            'email' => 'angelinachristy@gmail.com',
+            'name' => 'Barita',
+            'username' => 'barita',
+            'email' => 'barita@gmail.com',
             'password' => bcrypt('berbinar123')
         ])->assignRole('user_psikotes-paid');
     }

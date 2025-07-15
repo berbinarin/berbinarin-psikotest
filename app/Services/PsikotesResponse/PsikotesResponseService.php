@@ -22,7 +22,7 @@ class PsikotesResponseService
         // Hanya buat response jika ada answer yang valid (bukan null)
         if ($answer !== null) {
             Response::create([
-                'psikotes_session_id' => $session,
+                'session_id' => $session,
                 'question_id' => $question->id,
                 'answer' => $answer,
             ]);

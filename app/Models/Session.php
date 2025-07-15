@@ -19,7 +19,7 @@ class Session extends Model
 
     public function responses(): HasMany
     {
-        return $this->hasMany(Response::class, 'psikotes_session_id');
+        return $this->hasMany(Response::class, 'session_id');
     }
 
     public function user(): BelongsTo{

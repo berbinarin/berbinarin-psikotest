@@ -11,7 +11,7 @@ Route::get('/', [LandingController::class, 'index']);
 Route::middleware('auth')->prefix('psikotes-paid')->group(function() {
     Route::get('/tools', [PsikotesPaidController::class, 'tools']);
     Route::get('/tools/{tool}/introduce', [PsikotesPaidController::class, 'introduce']);
-    Route::get('/tools/{tool}/question', [SubmittedResponseController::class, 'queastion']);
+    Route::get('/tools/{tool}/question', [SubmittedResponseController::class, 'question']);
     Route::post('/tools/{tool}/question', [SubmittedResponseController::class, 'store']);
     Route::post('/tools/{tool}/verify-token', [PsikotesPaidController::class, 'verifyToken']);
 });

@@ -58,6 +58,6 @@ class PsikotesPaidController extends Controller
             ]);
         }
 
-        return view('landing.psikotes-paid.tools.introduce', compact('psikotesTool'));
+        return view('landing.psikotes-paid.tools.introduce', compact('tool'));
     }
 }

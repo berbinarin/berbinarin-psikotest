@@ -1,7 +1,7 @@
 <div class="flex w-full flex-col gap-5 md:flex-row">
     {{-- Kolom Kiri: Detail Hasil & Deskripsi --}}
     <div class="w-full rounded-lg bg-white p-6 shadow-md md:w-2/3">
-        <h2 class="mb-1 text-xl font-bold text-gray-900">Name: {{ $psikotesSession->user->name }}</h2>
+        <h2 class="mb-1 text-xl font-bold text-gray-900">Name: {{ $session->user->name }}</h2>
         <p class="text-sm text-gray-600">Berikut adalah rincian jawaban dan kepribadian berdasarkan tes Papi Kostick.</p>
 
         <div id="chart-container">
@@ -27,7 +27,7 @@
     <div class="w-full self-start rounded-lg bg-white p-6 shadow-md md:w-1/3">
         <h3 class="mb-4 text-lg font-bold">Jawaban</h3>
         <ul class="max-h-[600px] space-y-3 overflow-y-auto pr-2">
-            @foreach ($psikotesSession->responses->sortBy("question.order") as $response)
+            @foreach ($session->responses->sortBy("question.order") as $response)
                 <li class="flex items-start text-sm">
                     <span class="mr-3 w-6 font-semibold text-gray-700">{{ $loop->iteration }}.</span>
                     <span class="flex-1 text-gray-600">

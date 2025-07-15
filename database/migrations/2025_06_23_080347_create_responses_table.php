@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('psikotes_responses', function (Blueprint $table) {
+        Schema::create('responses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('session_id')->constrained('sessions');
             $table->foreignId('question_id')->constrained('questions');

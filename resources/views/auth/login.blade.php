@@ -6,12 +6,12 @@
 @section('content')
 <section>
     <div class="w-screen relative bg-[#BFE2F4]">
-        <img src="{{ asset('assets/abstractwallpaper.png') }}" alt="" title=""
+        <img src="{{ asset('/assets/auth/abstractwallpaper.png') }}" alt="" title=""
             class="w-screen h-screen object-cover">
 
         <div class="flex flex-col justify-center items-center">
             <div class="flex justify-center">
-                <img src="{{ asset('assets/logo-psikotes.png') }}" alt="" title="" class="w-fit absolute top-5">
+                <img src="{{ asset('/assets/auth/logo-psikotes.png') }}" alt="" title="" class="w-fit absolute top-5">
             </div>
 
             <div class="flex justify-center top-0 bottom-0">
@@ -26,10 +26,9 @@
                             <form class="space-y-6" method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <div>
-                                    <label for="email" class="block text-base font-semibold leading-6 text-black">Email
-                                        address</label>
+                                    <label for="username" class="block text-base font-semibold leading-6 text-black">Username</label>
                                     <div class="mt-2">
-                                        <input id="email" name="email" type="email" required
+                                        <input id="username" name="username" type="text" required
                                             class="block w-full rounded-full border-0 py-1.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6">
                                     </div>
                                 </div>

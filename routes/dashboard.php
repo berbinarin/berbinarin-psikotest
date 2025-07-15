@@ -29,9 +29,9 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
                 // Psikotes Tool Dashboard
                 Route::get('/{tool}', [PsikotesToolDataController::class, 'index'])->name('index');
                 Route::get('/{tool}/data', [PsikotesToolDataController::class, 'data'])->name('data');
-                Route::get('/{tool}/data/{psikotesSession}', [PsikotesToolDataController::class, 'detail'])->name('data.detail');
+                Route::get('/{tool}/data/{session}', [PsikotesToolDataController::class, 'detail'])->name('data.detail');
                 Route::get('/{tool}/sections', [PsikotesToolDataController::class, 'sections'])->name('sections');
-                Route::get('/{tool}/sectinos/{psikotesSection}', [PsikotesToolDataController::class, 'questions'])->name('section.questions');
+                Route::get('/{tool}/sectinos/{section}', [PsikotesToolDataController::class, 'questions'])->name('section.questions');
             });
         });
     });

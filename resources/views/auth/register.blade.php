@@ -25,7 +25,7 @@
         <div class="flex flex-row justify-between">
             <a href="{{ route("register") }}">
                 <div class="flex cursor-pointer items-center space-x-2">
-                    <img src="{{ asset("assets/images/landing/asset-konseling/vector/left-arrow.svg") }}" alt="Left Arrow" class="h-3 w-auto" />
+                    <img src="{{ asset("/assets/landing/icons/left-arrow.svg") }}" alt="Left Arrow" class="h-3 w-auto" />
                     <p class="flex text-[15px] font-semibold text-[#3986A3]">
                         Kembali
                         <span class="ml-0.5 hidden sm:block">pilih psikotes</span>
@@ -34,7 +34,7 @@
             </a>
 
             <div class="flex cursor-pointer items-center space-x-1" id="openModal">
-                <img src="{{ asset("assets/images/landing/asset-konseling/vector/sk-vector.png") }}" alt="Syarat & Ketentuan" class="h-3 w-auto" />
+                <img src="{{ asset("/assets/landing/icons/sk-vector.png") }}" alt="Syarat & Ketentuan" class="h-3 w-auto" />
                 <p class="text-[15px] font-semibold text-[#3986A3]">
                     <span class="hidden sm:block">Syarat & Ketentuan</span>
                     <span class="block sm:hidden">S&K</span>
@@ -46,7 +46,7 @@
                     <h1 class="bg-gradient-to-r from-amber-400 to-yellow-700 bg-clip-text pb-4 text-center text-3xl font-bold text-transparent max-sm:text-2xl">Syarat dan Ketentuan</h1>
                     <div class="mb-6">
                         <div class="flex items-start gap-2">
-                            <img src="{{ asset("assets/images/landing/asset-konseling/vector/location.png") }}" alt="Lokasi" class="mt-0.5 h-5 w-5" />
+                            <img src="{{ asset("assets/landing/icons/location.png") }}" alt="Lokasi" class="mt-0.5 h-5 w-5 object-contain" />
                             <span class="font-semibold">Lokasi offline Konseling</span>
                         </div>
                         <ol class="mt-1 list-decimal space-y-1 pl-7">
@@ -57,7 +57,7 @@
 
                     <div class="mb-6">
                         <div class="flex items-start gap-2">
-                            <img src="{{ asset("assets/images/landing/asset-konseling/vector/payment.png") }}" alt="Pembayaran" class="mt-0.5 h-5 w-5" />
+                            <img src="{{ asset("assets/landing/icons/payment.png") }}" alt="Pembayaran" class="mt-0.5 h-5 w-5" />
                             <span class="font-semibold">Pembayaran</span>
                         </div>
                         <ol class="mt-1 list-decimal space-y-1 pl-7">
@@ -67,7 +67,7 @@
 
                     <div class="mb-6">
                         <div class="flex items-start gap-2">
-                            <img src="{{ asset("assets/images/landing/asset-konseling/vector/chat.png") }}" alt="Pembalasan Pesan" class="mt-0.5 h-5 w-5" />
+                            <img src="{{ asset("/assets/landing/icons/chat.png") }}" alt="Pembalasan Pesan" class="mt-0.5 h-5 w-5" />
                             <span class="font-semibold">Pembalasan Pesan</span>
                         </div>
                         <ol class="mt-1 list-decimal space-y-1 pl-7">
@@ -79,7 +79,7 @@
 
                     <div class="mb-6">
                         <div class="flex items-start gap-2">
-                            <img src="{{ asset("assets/images/landing/asset-konseling/vector/cancel.png") }}" alt="Pengajuan Pembatalan" class="mt-0.5 h-5 w-5" />
+                            <img src="{{ asset("assets/landing/icons/cancel.png") }}" alt="Pengajuan Pembatalan" class="mt-0.5 h-5 w-5" />
                             <span class="font-semibold">Pengajuan Pembatalan</span>
                         </div>
                         <ol class="mt-1 list-decimal space-y-1 pl-7">
@@ -107,7 +107,7 @@
                         <p class="text-sm text-[#333333] sm:text-[17px]">Tanggal Psikotes</p>
                         <div class="relative">
                             <input type="date" id="psikotes_date" name="psikotes_date" class="w-full cursor-pointer rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none" placeholder="dd/mm/yy" value="{{ old("psikotes_date") }}" readonly />
-                            <img src="{{ asset("assets/images/landing/asset-konseling/vector/date.png") }}" class="absolute right-5 top-1/2 h-4 w-auto -translate-y-1/2 object-contain" onclick="document.getElementById('datepicker').focus()" />
+                            <img src="{{ asset("assets/landing/icons/date.png") }}" class="absolute right-5 top-1/2 h-4 w-auto -translate-y-1/2 object-contain" onclick="document.getElementById('datepicker').focus()" />
                         </div>
                     </div>
 
@@ -115,7 +115,7 @@
                         <p class="text-sm text-[#333333] sm:text-[17px]">Waktu Psikotes</p>
                         <div class="relative">
                             <input type="time" id="psikotes_time" name="psikotes_time" class="w-full cursor-pointer rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none" placeholder="--:--" value="{{ old("psikotes_time") }}" readonly />
-                            <img src="{{ asset("assets/images/landing/asset-konseling/vector/clock.png") }}" class="absolute right-5 top-1/2 h-4 w-auto -translate-y-1/2 object-contain" onclick="document.getElementById('timepicker').focus()" />
+                            <img src="{{ asset("assets/landing/icons/clock.png") }}" class="absolute right-5 top-1/2 h-4 w-auto -translate-y-1/2 object-contain" onclick="document.getElementById('timepicker').focus()" />
                         </div>
                     </div>
 
@@ -126,7 +126,7 @@
                                 <option value="offline" {{ old("service" === "offline" ? "selected" : "") }}>Offline</option>
                                 <option value="online" {{ old("service" === "online" ? "selected" : "") }}>Online</option>
                             </select>
-                            <img src="{{ asset("assets/images/landing/asset-konseling/vector/dropdown.png") }}" class="dropdown-icon pointer-events-none absolute right-5 top-1/2 h-2 w-auto -translate-y-1/2 object-contain transition-transform duration-300" />
+                            <img src="{{ asset("assets/landing/icons/dropdown.png") }}" class="dropdown-icon pointer-events-none absolute right-5 top-1/2 h-2 w-auto -translate-y-1/2 object-contain transition-transform duration-300" />
                         </div>
                     </div>
 
@@ -139,7 +139,7 @@
                                     <option value="{{ $category->id }}" {{ old("test_category_id") == $category->id ? "selected" : "" }}>{{ $category->name }}</option>
                                 @endforeach
                             </select>
-                            <img src="{{ asset("assets/images/landing/asset-konseling/vector/dropdown.png") }}" class="dropdown-icon pointer-events-none absolute right-5 top-1/2 h-2 w-auto -translate-y-1/2 object-contain transition-transform duration-300" />
+                            <img src="{{ asset("assets/landing/icons/dropdown.png") }}" class="dropdown-icon pointer-events-none absolute right-5 top-1/2 h-2 w-auto -translate-y-1/2 object-contain transition-transform duration-300" />
                         </div>
                     </div>
 
@@ -149,7 +149,7 @@
                             <select id="test_type_id" name="test_type_id" class="dropdown-select w-full cursor-pointer appearance-none rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none">
                                 <option value=""></option>
                             </select>
-                            <img src="{{ asset("assets/images/landing/asset-konseling/vector/dropdown.png") }}" class="dropdown-icon pointer-events-none absolute right-5 top-1/2 h-2 w-auto -translate-y-1/2 object-contain transition-transform duration-300" />
+                            <img src="{{ asset("assets/landing/icons/dropdown.png") }}" class="dropdown-icon pointer-events-none absolute right-5 top-1/2 h-2 w-auto -translate-y-1/2 object-contain transition-transform duration-300" />
                         </div>
                     </div>
 
@@ -208,7 +208,7 @@
                                 <option value="male">Laki-Laki</option>
                                 <option value="female">Perempuan</option>
                             </select>
-                            <img src="{{ asset("assets/images/landing/asset-konseling/vector/dropdown.png") }}" class="dropdown-icon pointer-events-none absolute right-5 top-1/2 h-2 w-auto -translate-y-1/2 object-contain transition-transform duration-300" />
+                            <img src="{{ asset("assets/landing/icons/dropdown.png") }}" class="dropdown-icon pointer-events-none absolute right-5 top-1/2 h-2 w-auto -translate-y-1/2 object-contain transition-transform duration-300" />
                         </div>
                     </div>
 
