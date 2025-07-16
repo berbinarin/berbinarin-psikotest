@@ -23,7 +23,7 @@
 @section("content")
     <div class="mx-4 mb-8 mt-24 flex flex-col justify-center rounded-2xl bg-none px-12 py-6 shadow-none max-md:px-1 sm:mx-24 sm:mb-20 sm:mt-36 md:bg-white md:shadow-lg">
         <div class="flex flex-row justify-between">
-            <a href="{{ route("register") }}">
+            <a href="{{ route("home.index") }}">
                 <div class="flex cursor-pointer items-center space-x-2">
                     <img src="{{ asset("/assets/landing/icons/left-arrow.svg") }}" alt="Left Arrow" class="h-3 w-auto" />
                     <p class="flex text-[15px] font-semibold text-[#3986A3]">
@@ -95,7 +95,7 @@
         </div>
 
         {{-- Form --}}
-        <form action="{{ route("register") }}" method="POST" x-data="{ page: 1 }" x-cloak>
+        <form action="{{ route("auth.psikotes-paid.register") }}" method="POST" x-data="{ page: 1 }" x-cloak>
             @csrf
 
             {{-- Jadwal --}}

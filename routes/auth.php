@@ -11,15 +11,25 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('guest')->group(function () {
-    Route::get('daftar', [RegisteredUserController::class, 'create'])->name('register');
-    Route::post('daftar', [RegisteredUserController::class, 'store'])->name('register');
+Route::name('auth.')->group(function () {
+    Route::middleware('guest')->group(function () {
+        // Admin Login
+        Route::get('login', [AuthenticatedSessionController::class, 'login'])->name('login');
+        
+        // Psikotes Paid Registration
+        Route::get('psikotes-paid/daftar', [RegisteredUserController::class, 'psikotesPaidRegister'])->name('psikotes-paid.register');
+        Route::post('psikotes-paid/daftar', [RegisteredUserController::class, 'psikotesPaidRegisterStore'])->name('psikotes-paid.register');
 
-    Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
-    Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login');
-});
+        // Psikotes Paid Login
+        Route::get('psikotes-paid/login', [AuthenticatedSessionController::class, 'psikotesPaidLogin'])->name('psikotes-paid.login');
+        
 
-Route::middleware('auth')->group(function () {
-    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-        ->name('logout');
+        // Authenticate
+        Route::post('authenticate', [AuthenticatedSessionController::class, 'authenticate'])->name('authenticate');
+    });
+
+    Route::middleware('auth')->group(function () {
+        Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+            ->name('logout');
+    });
 });

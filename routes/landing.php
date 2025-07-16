@@ -5,7 +5,7 @@ use App\Http\Controllers\Landing\PsikotesPaid\PsikotesPaidController;
 use App\Http\Controllers\Landing\PsikotesPaid\SubmittedResponseController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [LandingController::class, 'index']);
+Route::get('/', [LandingController::class, 'index'])->name('home.index');
 
 // Psikotes Paid
 Route::middleware('auth')->prefix('psikotes-paid')->group(function() {
