@@ -9,7 +9,7 @@
     <div class="container mx-auto">
         <div class="fixed left-0 top-0 -z-10 h-screen w-screen bg-cover bg-center bg-no-repeat" style="background-image: url({{ asset("assets/landing/images/psikotes-paid/psikotes-soal-bg.png") }})"></div>
 
-        <form action="/psikotes-paid/tools/{{ $question->tool->id }}/question" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('psikotes-paid.question') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="relative flex h-[85vh] flex-col justify-between">

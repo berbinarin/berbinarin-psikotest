@@ -30,7 +30,6 @@
                                     {{-- <th style="text-align: center">No</th> --}}
                                     <th style="text-align: center">Nama Alat Tes</th>
                                     <th style="text-align: center">Nomor Alat Tes</th>
-                                    <th style="text-align: center">Durasi</th>
                                     <th style="text-align: center">Token</th>
                                     <th style="text-align: center">Generate Token</th>
                                     <th style="text-align: center">Dashboard</th>
@@ -41,7 +40,6 @@
                                     <tr id="" class="data-consume">
                                         <td class="text-center">{{ $tool->name }}</td>
                                         <td class="text-center">{{ $tool->order }}</td>
-                                        <td class="text-center">{{ $tool->duration }}</td>
                                         <td class="text-center">{{ $tool->token }}</td>
                                         <td class="flex justify-center gap-2">
                                             {{-- GENERATE TOKEN --}}

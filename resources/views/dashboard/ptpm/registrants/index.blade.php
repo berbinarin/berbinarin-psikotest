@@ -183,9 +183,7 @@
 @section("script")
     <script>
         $(document).ready(function () {
-            $('#table').DataTable({
-                order: [[1, 'asc']],
-            });
+            $('#table').DataTable();
         });
     </script>
     <script>

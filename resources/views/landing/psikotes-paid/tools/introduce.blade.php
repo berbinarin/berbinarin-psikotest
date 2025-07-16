@@ -23,10 +23,20 @@
             <div class="mb-4 mt-10 flex flex-1">
                 <div class="mx-auto max-w-[871px] rounded-xl bg-white p-10 drop-shadow-[0_4px_12px_rgba(0,0,0,0.15)]">
                     <div class="prose font-medium">
-                        {!! $tool->introduce !!}
+                        @php
+                            $user_gender = auth()->user()->profile->gender ?? null;
+                            $gender_text = match ($user_gender) {
+                                "male" => "PRIA",
+                                "female" => "WANITA",
+                                default => "(PRIA/WANITA)",
+                            };
+                            $introduce_text = str_replace("(PRIA/WANITA)", $gender_text, $tool->introduce);
+                        @endphp
+
+                        {!! $introduce_text !!}
                     </div>
 
-                    <div class="flex justify-center mt-8">
+                    <div class="mt-8 flex justify-center">
                         <a href="/psikotes-paid/tools/{{ $tool->id }}/question" class="rounded-full bg-[#6083F2] px-8 py-2 font-extrabold text-white">Selanjutnya</a>
                     </div>
                 </div>

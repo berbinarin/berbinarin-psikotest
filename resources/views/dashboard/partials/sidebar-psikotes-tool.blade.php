@@ -40,7 +40,7 @@
         </li>
 
         <li class="my-5 rounded-lg p-2">
-            <a href="{{ route('dashboard.tools.data.sections', $tool->id) }}" class="{{ isRouteNameStartWith("dashboard.tools.data.questions") }} flex flex-row items-center text-gray-700 duration-700 hover:text-primary">
+            <a href="{{ route('dashboard.tools.data.sections', $tool->id) }}" class="{{ isRouteNameStartWith("dashboard.tools.data.sections") }} flex flex-row items-center text-gray-700 duration-700 hover:text-primary">
                 <i class="bx bx-receipt mr-2 text-lg text-gray-700"></i>
                 <span class="ml-4 text-base font-bold leading-5">Manajemen Soal</span>
             </a>
