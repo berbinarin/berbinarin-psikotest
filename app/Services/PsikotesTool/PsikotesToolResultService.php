@@ -90,8 +90,7 @@ class PsikotesToolResultService
             ]);
         }
 
-        // 5. Kelompokkan hasil berdasarkan Kategori Utama untuk ditampilkan di view
-        return $finalResult->groupBy('main_category');
+        return $finalResult;
     }
 
     /**
@@ -100,11 +99,10 @@ class PsikotesToolResultService
      */
     private function getPapiKostickDescriptionMapping()
     {
-        // ... (isi method ini sama seperti sebelumnya, tidak perlu diubah) ...
         return [
             'F' => [
                 'main_category' => 'Followership',
-                'sub_name' => 'Loyalty to Superior',
+                'sub_name' => 'Need to support authority',
                 'ranges' => [
                     '0-3' => 'Otonom, dapat bekerja sendiri tanpa campur tangan orang lain, motivasi timbul karena pekerjaan itu sendiri, bukan karena pujian dari otoritas. Mempertanyakan otoritas, cenderung tidak puas terhadap atasan, loyalitas lebih didasari kepentingan pribadi.',
                     '4-6' => 'Loyal pada Perusahaan.',
@@ -114,7 +112,7 @@ class PsikotesToolResultService
             ],
             'W' => [
                 'main_category' => 'Followership',
-                'sub_name' => 'Adherence to Rules',
+                'sub_name' => 'Need for rules and supervision',
                 'ranges' => [
                     '0-3' => 'Hanya butuh gambaran tentang kerangka tugas secara garis besar, berpatokan pada tujuan, dapat bekerja dalam suasana yang kurang berstruktur, berinsiatif, mandiri. Tidak patuh, cenderung mengabaikan atau tidak paham pentingnya peraturan atau prosedur, suka membuat peraturan sendiri yang bisa bertentangan dengan yang telah ada.',
                     '4-5' => 'Perlu pengarahan awal dan tolok ukur keberhasilan.',
@@ -124,7 +122,7 @@ class PsikotesToolResultService
             ],
             'N' => [
                 'main_category' => 'Work Direction',
-                'sub_name' => 'Need to Finish Task',
+                'sub_name' => 'Need to finish task',
                 'ranges' => [
                     '0-2' => 'Tidak terlalu merasa perlu untuk menuntaskan sendiri tugas-tugasnya, senang menangani beberapa pekerjaan sekaligus, mudah mendelegasikan tugas. Komitmen rendah, cenderung meninggalkan tugas sebelum tuntas, konsentrasi mudah buyar, mungkin suka berpindah pekerjaan.',
                     '3-5' => 'Cukup memiliki komitmen untuk menuntaskan tugas, akan tetapi jika memungkinkan akan mendelegasikan sebagian dari pekerjaannya kepada orang lain.',
@@ -134,7 +132,7 @@ class PsikotesToolResultService
             ],
             'G' => [
                 'main_category' => 'Work Direction',
-                'sub_name' => 'Need to be Hard-working',
+                'sub_name' => 'Hard intense worked',
                 'ranges' => [
                     '0-2' => 'Santai, kerja adalah sesuatu yang menyenangkan-bukan beban yang membutuhkan usaha besar. Mungkin termotivasi untuk mencari cara atau sistem yang dapat mempermudah dirinya dalam menyelesaikan pekerjaan, akan berusaha menghindari kerja keras, sehingga dapat memberi kesan malas.',
                     '3-4' => 'Bekerja keras sesuai tuntutan, menyalurkan usahanya untuk hal-hal yang bermanfaat atau menguntungkan.',
@@ -144,7 +142,7 @@ class PsikotesToolResultService
             ],
             'A' => [
                 'main_category' => 'Work Direction',
-                'sub_name' => 'Need to Achieve',
+                'sub_name' => 'Need to achieve',
                 'ranges' => [
                     '0-4' => 'Tidak kompetitif, mapan, puas. Tidak terdorong untuk menghasilkan prestasi,tidak berusaha untuk mencapai sukses, membutuhkan dorongan dari luar diri, tidak berinisiatif, tidak memanfaatkan kemampuan diri secara optimal, ragu akan tujuan diri, misalnya sebagai akibat promosi atau perubahan struktur jabatan.',
                     '5-7' => 'Tahu akan tujuan yang ingin dicapainya dan dapat merumuskannya, realistis akan kemampuan diri, dan berusaha untuk mencapai target.',
@@ -153,7 +151,7 @@ class PsikotesToolResultService
             ],
             'L' => [
                 'main_category' => 'Leadership',
-                'sub_name' => 'Desire to Lead',
+                'sub_name' => 'Leadership role',
                 'ranges' => [
                     '0-1' => 'Puas dengan peran sebagai bawahan, memberikan kesempatan pada orang lain untuk memimpin, tidak dominan. Tidak percaya diri. Sama sekali tidak berminat untuk berperan sebagai pemimpin. Bersikap pasif dalam kelompok.',
                     '2-3' => 'Tidak percaya diri dan tidak ingin memimpin atau mengawasi orang lain.',
@@ -165,7 +163,7 @@ class PsikotesToolResultService
             ],
             'P' => [
                 'main_category' => 'Leadership',
-                'sub_name' => 'Control of Subordinates',
+                'sub_name' => 'Need to control others',
                 'ranges' => [
                     '0-1' => 'Permisif, akan memberikan kesempatan pada orang lain untuk memimpin. Tidak mau mengontrol orang lain dan tidak mau mempertanggung jawabkan hasil kerja bawahannya.',
                     '2-3' => 'Enggan mengontrol org lain dan tidak mau mempertanggung jawabkan hasil kerja bawahannya, lebih memberi kebebasan kepada bawahan untuk memilih cara sendiri dalam penyelesaian tugas dan meminta bawahan untuk mempertanggungjawabkan hasilnya masing-masing.',
@@ -177,7 +175,7 @@ class PsikotesToolResultService
             ],
             'I' => [
                 'main_category' => 'Leadership',
-                'sub_name' => 'Decision Making',
+                'sub_name' => 'Ease in decision making',
                 'ranges' => [
                     '0-1' => 'Sangat berhati-hati, memikirkan langkah-langkahnya secara bersungguh-sungguh. Lamban dalam mengambil keputusan, terlalu lama merenung, cenderung menghindar mengambil keputusan.',
                     '2-3' => 'Enggan mengambil keputusan.',
@@ -188,7 +186,7 @@ class PsikotesToolResultService
             ],
             'T' => [
                 'main_category' => 'Activity',
-                'sub_name' => 'Pace of Action',
+                'sub_name' => 'Pace',
                 'ranges' => [
                     '0-3' => 'Santai. Kurang peduli akan waktu, kurang memiliki rasa urgensi, membuang-buang waktu, bukan pekerja yang tepat waktu.',
                     '4-6' => 'Cukup aktif dalam segi mental, dapat menyesuaikan tempo kerjanya dengan tuntutan pekerjaan atau lingkungan.',
@@ -197,7 +195,7 @@ class PsikotesToolResultService
             ],
             'V' => [
                 'main_category' => 'Activity',
-                'sub_name' => 'Vigour (Physical Activity)',
+                'sub_name' => 'Vigorous type',
                 'ranges' => [
                     '0-2' => 'Cocok untuk pekerjaan \'di belakang meja\'. Cenderung lamban, tidak tanggap, mudah lelah, daya tahan lemah.',
                     '3-6' => 'Dapat bekerja di belakang meja dan senang jika sesekali harus terjun ke lapangan atau melaksanakan tugas-tugas yang bersifat mobile.',
@@ -206,7 +204,7 @@ class PsikotesToolResultService
             ],
             'O' => [
                 'main_category' => 'Social Nature',
-                'sub_name' => 'Personal Relationships',
+                'sub_name' => 'Need for closeness and affection',
                 'ranges' => [
                     '0-2' => 'Menjaga jarak, lebih memperhatikan hal-hal kedinasan, tidak mudah dipengaruhi oleh individu tertentu, objektif dan analitis. Tampil dingin, tidak acuh, tidak ramah, suka berahasia, mungkin tidak sadar akan perasaan orang lain & mungkin sulit menyesuaikan diri.',
                     '3-5' => 'Tidak mencari atau menghindari hubungan antar pribadi di lingkungan kerja, masih mampu menjaga jarak.',
@@ -215,7 +213,7 @@ class PsikotesToolResultService
             ],
             'B' => [
                 'main_category' => 'Social Nature',
-                'sub_name' => 'Need to Belong to Group',
+                'sub_name' => 'Need to belong to groups',
                 'ranges' => [
                     '0-2' => 'Mandiri (dari segi emosi), tidak mudah dipengaruhi oleh tekanan kelompok. Penyendiri, kurang peka akan sikap dan kebutuhan kelompok, mungkin sulit menyesuaikan diri.',
                     '3-5' => 'Selektif dalam bergabung dengan kelompok, hanya mau berhubungan dengan kelompok di lingkungan kerja apabila bernilai dan sesuai minat, tidak terlalu mudah dipengaruhi.',
@@ -224,7 +222,7 @@ class PsikotesToolResultService
             ],
             'S' => [
                 'main_category' => 'Social Nature',
-                'sub_name' => 'Social Interaction',
+                'sub_name' => 'Social extension',
                 'ranges' => [
                     '0-2' => 'Dapat bekerja sendiri, tidak membutuhkan kehadiran orang lain. Menarik diri, kaku dalam bergaul, canggung dalam situasi sosial, lebih memperhatikan hal - hal lain daripada manusia.',
                     '3-4' => 'Kurang percaya diri dan kurang aktif dlm menjalin hubungan sosial.',
@@ -233,7 +231,7 @@ class PsikotesToolResultService
             ],
             'X' => [
                 'main_category' => 'Social Nature',
-                'sub_name' => 'Need for Recognition',
+                'sub_name' => 'Need to be noticed',
                 'ranges' => [
                     '0-1' => 'Sederhana, rendah hati, tulus, tidak sombong dan tidak suka menampilkan diri. Terlalu sederhana, cenderung merendahkan kapasitas diri, tidak percaya diri, cenderung menarik diri dan pemalu.',
                     '2-3' => 'Sederhana, cenderung diam, cenderung pemalu, tidak suka menonjolkan diri.',
@@ -243,7 +241,7 @@ class PsikotesToolResultService
             ],
             'C' => [
                 'main_category' => 'Work Style',
-                'sub_name' => 'Systematical Work',
+                'sub_name' => 'Organized type',
                 'ranges' => [
                     '0-2' => 'Lebih mementingkan fleksibilitas daripada struktur, pendekatan kerja lebih ditentukan oleh situasi daripada oleh perencanaan sebelumnya, mudah beradaptasi. Tidak mempedulikan keteraturan atau kerapihan, ceroboh.',
                     '3-4' => 'Fleksibel tapi masih cukup memperhatikan keteraturan atau sistematika kerja.',
@@ -253,7 +251,7 @@ class PsikotesToolResultService
             ],
             'D' => [
                 'main_category' => 'Work Style',
-                'sub_name' => 'Attention to Detail',
+                'sub_name' => 'Interest in working with details',
                 'ranges' => [
                     '0-1' => 'Melihat pekerjaan secara makro, membedakan hal penting dari yang kurang penting, mendelegasikan detil pada orang lain, generalis. Menghindari detail, konsekuensinya mungkin bertindak tanpa data yang cukup atau akurat, bertindak ceroboh pada hal yang butuh kecermatan. Dapat mengabaikan proses yang vital dalam evaluasi data.',
                     '2-3' => 'Cukup peduli akan akurasi dan kelengkapan data.',
@@ -263,7 +261,7 @@ class PsikotesToolResultService
             ],
             'R' => [
                 'main_category' => 'Work Style',
-                'sub_name' => 'Theoretical Type',
+                'sub_name' => 'Theoretical type',
                 'ranges' => [
                     '0-3' => 'Tipe pelaksana, praktis - pragmatis, mengandalkan pengalaman masa lalu dan intuisi. Bekerja tanpa perencanaan, mengandalkan perasaan.',
                     '4-5' => 'Pertimbangan mencakup aspek teoritis (konsep atau pemikiran baru) dan aspek praktis (pengalaman) secara berimbang.',
@@ -273,7 +271,7 @@ class PsikotesToolResultService
             ],
             'Z' => [
                 'main_category' => 'Temprament',
-                'sub_name' => 'Need for Change',
+                'sub_name' => 'Need for change',
                 'ranges' => [
                     '0-1' => 'Mudah beradaptasi dengan pekerjaan rutin tanpa merasa bosan, tidak membutuhkan variasi, menyukai lingkungan stabil dan tidak berubah. Konservatif, menolak perubahan, sulit menerima hal-hal baru, tidak dapat beradaptasi dengan situasi yang berbeda-beda.',
                     '2-3' => 'Enggan berubah, tidak siap untuk beradaptasi, hanya mau menerima perubahan jika alasannya jelas dan meyakinkan.',
@@ -284,7 +282,7 @@ class PsikotesToolResultService
             ],
             'E' => [
                 'main_category' => 'Temprament',
-                'sub_name' => 'Emotional Restraint',
+                'sub_name' => 'Emotional resistant',
                 'ranges' => [
                     '0-1' => 'Sangat terbuka, terus terang, mudah terbaca (dari air muka, tindakan, perkataan, sikap). Tidak dapat mengendalikan emosi, cepat bereaksi, kurang mengindahkan atau tidak mempunyai \'nilai\' yang mengharuskannya menahan emosi.',
                     '2-3' => 'Terbuka, mudah mengungkap pendapat atau perasaannya mengenai suatu hal kepada org lain.',
@@ -294,7 +292,7 @@ class PsikotesToolResultService
             ],
             'K' => [
                 'main_category' => 'Temprament',
-                'sub_name' => 'Assertiveness',
+                'sub_name' => 'Need to be forceful',
                 'ranges' => [
                     '0-1' => 'Sabar, tidak menyukai konflik. Mengelak atau menghindar dari konflik, pasif, menekan atau menyembunyikan perasaan sesungguhnya, menghindari konfrontasi, lari dari konflik, tidak mau mengakui adanya konflik.',
                     '2-3' => 'Lebih suka menghindari konflik, akan mencari rasionalisasi untuk dapat menerima situasi dan melihat permasalahan dari sudut pandangan orang lain.',

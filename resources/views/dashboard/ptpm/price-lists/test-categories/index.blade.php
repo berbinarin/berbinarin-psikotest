@@ -37,7 +37,7 @@
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>{{ $category->name }}</td>
                                     <td class="flex items-center justify-center gap-2">
-                                        <a href="{{ route('dashboard.test-categories.show', $category->id) }}" class="mt-4 inline-flex items-start justify-start rounded p-3 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0">
+                                        <a href="{{ route("dashboard.test-categories.show", $category->id) }}" class="mt-4 inline-flex items-start justify-start rounded p-3 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0">
                                             <p class="font-semibold text-primary">Detail</p>
                                             <i class="bx bx-right-arrow-alt mt-1 text-primary"></i>
                                         </a>
@@ -55,9 +55,7 @@
 @section("script")
     <script>
         $(document).ready(function () {
-            $('#table').DataTable({
-                order: [[1, 'asc']],
-            });
+            $('#table').DataTable();
         });
     </script>
     <script>

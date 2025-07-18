@@ -17,7 +17,7 @@
                 </div>
                 <div class="rounded-md bg-white px-4 py-4 md:px-8 md:py-7 xl:px-10">
                     <div class="mt-4 overflow-x-auto">
-                        <table id="example" class="display w-full" style="overflow-x: scroll">
+                        <table id="table" class="display w-full" style="overflow-x: scroll">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -53,7 +53,7 @@
 @section("script")
     <script>
         $(document).ready(function () {
-            $('#example').DataTable();
+            $('#table').DataTable();
         });
     </script>
 @endsection

@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
     {{-- LOGO BERBINAR --}}
     <div>
-        <img src="{{ asset("assets/images/logo-berbinar.png") }}" alt="Logo Berbinar Insightful Indonesia" title="Logo Berbinar Insightful Indonesia" class="w-14" />
+        <img src="{{ asset("/assets/dashboard/images/logo/logo-berbinar.png") }}" alt="Logo Berbinar Insightful Indonesia" title="Logo Berbinar Insightful Indonesia" class="w-14" />
     </div>
 
     @php
@@ -34,7 +34,7 @@
         @endif
 
         <li class="dark-hover:text-blue-300 mt-20 rounded-lg p-2">
-            <form action="/logout" method="POST">
+            <form action="{{ route('auth.logout') }}" method="POST">
                 @csrf
                 <button type="submit" class="fixed bottom-5 left-14 items-center gap-2 rounded-full bg-blue-500 px-6 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
                     <i class="bx bx-log-out text-lg"></i>

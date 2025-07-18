@@ -17,7 +17,7 @@
                 </div>
                 <div class="rounded-md bg-white px-4 py-4 md:px-8 md:py-7 xl:px-10">
                     <div class="mt-4 overflow-x-auto">
-                        <table id="example" class="display w-full" style="overflow-x: scroll">
+                        <table id="table" class="display w-full" style="overflow-x: scroll">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -37,7 +37,7 @@
                                         <td class="text-center">{{ $section->duration }}</td>
                                         <td class="text-center">{{ $section->questions->count() }}</td>
                                         <td class="whitespace-no-wrap px-6 py-4 text-center">
-                                            <a href="{{ route("dashboard.tools.data.section.questions", [$tool->id, $section->id]) }}" class="mt-4 inline-flex items-start justify-start rounded bg-blue-500 p-3 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0">
+                                            <a href="{{ route("dashboard.tools.data.sections.questions", [$tool->id, $section->id]) }}" class="mt-4 inline-flex items-start justify-start rounded bg-blue-500 p-3 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0">
                                                 <p class="font-medium leading-none text-white">Detail</p>
                                             </a>
                                         </td>
@@ -50,4 +50,12 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function () {
+            $('#table').DataTable();
+        });
+    </script>
 @endsection

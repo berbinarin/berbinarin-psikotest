@@ -17,27 +17,27 @@
                 </div>
                 <div class="rounded-md bg-white px-4 py-4 md:px-8 md:py-7 xl:px-10">
                     <div class="mt-4 overflow-x-auto">
-                        <table id="example" class="display w-full" style="overflow-x: scroll">
+                        <table id="table" class="display w-full" style="overflow-x: scroll">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Text</th>
                                     <th>Order</th>
+                                    <th>Text</th>
                                     <th>Image</th>
                                     <th>Type</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($psikotesSection->questions as $question)
+                                @foreach ($section->questions as $question)
                                     <tr class="data-consume">
                                         <td class="text-center">{{ $loop->iteration }}</td>
-                                        <td>{{ $question->text }}</td>
                                         <td class="text-center">{{ $question->order }}</td>
-                                        <td class="text-center">{{ $question->image_path ? '' : 'Tidak ada Data gambar' }}</td>
+                                        <td>{{ $question->text? "" : "Soal tidak memiliki text" }}</td>
+                                        <td class="text-center">{{ $question->image_path ? "" : "Tidak ada Data gambar" }}</td>
                                         <td class="text-center">{{ $question->type }}</td>
                                         <td class="whitespace-no-wrap px-6 py-4 text-center">
-                                            <a  class="mt-4 inline-flex items-start justify-start rounded bg-blue-500 p-3 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0">
+                                            <a class="mt-4 inline-flex items-start justify-start rounded bg-blue-500 p-3 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0">
                                                 <p class="font-medium leading-none text-white">Detail</p>
                                             </a>
                                         </td>
@@ -50,4 +50,12 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section("script")
+    <script>
+        $(document).ready(function () {
+            $('#table').DataTable();
+        });
+    </script>
 @endsection

@@ -17,30 +17,14 @@ use Illuminate\Support\Str;
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display the registration view.
-     */
-    public function create(): View
+    public function psikotesPaidRegister(): View
     {
         $testCategories = TestCategory::all();
         $testTypes = TestType::all();
-        return view('auth.register', compact('testCategories', 'testTypes'));
+        return view('auth.register.psikotes-paid-register', compact('testCategories', 'testTypes'));
     }
 
-    /**
-     * Display the registration view.
-     */
-    public function registerUser(): View
-    {
-        return view('auth.register-user');
-    }
-
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function store(StoreRegistrationRequest $request): RedirectResponse
+    public function psikotesPaidRegisterStore(StoreRegistrationRequest $request): RedirectResponse
     {
 
         $validateData = $request->validated();
@@ -53,8 +37,9 @@ class RegisteredUserController extends Controller
                 $user = User::create([
                     'name' => $validateData['name'],
                     'email' => $validateData['email'],
-                    'password' => bcrypt(Str::random(10)),
-                ]);
+                    'username' => Str::random(10),
+                    'password' => bcrypt('berbinar123'),
+                ])->assignRole('user_psikotes-paid');
 
                 RegistrantProfile::create([
                     'user_id' => $user->id,
@@ -73,6 +58,6 @@ class RegisteredUserController extends Controller
         }
 
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect()->route('home.index');
     }
 }

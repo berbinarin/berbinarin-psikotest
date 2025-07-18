@@ -17,7 +17,7 @@ class SubmittedResponseController extends Controller
         // Eager load sections dan questions
         $tool->load('sections.questions');
 
-        // Distructuring
+        // Destructuring
         [$sectionOrder, $questionOrder] = [session('section_order'), session('question_order')];
 
         $currentSection = $tool->sections->firstWhere('order', $sectionOrder);
@@ -53,51 +53,68 @@ class SubmittedResponseController extends Controller
     {
         $tool->load('sections.questions');
 
-        [$sectionOrder, $questionOrder] = [session('section_order'), session('question_order')];
+        // Destructuring
+        [$sectionOrder, $questionOrder, $sessionId] = [session('section_order', 1), session('question_order', 1), session('session_id')];
 
-        // Dapatkan pertanyaan saat ini
+        // Mengmabil data section saat ini
         $currentSection = $tool->sections->firstWhere('order', $sectionOrder);
 
-        // Pastikan section saat ini ada. Jika tidak, ada masalah dengan session atau data.
+        // Cek apakah data section saat ini ada
         if (!$currentSection) {
-            // Anda bisa throw exception, log error, atau redirect ke halaman error
             return redirect('/error')->with('message', 'Section tidak ditemukan.');
         }
 
+        // mengambil data question saat ini
         $question = $currentSection->questions->firstWhere('order', $questionOrder);
 
-        // Pastikan pertanyaan saat ini ada. Jika tidak, ada masalah dengan session atau data.
+        // cek apakah data question saat ini ada
         if (!$question) {
-            // Anda bisa throw exception, log error, atau redirect ke halaman error
             return redirect('/error')->with('message', 'Pertanyaan tidak ditemukan.');
         }
 
-        // Service untuk menyimpan data
-        $this->psikotesResponseService->store($request, $question, session('session_id'));
+        // Jika section dan question valid, simpan jawaban user
+        $this->psikotesResponseService->store($request, $question, $sessionId);
 
-        // --- Logika untuk melanjutkan ke soal/sesi berikutnya ---
+        // ----- Penanganan lanjut Soal / Next Question -----
 
+        // Ambil data jumlah section pada alat psikotes saat ini
         $totalSections = $tool->sections->count();
-        $currentQuestionCount = $currentSection->questions->count(); // Total pertanyaan di section saat ini
 
-        // 1. Cek apakah pertanyaan saat ini adalah pertanyaan terakhir di section ini
-        if ($questionOrder < $currentQuestionCount) {
-            // Jika bukan pertanyaan terakhir, lanjut ke pertanyaan berikutnya di section yang sama
+        // Ambil data jumlah soal di section saat ini
+        $totalQuestionsInSection = $currentSection->questions->count();
+
+        // Cek apakah urutan dari question saat ini itu lebih kecil dari jumlah question pada section saat ini
+        // (Cek apakah masih ada sisa pertanyaan)
+        if ($questionOrder < $totalQuestionsInSection) {
+            // Update session question_order(+1)
             session()->increment('question_order');
-            return redirect('/psikotes-paid/tools/'. $tool->id .'/question'); // Hardcoded redirect for testing
+
+            // Arahkan kembali ke halaman pertanyaan
+            return redirect()->route('psikotes.question', ['tool' => $tool->id]);
+
+            // (Jika pertanyaan sudah habis)
+        } else {
+            
+            // Cek apakah urutan dari section saat ini itu lebih kecil dari jumlah section pada alat psikotes saat ini
+            // (cek apakah masih ada sisa section)
+            if ($sectionOrder < $totalSections) {
+                // update session section_oder (+1)
+                session()->increment('section_order');
+
+                // kembalika urutan pertanyaan ke 1
+                session(['question_order' => 1]);
+
+                // Arahkan kembali ke halaman pertanyaan
+                return redirect()->route('psikotes.question', ['tool' => $tool->id]);
+            }
         }
 
-        // 2. Jika pertanyaan saat ini adalah yang terakhir di section ini,
-        //    cek apakah section ini adalah section terakhir dari seluruh alat psikotes
-        if ($sectionOrder < $totalSections) {
-            // Jika bukan section terakhir, lanjut ke section berikutnya dan reset urutan pertanyaan ke 1
-            session()->increment('section_order');
-            session(['question_order' => 1]);
-            return redirect('/psikotes-paid/tools/'. $tool->id .'/question'); // Hardcoded redirect for testing
-        }
-
-        // 3. Jika sudah di pertanyaan terakhir dari section terakhir, maka psikotes selesai
+        // Jika section saat ini adalah section terkahir dan pertanyaan saat ini juga pertanyaan terkahir dari section ini
+        
+        // Hapus session
         session()->forget(['section_order', 'question_order', 'session_id']);
-        return redirect('/psikotes-paid/tools');
+
+        // arahkan ke halaman summary
+        return redirect()->route('psikotes-paid.summary');
     }
 }

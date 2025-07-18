@@ -16,14 +16,14 @@ class Response extends Model
     ];
 
     protected $fillable = [
-        'psikotes_session_id',
+        'session_id',
         'question_id',
         'answer',
     ];
 
     public function session(): BelongsTo
     {
-        return $this->belongsTo(Session::class, 'psikotes_session_id');
+        return $this->belongsTo(Session::class, 'session_id');
     }
 
     public function question(): BelongsTo
