@@ -33,14 +33,14 @@
         </li>
 
         <li class="my-5 rounded-lg p-2">
-            <a href="{{ route('dashboard.tools.data.data', $tool->id) }}" class="{{ isRouteNameStartWith("dashboard.tools.data.data") }} flex flex-row items-center text-gray-700 duration-700 hover:text-primary">
+            <a href="{{ route('dashboard.tools.data.attempts.index', $tool->id) }}" class="{{ isRouteNameStartWith("dashboard.tools.data.attempts") }} flex flex-row items-center text-gray-700 duration-700 hover:text-primary">
                 <i class="bx bx-receipt mr-2 text-lg text-gray-700"></i>
                 <span class="ml-4 text-base font-bold leading-5">Pengumpulan</span>
             </a>
         </li>
 
         <li class="my-5 rounded-lg p-2">
-            <a href="{{ route('dashboard.tools.data.sections', $tool->id) }}" class="{{ isRouteNameStartWith("dashboard.tools.data.sections") }} flex flex-row items-center text-gray-700 duration-700 hover:text-primary">
+            <a href="{{ route('dashboard.tools.data.sections.index', $tool->id) }}" class="{{ isRouteNameStartWith("dashboard.tools.data.sections") }} flex flex-row items-center text-gray-700 duration-700 hover:text-primary">
                 <i class="bx bx-receipt mr-2 text-lg text-gray-700"></i>
                 <span class="ml-4 text-base font-bold leading-5">Manajemen Soal</span>
             </a>

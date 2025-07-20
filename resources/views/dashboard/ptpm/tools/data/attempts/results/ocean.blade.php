@@ -135,7 +135,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($session->responses as $response)
+                            @foreach ($attempt->responses as $response)
                                 @if (isset($response->question) && $response->question->scoring["scale"] === $category)
                                     <tr class="border-b">
                                         <td class="p-2 text-center">{{ $response->question->order }}</td>

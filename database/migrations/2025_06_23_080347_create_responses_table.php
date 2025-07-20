@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('responses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('session_id')->constrained('sessions');
+            $table->foreignId('attempt_id')->constrained('attempts');
             $table->foreignId('question_id')->constrained('questions');
             $table->json('answer');
             $table->timestamps();
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('psikotes_responses');
+        Schema::dropIfExists('responses');
     }
 };

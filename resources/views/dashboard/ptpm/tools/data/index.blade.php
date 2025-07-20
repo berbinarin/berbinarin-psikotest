@@ -19,7 +19,7 @@
                     <div class="relative flex h-1/2 w-1/2 flex-col justify-between rounded-lg p-6 text-white" style="background-color: #6482ad">
                         <h3 class="block text-2xl font-bold">{{ $tool->name }}</h3>
                         <div>
-                            <p class="block text-4xl font-bold text-white">{{ $tool->sessions->count() }}</p>
+                            <p class="block text-4xl font-bold text-white">{{ $tool->attempts->count() }}</p>
                             <p>User</p>
                         </div>
                         <span class="absolute bottom-2 right-2 p-6 text-xl">9999</span>

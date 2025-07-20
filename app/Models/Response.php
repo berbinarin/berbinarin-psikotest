@@ -16,18 +16,18 @@ class Response extends Model
     ];
 
     protected $fillable = [
-        'session_id',
+        'attempt_id',
         'question_id',
         'answer',
     ];
 
     public function session(): BelongsTo
     {
-        return $this->belongsTo(Session::class, 'session_id');
+        return $this->belongsTo(Attempt::class);
     }
 
     public function question(): BelongsTo
     {
-        return $this->belongsTo(Question::class, 'question_id');
+        return $this->belongsTo(Question::class);
     }
 }

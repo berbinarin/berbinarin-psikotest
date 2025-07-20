@@ -28,14 +28,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($sessions as $session)
+                                @foreach ($attempts as $attempt)
                                     <tr class="data-consume">
                                         <td class="text-center">{{ $loop->iteration }}</td>
-                                        <td>{{ $session->user->name }}</td>
-                                        <td class="text-center">{{ $session->user->email }}</td>
-                                        <td class="text-center">{{ \Carbon\Carbon::parse($session->created_at)->format("Y-m-d") }}</td>
+                                        <td>{{ $attempt->user->name }}</td>
+                                        <td class="text-center">{{ $attempt->user->email }}</td>
+                                        <td class="text-center">{{ \Carbon\Carbon::parse($attempt->created_at)->format("Y-m-d") }}</td>
                                         <td class="whitespace-no-wrap px-6 py-4 text-center">
-                                            <a href="{{ route("dashboard.tools.data.data.detail", [$tool->id, $session->id]) }}" class="mt-4 inline-flex items-start justify-start rounded bg-blue-500 p-3 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0">
+                                            <a href="{{ route('dashboard.tools.data.attempts.show', [$tool->id, $attempt->id]) }}" class="mt-4 inline-flex items-start justify-start rounded bg-blue-500 p-3 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0">
                                                 <p class="font-medium leading-none text-white">Lihat Jawaban</p>
                                             </a>
                                         </td>

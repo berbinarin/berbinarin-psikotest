@@ -1,7 +1,7 @@
 <div class="flex max-h-[500px] flex-col overflow-hidden rounded-lg bg-white p-8 shadow-lg" style="width: 40%">
     <div class="flex-1 overflow-y-auto" style="max-height: 400px">
         <div class="pb-10">
-            <h2 class="text-2xl font-semibold">{{ $psikotesSession->user->name }}</h2>
+            <h2 class="text-2xl font-semibold">{{ $attempt->user->name }}</h2>
             <p class="mt-4">
                 Kategori yang paling tinggi nilainya adalah
                 <b>{{ $data->keys()->first() }}</b>
@@ -85,7 +85,7 @@
         <div class="overflow-y-auto" style="max-height: 350px">
             <table class="w-full table-fixed border-collapse text-lg">
                 <tbody class="flex flex-col border-b">
-                    @foreach ($psikotesSession->responses as $response)
+                    @foreach ($attempt->responses as $response)
                         <tr class="border-b">
                             <td class="p-4" style="width: 50%">{{ $response->question->text }}</td>
                             <td class="p-4 text-center" style="width: 25%">{{ $response->question->scoring['scale'] }}</td>

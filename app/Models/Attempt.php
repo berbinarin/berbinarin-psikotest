@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Session extends Model
+class Attempt extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -19,7 +19,7 @@ class Session extends Model
 
     public function responses(): HasMany
     {
-        return $this->hasMany(Response::class, 'session_id');
+        return $this->hasMany(Response::class);
     }
 
     public function user(): BelongsTo{

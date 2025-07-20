@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Services\PsikotesTool;
+namespace App\Services\Dashboard\PsikotesTool;
 
-use App\Models\Session;
+use App\Models\Attempt;
 use App\Models\Tool;
 use Illuminate\Support\Str;
 
-class PsikotesToolResultService
+class ResultService
 {
-    public function resultData(Tool $tool, Session $psikotesSession)
+    public function resultData(Tool $tool, Attempt $attempt)
     {
-        $methodName = Str::camel($tool->name);
-        return $this->{$methodName}($psikotesSession);
+        $methodName =Str::camel(strtolower($tool->name));
+        return $this->{$methodName}($attempt);
     }
 
     /**
@@ -19,10 +19,10 @@ class PsikotesToolResultService
      * Contoh : 'DASS-42' -> 'dass42', 'Papi Kostick' -> 'papiKostick'
      *  */
 
-    private function papiKostick(Session $psikotesSession)
+    private function papiKostick(Attempt $attempt)
     {
         // 1. Load semua response beserta pertanyaan terkait
-        $psikotesSession->load('responses.question', 'user');
+        $attempt->load('responses.question', 'user');
 
         // 2. Inisialisasi papan skor untuk 20 kategori
         $categories = ['F', 'W', 'N', 'G', 'A', 'L', 'P', 'I', 'T', 'V', 'O', 'B', 'S', 'X', 'C', 'D', 'R', 'Z', 'E', 'K',];
@@ -31,7 +31,7 @@ class PsikotesToolResultService
         $scores = collect($categories)->mapWithKeys(fn($key) => [$key => 0]);
 
         // 3. Lakukan iterasi pada setiap jawaban user untuk menghitung skor mentah
-        foreach ($psikotesSession->responses as $response) {
+        foreach ($attempt->responses as $response) {
             if (!isset($response->question) || !isset($response->question->scoring)) {
                 continue;
             }
@@ -304,9 +304,13 @@ class PsikotesToolResultService
         ];
     }
 
-    private function ocean(Session $psikotesSession)
+    private function baum(Attempt $attempt) {
+        return $attempt->responses->first();
+    }
+
+    private function ocean(Attempt $attempt)
     {
-        $psikotesSession->load('responses.question');
+        $attempt->load('responses.question');
 
         $categories = [
             "extraversion",
@@ -324,7 +328,7 @@ class PsikotesToolResultService
             ]];
         });
 
-        foreach ($psikotesSession->responses as $response) {
+        foreach ($attempt->responses as $response) {
             if (!isset($response->question) || !isset($response->question->scoring['scale'])) {
                 continue;
             }
@@ -351,9 +355,9 @@ class PsikotesToolResultService
         return $results;
     }
 
-    private function dass42(Session $psikotesSession)
+    private function dass42(Attempt $attempt)
     {
-        $psikotesSession->load('responses');
+        $attempt->load('responses');
 
         $categoriesPoint = collect([
             "depression",
@@ -361,14 +365,14 @@ class PsikotesToolResultService
             "stress"
         ])->mapWithKeys(fn($key) => [$key => 0]);
 
-        foreach ($psikotesSession->responses as $response) {
+        foreach ($attempt->responses as $response) {
             $categoriesPoint[$response->question->scoring['scale']] += $response->answer['value'];
         }
 
         return $categoriesPoint->sortDesc();
     }
 
-    private function rmib(Session $psikotesSession)
+    private function rmib(Attempt $attempt)
     {
         $categoriesPoint = collect([
             "outdoor",
@@ -385,7 +389,7 @@ class PsikotesToolResultService
             "medical"
         ])->mapWithKeys(fn($key) => [$key => 0]);
 
-        foreach ($psikotesSession->responses as $response) {
+        foreach ($attempt->responses as $response) {
             $scoring = $response->question->scoring ?? null;
             if (!$scoring || !isset($response->answer['ranked_ids'])) continue;
 

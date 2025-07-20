@@ -48,7 +48,7 @@ class User extends Authenticatable
 
     public function psikotesSessions()
     {
-        return $this->hasMany(Session::class);
+        return $this->hasMany(Attempt::class);
     }
 
     public function profile(): HasOne {

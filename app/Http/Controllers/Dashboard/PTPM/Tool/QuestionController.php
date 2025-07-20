@@ -3,19 +3,20 @@
 namespace App\Http\Controllers\Dashboard\PTPM\Tool;
 
 use App\Http\Controllers\Controller;
+use App\Models\Section;
 use App\Models\Tool;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
-class PsikotesToolController extends Controller
+class QuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Tool $tool, Section $section)
     {
-        $tools = Tool::all();
-        return view('dashboard.ptpm.tools.index', compact('tools'));
+        $section->load('questions');
+        
+        return view('dashboard.ptpm.tools.data.questions.index', compact('tool', 'section'));
     }
 
     /**
@@ -37,15 +38,15 @@ class PsikotesToolController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Tool $tool)
+    public function show(string $id)
     {
-        return view('dashboard.ptpm.tools.show', compact('psikotesTool'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Tool $tool)
+    public function edit(string $id)
     {
         //
     }
@@ -53,7 +54,7 @@ class PsikotesToolController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tool $tool)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -61,20 +62,8 @@ class PsikotesToolController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tool $tool)
+    public function destroy(string $id)
     {
         //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function generateToken(Tool $tool)
-    {
-        $tool = Tool::findOrFail($tool->id);
-        $tool->token = Str::random(8);
-        $tool->save();
-
-        return redirect()->back()->with('success', 'Token generated successfully!');
     }
 }

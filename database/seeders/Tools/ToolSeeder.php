@@ -6,7 +6,7 @@ use App\Models\Tool;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class PsikotesToolSeeder extends Seeder
+class ToolSeeder extends Seeder
 {
     /**
      * Run the database seeds.

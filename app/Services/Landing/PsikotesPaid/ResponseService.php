@@ -1,28 +1,24 @@
 <?php
 
-namespace App\Services\PsikotesResponse;
+namespace App\Services\Landing\PsikotesPaid;
 
 use App\Models\Question;
 use App\Models\Response;
-use App\Models\Session;
 use App\Services\File\FileUploadService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class PsikotesResponseService
+class ResponseService
 {
-    public function __construct(private FileUploadService $fileUploadService) {}
+    public function __construct(private FileUploadService $fileUploadService, private AttemptService $attemptService) {}
 
-    public function store(Request $request, Question $question, int $session)
-    {
+    public function store(Request $request, Question $question)
+    {   
         $methodName = Str::camel($question->type);
-
         $answer = $this->{$methodName}($request);
-
-        // Hanya buat response jika ada answer yang valid (bukan null)
         if ($answer !== null) {
             Response::create([
-                'session_id' => $session,
+                'attempt_id' => $this->attemptService->getSession('attempt_id'),
                 'question_id' => $question->id,
                 'answer' => $answer,
             ]);
@@ -104,7 +100,6 @@ class PsikotesResponseService
 
     private function binaryChoice(Request $request)
     {
-        dd($request);
         $validateData = $request->validate([
             'answer' => 'required|boolean',
         ]);

@@ -13,7 +13,7 @@
                     <div>
                         <p tabindex="0" class="mb-2 text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Detail Data Jawaban Alat Test {{ $tool->name }}</p>
                         <p class="text-disabled w-2/4">Halaman dashboard ini menampilkan jawaban yang telah dikumpulkan dari pengguna.</p>
-                        <a href="/dashboard/tools/{{ $tool->id }}/data">
+                        <a href="{{ route('dashboard.tools.data.attempts.index', $tool->id) }}">
                             <buttpon type="button" class="mt-4 inline-flex items-start justify-start rounded bg-blue-500 p-3 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-8">
                                 <p class="font-medium leading-none text-white">Kembali</p>
                             </buttpon>
@@ -22,8 +22,8 @@
                 </div>
 
                 <div class="mt-1 flex w-full gap-5">
-                    @if (View::exists("dashboard.ptpm.tools.data.tools." . \Illuminate\Support\Str::slug($tool->name)))
-                        @include("dashboard.ptpm.tools.data.tools." . \Illuminate\Support\Str::slug($tool->name))
+                    @if (View::exists("dashboard.ptpm.tools.data.attempts.results." . \Illuminate\Support\Str::slug($tool->name)))
+                        @include("dashboard.ptpm.tools.data.attempts.results." . \Illuminate\Support\Str::slug($tool->name))
                     @else
                         <p>Dashboard untuk alat psikotes {{ $tool->name }} belum ada</p>
                     @endif
