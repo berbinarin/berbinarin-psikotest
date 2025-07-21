@@ -32,8 +32,8 @@ class Tool extends Model
         return $this->hasManyThrough(Question::class, Section::class)->orderBy('order', 'asc');
     }
 
-    public function sessions(): HasMany
+    public function attempts(): HasMany
     {
-        return $this->hasMany(Session::class);
+        return $this->hasMany(Attempt::class);
     }
 }

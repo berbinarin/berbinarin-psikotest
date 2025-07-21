@@ -56,6 +56,7 @@
                     <div class="modal-body">
                         <form id="tokenForm" method="POST">
                             @csrf
+                            <input id="tool_id" type="hidden" name="tool_id" />
                             <div class="mb-3">
                                 <label for="token" class="form-label">Token</label>
                                 <input type="text" class="form-control" id="token" name="token" required />
@@ -72,11 +73,22 @@
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 var tokenModal = document.getElementById('tokenModal');
+                var toolIdInput = document.getElementById('tool_id'); // Mengganti nama variabel agar lebih jelas
+                var form = tokenModal.querySelector('#tokenForm');
+
                 tokenModal.addEventListener('show.bs.modal', function (event) {
+                    // Tombol yang memicu modal
                     var button = event.relatedTarget;
-                    var toolId = button.getAttribute('data-tool-id');
-                    var form = tokenModal.querySelector('#tokenForm');
-                    form.action = `/psikotes-paid/tools/${toolId}/verify-token`;
+
+                    // Ekstrak info dari atribut data-*
+                    var dataToolId = button.getAttribute('data-tool-id');
+
+                    // --- BAGIAN YANG DIPERBAIKI ---
+                    // Atur value dari input hidden dengan id tool
+                    toolIdInput.value = dataToolId;
+
+                    // Atur action form
+                    form.action = @json(route("psikotes-paid.tools.verify-token"));
                 });
             });
         </script>

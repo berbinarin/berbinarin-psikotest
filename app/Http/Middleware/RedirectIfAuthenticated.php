@@ -21,6 +21,20 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+                // Dapatkan user yang sedang login
+                $user = Auth::guard($guard)->user();
+
+                // Periksa peran user menggunakan Spatie Permission
+                if ($user->hasRole('ptpm')) {
+                    // Jika user adalah admin, arahkan ke /dashboard
+                    return redirect()->route('dashboard.index');
+                } elseif ($user->hasRole('user_psikotes-paid')) {
+                    // Jika user adalah user biasa, arahkan ke ke route psikotes-paid.tool.index
+                    return redirect()->route('psikotes-paid.tools.index');
+                }
+
+                // Fallback jika tidak ada peran yang cocok atau peran lain
+                // Anda bisa mengubah ini sesuai kebutuhan, misalnya ke halaman default
                 return redirect(RouteServiceProvider::HOME);
             }
         }

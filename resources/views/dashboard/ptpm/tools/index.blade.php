@@ -43,7 +43,7 @@
                                         <td class="text-center">{{ $tool->token }}</td>
                                         <td class="flex justify-center gap-2">
                                             {{-- GENERATE TOKEN --}}
-                                            <form action="{{ route("dashboard.tools.generate_token", $tool->id) }}" method="POST" style="display: inline-block">
+                                            <form action="{{ route("dashboard.tools.generate-token", $tool->id) }}" method="POST" style="display: inline-block">
                                                 @csrf
                                                 <button type="submit" class="mt-0 gap-1 inline-flex items-start justify-start rounded-3xl bg-blue-500 p-3 text-white hover:bg-blue-500 focus:ring-2 focus:ring-offset-2">
                                                     <i class="bx bx-sync "></i>

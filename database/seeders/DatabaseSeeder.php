@@ -13,15 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User and Role Seeder
-        $this->call([
-            // Role Seeder
-            RoleSeeder::class,
-
-            // User Seeder
-            UserSeeder::class,
-        ]);
-
         // Test
         $this->call([
             // Test Category
@@ -31,9 +22,18 @@ class DatabaseSeeder extends Seeder
             TestTypeSeeder::class,
         ]);
 
+        // User and Role Seeder
+        $this->call([
+            // Role Seeder
+            RoleSeeder::class,
+
+            // User Seeder
+            UserSeeder::class,
+        ]);
+
         // Tool Seeder
         $this->call([
-            Tools\PsikotesToolSeeder::class,
+            Tools\ToolSeeder::class,
 
             // Papi Kostick
             Tools\PapiKostick\PapiKostickSectionSeeder::class,

@@ -3,18 +3,24 @@
 use App\Http\Controllers\Landing\LandingController;
 use App\Http\Controllers\Landing\PsikotesPaid\PsikotesPaidController;
 use App\Http\Controllers\Landing\PsikotesPaid\SubmittedResponseController;
-use App\Models\Question;
-use App\Models\Tool;
+use App\Http\Controllers\Landing\PsikotesPaid\ToolController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingController::class, 'index'])->name('home.index');
 
 // Psikotes Paid
-Route::middleware('auth')->prefix('psikotes-paid')->name('psikotes-paid.')->group(function() {
-    Route::get('/tools', [PsikotesPaidController::class, 'tools'])->name('index');
-    Route::get('/tools/{tool}/introduce', [PsikotesPaidController::class, 'introduce'])->name('introduce');
-    Route::get('/tools/{tool}/question', [SubmittedResponseController::class, 'question'])->name('question');;
-    Route::post('/tools/{tool}/question', [SubmittedResponseController::class, 'store'])->name('question.store');
-    Route::post('/tools/{tool}/verify-token', [PsikotesPaidController::class, 'verifyToken'])->name('verify-token');
-    Route::get('/tools/{tool}/summary', [PsikotesPaidController::class, 'summary'])->name('summary');
+Route::middleware(['auth', 'session.verified'])->prefix('psikotes-paid')->name('psikotes-paid.')->group(function () {
+    // Tool
+    Route::prefix('tools')->name('tools.')->group(function () {
+        Route::get('/', [ToolController::class, 'index'])->name('index');
+        Route::post('/verify-token', [ToolController::class, 'verifyToken'])->name('verify-token');
+    });
+
+    // Attempt
+    Route::prefix('attempt')->name('attempt.')->group(function () {
+        Route::get('/introduce', [SubmittedResponseController::class, 'introduce'])->name('introduce');
+        Route::get('/question', [SubmittedResponseController::class, 'question'])->name('question');
+        Route::post('/question', [SubmittedResponseController::class, 'submit'])->name('submit');
+        Route::get('/complete', [SubmittedResponseController::class, 'complete'])->name('complete');
+    });
 });
