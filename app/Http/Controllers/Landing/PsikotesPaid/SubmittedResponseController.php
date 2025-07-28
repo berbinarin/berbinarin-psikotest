@@ -59,6 +59,6 @@ class SubmittedResponseController extends Controller
 
     public function timesUp()
     {
-        return redirect()->route('psikotes-paid.summary');
+        $this->attemptService->destroySession();
     }
 }

@@ -9,7 +9,7 @@
                 <div class="flex flex-shrink-0 basis-[48px] flex-col">
                     <span class="flex h-10 w-10 items-center justify-center rounded-md border bg-gray-200 font-semibold text-blue-500">{{ $loop->iteration }}</span>
                 </div>
-                <div class="flex-grow">{{ $loop->iteration . $option["text"] }}</div>
+                <div class="flex-grow">{{ $option["text"] }}</div>
                 <input type="hidden" name="answer[]" value="{{ $option["id"] }}" />
             </li>
         @endforeach

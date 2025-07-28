@@ -13,7 +13,7 @@ class ResponseService
     public function __construct(private FileUploadService $fileUploadService, private AttemptService $attemptService) {}
 
     public function store(Request $request, Question $question)
-    {   
+    {
         $methodName = Str::camel($question->type);
         $answer = $this->{$methodName}($request);
         if ($answer !== null) {
@@ -120,5 +120,11 @@ class ResponseService
     private function instruction()
     {
         return;
+    }
+
+    private function form(Request $request)
+    {
+        // dd($request->except('_token'));
+        return $request->except('_token');
     }
 }

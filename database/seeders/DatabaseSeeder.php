@@ -78,6 +78,26 @@ class DatabaseSeeder extends Seeder
             // EPI
             Tools\EPI\EpiSectionSeeder::class,
             Tools\EPI\EpiQuestionSeeder::class,
+            
+            // Biodata Perusahaan
+            Tools\BiodataPerusahaan\BiodataPerusahaanSectionSeeder::class,
+            Tools\BiodataPerusahaan\BiodataPerusahaanQuestionSeeder::class,
+            
+            // Biodata Pendidikan
+            Tools\BiodataPendidikan\BiodataPendidikanSectionSeeder::class,
+            Tools\BiodataPendidikan\BiodataPendidikanQuestionSeeder::class,
+            
+            // Biodata Komunitas
+            Tools\BiodataKomunitas\BiodataKomunitasSectionSeeder::class,
+            Tools\BiodataKomunitas\BiodataKomunitasQuestionSeeder::class,
+            
+            // Biodata Individual
+            Tools\BiodataIndividual\BiodataIndividualSectionSeeder::class,
+            Tools\BiodataIndividual\BiodataIndividualQuestionSeeder::class,
+            
+            // Biodata Klinis
+            Tools\BiodataKlinis\BiodataKlinisSectionSeeder::class,
+            Tools\BiodataKlinis\BiodataKlinisQuestionSeeder::class,
         ]);
     }
 }

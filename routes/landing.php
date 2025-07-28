@@ -22,5 +22,6 @@ Route::middleware(['auth', 'session.verified'])->prefix('psikotes-paid')->name('
         Route::get('/question', [SubmittedResponseController::class, 'question'])->name('question');
         Route::post('/question', [SubmittedResponseController::class, 'submit'])->name('submit');
         Route::get('/complete', [SubmittedResponseController::class, 'complete'])->name('complete');
+        Route::post('/times-up', [SubmittedResponseController::class, 'timesUp'])->name('times-up');
     });
 });

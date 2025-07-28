@@ -10,7 +10,7 @@ class ResultService
 {
     public function resultData(Tool $tool, Attempt $attempt)
     {
-        $methodName =Str::camel(strtolower($tool->name));
+        $methodName = Str::camel(strtolower($tool->name));
         return $this->{$methodName}($attempt);
     }
 
@@ -304,7 +304,8 @@ class ResultService
         ];
     }
 
-    private function baum(Attempt $attempt) {
+    private function baum(Attempt $attempt)
+    {
         return $attempt->responses->first();
     }
 
@@ -405,5 +406,120 @@ class ResultService
         $threshold = $sorted->take(3)->last();
 
         return $sorted->filter(fn($value) => $value <= $threshold);
+    }
+
+    private function biodataPerusahaan(Attempt $attempt)
+    {
+        $attempt->load(['responses', 'tool.questions']);
+
+        $responses = $attempt->responses;
+        $questions = $attempt->tool->questions;
+
+        $formResponses = $responses->flatMap(function ($response) {
+            if (!isset($response->answer['text'])) {
+                return $response->answer;
+            }
+        });
+
+        $essayResponses = $responses
+            ->filter(function ($response) {
+                return isset($response->answer['text']);
+            })->map(function ($response) {
+                return $response->answer;
+            });
+
+        return (object) ['responses' => (object) ['form' => $formResponses, 'essay' => $essayResponses], 'questions' => $questions];
+    }
+
+    private function biodataPendidikan(Attempt $attempt)
+    {
+        $attempt->load(['responses', 'tool.questions']);
+
+        $responses = $attempt->responses;
+        $questions = $attempt->tool->questions;
+
+        $formResponses = $responses->flatMap(function ($response) {
+            if (!isset($response->answer['text'])) {
+                return $response->answer;
+            }
+        });
+
+        $essayResponses = $responses
+            ->filter(function ($response) {
+                return isset($response->answer['text']);
+            })->map(function ($response) {
+                return $response->answer;
+            });
+
+        return (object) ['responses' => (object) ['form' => $formResponses, 'essay' => $essayResponses], 'questions' => $questions];
+    }
+
+    private function biodataKomunitas(Attempt $attempt)
+    {
+        $attempt->load(['responses', 'tool.questions']);
+
+        $responses = $attempt->responses;
+        $questions = $attempt->tool->questions;
+
+        $formResponses = $responses->flatMap(function ($response) {
+            if (!isset($response->answer['text'])) {
+                return $response->answer;
+            }
+        });
+
+        $essayResponses = $responses
+            ->filter(function ($response) {
+                return isset($response->answer['text']);
+            })->map(function ($response) {
+                return $response->answer;
+            });
+
+        return (object) ['responses' => (object) ['form' => $formResponses, 'essay' => $essayResponses], 'questions' => $questions];
+    }
+
+    private function biodataIndividual(Attempt $attempt)
+    {
+        $attempt->load(['responses', 'tool.questions']);
+
+        $responses = $attempt->responses;
+        $questions = $attempt->tool->questions;
+
+        $formResponses = $responses->flatMap(function ($response) {
+            if (!isset($response->answer['text'])) {
+                return $response->answer;
+            }
+        });
+
+        $essayResponses = $responses
+            ->filter(function ($response) {
+                return isset($response->answer['text']);
+            })->map(function ($response) {
+                return $response->answer;
+            });
+
+        return (object) ['responses' => (object) ['form' => $formResponses, 'essay' => $essayResponses], 'questions' => $questions];
+    }
+
+    private function biodataKlinis(Attempt $attempt)
+    {
+        $attempt->load(['responses', 'tool.questions']);
+
+        $responses = $attempt->responses;
+        $questions = $attempt->tool->questions;
+
+        $formResponses = $responses->flatMap(function ($response) {
+            if (!isset($response->answer['text'])) {
+                return $response->answer;
+            }
+        });
+
+        $essayResponses = $responses
+            ->filter(function ($response) {
+                return isset($response->answer['text']);
+            })->map(function ($response) {
+                return $response->answer;
+            });
+
+        return (object) ['responses' => (object) ['form' => $formResponses, 'essay' => $essayResponses], 'questions' => $questions];
     }
 }

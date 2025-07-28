@@ -11,7 +11,6 @@
 
         <form action="{{ route("psikotes-paid.attempt.submit") }}" method="POST" enctype="multipart/form-data">
             @csrf
-
             <div class="relative flex h-[85vh] flex-col justify-between">
                 <div class="flex flex-col items-center justify-center gap-7">
                     <div class="mt-8 flex w-fit items-center gap-7 rounded-[70px] bg-white px-8 py-[10px]">
@@ -44,60 +43,82 @@
         </form>
     </div>
 
-    <div id="countdownExample">
-        <div class="values">f</div>
+    <div id="countdownExample" class="absolute right-4 top-4">
+        <div class="values rounded-full bg-blue-500 px-5 py-3 text-white">00:00:00</div>
     </div>
 @endsection
 
-{{--
-    @section("script")
+@push("script")
     <script type="module">
-    const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    showCloseButton: true,
-    width: '500px',
-    customClass: {
-    popup: 'toast',
-    },
-    });
-    
-    if (!localStorage.getItem('target-time')) {
-    localStorage.setItem('target-time', new Date().getTime() + 600000);
-    }
-    
-    const target = Number(localStorage.getItem('target-time'));
-    console.log(new Date());
-    console.log(new Date(target));
-    const diff = new Date(target - new Date().getTime());
-    
-    const timer = new Timer();
-    timer.start({ countdown: true, startValues: { minutes: diff.getMinutes(), seconds: diff.getSeconds() } });
-    
-    $('#countdownExample .values').html(timer.getTimeValues().toString());
-    timer.addEventListener('secondsUpdated', function (e) {
-    $('#countdownExample .values').html(timer.getTimeValues().toString());
-    if (timer.getTimeValues().minutes === 1 && timer.getTimeValues().seconds === 0) {
-    Toast.fire({
-    icon: 'warning',
-    title: 'Waktu tersisa 1 menit untuk section ini!',
-    });
-    }
-    });
-    
-    // timer.addEventListener('targetAchieved', async function (e) {
-    //     await fetch(@json(route("psikotes-paid.times-up")), {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             Accept: 'application/json',
-    //             'X-CSRF-TOKEN': @json(csrf_token()),
-    //         },
-    //     });
-    
-    //     window.location.href = @json(route("psikotes-paid.summary", $question->tool->id));
-    // });
+        const question = @json($question->load("section"));
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            showCloseButton: true,
+            width: '500px',
+            customClass: {
+                popup: 'toast',
+            },
+        });
+
+        const duration = question.section.duration * 60000;
+
+        // Tambah target-time ke local storage jika belum dibuat
+        // Hindari mengganti nilai target-time jika sudah ada di local storage
+        if (!localStorage.getItem('target-time')) {
+            localStorage.setItem('target-time', new Date().getTime() + duration);
+        }
+
+        // Tambah section-order ke local storage jika belum dibuat
+        // Hindari mengganti nilai section-order jika sudah ada di local storage
+        if (!localStorage.getItem('section-order')) {
+            localStorage.setItem('section-order', question.section.order);
+        }
+
+        // Jika section-order di local storage berbeda dengan section.order di question. (berpindah section)
+        if (localStorage.getItem('section-order') != question.section.order) {
+            localStorage.setItem('target-time', new Date().getTime() + duration);
+            localStorage.setItem('section-order', question.section.order);
+        }
+
+        const target = Number(localStorage.getItem('target-time'));
+        const diff = new Date(target - new Date().getTime());
+
+        const timer = new Timer();
+        timer.start({ countdown: true, startValues: { minutes: diff.getMinutes(), seconds: diff.getSeconds() } });
+
+        $('#countdownExample .values').html(timer.getTimeValues().toString());
+
+        timer.addEventListener('secondsUpdated', function (e) {
+            $('#countdownExample .values').html(timer.getTimeValues().toString());
+            if (timer.getTimeValues().minutes === 1 && timer.getTimeValues().seconds === 0) {
+                Toast.fire({
+                    icon: 'warning',
+                    title: 'Waktu tersisa 1 menit untuk section ini!',
+                    timer: 5000,
+                });
+            }
+        });
+
+        timer.addEventListener('targetAchieved', async function (e) {
+            try {
+                // Kirim request untuk menghapus session dan TUNGGU (await) hingga selesai
+                const response = await fetch('{{ route("psikotes-paid.attempt.times-up") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json',
+                        'X-CSRF-TOKEN': @json(csrf_token()),
+                    },
+                });
+            } catch (error) {
+                console.error('Fetch to times-up failed:', error);
+            } finally {
+                localStorage.removeItem('target-time');
+                localStorage.removeItem('section-order');
+                window.location.href = @json(route("psikotes-paid.attempt.complete"));
+            }
+        });
     </script>
-    @endsection
---}}
+@endpush

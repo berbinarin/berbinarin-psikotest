@@ -94,6 +94,41 @@ class ToolSeeder extends Seeder
                 'introduce' => 'ini introduce',
                 'is_active' => true,
             ],
+            [
+                'name' => 'Biodata Perusahaan',
+                'order' => 22,
+                'token' => '22',
+                'introduce' => 'ini introduce Biodata Perusahaan',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Biodata Pendidikan',
+                'order' => 23,
+                'token' => '23',
+                'introduce' => 'ini introduce biodata pendidikan',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Biodata Komunitas',
+                'order' => 24,
+                'token' => '24',
+                'introduce' => 'ini introduce biodata komunitas',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Biodata Individual',
+                'order' => 25,
+                'token' => '25',
+                'introduce' => 'ini introduce biodata individual',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Biodata Klinis',
+                'order' => 26,
+                'token' => '26',
+                'introduce' => 'ini introduce biodata klinis',
+                'is_active' => true,
+            ],
         ];
 
         foreach ($tools as $tool) {

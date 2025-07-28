@@ -25,6 +25,7 @@ class EnsureSessionIsVerified
             'psikotes-paid.attempt.introduce',
             'psikotes-paid.attempt.question',
             'psikotes-paid.attempt.submit',
+            'psikotes-paid.attempt.times-up',
         ];
 
         // Gunakan service untuk memeriksa sesi aktif.

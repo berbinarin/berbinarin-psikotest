@@ -472,7 +472,6 @@ class RmibQuestionSeeder extends Seeder
         ];
 
         foreach ($questions as $questionData) {
-            // Menggunakan updateOrCreate untuk menghindari duplikasi jika seeder dijalankan lagi
             Question::updateOrCreate(
                 [
                     'section_id' => $questionData['section_id'],

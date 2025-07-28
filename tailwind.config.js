@@ -17,7 +17,18 @@ export default {
         },
     },
 
-    safelist: ["bg-[#3fa2f6]", "bg-[#fbb03b]", "bg-[#406c9b]", "bg-[#6a3d00]", "bg-[#ef5350]", "bg-[#4caf50]"],
+    safelist: [
+        "bg-[#3fa2f6]",
+        "bg-[#fbb03b]",
+        "bg-[#406c9b]",
+        "bg-[#6a3d00]",
+        "bg-[#ef5350]",
+        "bg-[#4caf50]",
+        {
+            pattern: /^col-span-(\d+)$/,
+            variants: ["sm", "md", "lg", "xl"],
+        },
+    ],
 
     plugins: [forms, typography],
 };
