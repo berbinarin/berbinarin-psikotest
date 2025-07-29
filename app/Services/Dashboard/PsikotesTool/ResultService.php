@@ -356,9 +356,32 @@ class ResultService
         return $results;
     }
 
+    private function dap(Attempt $attempt)
+    {
+        $attempt->load('responses.question', 'user');
+
+        $dapImages = collect();
+
+        foreach ($attempt->responses as $response) {
+            if ($response->question && $response->question->type === 'image_upload') {
+                if (isset($response->answer['image_path'])) {
+                    $dapImages->push([
+                        'question_id' => $response->question->id,
+                        'question_text' => $response->question->text,
+                        'image_url' => asset('storage/' . $response->answer['image_path']),
+                        'response_id' => $response->id,
+                        'submitted_at' => $response->created_at,
+                    ]);
+                }
+            }
+        }
+
+        return $dapImages;
+    }
+
     private function dass42(Attempt $attempt)
     {
-        $attempt->load('responses');
+        $attempt->load('responses.question', 'user');
 
         $categoriesPoint = collect([
             "depression",
@@ -367,10 +390,89 @@ class ResultService
         ])->mapWithKeys(fn($key) => [$key => 0]);
 
         foreach ($attempt->responses as $response) {
-            $categoriesPoint[$response->question->scoring['scale']] += $response->answer['value'];
+            if ($response->question && isset($response->question->scoring['scale']) && isset($response->answer['value'])) {
+                $scale = $response->question->scoring['scale'];
+                $value = (int) $response->answer['value'];
+
+                if ($categoriesPoint->has($scale)) {
+                    $categoriesPoint[$scale] += $value;
+                }
+            }
         }
 
-        return $categoriesPoint->sortDesc();
+        $finalResults = $categoriesPoint->map(function ($score, $category) {
+            return $this->getDassCategoryResult($category, $score) + ['score' => $score];
+        });
+
+        return $finalResults->sortBy('name');
+    }
+
+    private function getDassCategoryResult(string $category, int $score): array
+    {
+        $resultsMapping = [
+            "depression" => [
+                ['threshold' => 28, 'result' => 'Extremely Serve'],
+                ['threshold' => 21, 'result' => 'Serve'],
+                ['threshold' => 14, 'result' => 'Moderate'],
+                ['threshold' => 10, 'result' => 'Mild'],
+                ['threshold' => -1, 'result' => 'Normal'], // Changed to -1 as >0 means score 1 and above is mild. If 0, it's normal.
+            ],
+            "anxiety" => [
+                ['threshold' => 20, 'result' => 'Extremely Serve'],
+                ['threshold' => 15, 'result' => 'Serve'],
+                ['threshold' => 10, 'result' => 'Moderate'],
+                ['threshold' => 8, 'result' => 'Mild'],
+                ['threshold' => 0, 'result' => 'Normal'], // Changed to 0 as >1 means score 2 and above is mild. If 0 or 1, it's normal.
+            ],
+            "stress" => [
+                ['threshold' => 34, 'result' => 'Extremely Serve'],
+                ['threshold' => 26, 'result' => 'Serve'],
+                ['threshold' => 19, 'result' => 'Moderate'],
+                ['threshold' => 15, 'result' => 'Mild'],
+                ['threshold' => 0, 'result' => 'Normal'], // Changed to 0 as >1 means score 2 and above is mild. If 0 or 1, it's normal.
+            ],
+        ];
+
+        $categoryResults = $resultsMapping[$category] ?? [];
+
+        foreach ($categoryResults as $range) {
+            if ($score > $range['threshold']) {
+                return [
+                    'description' => $range['result'],
+                    'name' => ucfirst($category),
+                    'category' => $category,
+                ];
+            }
+        }
+
+        return [
+            'description' => 'Normal', // Default to Normal if no other threshold is met
+            'name' => ucfirst($category),
+            'category' => $category,
+        ];
+    }
+
+    private function tesEsai(Attempt $attempt)
+    {
+        $attempt->load('responses.question', 'user');
+
+        $essayAnswers = collect();
+
+        foreach ($attempt->responses as $response) {
+            if ($response->question && isset($response->question->type) && $response->question->type === 'essay') {
+                if (isset($response->answer['text'])) {
+                    $essayAnswers->push([
+                        'question_id' => $response->question->id,
+                        'question_text' => $response->question->text,
+                        'answer_text' => $response->answer['text'],
+                        'response_id' => $response->id,
+                        'submitted_at' => $response->created_at,
+                    ]);
+                }
+            }
+        }
+
+        return $essayAnswers;
     }
 
     private function rmib(Attempt $attempt)
