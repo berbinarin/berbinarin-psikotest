@@ -14,6 +14,8 @@ Route::middleware(['auth', 'session.verified'])->prefix('psikotes-paid')->name('
     Route::prefix('tools')->name('tools.')->group(function () {
         Route::get('/', [ToolController::class, 'index'])->name('index');
         Route::post('/verify-token', [ToolController::class, 'verifyToken'])->name('verify-token');
+
+        Route::get('/testimoni', [ToolController::class, 'testimoni'])->name('testimoni');
     });
 
     // Attempt

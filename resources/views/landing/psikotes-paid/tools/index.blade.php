@@ -1,96 +1,129 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Landing Page</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-        @vite([])
-    </head>
-    <body>
-        <div class="container mt-5">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="text-center">Haloo bro, {{ $user->name }}</h3>
-                        </div>
-                        <div class="card-body">
-                            <p>Email: {{ $user->email }}</p>
-                            <p>Gender: {{ $user->gender }}</p>
-                            <p>Psikotest Type: {{ $user->psikotest_type_id }}</p>
-                            <form method="POST" action="{{ route("auth.logout") }}">
-                                @csrf
-                                <button type="submit" class="btn btn-danger">Logout</button>
-                            </form>
+@extends(
+    "landing.layouts.test",
+    [
+        "title" => "Psikotes Paid",
+    ]
+)
 
-                            <hr />
+@push("style")
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-                            <h4 class="mt-4 text-center">Available Tools</h4>
-                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-                                @foreach ($tools as $tool)
-                                    <div class="col">
-                                        <div class="card h-100">
-                                            <div class="card-body text-center">
-                                                <h5 class="card-title">{{ $tool->order }}</h5>
-                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tokenModal" data-tool-id="{{ $tool->id }}">Use Tool</button>
-                                            </div>
-                                        </div>
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
+@endpush
+
+@section("content")
+    <div class="h-screen overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset("assets/images/psikotes/paid/psikotest-home-bg.png") }}')">
+        <!-- Navbar Start -->
+        <nav>
+            <div class="mt-4 flex w-full flex-row items-center justify-between">
+                <a href="{{ route("psikotes-paid.tools.testimoni") }}" class="ml-16 rounded-[5px] bg-blue-500 px-[10px] py-3 text-xs font-medium text-white">Testimoni</a>
+                <div class="flex items-center justify-center gap-4 rounded-full bg-white px-8 py-2 drop-shadow-lg">
+                    <img class="h-10 w-10" src="{{ asset("assets/landing/images/psikotes-paid/logo-berbinar.png") }}" alt="Logo Berbinar" />
+                    <img class="h-11 w-11" src="{{ asset("assets/landing/images/psikotes-paid/logo-berbinar-psikotes.png") }}" alt="Logo Berbinar Psikotest" />
+                </div>
+                <form action="{{ route("auth.logout") }}" method="POST">
+                    @csrf
+                    <button class="mr-16 rounded-[5px] bg-blue-500 px-[10px] py-3 text-xs font-medium text-white" style="font-family: 'Plus Jakarta Sans', sans-serif">Logout</button>
+                </form>
+            </div>
+        </nav>
+        <!-- Navbar End -->
+
+        <!-- Tagline Start -->
+        <div class="my-7 flex w-full items-center justify-center">
+            <h1 class="text-2xl font-bold" style="font-family: 'Plus Jakarta Sans', sans-serif">Temukan Potensimu - Selamat Datang di Situs Psikotes Kami!</h1>
+        </div>
+        <!-- Tagline End -->
+
+        <section x-data="{ open: false, testNumber: null }">
+            <!-- Box Test Swiper Start -->
+            <div class="swiper mySwiper h-[475px]">
+                <div class="swiper-wrapper mx-4">
+                    <div class="swiper-slide !h-auto py-1">
+                        <div class="mx-auto grid h-full max-w-[1200px] grid-cols-4 justify-items-center gap-x-3 gap-y-3">
+                            @foreach ($tools as $tool)
+                                <button type="button" @click="open = true; testNumber = {{ $tool->id }}">
+                                    <div class="flex h-[180px] w-[270px] items-center justify-center rounded-[5px] bg-[#3986A3] transition hover:scale-105">
+                                        <p class="text-xl font-bold text-white" style="font-family: 'Plus Jakarta Sans', sans-serif">Test {{ str_pad($tool->order, 2, "0", STR_PAD_LEFT) }}</p>
                                     </div>
-                                @endforeach
-                            </div>
+                                </button>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <!-- Box Test Swiper End -->
 
-        <!-- Token Modal -->
-        <div class="modal fade" id="tokenModal" tabindex="-1" aria-labelledby="tokenModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="tokenModalLabel">Enter Tool Token</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="tokenForm" method="POST">
-                            @csrf
-                            <input id="tool_id" type="hidden" name="tool_id" />
-                            <div class="mb-3">
-                                <label for="token" class="form-label">Token</label>
-                                <input type="text" class="form-control" id="token" name="token" required />
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                    </div>
+            <!-- Modal Redeem Code Start -->
+            <div x-show="open" x-cloak @click.outside="open = false" @keydown.escape.window="open = false" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+                <div class="h-[298px] w-[560px] rounded-lg bg-white p-6 shadow-lg">
+                    <h2 class="mb-5 text-center text-2xl font-bold" style="font-family: 'Plus Jakarta Sans', sans-serif">Redeem Code</h2>
+                    <h2 class="mb-6 text-center text-[15px] text-[#D1D1D1]" style="font-family: 'Plus Jakarta Sans', sans-serif">Enter the redeem code provided to start the test</h2>
+                    <form method="POST" action="{{ route("psikotes-paid.tools.verify-token") }}">
+                        @csrf
+                        <div x-text="testNumber"></div>
+                        <input type="hidden" name="tool_id" :value="testNumber" />
+                        <div class="flex justify-center">
+                            <input type="text" name="token" placeholder="Enter code" class="h-[47px] w-[458px] rounded-[10px] bg-[#E1E1E1] px-3 text-[15px] font-bold outline-none placeholder:text-white" style="font-family: 'Plus Jakarta Sans', sans-serif" required />
+                        </div>
+                        <div class="mt-4 flex justify-center gap-2">
+                            <button type="submit" class="rounded-xl bg-[#3986A3] px-28 py-3 text-[15px] font-extrabold text-white" style="font-family: 'Plus Jakarta Sans', sans-serif">Redeem</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </div>
+            <!-- Modal Redeem Code End -->
+        </section>
+    </div>
+@endsection
 
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                var tokenModal = document.getElementById('tokenModal');
-                var toolIdInput = document.getElementById('tool_id'); // Mengganti nama variabel agar lebih jelas
-                var form = tokenModal.querySelector('#tokenForm');
+@push("script")
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.mySwiper', {
+            direction: 'vertical',
+            slidesPerView: 'auto',
+            mousewheel: true,
+            freeMode: true,
+        });
+    </script>
 
-                tokenModal.addEventListener('show.bs.modal', function (event) {
-                    // Tombol yang memicu modal
-                    var button = event.relatedTarget;
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const testimoniStatus = urlParams.get('testimoni');
+        const checkIcon = '{{ asset("assets/images/psikotes/paid/check.png") }}';
 
-                    // Ekstrak info dari atribut data-*
-                    var dataToolId = button.getAttribute('data-tool-id');
-
-                    // --- BAGIAN YANG DIPERBAIKI ---
-                    // Atur value dari input hidden dengan id tool
-                    toolIdInput.value = dataToolId;
-
-                    // Atur action form
-                    form.action = @json(route("psikotes-paid.tools.verify-token"));
-                });
+        if (testimoniStatus === 'selesai') {
+            Swal.fire({
+                html: `
+                            <div class="text-center">
+                                <img src="${checkIcon}" alt="sukses" class="mx-auto mb-[18px] h-[71px] w-[71px]" />
+                                <h2 class="text-2xl font-bold text-black" style="font-family: 'Plus Jakarta Sans', sans-serif">
+                                    Kamu telah mengisi testimoni
+                                </h2>
+                                <p class="text-lg font-medium text-[#A9A9A9]" style="font-family: 'Plus Jakarta Sans', sans-serif">
+                                    Silakan lanjutkan mengerjakan psikotes!
+                                </p>
+                            </div>
+                        `,
+                showConfirmButton: true,
+                confirmButtonText: 'Lanjutkan',
+                customClass: {
+                    popup: 'rounded-xl px-6 pt-6 pb-6',
+                    confirmButton: 'mt-6 rounded-md bg-[#6083F2] px-[112px] py-[10px] text-[15px] font-extrabold text-white transition hover:bg-blue-600',
+                },
+                confirmButtonColor: undefined,
+                backdrop: 'rgba(0,0,0,0.5)',
+            }).then(() => {
+                const url = new URL(window.location.href);
+                url.searchParams.delete('testimoni');
+                window.history.replaceState({}, document.title, url.toString());
             });
-        </script>
-    </body>
-</html>
+        }
+    </script>
+@endpush

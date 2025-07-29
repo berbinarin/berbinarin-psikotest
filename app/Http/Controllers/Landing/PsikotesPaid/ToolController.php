@@ -9,10 +9,7 @@ use App\Services\Landing\PsikotesPaid\AttemptService;
 
 class ToolController extends Controller
 {
-    public function __construct(private AttemptService $attemptService)
-    {
-        
-    }
+    public function __construct(private AttemptService $attemptService) {}
 
     public function index()
     {
@@ -22,15 +19,21 @@ class ToolController extends Controller
         return view('landing.psikotes-paid.tools.index', compact('user', 'tools'));
     }
 
-    public function verifyToken(VerifyTokenRequest $request) {
+    public function verifyToken(VerifyTokenRequest $request)
+    {
         $request->validated();
-        
+
         $tool = Tool::find($request->tool_id);
 
-        if($tool->token === $request->token) {
+        if ($tool->token === $request->token) {
             $this->attemptService->start($tool);
         }
-        
+
         return redirect()->route('psikotes-paid.attempt.introduce');
     }
+
+    public function testimoni() {
+        return view('landing.psikotes-paid.tools.testimoni');
+    }
 }
+

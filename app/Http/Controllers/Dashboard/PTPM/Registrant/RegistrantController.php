@@ -9,6 +9,7 @@ use App\Models\TestCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class RegistrantController extends Controller
 {
@@ -46,6 +47,7 @@ class RegistrantController extends Controller
                 $user = User::create([
                     'name' => $validateData['name'],
                     'email' => $validateData['email'],
+                    'username' => Str::random(10),
                     'password' => bcrypt(\Illuminate\Support\Str::random(10)),
                 ]);
 
@@ -62,6 +64,7 @@ class RegistrantController extends Controller
                 ]);
             });
         } catch (\Exception $e) {
+            dd($e);
             return back()->withInput()->with('error', 'Terjadi kesalahan saat pendaftaran. Silakan coba lagi.');
         }
 
