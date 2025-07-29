@@ -355,13 +355,13 @@ class ResultService
         return $results;
     }
 
-    private function dap(Session $psikotesSession)
+    private function dap(Attempt $attempt)
     {
-        $psikotesSession->load('responses.question', 'user');
+        $attempt->load('responses.question', 'user');
 
         $dapImages = collect();
 
-        foreach ($psikotesSession->responses as $response) {
+        foreach ($attempt->responses as $response) {
             if ($response->question && $response->question->type === 'image_upload') {
                 if (isset($response->answer['image_path'])) {
                     $dapImages->push([
@@ -375,13 +375,12 @@ class ResultService
             }
         }
 
-        // 3. Mengembalikan kumpulan data gambar
         return $dapImages;
     }
 
     private function dass42(Attempt $attempt)
     {
-        $attempt->load('responses');
+        $attempt->load('responses.question', 'user');
 
         $categoriesPoint = collect([
             "depression",
@@ -389,17 +388,15 @@ class ResultService
             "stress"
         ])->mapWithKeys(fn($key) => [$key => 0]);
 
-        // foreach ($psikotesSession->responses as $response) {
-        //     if ($response->question && isset($response->question->scoring['scale']) && isset($response->answer['value'])) {
-        //         $scale = $response->question->scoring['scale'];
-        //         $value = (int) $response->answer['value']; // Cast to int for safety
-
-        //         if ($categoriesPoint->has($scale)) {
-        //             $categoriesPoint[$scale] += $value;
-        //         }
-        //     }
         foreach ($attempt->responses as $response) {
-            $categoriesPoint[$response->question->scoring['scale']] += $response->answer['value'];
+            if ($response->question && isset($response->question->scoring['scale']) && isset($response->answer['value'])) {
+                $scale = $response->question->scoring['scale'];
+                $value = (int) $response->answer['value'];
+
+                if ($categoriesPoint->has($scale)) {
+                    $categoriesPoint[$scale] += $value;
+                }
+            }
         }
 
         $finalResults = $categoriesPoint->map(function ($score, $category) {
@@ -454,13 +451,13 @@ class ResultService
         ];
     }
 
-    private function tesEsai(Session $psikotesSession)
+    private function tesEsai(Attempt $attempt)
     {
-        $psikotesSession->load('responses.question', 'user');
+        $attempt->load('responses.question', 'user');
 
         $essayAnswers = collect();
 
-        foreach ($psikotesSession->responses as $response) {
+        foreach ($attempt->responses as $response) {
             if ($response->question && isset($response->question->type) && $response->question->type === 'essay') {
                 if (isset($response->answer['text'])) {
                     $essayAnswers->push([
@@ -474,7 +471,6 @@ class ResultService
             }
         }
 
-        // 3. Mengembalikan kumpulan data esai
         return $essayAnswers;
     }
 

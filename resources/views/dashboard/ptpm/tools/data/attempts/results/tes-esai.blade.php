@@ -12,19 +12,15 @@
             </thead>
             <tbody>
                 <?php $i = 1 ?>
-                @foreach($answers as $answer)
+                @foreach($attempt->responses as $answer)
                     <tr>
                         <td class="py-2 px-4 border-b border-gray-300">{{ $i }}</td>
-                        <td class="py-2 px-4 border-b border-gray-300">{{ $answer->questionTesEsai->question }}</td>
-                        <td class="py-2 px-4 border-b border-gray-300">{{ $answer->answer }}</td>
+                        <td class="py-2 px-4 border-b border-gray-300">{{ $answer->question->text }}</td>
+                        <td class="py-2 px-4 border-b border-gray-300">{{ $answer->answer['text'] }}</td>
                     </tr>
                     <?php $i++ ?>
                 @endforeach
             </tbody>
         </table>
-    </div>
-
-    <div class="mt-4 text-center">
-        <a href="{{ url()->previous() }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Back</a>
     </div>
 </div>

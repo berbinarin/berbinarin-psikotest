@@ -1,98 +1,98 @@
-<div class="flex max-h-[500px] flex-col overflow-hidden rounded-lg bg-white p-8 shadow-lg" style="width: 40%">
-    <div class="flex-1 overflow-y-auto" style="max-height: 400px">
-        <div class="pb-10">
-            <h2 class="text-2xl font-semibold">{{ $attempt->user->name }}</h2>
-            <p class="mt-4">
-                {{-- Mengambil kategori dengan skor tertinggi secara dinamis --}}
-                @php
-                    $highestCategory = $dass42Results->sortByDesc('score')->first();
-                    // Max score for DASS-42 is 42 (14 questions * max 3 points each)
-                    $maxPossibleScore = 42;
-                @endphp
-                @if($highestCategory)
-                    Kategori yang paling tinggi nilainya adalah
-                    <b>{{ $highestCategory['name'] }}</b>
-                    dengan skor
-                    <b>{{ $highestCategory['score'] }} poin</b>
-                    . Sehingga didapatkan kesimpulan berupa
-                    <b>{{ $highestCategory['name'] }}</b>
-                    tipe
-                    <b>{{ $highestCategory['description'] }}</b>
-                    .
-                @else
-                    <p>Data hasil DASS42 tidak tersedia.</p>
-                @endif
-            </p>
-        </div>
-        <div class="relative mb-4 space-y-4" style="padding-left: 0">
-            {{-- Diagram Bar Dinamis --}}
-            {{-- Warna untuk setiap kategori --}}
+<div class="flex flex-col gap-6 md:flex-row">
+    {{-- Ringkasan & Diagram --}}
+    <div class="flex flex-col rounded-xl bg-white p-6 shadow-md w-full md:w-2/5">
+        <h2 class="text-xl font-semibold mb-4">{{ $attempt->user->name }}</h2>
+
+        <div class="overflow-y-auto scrollbar-thin pr-2" style="max-height: calc(100vh - 200px)">
+            {{-- Ringkasan --}}
             @php
+                $highest = $data->sortByDesc('score')->first();
+                $maxScore = 42;
                 $colors = [
                     'depression' => 'bg-blue-300',
                     'anxiety' => 'bg-purple-300',
-                    'stress' => 'bg-red-300',
+                    'stress' => 'bg-pink-300',
+                ];
+                $chartColors = [
+                    'depression' => 'rgba(59,130,246,0.6)',
+                    'anxiety' => 'rgba(139,92,246,0.6)',
+                    'stress' => 'rgba(236,72,153,0.6)',
                 ];
             @endphp
 
-            @foreach($dass42Results as $categoryData)
-                <div class="flex items-center">
-                    {{-- Menghitung lebar bar secara dinamis berdasarkan skor dan maxPossibleScore --}}
-                    <div class="ml-1 h-10 rounded-r-lg {{ $colors[$categoryData['category']] ?? 'bg-gray-300' }}"
-                         style="width: {{ ($categoryData['score'] / $maxPossibleScore) * 100 . "%" }}"></div>
-                    <span class="ml-2 font-medium text-gray-700">{{ $categoryData['score'] }} poin</span>
-                </div>
-            @endforeach
+            <div class="mb-4 text-gray-700">
+                @if($highest)
+                    Kategori yang paling tinggi nilainya adalah <b>{{ $highest['name'] }}</b> dengan skor <b>{{ $highest['score'] }} poin</b>.
+                    Sehingga di dapatkan kesimpulan berupa <b>{{ $highest['name'] }}</b> tipe <b>{{ $highest['description'] }}</b>.
+                @else
+                    Data DASS-42 tidak tersedia.
+                @endif
+            </div>
 
-            {{-- Garis Pinggir --}}
-            <div class="absolute bottom-0 left-0 h-48 w-1 bg-gray-300"></div>
-            <div class="absolute bottom-0 left-0 h-1 w-full bg-gray-300"></div>
-        </div>
-
-        <div class="flex flex-col">
-            <div class="">
-                {{-- Keterangan warna untuk setiap kategori (bisa disederhanakan jika menggunakan loop di atas) --}}
-                @foreach($dass42Results as $categoryData)
-                    <div class="mb-2 flex items-center space-x-2">
-                        <div class="h-4 w-4 rounded-full {{ $colors[$categoryData['category']] ?? 'bg-gray-300' }}"></div>
-                        <p class="text-lg text-gray-700">{{ $categoryData['name'] }}</p>
+            {{-- Diagram Horizontal --}}
+            <div class="space-y-3 mb-4">
+                @foreach($data as $result)
+                    <div class="flex items-center">
+                        <div class="h-8 {{ $colors[$result['category']] ?? 'bg-gray-300' }} rounded-r-md"
+                             style="width: {{ ($result['score'] / $maxScore) * 100 }}%">
+                        </div>
+                        <span class="ml-3 text-sm text-gray-800">{{ $result['score'] }} poin</span>
                     </div>
                 @endforeach
             </div>
-            <div class="pt-2">
-                {{-- Total Poin per Kategori Secara Dinamis --}}
-                <p class="mb-4 text-lg text-gray-700">
-                    @foreach($dass42Results as $categoryData)
-                        Total poin pada {{ $categoryData['name'] }}:
-                        <b>{{ $categoryData['score'] }} poin</b>
-                        <br />
-                    @endforeach
-                </p>
+
+            {{-- Indikator --}}
+            <div class="space-y-2">
+                @foreach($data as $result)
+                    <div class="flex items-center">
+                        <div class="h-3 w-3 rounded-full {{ $colors[$result['category']] ?? 'bg-gray-300' }}"></div>
+                        <span class="ml-2 text-sm text-gray-700">
+                            {{ $result['name'] }} — <b>{{ $result['description'] }}</b> ({{ $result['score'] }} poin)
+                        </span>
+                    </div>
+                @endforeach
+            </div>
+
+            {{-- Ringkasan Tingkat Keparahan --}}
+            <div class="mt-6 space-y-3">
+                @foreach($data as $result)
+                    <div class="flex justify-between items-center bg-gray-50 rounded-lg px-4 py-3 shadow-sm">
+                        <div class="flex items-center">
+                            <div class="h-3 w-3 rounded-full {{ $colors[$result['category']] ?? 'bg-gray-300' }}"></div>
+                            <span class="ml-3 font-medium text-gray-700">{{ ucfirst($result['category']) }}</span>
+                        </div>
+                        <div class="text-right text-sm text-gray-600">
+                            Total poin: <b>{{ $result['score'] }}</b> —
+                            <span class="font-semibold text-gray-800">{{ $result['description'] }}</span>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
-</div>
 
-<div class="flex max-h-[500px] flex-col overflow-hidden rounded-lg bg-white p-8 shadow-lg" style="width: 60%">
-    <h2 class="mb-4 text-2xl font-semibold">Detail Jawaban</h2>
-    <div class="w-full">
-        <table class="w-full table-fixed border-collapse text-lg">
-            <thead>
-                <tr class="flex border-b">
-                    <th class="p-4 text-center text-gray-400" style="width: 50%">Pernyataan</th>
-                    <th class="p-4 text-center text-gray-400" style="width: 25%">Kategori</th>
-                    <th class="p-4 text-center text-gray-400" style="width: 25%">Nilai</th>
+    {{-- Detail Jawaban --}}
+    <div class="flex flex-col rounded-xl bg-white p-6 shadow-md w-full md:w-3/5">
+        <h2 class="text-xl font-semibold mb-4">Detail Jawaban</h2>
+
+        <table class="w-full table-fixed border-collapse text-sm">
+            <thead class="sticky top-0 bg-white z-10">
+                <tr class="flex border-b text-gray-500 font-semibold">
+                    <th class="w-1/2 p-3 text-center">Pernyataan</th>
+                    <th class="w-1/4 p-3 text-center">Kategori</th>
+                    <th class="w-1/4 p-3 text-center">Nilai</th>
                 </tr>
             </thead>
         </table>
-        <div class="overflow-y-auto" style="max-height: 350px">
-            <table class="w-full table-fixed border-collapse text-lg">
-                <tbody class="flex flex-col border-b">
+
+        <div class="overflow-y-auto scrollbar-thin" style="max-height: 380px">
+            <table class="w-full table-fixed border-collapse text-sm">
+                <tbody class="flex flex-col">
                     @foreach ($attempt->responses as $response)
                         <tr class="border-b">
-                            <td class="p-4" style="width: 50%">{{ $response->question->text }}</td>
-                            <td class="p-4 text-center" style="width: 25%">{{ $response->question->scoring['scale'] }}</td>
-                            <td class="p-4 text-center" style="width: 25%">{{ $response->answer['value'] }}</td>
+                            <td class="w-1/2 p-3">{{ $response->question->text }}</td>
+                            <td class="w-1/4 p-3 text-center">{{ $response->question->scoring['scale'] }}</td>
+                            <td class="w-1/4 p-3 text-center">{{ $response->answer['value'] }}</td>
                         </tr>
                     @endforeach
                 </tbody>

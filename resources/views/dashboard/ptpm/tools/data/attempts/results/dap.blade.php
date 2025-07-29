@@ -12,12 +12,18 @@
             </thead>
             <tbody>
                 <?php $i = 1 ?>
-                @foreach($answers as $answer)
+                @foreach($attempt->responses as $answer)
                     <tr>
                         <td class="py-2 px-4 border-b border-gray-300">{{ $i }}</td>
-                        <td class="py-2 px-4 border-b border-gray-300">{{ $answer->questionDap->question }}</td>
+                        <td class="py-2 px-4 border-b border-gray-300">{{ $answer->question->text }}</td>
                         <td class="py-2 px-4 border-b border-gray-300">
-                            <img src="{{ asset('storage/' . $answer->answer) }}" alt="Answer Image" class="w-32 h-auto mx-auto">
+                            @if($answer->question->type === 'image_upload' && isset($answer->answer['file_path']))
+                                <button onclick="openModal('{{ asset('storage/' . $answer->answer['file_path']) }}')">
+                                    <img src="{{ asset('storage/' . $answer->answer['file_path']) }}" alt="Answer Image" class="w-32 h-auto mx-auto rounded hover:opacity-80 transition">
+                                </button>
+                            @else
+                                <span>Tidak ada gambar</span>
+                            @endif
                         </td>
                     </tr>
                     <?php $i++ ?>
@@ -25,8 +31,31 @@
             </tbody>
         </table>
     </div>
+</div>
 
-    <div class="mt-4 text-center">
-        <a href="{{ url()->previous() }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Back</a>
+<!-- Modal -->
+<div id="imageModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 hidden">
+    <div class="relative bg-white rounded-lg shadow-lg max-w-3xl w-full p-4">
+        <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-600 hover:text-black">
+            &larr; Back
+        </button>
+        <img id="modalImage" src="" alt="Preview Image" class="mx-auto max-h-[80vh] object-contain">
     </div>
 </div>
+
+<!-- Script -->
+<script>
+    function openModal(imageUrl) {
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        modalImage.src = imageUrl;
+        modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        modal.classList.add('hidden');
+        modalImage.src = '';
+    }
+</script>
