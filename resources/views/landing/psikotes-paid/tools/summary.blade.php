@@ -1,7 +1,7 @@
 @extends(
     "landing.layouts.test",
     [
-        "title" => "Tes " . str_pad($question->tool->order, 2, "0", STR_PAD_LEFT),
+        "title" => "Tes " . str_pad($tool->order, 2, "0", STR_PAD_LEFT),
     ]
 )
 
@@ -16,7 +16,7 @@
                     <img class="h-11 w-11" src="{{ asset("/assets/landing/images/psikotes-paid/logo-berbinar-psikotes.png") }}" alt="Logo Berbinar Psikotest" />
                 </div>
                 <div>
-                    <h2 class="text-[28px] font-bold">Tes {{ str_pad($question->tool->order, 2, "0", STR_PAD_LEFT) }}</h2>
+                    <h2 class="text-[28px] font-bold">Tes {{ str_pad($tool->order, 2, "0", STR_PAD_LEFT) }}</h2>
                 </div>
             </div>
 

@@ -90,8 +90,7 @@ class SubmittedResponseController extends Controller
             session()->increment('question_order');
 
             // Arahkan kembali ke halaman pertanyaan
-            return redirect()->route('psikotes.question', ['tool' => $tool->id]);
-
+            return redirect()->route('psikotes-paid.question', ['tool' => $tool->id]);
             // (Jika pertanyaan sudah habis)
         } else {
             
@@ -105,7 +104,7 @@ class SubmittedResponseController extends Controller
                 session(['question_order' => 1]);
 
                 // Arahkan kembali ke halaman pertanyaan
-                return redirect()->route('psikotes.question', ['tool' => $tool->id]);
+                return redirect()->route('psikotes-paid.question', ['tool' => $tool->id]);
             }
         }
 
@@ -115,6 +114,7 @@ class SubmittedResponseController extends Controller
         session()->forget(['section_order', 'question_order', 'session_id']);
 
         // arahkan ke halaman summary
-        return redirect()->route('psikotes-paid.summary');
+
+        return redirect()->route('psikotes-paid.summary', ['tool' => $tool->id]);    
     }
 }

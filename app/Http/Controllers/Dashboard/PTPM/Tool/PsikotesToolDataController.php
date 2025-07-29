@@ -34,12 +34,14 @@ class PsikotesToolDataController extends Controller
         return view('dashboard.ptpm.tools.data.result', compact('data', 'tool', 'session'));
     }
 
-    public function sections(Tool $tool) {
+    public function sections(Tool $tool)
+    {
         $tool->load('sections.questions');
         return view('dashboard.ptpm/tools.data.sections', compact('tool'));
     }
 
-    public function questions(Tool $tool, Section $section) {
+    public function questions(Tool $tool, Section $section)
+    {
         $section->load('questions');
         return view('dashboard.ptpm/tools.data.questions', compact('tool', 'section'));
     }

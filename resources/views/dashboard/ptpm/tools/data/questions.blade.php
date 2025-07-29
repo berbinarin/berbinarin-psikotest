@@ -33,7 +33,7 @@
                                     <tr class="data-consume">
                                         <td class="text-center">{{ $loop->iteration }}</td>
                                         <td class="text-center">{{ $question->order }}</td>
-                                        <td>{{ $question->text? "" : "Soal tidak memiliki text" }}</td>
+                                        <td>{{ $question->text? $question->text : "Soal tidak memiliki text" }}</td>
                                         <td class="text-center">{{ $question->image_path ? "" : "Tidak ada Data gambar" }}</td>
                                         <td class="text-center">{{ $question->type }}</td>
                                         <td class="whitespace-no-wrap px-6 py-4 text-center">

@@ -1,7 +1,7 @@
 <div class="flex max-h-[500px] flex-col overflow-hidden rounded-lg bg-white p-8 shadow-lg" style="width: 40%">
     <div class="flex-1 overflow-y-auto" style="max-height: 400px">
         <div class="pb-10">
-            <h2 class="text-2xl font-semibold">{{ $psikotesSession->user->name }}</h2>
+            <h2 class="text-2xl font-semibold">{{ $session->user->name }}</h2>
             <p class="mt-4">
                 Berikut merupakan 3 peringkat kategori dengan nilai terendah, yaitu
 
@@ -50,13 +50,13 @@
 
     <div x-data="{ tab: 'subtest-A' }">
         <ul class="flex flex-wrap items-center gap-7 text-lg font-bold">
-            @foreach ($psikotesSession->responses as $response)
+            @foreach ($session->responses as $response)
                 <li>
                     <button :class="tab === 'subtest-{{ $response->question->section->title }}' ? 'pb-2 border-b-2 border-blue-300 text-primary-alt' : 'text-gray-700 pb-2'" @click="tab = 'subtest-{{ $response->question->section->title }}'">Subtes {{ $response->question->section->title }}</button>
                 </li>
             @endforeach
         </ul>
-        @foreach ($psikotesSession->responses as $response)
+        @foreach ($session->responses as $response)
             <div x-show="tab === 'subtest-{{ $response->question->section->title }}'" class="pt-2">
                 <!-- Bungkus keseluruhan dengan satu div -->
 

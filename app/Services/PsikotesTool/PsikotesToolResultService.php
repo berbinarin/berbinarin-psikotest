@@ -114,7 +114,7 @@ class PsikotesToolResultService
                 'main_category' => 'Followership',
                 'sub_name' => 'Need for rules and supervision',
                 'ranges' => [
-                    '0-3' => 'Hanya butuh gambaran tentang kerangka tugas secara garis besar, berpatokan pada tujuan, dapat bekerja dalam suasana yang kurang berstruktur, berinsiatif, mandiri. Tidak patuh, cenderung mengabaikan atau tidak paham pentingnya peraturan atau prosedur, suka membuat peraturan sendiri yang bisa bertentangan dengan yang telah ada.',
+                    '0-3' => 'Hanya butuh gambaran tentang kerangka tugas secara garis besar, berpatokan pada tujuan, dapat bekerja dalam suasana yang kurang berstruktur, berinisiatif, mandiri. Tidak patuh, cenderung mengabaikan atau tidak paham pentingnya peraturan atau prosedur, suka membuat peraturan sendiri yang bisa bertentangan dengan yang telah ada.',
                     '4-5' => 'Perlu pengarahan awal dan tolok ukur keberhasilan.',
                     '6-7' => 'Membutuhkan uraian rinci mengenai tugas, dan batasan tanggung jawab serta wewenang.',
                     '8-9' => 'Patuh pada kebijaksanaan, peraturan dan struktur organisasi. Ingin segala sesuatunya diuraikan secara rinci, kurang memiliki inisiatif, tdk fleksibel, terlalu tergantung pada organisasi, berharap \'disuapi\'.'
@@ -158,7 +158,7 @@ class PsikotesToolResultService
                     '4' => 'Kurang percaya diri dan kurang berminat untuk menjadi pemimpin.',
                     '5' => 'Cukup percaya diri, tidak secara aktif mencari posisi kepemimpinan akan tetapi juga tidak akan menghindarinya.',
                     '6-7' => 'Percaya diri dan ingin berperan sebagai pemimpin.',
-                    '8-9' => 'Sangat percaya diri untuk berperan sebagai atasan dan sangat mengharapkan posisi tersebut. Lebih mementingkan citra dan status kepemimpinannya dari pada efektifitas kelompok, mungkin akan tampil angkuh atau terlalu percaya diri.'
+                    '8-9' => 'Sangat percaya diri untuk berperan sebagai atasan dan sangat mengharapkan posisi tersebut. Lebih mementingkan citra dan status kepemimpinan dari pada efektifitas kelompok, mungkin akan tampil angkuh atau terlalu percaya diri.'
                 ]
             ],
             'P' => [
@@ -295,7 +295,7 @@ class PsikotesToolResultService
                 'sub_name' => 'Need to be forceful',
                 'ranges' => [
                     '0-1' => 'Sabar, tidak menyukai konflik. Mengelak atau menghindar dari konflik, pasif, menekan atau menyembunyikan perasaan sesungguhnya, menghindari konfrontasi, lari dari konflik, tidak mau mengakui adanya konflik.',
-                    '2-3' => 'Lebih suka menghindari konflik, akan mencari rasionalisasi untuk dapat menerima situasi dan melihat permasalahan dari sudut pandangan orang lain.',
+                    '2-3' => 'Lebih suka menghindari konflik, akan mencari rasionalisasi untuk dapat menerima situasi dan melihat permasalahan dari sudut pandang orang lain.',
                     '4-5' => 'Tidak mencari atau menghindari konflik. Mau mendengarkan pandangan orang lain tetapi dapat menjadi keras kepala saat mempertahankan pandangannya.',
                     '6-7' => 'Akan menghadapi konflik, mengungkapkan serta memaksakan pandangan dengan cara positif.',
                     '8-9' => 'Terbuka, jujur, terus terang, asertif, agresif, reaktif, mudah tersinggung, mudah meledak, curiga, berprasangka, suka berkelahi atau berkonfrontasi, berpikir negatif.'
@@ -401,5 +401,109 @@ class PsikotesToolResultService
         $threshold = $sorted->take(3)->last();
 
         return $sorted->filter(fn($value) => $value <= $threshold);
+    }
+
+    private function ssct(Session $psikotesSession)
+    {
+        $psikotesSession->load('responses.question');
+
+        $results = collect();
+
+        foreach ($psikotesSession->responses as $response) {
+            if (!isset($response->question)) {
+                continue;
+            }
+
+            $questionText = $response->question->text;
+
+            $answerContent = $response->answer['value'];
+
+            $results->push([
+                'question_id' => $response->question->id,
+                'question' => $questionText,
+                'answer' => $answerContent,
+                'order' => $response->question->order,
+            ]);
+        }
+
+        return $results->sortBy('order')->values();
+    }
+
+    private function vak(Session $psikotesSession)
+    {
+        $psikotesSession->load('responses.question');
+
+        $scores = [
+            'visual' => 0,
+            'auditori' => 0,
+            'kinestetik' => 0,
+        ];
+
+        foreach ($psikotesSession->responses as $response) {
+            if (!isset($response->question) || !isset($response->question->scoring['scale'])) continue;
+            $scale = $response->question->scoring['scale'];
+            $value = (int) $response->answer['value'];
+            if (isset($scores[$scale])) {
+                $scores[$scale] += $value;
+            }
+        }
+
+        $first = ($scores['visual'] >= $scores['auditori']) ? 'visual' : 'auditori';
+
+        $winner = ($scores[$first] >= $scores['kinestetik']) ? $first : 'kinestetik';
+
+        $descriptions = [
+            'visual' => 'Kecenderungan siswa untuk menerima informasi dalam belajar dengan menggunakan indera penglihatan. Gaya belajar ini mengakses citra visual seperti warna, gambar dan video.',
+            'auditori' => 'Kecenderungan siswa untuk menerima informasi dalam belajar dengan melibatkan indera pendengaran.',
+            'kinestetik' => 'Kecenderungan siswa untuk menerima informasi dalam belajar dengan melibatkan gerakan /psikomotorik.',
+        ];
+
+        $responsesByCategory = [
+            'visual' => [],
+            'auditori' => [],
+            'kinestetik' => [],
+        ];
+
+        foreach ($psikotesSession->responses as $response) {
+            if (isset($response->question->scoring['scale'])) {
+                $scale = $response->question->scoring['scale'];
+                if (isset($responsesByCategory[$scale])) {
+                    $responsesByCategory[$scale][] = $response;
+                }
+            }
+        }
+
+        return [
+            'scores' => $scores,
+            'selected_category' => $winner,
+            'description' => $descriptions[$winner],
+            'responses_by_category' => $responsesByCategory,
+            'all_descriptions' => $descriptions,
+        ];
+    }
+
+    private function htp(Session $psikotesSession)
+    {
+        $psikotesSession->load('responses.question', 'user');
+
+        $results = collect();
+
+        foreach ($psikotesSession->responses as $response) {
+            if (!isset($response->question)) {
+                continue;
+            }
+
+            $imagePath = $response->answer['file_path'] ?? null;
+            $userName = $psikotesSession->user->name ?? '-';
+
+            $results->push([
+                'question_id' => $response->question->id,
+                'image' => $imagePath,
+                'order' => $response->question->order,
+                'user_name' => $userName,
+            ]);
+        }
+
+        return $results->sortBy('order')->values();
     }
 }
