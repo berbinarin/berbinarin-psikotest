@@ -1,7 +1,7 @@
 @extends(
     "dashboard.layouts.psikotes-tool",
     [
-        "title" => "Dashboard RMIB",
+        "title" => "Dashboard " . $tool->name,
     ]
 )
 

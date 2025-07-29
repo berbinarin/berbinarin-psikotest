@@ -46,7 +46,9 @@ class ToolSeeder extends Seeder
                 'name' => 'SSCT',
                 'order' => 5,
                 'token' => '5',
-                'introduce' => 'ini introduce',
+                'introduce' => '<p>Pada tes ini terdapat beberapa kalimat yang belum sempurna, dan setiap kalimat merupakan permulaan dari suatu kalimat yang masih harus diselesaikan.</p>
+                                <p>Bacalah setiap kalimat dan selesaikan dengan pikiran yang segera timbul setelah membaca permulaan kalimat.</p>
+                                <p>Kerjakanlah secapat mungkin.</p>',
                 'is_active' => true
             ],
             [
@@ -67,7 +69,12 @@ class ToolSeeder extends Seeder
                 'name' => 'VAK',
                 'order' => 14,
                 'token' => '14',
-                'introduce' => 'ini introduce',
+                'introduce' => '<p>Bacalah setiap kalimat dengan hati-hati lalu pertimbangkan apakah pernyataan tersebut menggambarkan diri Anda. Setiap pernyataan akan tersedia tiga opsi pilihan jawaban, pilihlah salah satu opsi jawaban yang sesuai dengan gambaran diri Anda.</p>
+                                <p><strong>Keterangan pilihan jawaban:</strong><br>
+                                1 : Jika pernyataan <strong>"TIDAK SESUAI"</strong> dengan gambaran diri Anda.<br>
+                                2 : Jika pernyataan <strong>"CUKUP SESUAI"</strong> dengan gambaran diri Anda.<br>
+                                3 : Jika pernyataan <strong>"SANGAT SESUAI"</strong> dengan gambaran diri Anda.</p>
+                                <p>Tidak ada benar atau salah dalam pengerjaan soal ini, jadi silakan Anda menjawab sejujur-jujurnya.</p>',
                 'is_active' => true,
             ],
             [
