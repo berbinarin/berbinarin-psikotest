@@ -1,56 +1,123 @@
 <div class="flex w-full flex-col gap-5 md:flex-row">
-    {{-- Kolom Kiri: Detail Hasil & Deskripsi --}}
-    <div class="w-full rounded-lg bg-white p-6 shadow-md md:w-2/3">
-        <h2 class="mb-1 text-xl font-bold text-gray-900">Name: {{ $attempt->user->name }}</h2>
-        <p class="text-sm text-gray-600">Berikut adalah rincian jawaban dan kepribadian berdasarkan tes Papi Kostick.</p>
-
-        <div id="chart-container">
-            <div id="chart" class="mt-8 rounded-lg border-2 border-slate-300 p-4"></div>
+    <div class="flex w-full flex-col gap-6 md:w-2/3">
+        <div class="flex h-[389px] flex-col gap-6 md:flex-row">
+            <div class="flex h-full w-full flex-col justify-center rounded-xl bg-[#236A7B] p-6 text-white md:w-1/2">
+                <div>
+                    <p class="mb-2 text-[14px] font-semibold">Nama</p>
+                    <h1 class="mb-2 text-[20px] font-bold">{{ $attempt->user->name }}</h1>
+                    <p class="mb-2 text-[14px] font-semibold">Email</p>
+                    <p class="mb-2 text-[20px]">{{ $attempt->user->email ?? "-" }}</p>
+                    <p class="mb-2 text-[14px] font-semibold">Tanggal Pengerjaan</p>
+                    <p class="mb-2 text-[20px]">{{ \Carbon\Carbon::parse($attempt->created_at)->format("d F Y") }}</p>
+                    <p class="mb-2 text-[14px] font-semibold">Desc</p>
+                    <p class="text-[20px]">{{ $attempt->user->description ?? "-" }}</p>
+                    <p class="mb-2 text-[14px] font-semibold">Status</p>
+                    <p>{{ $attempt->status ?? "Finished" }}</p>
+                </div>
+            </div>
+            <div class="flex h-full w-full flex-col items-center justify-between rounded-xl bg-[#F7FAFC] p-6 md:w-1/2">
+                <h2 class="mb-2 text-base font-semibold text-[#236A7B]">Radar</h2>
+                <div id="chart-container" class="flex min-h-0 w-full flex-1 justify-center">
+                    <div id="chart" class="h-full w-full"></div>
+                </div>
+                <div class="mt-2 flex items-center gap-2">
+                    <span class="inline-block h-3 w-3 rounded-full bg-[#236A7B]"></span>
+                    <span class="text-xs text-[#236A7B]">Skor Kepribadian</span>
+                </div>
+            </div>
         </div>
+        <div class="mt-4 rounded-lg bg-white p-6 shadow-sm" style="height: 450px">
+            <h2 class="mb-4 text-xl font-bold text-[#75BADB]">Rincian Jawaban</h2>
+            <div class="flex h-[calc(100%-40px)] flex-col">
+                <div class="flex-1 overflow-y-auto pr-2">
+                    @php
+                        $priorityOrder = ["X", "O", "B", "S"];
+                        $priorityItems = [];
+                        $otherItems = [];
 
-        @foreach ($data->groupBy("main_category") as $mainCategory => $details)
-            <div class="mt-8">
-                <p class="text-lg font-bold text-gray-500">{{ $mainCategory }}</p>
-                <div class="mt-3 border-l-4 border-blue-500 pl-4">
-                    @foreach ($details as $item)
-                        <div class="mb-5">
-                            <p class="text-base font-bold text-gray-800">{{ $item["sub_code"] }} ({{ $item["sub_name"] }}) {{ $item["score"] }}</p>
-                            <p class="text-base font-normal text-gray-600">{{ $item["description"] }}</p>
+                        foreach ($priorityOrder as $code) {
+                            foreach ($data as $item) {
+                                if ($item["sub_code"] === $code) {
+                                    $priorityItems[] = $item;
+                                    break;
+                                }
+                            }
+                        }
+
+                        foreach ($data->groupBy("main_category") as $mainCategory => $details) {
+                            foreach ($details as $item) {
+                                if (! in_array($item["sub_code"], $priorityOrder)) {
+                                    if (! isset($otherItems[$mainCategory])) {
+                                        $otherItems[$mainCategory] = [];
+                                    }
+                                    $otherItems[$mainCategory][] = $item;
+                                }
+                            }
+                        }
+                    @endphp
+
+                    @foreach ($priorityItems as $item)
+                        <div class="mb-3">
+                            <span class="font-bold text-[#236A7B]">{{ $item["sub_code"] }} ({{ $item["sub_name"] }}) = {{ $item["score"] }} Poin</span>
+                            <span class="text-gray-700">- {{ $item["description"] }}</span>
+                        </div>
+                    @endforeach
+
+                    @foreach ($otherItems as $mainCategory => $details)
+                        <div class="mb-4 mt-6">
+                            <p class="text-lg font-bold text-gray-500">{{ $mainCategory }}</p>
+                            <div class="mt-2">
+                                @foreach ($details as $item)
+                                    <div class="mb-3">
+                                        <span class="font-bold text-[#236A7B]">{{ $item["sub_code"] }} ({{ $item["sub_name"] }}) {{ $item["score"] }}</span>
+                                        <span class="text-gray-700">- {{ $item["description"] }}</span>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     @endforeach
                 </div>
             </div>
-        @endforeach
+        </div>
     </div>
 
     {{-- Kolom Kanan: Daftar Jawaban User --}}
-    <div class="w-full self-start rounded-lg bg-white p-6 shadow-md md:w-1/3">
+    <div class="w-full self-start rounded-lg bg-white p-6 shadow-md md:w-1/3" style="height: 120vh; display: flex; flex-direction: column">
         <h3 class="mb-4 text-lg font-bold">Jawaban</h3>
-        <ul class="max-h-[600px] space-y-3 overflow-y-auto pr-2">
-            @foreach ($attempt->responses->sortBy("question.order") as $response)
-                <li class="flex items-start text-sm">
-                    <span class="mr-3 w-6 font-semibold text-gray-700">{{ $loop->iteration }}.</span>
-                    <span class="flex-1 text-gray-600">
-                        {{--
-                            
-                        --}}
-                        {{-- Menampilkan teks jawaban yang dipilih user --}}
-                        @php
-                            $userChoice = $response->answer["choice"];
-                            $optionText = "";
-                            foreach ($response->question->options as $option) {
-                                if ($option["key"] == $userChoice) {
-                                    $optionText = $option["text"];
-                                    break;
-                                }
-                            }
-                        @endphp
+        <div class="flex-1 overflow-y-auto">
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="border-b border-gray-200 text-left">
+                        <th class="pb-2 pr-3 font-semibold text-gray-700">No</th>
+                        <th class="pb-2 font-semibold text-gray-700">Choice</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    @foreach ($attempt->responses->sortBy("question.order") as $response)
+                        <tr>
+                            <td class="py-3 pr-3 text-gray-700">{{ $loop->iteration }}.</td>
+                            <td class="py-3 pr-3 font-medium text-[#236A7B]">
+                                {{ strtoupper($response->answer["choice"]) }}
+                            </td>
+                            <td class="py-3 text-gray-600">
+                                @php
+                                    $userChoice = $response->answer["choice"];
+                                    $optionText = "";
+                                    foreach ($response->question->options as $option) {
+                                        if ($option["key"] == $userChoice) {
+                                            $optionText = $option["text"];
+                                            break;
+                                        }
+                                    }
+                                @endphp
 
-                        {{ $optionText }}
-                    </span>
-                </li>
-            @endforeach
-        </ul>
+                                {{ $optionText }}
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
@@ -74,27 +141,25 @@
         return score;
     });
 
-    console.log(categories);
-    console.log(originalScores);
-
     var options = {
         chart: {
-            height: 600,
+            height: '100%',
             type: 'radar',
-        },
-        title: {
-            text: 'Basic Radar Chart',
+            parentHeightOffset: 0,
+            toolbar: {
+                show: false,
+            },
         },
         xaxis: {
             categories: categories,
             tooltip: {
-                enabled: true,
+                enabled: false,
             },
         },
         yaxis: {
             min: 0,
-            max: 9,
-            tickAmount: 9,
+            max: 8,
+            tickAmount: 4,
             show: false,
         },
         series: [
@@ -105,14 +170,74 @@
         ],
         dataLabels: {
             enabled: true,
-            offsetX: -10,
-            offsetY: -10,
-            formatter: function (val, {dataPointIndex}) {
+            offsetX: 0,
+            offsetY: 0,
+            style: {
+                colors: ['#236A7B'],
+                fontWeight: 600,
+                fontSize: '14px',
+            },
+            background: {
+                enabled: false,
+            },
+            formatter: function (val, { dataPointIndex }) {
                 return originalScores[dataPointIndex];
-            }
+            },
         },
+        plotOptions: {
+            radar: {
+                size: 120,
+                polygons: {
+                    strokeColors: 'gray',
+                    connectorColors: 'gray',
+                    fill: {
+                        colors: ['#DFE1E8', '#e9f7fb'],
+                    },
+                },
+            },
+        },
+        fill: {
+            opacity: 0.6,
+            colors: ['#75BADB'],
+            type: 'solid',
+        },
+        stroke: {
+            width: 2,
+            colors: ['#75BADB'],
+        },
+        markers: {
+            size: 5,
+            colors: ['#75BADB'],
+            strokeWidth: 0,
+            hover: {
+                size: 6,
+            },
+        },
+        responsive: [
+            {
+                breakpoint: 768,
+                options: {
+                    chart: {
+                        height: '100%',
+                    },
+                    plotOptions: {
+                        radar: {
+                            size: 100,
+                        },
+                    },
+                },
+            },
+        ],
     };
 
     var chart = new ApexCharts(document.querySelector('#chart'), options);
     chart.render();
+
+    window.addEventListener('resize', function () {
+        chart.updateOptions({
+            chart: {
+                height: '100%',
+            },
+        });
+    });
 </script>

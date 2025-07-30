@@ -1,6 +1,4 @@
-<div class="container mx-auto p-4">
-    <h1 class="text-2xl font-bold mb-4 text-center">Test Results</h1>
-
+<div class="container mx-auto">
     <div class="overflow-x-auto">
         <table class="min-w-full bg-white rounded-lg shadow text-center">
             <thead>

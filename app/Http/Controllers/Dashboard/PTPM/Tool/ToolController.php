@@ -23,7 +23,7 @@ class ToolController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.ptpm.tools.create');
     }
 
     /**
@@ -31,7 +31,18 @@ class ToolController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'no_alat_test' => 'required|string|max:50|unique:tools,no_alat_test',
+        ]);
+
+        $tool = new Tool();
+        $tool->name = $validated['name'];
+        $tool->no_alat_test = $validated['no_alat_test'];
+        $tool->token = Str::random(8);
+        $tool->save();
+
+        return redirect()->route('dashboard.tools.index')->with('success', 'Alat test berhasil ditambahkan.');
     }
 
     /**
@@ -39,6 +50,7 @@ class ToolController extends Controller
      */
     public function show(Tool $tool)
     {
+        return view('dashboard.ptpm.tools.show', compact('tool'));
     }
 
     /**
@@ -46,7 +58,8 @@ class ToolController extends Controller
      */
     public function edit(Tool $tool)
     {
-        //
+        // Tampilkan form edit dengan data dari database
+        return view('dashboard.ptpm.tools.edit', compact('tool'));
     }
 
     /**
@@ -54,7 +67,16 @@ class ToolController extends Controller
      */
     public function update(Request $request, Tool $tool)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'no_alat_test' => 'required|string|max:50|unique:tools,no_alat_test,' . $tool->id,
+        ]);
+
+        $tool->name = $validated['name'];
+        $tool->no_alat_test = $validated['no_alat_test'];
+        $tool->save();
+
+        return redirect()->route('dashboard.tools.index')->with('success', 'Alat test berhasil diupdate.');
     }
 
     /**
@@ -62,7 +84,8 @@ class ToolController extends Controller
      */
     public function destroy(Tool $tool)
     {
-        //
+        $tool->delete();
+        return redirect()->route('dashboard.tools.index')->with('success', 'Alat test berhasil dihapus.');
     }
 
     /**
