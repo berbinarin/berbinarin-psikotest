@@ -27,8 +27,13 @@ class DashboardController extends Controller
     // --- Method-method spesifik untuk setiap role ---
     // Pastikan nama method mengikuti format: [namaRoleDalamCamelCase] contoh => webDev, classPM, counselingPM, ptpm
 
-    private function ptpm()
+    private function ptpmPsikotesPaid()
     {
-        return view('dashboard.ptpm.index');
+        return view('dashboard.ptpm_psikotes-paid.index');
+    }
+
+    private function ptpmPsikotesFree()
+    {
+        return view('dashboard.ptpm_psikotes-free.index');
     }
 }

@@ -23,7 +23,9 @@
                                     <th>No</th>
                                     <th>User</th>
                                     <th>Email</th>
-                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Time Start</th>
+                                    <th>Time End</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -33,7 +35,9 @@
                                         <td class="text-center">{{ $loop->iteration }}</td>
                                         <td>{{ $attempt->user->name }}</td>
                                         <td class="text-center">{{ $attempt->user->email }}</td>
-                                        <td class="text-center">{{ \Carbon\Carbon::parse($attempt->created_at)->format("Y-m-d") }}</td>
+                                        <td class="text-center">{{ \Illuminate\Support\Str::title($attempt->status) }}</td>
+                                        <td class="text-center">{{ \Carbon\Carbon::parse($attempt->created_at)->format("d-m-y H:i:s") }}</td>
+                                        <td class="text-center">{{ \Carbon\Carbon::parse($attempt->updated_at)->format("d-m-y H:i:s") }}</td>
                                         <td class="whitespace-no-wrap px-6 py-4 text-center">
                                             <a href="{{ route('dashboard.tools.data.attempts.show', [$tool->id, $attempt->id]) }}" class="mt-4 inline-flex items-start justify-start rounded bg-blue-500 p-3 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0">
                                                 <p class="font-medium leading-none text-white">Lihat Jawaban</p>

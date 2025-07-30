@@ -16,7 +16,7 @@ class QuestionController extends Controller
     {
         $section->load('questions');
         
-        return view('dashboard.ptpm.tools.data.questions.index', compact('tool', 'section'));
+        return view('dashboard.ptpm_psikotes-paid.tools.data.questions.index', compact('tool', 'section'));
     }
 
     /**

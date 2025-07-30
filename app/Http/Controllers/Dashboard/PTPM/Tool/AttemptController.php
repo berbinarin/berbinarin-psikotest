@@ -16,7 +16,7 @@ class AttemptController extends Controller
     {
         $attempts = $tool->load('attempts.user')->attempts;
 
-        return view('dashboard.ptpm.tools.data.attempts.index', compact('tool', 'attempts'));
+        return view('dashboard.ptpm_psikotes-paid.tools.data.attempts.index', compact('tool', 'attempts'));
     }
 
     public function show(Tool $tool, Attempt $attempt)
@@ -26,6 +26,6 @@ class AttemptController extends Controller
 
         $data = $this->resultService->resultData($tool, $attempt);
 
-        return view('dashboard.ptpm.tools.data.attempts.results.index', compact('tool', 'attempt', 'data'));
+        return view('dashboard.ptpm_psikotes-paid.tools.data.attempts.results.index', compact('tool', 'attempt', 'data'));
     }
 }

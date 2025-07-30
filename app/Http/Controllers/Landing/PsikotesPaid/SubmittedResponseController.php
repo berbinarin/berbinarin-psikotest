@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Landing\PsikotesPaid;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attempt;
 use App\Models\Tool;
 use App\Services\Landing\PsikotesPaid\AttemptService;
 use App\Services\Landing\PsikotesPaid\ResponseService;

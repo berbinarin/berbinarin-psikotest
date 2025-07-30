@@ -36,7 +36,7 @@ class AuthenticatedSessionController extends Controller
         $loginType = $request->input('login_type');
 
         if ($loginType === 'admin') {
-            if (! Auth::user()->hasRole('ptpm')) {
+            if (! Auth::user()->hasRole(['ptpm_psikotes-paid', 'ptpm_psikotes-free'])) {
                 Auth::guard('web')->logout();
                 throw ValidationException::withMessages([
                     'username' => __('auth.failed'),
@@ -75,7 +75,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
 
 
-        if ($user && $user->hasRole('ptpm')) {
+        if ($user && $user->hasRole(['ptpm_psikotes-paid', 'ptpm_psikotes-free'])) {
             return redirect()->route('auth.login');
         }
         return redirect()->route('home.index');

@@ -22,8 +22,8 @@
                 </div>
 
                 <div class="mt-1 flex w-full gap-5">
-                    @if (View::exists("dashboard.ptpm.tools.data.attempts.results." . \Illuminate\Support\Str::slug($tool->name)))
-                        @include("dashboard.ptpm.tools.data.attempts.results." . \Illuminate\Support\Str::slug($tool->name))
+                    @if (View::exists("dashboard.ptpm_psikotes-paid.tools.data.attempts.results." . \Illuminate\Support\Str::slug($tool->name)))
+                        @include("dashboard.ptpm_psikotes-paid.tools.data.attempts.results." . \Illuminate\Support\Str::slug($tool->name))
                     @else
                         <p>Dashboard untuk alat psikotes {{ $tool->name }} belum ada</p>
                     @endif

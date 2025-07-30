@@ -17,6 +17,7 @@ class AttemptService
         $attempt = Attempt::create([
             'user_id' => auth()->user()->id,
             'tool_id' => $tool->id,
+            'status' => 'in_progress'
         ]);
 
         session([
@@ -79,6 +80,10 @@ class AttemptService
             return true;
         }
 
+        Attempt::find($this->getSession('attempt_id'))->update([
+            'status' => 'completed',
+        ]);
+        
         $this->destroySession();
         return false;
     }

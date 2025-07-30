@@ -14,7 +14,7 @@ class TestCategoryController extends Controller
     public function index()
     {
         $testCategories = TestCategory::all();
-        return view('dashboard.ptpm.price-lists.test-categories.index', compact('testCategories'));
+        return view('dashboard.ptpm_psikotes-paid.price-lists.test-categories.index', compact('testCategories'));
     }
 
     /**
@@ -38,7 +38,7 @@ class TestCategoryController extends Controller
      */
     public function show(TestCategory $testCategory)
     {
-        return view('dashboard.ptpm.price-lists.test-categories.show', compact('testCategory'));
+        return view('dashboard.ptpm_psikotes-paid.price-lists.test-categories.show', compact('testCategory'));
     }
 
     /**

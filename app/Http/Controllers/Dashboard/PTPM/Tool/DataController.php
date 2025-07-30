@@ -12,6 +12,6 @@ class DataController extends Controller
 {
     public function index(Tool $tool)
     {
-        return view('dashboard.ptpm.tools.data.index', compact('tool'));
+        return view('dashboard.ptpm_psikotes-paid.tools.data.index', compact('tool'));
     }
 }

@@ -32,8 +32,8 @@ class ToolController extends Controller
         return redirect()->route('psikotes-paid.attempt.introduce');
     }
 
-    public function testimoni() {
+    public function testimoni()
+    {
         return view('landing.psikotes-paid.tools.testimoni');
     }
 }
-
