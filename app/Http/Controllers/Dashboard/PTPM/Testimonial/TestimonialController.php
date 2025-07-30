@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Http\Controllers\Dashboard\PTPM\Testimonial;
+
+use App\Http\Controllers\Controller;
+use App\Models\Testimonial;
+use Illuminate\Http\Request;
+
+class TestimonialController extends Controller
+{
+    public function index() {
+        $testimonial = Testimonial::with('userPsikotestPaid')->get();
+
+        return view('dashboard.ptpm.testimonial.index', compact('testimonial'));
+    }
+
+    public function show($id) {
+        $testimonial = Testimonial::with('userPsikotestPaid')->findOrFail($id);
+
+        return view('dashboard.ptpm.testimonial.detail', compact('testimonial'));
+    }
+}

@@ -20,7 +20,7 @@
         <!-- Navbar Start -->
         <nav>
             <div class="mt-4 flex w-full flex-row items-center justify-between">
-                <a href="{{ route("psikotes-paid.tools.testimoni") }}" class="ml-16 rounded-[5px] bg-blue-500 px-[10px] py-3 text-xs font-medium text-white">Testimoni</a>
+                <a href="{{ route("psikotes-paid.testimonial.index") }}" class="ml-16 rounded-[5px] bg-blue-500 px-[10px] py-3 text-xs font-medium text-white">Testimoni</a>
                 <div class="flex items-center justify-center gap-4 rounded-full bg-white px-8 py-2 drop-shadow-lg">
                     <img class="h-10 w-10" src="{{ asset("assets/landing/images/psikotes-paid/logo-berbinar.png") }}" alt="Logo Berbinar" />
                     <img class="h-11 w-11" src="{{ asset("assets/landing/images/psikotes-paid/logo-berbinar-psikotes.png") }}" alt="Logo Berbinar Psikotest" />

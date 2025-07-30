@@ -9,6 +9,7 @@ use App\Http\Controllers\Dashboard\PTPM\Tool\DataController;
 use App\Http\Controllers\Dashboard\PTPM\Tool\QuestionController;
 use App\Http\Controllers\Dashboard\PTPM\Tool\SectionController;
 use App\Http\Controllers\Dashboard\PTPM\Tool\ToolController;
+use App\Http\Controllers\Dashboard\PTPM\Testimonial\TestimonialController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(function () {
@@ -38,18 +39,22 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
                 // Attempt
                 Route::get('/attempts', [AttemptController::class, 'index'])->name('attempts.index');
                 Route::get('/attempts/{attempt}', [AttemptController::class, 'show'])->name('attempts.show');
-                
+
                 // Sections
 
                 Route::resource('/sections', SectionController::class)->only('index');
-                
+
                 // Questions
                 Route::prefix('/sections/{section}')->name('sections.')->group(function () {
                     Route::resource('/questions', QuestionController::class)->only('index');
                 });
             });
+        });
 
-
+        // Testimonial
+        Route::prefix('testimonial')->name('testimonial.')->group(function (){
+            Route::get('/', [TestimonialController::class, 'index'])->name('index');
+            Route::get('/{id}}', [TestimonialController::class, 'show'])->name('show');
         });
     });
 });

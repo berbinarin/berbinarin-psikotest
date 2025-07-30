@@ -33,7 +33,7 @@
 
 <!-- sidebar manage division  -->
 <li class="my-5 rounded-lg p-2">
-    <a href="" class=" flex flex-row items-center text-gray-700 duration-700 hover:text-primary">
+    <a href="{{ route('dashboard.testimonial.index') }}" class="{{ isRouteNameStartWith('dashboard.testimonial') }} flex flex-row items-center text-gray-700 duration-700 hover:text-primary">
         <i class="fi fi-bs-feedback-alt mr-2 text-lg text-gray-700"></i>
         <span class="ml-4 text-base font-bold leading-5">Testimoni</span>
     </a>
