@@ -4,22 +4,17 @@
             <h2 class="text-2xl font-semibold">{{ $attempt->user->name }}</h2>
             <p class="mt-4">
                 Berikut merupakan 3 peringkat kategori dengan nilai terendah, yaitu
-
-                <b>{{ Str::of("Mechanial")->replace("_", " ")->title() }}</b>
-
-                <b>{{ Str::of("Mechanical")->replace("_", " ")->title() }}</b>
             </p>
+            {{-- Loop through data for lowest ranked categories --}}
             <div>
-                {{-- Dalam sini --}}
-
                 <ul class="flex flex-col gap-2 pt-4">
-                    @foreach ($data as $key => $value)
+                    @foreach ($data['categories'] as $key => $value)
                         <li class="flex items-center gap-2">
                             <div class="flex justify-center rounded-full bg-primary px-2 py-1">
                                 <span class="text-white">{{ $loop->iteration }}.</span>
                             </div>
                             <div class="flex w-full justify-between">
-                                <p class="pl-2">{{ Str::title($key) }}</p>
+                                <p class="pl-2">{{ $key }}</p>
                                 <p class="pr-20 font-bold">{{ $value }}</p>
                             </div>
                         </li>
@@ -27,24 +22,20 @@
                 </ul>
             </div>
             <h2 class="pt-4 text-2xl font-semibold">Kesimpulan</h2>
+            {{-- Deskripsi ditampilkan disini, sesuai dengan kategori yang memiliki 3 nilai tertinggi (now lowest) --}}
             <ul>
-                <li>
-                    <h3 class="text-primary-alt pt-2 text-xl font-semibold">{{ Str::of("Testing")->replace("_", " ") }}</h3>
-                    <p>ini merupakan description</p>
-                </li>
-                <li>
-                    <h3 class="text-primary-alt pt-2 text-xl font-semibold">{{ Str::of("Testing")->replace("_", " ")->title() }}</h3>
-                    <p>ini merupakan description</p>
-                </li>
-                <li>
-                    <h3 class="text-primary-alt pt-2 text-xl font-semibold">{{ Str::of("Testing")->replace("_", " ")->title() }}</h3>
-                    <p>ini merupakan description</p>
-                </li>
+                @foreach ($data['descriptions'] as $categoryName => $description)
+                    <li>
+                        <h3 class="text-primary-alt pt-2 text-xl font-semibold">{{ Str::of($categoryName)->replace("_", " ")->title() }}</h3>
+                        <p>{{ $description }}</p>
+                    </li>
+                @endforeach
             </ul>
         </div>
     </div>
 </div>
 
+{{-- The right section remains unchanged --}}
 <div class="flex max-h-[500px] flex-col overflow-hidden rounded-lg bg-white p-8 shadow-lg" style="width: 60%">
     <h2 class="mb-4 text-2xl font-semibold">Detail Jawaban</h2>
 
@@ -58,10 +49,7 @@
         </ul>
         @foreach ($attempt->responses as $response)
             <div x-show="tab === 'subtest-{{ $response->question->section->title }}'" class="pt-2">
-                <!-- Bungkus keseluruhan dengan satu div -->
-
                 <div class="w-full">
-                    <!-- Tabel untuk header saja -->
                     <table class="w-full table-fixed border-collapse text-lg">
                         <thead>
                             <tr class="flex border-b">
@@ -72,7 +60,6 @@
                         </thead>
                     </table>
 
-                    <!-- Kontainer dengan overflow untuk body -->
                     @php
                         // Ubah array options menjadi Laravel Collection
                         $options = collect($response->question->options["variants"]["male"]);

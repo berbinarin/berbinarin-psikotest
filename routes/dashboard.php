@@ -18,7 +18,7 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
     Route::get('/', [DashboardController::class, 'index'])->name('index');
 
     // Psychological Test Product Management
-    Route::middleware('role:ptpm')->group(function () {
+    Route::middleware('role:ptpm_psikotes-paid')->group(function () {
 
         // Registrants
         Route::resource('/registrants', RegistrantController::class);

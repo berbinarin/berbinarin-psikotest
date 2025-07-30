@@ -19,7 +19,7 @@ class RegistrantController extends Controller
     public function index()
     {
         $registrants = RegistrantProfile::with('user')->get();
-        return view('dashboard.ptpm.registrants.index', compact('registrants'));
+        return view('dashboard.ptpm_psikotes-paid.registrants.index', compact('registrants'));
     }
 
     /**
@@ -28,7 +28,7 @@ class RegistrantController extends Controller
     public function create()
     {
         $testCategories = TestCategory::with('testTypes')->get();
-        return view('dashboard.ptpm.registrants.create', compact('testCategories'));
+        return view('dashboard.ptpm_psikotes-paid.registrants.create', compact('testCategories'));
     }
 
     /**
@@ -36,20 +36,23 @@ class RegistrantController extends Controller
      */
     public function store(StoreRegistrationRequest $request)
     {
-
         $validateData = $request->validated();
+
 
         try {
             // 2. Bungkus semua operasi database dalam transaction
             DB::transaction(function () use ($validateData) {
 
+                // Hitung jumlah username yang sama
+                $countUsername = User::where('username', Str::before($validateData['email'], '@'))->count();
+
                 // Buat user baru
                 $user = User::create([
                     'name' => $validateData['name'],
                     'email' => $validateData['email'],
-                    'username' => Str::random(10),
-                    'password' => bcrypt(\Illuminate\Support\Str::random(10)),
-                ]);
+                    'username' => Str::before($validateData['email'], '@') . ($countUsername + 1),
+                    'password' => bcrypt(Str::before($validateData['email'], '@')),
+                ])->assignRole('user_psikotes-paid');
 
                 RegistrantProfile::create([
                     'user_id' => $user->id,
@@ -76,7 +79,7 @@ class RegistrantController extends Controller
      */
     public function show(RegistrantProfile $registrant)
     {
-        return view('dashboard.ptpm.registrants.show', compact('registrant'));
+        return view('dashboard.ptpm_psikotes-paid.registrants.show', compact('registrant'));
     }
 
     /**

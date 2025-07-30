@@ -15,7 +15,10 @@ class RoleSeeder extends Seeder
     {
         $roles = [
             [
-                'name' => 'ptpm'
+                'name' => 'ptpm_psikotes-paid'
+            ],
+            [
+                'name' => 'ptpm_psikotes-free'
             ],
             [
                 'name' => 'user_psikotes-paid'

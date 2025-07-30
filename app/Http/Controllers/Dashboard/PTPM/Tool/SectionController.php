@@ -15,7 +15,7 @@ class SectionController extends Controller
     {
         $tool->load('sections');
 
-        return view('dashboard.ptpm.tools.data.sections.index', compact('tool'));
+        return view('dashboard.ptpm_psikotes-paid.tools.data.sections.index', compact('tool'));
     }
 
     /**

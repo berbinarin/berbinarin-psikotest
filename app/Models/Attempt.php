@@ -15,6 +15,7 @@ class Attempt extends Model
     protected $fillable = [
         'user_id',
         'tool_id',
+        'status',
     ];
 
     public function responses(): HasMany

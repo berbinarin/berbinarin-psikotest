@@ -25,7 +25,7 @@ class RedirectIfAuthenticated
                 $user = Auth::guard($guard)->user();
 
                 // Periksa peran user menggunakan Spatie Permission
-                if ($user->hasRole('ptpm')) {
+                if ($user->hasRole(['ptpm_psikotes-paid', 'ptpm_psikotes-free'])) {
                     // Jika user adalah admin, arahkan ke /dashboard
                     return redirect()->route('dashboard.index');
                 } elseif ($user->hasRole('user_psikotes-paid')) {

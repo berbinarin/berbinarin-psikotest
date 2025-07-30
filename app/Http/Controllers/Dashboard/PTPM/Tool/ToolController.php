@@ -15,7 +15,7 @@ class ToolController extends Controller
     public function index()
     {
         $tools = Tool::all();
-        return view('dashboard.ptpm.tools.index', compact('tools'));
+        return view('dashboard.ptpm_psikotes-paid.tools.index', compact('tools'));
     }
 
     /**

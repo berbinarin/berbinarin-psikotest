@@ -487,10 +487,26 @@ class ResultService
             "musical",
             "literacy",
             "social service",
-            "clenical",
+            "clerical",
             "practical",
             "medical"
         ])->mapWithKeys(fn($key) => [$key => 0]);
+
+        // Define all category descriptions
+        $allCategoryDescriptions = [
+            'outdoor' => 'Pekerjaan yang aktivitasnya dilakukan diluar atau udara terbuka, atau pekerjaan yang tidak berhubungan dengan hal-hal yang rutin sifatnya. Contoh: petani, penjaga hutan, guru olah raga, juru ukur, tukang kebun, dan lainnya.',
+            'mechanical' => 'Pekerjaan yang berhubungan dengan atau menggunakan mesin-mesin, alat-alat dan daya mekanik. Contoh: insinyur sipil, petugas pompa bensin, montir radio, ahli reparasi jam, dan lainnya.',
+            'computational' => 'Pekerjaan yang berhubungan dengan angka-angka. Contoh: akuntan, ahli statistik, auditor, kasir, guru ilmu pasti, pegawai pajak, dan lainnya.',
+            'scientific' => 'Pekerjaan yang berhubungan dengan keaktifan dalam hal analisa dan penyelidikan, eksperimen, kimia dan ilmu pengetahuan pada umumnya. Contoh: ilmuwan, ahli botani, ahli pertanian, asisten laboratorium, ahli biologi, dan lainnya.',
+            'personal contact' => 'Pekerjaan yang berhubungan dengan manusia, diskusi, membujuk, dan bergaul dengan orang lain. Pada dasarnya adalah suatu pekerjaan yang membutuhkan kontak dengan orang lain. Contoh: manager bidang penjualan, penyiar radio, salesman, petugas humas, agen biro iklan, dan lainnya.',
+            'aesthetic' => 'Pekerjaan yang berhubungan dengan hal-hal yang bersifat seni dan menciptakan sesuatu. Contoh: seniman, artis komersil, fotografer, penata panggung, guru kesenian, perancang pakaian, dan lainnya.',
+            'musical' => 'Pekerjaan yang berhubungan dengan minat memainkan alat-alat musik atau untuk mendengarkan orang lain bernyanyi atau membaca sesuatu yang berhubungan dengan musik, termasuk penghargaan terhadap musik. Contoh: musisi, pianis konser, komponis, guru musik, pemain organ, pemimpin band, dan lainnya.',
+            'literacy' => 'Pekerjaan yang berhubungan dengan buku-buku, kegiatan membaca, dan mengarang. Contoh: wartawan, pengarang, penulis drama, penyair, ahli sejarah, ahli perpustakaan, kritikus, dan lainnya.',
+            'social service' => 'Pekerjaan yang berhubungan dengan minat terhadap kesejahteraan penduduk, dengan keinginan untuk menolong dan membimbing/menasehati tentang problem dan kesulitan mereka. Berhubungan dengan keinginan untuk mengerti orang lain, dan mempunyai ide yang besar atau kuat tentang pelayanan. Contoh: guru SD, psikolog, pekerja sosial, organisator kepramukaan, pejabat klub remaja, petugas kesejahteraan social, dan lainnya.',
+            'clerical' => 'Pekerjaan yang berhubungan dengan minat terhadap tugas-tugas rutin yang menuntut ketepatan. Contoh: manager bank, petugas arsip, pegawai kantor, juru ketik, pegawai pos, sekertaris pribadi, dan lainnya.',
+            'practical' => 'Pekerjaan yang berhubungan dengan minat terhadap pekerjaan yang praktis, karya pertukangan dan yang memerlukan keterampilan. Contoh: tukang kayu, penjahit, juru masak, penata rambut, tukang ledeng, ahli sepatu, ahli bangunan, dan lainnya.',
+            'medical' => 'Pekerjaan yang berhubungan dengan minat terhadap pengobatan, mengurangi akibat dari pada penyakit, penyembuhan, dan didalam bidang medis serta hal-hal biologis pada umumnya. Contoh: dokter, ahli bedah, apoteker, mantri kesehatan, ahli kaca mata, perawat orang tua, perawat pusat rehabilitasi, suster, dan lainnya.',
+        ];
 
         foreach ($attempt->responses as $response) {
             $scoring = $response->question->scoring ?? null;
@@ -506,8 +522,20 @@ class ResultService
 
         $sorted = $categoriesPoint->sort();
         $threshold = $sorted->take(3)->last();
+        $lowestCategories = $sorted->filter(fn($value) => $value <= $threshold);
 
-        return $sorted->filter(fn($value) => $value <= $threshold);
+        // Get descriptions for the lowest categories
+        $lowestCategoryDescriptions = [];
+        foreach ($lowestCategories->keys() as $categoryName) {
+            if (isset($allCategoryDescriptions[$categoryName])) {
+                $lowestCategoryDescriptions[$categoryName] = $allCategoryDescriptions[$categoryName];
+            }
+        }
+
+        return [
+            'categories' => $lowestCategories, // This is what you're currently returning
+            'descriptions' => $lowestCategoryDescriptions, // Add the descriptions here
+        ];
     }
 
     private function biodataPerusahaan(Attempt $attempt)
