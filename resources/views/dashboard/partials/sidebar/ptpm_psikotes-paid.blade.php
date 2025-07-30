@@ -34,8 +34,8 @@
 </li>
 
 <!-- sidebar manage division  -->
-<li class="{{ isRouteNameStartWith("dashboard.testimoni") }} my-5 rounded-lg p-2">
-    <a href="{{ route("dashboard.testimoni.index") }}" class="{{ Str::startsWith(Route::currentRouteName(), "dashboard.testimoni") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
+<li class="{{ isRouteNameStartWith("dashboard.testimonial") }} my-5 rounded-lg p-2">
+    <a href="{{ route("dashboard.testimonial.index") }}" class="{{ Str::startsWith(Route::currentRouteName(), "dashboard.testimoni") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
         <i class="fi fi-bs-feedback-alt {{ Str::startsWith(Route::currentRouteName(), "dashboard.testimoni") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
         <span class="ml-4 text-base font-bold leading-5">Testimoni</span>
     </a>

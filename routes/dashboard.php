@@ -9,7 +9,7 @@ use App\Http\Controllers\Dashboard\PTPM\Tool\DataController;
 use App\Http\Controllers\Dashboard\PTPM\Tool\QuestionController;
 use App\Http\Controllers\Dashboard\PTPM\Tool\SectionController;
 use App\Http\Controllers\Dashboard\PTPM\Tool\ToolController;
-use App\Http\Controllers\Dashboard\PTPM\Testimoni\TestimoniController;
+use App\Http\Controllers\Dashboard\PTPM\Testimonial\TestimonialController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(function () {
@@ -33,10 +33,6 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
         Route::put('/test-types/category/{category}/update/{id}', [TestTypeController::class, 'update'])->name('test-types.update');
         Route::delete('/test-types/category/{category}/delete/{id}', [TestTypeController::class, 'destroy'])->name('test-types.destroy');
 
-        // Testimoni
-        Route::get('/testimoni', [TestimoniController::class, 'index'])->name('testimoni.index');
-        Route::get('/testimoni/{id}', [TestimoniController::class, 'show'])->name('testimoni.show');
-
         // Tools
         Route::prefix('tools')->name('tools.')->group(function () {
             Route::get('/{tool}/generate-token', [ToolController::class, 'generateToken'])->name('generate-token');
@@ -57,6 +53,12 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
 
             // Tambahkan baris ini untuk resource tools
             Route::resource('/', ToolController::class)->parameters(['' => 'tool']);
+        });
+
+        // Testimonial
+        Route::prefix('testimonial')->name('testimonial.')->group(function (){
+            Route::get('/', [TestimonialController::class, 'index'])->name('index');
+            Route::get('/{id}}', [TestimonialController::class, 'show'])->name('show');
         });
     });
 });

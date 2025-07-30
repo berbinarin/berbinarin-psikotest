@@ -26,13 +26,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($testimonies as $testimony)
+                            @foreach ($testimonial as $testimoni)
                                 <tr>
                                     <td class="text-center">{{ $loop->iteration }}</td>
-                                    <td class="text-center">{{ $testimony->user->name }}</td>
-                                    <td class="text-center">{{ \Carbon\Carbon::parse($testimony->date)->format("d-m-Y H:i:s") }}</td>
+                                    <td class="text-center">{{ $testimoni->userPsikotestPaid ? $testimoni->userPsikotestPaid->name : 'User tidak ditemukan' }}</td>
+                                    <td class="text-center">{{ \Carbon\Carbon::parse($testimoni->created_at)->format("d-m-Y H:i:s") }}</td>
                                     <td class="flex items-center justify-center gap-2">
-                                        <a href="{{ route('dashboard.testimoni.show', $testimony->id) }}" class="inline-flex items-start justify-start rounded p-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #3b82f6">
+                                        <a href="{{ route('dashboard.testimonial.show', $testimoni->id) }}" class="inline-flex items-start justify-start rounded p-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #3b82f6">
                                             <i class="bx bx-show text-white"></i>
                                         </a>
                                     </td>
