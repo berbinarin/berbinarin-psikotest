@@ -18,7 +18,7 @@ class RegistrantController extends Controller
      */
     public function index()
     {
-        $registrants = RegistrantProfile::with('user')->get();
+        $registrants = RegistrantProfile::with(['user', 'testType.testCategory'])->get();
         return view('dashboard.ptpm.registrants.index', compact('registrants'));
     }
 
@@ -74,17 +74,21 @@ class RegistrantController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(RegistrantProfile $registrant)
+    public function show($id)
     {
+        $registrant = RegistrantProfile::with(['user', 'testType.testCategory'])->findOrFail($id);
         return view('dashboard.ptpm.registrants.show', compact('registrant'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $registrant = RegistrantProfile::with(['user', 'testType.testCategory'])->findOrFail($id);
+        $testCategories = TestCategory::with('testTypes')->get();
+        return view('dashboard.ptpm.registrants.edit', compact('registrant', 'testCategories'));
     }
 
     /**
@@ -92,7 +96,7 @@ class RegistrantController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
     }
 
     /**

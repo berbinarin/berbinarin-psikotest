@@ -1,61 +1,50 @@
-<div class="container mx-auto p-4">
-    <h1 class="text-2xl font-bold mb-4 text-center">Test Results</h1>
+<div class="w-full p-6 bg-gray-50">
+    <!-- Header Section -->
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold text-blue-700 mb-2">Test DAP Results</h1>
+        <p class="text-gray-600">Berikut adalah rincian jawaban dan gambar dari tes DAP.</p>
+        <div class="w-20 h-1 bg-blue-500 mt-2"></div>
+    </div>
 
-    <div class="overflow-x-auto">
-        <table class="min-w-full bg-white rounded-lg shadow text-center">
-            <thead>
-                <tr>
-                    <th class="py-2 px-4 bg-gray-200 border-b border-gray-300">No</th>
-                    <th class="py-2 px-4 bg-gray-200 border-b border-gray-300">Question</th>
-                    <th class="py-2 px-4 bg-gray-200 border-b border-gray-300">Answer</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $i = 1 ?>
-                @foreach($attempt->responses as $answer)
-                    <tr>
-                        <td class="py-2 px-4 border-b border-gray-300">{{ $i }}</td>
-                        <td class="py-2 px-4 border-b border-gray-300">{{ $answer->question->text }}</td>
-                        <td class="py-2 px-4 border-b border-gray-300">
-                            @if($answer->question->type === 'image_upload' && isset($answer->answer['file_path']))
-                                <button onclick="openModal('{{ asset('storage/' . $answer->answer['file_path']) }}')">
-                                    <img src="{{ asset('storage/' . $answer->answer['file_path']) }}" alt="Answer Image" class="w-32 h-auto mx-auto rounded hover:opacity-80 transition">
-                                </button>
-                            @else
-                                <span>Tidak ada gambar</span>
-                            @endif
-                        </td>
-                    </tr>
-                    <?php $i++ ?>
-                @endforeach
-            </tbody>
-        </table>
+    <!-- Results Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        @forelse($attempt->responses as $answer)
+            <div class="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-blue-200">
+                <div class="p-4">
+                    @php
+                        $imagePath = ($answer->question->type === 'image_upload') ? ($answer->answer['file_path'] ?? null) : null;
+                    @endphp
+                    <div class="relative mb-4">
+                        @if($imagePath)
+                            <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden relative group/image">
+                                <img 
+                                    src="{{ asset('storage/' . $imagePath) }}" 
+                                    alt="DAP Drawing"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover/image:scale-110"
+                                    loading="lazy"
+                                >
+                            </div>
+                        @else
+                            <div class="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex flex-col items-center justify-center text-gray-500 border-2 border-dashed border-gray-300">
+                                <i class="fas fa-image text-4xl mb-3 opacity-50"></i>
+                                <p class="text-sm font-medium mb-1">No Image Available</p>
+                                <p class="text-xs opacity-75 text-center px-4">This submission doesn't contain an image</p>
+                                <div class="absolute top-2 right-2">
+                                    <span class="bg-orange-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+                                        <i class="fas fa-exclamation-triangle mr-1"></i>Incomplete
+                                    </span>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        @empty
+            <div class="col-span-full">
+                <div class="text-center py-16">
+                    <h3 class="text-xl font-semibold text-gray-600 mb-2">Detail Data Jawaban Tidak ada</h3>
+                </div>
+            </div>
+        @endforelse
     </div>
 </div>
-
-<!-- Modal -->
-<div id="imageModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 hidden">
-    <div class="relative bg-white rounded-lg shadow-lg max-w-3xl w-full p-4">
-        <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-600 hover:text-black">
-            &larr; Back
-        </button>
-        <img id="modalImage" src="" alt="Preview Image" class="mx-auto max-h-[80vh] object-contain">
-    </div>
-</div>
-
-<!-- Script -->
-<script>
-    function openModal(imageUrl) {
-        const modal = document.getElementById('imageModal');
-        const modalImage = document.getElementById('modalImage');
-        modalImage.src = imageUrl;
-        modal.classList.remove('hidden');
-    }
-
-    function closeModal() {
-        const modal = document.getElementById('imageModal');
-        const modalImage = document.getElementById('modalImage');
-        modal.classList.add('hidden');
-        modalImage.src = '';
-    }
-</script>

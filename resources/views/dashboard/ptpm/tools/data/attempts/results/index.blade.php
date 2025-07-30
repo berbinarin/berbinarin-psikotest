@@ -11,13 +11,13 @@
             <div class="w-full">
                 <div class="py-4 md:pb-7 md:pt-12">
                     <div>
-                        <p tabindex="0" class="mb-2 text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Detail Data Jawaban Alat Test {{ $tool->name }}</p>
-                        <p class="text-disabled w-2/4">Halaman dashboard ini menampilkan jawaban yang telah dikumpulkan dari pengguna.</p>
-                        <a href="{{ route('dashboard.tools.data.attempts.index', $tool->id) }}">
-                            <buttpon type="button" class="mt-4 inline-flex items-start justify-start rounded bg-blue-500 p-3 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-8">
-                                <p class="font-medium leading-none text-white">Kembali</p>
-                            </buttpon>
-                        </a>
+                        <div class="mb-2 flex items-center gap-2">
+                            <a href="{{ url()->previous() }}">
+                                <img src="{{ asset("assets/dashboard/images/back-btn.png") }}" alt="Back Button" />
+                            </a>
+                            <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Detail Jawaban Alat Test {{$tool->name}}</p>
+                        </div>
+                        <p class="text-disabled py-2">Halaman dashboard ini menampilkan detail jawaban yang telah dikumpulkan dari pengguna.</p>
                     </div>
                 </div>
 

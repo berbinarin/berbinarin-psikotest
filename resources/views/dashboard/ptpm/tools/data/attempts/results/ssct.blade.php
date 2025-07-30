@@ -1,20 +1,19 @@
 <div class="container-fluid w-full">
     <div class="card">
-        <div class="card-body p-6">
-
+        <div class="card-body">
             @if(empty($data) || $data->isEmpty())
                 <div class="text-center py-8 text-gray-400">
                     <i class="fas fa-info-circle text-2xl mb-2"></i>
-                    <p>Jawaban Subtes SSCT  Tidak Ada</p>
+                    <p>Jawaban Subtes SSCT Tidak Ada</p>
                 </div>
             @else
-                <div class="table-responsive rounded-lg shadow-md overflow-hidden">
-                    <table class="table table-bordered table-hover mb-0 w-full">
+                <div class="table-responsive rounded-lg shadow-md overflow-hidden" style="max-height: 500px; overflow-y: auto;">
+                    <table class="table table-bordered table-hover mb-0 w-full" style="min-width: 800px;">
                         <thead>
                             <tr>
-                                <th width="5%" class="text-center py-3 px-4 font-bold border-b text-gray-500">No</th>
-                                <th width="50%" class="py-3 px-4 font-bold border-b text-start text-gray-500">Kalimat Pertanyaan</th>
-                                <th width="45%" class="text-center py-3 px-4 text-start font-bold border-b text-gray-500">Jawaban</th>
+                                <th width="5%" class="text-center py-3 px-4 font-bold border-b text-gray-500 sticky top-0 bg-white">No</th>
+                                <th width="50%" class="py-3 px-4 font-bold border-b text-start text-gray-500 sticky top-0 bg-white">Kalimat Pertanyaan</th>
+                                <th width="45%" class="text-center py-3 px-4 text-start font-bold border-b text-gray-500 sticky top-0 bg-white">Jawaban</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -26,9 +25,9 @@
                                         @if(empty($item['answer']))
                                             <div class="text-center py-8 text-gray-400">
                                                 <i class="fas fa-info-circle text-2xl mb-2"></i>
-                                                <p>Jawaban Subtes SSCT  Tidak Ada</p>
+                                                <p>Jawaban Subtes SSCT Tidak Ada</p>
                                             </div>                                        
-                                            @else
+                                        @else
                                             <span class="text-gray-800">{{ $item['answer'] }}</span>
                                         @endif
                                     </td>

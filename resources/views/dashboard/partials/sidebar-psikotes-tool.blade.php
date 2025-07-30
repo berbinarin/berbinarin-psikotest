@@ -14,39 +14,66 @@
     </div>
 
     @php
-        if (! function_exists("isRouteNameStartWith")) {
-            function isRouteNameStartWith($routeName)
-            {
-                return Str::startsWith(Route::currentRouteName(), $routeName) ? "text-primary" : "";
+        if (! function_exists("isRouteActive")) {
+            function isRouteActive($routePattern) {
+                return request()->is($routePattern) ? "rounded-xl bg-[#3986A3]" : "";
             }
         }
+        
+        $hideSections = in_array($tool->name, ['BAUM', 'DAP', 'HTP']);
+        $showQuestionManagement = $tool->name === 'Papi Kostick';
+        $isStandardTool = !in_array($tool->name, ['Papi Kostick', 'BAUM', 'DAP', 'HTP']);
     @endphp
 
     {{-- LIST MENU --}}
     <ul class="mt-10 text-gray-700 dark:text-gray-400">
         <!-- Links -->
-        <li class="dark-hover:text-blue-300 mt-1 rounded-lg p-2">
-            <a href="{{ route("dashboard.tools.data.index", $tool->id) }}" class="{{ isRouteNameStartWith("dashboard.tools.data.index") }} flex flex-row items-center text-gray-700 duration-700 hover:text-primary">
-                <i class="i fi-tr-chart-line-up {{ Request::is("dashboard") ? "text-primary" : "" }} mr-2 text-xl text-gray-700"></i>
-                <span class="ml-4 text-lg font-bold leading-5">Dashboard</span>
+        <li class="{{ isRouteActive("dashboard/tools/*/data") }} mt-1 rounded-lg p-2">
+            <a href="{{ route("dashboard.tools.data.index", $tool->id) }}" class="{{ request()->is("dashboard/tools/*/data") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
+                <i class="bx bx-category {{ request()->is("dashboard/tools/*/data") ? "text-white" : "text-gray-700" }} mr-2 text-xl"></i>
+                <span class="ml-4 text-lg font-bold leading-5">
+                    Dashboard
+                </span>
             </a>
         </li>
 
-        <li class="my-5 rounded-lg p-2">
-            <a href="{{ route('dashboard.tools.data.attempts.index', $tool->id) }}" class="{{ isRouteNameStartWith("dashboard.tools.data.attempts") }} flex flex-row items-center text-gray-700 duration-700 hover:text-primary">
-                <i class="bx bx-receipt mr-2 text-lg text-gray-700"></i>
-                <span class="ml-4 text-base font-bold leading-5">Pengumpulan</span>
+        <li class="{{ isRouteActive("dashboard/tools/*/data/attempts") }} my-5 rounded-lg p-2">
+            <a href="{{ route('dashboard.tools.data.attempts.index', $tool->id) }}" class="{{ request()->is("dashboard/tools/*/data/attempts") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
+                @if($tool->name === 'BAUM')
+                    <i class="fi fi-rr-edit {{ request()->is("dashboard/tools/*/data/attempts") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
+                @elseif($tool->name === 'DAP')
+                    <i class="fi fi-rr-document-signed {{ request()->is("dashboard/tools/*/data/attempts") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
+                @elseif($tool->name === 'HTP')
+                    <i class="fi fi-rr-file-edit {{ request()->is("dashboard/tools/*/data/attempts") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
+                @elseif($isStandardTool)
+                    <i class="fi fi-rr-notes {{ request()->is("dashboard/tools/*/data/attempts") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
+                @else
+                    <i class="bx bx-receipt {{ request()->is("dashboard/tools/*/data/attempts") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
+                @endif
+                <span class="ml-4 text-base font-bold leading-5">
+                    @if($tool->name === 'Papi Kostick')
+                        Data
+                    @elseif(in_array($tool->name, ['BAUM', 'DAP', 'HTP']))
+                        {{ $tool->name }}
+                    @else
+                        Respon
+                    @endif
+                </span>
             </a>
         </li>
 
-        <li class="my-5 rounded-lg p-2">
-            <a href="{{ route('dashboard.tools.data.sections.index', $tool->id) }}" class="{{ isRouteNameStartWith("dashboard.tools.data.sections") }} flex flex-row items-center text-gray-700 duration-700 hover:text-primary">
-                <i class="bx bx-receipt mr-2 text-lg text-gray-700"></i>
-                <span class="ml-4 text-base font-bold leading-5">Manajemen Soal</span>
+        @if($showQuestionManagement)
+        <li class="{{ isRouteActive("dashboard/tools/*/data/sections") }} my-5 rounded-lg p-2">
+            <a href="{{ route('dashboard.tools.data.sections.index', $tool->id) }}" class="{{ request()->is("dashboard/tools/*/data/sections") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
+                <i class="bx bx bx-edit {{ request()->is("dashboard/tools/*/data/sections") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
+                <span class="ml-4 text-base font-bold leading-5">
+                    Soal
+                </span>
             </a>
         </li>
+        @endif
 
-        <li class="dark-hover:text-blue-300 mt-20 rounded-lg p-2">
+        <li class="mt-20 rounded-lg p-2">
             <a href="{{ route('dashboard.tools.index') }}" class="fixed bottom-5 left-14 items-center gap-2 rounded-full bg-blue-500 px-6 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
                 <i class="bx bx-log-out text-lg"></i>
                 <span class="text-center text-base">Kembali</span>
