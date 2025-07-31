@@ -1,88 +1,84 @@
 <div class="flex w-full flex-col gap-5 md:flex-row">
-    <div class="flex w-full flex-col gap-6 md:w-2/3">
-        <div class="flex h-[389px] flex-col gap-6 md:flex-row">
-            <div class="flex h-full w-full flex-col justify-center rounded-xl bg-[#236A7B] p-6 text-white md:w-1/2">
-                <div>
-                    <p class="mb-2 text-[14px] font-semibold">Nama</p>
-                    <h1 class="mb-2 text-[20px] font-bold">{{ $attempt->user->name }}</h1>
-                    <p class="mb-2 text-[14px] font-semibold">Email</p>
-                    <p class="mb-2 text-[20px]">{{ $attempt->user->email ?? "-" }}</p>
-                    <p class="mb-2 text-[14px] font-semibold">Tanggal Pengerjaan</p>
-                    <p class="mb-2 text-[20px]">{{ \Carbon\Carbon::parse($attempt->created_at)->format("d F Y") }}</p>
-                    <p class="mb-2 text-[14px] font-semibold">Desc</p>
-                    <p class="text-[20px]">{{ $attempt->user->description ?? "-" }}</p>
-                    <p class="mb-2 text-[14px] font-semibold">Status</p>
-                    <p>{{ $attempt->status ?? "Finished" }}</p>
-                </div>
-            </div>
-            <div class="flex h-full w-full flex-col items-center justify-between rounded-xl bg-[#F7FAFC] p-6 md:w-1/2">
-                <h2 class="mb-2 text-base font-semibold text-[#236A7B]">Radar</h2>
-                <div id="chart-container" class="flex min-h-0 w-full flex-1 justify-center">
-                    <div id="chart" class="h-full w-full"></div>
-                </div>
-                <div class="mt-2 flex items-center gap-2">
-                    <span class="inline-block h-3 w-3 rounded-full bg-[#236A7B]"></span>
-                    <span class="text-xs text-[#236A7B]">Skor Kepribadian</span>
-                </div>
+    <!-- Kiri: Biodata & Radar -->
+    <div class="flex w-full flex-col gap-6 md:w-1/4">
+        <!-- Radar -->
+        <div class="flex flex-col items-center justify-between rounded-xl bg-[#F7FAFC] p-0" style="height:250px;">
+            <div id="chart-container" class="flex min-h-0 w-full flex-1 justify-center">
+                <div id="chart" class="h-full w-full"></div>
             </div>
         </div>
-        <div class="mt-4 rounded-lg bg-white p-6 shadow-sm" style="height: 450px">
-            <h2 class="mb-4 text-xl font-bold text-[#75BADB]">Rincian Jawaban</h2>
-            <div class="flex h-[calc(100%-40px)] flex-col">
-                <div class="flex-1 overflow-y-auto pr-2">
-                    @php
-                        $priorityOrder = ["X", "O", "B", "S"];
-                        $priorityItems = [];
-                        $otherItems = [];
-
-                        foreach ($priorityOrder as $code) {
-                            foreach ($data as $item) {
-                                if ($item["sub_code"] === $code) {
-                                    $priorityItems[] = $item;
-                                    break;
-                                }
-                            }
-                        }
-
-                        foreach ($data->groupBy("main_category") as $mainCategory => $details) {
-                            foreach ($details as $item) {
-                                if (! in_array($item["sub_code"], $priorityOrder)) {
-                                    if (! isset($otherItems[$mainCategory])) {
-                                        $otherItems[$mainCategory] = [];
-                                    }
-                                    $otherItems[$mainCategory][] = $item;
-                                }
-                            }
-                        }
-                    @endphp
-
-                    @foreach ($priorityItems as $item)
-                        <div class="mb-3">
-                            <span class="font-bold text-[#236A7B]">{{ $item["sub_code"] }} ({{ $item["sub_name"] }}) = {{ $item["score"] }} Poin</span>
-                            <span class="text-gray-700">- {{ $item["description"] }}</span>
-                        </div>
-                    @endforeach
-
-                    @foreach ($otherItems as $mainCategory => $details)
-                        <div class="mb-4 mt-6">
-                            <p class="text-lg font-bold text-gray-500">{{ $mainCategory }}</p>
-                            <div class="mt-2">
-                                @foreach ($details as $item)
-                                    <div class="mb-3">
-                                        <span class="font-bold text-[#236A7B]">{{ $item["sub_code"] }} ({{ $item["sub_name"] }}) {{ $item["score"] }}</span>
-                                        <span class="text-gray-700">- {{ $item["description"] }}</span>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
+        <!-- Biodata -->
+        <div class="flex w-full flex-col justify-center rounded-xl bg-[#236A7B] p-6 text-[13px] text-white">
+            <div>
+                <p class="mb-1 text-[12px] font-semibold">Nama</p>
+                <h1 class="mb-1 text-[16px] font-bold">{{ $attempt->user->name }}</h1>
+                <p class="mb-1 text-[12px] font-semibold">Email</p>
+                <p class="mb-1 text-[16px]">{{ $attempt->user->email ?? "-" }}</p>
+                <p class="mb-1 text-[12px] font-semibold">Tanggal Pengerjaan</p>
+                <p class="mb-1 text-[16px]">{{ \Carbon\Carbon::parse($attempt->created_at)->format("d F Y") }}</p>
+                <p class="mb-1 text-[12px] font-semibold">Status</p>
+                <p>{{ $attempt->status ?? "Finished" }}</p>
             </div>
         </div>
     </div>
 
-    {{-- Kolom Kanan: Daftar Jawaban User --}}
-    <div class="w-full self-start rounded-lg bg-white p-6 shadow-md md:w-1/3" style="height: 120vh; display: flex; flex-direction: column">
+    <!-- Rincian Jawaban -->
+    <div class="flex w-full flex-col md:w-1/2">
+        <div class="rounded-lg bg-white p-6 shadow-sm" style="max-height: 510px; height: 510px; display: flex; flex-direction: column;">
+            <h2 class="mb-4 text-xl font-bold text-[#75BADB]">Rincian Jawaban</h2>
+            <div class="flex-1 overflow-y-auto pr-2 text-[14px]">
+                @php
+                    $priorityOrder = ["X", "O", "B", "S"];
+                    $priorityItems = [];
+                    $otherItems = [];
+
+                    foreach ($priorityOrder as $code) {
+                        foreach ($data as $item) {
+                            if ($item["sub_code"] === $code) {
+                                $priorityItems[] = $item;
+                                break;
+                            }
+                        }
+                    }
+
+                    foreach ($data->groupBy("main_category") as $mainCategory => $details) {
+                        foreach ($details as $item) {
+                            if (! in_array($item["sub_code"], $priorityOrder)) {
+                                if (! isset($otherItems[$mainCategory])) {
+                                    $otherItems[$mainCategory] = [];
+                                }
+                                $otherItems[$mainCategory][] = $item;
+                            }
+                        }
+                    }
+                @endphp
+
+                @foreach ($priorityItems as $item)
+                    <div class="mb-3">
+                        <span class="font-bold text-[#236A7B]">{{ $item["sub_code"] }} ({{ $item["sub_name"] }}) = {{ $item["score"] }} Poin</span>
+                        <span class="text-gray-700">- {{ $item["description"] }}</span>
+                    </div>
+                @endforeach
+
+                @foreach ($otherItems as $mainCategory => $details)
+                    <div class="mb-4 mt-6">
+                        <p class="text-lg font-bold text-gray-500">{{ $mainCategory }}</p>
+                        <div class="mt-2">
+                            @foreach ($details as $item)
+                                <div class="mb-3">
+                                    <span class="font-bold text-[#236A7B]">{{ $item["sub_code"] }} ({{ $item["sub_name"] }}) {{ $item["score"] }}</span>
+                                    <span class="text-gray-700">- {{ $item["description"] }}</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+    <!-- Kanan: Detail Jawaban -->
+    <div class="flex w-full flex-col self-start rounded-lg bg-white p-6 shadow-md md:w-1/3" style="max-height: 510px; height: 510px;">
         <h3 class="mb-4 text-lg font-bold">Jawaban</h3>
         <div class="flex-1 overflow-y-auto">
             <table class="w-full text-sm">
@@ -186,7 +182,7 @@
         },
         plotOptions: {
             radar: {
-                size: 120,
+                size: 90,
                 polygons: {
                     strokeColors: 'gray',
                     connectorColors: 'gray',
