@@ -16,18 +16,18 @@
 @endpush
 
 @section("content")
-    <div class="h-screen overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset("assets/images/psikotes/paid/psikotest-home-bg.png") }}')">
+    <div class="h-screen overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset("assets/landing/images/psikotes-paid/psikotes-home-bg.png") }}')">
         <!-- Navbar Start -->
         <nav>
             <div class="mt-4 flex w-full flex-row items-center justify-between">
-                <a href="{{ route("psikotes-paid.testimonial.index") }}" class="ml-16 rounded-[5px] bg-blue-500 px-[10px] py-3 text-xs font-medium text-white">Testimoni</a>
+                <a href="{{ route("psikotes-paid.testimonial.index") }}" class="ml-16 rounded-[5px] bg-[#3986A3] px-[10px] py-3 text-xs font-medium text-white">Testimoni</a>
                 <div class="flex items-center justify-center gap-4 rounded-full bg-white px-8 py-2 drop-shadow-lg">
                     <img class="h-10 w-10" src="{{ asset("assets/landing/images/psikotes-paid/logo-berbinar.png") }}" alt="Logo Berbinar" />
                     <img class="h-11 w-11" src="{{ asset("assets/landing/images/psikotes-paid/logo-berbinar-psikotes.png") }}" alt="Logo Berbinar Psikotest" />
                 </div>
                 <form action="{{ route("auth.logout") }}" method="POST">
                     @csrf
-                    <button class="mr-16 rounded-[5px] bg-blue-500 px-[10px] py-3 text-xs font-medium text-white" style="font-family: 'Plus Jakarta Sans', sans-serif">Logout</button>
+                    <button class="mr-16 rounded-[5px] bg-[#3986A3] px-[10px] py-3 text-xs font-medium text-white" style="font-family: 'Plus Jakarta Sans', sans-serif">Logout</button>
                 </form>
             </div>
         </nav>
@@ -96,7 +96,7 @@
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const testimoniStatus = urlParams.get('testimoni');
-        const checkIcon = '{{ asset("assets/images/psikotes/paid/check.png") }}';
+        const checkIcon = '{{ asset("assets/landing/images/psikotes-paid/check.png") }}';
 
         if (testimoniStatus === 'selesai') {
             Swal.fire({
@@ -115,7 +115,7 @@
                 confirmButtonText: 'Lanjutkan',
                 customClass: {
                     popup: 'rounded-xl px-6 pt-6 pb-6',
-                    confirmButton: 'mt-6 rounded-md bg-[#6083F2] px-[112px] py-[10px] text-[15px] font-extrabold text-white transition hover:bg-blue-600',
+                    confirmButton: 'mt-6 rounded-md bg-[#3986A3] px-[112px] py-[10px] text-[15px] font-extrabold text-white transition hover:bg-blue-600',
                 },
                 confirmButtonColor: undefined,
                 backdrop: 'rgba(0,0,0,0.5)',

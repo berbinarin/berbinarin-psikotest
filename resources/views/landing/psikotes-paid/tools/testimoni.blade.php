@@ -16,7 +16,7 @@
 
     <!-- Judul -->
     <div class="my-7 flex w-full items-center justify-center">
-        <h1 class="text-[28px] font-bold" style="font-family: 'Plus Jakarta Sans', sans-serif">Testimoni Psikotes</h1>
+        <h1 id="judul-testimoni" class="text-[28px] font-bold" style="font-family: 'Plus Jakarta Sans', sans-serif">Testimoni Psikotes</h1>
     </div>
 
     <!-- Pertanyaan -->
@@ -49,12 +49,12 @@
 
         <!-- Ucapan Terima Kasih -->
         <div id="thanks-section" class="hidden flex-col items-center justify-center px-6 text-center">
-            <img src="{{ asset('assets/images/psikotes/paid/congrats.png') }}" alt="" class="h-[307px] w-[638px]" />
+            <img src="{{ asset('assets/landing/images/psikotes-paid/congrats.png') }}" alt="" class="h-[307px] w-[638px]" />
             <h1 class="mb-6 text-3xl font-bold text-black">
                 Terima kasih SobatBinar atas testimoni yang diberikan!
                 <br />Masukanmu sangat berarti bagi kami untuk terus berkembang.
             </h1>
-            <a href="{{ route('psikotes-paid.tools.index') }}" class="mx-auto w-fit rounded-[20px] bg-[#6083F2] px-5 py-[10px] text-base font-bold text-white transition hover:bg-blue-600">
+            <a href="{{ route('psikotes-paid.tools.index', ['testimoni' => 'selesai']) }}" class="mx-auto w-fit rounded-[20px] bg-[#6083F2] px-5 py-[10px] text-base font-bold text-white transition hover:bg-blue-600">
                 Kembali ke Beranda
             </a>
         </div>
@@ -119,8 +119,8 @@
                 form.querySelectorAll('input[name="setuju"]').forEach(r => r.checked = false);
             } else {
                 // Kirim data via AJAX
-                button.disabled = true;
-                button.innerText = "Mengirim...";
+                // button.disabled = true;
+                // button.innerText = "Mengirim...";
 
                 fetch(form.action, {
                     method: 'POST',
@@ -137,16 +137,42 @@
                 })
                 .then(res => {
                     if (res.ok) {
-                        soalText.classList.add('hidden');
+                        // Sembunyikan elemen yang tidak diperlukan
+                        soalText.parentElement.classList.add('hidden');
                         form.parentElement.classList.add('hidden');
+                        document.getElementById("judul-testimoni").classList.add("hidden");
+
+                        // Tampilkan thanks section dengan animasi slide
+                        thanksSection.style.display = 'flex';
+                        thanksSection.style.opacity = '0';
                         thanksSection.classList.remove('hidden');
-                        thanksSection.classList.add('flex');
+
+                        // Animate
+                        setTimeout(() => {
+                            thanksSection.style.transition = 'opacity 0.5s ease-in-out';
+                            thanksSection.style.opacity = '1';
+                        }, 100);
+
+                        // Scroll ke thanks section
+                        thanksSection.scrollIntoView({ behavior: 'smooth' });
                     } else {
-                        alert("Gagal mengirim testimoni.");
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal mengirim testimoni',
+                            text: 'Mohon coba lagi',
+                            confirmButtonColor: '#6083F2',
+                        });
                     }
                 })
                 .catch(() => {
-                    alert("Terjadi kesalahan.");
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Terjadi kesalahan',
+                        text: 'Mohon coba lagi nanti',
+                        confirmButtonColor: '#6083F2',
+                    });
+                    button.disabled = false;
+                    button.innerText = "Selesai";
                 });
             }
         });
