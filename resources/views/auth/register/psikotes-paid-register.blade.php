@@ -21,18 +21,36 @@
 @endsection
 
 @section("content")
-    <div class="mx-4 mb-8 mt-24 flex flex-col justify-center rounded-2xl bg-none px-12 py-6 shadow-none max-md:px-1 sm:mx-24 sm:mb-20 sm:mt-36 md:bg-white md:shadow-lg">
+    <div x-data="{ page: 1 }" x-cloak class="mx-4 mb-8 mt-24 flex flex-col justify-center rounded-2xl bg-none px-12 py-6 shadow-none max-md:px-1 sm:mx-24 sm:mb-20 sm:mt-36 md:bg-white md:shadow-lg">
         <div class="flex flex-row justify-between">
-            <a href="{{ route("home.index") }}">
-                <div class="flex cursor-pointer items-center space-x-2">
-                    <img src="{{ asset("/assets/landing/icons/left-arrow.svg") }}" alt="Left Arrow" class="h-3 w-auto" />
-                    <p class="flex text-[15px] font-semibold text-[#3986A3]">
-                        Kembali
-                        <span class="ml-0.5 hidden sm:block">pilih psikotes</span>
-                    </p>
-                </div>
-            </a>
+            {{-- Tombol Kembali --}}
+            <div>
+                <template x-if="page === 1">
+                    <a href="{{ route('home.index') }}">
+                        <div class="flex cursor-pointer items-center space-x-2">
+                            <img src="{{ asset('/assets/landing/icons/left-arrow.svg') }}" alt="Left Arrow" class="h-3 w-auto" />
+                            <p class="flex text-[15px] font-semibold text-[#3986A3]">
+                                Kembali
+                                <span class="ml-0.5 hidden sm:block">pilih psikotes</span>
+                            </p>
+                        </div>
+                    </a>
+                </template>
 
+                <template x-if="page === 2">
+                    <button @click="page = 1; window.scrollTo({top: 0, behavior: 'smooth'})" type="button">
+                        <div class="flex cursor-pointer items-center space-x-2">
+                            <img src="{{ asset('/assets/landing/icons/left-arrow.svg') }}" alt="Left Arrow" class="h-3 w-auto" />
+                            <p class="flex text-[15px] font-semibold text-[#3986A3]">
+                                Kembali
+                                <span class="ml-0.5 hidden sm:block">ke jadwal</span>
+                            </p>
+                        </div>
+                    </button>
+                </template>
+            </div>
+
+            {{-- Syarat dan Ketentuan --}}
             <div class="flex cursor-pointer items-center space-x-1" id="openModal">
                 <img src="{{ asset("/assets/landing/icons/sk-vector.png") }}" alt="Syarat & Ketentuan" class="h-3 w-auto" />
                 <p class="text-[15px] font-semibold text-[#3986A3]">
@@ -41,9 +59,11 @@
                 </p>
             </div>
 
+            {{-- Modal --}}
             <div id="modal" class="fixed inset-0 -top-6 z-30 flex hidden items-center justify-center bg-gray-900 bg-opacity-50 backdrop-blur-md max-sm:-top-2">
                 <div class="h-auto max-h-screen w-[70%] overflow-y-auto rounded-2xl bg-white p-6 shadow-md max-lg:h-[90%] max-sm:w-[86%] max-sm:px-2">
                     <h1 class="bg-gradient-to-r from-amber-400 to-yellow-700 bg-clip-text pb-4 text-center text-3xl font-bold text-transparent max-sm:text-2xl">Syarat dan Ketentuan</h1>
+
                     <div class="mb-6">
                         <div class="flex items-start gap-2">
                             <img src="{{ asset("assets/landing/icons/location.png") }}" alt="Lokasi" class="mt-0.5 h-5 w-5 object-contain" />
@@ -95,9 +115,8 @@
         </div>
 
         {{-- Form --}}
-        <form action="{{ route("auth.psikotes-paid.register") }}" method="POST" x-data="{ page: 1 }" x-cloak>
+        <form action="{{ route("auth.psikotes-paid.register") }}" method="POST">
             @csrf
-
             {{-- Jadwal --}}
             <div x-show="page === 1">
                 <h1 class="font text-gradient my-6 text-center text-3xl font-semibold max-sm:mx-2 max-sm:text-[29px]">Isi Jadwal Psikotes</h1>
@@ -227,9 +246,6 @@
                 </div>
 
                 <div class="flex items-center justify-center gap-6 pt-10">
-                    <div class="flex justify-center">
-                        <button @click="page = 1; window.scrollTo({top: 0})" type="button" class="text-md w-full rounded-xl bg-gradient-to-r from-[#d1d6d8] to-[#747879] px-24 py-2 text-[#225062] max-sm:text-[15px] sm:w-auto">Kembali</button>
-                    </div>
                     <div class="flex justify-center">
                         <button type="submit" class="text-md w-full rounded-xl bg-gradient-to-r from-[#3986A3] to-[#225062] px-24 py-2 text-white max-sm:text-[15px] sm:w-auto">Kirim</button>
                     </div>
