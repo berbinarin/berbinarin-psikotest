@@ -2,8 +2,6 @@
     <!-- Header Section -->
     <div class="mb-8">
         <h1 class="text-3xl font-bold text-[#75BADB] mb-2">Name: {{ $attempt->user->name }}</h1>
-        <h2 class="text-xl font-semibold text-gray-700 mb-1">Desc: {{ $attempt->user->description }}</h2>
-        <p class="text-gray-600">Berikut adalah rincian jawaban dan kepribadian berdasarkan tes {{ $tool->name }}.</p>
         <div class="w-20 h-1 bg-blue-500 mt-2"></div>
     </div>
 

@@ -22,9 +22,6 @@
                 <div class="py-4 md:pb-7 md:pt-12">
                     <div>
                         <div class="mb-2 flex items-center gap-2">
-                            <a href="">
-                                <img src="{{ asset("assets/dashboard/images/back-btn.png") }}" alt="Back Button" />
-                            </a>
                             <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">{{ $title }}</p>
                         </div>
                         <p class="text-disabled py-2">Fitur ini menampilkan data responden seperti nama, status, tanggal, dan email yang telah mengisi Tes {{ $tool->name }} Berbinar.</p>
@@ -37,11 +34,10 @@
                                 <tr>
                                     <th>No</th>
                                     <th>User</th>
-                                    @if($tool->name === 'Papi Kostick')
-                                        <th>Email</th>
-                                    @endif
                                     <th>Date</th>
                                     @if($tool->name === 'Papi Kostick')
+                                        <th>Time Start</th>
+                                        <th>Time End</th>
                                         <th>Status</th>
                                     @endif
                                     <th>Action</th>
@@ -52,11 +48,10 @@
                                     <tr class="data-consume">
                                         <td class="text-center">{{ $loop->iteration }}</td>
                                         <td class="text-center">{{ $attempt->user->name }}</td>
-                                        @if($tool->name === 'Papi Kostick')
-                                            <td class="text-center">{{ $attempt->user->email }}</td>
-                                        @endif
                                         <td class="text-center">{{ \Carbon\Carbon::parse($attempt->created_at)->format("Y-m-d") }}</td>
                                         @if($tool->name === 'Papi Kostick')
+                                            <td class="text-center">10:00 AM</td>
+                                            <td class="text-center">10:30 AM</td> 
                                             <td class="text-center">
                                                 <div class="inline-flex items-center justify-center">
                                                     @if ($attempt->is_completed)

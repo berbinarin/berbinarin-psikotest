@@ -19,10 +19,6 @@
                 return request()->is($routePattern) ? "rounded-xl bg-[#3986A3]" : "";
             }
         }
-        
-        $hideSections = in_array($tool->name, ['BAUM', 'DAP', 'HTP']);
-        $showQuestionManagement = $tool->name === 'Papi Kostick';
-        $isStandardTool = !in_array($tool->name, ['Papi Kostick', 'BAUM', 'DAP', 'HTP']);
     @endphp
 
     {{-- LIST MENU --}}
@@ -39,33 +35,17 @@
 
         <li class="{{ isRouteActive("dashboard/tools/*/data/attempts") }} my-5 rounded-lg p-2">
             <a href="{{ route('dashboard.tools.data.attempts.index', $tool->id) }}" class="{{ request()->is("dashboard/tools/*/data/attempts") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
-                @if($tool->name === 'BAUM')
-                    <i class="fi fi-rr-edit {{ request()->is("dashboard/tools/*/data/attempts") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
-                @elseif($tool->name === 'DAP')
-                    <i class="fi fi-rr-document-signed {{ request()->is("dashboard/tools/*/data/attempts") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
-                @elseif($tool->name === 'HTP')
-                    <i class="fi fi-rr-file-edit {{ request()->is("dashboard/tools/*/data/attempts") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
-                @elseif($isStandardTool)
-                    <i class="fi fi-rr-notes {{ request()->is("dashboard/tools/*/data/attempts") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
-                @else
-                    <i class="bx bx-receipt {{ request()->is("dashboard/tools/*/data/attempts") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
-                @endif
+                <i class="fi fi-rr-notes {{ request()->is("dashboard/tools/*/data/attempts") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
                 <span class="ml-4 text-base font-bold leading-5">
-                    @if($tool->name === 'Papi Kostick')
-                        Data
-                    @elseif(in_array($tool->name, ['BAUM', 'DAP', 'HTP']))
-                        {{ $tool->name }}
-                    @else
-                        Respon
-                    @endif
+                    Data
                 </span>
             </a>
         </li>
 
-        @if($showQuestionManagement)
+        @if(strtolower($tool->name) === 'papi kostick')
         <li class="{{ isRouteActive("dashboard/tools/*/data/sections") }} my-5 rounded-lg p-2">
             <a href="{{ route('dashboard.tools.data.sections.index', $tool->id) }}" class="{{ request()->is("dashboard/tools/*/data/sections") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
-                <i class="bx bx bx-edit {{ request()->is("dashboard/tools/*/data/sections") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
+                <i class="bx bx-edit {{ request()->is("dashboard/tools/*/data/sections") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
                 <span class="ml-4 text-base font-bold leading-5">
                     Soal
                 </span>

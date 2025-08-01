@@ -22,13 +22,15 @@
     <div class="flex-1 rounded-xl bg-white p-8 shadow-lg max-h-[500px]">
         <div class="pb-5">
             <h2 class="text-[28px] font-semibold text-[#75BADB]">{{ $attempt->user->name }}</h2>
-            <p class="mt-4 text-base text-gray-700">Berikut merupakan 3 peringkat kategori dengan nilai terendah, yaitu Outdoor, Mechanical, Scientific dan Computational.</p>
+            <p class="text-base text-gray-700">
+                Berikut merupakan 3 peringkat kategori dengan nilai terendah, yaitu Outdoor, Mechanical, Scientific dan Computational.
+            </p>
         </div>
 
         <!-- Bar Chart -->
         <div class="flex w-full flex-col items-center">
-            <canvas id="horizontalBarChart" class="mb-1" style="max-height: 300px; max-width: 700px"></canvas>
-            <div class="scroll-container mb-4 flex gap-4 text-xs">
+            <canvas id="horizontalBarChart" class="mb-1" style="max-height: 450px; max-width: 700px"></canvas>
+            <div class="mb-4 flex gap-4 text-xs">
                 @for ($i = 1; $i <= 5; $i++)
                     <div class="flex items-center gap-1">
                         <span class="inline-block h-3 w-3 rounded" style="background: {{ ["#FFD6E0", "#ACD6E9", "#FFECA3", "#CAB6EE", "#98C5F6", "#FF6B6B"][$i % 6] }}"></span>
@@ -46,44 +48,12 @@
                         @endif
                     </div>
                 @endfor
-<div class="flex max-h-[500px] flex-col overflow-hidden rounded-lg bg-white p-8 shadow-lg" style="width: 40%">
-    <div class="flex-1 overflow-y-auto" style="max-height: 400px">
-        <div class="pb-10">
-            <h2 class="text-2xl font-semibold">{{ $attempt->user->name }}</h2>
-            <p class="mt-4">
-                Berikut merupakan 3 peringkat kategori dengan nilai terendah, yaitu
-            </p>
-            {{-- Loop through data for lowest ranked categories --}}
-            <div>
-                <ul class="flex flex-col gap-2 pt-4">
-                    @foreach ($data['categories'] as $key => $value)
-                        <li class="flex items-center gap-2">
-                            <div class="flex justify-center rounded-full bg-primary px-2 py-1">
-                                <span class="text-white">{{ $loop->iteration }}.</span>
-                            </div>
-                            <div class="flex w-full justify-between">
-                                <p class="pl-2">{{ $key }}</p>
-                                <p class="pr-20 font-bold">{{ $value }}</p>
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
             </div>
-            <h2 class="pt-4 text-2xl font-semibold">Kesimpulan</h2>
-            {{-- Deskripsi ditampilkan disini, sesuai dengan kategori yang memiliki 3 nilai tertinggi (now lowest) --}}
-            <ul>
-                @foreach ($data['descriptions'] as $categoryName => $description)
-                    <li>
-                        <h3 class="text-primary-alt pt-2 text-xl font-semibold">{{ Str::of($categoryName)->replace("_", " ")->title() }}</h3>
-                        <p>{{ $description }}</p>
-                    </li>
-                @endforeach
-            </ul>
         </div>
     </div>
 
     <!-- Detail Jawaban -->
-    <div class="flex w-1/3 flex-col rounded-xl bg-white p-6 shadow-lg" style="height: 500px">
+    <div class="flex max-h-[500px] flex-col overflow-hidden rounded-lg bg-white p-8 shadow-lg" style="width: 40%">
         <h2 class="mb-4 text-xl font-semibold">Detail Jawaban</h2>
         <div class="scroll-container mb-4 overflow-x-hidden whitespace-nowrap pb-2" id="subtestTabs">
             <div class="inline-flex gap-2 border-b">
@@ -116,37 +86,6 @@
                                         $options = collect($response->question->options["variants"]["male"]);
                                         $categories = $response->question->scoring;
                                     @endphp
-{{-- The right section remains unchanged --}}
-<div class="flex max-h-[500px] flex-col overflow-hidden rounded-lg bg-white p-8 shadow-lg" style="width: 60%">
-    <h2 class="mb-4 text-2xl font-semibold">Detail Jawaban</h2>
-
-    <div x-data="{ tab: 'subtest-A' }">
-        <ul class="flex flex-wrap items-center gap-7 text-lg font-bold">
-            @foreach ($attempt->responses as $response)
-                <li>
-                    <button :class="tab === 'subtest-{{ $response->question->section->title }}' ? 'pb-2 border-b-2 border-blue-300 text-primary-alt' : 'text-gray-700 pb-2'" @click="tab = 'subtest-{{ $response->question->section->title }}'">Subtes {{ $response->question->section->title }}</button>
-                </li>
-            @endforeach
-        </ul>
-        @foreach ($attempt->responses as $response)
-            <div x-show="tab === 'subtest-{{ $response->question->section->title }}'" class="pt-2">
-                <div class="w-full">
-                    <table class="w-full table-fixed border-collapse text-lg">
-                        <thead>
-                            <tr class="flex border-b">
-                                <th class="p-4 text-center text-gray-400" style="width: 50%">Pernyataan</th>
-                                <th class="p-4 text-center text-gray-400" style="width: 25%">Kategori</th>
-                                <th class="p-4 text-center text-gray-400" style="width: 25%">Nilai</th>
-                            </tr>
-                        </thead>
-                    </table>
-
-                    @php
-                        // Ubah array options menjadi Laravel Collection
-                        $options = collect($response->question->options["variants"]["male"]);
-                        $categories = $response->question->scoring;
-                    @endphp
-
                                     @foreach ($response->answer["ranked_ids"] as $item)
                                         <tr class="border-b">
                                             <td class="p-2 align-top" style="width: 50%">{{ $options->where("id", $item)->first()["text"] }}</td>

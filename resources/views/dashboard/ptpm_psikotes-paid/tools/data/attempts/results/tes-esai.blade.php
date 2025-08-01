@@ -1,24 +1,30 @@
 <div class="container mx-auto">
     <div class="overflow-x-auto">
-        <table class="min-w-full bg-white rounded-lg shadow text-center">
-            <thead>
-                <tr>
-                    <th class="py-2 px-4 bg-gray-200 border-b border-gray-300">No</th>
-                    <th class="py-2 px-4 bg-gray-200 border-b border-gray-300">Question</th>
-                    <th class="py-2 px-4 bg-gray-200 border-b border-gray-300">Answer</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $i = 1 ?>
-                @foreach($attempt->responses as $answer)
+        <div class="max-h-[500px] overflow-y-auto border border-gray-200 rounded-lg"> <!-- Scroll vertikal + border -->
+            <table class="min-w-full bg-white divide-y divide-gray-200">
+                <thead class="bg-gray-50 sticky top-0">
                     <tr>
-                        <td class="py-2 px-4 border-b border-gray-300">{{ $i }}</td>
-                        <td class="py-2 px-4 border-b border-gray-300">{{ $answer->question->text }}</td>
-                        <td class="py-2 px-4 border-b border-gray-300">{{ $answer->answer['text'] }}</td>
+                        <th class="w-[50px] py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
+                        <th class="min-w-[200px] max-w-[300px] py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Question</th>
+                        <th class="min-w-[200px] max-w-[400px] py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Answer</th>
                     </tr>
-                    <?php $i++ ?>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    <?php $i = 1 ?>
+                    @foreach($attempt->responses as $answer)
+                        <tr>
+                            <td class="py-3 px-4 text-center whitespace-nowrap text-sm text-gray-500">{{ $i }}</td>
+                            <td class="py-3 px-4 text-sm text-gray-900 break-words min-w-[200px] max-w-[300px]"> <!-- Wrapping Question -->
+                                {{ $answer->question->text }}
+                            </td>
+                            <td class="py-3 px-4 text-sm text-gray-900 break-words min-w-[200px] max-w-[400px]"> <!-- Wrapping Answer -->
+                                {{ $answer->answer['text'] }}
+                            </td>
+                        </tr>
+                        <?php $i++ ?>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
