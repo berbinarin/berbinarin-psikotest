@@ -21,17 +21,26 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
     Route::middleware('role:ptpm_psikotes-paid')->group(function () {
 
         // Registrants
-        Route::resource('/registrants', RegistrantController::class);
+        Route::prefix('registrants')->name('registrants.')->group(function () {
+            Route::get('/', [RegistrantController::class, 'index'])->name('index');
+            Route::get('/create', [RegistrantController::class, 'create'])->name('create');
+            Route::post('/', [RegistrantController::class, 'store'])->name('store');
+            Route::get('/{id}', [RegistrantController::class, 'show'])->name('show');
+            Route::get('/{id}/edit', [RegistrantController::class, 'edit'])->name('edit');
+            Route::put('/{id}', [RegistrantController::class, 'update'])->name('update');
+            Route::delete('/{id}', [RegistrantController::class, 'destroy'])->name('destroy');
+        });
 
         // Price Lists
-        Route::resource('/test-categories', TestCategoryController::class);
-
-        Route::get('/test-types/category/{category}', [TestTypeController::class, 'byCategory'])->name('test-types.by-category');
-        Route::get('/test-types/category/{category}/create', [TestTypeController::class, 'create'])->name('test-types.create');
-        Route::post('/test-types/category/{category}', [TestTypeController::class, 'store'])->name('test-types.store');
-        Route::get('/test-types/category/{category}/edit/{id}', [TestTypeController::class, 'edit'])->name('test-types.edit');
-        Route::put('/test-types/category/{category}/update/{id}', [TestTypeController::class, 'update'])->name('test-types.update');
-        Route::delete('/test-types/category/{category}/delete/{id}', [TestTypeController::class, 'destroy'])->name('test-types.destroy');
+        Route::prefix('price-list')->name('price-list.')->group(function () {
+            Route::get('/test-categories', [TestCategoryController::class, 'index'])->name('test-category.index');
+            Route::get('/test-types/category/{category}', [TestTypeController::class, 'byCategory'])->name('test-types.by-category');
+        });
+        // Route::get('/test-types/category/{category}/create', [TestTypeController::class, 'create'])->name('test-types.create');
+        // Route::post('/test-types/category/{category}', [TestTypeController::class, 'store'])->name('test-types.store');
+        // Route::get('/test-types/category/{category}/edit/{id}', [TestTypeController::class, 'edit'])->name('test-types.edit');
+        // Route::put('/test-types/category/{category}/update/{id}', [TestTypeController::class, 'update'])->name('test-types.update');
+        // Route::delete('/test-types/category/{category}/delete/{id}', [TestTypeController::class, 'destroy'])->name('test-types.destroy');
 
         // Tools
         Route::prefix('tools')->name('tools.')->group(function () {

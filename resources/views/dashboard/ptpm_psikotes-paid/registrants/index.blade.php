@@ -55,10 +55,10 @@
                                         <a href="{{ route("dashboard.registrants.edit", $registrant->id) }}" class="inline-flex items-start justify-start rounded p-2 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #e9b306">
                                             <i class="bx bx-edit-alt text-black"></i>
                                         </a>
-                                        <form action="{{ route("dashboard.registrants.destroy", $registrant->id) }}" method="POST">
+                                        <form id="deleteForm-{{ $registrant->id }}" action="{{ route("dashboard.registrants.destroy", $registrant->id) }}" method="POST">
                                             @csrf
                                             @method("DELETE")
-                                            <button type="submit" class="inline-flex items-start justify-start rounded p-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #ef4444">
+                                            <button type="button" class="delete-button inline-flex items-start justify-start rounded p-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #ef4444" data-id="{{ $registrant->id }}">
                                                 <i class="bx bx-trash-alt text-white"></i>
                                             </button>
                                         </form>

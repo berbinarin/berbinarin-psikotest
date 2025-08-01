@@ -15,7 +15,7 @@ class TestTypeController extends Controller
     public function index()
     {
         $testTypes = TestType::all();
-        return view('dashboard.ptpm.price-lists.test-types.index', compact('testTypes'));
+        return view('dashboard.ptpm_psikotes-paid.price-lists.test-types.index', compact('testTypes'));
     }
 
     /**
@@ -24,7 +24,7 @@ class TestTypeController extends Controller
     public function create($categoryId)
     {
         $category = TestCategory::findOrFail($categoryId);
-        return view('dashboard.ptpm.price-lists.test-types.create', compact('category'));
+        return view('dashboard.ptpm_psikotes-paid.price-lists.test-types.create', compact('category'));
     }
 
     /**
@@ -61,7 +61,7 @@ class TestTypeController extends Controller
     {
         $category = TestCategory::findOrFail($categoryId);
         $testType = TestType::findOrFail($id);
-        return view('dashboard.ptpm.price-lists.test-types.edit', compact('category', 'testType'));
+        return view('dashboard.ptpm_psikotes-paid.price-lists.test-types.edit', compact('category', 'testType'));
     }
 
     /**
@@ -97,6 +97,6 @@ class TestTypeController extends Controller
     {
         $testTypes = TestType::where('test_category_id', $categoryId)->get();
         $category = TestCategory::findOrFail($categoryId);
-        return view('dashboard.ptpm.price-lists.test-types.index', compact('testTypes', 'category'));
+        return view('dashboard.ptpm_psikotes-paid.price-lists.test-types.index', compact('testTypes', 'category'));
     }
 }

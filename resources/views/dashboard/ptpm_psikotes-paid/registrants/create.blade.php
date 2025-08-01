@@ -62,7 +62,7 @@
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="name" class="mb-2 font-bold text-[#9b9b9b]">Nama</label>
-                        <input type="text" name="name" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Nama" value="{{ old("name") }}" />
+                        <input type="text" id="name" name="name" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Nama" value="{{ old("name") }}" />
                     </div>
                     <div class="flex w-full flex-col">
                         <label for="gender" class="mb-2 font-bold text-[#9b9b9b]">Jenis Kelamin</label>
@@ -76,17 +76,17 @@
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="age" class="mb-2 font-bold text-[#9b9b9b]">Umur</label>
-                        <input type="number" name="age" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Umur" value="{{ old("age") }}" />
+                        <input type="number" id="age" name="age" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Umur" value="{{ old("age") }}" />
                     </div>
                     <div class="flex w-full flex-col">
                         <label for="phone_number" class="mb-2 font-bold text-[#9b9b9b]">Telepon</label>
-                        <input type="tel" name="phone_number" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Telepon" value="{{ old("phone_number") }}" />
+                        <input type="tel" id="phone_number" name="phone_number" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Telepon" value="{{ old("phone_number") }}" />
                     </div>
                 </div>
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="email" class="mb-2 font-bold text-[#9b9b9b]">Email</label>
-                        <input type="email" name="email" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Email" value="{{ old("email") }}" />
+                        <input type="email" id="email" name="email" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Email" value="{{ old("email") }}" />
                     </div>
                     <div class="flex w-full flex-col">
                         <label for="test_category_id" class="mb-2 font-bold text-[#9b9b9b]">Kategori Psikotes</label>
@@ -121,13 +121,13 @@
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="domicile" class="mb-2 font-bold text-[#9b9b9b]">Domisili</label>
-                        <input type="text" name="domicile" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Domisili" value="{{ old("domicile") }}" />
+                        <input type="text" id="domicile" name="domicile" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Domisili" value="{{ old("domicile") }}" />
                     </div>
                 </div>
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="reason" class="mb-2 font-bold text-[#9b9b9b]">Alasan</label>
-                        <textarea name="reason" rows="10" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Alasan">{{ old("reason") }}</textarea>
+                        <textarea id="reason" name="reason" rows="10" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Alasan">{{ old("reason") }}</textarea>
                     </div>
                 </div>
                 <div class="mt-8 flex gap-4 border-t-2 border-t-gray-400 pt-5">
@@ -160,8 +160,8 @@
             const confirmModal = document.getElementById('confirmModal');
             const confirmCancel = document.getElementById('confirmCancel');
             const cancelCancel = document.getElementById('cancelCancel');
-            const tanggalInput = document.getElementById('jadwalTanggal');
-            const hariInput = document.getElementById('hariKonseling');
+            // const tanggalInput = document.getElementById('jadwalTanggal');
+            // const hariInput = document.getElementById('hariKonseling');
 
             cancelButton.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -176,17 +176,17 @@
                 confirmModal.classList.add('hidden');
             });
 
-            tanggalInput.addEventListener('change', function () {
-                if (this.value) {
-                    hariInput.value = getDayName(this.value);
-                } else {
-                    hariInput.value = '';
-                }
-            });
+            // tanggalInput.addEventListener('change', function () {
+            //     if (this.value) {
+            //         hariInput.value = getDayName(this.value);
+            //     } else {
+            //         hariInput.value = '';
+            //     }
+            // });
 
-            if (tanggalInput.value) {
-                hariInput.value = getDayName(tanggalInput.value);
-            }
+            // if (tanggalInput.value) {
+            //     hariInput.value = getDayName(tanggalInput.value);
+            // }
         });
     </script>
 @endsection

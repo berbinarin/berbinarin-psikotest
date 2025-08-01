@@ -14,49 +14,22 @@
 
         <!-- Card Section -->
         <div class="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            <!-- Card Individu -->
-            <div class="flex h-[150px] flex-col rounded-xl bg-white p-4 shadow">
-                <span class="flex-1 text-left text-[28px] font-semibold text-gray-800">Individu</span>
-                <div class="mt-auto flex items-center justify-center gap-4">
-                    <span class="text-[44px] font-bold text-gray-900">29</span>
-                    <div class="flex h-[80px] w-[80px] items-center justify-center rounded-2xl bg-gray-100">
-                        <img src="{{ asset('assets/dashboard/images/arrow-down.svg') }}" alt="arrow down" class="w-12 h-12">
+            @foreach ($testCategories as $category)
+                <!-- Card Individu -->
+                <div class="flex h-[150px] flex-col justify-between rounded-xl bg-white p-4 shadow">
+                    <span class="text-left text-[20px] font-semibold text-gray-800">
+                        {{ $category->name }}
+                    </span>
+                    <div class="flex items-center justify-between mt-auto">
+                        <span class="text-[36px] font-bold text-gray-900">
+                            {{ $category->registrant_profiles_count }}
+                        </span>
+                        <div class="flex h-[64px] w-[64px] items-center justify-center rounded-xl bg-gray-100">
+                            <img src="{{ asset('assets/dashboard/images/arrow-down.svg') }}" alt="arrow down" class="w-10 h-10">
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Card Instansi -->
-            <div class="flex h-[150px] flex-col rounded-xl bg-white p-4 shadow">
-                <span class="mb-0 flex-1 text-left text-[28px] font-semibold text-gray-800">Instansi</span>
-                <div class="mt-auto flex items-center justify-center gap-4">
-                    <span class="text-[44px] font-bold text-gray-900">15</span>
-                    <div class="flex h-[80px] w-[80px] items-center justify-center rounded-2xl bg-gray-100">
-                        <img src="{{ asset('assets/dashboard/images/arrow-down.svg') }}" alt="arrow down" class="w-12 h-12">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card Perusahaan -->
-            <div class="flex h-[150px] flex-col rounded-xl bg-white p-4 shadow">
-                <span class="mb-0 flex-1 text-left text-[28px] font-semibold text-gray-800">Perusahaan</span>
-                <div class="mt-auto flex items-center justify-center gap-4">
-                    <span class="text-[44px] font-bold text-gray-900">22</span>
-                    <div class="flex h-[80px] w-[80px] items-center justify-center rounded-2xl bg-gray-100">
-                        <img src="{{ asset('assets/dashboard/images/arrow-down.svg') }}" alt="arrow down" class="w-12 h-12">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card Komunitas -->
-            <div class="flex h-[150px] flex-col rounded-xl bg-white p-4 shadow">
-                <span class="mb-0 flex-1 text-left text-[28px] font-semibold text-gray-800">Komunitas</span>
-                <div class="mt-auto flex items-center justify-center gap-4">
-                    <span class="text-[44px] font-bold text-gray-900">8</span>
-                    <div class="flex h-[80px] w-[80px] items-center justify-center rounded-2xl bg-gray-100">
-                        <img src="{{ asset('assets/dashboard/images/arrow-down.svg') }}" alt="arrow down" class="w-12 h-12">
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
 
         <!-- Charts Section-->
@@ -77,25 +50,31 @@
                     </div>
 
                     <!-- Batang Grafik -->
-                    <!-- data dummy -->
                     @php
-                        $chartData = [
-                            ['label' => "Individu", 'value' => 10],
-                            ['label' => "Instansi", 'value' => 20],
-                            ['label' => "Perusahaan", 'value' => 40],
-                            ['label' => "Komunitas", 'value' => 50]
-                        ];
+                        $chartData = [];
                         $maxValue = 50;
                     @endphp
 
+                    @foreach ($testCategories as $category)
+                        @php
+                            $chartData[] = [
+                                'label' => $category->name,
+                                'value' => $category->registrant_profiles_count
+                            ];
+                            if ($category->registrant_profiles_count > $maxValue) {
+                                $maxValue = $category->registrant_profiles_count;
+                            }
+                        @endphp
+                    @endforeach
+
                     @foreach($chartData as $data)
                         @php
-                            $barHeightPercentage = ($data['value'] / $maxValue) * 100;
+                            $barHeightPercentage = $maxValue > 0 ? ($data['value'] / $maxValue) * 100 : 0;
                         @endphp
                         <div class="flex-1 flex flex-col items-center mx-2 h-full">
                             <div class="w-[13px] h-full bg-gray-100 rounded-lg relative">
-                                <div 
-                                    class="w-full bg-[#3986A3] rounded-lg absolute bottom-0 transition-all duration-500 ease-out" 
+                                <div
+                                    class="w-full bg-[#3986A3] rounded-lg absolute bottom-0 transition-all duration-500 ease-out"
                                     style="height: {{ $barHeightPercentage }}%"
                                 ></div>
                             </div>

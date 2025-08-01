@@ -53,7 +53,7 @@
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label class="mb-2 font-bold text-[#9b9b9b]">Layanan Psikotes</label>
-                        <input type="text" class="rounded-md border-0 bg-gray-100 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->psikotest_service }}" readonly disabled />
+                        <input type="text" class="rounded-md border-0 bg-gray-100 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->psikotes_service }}" readonly disabled />
                     </div>
                     <div class="flex w-full flex-col">
                         <label class="mb-2 font-bold text-[#9b9b9b]">Jenis Psikotes</label>

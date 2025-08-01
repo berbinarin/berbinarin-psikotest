@@ -106,8 +106,8 @@
             const confirmModal = document.getElementById('confirmModal');
             const confirmCancel = document.getElementById('confirmCancel');
             const cancelCancel = document.getElementById('cancelCancel');
-            const tanggalInput = document.getElementById('jadwalTanggal');
-            const hariInput = document.getElementById('hariKonseling');
+            // const tanggalInput = document.getElementById('jadwalTanggal');
+            // const hariInput = document.getElementById('hariKonseling');
 
             cancelButton.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -122,17 +122,17 @@
                 confirmModal.classList.add('hidden');
             });
 
-            tanggalInput.addEventListener('change', function () {
-                if (this.value) {
-                    hariInput.value = getDayName(this.value);
-                } else {
-                    hariInput.value = '';
-                }
-            });
+            // tanggalInput.addEventListener('change', function () {
+            //     if (this.value) {
+            //         hariInput.value = getDayName(this.value);
+            //     } else {
+            //         hariInput.value = '';
+            //     }
+            // });
 
-            if (tanggalInput.value) {
-                hariInput.value = getDayName(tanggalInput.value);
-            }
+            // if (tanggalInput.value) {
+            //     hariInput.value = getDayName(tanggalInput.value);
+            // }
         });
     </script>
 @endsection

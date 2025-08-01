@@ -17,7 +17,7 @@
         <!-- Card Section -->
         <div class="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2">
             @foreach($testCategories as $category)
-                <a href="{{ route('dashboard.test-types.by-category', $category->id) }}" class="flex h-[145px] w-[523px] flex-row items-center rounded-xl bg-white p-6 shadow hover:bg-gray-100 transition">
+                <a href="{{ route('dashboard.price-list.test-types.by-category', $category->id) }}" class="flex h-[145px] w-[523px] flex-row items-center rounded-xl bg-white p-6 shadow hover:bg-gray-100 transition">
                     <div class="flex h-[104px] w-[119px] items-center justify-center rounded-lg bg-gray-100">
                         <img src="{{ asset('assets/dashboard/images/arrow-down.svg') }}" alt="arrow down" class="w-16 h-16">
                     </div>

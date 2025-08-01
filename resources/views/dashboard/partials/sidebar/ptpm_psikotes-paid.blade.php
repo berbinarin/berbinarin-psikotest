@@ -26,9 +26,9 @@
 </li>
 
 <!-- sidebar manage division  -->
-<li class="{{ isRouteNameStartWith("dashboard.test-categories") }} my-5 rounded-lg p-2">
-    <a href="{{ route("dashboard.test-categories.index") }}" class="{{ Str::startsWith(Route::currentRouteName(), "dashboard.test-categories") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
-        <i class="bx bxs-purchase-tag {{ Str::startsWith(Route::currentRouteName(), "dashboard.test-categories") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
+<li class="{{ isRouteNameStartWith("dashboard.price-list.") }} my-5 rounded-lg p-2">
+    <a href="{{ route("dashboard.price-list.test-category.index") }}" class="{{ Str::startsWith(Route::currentRouteName(), "dashboard.price-list") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
+        <i class="bx bxs-purchase-tag {{ Str::startsWith(Route::currentRouteName(), "dashboard.price-list") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
         <span class="ml-4 text-base font-bold leading-5">Price List</span>
     </a>
 </li>

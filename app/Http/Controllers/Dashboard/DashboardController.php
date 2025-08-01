@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\TestCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -29,7 +30,9 @@ class DashboardController extends Controller
 
     private function ptpmPsikotesPaid()
     {
-        return view('dashboard.ptpm_psikotes-paid.index');
+        $testCategories = TestCategory::withCount('registrantProfiles')->get();
+
+        return view('dashboard.ptpm_psikotes-paid.index', compact('testCategories'));
     }
 
     private function ptpmPsikotesFree()

@@ -79,6 +79,8 @@ class RegistrantController extends Controller
      */
     public function show($id)
     {
+        $registrant = RegistrantProfile::with(['user', 'testType.testCategory'])->findOrFail($id);
+
         return view('dashboard.ptpm_psikotes-paid.registrants.show', compact('registrant'));
     }
 
@@ -90,7 +92,7 @@ class RegistrantController extends Controller
     {
         $registrant = RegistrantProfile::with(['user', 'testType.testCategory'])->findOrFail($id);
         $testCategories = TestCategory::with('testTypes')->get();
-        return view('dashboard.ptpm.registrants.edit', compact('registrant', 'testCategories'));
+        return view('dashboard.ptpm_psikotes-paid.registrants.edit', compact('registrant', 'testCategories'));
     }
 
     /**
@@ -98,14 +100,73 @@ class RegistrantController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $registrant = RegistrantProfile::with('user')->findOrFail($id);
 
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $registrant->user->id,
+            'gender' => 'required|in:Laki-laki,Perempuan',
+            'age' => 'required|numeric|min:1|max:100',
+            'domicile' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:20',
+            'service' => 'required|string',
+            'reason' => 'required|string',
+            'test_type_id' => 'required|exists:test_types,id',
+            'psikotes_date' => 'required|date',
+            'psikotes_time' => 'required|date_format:H:i',
+        ]);
+
+        try {
+            DB::transaction(function () use ($request, $registrant) {
+                // Update user
+                $registrant->user->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                ]);
+
+                // Update registrant profile
+                $registrant->update([
+                    'test_type_id' => $request->test_type_id,
+                    'gender' => $request->gender,
+                    'age' => $request->age,
+                    'domicile' => $request->domicile,
+                    'phone_number' => $request->phone_number,
+                    'psikotes_service' => $request->service,
+                    'reason' => $request->reason,
+                    'schedule' => \Carbon\Carbon::createFromFormat('Y-m-d H:i', $request->psikotes_date . ' ' . $request->psikotes_time),
+                ]);
+            });
+
+            return redirect()->route('dashboard.registrants.index')->with('success', 'Data berhasil diperbarui.');
+        } catch (\Exception $e) {
+            dd($e);
+            return back()->withInput()->with('error', 'Terjadi kesalahan saat memperbarui data.');
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $registrant = RegistrantProfile::findOrFail($id);
+
+        try {
+            DB::transaction(function () use ($registrant) {
+                // Hapus user juga (opsional)
+                $user = $registrant->user;
+                $registrant->delete();
+
+                if ($user) {
+                    $user->delete();
+                }
+            });
+
+            return redirect()->route('dashboard.registrants.index')->with('success', 'Data berhasil dihapus.');
+        } catch (\Exception $e) {
+            dd($e);
+            return back()->with('error', 'Terjadi kesalahan saat menghapus data.');
+        }
     }
 }

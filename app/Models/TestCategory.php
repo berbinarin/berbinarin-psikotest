@@ -18,4 +18,8 @@ class TestCategory extends Model
     {
         return $this->hasMany(TestType::class);
     }
+
+    public function registrantProfiles() {
+        return $this->hasManyThrough(RegistrantProfile::class, TestType::class, 'test_category_id', 'test_type_id', 'id', 'id');
+    }
 }
