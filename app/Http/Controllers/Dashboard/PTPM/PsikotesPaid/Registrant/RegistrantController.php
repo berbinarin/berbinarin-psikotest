@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard\PTPM\Registrant;
+namespace App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Registrant;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRegistrationRequest;
@@ -38,7 +38,6 @@ class RegistrantController extends Controller
     {
         $validateData = $request->validated();
 
-
         try {
             // 2. Bungkus semua operasi database dalam transaction
             DB::transaction(function () use ($validateData) {
@@ -63,7 +62,7 @@ class RegistrantController extends Controller
                     'phone_number' => $validateData['phone_number'],
                     'psikotes_service' => $validateData['service'],
                     'reason' => $validateData['reason'],
-                    'schedule' => \Carbon\Carbon::createFromFormat('Y-m-d H:i', $validateData['psikotes_date'] . ' ' . $validateData['psikotes_time'])
+                    'schedule' => \Carbon\Carbon::createFromFormat('Y-m-d H:i', $validateData['date'] . ' ' . $validateData['time'])
                 ]);
             });
         } catch (\Exception $e) {
@@ -112,8 +111,8 @@ class RegistrantController extends Controller
             'service' => 'required|string',
             'reason' => 'required|string',
             'test_type_id' => 'required|exists:test_types,id',
-            'psikotes_date' => 'required|date',
-            'psikotes_time' => 'required|date_format:H:i',
+            // 'psikotes_date' => 'required|date',
+            // 'psikotes_time' => 'required|date_format:H:i',
         ]);
 
         try {
@@ -133,7 +132,7 @@ class RegistrantController extends Controller
                     'phone_number' => $request->phone_number,
                     'psikotes_service' => $request->service,
                     'reason' => $request->reason,
-                    'schedule' => \Carbon\Carbon::createFromFormat('Y-m-d H:i', $request->psikotes_date . ' ' . $request->psikotes_time),
+                    // 'schedule' => \Carbon\Carbon::createFromFormat('Y-m-d H:i', $request->psikotes_date . ' ' . $request->psikotes_time),
                 ]);
             });
 

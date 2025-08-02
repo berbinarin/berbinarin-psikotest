@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard\PTPM\Testimonial;
+namespace App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Testimonial;
 
 use App\Http\Controllers\Controller;
 use App\Models\Testimonial;

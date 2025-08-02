@@ -120,6 +120,16 @@
                 </div>
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
+                        <label for="date" class="mb-2 font-bold text-[#9b9b9b]">Tanggal Psikotes</label>
+                        <input type="date" name="date" id="date" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" onclick="document.getElementById('datepicker').focus()" />
+                    </div>
+                    <div class="flex w-full flex-col">
+                        <label for="time" class="mb-2 font-bold text-[#9b9b9b]">Waktu Psikotes</label>
+                        <input type="time" name="time" id="time" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" onclick="document.getElementById('timepicker').focus()" />
+                    </div>
+                </div>
+                <div class="flex gap-20">
+                    <div class="flex w-full flex-col">
                         <label for="domicile" class="mb-2 font-bold text-[#9b9b9b]">Domisili</label>
                         <input type="text" id="domicile" name="domicile" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Domisili" value="{{ old("domicile") }}" />
                     </div>
@@ -187,6 +197,25 @@
             // if (tanggalInput.value) {
             //     hariInput.value = getDayName(tanggalInput.value);
             // }
+
+            document.addEventListener('DOMContentLoaded', function () {
+                flatpickr('#date', {
+                    dateFormat: 'Y-m-d', // Ini adalah format yang AKAN DIKIRIM ke Laravel (untuk validasi & DB)
+                    altInput: true, // Aktifkan alternate input
+                    altFormat: 'd/m/Y', // Ini adalah format yang AKAN DITAMPILKAN kepada pengguna
+                    allowInput: true, // Memungkinkan input manual (optional)
+                    // Jika Anda menggunakan old() sebagai nilai awal datepicker, tambahkan ini:
+                    defaultDate: '{{ old("psikotes_date") ? old("psikotes_date") : "" }}',
+                });
+
+                flatpickr('#time', {
+                    enableTime: true,
+                    noCalendar: true,
+                    dateFormat: 'H:i',
+                    time_24hr: true,
+                    defaultDate: '{{ old("psikotes_time") ? old("psikotes_time") : "" }}',
+                });
+            });
         });
     </script>
 @endsection

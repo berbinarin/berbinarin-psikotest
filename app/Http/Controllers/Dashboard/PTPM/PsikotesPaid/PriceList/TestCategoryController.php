@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard\PTPM\PriceList;
+namespace App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\PriceList;
 
 use App\Http\Controllers\Controller;
 use App\Models\TestCategory;

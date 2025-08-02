@@ -1,15 +1,15 @@
 <?php
 
 use App\Http\Controllers\Dashboard\DashboardController;
-use App\Http\Controllers\Dashboard\PTPM\PriceList\TestCategoryController;
-use App\Http\Controllers\Dashboard\PTPM\PriceList\TestTypeController;
-use App\Http\Controllers\Dashboard\PTPM\Registrant\RegistrantController;
-use App\Http\Controllers\Dashboard\PTPM\Tool\AttemptController;
-use App\Http\Controllers\Dashboard\PTPM\Tool\DataController;
-use App\Http\Controllers\Dashboard\PTPM\Tool\QuestionController;
-use App\Http\Controllers\Dashboard\PTPM\Tool\SectionController;
-use App\Http\Controllers\Dashboard\PTPM\Tool\ToolController;
-use App\Http\Controllers\Dashboard\PTPM\Testimonial\TestimonialController;
+use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\PriceList\TestCategoryController;
+use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\PriceList\TestTypeController;
+use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Registrant\RegistrantController;
+use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Tool\AttemptController;
+use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Tool\DataController;
+use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Tool\QuestionController;
+use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Tool\SectionController;
+use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Tool\ToolController;
+use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Testimonial\TestimonialController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(function () {
@@ -17,7 +17,7 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
     // Dashbaord
     Route::get('/', [DashboardController::class, 'index'])->name('index');
 
-    // Psychological Test Product Management
+    // Psychological Test Product Management - Paid
     Route::middleware('role:ptpm_psikotes-paid')->group(function () {
 
         // Registrants
@@ -35,12 +35,12 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
         Route::prefix('price-list')->name('price-list.')->group(function () {
             Route::get('/test-categories', [TestCategoryController::class, 'index'])->name('test-category.index');
             Route::get('/test-types/category/{category}', [TestTypeController::class, 'byCategory'])->name('test-types.by-category');
+            Route::get('/test-types/category/{category}/create', [TestTypeController::class, 'create'])->name('test-types.create');
+            Route::post('/test-types/category/{category}', [TestTypeController::class, 'store'])->name('test-types.store');
+            Route::get('/test-types/category/{category}/edit/{id}', [TestTypeController::class, 'edit'])->name('test-types.edit');
+            Route::put('/test-types/category/{category}/update/{id}', [TestTypeController::class, 'update'])->name('test-types.update');
+            Route::delete('/test-types/category/{category}/delete/{id}', [TestTypeController::class, 'destroy'])->name('test-types.destroy');
         });
-        // Route::get('/test-types/category/{category}/create', [TestTypeController::class, 'create'])->name('test-types.create');
-        // Route::post('/test-types/category/{category}', [TestTypeController::class, 'store'])->name('test-types.store');
-        // Route::get('/test-types/category/{category}/edit/{id}', [TestTypeController::class, 'edit'])->name('test-types.edit');
-        // Route::put('/test-types/category/{category}/update/{id}', [TestTypeController::class, 'update'])->name('test-types.update');
-        // Route::delete('/test-types/category/{category}/delete/{id}', [TestTypeController::class, 'destroy'])->name('test-types.destroy');
 
         // Tools
         Route::prefix('tools')->name('tools.')->group(function () {

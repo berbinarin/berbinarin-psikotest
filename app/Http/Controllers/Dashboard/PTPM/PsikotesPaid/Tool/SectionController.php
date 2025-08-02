@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard\PTPM\Tool;
+namespace App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Tool;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tool;

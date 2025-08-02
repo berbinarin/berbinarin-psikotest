@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard\PTPM\Tool;
+namespace App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Tool;
 
 use App\Http\Controllers\Controller;
 use App\Models\Section;
@@ -15,7 +15,7 @@ class QuestionController extends Controller
     public function index(Tool $tool, Section $section)
     {
         $section->load('questions');
-        
+
         return view('dashboard.ptpm_psikotes-paid.tools.data.questions.index', compact('tool', 'section'));
     }
 

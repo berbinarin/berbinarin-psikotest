@@ -11,7 +11,7 @@
             <div class="py-4 md:pb-7 md:pt-12">
                 <div>
                     <div class="mb-2 flex items-center gap-2">
-                        <a href="{{ route("dashboard.registrants.index") }}">
+                        <a href="{{ route("dashboard.price-list.test-category.index") }}">
                             <img src="{{ asset("assets/dashboard/images/back-btn.png") }}" alt="Back Button" />
                         </a>
                         <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">{{ $category->name }}</p>
@@ -44,10 +44,10 @@
                                     <td class="text-center">{{ "Rp" . number_format($testType->price, 0, ",", ".") }}</td>
                                     <td class="text-center">{{ $testType->description ?? "-" }}</td>
                                     <td class="flex items-center justify-center gap-2">
-                                        <a href="#" class="inline-flex items-start justify-start rounded p-2 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #e9b306">
+                                        <a href="{{ route('dashboard.price-list.test-types.edit', [$testType->id, $testType->testCategory]) }}" class="inline-flex items-start justify-start rounded p-2 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #e9b306">
                                             <i class="bx bx-edit-alt text-black"></i>
                                         </a>
-                                        <form action="#" method="POST">
+                                        <form id="deleteForm-{{ $testType->id }}" action="{{ route('dashboard.price-list.test-types.destroy', [$testType->id, $testType->testCategory]) }}" method="POST">
                                             @csrf
                                             @method("DELETE")
                                             <button type="button" class="delete-button inline-flex items-start justify-start rounded p-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #ef4444">
@@ -69,6 +69,47 @@
     <script>
         $(document).ready(function () {
             $('#table').DataTable();
+        });
+    </script>
+    <script>
+        function toggleModal(modalId) {
+            var modal = document.getElementById(modalId);
+            if (modal.style.display === 'none' || modal.style.display === '') {
+                modal.style.display = 'block';
+            } else {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        function toggleModal(modalID) {
+            document.getElementById(modalID).classList.toggle('hidden');
+            document.getElementById(modalID + '-backdrop').classList.toggle('hidden');
+            document.getElementById(modalID).classList.toggle('flex');
+            document.getElementById(modalID + '-backdrop').classList.toggle('flex');
+        }
+    </script>
+
+    <script>
+        document.querySelectorAll('.delete-button').forEach((button) => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                const formId = this.getAttribute('data-id');
+                Swal.fire({
+                    title: 'Hapus Responden',
+                    text: 'Apakah anda yakin menghapusnya?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Hapus',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('deleteForm-' + formId).submit();
+                    }
+                });
+            });
         });
     </script>
 @endsection
