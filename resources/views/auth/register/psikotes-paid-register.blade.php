@@ -264,6 +264,7 @@
                 altInput: true, // Aktifkan alternate input
                 altFormat: 'd/m/Y', // Ini adalah format yang AKAN DITAMPILKAN kepada pengguna
                 allowInput: true, // Memungkinkan input manual (optional)
+                minDate: new Date().fp_incr(7),
                 // Jika Anda menggunakan old() sebagai nilai awal datepicker, tambahkan ini:
                 defaultDate: '{{ old("psikotes_date") ? old("psikotes_date") : "" }}',
             });
