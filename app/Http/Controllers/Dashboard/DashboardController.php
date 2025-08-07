@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\TestCategory;
+use App\Models\PsikotesFreeProfile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -32,11 +34,31 @@ class DashboardController extends Controller
     {
         $testCategories = TestCategory::withCount('registrantProfiles')->get();
 
+        
+
         return view('dashboard.ptpm_psikotes-paid.index', compact('testCategories'));
     }
 
     private function ptpmPsikotesFree()
     {
-        return view('dashboard.ptpm_psikotes-free.index');
+        $freeProfiles = PsikotesFreeProfile::all();
+        $profilesCount = PsikotesFreeProfile::count();
+
+        $weeklyRegistrants = collect();
+        $startOfWeek = Carbon::now()->copy()->subWeeks(3)->startOfWeek(); // 4 minggu terakhir
+
+        for ($i = 0; $i < 4; $i++) {
+            $weekStart = $startOfWeek->copy()->addWeeks($i);
+            $weekEnd = $weekStart->copy()->endOfWeek();
+
+            $count = PsikotesFreeProfile::whereBetween('created_at', [$weekStart, $weekEnd])->count();
+
+            $weeklyRegistrants->push([
+                'label' => $weekStart->format('d M') . ' - ' . $weekEnd->format('d M'),
+                'value' => $count,
+            ]);
+        }
+
+        return view('dashboard.ptpm_psikotes-free.index', compact('freeProfiles', 'profilesCount', 'weeklyRegistrants'));
     }
 }

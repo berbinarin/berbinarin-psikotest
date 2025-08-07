@@ -1,66 +1,114 @@
-@extends("dashboard.layouts.app",
+@extends(
+    "dashboard.layouts.app",
     [
         "title" => "Dashboard",
     ]
 )
 
 @section("content")
-    <section class="flex w-full">
-        <div class="flex flex-col">
-            <div class="w-full">
-                <div class="py-10">
-                    <div class="">
-                        <p class="mb-2 text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Dashboard PsikotestPaid</p>
-                        <p class="text-disabled w-2/4">Dashboard</p>
-                    </div>
-                </div>
-            </div>
+    <section class="max-h-[95vh] w-full p-5">
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900">Dashboard Pendaftaran Psikotest Gratis</h1>
+            <p class="mt-2 text-gray-500">Dashboard ini memberikan informasi mengenai jumlah pengguna yang telah mendaftar psikotest.</p>
+        </div>
 
-            <div class="md-20 ml-20 grid w-full grid-cols-2 gap-8 rounded-lg bg-gray-100 p-8 shadow-lg">
-                <div class="flex w-full flex-col items-center justify-between rounded-lg bg-[#6482AD] p-10 shadow-lg">
-                    <div class="flex w-full flex-row justify-between">
-                        <div class="block text-2xl font-semibold text-white">Individu</div>
-                        <i class="bx bxs-user text-3xl text-white"></i>
-                    </div>
-                    <div class="mt-4 flex w-full flex-col items-start justify-start">
-                        <span class="block text-4xl font-bold text-white"></span>
-                        <span class="block text-2xl font-semibold text-white">Pendaftar</span>
-                    </div>
-                </div>
-
-                <div class="flex w-full flex-col items-center justify-between rounded-lg bg-[#7FA1C3] p-10 shadow-lg">
-                    <div class="flex w-full flex-row justify-between">
-                        <div class="block text-2xl font-semibold text-white">Instansi Pendidikan</div>
-                        <i class="bx bxs-graduation text-3xl text-white"></i>
-                    </div>
-                    <div class="mt-4 flex w-full flex-col items-start justify-start">
-                        <span class="block text-4xl font-bold text-white"></span>
-                        <span class="block text-2xl font-semibold text-white">Pendaftar</span>
-                    </div>
-                </div>
-
-                <div class="flex w-full flex-col items-center justify-between rounded-lg bg-[#85B3E2] p-10 shadow-lg">
-                    <div class="flex w-full flex-row justify-between">
-                        <div class="block text-2xl font-semibold text-white">Perusahaan</div>
-                        <i class="bx bxs-business text-3xl text-white"></i>
-                    </div>
-                    <div class="mt-4 flex w-full flex-col items-start justify-start">
-                        <span class="block text-4xl font-bold text-white"></span>
-                        <span class="block text-2xl font-semibold text-white">Pendaftar</span>
-                    </div>
-                </div>
-
-                <div class="flex w-full flex-col items-center justify-between rounded-lg bg-[#94c8fb] p-10 shadow-lg">
-                    <div class="flex w-full flex-row justify-between">
-                        <div class="block text-2xl font-semibold text-white">Komunitas</div>
-                        <i class="bx bxs-group text-3xl text-white"></i>
-                    </div>
-                    <div class="mt-4 flex w-full flex-col items-start justify-start">
-                        <span class="block text-4xl font-bold text-white"></span>
-                        <span class="block text-2xl font-semibold text-white">Pendaftar</span>
+        <!-- Card Section -->
+        <div class="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <!-- Card Individu -->
+            <div class="flex h-[150px] flex-col justify-between rounded-xl bg-white p-4 shadow">
+                <span class="text-left text-[20px] font-semibold text-gray-800">
+                    Data Pendaftar
+                </span>
+                <div class="flex items-center justify-between mt-auto">
+                    <span class="text-[36px] font-bold text-gray-900">
+                        {{ $profilesCount }}
+                    </span>
+                    <div class="flex h-[64px] w-[64px] items-center justify-center rounded-xl bg-gray-100">
+                        <img src="{{ asset('assets/dashboard/images/arrow-down.svg') }}" alt="arrow down" class="w-10 h-10">
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Charts Section-->
+        <div class="grid grid-cols-1 gap-6 ">
+            <!-- Summary Chart -->
+            <div class="flex h-[380px] flex-col rounded-xl bg-white p-6 shadow">
+                <div class="mb-4">
+                    <span class="font-semibold text-gray-800">Summary</span>
+                </div>
+                <div class="relative flex justify-between items-end h-full mb-4 pl-10">
+                    <!-- Keterangan-->
+                    <div class="absolute top-0 bottom-0 left-0 flex flex-col justify-between py-2">
+                        <span class="absolute left-0 text-sm text-gray-500 top-0">50</span>
+                        <span class="absolute left-0 text-sm text-gray-500 top-[45px]">40</span>
+                        <span class="absolute left-0 text-sm text-gray-500 top-[95px]">30</span>
+                        <span class="absolute left-0 text-sm text-gray-500 top-[145px]">20</span>
+                        <span class="absolute left-0 text-sm text-gray-500 top-[195px]">10</span>
+                    </div>
+
+                    <!-- Batang Grafik -->
+                    @php
+                        $maxValue = 50;
+                    @endphp
+
+                    @foreach($weeklyRegistrants as $data)
+                        @php
+                            $barHeightPercentage = ($data['value'] / $maxValue) * 100;
+                        @endphp
+                        <div class="flex-1 flex flex-col items-center mx-2 h-full">
+                            <span class="mb-1 text-xs text-gray-600">{{ $data['value'] }}</span>
+                            <div class="w-[13px] h-full bg-gray-100 rounded-lg relative">
+                                <div
+                                    class="w-full bg-[#3986A3] rounded-lg absolute bottom-0 transition-all duration-500 ease-out"
+                                    style="height: {{ $barHeightPercentage }}%"
+                                ></div>
+                            </div>
+                            <span class="mt-2 text-xs text-gray-700 text-center">{{ $data['label'] }}</span>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
     </section>
+@endsection
+
+@section("script")
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const donutCtx = document.getElementById('donutChart').getContext('2d');
+            const donutChart = new Chart(donutCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Individu', 'Instansi', 'Perusahaan', 'Komunitas'],
+                    datasets: [
+                        {
+                            data: [29, 15, 22, 8],
+                            backgroundColor: ['#2196bc', '#7fb1c3', '#5a8b9d', '#ffffff'],
+                            borderColor: '#2e5e6c',
+                            borderWidth: 0,
+                            hoverOffset: 0,
+                        },
+                    ],
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '55%',
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { enabled: false },
+                    },
+                    animation: {
+                        animateScale: false,
+                        animateRotate: true,
+                    },
+                    onHover: (event, chartElement) => {
+                        event.native.target.style.cursor = 'default';
+                    },
+                },
+            });
+        });
+    </script>
 @endsection

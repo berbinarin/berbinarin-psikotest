@@ -26,7 +26,6 @@ class RegisteredUserController extends Controller
 
     public function psikotesPaidRegisterStore(StoreRegistrationRequest $request): RedirectResponse
     {
-
         $validateData = $request->validated();
 
         try {
@@ -56,11 +55,16 @@ class RegisteredUserController extends Controller
                     'schedule' => Carbon::createFromFormat('Y-m-d H:i', $validateData['psikotes_date'] . ' ' . $validateData['psikotes_time'])
                 ]);
             });
+            
         } catch (\Exception $e) {
             return back()->withInput()->with('error', 'Terjadi kesalahan saat pendaftaran. Silakan coba lagi.');
         }
 
 
-        return redirect()->route('home.index');
+        return redirect()->route('auth.psikotes-paid.register.summary');
+    }
+    public function summary(): View
+    {
+        return view('auth.register.summary');
     }
 }

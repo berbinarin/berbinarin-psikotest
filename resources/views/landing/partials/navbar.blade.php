@@ -24,7 +24,7 @@
 <nav class="fixed left-0 right-0 top-0 z-30 mx-14 mt-7 flex items-center rounded-3xl bg-white bg-opacity-90 px-4 py-2.5 shadow-md backdrop-blur-sm max-sm:mx-4 max-sm:px-4 max-sm:py-2">
     <!-- Logo -->
     <div class="flex items-center">
-        <img src="{{ asset("assets/images/landing/logo/logo-berbinar.png") }}" alt="Logo" class="h-12 w-auto max-sm:h-8" />
+        <img src="{{ asset("assets/landing/logo/logo-berbinar.png") }}" alt="Logo" class="h-12 w-auto max-sm:h-8" />
     </div>
 
     <!-- Burger Menu -->
@@ -40,11 +40,11 @@
 
     <!-- Navigasi Link -->
     <div id="navLinks" class="ml-auto hidden items-center space-x-14 max-lg:space-x-7 md:flex">
-        <a href="{{ route("home.index") }}" class="{{ isNavbarActive("home") }}">Beranda</a>
-        <a href="{{ route("about-us.index") }}" class="{{ isNavbarActive("about-us") }}">Tentang Kami</a>
-        <a href="{{ route("product.index") }}" class="{{ isNavbarActive("product") }}">Produk</a>
-        <a href="{{ route("career.index") }}" class="{{ isNavbarActive("career") }}">Karier</a>
-        <a href="{{ route("arteri.index") }}" class="{{ isNavbarActive("arteri") }}">ArteRi</a>
+        <a href="https://berbinar.in/" class="{{ isNavbarActive("product") }}">Beranda</a>
+        <a href="https://berbinar.in/tentang-kami" class="{{ isNavbarActive("about-us") }}">Tentang Kami</a>
+        <a href="https://berbinar.in/produk" class="{{ isNavbarActive("home") }}">Produk</a>
+        <a href="https://berbinar.in/karier" class="{{ isNavbarActive("career") }}">Karier</a>
+        <a href="https://berbinar.in/arteri" class="{{ isNavbarActive("arteri") }}">ArteRi</a>
         <div>
             <a href="https://linktr.ee/berbinarinsight" target="_blank">
                 <button class="rounded-full bg-gradient-to-r from-[#F7B23B] to-[#AD7D29] px-6 py-2 font-medium text-black">Ajukan Kolaborasi</button>
@@ -55,11 +55,11 @@
 
 <!-- Screen Mobile Menu -->
 <div id="mobileMenu" class="fixed inset-0 z-40 flex hidden flex-col items-center justify-center bg-white bg-opacity-90">
-    <a href="{{ route("home.index") }}" class="{{ isNavbarActiveMobile("home") }}">Beranda</a>
-    <a href="{{ route("about-us.index") }}" class="{{ isNavbarActiveMobile("about-us") }}">Tentang Kami</a>
-    <a href="{{ route("product.index") }}" class="{{ isNavbarActiveMobile("product") }}">Produk</a>
-    <a href="{{ route("career.index") }}" class="{{ isNavbarActiveMobile("career") }}">Karier</a>
-    <a href="{{ route("arteri.index") }}" class="{{ isNavbarActiveMobile("arteri") }}">ArteRi</a>
+    <a href="" class="{{ isNavbarActiveMobile("home") }}">Beranda</a>
+    <a href="" class="{{ isNavbarActiveMobile("about-us") }}">Tentang Kami</a>
+    <a href="" class="{{ isNavbarActiveMobile("product") }}">Produk</a>
+    <a href="" class="{{ isNavbarActiveMobile("career") }}">Karier</a>
+    <a href="" class="{{ isNavbarActiveMobile("arteri") }}">ArteRi</a>
     <a href="https://linktr.ee/berbinarinsight" target="_blank">
         <button class="mt-8 rounded-full bg-gradient-to-r from-[#F7B23B] to-[#AD7D29] px-6 py-2 font-medium text-black">Ajukan Kolaborasi</button>
     </a>

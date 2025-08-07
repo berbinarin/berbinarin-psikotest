@@ -26,12 +26,11 @@
             {{-- Tombol Kembali --}}
             <div>
                 <template x-if="page === 1">
-                    <a href="{{ route('home.index') }}">
+                    <a href="{{ route("home.index") }}">
                         <div class="flex cursor-pointer items-center space-x-2">
-                            <img src="{{ asset('/assets/landing/icons/left-arrow.svg') }}" alt="Left Arrow" class="h-3 w-auto" />
+                            <img src="{{ asset("/assets/landing/icons/left-arrow.svg") }}" alt="Left Arrow" class="h-3 w-auto" />
                             <p class="flex text-[15px] font-semibold text-[#3986A3]">
                                 Kembali
-                                <span class="ml-0.5 hidden sm:block">pilih psikotes</span>
                             </p>
                         </div>
                     </a>
@@ -40,7 +39,7 @@
                 <template x-if="page === 2">
                     <button @click="page = 1; window.scrollTo({top: 0, behavior: 'smooth'})" type="button">
                         <div class="flex cursor-pointer items-center space-x-2">
-                            <img src="{{ asset('/assets/landing/icons/left-arrow.svg') }}" alt="Left Arrow" class="h-3 w-auto" />
+                            <img src="{{ asset("/assets/landing/icons/left-arrow.svg") }}" alt="Left Arrow" class="h-3 w-auto" />
                             <p class="flex text-[15px] font-semibold text-[#3986A3]">
                                 Kembali
                                 <span class="ml-0.5 hidden sm:block">ke jadwal</span>
@@ -59,56 +58,65 @@
                 </p>
             </div>
 
-            {{-- Modal --}}
-            <div id="modal" class="fixed inset-0 -top-6 z-30 flex hidden items-center justify-center bg-gray-900 bg-opacity-50 backdrop-blur-md max-sm:-top-2">
-                <div class="h-auto max-h-screen w-[70%] overflow-y-auto rounded-2xl bg-white p-6 shadow-md max-lg:h-[90%] max-sm:w-[86%] max-sm:px-2">
-                    <h1 class="bg-gradient-to-r from-amber-400 to-yellow-700 bg-clip-text pb-4 text-center text-3xl font-bold text-transparent max-sm:text-2xl">Syarat dan Ketentuan</h1>
+            <!-- Modal -->
+            <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+                <div class="max-h-[90vh] w-[90%] max-w-3xl overflow-y-auto rounded-2xl bg-white p-8 shadow-lg max-sm:p-4">
+                    <!-- Judul Utama -->
+                    <h1 class="bg-gradient-to-r from-[#3986A3] to-[#15323D] bg-clip-text pb-4 text-center text-3xl font-bold text-transparent max-sm:text-2xl">Syarat dan Ketentuan</h1>
 
-                    <div class="mb-6">
-                        <div class="flex items-start gap-2">
-                            <img src="{{ asset("assets/landing/icons/location.png") }}" alt="Lokasi" class="mt-0.5 h-5 w-5 object-contain" />
-                            <span class="font-semibold">Lokasi offline Konseling</span>
-                        </div>
-                        <ol class="mt-1 list-decimal space-y-1 pl-7">
-                            <li class="max-sm:text-sm">a. Psikolog: Surabaya, Kediri, Sidoarjo, Denpasar, Samarinda, Jakarta, Malang, dan Kalimantan Utara (Tarakan)</li>
-                            <li class="max-sm:text-sm">b. Peer Counselor: Bekasi, Jakarta, Tangerang Selatan, Padang, Wonogiri, dan Malang</li>
-                        </ol>
-                    </div>
+                    <!-- Daftar Syarat -->
+                    <ul class="space-y-2 px-6 text-[sm] text-justify">
+                        <li>
+                            <span class="font-semibold text-center">Harap baca sebelum daftar:</span>
+                            <ul class="mt-1 list-decimal pl-4 text-[#70787D]">
+                                <li>
+                                    Setelah mengisi formulir, calon pendaftar akan diarahkan untuk melakukan
+                                    <span class="font-bold">pembayaran 100%</span>
+                                    ke
+                                    <span class="font-bold">Bank Mandiri</span>
+                                    dengan no rekening
+                                    <span class="font-bold">1400020763711</span>
+                                    a.n. Berbinar Insightful Indonesia dengan aturan transfer 1×24 jam setelah pengisian formulir.
+                                </li>
+                                <li>
+                                    Jika calon peserta tes
+                                    <span class="font-bold">tidak membalas pesan</span>
+                                    admin dalam waktu 1×24 jam setelah pengisian formulir, maka pendaftaran oleh calon peserta tes secara
+                                    <span class="font-bold">otomatis dibatalkan</span>.
+                                </li>
+                                <li>
+                                    Jika calon peserta tes
+                                    <span class="font-bold">tidak membalas pesan</span>
+                                    admin dalam 1×24 jam, jadwal yang sudah ditentukan oleh klien
+                                    <span class="font-bold">berhak untuk dirubah oleh Tim Berbinar dan kesepakatan dari klien</span>
+                                    .
+                                </li>
+                                <li>
+                                    Jika calon peserta tes
+                                    <span class="font-bold">tidak membalas pesan</span>
+                                    admin dalam 2×24 jam setelah melakukan pembayaran,
+                                    <span class="font-bold">pembayaran dianggap hangus</span>
+                                    .
+                                </li>
+                                <li>
+                                    Calon peserta tes
+                                    <span class="font-bold">dapat mengajukan pembatalan</span>
+                                    layanan psikotes dalam kurun waktu 1×24 jam setelah proses administrasi dan dana yang telah dibayarkan akan
+                                    <span class="font-bold">dikembalikan 100%</span>
+                                    .
+                                </li>
+                                <li>
+                                    Setelah
+                                    <span class="font-bold">selesai melaksanakan psikotes</span>
+                                    , peserta akan dikirimkan hasil psikotesnya dengan jangka waktu tertentu.
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
 
-                    <div class="mb-6">
-                        <div class="flex items-start gap-2">
-                            <img src="{{ asset("assets/landing/icons/payment.png") }}" alt="Pembayaran" class="mt-0.5 h-5 w-5" />
-                            <span class="font-semibold">Pembayaran</span>
-                        </div>
-                        <ol class="mt-1 list-decimal space-y-1 pl-7">
-                            <li class="max-sm:text-sm">Melakukan pembayaran ke Bank Mandiri dengan no rekening 1400020763711 a.n. Berbinar Insightful Indonesia dengan aturan transfer 1×24 jam.</li>
-                        </ol>
-                    </div>
-
-                    <div class="mb-6">
-                        <div class="flex items-start gap-2">
-                            <img src="{{ asset("/assets/landing/icons/chat.png") }}" alt="Pembalasan Pesan" class="mt-0.5 h-5 w-5" />
-                            <span class="font-semibold">Pembalasan Pesan</span>
-                        </div>
-                        <ol class="mt-1 list-decimal space-y-1 pl-7">
-                            <li class="max-sm:text-sm">Tidak membalas pesan admin dalam 1×24 jam, pendaftaran oleh klien secara otomatis dibatalkan.</li>
-                            <li class="max-sm:text-sm">Tidak membalas pesan admin dalam 1×24 jam, jadwal yang sudah ditentukan oleh klien berhak untuk diubah oleh Tim Berbinar dan kesepakatan dari klien.</li>
-                            <li class="max-sm:text-sm">Tidak membalas pesan admin dalam 2×24 jam setelah melakukan pembayaran, pembayaran dianggap hangus.</li>
-                        </ol>
-                    </div>
-
-                    <div class="mb-6">
-                        <div class="flex items-start gap-2">
-                            <img src="{{ asset("assets/landing/icons/cancel.png") }}" alt="Pengajuan Pembatalan" class="mt-0.5 h-5 w-5" />
-                            <span class="font-semibold">Pengajuan Pembatalan</span>
-                        </div>
-                        <ol class="mt-1 list-decimal space-y-1 pl-7">
-                            <li class="max-sm:text-sm">Pengajuan proses pembatalan layanan konseling dapat dilakukan dalam kurun waktu 1×24 jam setelah proses administrasi dan dana yang telah dibayarkan akan dikembalikan 100%.</li>
-                        </ol>
-                    </div>
-
-                    <div class="mt-4 flex justify-center lg:gap-x-3">
-                        <button id="closeModal" class="rounded-md border-[1.5px] border-[#225062] bg-transparent px-4 py-1.5 font-medium text-black max-sm:text-[15px]">Tutup</button>
+                    <!-- Tombol -->
+                    <div class="mt-6 flex justify-center">
+                        <button id="closeModal" class="rounded-md bg-gradient-to-r from-[#3986A3] to-[#15323D] px-6 py-2 font-medium text-white shadow-sm transition">Saya Mengerti</button>
                     </div>
                 </div>
             </div>
@@ -131,7 +139,7 @@
                     </div>
 
                     <div class="flex flex-col space-y-1">
-                        <p class="text-sm text-[#333333] sm:text-[17px]">Waktu Psikotes</p>
+                        <p class="text-sm text-[#333333] sm:text-[17px]">Waktu Psikotes (WIB)</p>
                         <div class="relative">
                             <input type="time" id="psikotes_time" name="psikotes_time" class="w-full cursor-pointer rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none" placeholder="--:--" value="{{ old("psikotes_time") }}" readonly />
                             <img src="{{ asset("assets/landing/icons/clock.png") }}" class="absolute right-5 top-1/2 h-4 w-auto -translate-y-1/2 object-contain" onclick="document.getElementById('timepicker').focus()" />
@@ -264,6 +272,7 @@
                 altInput: true, // Aktifkan alternate input
                 altFormat: 'd/m/Y', // Ini adalah format yang AKAN DITAMPILKAN kepada pengguna
                 allowInput: true, // Memungkinkan input manual (optional)
+                minDate: new Date().fp_incr(7),
                 // Jika Anda menggunakan old() sebagai nilai awal datepicker, tambahkan ini:
                 defaultDate: '{{ old("psikotes_date") ? old("psikotes_date") : "" }}',
             });
