@@ -46,22 +46,22 @@ class StoreRegistrationRequest extends FormRequest
         ];
     }
 
-    // protected function failedValidation(Validator $validator)
-    // {
-    //     // --- BREAKPOINT DI SINI ---
-    //     // Letakkan breakpoint di baris di bawah ini atau dd()
-    //     // Anda bisa dd() errors-nya langsung di sini
-    //     dd($validator->errors()->all());
-    //     // Atau dd($validator->errors()->toArray());
+    protected function failedValidation(Validator $validator)
+    {
+        // --- BREAKPOINT DI SINI ---
+        // Letakkan breakpoint di baris di bawah ini atau dd()
+        // Anda bisa dd() errors-nya langsung di sini
+        dd($validator->errors()->all());
+        // Atau dd($validator->errors()->toArray());
 
-    //     // Jika Anda menggunakan Xdebug, execution akan berhenti di sini.
-    //     // Anda bisa memeriksa $validator->errors() di panel debugger.
+        // Jika Anda menggunakan Xdebug, execution akan berhenti di sini.
+        // Anda bisa memeriksa $validator->errors() di panel debugger.
 
-    //     // Jangan lupa untuk melemparkan kembali exception agar redirect tetap terjadi setelah debugging
-    //     throw new HttpResponseException(
-    //         response()->json($validator->errors(), 422) // Ini akan mengembalikan JSON error
-    //         // Atau jika ingin tetap redirect:
-    //         // redirect()->back()->withErrors($validator)->withInput()
-    //     );
-    // }
+        // Jangan lupa untuk melemparkan kembali exception agar redirect tetap terjadi setelah debugging
+        throw new HttpResponseException(
+            response()->json($validator->errors(), 422) // Ini akan mengembalikan JSON error
+            // Atau jika ingin tetap redirect:
+            // redirect()->back()->withErrors($validator)->withInput()
+        );
+    }
 }

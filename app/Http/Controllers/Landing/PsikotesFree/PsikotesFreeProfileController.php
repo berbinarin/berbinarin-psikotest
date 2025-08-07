@@ -22,13 +22,6 @@ class PsikotesFreeProfileController extends Controller
             'email' => 'required|email',
         ]);
 
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email',
-            'gender' => 'required',
-            'date_of_birth' => 'required|date_format:d/m/Y',
-            'date_of_test' => 'required|date_format:d/m/Y',
-        ]);
 
         $dateOfBirth = Carbon::createFromFormat('d/m/Y', $request->date_of_birth)->format('Y-m-d');
         $dateOfTest = Carbon::createFromFormat('d/m/Y', $request->date_of_test)->format('Y-m-d');
