@@ -73,14 +73,7 @@
                     </div>
 
 
-                    <!-- <div class="flex flex-col w-full md:flex-row gap-5 justify-end items-end">
-                        <form action="" method="GET">
-                            @csrf
-                            <button type="submit" class="mr-3 md:mr-5 text-xl text-white bg-primary rounded-full font-semibold border-3 border-white hover:border-amber-300 hover:bg-amber-300 hover:text-primary hover:font-semibold duration-500 px-10 py-2.5 w-fit">
-                                Beranda
-                            </button>
-                        </form>
-                    </div> -->
+
 
                 </div>
             </div>
@@ -211,6 +204,14 @@
             </div>
             {{-- /Tampilan Mobile --}}
 
+            <div class="flex flex-col w-full md:flex-row gap-5 justify-center items-center">
+                <form action="{{ route('psikotes-free.finish') }}" method="GET">
+                    @csrf
+                    <button type="submit" class="mr-3 md:mr-5 text-xl text-white bg-primary rounded-full font-semibold border-3 border-white hover:border-amber-300 hover:bg-amber-300 hover:text-primary hover:font-semibold duration-500 px-10 py-2.5 w-fit">
+                        Beranda
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 </sections>
