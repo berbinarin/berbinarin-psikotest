@@ -32,6 +32,26 @@
                 <div class="flex w-full flex-row gap-5">
                     <div class="flex w-full flex-col">
                         <dl class="flex grow flex-col text-black">
+                            <dt class="self-start font-bold">Username</dt>
+                            <dd class="mt-2.5 rounded-md bg-white px-2.5 py-2 text-black shadow-md max-md:pr-5">
+                                {{ $registrant->user->username }}
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="ml-5 flex w-full flex-col">
+                        <dl class="flex grow flex-col text-black">
+                            <dt class="self-start font-bold">Password</dt>
+                            <dd class="mt-2.5 whitespace-nowrap rounded-md bg-white px-2.5 py-2 text-black shadow-md max-md:pr-5">
+                                {{ \Illuminate\Support\Str::before($registrant->user->email, '@') }}
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="ml-14 w-[1000px] rounded-md bg-white px-5 py-4">
+                <div class="flex w-full flex-row gap-5">
+                    <div class="flex w-full flex-col">
+                        <dl class="flex grow flex-col text-black">
                             <dt class="self-start font-bold">Nama</dt>
                             <dd class="mt-2.5 rounded-md bg-white px-2.5 py-2 text-black shadow-md max-md:pr-5">
                                 {{ $registrant->user->name }}
@@ -46,7 +66,7 @@
                             </dd>
                             <dt class="mt-3.5 self-start font-bold">Layanan Psikotes</dt>
                             <dd class="mt-2.5 rounded-md bg-white px-2.5 py-2 text-black shadow-md max-md:pr-5">
-                                {{ $registrant->psikotest_service }}
+                                {{ $registrant->psikotes_service }}
                             </dd>
                             <dt class="mt-3.5 self-start font-bold">Harga</dt>
                             <dd class="mt-2.5 rounded-md bg-white px-2.5 py-2 text-black shadow-md max-md:pr-5">

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Dashboard\PTPM\PriceList;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\PriceList\TestType\StoreTestTypeRequest;
+use App\Http\Requests\Dashboard\PriceList\TestType\UpdateTestTypeRequest;
+use App\Models\TestCategory;
+use App\Models\TestType;
 use Illuminate\Http\Request;
 
 class TestTypeController extends Controller
@@ -26,9 +30,13 @@ class TestTypeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTestTypeRequest $request, TestCategory $testCategory)
     {
-        //
+        $validateData = $request->validated();
+        $valiatedData['test_category_id'] = $testCategory->id;
+        TestType::create($validateData);
+
+        return redirect()->route('dashboard.test-category.show', $testCategory->id);
     }
 
     /**
@@ -50,16 +58,21 @@ class TestTypeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateTestTypeRequest $request, TestCategory $testCategory, TestType $testType)
     {
-        //
+        $validateData = $request->validated();
+        $testType->update($validateData);
+
+        return redirect()->route('dashboard.test-categories.show', $testCategory->id);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(TestCategory $testCategory, TestType $testType)
     {
-        //
+        $testType->delete();
+
+        return redirect()->route('dashboard.test-categories.show', $testCategory->id);
     }
 }

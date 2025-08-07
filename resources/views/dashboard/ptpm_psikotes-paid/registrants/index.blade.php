@@ -26,15 +26,15 @@
                     <table id="table" class="display gap-3" style="overflow-x: scroll">
                         <thead>
                             <tr>
-                                <th style="text-align: center">No</th>
-                                <th style="text-align: center">Nama Lengkap</th>
-                                <th style="text-align: center">Layanan</th>
-                                <th style="text-align: center">Kategori</th>
-                                <th style="text-align: center">Jenis</th>
-                                <th style="text-align: center">Harga</th>
-                                <th style="text-align: center">Jadwal</th>
-                                <th style="text-align: center">Waktu</th>
-                                <th style="text-align: center">Action</th>
+                                <th class="text-center">No</th>
+                                <th class="text-center">Nama Lengkap</th>
+                                <th class="text-center">Username</th>
+                                <th class="text-center">Password</th>
+                                <th class="text-center">Layanan</th>
+                                <th class="text-center">Kategori</th>
+                                <th class="text-center">Harga</th>
+                                <th class="text-center">Jadwal</th>
+                                <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,18 +42,16 @@
                                 <tr id="" class="data-consume">
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>{{ $registrant->user->name }}</td>
+                                    <td>{{ $registrant->user->username }}</td>
+                                    <td>{{ \Illuminate\Support\Str::before($registrant->user->email, "@") }}</td>
                                     <td class="text-center">{{ Str::title($registrant->psikotes_service) }}</td>
                                     <td class="text-center">{{ $registrant->testType->testCategory->name }}</td>
-                                    <td class="text-center">{{ $registrant->testType->name }}</td>
                                     <td class="text-center">{{ "Rp" . number_format($registrant->testType->price, 0, ",", ".") }}</td>
                                     <td class="text-center">
-                                        {{ \Carbon\Carbon::parse($registrant->schedule)->format("d-m-Y") }}
-                                    </td>
-                                    <td class="text-center">
-                                        {{ \Carbon\Carbon::parse($registrant->schedule)->format("H:i:s") }}
+                                        {{ \Carbon\Carbon::parse($registrant->schedule)->format("d-m-Y H:i:s") }}
                                     </td>
                                     <td class="flex items-center justify-center gap-2">
-                                        <a href="{{ route('dashboard.registrants.show', $registrant->id) }}" class="mt-4 inline-flex items-start justify-start rounded p-3 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0">
+                                        <a href="{{ route("dashboard.registrants.show", $registrant->id) }}" class="mt-4 inline-flex items-start justify-start rounded p-3 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0">
                                             <p class="font-semibold text-primary">Detail</p>
                                             <i class="bx bx-right-arrow-alt mt-1 text-primary"></i>
                                         </a>
