@@ -17,8 +17,8 @@ class PsikotesFreeProfileController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'gender' => 'required|string|max:10',
-            // 'date_of_birth' => 'required|date',
-            'date_of_test' => 'required|date',
+            'date_of_birth' => 'required',
+            // 'date_of_test' => 'required|date',
             'email' => 'required|email',
         ]);
 

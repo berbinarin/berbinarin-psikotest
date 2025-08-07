@@ -1,4 +1,4 @@
-@extends('landing.layouts.app', [
+@extends('landing.layouts.test', [
 'title' => 'Psikotest Berbinar',
 'active' => 'Test',
 'page' => 'Feedback',
@@ -7,17 +7,11 @@
 @section('content')
 <sections>
     <div class="md:min-h-screen flex justify-center items-center">
-        <div class="flex flex-col md:flex-row w-full md:max-w-[90%] md:mb-10 mt-20 md:mt-36 justify-center md:shadow-xl md:bg-white rounded-3xl p-7 sm:p-10 relative">
+        <div class="flex flex-col md:flex-row w-full md:max-w-[90%] mt-5 md:mb-10 justify-center md:shadow-xl md:bg-white rounded-3xl p-7 sm:p-10 relative">
             <div class="lg:w-[95%]">
 
                 <div class="flex flex-row justify-between mb-8">
-                    <!-- Tombol Kembali -->
-                    <a href="">
-                        <div class="flex cursor-pointer items-center space-x-2 lg:order-1">
-                            <img src="{{ asset("assets/landing/images/vector/left-arrow.svg") }}" alt="Left Arrow" class="h-3 w-auto lg:h-5" />
-                            <p class="text-[15px] font-semibold text-[#3986A3] xl:text-lg">Kembali</p>
-                        </div>
-                    </a>
+                    
                 </div>
 
                 <h2 class="text-center text-2xl lg:text-4xl font-bold mb-1 lg:mb-12 bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text text-transparent">Gimana Perasaan Kamu Setelah <br> Mengikuti Psikotes Ini?</h2>

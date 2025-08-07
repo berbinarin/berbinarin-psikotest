@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
-use Jenssegers\Agent\Agent;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -19,12 +18,6 @@ class AuthenticatedSessionController extends Controller
      */
     public function login(): View
     {
-        $agent = new Agent();
-
-    if ($agent->isMobile() && !$agent->isTablet()) {
-        // Kalau user pakai HP, arahkan ke halaman error
-        return view('landing.psikotes-paid.tools.block-mobile');
-    }
         return view('auth.login.login');
     }
 

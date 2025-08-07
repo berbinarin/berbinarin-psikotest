@@ -12,7 +12,7 @@
     <div class="relative flex justify-center rounded-3xl max-sm:p-5 lg:mb-20 lg:mt-10">
         <div class="items-left flex flex-row justify-center overflow-hidden rounded-3xl lg:shadow-2xl" style="box-shadow: 0 0 25px rgba(0, 0, 0, 0.25)">
             <div class="items-left flex w-full flex-col md:flex-row">
-                <div class="t-container z-38 z-10 rounded-3xl bg-white px-4 max-sm:max-w-3xl lg:w-2/3 lg:px-14">
+                <div class="t-container z-38 z-10 rounded-3xl bg-white lg:max-w-3xl max-sm:w-[95vw] max-sm:pr-10 px-4 max-sm:max-w-3xl lg:w-2/3 lg:px-14">
                     <!-- Tambahkan fixed width di sini -->
                     <div class="progress my-10 h-3 w-full overflow-hidden rounded-full bg-gray-200">
                         <div class="progress-bar ml-[1px] h-3 w-[20px] rounded-full bg-gradient-to-r from-[#3B88A4] to-[#72A9BE] text-end text-[13px] md:ml-0" role="progressbar" style="width: {{ $progress }}%" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100"><span class="ml-1 mr-2 font-semibold text-white"></span></div>
@@ -29,14 +29,14 @@
                         <div class="flex flex-row md:flex-col">
                             <div class="radio inline-box mt-6 flex w-full flex-col justify-between gap-5 md:flex-row md:gap-10 lg:flex-row">
                                 @foreach ($question->options as $option)
-                                    <div class="flex flex-col items-center">
+                                    <div class="flex flex-col items-center max-sm:flex-row">
                                         <label class="cursor-pointer" for="{{ $option["value"] }}">
                                             <input id="{{ $option["value"] }}" type="radio" name="answer" value="{{ $option["value"] }}" class="peer hidden" required />
                                             <div class="peer-checked:border-primary-alt flex h-14 w-14 items-center justify-center rounded-full border border-gray-300 font-bold shadow-[0_0_10px_0_#3986A380] transition peer-checked:bg-primary peer-checked:text-white lg:h-16 lg:w-16 lg:text-2xl">
                                                 {{ $option["value"] }}
                                             </div>
                                         </label>
-                                        <span class="mt-2 text-center text-sm font-medium lg:text-base">
+                                        <span class="mt-2 max-sm:ml-3 text-center text-sm font-medium lg:text-base">
                                             {{ $option["text"] }}
                                         </span>
                                     </div>
