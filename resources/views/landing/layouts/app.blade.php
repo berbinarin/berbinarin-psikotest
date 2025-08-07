@@ -9,7 +9,7 @@
     </head>
     <body class="relative w-full overflow-x-hidden">
         {{-- Navbar --}}
-        {{-- @include("landing.partials.navbar") --}}
+        @include("landing.partials.navbar")
 
         <main class="relative flex w-full flex-col bg-[#F7F9FA] font-plusJakartaSans">
             {{-- Main Content --}}
@@ -17,7 +17,7 @@
         </main>
 
         {{-- Footer --}}
-        {{-- @include('landing.partials.footer') --}}
+        @include('landing.partials.footer')
 
         {{-- Script --}}
         @include("landing.partials.script")

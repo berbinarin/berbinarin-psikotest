@@ -20,7 +20,7 @@
                     </a>
                 </div>
 
-                <h2 class="text-center text-2xl lg:text-4xl font-bold mb-1 lg:mb-12 bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text text-transparent">Gimana Perasaan Kamu Setelah <br> Mengikuti Psikotest Ini?</h2>
+                <h2 class="text-center text-2xl lg:text-4xl font-bold mb-1 lg:mb-12 bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text text-transparent">Gimana Perasaan Kamu Setelah <br> Mengikuti Psikotes Ini?</h2>
 
                 <form action="{{ route('psikotes-free.feedback.store') }}"
                     method="POST" class="rating">

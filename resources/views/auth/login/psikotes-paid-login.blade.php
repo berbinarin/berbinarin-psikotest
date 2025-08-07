@@ -1,5 +1,5 @@
 @extends(
-    "landing.layouts.app",
+    "auth.layouts.app",
     [
         "title" => "Psikotest Berbinar",
     ]

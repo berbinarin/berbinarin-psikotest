@@ -22,6 +22,9 @@ Route::name('auth.')->group(function () {
 
         // Psikotes Paid Login
         Route::get('psikotes-paid/login', [AuthenticatedSessionController::class, 'psikotesPaidLogin'])->name('psikotes-paid.login');
+
+        // Psikotes Paid Login
+        Route::get('psikotes-paid/summary', [RegisteredUserController::class, 'summary'])->name('psikotes-paid.register.summary');
         
 
         // Authenticate

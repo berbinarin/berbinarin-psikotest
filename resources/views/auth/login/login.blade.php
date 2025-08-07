@@ -6,55 +6,58 @@
 )
 
 @section("content")
-    <section class="mx-auto flex items-center h-screen max-w-screen-xl px-4 sm:px-6 lg:px-8">
-        <div>
-            <div class="mx-auto flex max-w-2xl flex-col items-center justify-center text-center">
-                <img src="{{ asset("/assets/auth/images/logo-berbinar.png") }}" alt="Logo Berbinar Insightful Indonesia" title="Logo Berbinar Insightful Indonesia" class="w-24" />
-                <h1 class="text-dark mt-2 text-4xl font-bold">
-                    Welcome to Dashboard
-                    <br />
-                    Admin Berbinarin
-                </h1>
-                <p class="mt-4 text-gray-500">Masuk ke dashboard dan lakukan manajemen data mulai dari sisi admin dan HR untuk konten dan informasi pada website Berbinarin</p>
+    <section class="h-full w-full bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset("assets/auth/images/loginbg.png") }}')">
+        <!-- icon -->
+        <div class="ml-14 mt-14 flex flex-row items-center justify-start gap-4">
+            <img src="{{ asset("assets/auth/images/logo-berbinar.png") }}" alt="Logo Berbinar" class="h-[100px] w-[100px]" />
+            <h4 class="font-plusJakartaSans font-bold text-[#3986A3]">PT Berbinar Insightful Indonesia</h4>
+        </div>
+
+        <!-- Form Login -->
+        <div class="flex items-center justify-center">
+            <div class="w-[701px] rounded-3xl bg-white p-14 shadow-[0px_1px_4px_0px_rgba(12,12,13,0.05)]">
+                <!-- Judul & Deskripsi -->
+                <div class="text-center">
+                    <h1 class="font-plusJakartaSans text-4xl font-bold text-[#1E1E1E]">
+                        Welcome to
+                        <br />
+                        Dashboard Admin Berbinarin
+                    </h1>
+                    <p class="mt-3 text-xl font-normal text-[#736565]">Masuk ke dashboard dan lakukan manajemen data secara menyeluruh untuk keperluan admin, konten, dan informasi di website Berbinarin.</p>
+                </div>
+
+                <!-- Garis Horizontal -->
+                <div class="mx-auto mt-8 w-full border-t border-[#CCCCCC]"></div>
+
+                <!-- Form Pengisian -->
+                <div class="mt-8 flex flex-col gap-4">
+                    <!-- Username -->
+                    <div class="flex flex-col gap-3">
+                        <label class="text-xl font-normal text-[#1E1E1E]">Username</label>
+                        <div class="flex h-16 items-center rounded-2xl bg-white px-4 outline outline-1 outline-stone-300/80">
+                            <img class="mr-3 size-12" src="assets/auth/images/Circled Envelope.png" alt="Username Icon" />
+                            <input type="text" placeholder="Username" class="flex-1 border-none bg-transparent text-xl text-[#A9A7A7] outline-none placeholder:translate-y-[1px] placeholder:text-xl focus:border-none focus:outline-none focus:ring-0" />
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="flex flex-col gap-3">
+                        <label class="text-xl font-normal text-[#1E1E1E]">Password</label>
+                        <div class="flex h-16 items-center rounded-2xl bg-white px-4 outline outline-1 outline-stone-300/80">
+                            <img class="mr-3 size-12" src="assets/auth/images/Secure.png" alt="Password Icon" />
+                            <input type="password" placeholder="Password" class="flex-1 border-none bg-transparent text-xl text-[#A9A7A7] outline-none placeholder:translate-y-[1px] placeholder:text-xl focus:border-none focus:outline-none focus:ring-0" />
+                        </div>
+                    </div>
+
+                    <!-- Tombol Login -->
+                    <button class="mt-4 h-[71px] rounded-xl bg-cyan-700 text-xl font-bold text-white transition hover:bg-cyan-800">Sign In</button>
+                </div>
             </div>
+        </div>
 
-            <form action="{{ route('auth.authenticate') }}" method="POST" class="mx-auto mb-0 mt-5 max-w-md space-y-4">
-                @csrf
-                <input type="hidden" name="login_type" value="admin">
-
-                <div>
-                    <label for="username" class="sr-only">Username</label>
-
-                    <div class="relative">
-                        <input type="text" name="username" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-base shadow-sm" placeholder="Enter username" value="{{ old('username') }}" autofocus />
-
-                        <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
-                            </svg>
-                        </span>
-                    </div>
-                </div>
-
-                <div>
-                    <label for="password" class="sr-only">Password</label>
-
-                    <div class="relative">
-                        <input type="password" name="password" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-base shadow-sm" placeholder="Enter password" />
-
-                        <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                            </svg>
-                        </span>
-                    </div>
-                </div>
-
-                <div class="flex items-center justify-between">
-                    <button type="submit" class="inline-block rounded-lg bg-primary px-5 py-3 text-base font-medium text-white">Sign in</button>
-                </div>
-            </form>
+        <!-- Copyright -->
+        <div class="mr-24 mt-20 pb-20 text-end text-xl font-bold text-[#3986A3]">
+            <h4>© 2025, Berbinar.in</h4>
         </div>
     </section>
 @endsection
