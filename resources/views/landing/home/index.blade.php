@@ -59,13 +59,10 @@
                 <span class="text-md w-full rounded-xl bg-gradient-to-r from-[#3986A3] to-[#225062] px-16 py-2 text-white max-sm:text-[15px] sm:w-auto">Daftar Tes Berbayar</span>
             </a>
         </div>
-
-        
-            <div class="flex items-center justify-center">
-            <a href="" class="flex w-full justify-center">
-            <span class="text-md w-full rounded-xl bg-gradient-to-r from-[#F7B23B] to-[#916823] px-8 py-2 text-white max-sm:text-[15px] sm:w-auto">Ikuti Test Kepribadian Gratis</span>
+        <div class="flex items-center justify-center">
+            <a href="{{ route("psikotes-free.profile") }}" class="flex w-full justify-center">
+                <span class="text-md w-full rounded-xl bg-gradient-to-r from-[#F7B23B] to-[#916823] px-8 py-2 text-white max-sm:text-[15px] sm:w-auto">Ikuti Test Kepribadian Gratis</span>
             </a>
-            </div>
-       
+        </div>
     </div>
 @endsection

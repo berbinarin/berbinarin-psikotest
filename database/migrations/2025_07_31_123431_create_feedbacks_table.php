@@ -1,4 +1,3 @@
-
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -12,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('responses', function (Blueprint $table) {
+        Schema::create('feedbacks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('attempt_id')->constrained('attempts');
-            $table->foreignId('question_id')->constrained('questions');
-            $table->json('answer');
+            $table->foreignId('psikotes_free_profile_id')->constrained('psikotes_free_profiles');
+            $table->integer('rating');
+            $table->text('experience');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('responses');
+        Schema::dropIfExists('feedbacks');
     }
 };

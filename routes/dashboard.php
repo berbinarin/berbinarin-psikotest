@@ -70,4 +70,13 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
             Route::get('/{id}}', [TestimonialController::class, 'show'])->name('show');
         });
     });
+
+    // Psychological Test Product Management - Free
+    Route::middleware('role:ptpm_psikotes-free')->group(function () {
+
+        // Psikotes Free Profiles
+        Route::prefix('free-profiles')->name('free-profiles.')->group(function () {
+            Route::get('/', [DashboardController::class, 'index'])->name('index');
+        });
+    });
 });

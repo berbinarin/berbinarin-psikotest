@@ -41,4 +41,9 @@ class Question extends Model
     {
         return $this->belongsTo(Section::class, 'section_id');
     }
+
+    public function psikotesFreeResponses(): HasMany
+    {
+        return $this->hasMany(PsikotesFreeResponse::class, 'question_id');
+    }
 }
