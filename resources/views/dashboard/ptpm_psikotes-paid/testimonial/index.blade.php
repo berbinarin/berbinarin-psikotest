@@ -11,18 +11,18 @@
             <div class="py-4 md:pb-7 md:pt-12">
                 <div>
                     <p tabindex="0" class="mb-2 text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Data Testimoni</p>
-                    <p class="text-disabled py-2">Fitur ini menampilkan informasi testimoni dari pengguna Psikotes Berbinar</p>
+                    <p class="text-disabled py-2 text-gray-500">Fitur ini menampilkan data testimoni <span class="italic">user&nbsp;</span> yang telah melakukan Psikotest.</p>
                 </div>
             </div>
-            <div class="rounded-[24px] bg-white px-10 py-7">
+            <div class="rounded-[24px] bg-white px-10 py-7 mb-7">
                 <div class="mt-4 overflow-x-auto">
                     <table id="table" class="display gap-3" style="overflow-x: scroll">
                         <thead>
                             <tr>
                                 <th style="text-align: center">No</th>
-                                <th style="text-align: center">User</th>
-                                <th style="text-align: center">Date</th>
-                                <th style="text-align: center">Action</th>
+                                <th style="text-align: center"><span class="italic">User</span></th>
+                                <th style="text-align: center"><span class="italic">Date</span></th>
+                                <th style="text-align: center"><span class="italic">Action</span></th>
                             </tr>
                         </thead>
                         <tbody>

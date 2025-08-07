@@ -13,9 +13,9 @@
                     <a href="{{ route("dashboard.registrants.index") }}">
                         <img src="{{ asset("assets/dashboard/images/back-btn.png") }}" alt="Back Button" />
                     </a>
-                    <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Edit Pendaftar Psikotes</p>
+                    <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Edit Data Pendaftar</p>
                 </div>
-                <p class="text-disabled py-2">Fitur ini mengubah informasi data pengguna yang telah melakukan registrasi Psikotes Berbinar</p>
+                <p class="text-disabled py-2">Fitur ini digunakan untuk edit data user seperti  Nama, Jenis kelamin, Tanggal lahir, Email yang telah mengisi  Psikotes Berbinar.</p>
             </div>
         </div>
         <div class="flex flex-col gap-10 rounded-[24px] bg-white px-10 py-7">
@@ -26,11 +26,11 @@
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="name" class="mb-2 font-bold text-[#9b9b9b]">Nama</label>
-                        <input type="text" id="name" name="name" class="rounded-md border-0 bg-gray-100 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->user->name }}" />
+                        <input type="text" id="name" name="name" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->user->name }}" />
                     </div>
                     <div class="flex w-full flex-col">
                         <label for="gender" class="mb-2 font-bold text-[#9b9b9b]">Jenis Kelamin</label>
-                        <select id="gender" name="gender" class="rounded-md border-0 bg-gray-100 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0">
+                        <select id="gender" name="gender" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0">
                             <option value="Laki-Laki" {{ $registrant->gender == "Laki-Laki" ? "selected" : "" }}>Laki-Laki</option>
                             <option value="Perempuan" {{ $registrant->gender == "Perempuan" ? "selected" : "" }}>Perempuan</option>
                         </select>
@@ -39,40 +39,40 @@
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="age" class="mb-2 font-bold text-[#9b9b9b]">Umur</label>
-                        <input type="number" id="age" name="age" class="rounded-md border-0 bg-gray-100 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->age }}" />
+                        <input type="number" id="age" name="age" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->age }}" />
                     </div>
                     <div class="flex w-full flex-col">
                         <label for="phone_number" class="mb-2 font-bold text-[#9b9b9b]">Telepon</label>
-                        <input type="tel" id="phone_number" name="phone_number" class="rounded-md border-0 bg-gray-100 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->phone_number }}" />
+                        <input type="tel" id="phone_number" name="phone_number" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->phone_number }}" />
                     </div>
                 </div>
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="email" class="mb-2 font-bold text-[#9b9b9b]">Email</label>
-                        <input type="email" id="email" name="email" class="rounded-md border-0 bg-gray-100 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->user->email }}" />
+                        <input type="email" id="email" name="email" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->user->email }}" />
                     </div>
                     <div class="flex w-full flex-col">
                         <label for="test_category" class="mb-2 font-bold text-[#9b9b9b]">Kategori Psikotes</label>
-                        <input type="text" id="test_category" class="rounded-md border-0 bg-gray-100 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->testType->testCategory->name }}" readonly />
+                        <input type="text" id="test_category" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->testType->testCategory->name }}" readonly />
                     </div>
                 </div>
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="psikotest_service" class="mb-2 font-bold text-[#9b9b9b]">Layanan Psikotes</label>
-                        <select id="psikotest_service" name="psikotest_service" class="rounded-md border-0 bg-gray-100 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0">
+                        <select id="psikotest_service" name="psikotest_service" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0">
                             <option value="Online" {{ $registrant->psikotest_service == "Online" ? "selected" : "" }}>Online</option>
                             <option value="Offline" {{ $registrant->psikotest_service == "Offline" ? "selected" : "" }}>Offline</option>
                         </select>
                     </div>
                     <div class="flex w-full flex-col">
                         <label for="test_type_id" class="mb-2 font-bold text-[#9b9b9b]">Jenis Psikotes</label>
-                        <input type="text" id="test_type_id" class="rounded-md border-0 bg-gray-100 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->testType->name }}" readonly />
+                        <input type="text" id="test_type_id" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->testType->name }}" readonly />
                     </div>
                 </div>
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="reason" class="mb-2 font-bold text-[#9b9b9b]">Alasan</label>
-                        <textarea id="reason" name="reason" rows="10" class="rounded-md border-0 bg-gray-100 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0">{{ $registrant->reason }}</textarea>
+                        <textarea id="reason" name="reason" rows="10" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0">{{ $registrant->reason }}</textarea>
                     </div>
                 </div>
 

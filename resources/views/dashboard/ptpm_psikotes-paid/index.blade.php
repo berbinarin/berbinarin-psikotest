@@ -8,8 +8,8 @@
 @section("content")
     <section class="max-h-[95vh] w-full p-5">
         <div class="mb-8">
-            <h1 class="text-3xl font-bold text-gray-900">Dashboard Pendaftaran Psikotest</h1>
-            <p class="mt-2 text-gray-500">Dashboard ini memberikan informasi mengenai jumlah pengguna yang telah mendaftar psikotest.</p>
+            <h1 class="text-3xl font-bold text-gray-900"><span class="italic">Dashboard&nbsp;</span> Pendaftaran Psikotest</h1>
+            <p class="mt-2 text-gray-500"><span class="italic">Dashboard&nbsp;</span> ini memberikan informasi mengenai jumlah pengguna yang telah mendaftar psikotest.</p>
         </div>
 
         <!-- Card Section -->
@@ -35,7 +35,7 @@
         <!-- Charts Section-->
         <div class="grid grid-cols-1 gap-6 ">
             <!-- Summary Chart -->
-            <div class="flex h-[380px] flex-col rounded-xl bg-white p-6 shadow">
+            <div class="flex h-[350px] flex-col rounded-xl bg-white px-6 py-4 shadow">
                 <div class="mb-4">
                     <span class="font-semibold text-gray-800">Summary</span>
                 </div>
