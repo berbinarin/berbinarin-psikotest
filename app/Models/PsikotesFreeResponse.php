@@ -10,6 +10,10 @@ class PsikotesFreeResponse extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $casts = [
+        'answer' => 'collection'
+    ];
+
     protected $fillable = [
         'psikotes_free_attempt_id',
         'question_id',
@@ -25,4 +29,5 @@ class PsikotesFreeResponse extends Model
     {
         return $this->belongsTo(Question::class, 'question_id');
     }
+
 }

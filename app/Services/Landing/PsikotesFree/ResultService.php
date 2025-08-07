@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Dashboard\PsikotesTool;
+namespace App\Services\Landing\PsikotesFree;
 
 use App\Models\PsikotesFreeAttempt;
 use App\Models\Tool;

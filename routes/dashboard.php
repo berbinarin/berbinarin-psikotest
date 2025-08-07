@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\PTPM\PsikotesFree\FreeProfileData\PsikotesFreeProfileController;
 use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\PriceList\TestCategoryController;
 use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\PriceList\TestTypeController;
 use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Registrant\RegistrantController;
@@ -77,6 +78,8 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
         // Psikotes Free Profiles
         Route::prefix('free-profiles')->name('free-profiles.')->group(function () {
             Route::get('/', [DashboardController::class, 'index'])->name('index');
+            Route::get('/data', [PsikotesFreeProfileController::class, 'index'])->name('data.show');
+            Route::get('/data/detail/{id}', [PsikotesFreeProfileController::class, 'show'])->name('data.detail');
         });
     });
 });

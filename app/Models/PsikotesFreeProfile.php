@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PsikotesFreeProfile extends Model
@@ -26,6 +27,6 @@ class PsikotesFreeProfile extends Model
 
     public function attempt(): HasMany
     {
-        return $this->hasMany(User::class, 'foreign_key', 'local_key');
+        return $this->hasMany(PsikotesFreeAttempt::class, 'psikotes_free_profile_id');
     }
 }

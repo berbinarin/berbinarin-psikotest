@@ -15,7 +15,7 @@ class PsikotesFreeAttempt extends Model
         'tool_id',
         'status',
     ];
-
+    
     public function psikotesFreeProfile()
     {
         return $this->belongsTo(PsikotesFreeProfile::class, 'psikotes_free_profile_id');
@@ -25,4 +25,10 @@ class PsikotesFreeAttempt extends Model
     {
         return $this->belongsTo(Tool::class, 'tool_id');
     }
+
+    public function responses()
+    {
+        return $this->hasMany(PsikotesFreeResponse::class, 'psikotes_free_attempt_id');
+    }
+
 }
