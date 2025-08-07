@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Landing\PsikotesPaid\Tool\VerifyTokenRequest;
 use App\Models\Tool;
 use App\Services\Landing\PsikotesPaid\AttemptService;
+use Jenssegers\Agent\Agent;
 
 class ToolController extends Controller
 {
@@ -13,6 +14,11 @@ class ToolController extends Controller
 
     public function index()
     {
+        $agent = new Agent();
+
+        if ($agent->isMobile() && !$agent->isTablet()) {
+        return view('landing.psikotes-paid.tools.block-mobile');
+    }
         $user = auth()->user();
         $tools = Tool::all();
 

@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="flex gap-6 rounded-[10px] bg-white px-8 py-3 drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]">
-                    <div class="relative flex h-full w-full flex-col justify-center">
+                    <div class="h-64px relative flex w-[683px] flex-col justify-center">
                         <div class="h-[3px] w-full rounded-md bg-black">
                             <div class="relative h-[3px] rounded-md bg-[#232ACA]" style="width: {{ $progress }}%">
                                 <span class="absolute right-0 block h-2 w-2 -translate-y-1/3 translate-x-1/2 rounded-full bg-[#232ACA]"></span>
