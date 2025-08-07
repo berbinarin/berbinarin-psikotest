@@ -25,4 +25,17 @@ class PsikotesFreeAttempt extends Model
     {
         return $this->belongsTo(Tool::class, 'tool_id');
     }
+
+    public function responses()
+    {
+        return $this->hasMany(PsikotesFreeResponse::class, 'psikotes_free_attempt_id');
+    }
+
+    public function feedback(){
+        return $this->hasOneThrough(Feedback::class, PsikotesFreeProfile::class, 'id', // foreign key on PsikotesFreeProfile
+        'psikotes_free_profile_id', // foreign key on Feedback
+        'psikotes_free_profile_id', // local key on Attempt
+        'id');
+    }
+
 }

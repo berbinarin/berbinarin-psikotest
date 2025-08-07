@@ -20,7 +20,7 @@ class ResponseService
             PsikotesFreeResponse::create([
                 'psikotes_free_attempt_id' => $this->attemptService->getSession('attempt_id'),
                 'question_id' => $question->id,
-                'answer' => json_encode($answer),
+                'answer' =>$answer,
             ]);
         }
     }

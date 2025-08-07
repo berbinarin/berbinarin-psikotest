@@ -9,7 +9,7 @@ use App\Models\Feedback;
 use App\Models\PsikotesFreeAttempt;
 use App\Services\Landing\PsikotesFree\AttemptService;
 use App\Services\Landing\PsikotesFree\ResponseService;
-use App\Services\Dashboard\PsikotesTool\ResultService;
+use App\Services\Landing\PsikotesFree\ResultService;
 
 class FeedbackController extends Controller
 {
