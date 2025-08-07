@@ -11,13 +11,13 @@
             <div class="py-4 md:pb-7 md:pt-12">
                 <div>
                     <p tabindex="0" class="mb-2 text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Data Alat Test</p>
-                    <p class="text-disabled py-2">Fitur ini menampilkan informasi data alat test yang tersedia</p>
-                    <a href="{{ route("dashboard.tools.create") }}" class="mt-8 inline-flex items-start justify-start rounded bg-primary px-6 py-3 text-white hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-3">
+                    <p class="text-disabled py-2 text-gray-500"><span class="italic">Dashboard&nbsp;</span> ini memberikan informasi mengenai jenis alat tes beserta nomor alat test dari token nya.</p>
+                    <a href="{{ route("dashboard.tools.create") }}" class="mt-8 inline-flex items-start justify-start rounded-lg bg-primary px-6 py-3 text-white hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-3">
                         <span class="leading-none">Tambah Data</span>
                     </a>
                 </div>
             </div>
-            <div class="rounded-[24px] bg-white px-10 py-7">
+            <div class="rounded-[24px] bg-white px-10 py-7 mb-7">
                 <div class="mt-4 overflow-x-auto">
                     <table id="table" class="display gap-3" style="overflow-x: scroll">
                         <thead>
@@ -26,7 +26,7 @@
                                 <th style="text-align: center">Nama Alat Test</th>
                                 <th style="text-align: center">Nomor Alat Test</th>
                                 <th style="text-align: center">Token</th>
-                                <th style="text-align: center">Action</th>
+                                <th style="text-align: center" class="w-80"><span class="italic">Action</span></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -36,20 +36,22 @@
                                     <td class="text-center">{{ $tool->name }}</td>
                                     <td class="text-center">{{ $tool->token }}</td>
                                     <td class="text-center">{{ $tool->token }}</td>
-                                    <td class="flex items-center justify-center gap-2">
-                                        <a href="{{ route("dashboard.tools.data.index", $tool->id) }}" class="inline-flex items-start justify-start rounded p-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #3b82f6">
-                                            <i class="bx bx-show text-white"></i>
+                                    <td class="flex items-center justify-center gap-3 w-80">
+                                        <a href="{{ route("dashboard.tools.edit", $tool->id) }}" class="inline-flex items-center justify-center w-36 rounded-3xl p-1 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #549FF0">
+                                            <i class="bx bx-refresh text-white mx-1 scale-150"></i>
+                                            <p class="text-white">Update</p>
                                         </a>
-                                        <a href="{{ route("dashboard.tools.edit", $tool->id) }}" class="inline-flex items-start justify-start rounded p-2 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #e9b306">
-                                            <i class="bx bx-edit-alt text-black"></i>
+                                        <a href="{{ route("dashboard.tools.data.index", $tool->id) }}" class="inline-flex items-center justify-center w-36 rounded-3xl p-1 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #64A1C4">
+                                            <i class="bx bx-home text-white mx-1 scale-110"></i>
+                                            <p class="text-white">Dashboard</p>
                                         </a>
-                                        <form action="" method="POST">
-                                            @csrf
-                                            @method("DELETE")
-                                            <button type="submit" class="inline-flex items-start justify-start rounded p-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #ef4444">
-                                                <i class="bx bx-trash-alt text-white"></i>
-                                            </button>
-                                        </form>
+                                        {{-- <form action="" method="POST"> --}}
+                                            {{-- @csrf --}}
+                                            {{-- @method("DELETE") --}}
+                                            {{-- <button type="submit" class="inline-flex items-start justify-start rounded p-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #ef4444"> --}}
+                                            {{-- <i class="bx bx-trash-alt text-white"></i> --}}
+                                            {{-- </button> --}}
+                                        {{-- </form> --}}
                                     </td>
                                 </tr>
                             @endforeach

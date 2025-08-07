@@ -13,15 +13,15 @@
                     <a href="{{ route("dashboard.registrants.index") }}">
                         <img src="{{ asset("assets/dashboard/images/back-btn.png") }}" alt="Back Button" />
                     </a>
-                    <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Edit Pendaftar Psikotes</p>
+                    <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Tambah Data Pendaftar</p>
                 </div>
-                <p class="text-disabled py-2">Fitur ini mengubah informasi data pengguna yang telah melakukan registrasi Psikotes Berbinar</p>
+                <p class="text-disabled py-2">Fitur ini menambah data user seperti  Nama, Jenis kelamin, Tanggal lahir, dan Email yang telah mengisi  Psikotes Berbinar.</p>
             </div>
         </div>
 
         {{-- Wrapper Alpine.js --}}
         <div
-            class="flex flex-col gap-10 rounded-[24px] bg-white px-10 py-7"
+            class="flex flex-col gap-10 rounded-[24px] bg-white px-10 pt-7 pb-10 mb-7"
             x-data="{
                 testCategories: {{ Js::from($testCategories) }},
                 selectedCategory: '{{ old("test_category_id") }}' || '',
@@ -62,11 +62,11 @@
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="name" class="mb-2 font-bold text-[#9b9b9b]">Nama</label>
-                        <input type="text" id="name" name="name" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Nama" value="{{ old("name") }}" />
+                        <input type="text" id="name" name="name" class="rounded-md border-1 border-gray-300 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Nama Lengkap" value="{{ old("name") }}" />
                     </div>
                     <div class="flex w-full flex-col">
                         <label for="gender" class="mb-2 font-bold text-[#9b9b9b]">Jenis Kelamin</label>
-                        <select name="gender" id="gender" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0">
+                        <select name="gender" id="gender" class="rounded-md border-1 border-gray-300 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0">
                             <option value="" selected disabled>Pilih Jenis Kelamin</option>
                             <option value="male" @selected(old("gender") === "male")>Laki-Laki</option>
                             <option value="female" @selected(old("gender") === "female")>Perempuan</option>
@@ -76,21 +76,21 @@
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="age" class="mb-2 font-bold text-[#9b9b9b]">Umur</label>
-                        <input type="number" id="age" name="age" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Umur" value="{{ old("age") }}" />
+                        <input type="number" id="age" name="age" class="rounded-md border-1 border-gray-300 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Umur Sekarang" value="{{ old("age") }}" />
                     </div>
                     <div class="flex w-full flex-col">
                         <label for="phone_number" class="mb-2 font-bold text-[#9b9b9b]">Telepon</label>
-                        <input type="tel" id="phone_number" name="phone_number" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Telepon" value="{{ old("phone_number") }}" />
+                        <input type="tel" id="phone_number" name="phone_number" class="rounded-md border-1 border-gray-300 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Nomor Telepon Aktif" value="{{ old("phone_number") }}" />
                     </div>
                 </div>
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="email" class="mb-2 font-bold text-[#9b9b9b]">Email</label>
-                        <input type="email" id="email" name="email" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Email" value="{{ old("email") }}" />
+                        <input type="email" id="email" name="email" class="rounded-md border-1 border-gray-300 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Berbinar@gmail.com" value="{{ old("email") }}" />
                     </div>
                     <div class="flex w-full flex-col">
                         <label for="test_category_id" class="mb-2 font-bold text-[#9b9b9b]">Kategori Psikotes</label>
-                        <select name="test_category_id" id="test_category_id" x-model="selectedCategory" @change="filterTypes()" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0">
+                        <select name="test_category_id" id="test_category_id" x-model="selectedCategory" @change="filterTypes()" class="rounded-md border-1 border-gray-300 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0">
                             {{-- Placeholder yang value-nya "" --}}
                             <option value="" selected disabled>Pilih Kategori Psikotes</option>
                             @foreach ($testCategories as $testCategory)
@@ -102,7 +102,7 @@
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="service" class="mb-2 font-bold text-[#9b9b9b]">Layanan Psikotes</label>
-                        <select name="service" id="service" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0">
+                        <select name="service" id="service" class="rounded-md border-1 border-gray-300 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0">
                             <option value="" selected disabled>Pilih Layanan Psikotes</option>
                             <option value="online" @selected(old("service") === "online")>Online</option>
                             <option value="offline" @selected(old("service") === "offline")>Offline</option>
@@ -110,7 +110,7 @@
                     </div>
                     <div class="flex w-full flex-col">
                         <label for="test_type_id" class="mb-2 font-bold text-[#9b9b9b]">Jenis Psikotes</label>
-                        <select name="test_type_id" id="test_type_id" x-model="selectedTestType" :disabled="!selectedCategory || filteredTestTypes.length === 0" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0">
+                        <select name="test_type_id" id="test_type_id" x-model="selectedTestType" :disabled="!selectedCategory || filteredTestTypes.length === 0" class="rounded-md border-1 border-gray-300 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0">
                             <option value="" selected disabled>Pilih Jenis Psikotes</option>
                             <template x-for="testType in filteredTestTypes" :key="testType.id">
                                 <option :value="testType.id" x-text="testType.name"></option>
@@ -131,16 +131,17 @@
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="domicile" class="mb-2 font-bold text-[#9b9b9b]">Domisili</label>
-                        <input type="text" id="domicile" name="domicile" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Domisili" value="{{ old("domicile") }}" />
+                        <input type="text" id="domicile" name="domicile" class="rounded-md border-1 border-gray-300 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Domisili" value="{{ old("domicile") }}" />
                     </div>
                 </div>
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="reason" class="mb-2 font-bold text-[#9b9b9b]">Alasan</label>
-                        <textarea id="reason" name="reason" rows="10" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Alasan">{{ old("reason") }}</textarea>
+                        <textarea id="reason" name="reason" rows="10" class="rounded-md border-1 border-gray-300 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Tuliskan Alasan Di Sini">{{ old("reason") }}</textarea>
                     </div>
                 </div>
-                <div class="mt-8 flex gap-4 border-t-2 border-t-gray-400 pt-5">
+                <hr class="border-t-2 border-t-gray-400">
+                <div class="flex gap-4">
                     <button type="submit" class="flex h-12 flex-1 items-center justify-center rounded-xl text-lg" style="width: 50%; background: #3986a3; color: #fff">Simpan</button>
                     <button type="button" id="cancelButton" class="flex h-12 flex-1 items-center justify-center rounded-xl text-lg" style="width: 50%; border: 2px solid #3986a3; color: #3986a3">Batal</button>
                 </div>
