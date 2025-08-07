@@ -31,19 +31,7 @@
 
                     <!-- Garis Horizontal -->
                     <div class="mx-auto mt-8 w-full border-t border-[#CCCCCC]"></div>
-                    <!-- Garis Horizontal -->
-                    <div class="mx-auto mt-8 w-full border-t border-[#CCCCCC]"></div>
 
-                    <!-- Form Pengisian -->
-                    <div class="mt-8 flex flex-col gap-4">
-                        <!-- Username -->
-                        <div class="flex flex-col gap-3">
-                            <label class="text-xl font-normal text-[#1E1E1E]">Username</label>
-                            <div class="flex h-16 items-center rounded-2xl bg-white px-4 outline outline-1 outline-stone-300/80">
-                                <img class="mr-3 size-12" src="assets/auth/images/Circled Envelope.png" alt="Username Icon" />
-                                <input type="text" name="username" placeholder="Username" class="flex-1 border-none bg-transparent text-xl text-[#A9A7A7] outline-none placeholder:translate-y-[1px] placeholder:text-xl focus:border-none focus:outline-none focus:ring-0" />
-                            </div>
-                        </div>
                     <!-- Form Pengisian -->
                     <div class="mt-8 flex flex-col gap-4">
                         <!-- Username -->

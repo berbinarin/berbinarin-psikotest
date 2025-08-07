@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\PriceList;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\PriceList\TestCategory\StoreTestCategoryRequest;
+use App\Http\Requests\Dashboard\PriceList\TestCategory\UpdateTestCategoryRequest;
 use App\Models\TestCategory;
 use Illuminate\Http\Request;
+
+use function PHPUnit\Framework\returnValue;
 
 class TestCategoryController extends Controller
 {
@@ -28,9 +32,12 @@ class TestCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTestCategoryRequest $request)
     {
-        //
+        $validateData = $request->validated();
+        TestCategory::category($validateData);
+
+        return redirect()->route('dashboard.test-categories.index');
     }
 
     /**
@@ -44,7 +51,7 @@ class TestCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(TestCategory $testCategory)
     {
         //
     }
@@ -52,16 +59,21 @@ class TestCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateTestCategoryRequest $request, TestCategory $testCategory)
     {
-        //
+        $validateData = $request->validated();
+        $testCategory->update($validateData);
+
+        return redirect()->route('dashboard.test-categories.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(TestCategory $testCategory)
     {
-        //
+        $testCategory->delete();
+
+        return redirect()->route('dashboard.test-categories.index');
     }
 }
