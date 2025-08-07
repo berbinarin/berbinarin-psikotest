@@ -65,7 +65,7 @@
                                         <td class="py-3 font-semibold">Feedback :
                                             <span>
                                                 @php
-                                                $rating = optional(optional($attempt)->feedback)->rating;
+                                                    $rating = optional($attempt->feedback)->rating;
                                                 @endphp
                                                 @if ($rating == 5)
                                                 <img src="{{ asset('assets/images/psikotes/feedback/1-wahoo2.png') }}" alt="Happy" class="w-10 h-auto inline-block align-middle mr-2">

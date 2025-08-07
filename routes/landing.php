@@ -50,4 +50,5 @@ Route::prefix('psikotes-free')->name('psikotes-free.')->group( function() {
     Route::post('/feedback/store', [FeedbackController::class, 'store'])->name('feedback.store');
     Route::get('/hasil',[ResultController::class, 'result'])->name('result');
     Route::post('/times-up', [TestController::class, 'timesUp'])->name('attempt.times-up');
+    Route::get('/selesai', [ResultController::class, 'finish'])->name('finish');
 });

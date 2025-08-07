@@ -30,4 +30,10 @@ class ResultController extends Controller
 
         return view('landing.psikotes-free.result', compact('data', 'extraversionPresentage', 'agreeablenessPresentage', 'neuroticismPresentage', 'conscientiousnessPresentage', 'opennessPresentage'));
     }
+
+    public function finish() {
+        $this->attemptService->destroySession();
+
+        return redirect()->route('home.index');
+    }
 }

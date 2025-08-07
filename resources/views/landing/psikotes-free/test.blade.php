@@ -84,6 +84,7 @@
         <div class="values rounded-full bg-blue-500 px-5 py-3 text-white">00:00:00</div>
     </div>
 </section>
+@endsection
 
 <script>
 document.querySelectorAll('input[name="answer"]').forEach(radio => {
