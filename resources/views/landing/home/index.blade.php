@@ -55,7 +55,7 @@
             <!-- Tombol Aksi -->
             <div class="mt-5 flex flex-col items-center gap-4 md:mt-1 md:flex-row md:gap-8">
                 <button onclick="openModal()" class="w-[320px] rounded-xl bg-gradient-to-r from-[#3986A3] to-[#15323D] px-5 py-3 font-plusJakartaSans text-lg font-semibold text-white md:w-auto md:text-2xl">Ikuti Tes Kepribadian Berbayar</button>
-                <button class="w-[320px] rounded-xl bg-gradient-to-r from-[#F7B23B] to-[#916823] px-5 py-3 font-plusJakartaSans text-lg font-semibold text-white md:w-auto md:text-2xl">Ikuti Tes Kepribadian Gratis</button>
+                <a href="{{ route('psikotes-free.profile') }}" class="w-[320px] rounded-xl bg-gradient-to-r from-[#F7B23B] to-[#916823] px-5 py-3 font-plusJakartaSans text-lg font-semibold text-white md:w-auto md:text-2xl">Ikuti Tes Kepribadian Gratis</a>
             </div>
         </section>
         <!-- Hero Section End -->

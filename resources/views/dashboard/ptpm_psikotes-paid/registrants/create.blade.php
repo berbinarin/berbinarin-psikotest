@@ -124,7 +124,7 @@
                         <input type="date" name="date" id="date" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" onclick="document.getElementById('datepicker').focus()" />
                     </div>
                     <div class="flex w-full flex-col">
-                        <label for="time" class="mb-2 font-bold text-[#9b9b9b]">Waktu Psikotes</label>
+                        <label for="time" class="mb-2 font-bold text-[#9b9b9b]">Waktu Psikotes (WIB)</label>
                         <input type="time" name="time" id="time" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" onclick="document.getElementById('timepicker').focus()" />
                     </div>
                 </div>

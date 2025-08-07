@@ -11,7 +11,7 @@
             <div class="lg:w-[95%]">
 
                 <div class="flex flex-row justify-between mb-8">
-                    
+
                 </div>
 
                 <h2 class="text-center text-2xl lg:text-4xl font-bold mb-1 lg:mb-12 bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text text-transparent">Gimana Perasaan Kamu Setelah <br> Mengikuti Psikotes Ini?</h2>
@@ -23,80 +23,90 @@
                     <div class="rating_list flex lg:w-[80%] flex-row mb-1 lg:mb-12 justify-self-center justify-center md:gap-4">
                         <div class="rating_item flex flex-col items-center">
                             <input class="hidden peer" id="rating-5-1" type="radio" value="5" name="rating" required>
-                            <label for="rating-5-1" class="cursor-pointer peer-checked:ring-4 peer-checked:ring-[#75BADB] rounded-full transition group relative w-16 h-16 md:w-24 md:h-32 lg:w-28 lg:h-32 xl:w-48 xl:h-48 flex items-center justify-center">
+                            <label for="rating-5-1" class="cursor-pointer peer-checked:bg-gradient-to-b from-[#75BADB] to-[#F7B23B] rounded-full transition duration-200 group hover:bg-gradient-to-b relative w-16 h-16 md:w-24 md:h-32 lg:w-28 lg:h-32 xl:w-48 xl:h-48 flex items-center justify-center">
                                 <span class="block w-full h-full relative">
                                     <!-- Default image -->
                                     <img src="{{ asset('assets/landing/images/psikotes-free/feedback/1-wahoo.png') }}"
                                         alt="Sangat Senang"
-                                        class="absolute inset-0 w-full h-full object-contain transition duration-200 peer-checked:opacity-0 group-hover:opacity-0" />
-                                    <!-- Hover image -->
-                                    <img src="{{ asset('assets/landing/images/psikotes-free/feedback/1-wahoo2.png') }}"
-                                        alt="Sangat Senang Hover"
-                                        class="absolute inset-0 w-full h-full object-contain transition duration-200 opacity-0 peer-checked:opacity-100 group-hover:opacity-100 " />
+                                        class="absolute inset-0 w-full h-full object-contain transition duration-200" />
+                                    <!-- Text -->
+                                    <div class="text flex inset-8 pb-5 max-sm:pb-[4px] w-full shadow-yellow-400/50 h-full justify-center items-end">
+                                        <p class="bg-white max-sm:px-[6px] px-2 max-sm:text-[6px] text-xs xl:text-base rounded-3xl max-sm:py-[1px] py-1 shadow-md shadow-yellow-400/50 font-bold text-[#F7B23B]">
+                                            Sangat Senang
+                                        </p>
+                                    </div>
                                 </span>
                             </label>
                         </div>
 
                         <div class="rating_item flex flex-col items-center">
                             <input class="hidden peer" id="rating-4-1" type="radio" value="4" name="rating">
-                            <label for="rating-4-1" class="cursor-pointer peer-checked:ring-4 peer-checked:ring-[#4CAF50] rounded-full transition group relative w-16 h-16 md:w-24 md:h-32 lg:w-28 lg:h-32 xl:w-48 xl:h-48 flex items-center justify-center">
+                            <label for="rating-4-1" class="cursor-pointer peer-checked:bg-gradient-to-b from-[#4CAF50] to-[#F7B23B] rounded-full transition duration-200 group hover:bg-gradient-to-b relative w-16 h-16 md:w-24 md:h-32 lg:w-28 lg:h-32 xl:w-48 xl:h-48 flex items-center justify-center">
                                 <span class="block w-full h-full relative">
                                     <!-- Default image -->
                                     <img src="{{ asset('assets/landing/images/psikotes-free/feedback/2-happy.png') }}"
-                                        alt="Sangat Senang"
-                                        class="absolute inset-0 w-full h-full object-contain transition duration-200 peer-checked:opacity-0 group-hover:opacity-0" />
-                                    <!-- Hover image -->
-                                    <img src="{{ asset('assets/landing/images/psikotes-free/feedback/2-happy2.png') }}"
-                                        alt="Sangat Senang Hover"
-                                        class="absolute inset-0 w-full h-full object-contain transition duration-200  opacity-0 peer-checked:opacity-100 group-hover:opacity-100" />
+                                        alt="Senang"
+                                        class="absolute inset-0 w-full h-full object-contain transition duration-200" />
+                                    <!-- Text -->
+                                    <div class="text flex inset-8 pb-5 max-sm:pb-[4px] w-full shadow-yellow-400/50 h-full justify-center items-end">
+                                        <p class="bg-white max-sm:px-[6px] px-2 max-sm:text-[6px] text-xs xl:text-base rounded-3xl max-sm:py-[1px] py-1 shadow-md shadow-yellow-400/50 font-bold text-[#F7B23B]">
+                                            Senang
+                                        </p>
+                                    </div>
                                 </span>
                             </label>
                         </div>
 
                         <div class="rating_item flex flex-col items-center">
                             <input class="hidden peer" id="rating-3-1" type="radio" value="3" name="rating">
-                            <label for="rating-3-1" class="cursor-pointer peer-checked:ring-4 peer-checked:ring-[#FFE500] rounded-full transition group relative w-16 h-16 md:w-24 md:h-32 lg:w-28 lg:h-32 xl:w-48 xl:h-48 flex items-center justify-center">
+                            <label for="rating-3-1" class="cursor-pointer peer-checked:bg-gradient-to-b from-[#FFE500] to-[#F7B23B] rounded-full transition duration-200 group hover:bg-gradient-to-b relative w-16 h-16 md:w-24 md:h-32 lg:w-28 lg:h-32 xl:w-48 xl:h-48 flex items-center justify-center">
                                 <span class="block w-full h-full relative">
                                     <!-- Default image -->
                                     <img src="{{ asset('assets/landing/images/psikotes-free/feedback/3-neutral.png') }}"
-                                        alt="Sangat Senang"
-                                        class="absolute inset-0 w-full h-full object-contain transition duration-200 peer-checked:opacity-0 group-hover:opacity-0" />
-                                    <!-- Hover image -->
-                                    <img src="{{ asset('assets/landing/images/psikotes-free/feedback/3-neutral2.png') }}"
-                                        alt="Sangat Senang Hover"
-                                        class="absolute inset-0 w-full h-full object-contain transition duration-200 opacity-0 peer-checked:opacity-100 group-hover:opacity-100" />
+                                        alt="Biasa Saja"
+                                        class="absolute inset-0 w-full h-full object-contain transition duration-200" />
+                                    <!-- Text -->
+                                    <div class="text flex inset-8 pb-5 max-sm:pb-[4px] w-full shadow-yellow-400/50 h-full justify-center items-end">
+                                        <p class="bg-white max-sm:px-[6px] px-2 max-sm:text-[6px] text-xs xl:text-base rounded-3xl max-sm:py-[1px] py-1 shadow-md shadow-yellow-400/50 font-bold text-[#F7B23B]">
+                                            Biasa Saja
+                                        </p>
+                                    </div>
                                 </span>
                             </label>
                         </div>
 
                         <div class="rating_item flex flex-col items-center">
                             <input class="hidden peer" id="rating-2-1" type="radio" value="2" name="rating">
-                            <label for="rating-2-1" class="cursor-pointer peer-checked:ring-4 peer-checked:ring-[#FF543E] rounded-full transition group relative w-16 h-16 md:w-24 md:h-32 lg:w-28 lg:h-32 xl:w-48 xl:h-48 flex items-center justify-center">
+                            <label for="rating-2-1" class="cursor-pointer peer-checked:bg-gradient-to-b from-[#FF543E] to-[#F7B23B] rounded-full transition duration-200 group hover:bg-gradient-to-b relative w-16 h-16 md:w-24 md:h-32 lg:w-28 lg:h-32 xl:w-48 xl:h-48 flex items-center justify-center">
                                 <span class="block w-full h-full relative">
                                     <!-- Default image -->
                                     <img src="{{ asset('assets/landing/images/psikotes-free/feedback/4-bummed.png') }}"
-                                        alt="Sangat Senang"
-                                        class="absolute inset-0 w-full h-full object-contain transition duration-200 peer-checked:opacity-0 group-hover:opacity-0" />
-                                    <!-- Hover image -->
-                                    <img src="{{ asset('assets/landing/images/psikotes-free/feedback/4-bummed2.png') }}"
-                                        alt="Sangat Senang Hover"
-                                        class="absolute inset-0 w-full h-full object-contain transition duration-200 opacity-0 peer-checked:opacity-100 group-hover:opacity-100" />
+                                        alt="Bosan"
+                                        class="absolute inset-0 w-full h-full object-contain transition duration-200" />
+                                    <!-- Text -->
+                                    <div class="text flex inset-8 pb-5 max-sm:pb-[4px] w-full shadow-yellow-400/50 h-full justify-center items-end">
+                                        <p class="bg-white max-sm:px-[6px] px-2 max-sm:text-[6px] text-xs xl:text-base rounded-3xl max-sm:py-[1px] py-1 shadow-md shadow-yellow-400/50 font-bold text-[#F7B23B]">
+                                            Bosan
+                                        </p>
+                                    </div>
                                 </span>
                             </label>
                         </div>
 
                         <div class="rating_item flex flex-col items-center">
                             <input class="hidden peer" id="rating-1-1" type="radio" value="1" name="rating">
-                            <label for="rating-1-1" class="cursor-pointer peer-checked:ring-4 peer-checked:ring-[#FF004F] rounded-full transition group relative w-16 h-16 md:w-24 md:h-32 lg:w-28 lg:h-32 xl:w-48 xl:h-48 flex items-center justify-center">
+                            <label for="rating-1-1" class="cursor-pointer peer-checked:bg-gradient-to-b from-[#FF004F] to-[#F7B23B] rounded-full transition duration-200 group hover:bg-gradient-to-b relative w-16 h-16 md:w-24 md:h-32 lg:w-28 lg:h-32 xl:w-48 xl:h-48 flex items-center justify-center">
                                 <span class="block w-full h-full relative">
                                     <!-- Default image -->
                                     <img src="{{ asset('assets/landing/images/psikotes-free/feedback/5-pissed.png') }}"
-                                        alt="Sangat Senang"
-                                        class="absolute inset-0 w-full h-full object-contain transition duration-200 peer-checked:opacity-0 group-hover:opacity-0" />
-                                    <!-- Hover image -->
-                                    <img src="{{ asset('assets/landing/images/psikotes-free/feedback/5-pissed2.png') }}"
-                                        alt="Sangat Senang Hover"
-                                        class="absolute inset-0 w-full h-full object-contain transition duration-200 opacity-0 peer-checked:opacity-100 group-hover:opacity-100" />
+                                        alt="Tidak Suka"
+                                        class="absolute inset-0 w-full h-full object-contain transition duration-200" />
+                                    <!-- Text -->
+                                    <div class="text flex inset-8 pb-5 max-sm:pb-[4px] w-full shadow-yellow-400/50 h-full justify-center items-end">
+                                        <p class="bg-white max-sm:px-[6px] px-2 max-sm:text-[6px] text-xs xl:text-base rounded-3xl max-sm:py-[1px] py-1 shadow-md shadow-yellow-400/50 font-bold text-[#F7B23B]">
+                                            Tidak Suka
+                                        </p>
+                                    </div>
                                 </span>
                             </label>
                         </div>
