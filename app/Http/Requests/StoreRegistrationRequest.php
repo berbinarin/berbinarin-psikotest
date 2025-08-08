@@ -25,8 +25,8 @@ class StoreRegistrationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'date' => ['required', 'date'],
-            'time' => ['required', 'date_format:H:i'],
+            'psikotes_date' => ['required', 'date'],
+            'psikotes_time' => ['required', 'date_format:H:i'],
             'service' => ['required', 'string', Rule::in(['online', 'offline'])],
             'test_category_id' => ['required', 'integer', Rule::exists('test_categories', 'id')],
             'test_type_id' => [
