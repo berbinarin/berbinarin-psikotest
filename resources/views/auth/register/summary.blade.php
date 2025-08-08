@@ -21,7 +21,7 @@
         }
     </style>
 
-    <div class="mx-4 mb-8 mt-24 flex flex-col justify-center rounded-2xl bg-none px-12 py-6 shadow-none max-md:px-1 sm:mx-24 sm:mb-20 sm:mt-36 md:bg-white md:shadow-lg">
+    <div class="mx-4 mb-8 mt-24 flex flex-col justify-center rounded-3xl bg-none px-12 py-6 shadow-none max-md:px-1 sm:mx-24 sm:mb-20 sm:mt-36 md:bg-white md:shadow-lg">
         <div class="flex justify-end">
             <div class="flex cursor-pointer items-center space-x-1" id="openModal">
                 <img src="{{ asset("assets\landing\images\sk-vector.png") }}" alt="Syarat & Ketentuan" class="h-3 w-auto" />
@@ -34,7 +34,7 @@
 
         <!-- Modal -->
         <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
-            <div class="max-h-[90vh] w-[90%] max-sm:overflow-y-auto max-w-3xl rounded-2xl bg-white p-8 shadow-lg max-sm:p-4">
+            <div class="max-h-[90vh] w-[90%] max-sm:overflow-y-auto max-w-4xl rounded-2xl bg-white p-8 shadow-lg max-sm:p-4">
                 <!-- Judul Utama -->
                 <div class="overflow-y-auto">
                     <h1 class="mb-4 text-center text-3xl font-bold text-[#2C5C84] max-sm:text-2xl">Syarat dan Ketentuan</h1>
@@ -107,10 +107,11 @@
                 <img src="{{ asset("assets\landing\logo\logo-berbinar.png") }}" alt="Berbinar" class="h-[120px] w-[120px] object-contain" />
             </div>
             <p class="text-gradient text-center text-xl font-medium max-sm:mx-2 max-sm:text-xl">
-                Setelah melakukan pendaftaran, SobatBinar akan dihubungi oleh staff konseling Berbinar maksimal 1x24jam terkait pembayaran dan informasi lebih lanjut mengenai pelaksanaan psikotes.
+
+                Untuk SobatBinar yang ingin mengetahui kepribadian lebih dalam atau ingin mengetahui aspek-aspek psikologis lain seperti, minat bakat, tes kecocokan pasangan, tes penjurusan, dan lainnya bisa ditemukan di Berbinar Insightfull Indonesia.
                 <br />
                 <br />
-                Jika ada hal yang ingin disampaikan, silahkan hubungi narahubung di bawah ini:<b>0895323303487 (Indah)</b>
+                Jika ada hal yang ingin disampaikan atau mengalami kendala selama pengerjaan psikotes berlangsung, silahkan hubungi narahubung di <b>0895323303487 (Indah)</b>
             </p>
         </div>
 

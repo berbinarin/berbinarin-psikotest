@@ -21,62 +21,62 @@
                             </div>
                         </div>
                     </div>
-                    <div class="relative w-[1300px] py-7 px-10 flex-auto bg-white rounded-md">
+                    <div class="relative w-[1240px] py-7 px-10 flex-auto bg-white rounded-md">
                         <div class="flex flex-row gap-10">
                             <div class="w-2/5">
                                 <table class="table table-striped table-hover">
                                     <tr>
-                                        <td class="py-3 font-semibold">Nama :
-                                            <span class="ml-16">{{ $freeProfile->name }} </span>
+                                        <td class="py-3 font-semibold">Nama
+                                            <span class="ml-16">: {{ $freeProfile->name }} </span>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="py-3 font-semibold">Jenis Kelamin :
+                                        <td class="py-3 font-semibold">Jenis Kelamin
                                             <span class="ml-2">
-                                                {{ $freeProfile->gender == 'male' ? 'Laki-laki' : 'Perempuan' }}
+                                                : {{ $freeProfile->gender == 'male' ? 'Laki-laki' : 'Perempuan' }}
                                             </span>
 
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="py-3 font-semibold">Tanggal Lahir :
+                                        <td class="py-3 font-semibold">Tanggal Lahir
                                             <span class="ml-2">
-                                                {{ \Carbon\Carbon::parse($freeProfile->date_of_birth)->format('Y-m-d') }}
+                                                : {{ \Carbon\Carbon::parse($freeProfile->date_of_birth)->format('Y-m-d') }}
                                             </span>
 
                                         </td>
                                     </tr>
                                     <!-- email -->
                                     <tr>
-                                        <td class="py-3 font-semibold">Email :
-                                            <span class="ml-16">{{ $freeProfile->email }}</span>
+                                        <td class="py-3 font-semibold">Email
+                                            <span class="ml-16">: {{ $freeProfile->email }}</span>
                                         </td>
                                     </tr>
 
                                     <!-- tanggal tes -->
                                     <tr>
-                                        <td class="py-3 font-semibold">Tanggal Tes :
-                                            <span class="ml-4">{{ \Carbon\Carbon::parse($freeProfile->test_date)->format('Y-m-d') }}</span>
+                                        <td class="py-3 font-semibold">Tanggal Tes
+                                            <span class="ml-4">: {{ \Carbon\Carbon::parse($freeProfile->test_date)->format('Y-m-d') }}</span>
                                         </td>
                                     </tr>
 
                                     <!-- feedback -->
                                     <tr class="w-full">
-                                        <td class="py-3 font-semibold">Feedback :
-                                            <span>
+                                        <td class="py-3 font-semibold">Feedback
+                                            <span class="ml-7"> :
                                                 @php
                                                     $rating = optional(value: optional($freeProfile)->feedback)->rating;
                                                 @endphp
                                                 @if ($rating == 5)
-                                                <img src="{{ asset('assets/landing/images/psikotes-free/feedback/1-wahoo2.png') }}" alt="Happy" class="w-10 h-auto inline-block align-middle mr-2">
+                                                <img src="{{ asset('assets/landing/images/psikotes-free/feedback/1-wahoo2.png') }}" alt="Happy" class="w-16 h-auto inline-block align-middle mr-2">
                                                 @elseif ($rating == 4)
-                                                <img src="{{ asset('assets/landing/images/psikotes-free/feedback/2-happy2.png') }}" alt="Happy" class="w-10 h-auto inline-block align-middle mr-2">
+                                                <img src="{{ asset('assets/landing/images/psikotes-free/feedback/2-happy2.png') }}" alt="Happy" class="w-16 h-auto inline-block align-middle mr-2">
                                                 @elseif ($rating == 3)
-                                                <img src="{{ asset('assets/landing/images/psikotes-free/feedback/3-neutral2.png') }}" alt="Neutral" class="w-10 h-auto inline-block align-middle mr-2">
+                                                <img src="{{ asset('assets/landing/images/psikotes-free/feedback/3-neutral2.png') }}" alt="Neutral" class="w-16 h-auto inline-block align-middle mr-2">
                                                 @elseif ($rating == 2)
-                                                <img src="{{ asset('assets/landing/images/psikotes-free/feedback/4-bummed2.png') }}" alt="Bummed" class="w-10 h-auto inline-block align-middle mr-2">
+                                                <img src="{{ asset('assets/landing/images/psikotes-free/feedback/4-bummed2.png') }}" alt="Bummed" class="w-16 h-auto inline-block align-middle mr-2">
                                                 @elseif ($rating == 1)
-                                                <img src="{{ asset('assets/landing/images/psikotes-free/feedback/4-pissed2.png') }}" alt="Bummed Out" class="w-10 h-auto inline-block align-middle mr-2">
+                                                <img src="{{ asset('assets/landing/images/psikotes-free/feedback/4-pissed2.png') }}" alt="Bummed Out" class="w-16 h-auto inline-block align-middle mr-2">
                                                 @else
                                                 <span class="-ml-2 font-semibold"> tidak ada 😭
                                                     @endif
@@ -97,42 +97,42 @@
                                         <td class="py-2 font-semibold">Hasil Tes :
                                             @if ($data)
                                             <div class="flex flex-row py-3">
-                                                <p class="card-text"><strong>Agreeableness:</strong>
-                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-[13px] text-end" role="progressbar" style="width: {{ $agreeablenessPresentage }}%" aria-valuenow="{{ $agreeablenessPresentage }}% aria-valuemin=" 0" aria-valuemax="100">
-                                                    <span class="mr-3"> {{ $agreeablenessPresentage }}%</span>
+                                                <p class="card-text w-40"><strong>Agreeableness:</strong>
+                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-white text-[13px] text-start" role="progressbar" style="width: {{ $agreeablenessPresentage }}%" aria-valuenow="{{ $agreeablenessPresentage }}% aria-valuemin=" 0" aria-valuemax="100">
+                                                    <span class="ml-3"> {{ $agreeablenessPresentage }}%</span>
                                                 </div>
                                                 </p>
                                             </div>
 
                                             <div class="flex flex-row py-3">
-                                                <p class="card-text"><strong>Conscientiousness:</strong>
-                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-[13px] text-end" role="progressbar" style="width: {{ $conscientiousnessPresentage }}%" aria-valuenow="{{ $conscientiousnessPresentage }}%" aria-valuemin="0" aria-valuemax="100">
-                                                    <span class="mr-3"> {{ $conscientiousnessPresentage }}%</span>
+                                                <p class="card-text w-40"><strong>Conscientiousness:</strong>
+                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-white text-[13px] text-start" role="progressbar" style="width: {{ $conscientiousnessPresentage }}%" aria-valuenow="{{ $conscientiousnessPresentage }}%" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="ml-3"> {{ $conscientiousnessPresentage }}%</span>
                                                 </div>
                                                 </p>
                                             </div>
 
                                             <div class="flex flex-row py-3">
-                                                <p class="card-text"><strong>Extraversion:</strong>
-                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-[13px] text-end" role="progressbar" style="width: {{ $extraversionPresentage }}%" aria-valuenow="{{ $extraversionPresentage }}%" aria-valuemin="0" aria-valuemax="100">
-                                                    <span class="mr-3"> {{ $extraversionPresentage }}%</span>
+                                                <p class="card-text w-40"><strong>Extraversion:</strong>
+                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-white text-[13px] text-start" role="progressbar" style="width: {{ $extraversionPresentage }}%" aria-valuenow="{{ $extraversionPresentage }}%" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="ml-3"> {{ $extraversionPresentage }}%</span>
                                                 </div>
                                                 </p>
                                             </div>
 
                                             <div class="flex flex-row py-3">
-                                                <p class="card-text"><strong>Neuroticism:</strong>
-                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-[13px] text-end" role="progressbar" style="width: {{ $neuroticismPresentage }}%" aria-valuenow="{{ $neuroticismPresentage }}%" aria-valuemin="0" aria-valuemax="100">
-                                                    <span class="mr-3"> {{ $neuroticismPresentage }}%</span>
+                                                <p class="card-text w-40"><strong>Neuroticism:</strong>
+                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-white text-[13px] text-start" role="progressbar" style="width: {{ $neuroticismPresentage }}%" aria-valuenow="{{ $neuroticismPresentage }}%" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="ml-3"> {{ $neuroticismPresentage }}%</span>
                                                 </div>
                                                 </p>
                                             </div>
 
                                             <div class="flex flex-row py-3">
-                                                <p class="card-text"><strong>Openness:</strong>
+                                                <p class="card-text w-40"><strong>Openness:</strong>
                                                 </p>
-                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-[13px] text-end" role="progressbar" style="width:{{ $opennessPresentage }}%" aria-valuenow="{{ $opennessPresentage }}%" aria-valuemin="0" aria-valuemax="100">
-                                                    <span class="mr-3">{{ $opennessPresentage }}%</span>
+                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-white text-[13px] text-start" role="progressbar" style="width:{{ $opennessPresentage }}%" aria-valuenow="{{ $opennessPresentage }}%" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="ml-3">{{ $opennessPresentage }}%</span>
                                                 </div>
                                             </div>
                                             @else

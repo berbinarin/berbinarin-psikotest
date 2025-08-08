@@ -13,7 +13,7 @@
 <sections>
     <div class="flex justify-center">
         <div class="flex flex-col mt-28 lg:mt-36 items-center justify-center t-container z-38 w-full p-[22px]">
-            <div class="quest-container w-full lg:w-[95%] shadow-xl bg-white justify-center rounded-3xl mb-6 lg:mb-12 p-5 lg:px-16">
+            <div class="quest-container w-full lg:w-[95%] shadow-xl bg-white z-20 justify-center rounded-3xl mb-6 lg:mb-12 p-5 lg:px-16" style="box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.075);">
                 <div class="flex flex-row justify-center items-center">
                     {{-- HERO IMG DESKTOP --}}
                     <!-- <img src="{{ asset('assets/images/psikotes/result.png') }}" alt="Ilustrasi-Test" class="w-[335px] h-[335px] hidden lg:block -
@@ -82,7 +82,7 @@
             {{-- Tampilan Desktop --}}
             <div class="w-[95%] flex justify-between gap-[3%] mb-12 max-sm:hidden">
 
-                <div class="bg-white rounded-3xl shadow-xl px-8 pb-8">
+                <div class="bg-white z-20 rounded-3xl shadow-xl px-8 pb-8" style="box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.075);">
                     <p class="text-center text-base lg:text-2xl font-semibold mt-8 mb-1"><span class="italic">Extraversion </span></p>
                     <p class="text-center text-[#333333] mb-2">Ekstraversi</p>
                     <hr class="w-full justify-self-center">
@@ -93,7 +93,7 @@
                     </p>
                 </div>
 
-                <div class="bg-white rounded-3xl shadow-xl px-8 pb-8">
+                <div class="bg-white z-20 rounded-3xl shadow-xl px-8 pb-8" style="box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.075);">
                     <p class="text-center text-base lg:text-2xl font-semibold mt-8 mb-1"><span class="italic">Conscientiousness </span></p>
                     <p class="text-center text-[#333333] mb-2">Sifat Berhati-hati</p>
                     <hr class="w-full justify-self-center">
@@ -110,7 +110,7 @@
 
             <div class="w-[95%] flex justify-between gap-[3%] mb-12 max-sm:hidden">
 
-                <div class="bg-white rounded-3xl shadow-xl px-8 pb-8">
+                <div class="bg-white z-20 rounded-3xl shadow-xl px-8 pb-8" style="box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.075);">
                     <p class="text-center text-base lg:text-2xl font-semibold mt-8 mb-1"><span class="italic">Agreeableness </span></p>
                     <p class="text-center text-[#333333] mb-2">Mudah Akur atau Mudah Bersepakat</p>
                     <hr class="w-full justify-self-center">
@@ -119,7 +119,7 @@
                     </p>
                 </div>
 
-                <div class="bg-white rounded-3xl shadow-xl px-8 pb-8">
+                <div class="bg-white z-20 rounded-3xl shadow-xl px-8 pb-8" style="box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.075);">
                     <p class="text-center text-base lg:text-2xl font-semibold mt-8 mb-1"><span class="italic">Openness </span></p>
                     <p class="text-center text-[#333333] mb-2">Terbuka Terhadap Hal-hal Baru</p>
                     <hr class="w-full justify-self-center">
@@ -131,7 +131,7 @@
                     </p>
                 </div>
 
-                <div class="bg-white rounded-3xl shadow-xl px-8 pb-8">
+                <div class="bg-white z-20 rounded-3xl shadow-xl px-8 pb-8" style="box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.075);">
                     <p class="text-center text-base lg:text-2xl font-semibold mt-8 mb-1"><span class="italic">Neuroticism </span></p>
                     <p class="text-center text-[#333333] mb-2">Neurotisme</p>
                     <hr class="w-full justify-self-center">
@@ -147,7 +147,7 @@
 
             {{-- Tampilan Mobile --}}
             <div class="w-[95%] hidden justify-between gap-[3%] mb-12 max-sm:flex max-sm:flex-col">
-                <div class="bg-white rounded-3xl shadow-xl px-5 pb-5 mb-5">
+                <div class="bg-white z-20 rounded-3xl shadow-xl px-5 pb-5 mb-5" style="box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.075);">
                     <p class="text-center text-base lg:text-2xl font-semibold mt-3 mb-1"><span class="italic">Extraversion </span></p>
                     <p class="text-center text-[#333333] mb-2">Ekstraversi</p>
                     <hr class="w-full justify-self-center">
@@ -158,7 +158,7 @@
                     </p>
                 </div>
 
-                <div class="bg-white rounded-3xl shadow-xl px-5 pb-5 mb-5">
+                <div class="bg-white z-20 rounded-3xl shadow-xl px-5 pb-5 mb-5" style="box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.075);">
                     <p class="text-center text-base lg:text-2xl font-semibold mt-3 mb-1"><span class="italic">Conscientiousness </span></p>
                     <p class="text-center text-[#333333] mb-2">Sifat Berhati-hati</p>
                     <hr class="w-full justify-self-center">
@@ -170,7 +170,7 @@
                     </p>
                 </div>
 
-                <div class="bg-white rounded-3xl shadow-xl px-5 pb-5 mb-5">
+                <div class="bg-white z-20 rounded-3xl shadow-xl px-5 pb-5 mb-5" style="box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.075);">
                     <p class="text-center text-base lg:text-2xl font-semibold mt-3 mb-1"><span class="italic">Agreeableness </span></p>
                     <p class="text-center text-[#333333] mb-2">Mudah Akur atau Mudah Bersepakat</p>
                     <hr class="w-full justify-self-center">
@@ -181,7 +181,7 @@
                     </p>
                 </div>
 
-                <div class="bg-white rounded-3xl shadow-xl px-5 pb-5 mb-5">
+                <div class="bg-white z-20 rounded-3xl shadow-xl px-5 pb-5 mb-5" style="box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.075);">
                     <p class="text-center text-base lg:text-2xl font-semibold mt-3 mb-1"><span class="italic">Openness </span></p>
                     <p class="text-center text-[#333333] mb-2">Terbuka Terhadap Hal-hal Baru</p>
                     <hr class="w-full justify-self-center">
@@ -193,7 +193,7 @@
                     </p>
                 </div>
 
-                <div class="bg-white rounded-3xl shadow-xl px-5 pb-5 mb-5">
+                <div class="bg-white z-20 rounded-3xl shadow-xl px-5 pb-5 mb-5" style="box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.075);">
                     <p class="text-center text-base lg:text-2xl font-semibold mt-3 mb-1"><span class="italic">Neuroticism </span></p>
                     <p class="text-center text-[#333333] mb-2">Neurotisme</p>
                     <hr class="w-full justify-self-center">

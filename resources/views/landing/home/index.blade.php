@@ -24,7 +24,7 @@
 
     <div class="bg-cover bg-center bg-no-repeat">
         <!-- Hero Section Start -->
-        <section class="flex h-screen w-full flex-col items-center justify-center gap-10 text-center">
+        <section class="flex mt-8 h-screen w-full flex-col items-center justify-center gap-10 text-center">
             <!-- Judul -->
             <h1 class="font-plusJakartaSans text-[24px] font-bold text-[#333333] md:text-4xl">
                 Tingkatkan Potensi dengan

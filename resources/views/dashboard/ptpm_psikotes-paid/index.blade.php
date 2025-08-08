@@ -25,7 +25,7 @@
                             {{ $category->registrant_profiles_count }}
                         </span>
                         <div class="flex h-[64px] w-[64px] items-center justify-center rounded-xl bg-gray-100">
-                            <img src="{{ asset('assets/dashboard/images/arrow-down.svg') }}" alt="arrow down" class="w-10 h-10">
+                            <img src="{{ asset('assets/dashboard/images/' . $category->name . '.png') }}" alt="{{ $category->name }}" class="w-10 h-10">
                         </div>
                     </div>
                 </div>
