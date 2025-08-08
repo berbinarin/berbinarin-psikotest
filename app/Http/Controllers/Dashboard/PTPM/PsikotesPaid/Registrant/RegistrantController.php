@@ -62,7 +62,7 @@ class RegistrantController extends Controller
                     'phone_number' => $validateData['phone_number'],
                     'psikotes_service' => $validateData['service'],
                     'reason' => $validateData['reason'],
-                    'schedule' => \Carbon\Carbon::createFromFormat('Y-m-d H:i', $validateData['date'] . ' ' . $validateData['time'])
+                    'schedule' => \Carbon\Carbon::createFromFormat('Y-m-d H:i', $validateData['psikotes_date'] . ' ' . $validateData['psikotes_time'])
                 ]);
             });
         } catch (\Exception $e) {

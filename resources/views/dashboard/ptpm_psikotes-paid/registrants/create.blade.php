@@ -98,7 +98,7 @@
                             @endforeach
                         </select>
                     </div>
-                </div>  
+                </div>
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="service" class="mb-2 font-bold text-[#9b9b9b]">Layanan Psikotes</label>
@@ -121,11 +121,11 @@
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="date" class="mb-2 font-bold text-[#9b9b9b]">Tanggal Psikotes</label>
-                        <input type="date" name="date" id="date" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" onclick="document.getElementById('datepicker').focus()" />
+                        <input type="date" name="psikotes_date" id="date" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" onclick="document.getElementById('datepicker').focus()" />
                     </div>
                     <div class="flex w-full flex-col">
                         <label for="time" class="mb-2 font-bold text-[#9b9b9b]">Waktu Psikotes (WIB)</label>
-                        <input type="time" name="time" id="time" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" onclick="document.getElementById('timepicker').focus()" />
+                        <input type="time" name="psikotes_time" id="time" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" onclick="document.getElementById('timepicker').focus()" />
                     </div>
                 </div>
                 <div class="flex gap-20">
@@ -142,8 +142,8 @@
                 </div>
                 <hr class="border-t-2 border-t-gray-400">
                 <div class="flex gap-4">
-                    <button type="submit" class="flex h-12 flex-1 items-center justify-center rounded-xl text-lg" style="width: 50%; background: #3986a3; color: #fff">Simpan</button>
                     <button type="button" id="cancelButton" class="flex h-12 flex-1 items-center justify-center rounded-xl text-lg" style="width: 50%; border: 2px solid #3986a3; color: #3986a3">Batal</button>
+                    <button type="submit" class="flex h-12 flex-1 items-center justify-center rounded-xl text-lg" style="width: 50%; background: #3986a3; color: #fff">Simpan</button>
                 </div>
             </form>
         </div>
