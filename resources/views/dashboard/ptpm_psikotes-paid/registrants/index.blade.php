@@ -111,7 +111,7 @@
                         <button id="closeEditModal" class="text-gray-500 hover:text-gray-700 text-4xl text-center justify-center items-center"><img src="{{ asset("assets/dashboard/images/back-btn.png") }}" alt="Back Button" /></button>
                         <h2 class="text-3xl font-bold">Edit Data Pendaftar</h2>
                     </div>
-                    <form id="editForm" method="POST">
+                    <form id="editForm" method="POST" action="{{ route("dashboard.registrants.update", $registrant->id) }}">
                         @csrf
                         @method("PUT")
                         <div class="flex gap-4 mb-4">
@@ -189,7 +189,7 @@
                                 </div>
                                 <div class="flex w-full flex-col">
                                     <label class="mb-2 font-bold text-[#9b9b9b]">Jenis Kelamin</label>
-                                    <input type="text" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->gender }}" readonly disabled />
+                                    <input type="text" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->gender == 'male' ? 'Laki-laki' : 'Perempuan' }}" readonly disabled />
                                 </div>
                             </div>
                             <div class="flex gap-5">

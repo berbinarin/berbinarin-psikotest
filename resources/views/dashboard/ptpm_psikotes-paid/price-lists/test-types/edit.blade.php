@@ -10,7 +10,7 @@
         <div class="py-4 md:pb-7 md:pt-12">
             <div>
                 <div class="mb-2 flex items-center gap-2">
-                    <a href="{{ route('dashboard.price-lists.test-types.index', $category->id) }}">
+                    <a href="{{ route('dashboard.price-lists.test-types.by-categories.index', $category->id) }}">
                         <img src="{{ asset('assets/dashboard/images/back-btn.png') }}" alt="Back Button" />
                     </a>
                     <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">
