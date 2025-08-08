@@ -78,7 +78,7 @@
                         <label for="age" class="mb-2 font-bold text-[#9b9b9b]">Umur</label>
                         <input type="number" id="age" name="age" class="rounded-md border-1 border-gray-300 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Umur Sekarang" value="{{ old("age") }}" />
                     </div>
-                    <div class="flex w-full flex-col">
+                    <div class="flex w-full flex-col">  
                         <label for="phone_number" class="mb-2 font-bold text-[#9b9b9b]">Telepon</label>
                         <input type="tel" id="phone_number" name="phone_number" class="rounded-md border-1 border-gray-300 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Nomor Telepon Aktif" value="{{ old("phone_number") }}" />
                     </div>

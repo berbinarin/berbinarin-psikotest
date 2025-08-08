@@ -31,16 +31,12 @@ class RegisteredUserController extends Controller
         try {
             // 2. Bungkus semua operasi database dalam transaction
             DB::transaction(function () use ($validateData) {
-
-                // Hitung jumlah username yang sama
-                $countUsername = User::where('username', Str::before($validateData['email'], '@'))->count();
-                
                 // Buat user baru
                 $user = User::create([
                     'name' => $validateData['name'],
                     'email' => $validateData['email'],
-                    'username' => Str::before($validateData['email'], '@') . ($countUsername + 1),
-                    'password' => bcrypt(Str::before($validateData['email'], '@')),
+                    'username' => Str::lower(Str::random(8)),
+                    'password' => bcrypt('berbinar'),
                 ])->assignRole('user_psikotes-paid');
 
                 RegistrantProfile::create([
@@ -55,7 +51,7 @@ class RegisteredUserController extends Controller
                     'schedule' => Carbon::createFromFormat('Y-m-d H:i', $validateData['psikotes_date'] . ' ' . $validateData['psikotes_time'])
                 ]);
             });
-            
+
         } catch (\Exception $e) {
             return back()->withInput()->with('error', 'Terjadi kesalahan saat pendaftaran. Silakan coba lagi.');
         }

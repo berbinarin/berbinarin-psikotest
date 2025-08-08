@@ -41,16 +41,12 @@ class RegistrantController extends Controller
         try {
             // 2. Bungkus semua operasi database dalam transaction
             DB::transaction(function () use ($validateData) {
-
-                // Hitung jumlah username yang sama
-                $countUsername = User::where('username', Str::before($validateData['email'], '@'))->count();
-
                 // Buat user baru
                 $user = User::create([
                     'name' => $validateData['name'],
                     'email' => $validateData['email'],
-                    'username' => Str::before($validateData['email'], '@') . ($countUsername + 1),
-                    'password' => bcrypt(Str::before($validateData['email'], '@')),
+                    'username' => Str::lower(Str::random(8)),
+                    'password' => bcrypt('berbinar'),
                 ])->assignRole('user_psikotes-paid');
 
                 RegistrantProfile::create([

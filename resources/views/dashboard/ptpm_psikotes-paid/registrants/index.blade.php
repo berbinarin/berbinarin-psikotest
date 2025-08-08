@@ -41,7 +41,7 @@
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>{{ $registrant->user->name }}</td>
                                     <td>{{ $registrant->user->username }}</td>
-                                    <td>{{ \Illuminate\Support\Str::before($registrant->user->email, "@") }}</td>
+                                    <td>berbinar</td>
                                     <td class="text-center">{{ Str::title($registrant->psikotes_service) }}</td>
                                     <td class="text-center">{{ $registrant->testType->testCategory->name }}</td>
                                     <td class="text-center">{{ "Rp" . number_format($registrant->testType->price, 0, ",", ".") }}</td>
@@ -49,7 +49,7 @@
                                         {{ \Carbon\Carbon::parse($registrant->schedule)->format("d-m-Y H:i:s") }}
                                     </td>
                                     <td class="flex items-center justify-center gap-2">
-                                        <button
+                                        {{-- <button
                                             type="button"
                                             class="detail-button inline-flex items-start justify-start rounded p-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
                                             style="background-color: #3b82f6"
@@ -63,10 +63,10 @@
                                             data-psikotest_service="{{ $registrant->psikotest_service }}"
                                             data-test_type="{{ $registrant->testType->name }}"
                                             data-reason="{{ $registrant->reason }}"
-                                            data-action="{{ route('dashboard.registrants.update', $registrant->id) }}"
+                                            data-action="{{ route('dashboard.registrants.show', $registrant->id) }}"
                                         >
                                             <i class="bx bx-show text-white"></i>
-                                        </button>
+                                        </button> --}}
                                         {{-- <button
                                             type="button"
                                             class="edit-button inline-flex items-start justify-start rounded p-2 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
@@ -89,6 +89,10 @@
                                         >
                                             <i class="bx bx-edit-alt text-black"></i>
                                         </button> --}}
+                                        <a href="{{route("dashboard.registrants.show", $registrant->id) }}" class="detail-button inline-flex items-start justify-start rounded p-2 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                                            style="background-color: #3b82f6">
+                                            <i class="bx bx-show-alt text-white"></i>
+                                        </a>
                                         <a href="{{route("dashboard.registrants.edit", $registrant->id) }}" class="edit-button inline-flex items-start justify-start rounded p-2 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
                                             style="background-color: #e9b306">
                                             <i class="bx bx-edit-alt text-black"></i>
@@ -100,10 +104,10 @@
                                                 <i class="bx bx-trash-alt text-white"></i>
                                             </button>
                                         </form>
-                                        <a href="{{ route("dashboard.registrants.show", $registrant->id) }}" class="mt-4 inline-flex items-start justify-start rounded p-3 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0">
+                                        {{-- <a href="{{ route("dashboard.registrants.show", $registrant->id) }}" class="mt-4 inline-flex items-start justify-start rounded p-3 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0">
                                             <p class="font-semibold text-primary">Detail</p>
                                             <i class="bx bx-right-arrow-alt mt-1 text-primary"></i>
-                                        </a>
+                                        </a> --}}
                                     </td>
                                 </tr>
                             @endforeach
@@ -112,7 +116,7 @@
                 </div>
             </div>
 
-            <!-- Modal Edit -->
+            {{-- <!-- Modal Edit -->
             <div id="editModal" class="fixed inset-0 z-50 flex hidden items-center justify-center bg-black bg-opacity-50">
                 <div class="w-[90%] rounded-lg bg-white p-6">
                     <div class="mb-4 flex items-start gap-3">
@@ -187,11 +191,11 @@
                             <button type="button" id="cancelEditModal" class="flex-1 rounded-lg border border-[#3986a3] px-6 py-2 text-[#3986a3]">Batal</button>
                         </div>
                     </form>
-                </div>
+                </div> --}}
             </div>
             <!-- End Modal Edit -->
 
-            <!-- Modal Detail -->
+            {{-- <!-- Modal Detail -->
             <div id="detailModal" class="fixed inset-0 z-50 flex hidden items-center justify-center bg-black bg-opacity-50">
                 <div class="w-[90%] rounded-lg bg-white p-6">
                     <div class="mb-4 flex flex-col justify-between items-center">
@@ -262,7 +266,7 @@
 
                 </div>
             </div>
-            <!-- End Modal Detail -->
+            <!-- End Modal Detail --> --}}
 
 
         </div>
