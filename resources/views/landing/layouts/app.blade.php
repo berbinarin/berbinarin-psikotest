@@ -5,7 +5,7 @@
         @include("landing.partials.header")
 
         {{-- Additional Style --}}
-        @yield("style")
+        @push("style")
     </head>
     <body class="relative w-full overflow-x-hidden">
         {{-- Navbar --}}
@@ -23,6 +23,6 @@
         @include("landing.partials.script")
 
         {{-- Additional Script --}}
-        @yield("script")
+        @stack("script")
     </body>
 </html>

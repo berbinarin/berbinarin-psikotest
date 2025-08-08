@@ -16,11 +16,11 @@ class Testimonial extends Model
         'user_id',
         'sharing_testimonial',
         'sharing_experience',
-        'opinion_psikotest',
+        'opinion_psikotes',
         'criticism_suggestion',
     ];
 
-    public function userPsikotestPaid()
+    public function userPsikotesPaid()
     {
         return $this->belongsTo(User::class, 'user_id');
     }

@@ -1,7 +1,7 @@
 @extends(
     "auth.layouts.app",
     [
-        "title" => "Psikotest Berbinar",
+        "title" => "Psikotes Berbinar",
     ]
 )
 

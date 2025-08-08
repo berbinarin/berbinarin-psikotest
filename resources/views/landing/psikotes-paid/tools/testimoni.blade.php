@@ -8,7 +8,7 @@
         <div class="mt-4 flex w-full flex-row items-center justify-center">
             <div class="flex items-center justify-center gap-4 rounded-full bg-white px-8 py-2 drop-shadow-lg">
                 <img class="h-10 w-10" src="{{ asset("assets/landing/images/psikotes-paid/logo-berbinar.png") }}" alt="Logo Berbinar" />
-                <img class="h-11 w-11" src="{{ asset("assets/landing/images/psikotes-paid/logo-berbinar-psikotes.png") }}" alt="Logo Berbinar Psikotest" />
+                <img class="h-11 w-11" src="{{ asset("assets/landing/images/psikotes-paid/logo-berbinar-psikotes.png") }}" alt="Logo Berbinar Psikotes" />
             </div>
         </div>
     </section>
@@ -130,7 +130,7 @@
                     },
                     body: JSON.stringify({
                         sharing_experience: answers.experience,
-                        opinion_psikotest: answers.opinion,
+                        opinion_psikotes: answers.opinion,
                         criticism_suggestion: answers.suggestion,
                         sharing_testimonial: answers.testimonial,
                     })

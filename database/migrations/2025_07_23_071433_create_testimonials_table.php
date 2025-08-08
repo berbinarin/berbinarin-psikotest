@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->text('sharing_testimonial');
             $table->text('sharing_experience');
-            $table->text('opinion_psikotest');
+            $table->text('opinion_psikotes');
             $table->text('criticism_suggestion');
             $table->timestamps();
             $table->softDeletes();

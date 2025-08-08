@@ -1,7 +1,5 @@
 @extends('landing.layouts.app', [
-    'title' => 'Psikotest Berbinar',
-    'active' => 'Test',
-    'page' => 'Biodata',
+    'title' => 'Psikotes Berbinar',
 ])
 
 @section('content')

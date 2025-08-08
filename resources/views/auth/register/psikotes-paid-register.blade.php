@@ -5,7 +5,7 @@
     ]
 )
 
-@section("style")
+@push("style")
     <style>
         .text-gradient {
             background: linear-gradient(to right, #f7b23b, #916823);
@@ -18,7 +18,7 @@
             background-image: none !important;
         }
     </style>
-@endsection
+@endpush
 
 @section("content")
     <div x-data="{ page: 1 }" x-cloak class="mx-4 mb-8 mt-24 flex flex-col justify-center rounded-2xl bg-none px-12 py-6 shadow-none max-md:px-1 sm:mx-24 sm:mb-20 sm:mt-36 md:bg-white md:shadow-lg">
@@ -271,7 +271,7 @@
     </div>
 @endsection
 
-@section("script")
+@push("script")
     <script>
         // Mengatur input tanggal dan waktu
         document.addEventListener('DOMContentLoaded', function () {
@@ -354,4 +354,4 @@
             document.getElementById('modal').classList.add('hidden');
         });
     </script>
-@endsection
+@endpush

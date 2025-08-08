@@ -1,7 +1,7 @@
 @extends(
     "dashboard.layouts.app",
     [
-        "title" => "Edit Alat Test",
+        "title" => "Edit Alat Tes",
     ]
 )
 
@@ -13,9 +13,9 @@
                     <a href="{{ route("dashboard.tools.index") }}">
                         <img src="{{ asset("assets/dashboard/images/back-btn.png") }}" alt="Back Button" />
                     </a>
-                    <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Edit Alat Test</p>
+                    <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Edit Alat Tes</p>
                 </div>
-                <p class="text-disabled py-2">Fitur ini mengubah data test psikologi baru</p>
+                <p class="text-disabled py-2">Fitur ini mengubah data tes psikologi baru</p>
             </div>
         </div>
 
@@ -25,12 +25,12 @@
                 @method("PUT")
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
-                        <label for="name" class="mb-2 font-bold text-[#9b9b9b]">Nama Alat Test</label>
-                        <input type="text" name="name" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Nama Alat Test" value="{{ old("name", $tool->name) }}" />
+                        <label for="name" class="mb-2 font-bold text-[#9b9b9b]">Nama Alat Tes</label>
+                        <input type="text" name="name" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Nama Alat Tes" value="{{ old("name", $tool->name) }}" />
                     </div>
                     <div class="flex w-full flex-col">
-                        <label for="no_alat_test" class="mb-2 font-bold text-[#9b9b9b]">Nomor Alat Test</label>
-                        <input type="text" name="no_alat_test" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Nomor Alat Test" value="{{ old("no_alat_test", $tool->no_alat_test) }}" />
+                        <label for="no_alat_test" class="mb-2 font-bold text-[#9b9b9b]">Nomor Alat Tes</label>
+                        <input type="text" name="no_alat_test" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Nomor Alat Tes" value="{{ old("no_alat_test", $tool->no_alat_test) }}" />
                     </div>
                 </div>
                 <div class="flex gap-20">

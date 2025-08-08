@@ -10,7 +10,7 @@ class TestimonialController extends Controller
 {
     public function index()
     {
-        $testimonials = Testimonial::with('userPsikotestPaid')->get();
+        $testimonials = Testimonial::with('userPsikotesPaid')->get();
         return view('landing.psikotes-paid.tools.testimoni', compact('testimonials'));
     }
 
@@ -19,7 +19,7 @@ class TestimonialController extends Controller
         $request->validate([
             'sharing_testimonial' => 'required|string|max:500',
             'sharing_experience' => 'required|string|max:500',
-            'opinion_psikotest' => 'required|string|max:500',
+            'opinion_psikotes' => 'required|string|max:500',
             'criticism_suggestion' => 'nullable|string|max:500',
         ]);
 
@@ -27,7 +27,7 @@ class TestimonialController extends Controller
             'user_id' => auth()->id(),
             'sharing_testimonial' => $request->sharing_testimonial,
             'sharing_experience' => $request->sharing_experience,
-            'opinion_psikotest' => $request->opinion_psikotest,
+            'opinion_psikotes' => $request->opinion_psikotes,
             'criticism_suggestion' => $request->criticism_suggestion,
         ]);
 

@@ -60,7 +60,7 @@
                                             data-phone_number="{{ $registrant->phone_number }}"
                                             data-email="{{ $registrant->user->email }}"
                                             data-test_category="{{ $registrant->testType->testCategory->name }}"
-                                            data-psikotest_service="{{ $registrant->psikotest_service }}"
+                                            data-psikotes_service="{{ $registrant->psikotes_service }}"
                                             data-test_type="{{ $registrant->testType->name }}"
                                             data-reason="{{ $registrant->reason }}"
                                             data-action="{{ route('dashboard.registrants.show', $registrant->id) }}"
@@ -78,7 +78,7 @@
                                             data-phone_number="{{ $registrant->phone_number }}"
                                             data-email="{{ $registrant->user->email }}"
                                             data-test_category="{{ $registrant->testType->testCategory->name }}"
-                                            data-psikotest_service="{{ $registrant->psikotest_service }}"
+                                            data-psikotes_service="{{ $registrant->psikotes_service }}"
                                             data-test_type="{{ $registrant->testType->name }}"
                                             data-domicile="{{ $registrant->domicile }}"
                                             data-service="{{ $registrant->service }}"
@@ -167,8 +167,8 @@
                         </div>
                         <div class="flex gap-4 mb-4">
                             <div class="flex w-full flex-col">
-                                <label for="edit_psikotest_service" class="mb-2 font-bold text-[#9b9b9b]">Layanan Psikotes</label>
-                                <select id="edit_psikotest_service" name="service" class="rounded-md border border-gray-300 bg-gray-50 px-4 py-2">
+                                <label for="edit_psikotes_service" class="mb-2 font-bold text-[#9b9b9b]">Layanan Psikotes</label>
+                                <select id="edit_psikotes_service" name="service" class="rounded-md border border-gray-300 bg-gray-50 px-4 py-2">
                                     <option value="Online">Online</option>
                                     <option value="Offline">Offline</option>
                                 </select>
@@ -328,7 +328,7 @@
         //         document.getElementById('edit_phone_number').value = this.dataset.phone_number;
         //         document.getElementById('edit_email').value = this.dataset.email;
         //         document.getElementById('edit_test_category').value = this.dataset.test_category;
-        //         document.getElementById('edit_psikotest_service').value = this.dataset.psikotest_service;
+        //         document.getElementById('edit_psikotes_service').value = this.dataset.psikotes_service;
         //         document.getElementById('edit_test_type_id').value = this.dataset.test_type;
         //         document.getElementById('edit_psikotes_date').value = this.dataset.psikotes_date;
         //         document.getElementById('edit_psikotes_time').value = this.dataset.psikotes_time;

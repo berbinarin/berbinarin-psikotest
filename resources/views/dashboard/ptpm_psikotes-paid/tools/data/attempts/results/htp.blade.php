@@ -3,7 +3,7 @@
     <!-- Header Section -->
     <div class="mb-8">
         <h1 class="text-3xl font-bold text-gray-800 mb-2">{{ $item['user_name'] ?? 'Unknown User' }}</h1>
-        <p class="text-gray-600">Submissions Test HTP</p>
+        <p class="text-gray-600">Submissions Tes HTP</p>
         <div class="w-20 h-1 bg-blue-500 mt-2"></div>
     </div>
 

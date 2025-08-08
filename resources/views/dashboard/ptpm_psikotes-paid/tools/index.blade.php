@@ -10,8 +10,8 @@
         <div class="w-full">
             <div class="py-4 md:pb-7 md:pt-12">
                 <div>
-                    <p tabindex="0" class="mb-2 text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Data Alat Test</p>
-                    <p class="text-disabled py-2 text-gray-500"><span class="italic">Dashboard&nbsp;</span> ini memberikan informasi mengenai jenis alat tes beserta nomor alat test dari token nya.</p>
+                    <p tabindex="0" class="mb-2 text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Data Alat Tes</p>
+                    <p class="text-disabled py-2 text-gray-500"><span class="italic">Dashboard&nbsp;</span> ini memberikan informasi mengenai jenis alat tes beserta nomor alat tes dari token nya.</p>
                     {{-- <a href="{{ route("dashboard.tools.create") }}" class="mt-8 inline-flex items-start justify-start rounded-lg bg-primary px-6 py-3 text-white hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-3">
                         <span class="leading-none">Tambah Data</span>
                     </a> --}}
@@ -23,8 +23,8 @@
                         <thead>
                             <tr>
                                 <th style="text-align: center">No</th>
-                                <th style="text-align: center">Nama Alat Test</th>
-                                <th style="text-align: center">Nomor Alat Test</th>
+                                <th style="text-align: center">Nama Alat Tes</th>
+                                <th style="text-align: center">Nomor Alat Tes</th>
                                 <th style="text-align: center">Token</th>
                                 <th style="text-align: center" class="w-80"><span class="italic">Action</span></th>
                             </tr>
@@ -100,7 +100,7 @@
                 e.preventDefault();
                 const formId = this.getAttribute('data-id');
                 Swal.fire({
-                    title: 'Hapus Alat Test',
+                    title: 'Hapus Alat Tes',
                     text: 'Apakah anda yakin menghapusnya?',
                     icon: 'warning',
                     showCancelButton: true,

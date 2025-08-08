@@ -1,7 +1,7 @@
 <div class="w-full p-6 bg-gray-50">
     <!-- Header Section -->
     <div class="mb-8">
-        <h1 class="text-3xl font-bold text-blue-700 mb-2">Test DAP Results</h1>
+        <h1 class="text-3xl font-bold text-blue-700 mb-2">Tes DAP Results</h1>
         <p class="text-gray-600">Berikut adalah rincian jawaban dan gambar dari tes DAP.</p>
         <div class="w-20 h-1 bg-blue-500 mt-2"></div>
     </div>

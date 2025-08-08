@@ -17,7 +17,7 @@
             </p>
         </div>
         <p class="text-disabled py-2">
-            Fitur ini menampilkan data testimoni user yang telah melakukan Psikotest.
+            Fitur ini menampilkan data testimoni user yang telah melakukan Psikotes.
         </p>
     </div>
 
@@ -38,7 +38,7 @@
             </p>
             <div class="rounded-lg border border-gray-200 bg-[#FAFAFA] p-5">
                 <p class="text-gray-700">
-                    {{ $testimonial->opinion_psikotest ?? '-' }}
+                    {{ $testimonial->opinion_psikotes ?? '-' }}
                 </p>
             </div>
         </div>

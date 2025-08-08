@@ -9,24 +9,24 @@ use Illuminate\Support\Carbon;
 
 class PsikotesFreeProfileController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('landing.psikotes-free.profile');
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $request->validate([
             'name' => 'required|string|max:255',
-            'gender' => 'required|string|max:10',
+            'gender' => 'required|string',
             'date_of_birth' => 'required',
-            // 'date_of_test' => 'required|date',
             'email' => 'required|email',
         ]);
-
 
         $dateOfBirth = Carbon::createFromFormat('d/m/Y', $request->date_of_birth)->format('Y-m-d');
         $dateOfTest = Carbon::now();
 
-        $userPsikotest = PsikotesFreeProfile::create([
+        $userPsikotes = PsikotesFreeProfile::create([
             'name' => $request->input('name'),
             'gender' => $request->input('gender'),
             'date_of_birth' => $dateOfBirth,
@@ -34,7 +34,7 @@ class PsikotesFreeProfileController extends Controller
             'email' => $request->input('email'),
         ]);
 
-        $user_id = $userPsikotest->id;
+        $user_id = $userPsikotes->id;
 
         session()->put('user_id', $user_id);
 

@@ -8,8 +8,8 @@
 @section("content")
     <section class="max-h-[95vh] w-full p-5">
         <div class="mb-8">
-            <h1 class="text-3xl font-bold text-gray-900">Dashboard Pendaftaran Psikotest Gratis</h1>
-            <p class="mt-2 text-gray-500">Dashboard ini memberikan informasi mengenai jumlah pengguna yang telah mendaftar psikotest.</p>
+            <h1 class="text-3xl font-bold text-gray-900">Dashboard Pendaftaran Psikotes Gratis</h1>
+            <p class="mt-2 text-gray-500">Dashboard ini memberikan informasi mengenai jumlah pengguna yang telah mendaftar psikotes.</p>
         </div>
 
         <!-- Card Section -->

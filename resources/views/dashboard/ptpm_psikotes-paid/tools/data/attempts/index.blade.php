@@ -12,7 +12,7 @@
         if (in_array($tool->name, ['BAUM', 'DAP', 'HTP'])) {
             $title = "Database Jawaban Alat Tes " . $tool->name;
         } elseif (in_array($tool->name, ['VAK', 'SSCT'])) {
-            $title = "Data Jawaban Alat Test " . $tool->name;
+            $title = "Data Jawaban Alat Tes " . $tool->name;
         }
     @endphp
 

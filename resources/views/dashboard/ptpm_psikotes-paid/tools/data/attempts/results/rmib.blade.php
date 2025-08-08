@@ -1,4 +1,4 @@
-@section("style")
+@push("style")
     <style>
         .scroll-container {
             cursor: grab;
@@ -15,7 +15,7 @@
             background: transparent;
         }
     </style>
-@endsection
+@endpush
 
 <div class="mb-1 flex w-full gap-8">
     <!-- Chart & Summary -->

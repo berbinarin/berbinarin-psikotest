@@ -1,5 +1,5 @@
 @extends('landing.layouts.app', [
-'title' => 'Psikotest Berbinar',
+'title' => 'Psikotes Berbinar',
 'active' => 'Intro',
 'page' => 'Tes Kepribadian Gratis',
 ])

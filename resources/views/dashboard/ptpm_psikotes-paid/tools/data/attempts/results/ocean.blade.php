@@ -4,13 +4,13 @@
     $categories = ["extraversion", "agreeableness", "neuroticism", "conscientiousness", "openness"];
 @endphp
 
-@section("style")
+@push("style")
     <style>
         [x-cloak] {
             display: none !important;
         }
     </style>
-@endsection
+@endpush
 
 <div class="mb-1 flex w-full gap-8">
     {{-- Graph Section --}}

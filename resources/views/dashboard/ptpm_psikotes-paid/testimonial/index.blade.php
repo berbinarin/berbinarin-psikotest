@@ -11,7 +11,7 @@
             <div class="py-4 md:pb-7 md:pt-12">
                 <div>
                     <p tabindex="0" class="mb-2 text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Data Testimoni</p>
-                    <p class="text-disabled py-2 text-gray-500">Fitur ini menampilkan data testimoni <span class="italic">user&nbsp;</span> yang telah melakukan Psikotest.</p>
+                    <p class="text-disabled py-2 text-gray-500">Fitur ini menampilkan data testimoni <span class="italic">user&nbsp;</span> yang telah melakukan Psikotes.</p>
                 </div>
             </div>
             <div class="rounded-[24px] bg-white px-10 py-7 mb-7">
@@ -29,7 +29,7 @@
                             @foreach ($testimonial as $testimoni)
                                 <tr>
                                     <td class="text-center">{{ $loop->iteration }}</td>
-                                    <td class="text-center">{{ $testimoni->userPsikotestPaid ? $testimoni->userPsikotestPaid->name : 'User tidak ditemukan' }}</td>
+                                    <td class="text-center">{{ $testimoni->userPsikotesPaid ? $testimoni->userPsikotesPaid->name : 'User tidak ditemukan' }}</td>
                                     <td class="text-center">{{ \Carbon\Carbon::parse($testimoni->created_at)->format("d-m-Y H:i:s") }}</td>
                                     <td class="flex items-center justify-center gap-2">
                                         <a href="{{ route('dashboard.testimonial.show', $testimoni->id) }}" class="inline-flex items-start justify-start rounded p-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #3b82f6">

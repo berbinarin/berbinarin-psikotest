@@ -23,7 +23,7 @@
                         <thead>
                             <tr>
                                 <th style="text-align: center">No</th>
-                                <th style="text-align: center">Nama Jenis Test</th>
+                                <th style="text-align: center">Nama Jenis Tes</th>
                                 <th style="text-align: center">Harga</th>
                                 <th style="text-align: center">Deskripsi</th>
                                 <th style="text-align: center">Action</th>

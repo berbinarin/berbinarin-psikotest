@@ -15,7 +15,7 @@
                 <div class="flex flex-col items-center justify-center gap-7">
                     <div class="mt-8 flex w-fit items-center gap-7 rounded-[70px] bg-white px-8 py-[10px]">
                         <img class="h-10 w-10" src="{{ asset("assets/landing/images/psikotes-paid/logo-berbinar.png") }}" alt="Logo Berbinar" />
-                        <img class="h-11 w-11" src="{{ asset("assets/landing/images/psikotes-paid/logo-berbinar-psikotes.png") }}" alt="Logo Berbinar Psikotest" />
+                        <img class="h-11 w-11" src="{{ asset("assets/landing/images/psikotes-paid/logo-berbinar-psikotes.png") }}" alt="Logo Berbinar Psikotes" />
                     </div>
                     <div>
                         <h2 class="text-[28px] font-bold">Tes {{ str_pad($question->tool->order, 2, "0", STR_PAD_LEFT) }}</h2>
@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="flex gap-6 rounded-[10px] bg-white px-8 py-3 drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]">
-                    <div class="h-64px relative flex w-[683px] flex-col justify-center">
+                    <div class="h-64px relative flex w-full flex-col justify-center">
                         <div class="h-[3px] w-full rounded-md bg-black">
                             <div class="relative h-[3px] rounded-md bg-[#232ACA]" style="width: {{ $progress }}%">
                                 <span class="absolute right-0 block h-2 w-2 -translate-y-1/3 translate-x-1/2 rounded-full bg-[#232ACA]"></span>
@@ -41,10 +41,6 @@
                 </div>
             </div>
         </form>
-    </div>
-
-    <div id="countdownExample" class="absolute right-4 top-4">
-        <div class="values rounded-full bg-blue-500 px-5 py-3 text-white">00:00:00</div>
     </div>
 @endsection
 

@@ -11,8 +11,8 @@
             <div class="w-full">
                 <div class="py-4 md:pb-7 md:pt-12">
                     <div>
-                        <p tabindex="0" class="mb-2 text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Daftar Section Alat Test {{ $tool->name }}</p>
-                        <p class="text-disabled w-2/4">Menampilkan Semua Section Alat Test</p>
+                        <p tabindex="0" class="mb-2 text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Daftar Section Alat Tes {{ $tool->name }}</p>
+                        <p class="text-disabled w-2/4">Menampilkan Semua Section Alat Tes</p>
                     </div>
                 </div>
                 <div class="rounded-md bg-white px-4 py-4 md:px-8 md:py-7 xl:px-10">

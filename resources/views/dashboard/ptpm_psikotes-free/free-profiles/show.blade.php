@@ -1,7 +1,7 @@
     @extends('dashboard.layouts.app', [
     'title' => 'Psikotes Free',
     'active' => 'Dashboard',
-    'modul' => 'Psikotest Free Data',
+    'modul' => 'Psikotes Free Data',
     ])
     @section('content')
         <section class="flex">

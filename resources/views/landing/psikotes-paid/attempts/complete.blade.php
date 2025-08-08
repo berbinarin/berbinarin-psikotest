@@ -13,7 +13,7 @@
             <div class="flex flex-col items-center justify-center gap-7">
                 <div class="mt-8 flex w-fit items-center gap-7 rounded-[70px] bg-white px-8 py-[10px]">
                     <img class="h-10 w-10" src="{{ asset("/assets/landing/images/psikotes-paid/logo-berbinar.png") }}" alt="Logo Berbinar" />
-                    <img class="h-11 w-11" src="{{ asset("/assets/landing/images/psikotes-paid/logo-berbinar-psikotes.png") }}" alt="Logo Berbinar Psikotest" />
+                    <img class="h-11 w-11" src="{{ asset("/assets/landing/images/psikotes-paid/logo-berbinar-psikotes.png") }}" alt="Logo Berbinar Psikotes" />
                 </div>
             </div>
             

@@ -9,13 +9,13 @@ use Illuminate\Http\Request;
 class TestimonialController extends Controller
 {
     public function index() {
-        $testimonial = Testimonial::with('userPsikotestPaid')->get();
+        $testimonial = Testimonial::with('userPsikotesPaid')->get();
 
         return view('dashboard.ptpm_psikotes-paid.testimonial.index', compact('testimonial'));
     }
 
     public function show($id) {
-        $testimonial = Testimonial::with('userPsikotestPaid')->findOrFail($id);
+        $testimonial = Testimonial::with('userPsikotesPaid')->findOrFail($id);
 
         return view('dashboard.ptpm_psikotes-paid.testimonial.detail', compact('testimonial'));
     }

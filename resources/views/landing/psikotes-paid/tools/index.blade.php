@@ -23,7 +23,7 @@
                 <a href="{{ route("psikotes-paid.testimonial.index") }}" class="ml-16 rounded-[5px] bg-[#3986A3] px-[10px] py-3 text-xs font-medium text-white">Testimoni</a>
                 <div class="flex items-center justify-center gap-4 rounded-full bg-white px-8 py-2 drop-shadow-lg">
                     <img class="h-10 w-10" src="{{ asset("assets/landing/images/psikotes-paid/logo-berbinar.png") }}" alt="Logo Berbinar" />
-                    <img class="h-11 w-11" src="{{ asset("assets/landing/images/psikotes-paid/logo-berbinar-psikotes.png") }}" alt="Logo Berbinar Psikotest" />
+                    <img class="h-11 w-11" src="{{ asset("assets/landing/images/psikotes-paid/logo-berbinar-psikotes.png") }}" alt="Logo Berbinar Psikotes" />
                 </div>
                 <form action="{{ route("auth.logout") }}" method="POST">
                     @csrf
@@ -48,7 +48,7 @@
                             @foreach ($tools as $tool)
                                 <button type="button" @click="open = true; testNumber = {{ $tool->id }}">
                                     <div class="flex h-[180px] w-[270px] items-center justify-center rounded-[5px] bg-[#3986A3] transition hover:scale-105">
-                                        <p class="text-xl font-bold text-white" style="font-family: 'Plus Jakarta Sans', sans-serif">Test {{ str_pad($tool->order, 2, "0", STR_PAD_LEFT) }}</p>
+                                        <p class="text-xl font-bold text-white" style="font-family: 'Plus Jakarta Sans', sans-serif">Tes {{ str_pad($tool->order, 2, "0", STR_PAD_LEFT) }}</p>
                                     </div>
                                 </button>
                             @endforeach
@@ -61,8 +61,8 @@
             <!-- Modal Redeem Code Start -->
             <div x-show="open" x-cloak @click.outside="open = false" @keydown.escape.window="open = false" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
                 <div class="h-[298px] w-[560px] rounded-lg bg-white p-6 shadow-lg">
-                    <h2 class="mb-5 text-center text-2xl font-bold" style="font-family: 'Plus Jakarta Sans', sans-serif">Redeem Code</h2>
-                    <h2 class="mb-6 text-center text-[15px] text-[#D1D1D1]" style="font-family: 'Plus Jakarta Sans', sans-serif">Enter the redeem code provided to start the test</h2>
+                    <h2 class="mb-5 text-center text-2xl font-bold" style="font-family: 'Plus Jakarta Sans', sans-serif">Kode Tes</h2>
+                    <h2 class="mb-6 text-center text-[15px] text-[#D1D1D1]" style="font-family: 'Plus Jakarta Sans', sans-serif">Masukkan kode tes yang diberikan untuk memulai tes.</h2>
                     <form method="POST" action="{{ route("psikotes-paid.tools.verify-token") }}">
                         @csrf
                         <input type="hidden" name="tool_id" :value="testNumber" />
