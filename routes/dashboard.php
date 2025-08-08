@@ -45,7 +45,7 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
 
         // Tools
         Route::prefix('tools')->name('tools.')->group(function () {
-            Route::get('/{tool}/generate-token', [ToolController::class, 'generateToken'])->name('generate-token');
+            Route::put('/{tool}/generate-token', [ToolController::class, 'generateToken'])->name('generate-token');
 
             // Data
             Route::prefix('{tool}/data')->name('data.')->group(function () {

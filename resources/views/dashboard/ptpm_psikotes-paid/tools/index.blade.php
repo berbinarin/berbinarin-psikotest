@@ -12,9 +12,9 @@
                 <div>
                     <p tabindex="0" class="mb-2 text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Data Alat Test</p>
                     <p class="text-disabled py-2 text-gray-500"><span class="italic">Dashboard&nbsp;</span> ini memberikan informasi mengenai jenis alat tes beserta nomor alat test dari token nya.</p>
-                    <a href="{{ route("dashboard.tools.create") }}" class="mt-8 inline-flex items-start justify-start rounded-lg bg-primary px-6 py-3 text-white hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-3">
+                    {{-- <a href="{{ route("dashboard.tools.create") }}" class="mt-8 inline-flex items-start justify-start rounded-lg bg-primary px-6 py-3 text-white hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-3">
                         <span class="leading-none">Tambah Data</span>
-                    </a>
+                    </a> --}}
                 </div>
             </div>
             <div class="rounded-[24px] bg-white px-10 py-7 mb-7">
@@ -34,13 +34,18 @@
                                 <tr id="" class="data-consume">
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td class="text-center">{{ $tool->name }}</td>
-                                    <td class="text-center">{{ $tool->token }}</td>
+                                    <td class="text-center">{{ $tool->order }}</td>
                                     <td class="text-center">{{ $tool->token }}</td>
                                     <td class="flex items-center justify-center gap-3 w-80">
-                                        <a href="{{ route("dashboard.tools.edit", $tool->id) }}" class="inline-flex items-center justify-center w-36 rounded-3xl p-1 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #549FF0">
-                                            <i class="bx bx-refresh text-white mx-1 scale-150"></i>
-                                            <p class="text-white">Update</p>
-                                        </a>
+                                        <form method="POST" action="{{ route("dashboard.tools.generate-token", $tool->id) }}" method="PUT">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="inline-flex items-center justify-center w-36 rounded-3xl p-1 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #549FF0">
+                                                <i class="bx bx-refresh text-white mx-1 scale-150"></i>
+                                                <p class="text-white">Update</p>
+                                            </button>
+                                        </form>
+
                                         <a href="{{ route("dashboard.tools.data.index", $tool->id) }}" class="inline-flex items-center justify-center w-36 rounded-3xl p-1 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #64A1C4">
                                             <i class="bx bx-home text-white mx-1 scale-110"></i>
                                             <p class="text-white">Dashboard</p>
