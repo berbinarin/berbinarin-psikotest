@@ -33,7 +33,7 @@
                                     <tr>
                                         <td class="py-3 font-semibold">Jenis Kelamin :
                                             <span class="ml-2">
-                                                {{ $freeProfile->gender == 'Male' ? 'Laki-laki' : 'Perempuan' }}
+                                                {{ $freeProfile->gender == 'male' ? 'Laki-laki' : 'Perempuan' }}
                                             </span>
 
                                         </td>
