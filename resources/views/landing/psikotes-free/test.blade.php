@@ -72,9 +72,9 @@
             </div>
         </div>
 
-        <div id="countdownExample" class="absolute right-4 top-4">
+        {{-- <div id="countdownExample" class="absolute right-4 top-4">
             <div class="values rounded-full bg-blue-500 px-5 py-3 text-white">00:00:00</div>
-        </div>
+        </div> --}}
     </section>
 @endsection
 
@@ -94,7 +94,7 @@
             });
         });
     </script>
-    
+
     <script type="module">
         const question = @json($question->load("section"));
         const Toast = Swal.mixin({
