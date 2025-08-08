@@ -22,7 +22,6 @@
             <form method="POST" action="{{ route("dashboard.registrants.update", $registrant->id) }}" class="flex flex-col gap-10">
                 @csrf
                 @method("PUT")
-
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="name" class="mb-2 font-bold text-[#9b9b9b]">Nama</label>
@@ -31,8 +30,8 @@
                     <div class="flex w-full flex-col">
                         <label for="gender" class="mb-2 font-bold text-[#9b9b9b]">Jenis Kelamin</label>
                         <select id="gender" name="gender" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0">
-                            <option value="Laki-Laki" {{ $registrant->gender == "Laki-Laki" ? "selected" : "" }}>Laki-Laki</option>
-                            <option value="Perempuan" {{ $registrant->gender == "Perempuan" ? "selected" : "" }}>Perempuan</option>
+                            <option value="male" {{ $registrant->gender === 'male' ? 'selected' : '' }}>Laki-Laki</option>
+                            <option value="female" {{ $registrant->gender === 'female' ? 'selected' : '' }}>Perempuan</option>
                         </select>
                     </div>
                 </div>
@@ -53,20 +52,50 @@
                     </div>
                     <div class="flex w-full flex-col">
                         <label for="test_category" class="mb-2 font-bold text-[#9b9b9b]">Kategori Psikotes</label>
-                        <input type="text" id="test_category" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->testType->testCategory->name }}" readonly />
+                        <input type="text" id="test_category" name="test_category" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->testType->testCategory->name }}" />
+                    </div>
+                </div>
+                @php
+                    $schedule = $registrant->schedule ? \Carbon\Carbon::parse($registrant->schedule) : null;
+                @endphp
+                <div class="flex gap-20">
+                    <div class="flex w-full flex-col">
+                        <label for="psikotes_date" class="mb-2 font-bold text-[#9b9b9b]">Jadwal</label>
+                        <input type="date" id="psikotes_date" name="psikotes_date" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $schedule ? $schedule->format('Y-m-d') : '' }}" />
+                    </div>
+                    <div class="flex w-full flex-col">
+                        <label for="psikotes_type" class="mb-2 font-bold text-[#9b9b9b]">Waktu</label>
+                        <input type="time" id="psikotes_type" name="psikotes_time" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $schedule ? $schedule->format('H:i')  : '' }}" />
                     </div>
                 </div>
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
-                        <label for="psikotest_service" class="mb-2 font-bold text-[#9b9b9b]">Layanan Psikotes</label>
-                        <select id="psikotest_service" name="psikotest_service" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0">
-                            <option value="Online" {{ $registrant->psikotest_service == "Online" ? "selected" : "" }}>Online</option>
-                            <option value="Offline" {{ $registrant->psikotest_service == "Offline" ? "selected" : "" }}>Offline</option>
+                        <label for="service" class="mb-2 font-bold text-[#9b9b9b]">Layanan Psikotes</label>
+                        <select id="service" name="psikotes_service" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0">
+                            <option value="Online" {{ $registrant->service == "Online" ? "selected" : "" }}>Online</option>
+                            <option value="Offline" {{ $registrant->service == "Offline" ? "selected" : "" }}>Offline</option>
                         </select>
                     </div>
                     <div class="flex w-full flex-col">
                         <label for="test_type_id" class="mb-2 font-bold text-[#9b9b9b]">Jenis Psikotes</label>
-                        <input type="text" id="test_type_id" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->testType->name }}" readonly />
+                        <select name="test_type_id" id="test_type_id"
+                            class="rounded-md border-1 border-gray-300 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0">
+                            <option value="" disabled {{ old('test_type_id', $registrant->test_type_id) ? '' : 'selected' }}>
+                                Pilih Jenis Psikotes
+                            </option>
+                            @foreach($testTypes as $type)
+                                <option value="{{ $type->id }}"
+                                    {{ old('test_type_id', $registrant->test_type_id) == $type->id ? 'selected' : '' }}>
+                                    {{ $type->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="flex gap-20">
+                    <div class="flex w-full flex-col">
+                        <label for="domicile" class="mb-2 font-bold text-[#9b9b9b]">Domisili</label>
+                        <input type="text" id="domicile" name="domicile" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->domicile }}" />
                     </div>
                 </div>
                 <div class="flex gap-20">
