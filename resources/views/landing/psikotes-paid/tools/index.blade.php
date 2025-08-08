@@ -65,7 +65,6 @@
                     <h2 class="mb-6 text-center text-[15px] text-[#D1D1D1]" style="font-family: 'Plus Jakarta Sans', sans-serif">Enter the redeem code provided to start the test</h2>
                     <form method="POST" action="{{ route("psikotes-paid.tools.verify-token") }}">
                         @csrf
-                        <div x-text="testNumber"></div>
                         <input type="hidden" name="tool_id" :value="testNumber" />
                         <div class="flex justify-center">
                             <input type="text" name="token" placeholder="Enter code" class="h-[47px] w-[458px] rounded-[10px] bg-[#E1E1E1] px-3 text-[15px] font-bold outline-none placeholder:text-white" style="font-family: 'Plus Jakarta Sans', sans-serif" required />
