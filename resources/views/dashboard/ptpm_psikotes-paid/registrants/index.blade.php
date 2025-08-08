@@ -67,7 +67,7 @@
                                         >
                                             <i class="bx bx-show text-white"></i>
                                         </button>
-                                        <button
+                                        {{-- <button
                                             type="button"
                                             class="edit-button inline-flex items-start justify-start rounded p-2 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
                                             style="background-color: #e9b306"
@@ -80,11 +80,19 @@
                                             data-test_category="{{ $registrant->testType->testCategory->name }}"
                                             data-psikotest_service="{{ $registrant->psikotest_service }}"
                                             data-test_type="{{ $registrant->testType->name }}"
+                                            data-domicile="{{ $registrant->domicile }}"
+                                            data-service="{{ $registrant->service }}"
+                                            data-psikotes_date="{{ optional($registrant->schedule)->format('Y-m-d') }}"
+                                            data-psikotes_time="{{ optional($registrant->schedule)->format('H:i') }}"
                                             data-reason="{{ $registrant->reason }}"
                                             data-action="{{ route('dashboard.registrants.update', $registrant->id) }}"
                                         >
                                             <i class="bx bx-edit-alt text-black"></i>
-                                        </button>
+                                        </button> --}}
+                                        <a href="{{route("dashboard.registrants.edit", $registrant->id) }}" class="edit-button inline-flex items-start justify-start rounded p-2 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                                            style="background-color: #e9b306">
+                                            <i class="bx bx-edit-alt text-black"></i>
+                                        </a>
                                         <form id="deleteForm-{{ $registrant->id }}" action="{{ route("dashboard.registrants.destroy", $registrant->id) }}" method="POST">
                                             @csrf
                                             @method("DELETE")
@@ -149,15 +157,25 @@
                         </div>
                         <div class="flex gap-4 mb-4">
                             <div class="flex w-full flex-col">
+                                <label for="edit_psikotes_date" class="mb-2 font-bold text-[#9b9b9b]">Tanggal</label>
+                                <input type="date" id="edit_psikotes_date" name="psikotes_date" class="rounded-md border border-gray-300 bg-gray-50 px-4 py-2" />
+                            </div>
+                            <div class="flex w-full flex-col">
+                                <label for="edit_psikotes_time" class="mb-2 font-bold text-[#9b9b9b]">Waktu</label>
+                                <input type="time" id="edit_psikotes_time" name="psikotes_type" class="rounded-md border border-gray-300 bg-gray-50 px-4 py-2" readonly />
+                            </div>
+                        </div>
+                        <div class="flex gap-4 mb-4">
+                            <div class="flex w-full flex-col">
                                 <label for="edit_psikotest_service" class="mb-2 font-bold text-[#9b9b9b]">Layanan Psikotes</label>
-                                <select id="edit_psikotest_service" name="psikotest_service" class="rounded-md border border-gray-300 bg-gray-50 px-4 py-2">
+                                <select id="edit_psikotest_service" name="service" class="rounded-md border border-gray-300 bg-gray-50 px-4 py-2">
                                     <option value="Online">Online</option>
                                     <option value="Offline">Offline</option>
                                 </select>
                             </div>
                             <div class="flex w-full flex-col">
                                 <label for="edit_test_type_id" class="mb-2 font-bold text-[#9b9b9b]">Jenis Psikotes</label>
-                                <input type="text" id="edit_test_type_id" class="rounded-md border border-gray-300 bg-gray-50 px-4 py-2" readonly />
+                                <input type="text" id="edit_test_type_id" name="test_type_id" class="rounded-md border border-gray-300 bg-gray-50 px-4 py-2" readonly />
                             </div>
                         </div>
                         <div class="mb-4 flex flex-col">
@@ -301,24 +319,27 @@
 
     <script>
         // Modal Edit
-        document.querySelectorAll('.edit-button').forEach((button) => {
-            button.addEventListener('click', function () {
-                // Isi form modal dengan data dari button
-                document.getElementById('edit_name').value = this.dataset.name;
-                document.getElementById('edit_gender').value = this.dataset.gender;
-                document.getElementById('edit_age').value = this.dataset.age;
-                document.getElementById('edit_phone_number').value = this.dataset.phone_number;
-                document.getElementById('edit_email').value = this.dataset.email;
-                document.getElementById('edit_test_category').value = this.dataset.test_category;
-                document.getElementById('edit_psikotest_service').value = this.dataset.psikotest_service;
-                document.getElementById('edit_test_type_id').value = this.dataset.test_type;
-                document.getElementById('edit_reason').value = this.dataset.reason;
-                // Set action form
-                document.getElementById('editForm').action = this.dataset.action;
-                // Tampilkan modal
-                document.getElementById('editModal').classList.remove('hidden');
-            });
-        });
+        // document.querySelectorAll('.edit-button').forEach((button) => {
+        //     button.addEventListener('click', function () {
+        //         // Isi form modal dengan data dari button
+        //         document.getElementById('edit_name').value = this.dataset.name;
+        //         document.getElementById('edit_gender').value = this.dataset.gender;
+        //         document.getElementById('edit_age').value = this.dataset.age;
+        //         document.getElementById('edit_phone_number').value = this.dataset.phone_number;
+        //         document.getElementById('edit_email').value = this.dataset.email;
+        //         document.getElementById('edit_test_category').value = this.dataset.test_category;
+        //         document.getElementById('edit_psikotest_service').value = this.dataset.psikotest_service;
+        //         document.getElementById('edit_test_type_id').value = this.dataset.test_type;
+        //         document.getElementById('edit_psikotes_date').value = this.dataset.psikotes_date;
+        //         document.getElementById('edit_psikotes_time').value = this.dataset.psikotes_time;
+        //         // document.getElementById('edit_domicile').value = this.dataset.domicile;
+        //         document.getElementById('edit_reason').value = this.dataset.reason;
+        //         // Set action form
+        //         document.getElementById('editForm').action = this.dataset.action;
+        //         // Tampilkan modal
+        //         document.getElementById('editModal').classList.remove('hidden');
+        //     });
+        // });
 
         // Tutup modal
         document.getElementById('closeEditModal').onclick = function() {

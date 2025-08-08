@@ -91,7 +91,9 @@ class RegistrantController extends Controller
     {
         $registrant = RegistrantProfile::with(['user', 'testType.testCategory'])->findOrFail($id);
         $testCategories = TestCategory::with('testTypes')->get();
-        return view('dashboard.ptpm_psikotes-paid.registrants.edit', compact('registrant', 'testCategories'));
+        $testTypes = $registrant->testType->testCategory->testTypes;
+
+        return view('dashboard.ptpm_psikotes-paid.registrants.edit', compact('registrant', 'testCategories', 'testTypes'));
     }
 
     /**
@@ -104,11 +106,11 @@ class RegistrantController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $registrant->user->id,
-            'gender' => 'required|in:Laki-laki,Perempuan',
+            'gender' => 'required|in:male,female',
             'age' => 'required|numeric|min:1|max:100',
             'domicile' => 'required|string|max:255',
             'phone_number' => 'required|string|max:20',
-            'service' => 'required|string',
+            'psikotes_service' => 'required|string', // yang gw ubah ya, sebelumnya service doang
             'reason' => 'required|string',
             'test_type_id' => 'required|exists:test_types,id',
             'psikotes_date' => 'required|date',
@@ -126,11 +128,12 @@ class RegistrantController extends Controller
                 // Update registrant profile
                 $registrant->update([
                     'test_type_id' => $request->test_type_id,
-                    'gender' => $request->gender,
+                    // 'gender' => (string) $request->gender, // ini yang sebelumnya
+                    'gender' => $request->gender, // ini gw ganti jadi ini
                     'age' => $request->age,
                     'domicile' => $request->domicile,
                     'phone_number' => $request->phone_number,
-                    'psikotes_service' => $request->service,
+                    'psikotes_service' => $request->psikotes_service, // ini gw ganti namanya ditambahin psikotes. Sebelumnya service
                     'reason' => $request->reason,
                     'schedule' => \Carbon\Carbon::createFromFormat('Y-m-d H:i', $request->psikotes_date . ' ' . $request->psikotes_time),
                 ]);
