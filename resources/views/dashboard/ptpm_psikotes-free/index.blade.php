@@ -33,7 +33,7 @@
         <!-- Charts Section-->
         <div class="grid grid-cols-1 gap-6 ">
             <!-- Summary Chart -->
-            <div class="flex h-[380px] flex-col rounded-xl bg-white p-6 shadow">
+            <div class="flex h-[350px] flex-col rounded-xl bg-white px-6 py-3 mb-6 shadow">
                 <div class="mb-4">
                     <span class="font-semibold text-gray-800">Summary</span>
                 </div>

@@ -59,64 +59,71 @@
             </div>
 
             <!-- Modal -->
+            <!-- Modal -->
             <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
-                <div class="max-h-[90vh] w-[90%] max-w-3xl overflow-y-auto rounded-2xl bg-white p-8 shadow-lg max-sm:p-4">
-                    <!-- Judul Utama -->
-                    <h1 class="bg-gradient-to-r from-[#3986A3] to-[#15323D] bg-clip-text pb-4 text-center text-3xl font-bold text-transparent max-sm:text-2xl">Syarat dan Ketentuan</h1>
+                <div class="max-h-[90vh] w-[90%] max-w-3xl max-sm:overflow-y-auto rounded-2xl bg-white p-8 shadow-lg max-sm:p-4">
+                    <div class="overflow-y-auto">
+                        <!-- Judul Utama -->
+                        <h1 class="mb-4 text-center text-3xl font-bold text-[#2C5C84] max-sm:text-2xl">Syarat dan Ketentuan</h1>
 
-                    <!-- Daftar Syarat -->
-                    <ul class="space-y-2 px-6 text-[sm] text-justify">
-                        <li>
-                            <span class="font-semibold text-center">Harap baca sebelum daftar:</span>
-                            <ul class="mt-1 list-decimal pl-4 text-[#70787D]">
-                                <li>
-                                    Setelah mengisi formulir, calon pendaftar akan diarahkan untuk melakukan
-                                    <span class="font-bold">pembayaran 100%</span>
-                                    ke
-                                    <span class="font-bold">Bank Mandiri</span>
-                                    dengan no rekening
-                                    <span class="font-bold">1400020763711</span>
-                                    a.n. Berbinar Insightful Indonesia dengan aturan transfer 1×24 jam setelah pengisian formulir.
-                                </li>
-                                <li>
-                                    Jika calon peserta tes
-                                    <span class="font-bold">tidak membalas pesan</span>
-                                    admin dalam waktu 1×24 jam setelah pengisian formulir, maka pendaftaran oleh calon peserta tes secara
-                                    <span class="font-bold">otomatis dibatalkan</span>.
-                                </li>
-                                <li>
-                                    Jika calon peserta tes
-                                    <span class="font-bold">tidak membalas pesan</span>
-                                    admin dalam 1×24 jam, jadwal yang sudah ditentukan oleh klien
-                                    <span class="font-bold">berhak untuk dirubah oleh Tim Berbinar dan kesepakatan dari klien</span>
-                                    .
-                                </li>
-                                <li>
-                                    Jika calon peserta tes
-                                    <span class="font-bold">tidak membalas pesan</span>
-                                    admin dalam 2×24 jam setelah melakukan pembayaran,
-                                    <span class="font-bold">pembayaran dianggap hangus</span>
-                                    .
-                                </li>
-                                <li>
-                                    Calon peserta tes
-                                    <span class="font-bold">dapat mengajukan pembatalan</span>
-                                    layanan psikotes dalam kurun waktu 1×24 jam setelah proses administrasi dan dana yang telah dibayarkan akan
-                                    <span class="font-bold">dikembalikan 100%</span>
-                                    .
-                                </li>
-                                <li>
-                                    Setelah
-                                    <span class="font-bold">selesai melaksanakan psikotes</span>
-                                    , peserta akan dikirimkan hasil psikotesnya dengan jangka waktu tertentu.
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                        <!-- Subjudul -->
+                        <h2 class="mb-2 text-lg font-semibold text-[#F4A900]">Syarat dan Ketentuan</h2>
 
-                    <!-- Tombol -->
-                    <div class="mt-6 flex justify-center">
-                        <button id="closeModal" class="rounded-md bg-gradient-to-r from-[#3986A3] to-[#15323D] px-6 py-2 font-medium text-white shadow-sm transition">Saya Mengerti</button>
+                        <!-- Daftar Syarat -->
+                        <ul class="list-disc space-y-2 pl-6 text-[sm]">
+                            <li>
+                                <span class="font-semibold">Harap baca sebelum daftar:</span>
+                                <ol class="mt-1 list-decimal pl-4 text-[#70787D]">
+                                    <li>
+                                        Setelah mengisi formulir, calon pendaftar akan diarahkan untuk melakukan
+                                        <span class="font-bold">pembayaran 100%</span>
+                                        ke
+                                        <span class="font-bold">Bank Mandiri</span>
+                                        dengan no rekening
+                                        <span class="font-bold">1400020763711</span>
+                                        a.n. Berbinar Insightful Indonesia dengan aturan transfer 1×24 jam setelah pengisian formulir.
+                                    </li>
+                                    <li>
+                                        Jika calon peserta tes
+                                        <span class="font-bold">tidak membalas pesan</span>
+                                        admin dalam waktu 1×24 jam setelah pengisian formulir, maka pendaftaran oleh calon peserta tes secara
+                                        <span class="font-bold">otomatis dibatalkan</span>.
+                                    </li>
+                                    <li>
+                                        Jika calon peserta tes
+                                        <span class="font-bold">tidak membalas pesan</span>
+                                        admin dalam 1×24 jam, jadwal yang sudah ditentukan oleh klien
+                                        <span class="font-bold">berhak untuk dirubah oleh Tim Berbinar dan kesepakatan dari klien</span>
+                                        .
+                                    </li>
+                                    <li>
+                                        Jika calon peserta tes
+                                        <span class="font-bold">tidak membalas pesan</span>
+                                        admin dalam 2×24 jam setelah melakukan pembayaran,
+                                        <span class="font-bold">pembayaran dianggap hangus</span>
+                                        .
+                                    </li>
+                                    <li>
+                                        Calon peserta tes
+                                        <span class="font-bold">dapat mengajukan pembatalan</span>
+                                        layanan psikotes dalam kurun waktu 1×24 jam setelah proses administrasi dan dana yang telah dibayarkan akan
+                                        <span class="font-bold">dikembalikan 100%</span>
+                                        .
+                                    </li>
+                                    <li>
+                                        Setelah
+                                        <span class="font-bold">selesai melaksanakan psikotes</span>
+                                        , peserta akan dikirimkan hasil psikotesnya dengan jangka waktu tertentu.
+                                    </li>
+                                </ol>
+                            </li>
+                        </ul>
+
+                        <!-- Tombol -->
+                        <div class="mt-6 flex justify-center">
+                            <button id="closeModal" class="rounded-md bg-gradient-to-r from-[#3986A3] to-[#15323D] px-6 py-2 font-medium text-white shadow-sm transition">Saya Mengerti</button>
+                        </div>
+
                     </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@
 
 @section('content')
 <section class="">
-    <h2 class=" md:w-full text-center text-[#333333] font-bold text-5xl mt-28 lg:mt-36 my-7 mx-7 leading-tight ">
+    <h2 class=" md:w-full text-center text-[#333333] font-bold text-5xl mt-28 lg:mt-36 my-7 leading-tight ">
         Tes Kepribadian <br> <span class="bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text text-transparent">Gratis</span>
     </h2>
     <div class="max-w-6xl mx-auto my-0 md:mb-2 p-4 h-fit flex flex-col relative items-center">
@@ -50,9 +50,9 @@
 </section>
 
 <!--========== POP UP ==========-->
-<section class="relactive flex">
-    <div class="modal fixed bg-black/35 size-full start-0 overflow-x-hidden overflow-y-auto top-0 left-0 right-0 z-50 hidden justify-center items-center">
-        <div class="modal-dialog max-sm:max-w-lg m-7 lg:mt-20 lg:w-[60%] mx-2 sm:mx-auto p-4 lg:pt-8 bg-white rounded-xl shadow-lg">
+<section class="relative flex">
+    <div class="modal fixed bg-black/35 max-sm:max-w-[100vw] size-full start-0 overflow-x-hidden overflow-y-auto top-0 left-0 right-0 z-50 hidden justify-center items-center">
+        <div class="modal-dialog max-sm:max-w-lg m-7 mt-28 lg:mt-20 lg:w-[60%] mx-2 sm:mx-auto p-4 lg:pt-8 bg-white rounded-xl shadow-lg">
             <!-- <div class="text-right p-3 closeModal">
                 <i class='bx bxs-x-circle text-[48px] text-[#F34949]'></i>
             </div> -->

@@ -42,7 +42,7 @@
     <div id="navLinks" class="ml-auto hidden items-center space-x-14 max-lg:space-x-7 md:flex">
         <a href="https://berbinar.in/" class="{{ isNavbarActive("product") }}">Beranda</a>
         <a href="https://berbinar.in/tentang-kami" class="{{ isNavbarActive("about-us") }}">Tentang Kami</a>
-        <a href="https://berbinar.in/produk" class="{{ isNavbarActive("home") }}">Produk</a>
+        <a href="https://berbinar.in/produk" class="border-b-2 border-[#3886A3] font-semibold text-[#3886A3]">Produk</a>
         <a href="https://berbinar.in/karier" class="{{ isNavbarActive("career") }}">Karier</a>
         <a href="https://berbinar.in/arteri" class="{{ isNavbarActive("arteri") }}">ArteRi</a>
         <div>
