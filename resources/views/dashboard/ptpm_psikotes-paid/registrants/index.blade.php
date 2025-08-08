@@ -104,10 +104,6 @@
                                                 <i class="bx bx-trash-alt text-white"></i>
                                             </button>
                                         </form>
-                                        {{-- <a href="{{ route("dashboard.registrants.show", $registrant->id) }}" class="mt-4 inline-flex items-start justify-start rounded p-3 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0">
-                                            <p class="font-semibold text-primary">Detail</p>
-                                            <i class="bx bx-right-arrow-alt mt-1 text-primary"></i>
-                                        </a> --}}
                                     </td>
                                 </tr>
                             @endforeach
@@ -187,8 +183,8 @@
                             <textarea id="edit_reason" name="reason" rows="3" class="rounded-md border border-gray-300 bg-gray-50 px-4 py-2"></textarea>
                         </div>
                         <div class="flex gap-4 mt-6">
-                            <button type="submit" class="flex-1 rounded-lg bg-[#3986a3] px-6 py-2 text-white">Simpan</button>
                             <button type="button" id="cancelEditModal" class="flex-1 rounded-lg border border-[#3986a3] px-6 py-2 text-[#3986a3]">Batal</button>
+                            <button type="submit" class="flex-1 rounded-lg bg-[#3986a3] px-6 py-2 text-white">Simpan</button>
                         </div>
                     </form>
                 </div> --}}

@@ -18,7 +18,7 @@
             @csrf
             <input type="hidden" name="login_type" value="admin">
             <div class="flex items-center justify-center">
-                <div class="w-[500px] rounded-2xl bg-white p-8 shadow-[0px_1px_4px_0px_rgba(12,12,13,0.05)]">
+                <div class="w-[600px] rounded-2xl bg-white p-8 shadow-[0px_1px_4px_0px_rgba(12,12,13,0.05)]">
                     <!-- Judul & Deskripsi -->
                     <div class="text-center">
                         <h1 class="font-plusJakartaSans text-2xl font-bold text-[#1E1E1E]">

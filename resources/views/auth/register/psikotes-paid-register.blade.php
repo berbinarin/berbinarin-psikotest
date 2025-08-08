@@ -61,7 +61,7 @@
             <!-- Modal -->
             <!-- Modal -->
             <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
-                <div class="max-h-[90vh] w-[90%] max-w-3xl max-sm:overflow-y-auto rounded-2xl bg-white p-8 shadow-lg max-sm:p-4">
+                <div class="max-h-[90vh] w-[90%] max-w-4xl max-sm:overflow-y-auto rounded-2xl bg-white p-8 shadow-lg max-sm:p-4">
                     <div class="overflow-y-auto">
                         <!-- Judul Utama -->
                         <h1 class="mb-4 text-center text-3xl font-bold text-[#2C5C84] max-sm:text-2xl">Syarat dan Ketentuan</h1>
@@ -146,9 +146,10 @@
                     </div>
 
                     <div class="flex flex-col space-y-1">
-                        <p class="text-sm text-[#333333] sm:text-[17px]">Waktu Psikotes (WIB)</p>
+                        <p class="text-sm text-[#333333] sm:text-[17px]">Waktu Psikotes</p>
                         <div class="relative">
-                            <input type="time" id="psikotes_time" name="psikotes_time" class="w-full cursor-pointer rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none" placeholder="--:--" value="{{ old("psikotes_time") }}" readonly />
+                            <input type="time" id="psikotes_time" name="psikotes_time" class="w-full cursor-pointer rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none pr-16" placeholder="--:--" value="{{ old("psikotes_time") }}" readonly />
+                            <span class="absolute left-[64px] top-1/2 -translate-y-1/2 text-[#333] text-base pointer-events-none">WIB</span>
                             <img src="{{ asset("assets/landing/icons/clock.png") }}" class="absolute right-5 top-1/2 h-4 w-auto -translate-y-1/2 object-contain" onclick="document.getElementById('timepicker').focus()" />
                         </div>
                     </div>

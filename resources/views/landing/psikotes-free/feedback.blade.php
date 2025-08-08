@@ -6,21 +6,21 @@
 
 @section('content')
 <sections>
-    <div class="min-h-screen flex justify-center items-center w-full">
-        <div class="flex flex-col md:flex-row w-full md:max-w-[90%] md:mt-0 md:mb-10 justify-center md:shadow-xl md:bg-white rounded-3xl p-7 sm:p-10 relative">
+    <div class="max-h-screen flex justify-center items-center w-full">
+        <div class="flex flex-col md:flex-row w-full md:max-w-[90%] md:mt-10 md:mb-8 justify-center md:shadow-xl md:bg-white rounded-3xl px-7 lg:pb-5 lg:pt-1 sm:p-10 relative" style="box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);">
             <div class="lg:w-[95%]">
 
                 <div class="flex flex-row justify-between mb-8">
 
                 </div>
 
-                <h2 class="text-center text-2xl lg:text-4xl font-bold mb-1 lg:mb-12 bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text text-transparent">Gimana Perasaan Kamu Setelah <br> Mengikuti Psikotes Ini?</h2>
+                <h2 class="text-center h-auto z-50 text-2xl lg:text-4xl pb-1 font-bold mb-1 lg:mb-8 bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text text-transparent">Gimana Perasaan Kamu Setelah <br> Mengikuti Psikotes Ini?</h2>
 
                 <form action="{{ route('psikotes-free.feedback.store') }}"
                     method="POST" class="rating">
                     @csrf
 
-                    <div class="rating_list flex lg:w-[80%] flex-row mb-1 lg:mb-12 justify-self-center justify-between md:gap-4">
+                    <div class="rating_list z-0 relative flex lg:w-[80%] flex-row mb-1 lg:mb-12 justify-self-center justify-between md:gap-4">
                         <div class="rating_item flex flex-col items-center">
                             <input class="hidden peer" id="rating-5-1" type="radio" value="5" name="rating" required>
                             <label for="rating-5-1" class="cursor-pointer transition-all duration-300 ease-in-out peer-checked:bg-gradient-to-b from-[#75BADB] to-[#F7B23B] rounded-full group hover:bg-gradient-to-b relative w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 flex items-center justify-center">
@@ -49,7 +49,7 @@
                                         class="absolute inset-0 w-full h-full object-contain transition duration-200 scale-150" />
                                     <!-- Text -->
                                     <div class="text max-sm:block max-sm:pt-12 flex inset-8 max-sm:pb-[4px] w-full shadow-yellow-400/50 h-full justify-center items-end max-sm:items-center">
-                                        <p class="bg-white max-sm:px-0 px-2 max-sm:w-[80%] justify-self-center text-center max-sm:text-[6px] text-xs md:text-[10px] xl:text-[15px] rounded-3xl max-sm:py-[1px] py-1 shadow-md shadow-yellow-400/50 font-bold text-[#F7B23B]">
+                                        <p class="bg-white max-sm:px-0 px-2 max-sm:w-[80%] justify-self-center items-center text-center max-sm:text-[6px] text-xs md:text-[10px] xl:text-[15px] rounded-3xl max-sm:py-[1px] py-1 shadow-md shadow-yellow-400/50 font-bold text-[#F7B23B]">
                                             Senang
                                         </p>
                                     </div>
@@ -122,7 +122,7 @@
                                 class="mt-1 block w-full md:w-full px-2.5 py-1.5 lg:py-3 bg-gray-50 border border-gray-100 rounded-md shadow-md focus:outline-none h-32 lg:h-44 focus:ring-primary focus:border-primary text-sm lg:text-lg"></textarea>
                         </div>
 
-                        <div class="submit flex flex-col w-full md:flex-row gap-5 justify-center items-center pt-8">
+                        <div class="submit flex flex-col w-full md:flex-row gap-5 justify-center items-center pt-9">
                             <button type="submit" class="rounded-lg bg-gradient-to-r mb-5 lg:mx-2 from-[#3986A3] to-[#225062] px-10 w-full lg:w-1/3 py-1.5 font-medium text-white text-lg max-sm:text-[15px]">Kirim</button>
                         </div>
 
