@@ -19,7 +19,7 @@
                 <div class="flex h-[150px]   flex-col rounded-xl bg-white p-4 shadow">
                     <span class="mb-0 flex-1 text-left text-[28px] font-semibold text-gray-800">Responden</span>
                     <div class="mt-auto flex items-center justify-between">
-                        <span class="text-[44px] font-bold text-gray-900">29</span>
+                        <span class="text-[44px] font-bold text-gray-900">{{ $users->count() }}</span>
                         <div class="flex h-[80px] w-[80px] items-center justify-center rounded-2xl bg-gray-100">
                             <img src="{{ asset("assets/dashboard/images/arrow-down.svg") }}" alt="arrow down" class="w-12 h-12" />
                         </div>
@@ -28,16 +28,16 @@
                 <div class="flex h-[150px]   flex-col rounded-xl bg-white p-4 shadow">
                     <span class="mb-0 flex-1 text-left text-[28px] font-semibold text-gray-800">Soal</span>
                     <div class="mt-auto flex items-center justify-between">
-                        <span class="text-[44px] font-bold text-gray-900">29</span>
+                        <span class="text-[44px] font-bold text-gray-900">{{ $questions->count() }}</span>
                         <div class="flex h-[80px] w-[80px] items-center justify-center rounded-2xl bg-gray-100">
                             <img src="{{ asset("assets/dashboard/images/arrow-down.svg") }}" alt="arrow down" class="w-12 h-12" />
                         </div>
                     </div>
                 </div>
-                <div class="flex h-[150px]   flex-col rounded-xl bg-white p-4 shadow">
+                <div class="flex h-[150px]   flex-col rounded-xl bg-white p-4 sha   dow">
                     <span class="mb-0 flex-1 text-left text-[28px] font-semibold text-gray-800">Section</span>
                     <div class="mt-auto flex items-center justify-between">
-                        <span class="text-[44px] font-bold text-gray-900">29</span>
+                        <span class="text-[44px] font-bold text-gray-900">{{ $sections->count() }}</span>
                         <div class="flex h-[80px] w-[80px] items-center justify-center rounded-2xl bg-gray-100">
                             <img src="{{ asset("assets/dashboard/images/arrow-down.svg") }}" alt="arrow down" class="w-12 h-12" />
                         </div>

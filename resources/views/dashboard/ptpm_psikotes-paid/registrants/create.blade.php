@@ -98,7 +98,7 @@
                             @endforeach
                         </select>
                     </div>
-                </div>
+                </div>  
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="service" class="mb-2 font-bold text-[#9b9b9b]">Layanan Psikotes</label>
