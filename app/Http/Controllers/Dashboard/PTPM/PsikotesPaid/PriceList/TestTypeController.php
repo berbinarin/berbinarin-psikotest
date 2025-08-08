@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\TestType;
 use App\Models\TestCategory;
+use App\Models\RegistrantProfile;
 
 class TestTypeController extends Controller
 {
@@ -43,7 +44,7 @@ class TestTypeController extends Controller
             'price' => $request->price,
             'description' => $request->description,
         ]);
-        return redirect()->route('dashboard.test-types.by-category', $categoryId)->with('success', 'Jenis test berhasil ditambahkan.');
+        return redirect()->route('dashboard.price-list.test-types.by-category', $categoryId)->with('success', 'Jenis test berhasil ditambahkan.');
     }
 
     /**
@@ -80,17 +81,31 @@ class TestTypeController extends Controller
             'price' => $request->price,
             'description' => $request->description,
         ]);
-        return redirect()->route('dashboard.test-types.by-category', $categoryId)->with('success', 'Jenis test berhasil diupdate.');
+        return redirect()->route('dashboard.price-list.test-types.by-category', $categoryId)->with('success', 'Jenis test berhasil diupdate.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($categoryId, $id)
+    // public function destroy($categoryId, $id)
+    // {
+    //     $testType = TestType::findOrFail($id);
+    //     $testType->delete();
+    //     return redirect()->route('dashboard.test-types.by-category', $categoryId)->with('success', 'Jenis test berhasil dihapus.');
+    // }
+
+    public function destroy($categoryId, $testTypeId)
     {
-        $testType = TestType::findOrFail($id);
+        $count = RegistrantProfile::where('test_type_id', $testTypeId)->count();
+        if ($count > 0) {
+            return redirect()->back()->with('error', 'Data ini tidak bisa dihapus karena masih digunakan di registrant profiles.');
+        }
+
+        $testType = TestType::findOrFail($testTypeId);
         $testType->delete();
-        return redirect()->route('dashboard.test-types.by-category', $categoryId)->with('success', 'Jenis test berhasil dihapus.');
+
+        return redirect()->route('dashboard.price-list.test-types.by-category', $categoryId)
+            ->with('success', 'Test Type berhasil dihapus.');
     }
 
     public function byCategory($categoryId)

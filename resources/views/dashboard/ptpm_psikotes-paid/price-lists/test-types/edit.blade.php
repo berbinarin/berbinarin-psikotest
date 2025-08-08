@@ -10,7 +10,7 @@
         <div class="py-4 md:pb-7 md:pt-12">
             <div>
                 <div class="mb-2 flex items-center gap-2">
-                    <a href="{{ route('dashboard.price-lists.test-types.by-categories.index', $category->id) }}">
+                    <a href="{{ route('dashboard.price-list.test-types.by-category', $category->id) }}">
                         <img src="{{ asset('assets/dashboard/images/back-btn.png') }}" alt="Back Button" />
                     </a>
                     <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">
@@ -22,7 +22,7 @@
         </div>
 
         <div class="flex flex-col gap-10 rounded-[24px] bg-white px-10 py-7">
-            <form action="{{ route('dashboard.price-lists.test-types.update', [$category->id, $testType->id]) }}" method="POST" class="flex flex-col gap-10">
+            <form action="{{ route('dashboard.price-list.test-types.update', [$category->id, $testType->id]) }}" method="POST" class="flex flex-col gap-10">
                 @csrf
                 @method('PUT')
                 <div class="flex gap-20">
@@ -43,12 +43,7 @@
                     <div class="flex w-full flex-col">
                         <label for="test_category_id" class="mb-2 font-bold text-[#9b9b9b]">Kategori</label>
                         <select name="test_category_id" id="test_category_id" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" required>
-                            <option value="">Pilih Kategori</option>
-                            @foreach($categories as $cat)
-                                <option value="{{ $cat->id }}" {{ old('test_category_id', $testType->test_category_id) == $cat->id ? 'selected' : '' }}>
-                                    {{ $cat->name }}
-                                </option>
-                            @endforeach
+                            <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
                         </select>
                     </div>
                 </div>
@@ -89,7 +84,7 @@
             });
 
             confirmCancel.addEventListener('click', function () {
-                window.location.href = '{{ route('dashboard.price-lists.test-types.index', $category->id) }}';
+                window.location.href = '{{ route('dashboard.price-list.test-types.by-category', $category->id) }}';
             });
 
             cancelCancel.addEventListener('click', function () {
