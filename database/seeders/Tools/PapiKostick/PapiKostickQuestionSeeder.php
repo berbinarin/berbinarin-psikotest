@@ -308,7 +308,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Saya mudah tersinggung'],
-                    ['key' => 'B', 'text' => 'Saya lambay dalam membuat keputusan'],
+                    ['key' => 'B', 'text' => 'Saya lambat dalam membuat keputusan'],
                 ],
                 'scoring' => [
                     'A' => 'I',
@@ -489,7 +489,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 'order' => 37,
                 'type' => 'multiple_choice',
                 'options' => [
-                    ['key' => 'A', 'text' => 'Saya suka mode terbaru untuk pakaian dan mobil'],
+                    ['key' => 'A', 'text' => 'Saya suka model terbaru untuk pakaian dan mobil'],
                     ['key' => 'B', 'text' => 'Saya suka bertanggungjawab bagi orang lain'],
                 ],
                 'scoring' => [
@@ -555,7 +555,7 @@ class PapiKostickQuestionSeeder extends Seeder
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Orang lain beranggapan bahwa saya adalah seorang pemimpin yang baik'],
-                    ['key' => 'B', 'text' => 'Saya berpikir panjan dan berhati-hati'],
+                    ['key' => 'B', 'text' => 'Saya berpikir panjang dan berhati-hati'],
                 ],
                 'scoring' => [
                     'A' => 'L',
