@@ -20,9 +20,9 @@ class PsikotesFreeProfile extends Model
         'email',
     ];
 
-    public function feedback(): HasMany
+    public function feedback(): HasOne
     {
-        return $this->hasMany(Feedback::class, 'psikotes_free_profile_id');
+        return $this->hasOne(Feedback::class, 'psikotes_free_profile_id');
     }
 
     public function attempt(): HasMany
