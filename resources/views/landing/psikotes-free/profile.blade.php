@@ -7,9 +7,9 @@
 @section('content')
     <sections>
         <div class="min-h-screen flex justify-center items-center bg-gray-100">
-            <div class="flex flex-col w-full md:max-w-[90%] mb-10 mt-28 md:mt-36 justify-center lg:shadow-xl lg:bg-white rounded-3xl p-7 sm:p-10 relative">
+            <div class="flex flex-col w-full md:max-w-[90%] mb-10 mt-16 md:mt-36 justify-center lg:shadow-xl lg:bg-white rounded-3xl p-7 sm:p-10 relative">
                 <div>
-                    <div class="flex flex-row justify-between mb-8">
+                    <div class="flex flex-row justify-between max-sm:mb-4 mb-8">
                         <!-- Tombol Kembali -->
                         <a href="{{ route('home.index') }}">
                             <div class="flex cursor-pointer items-center space-x-2 lg:order-1">
