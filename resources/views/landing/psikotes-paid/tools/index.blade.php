@@ -125,4 +125,29 @@
             });
         }
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const logoutForm = document.querySelector('form[action="{{ route("auth.logout") }}"]');
+            if (!logoutForm) return;
+
+            logoutForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // cegah submit langsung
+
+                Swal.fire({
+                    title: 'Apakah kamu yakin ingin keluar?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3986A3',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, keluar',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        logoutForm.submit(); // submit form jika sudah konfirmasi
+                    }
+                });
+            });
+        });
+    </script>
 @endpush

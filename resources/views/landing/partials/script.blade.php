@@ -5,4 +5,5 @@
 <!-- Flatpickr -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
+{{-- Sweetalert2 --}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -8,6 +8,7 @@ use App\Models\RegistrantProfile;
 use App\Models\TestCategory;
 use App\Models\TestType;
 use App\Models\User;
+use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Carbon;
@@ -22,6 +23,15 @@ class RegisteredUserController extends Controller
         $testCategories = TestCategory::all();
         $testTypes = TestType::all();
         return view('auth.register.psikotes-paid-register', compact('testCategories', 'testTypes'));
+    }
+
+    public function checkEmail(Request $request)
+    {
+        $email = $request->query('email');
+
+        $exists = User::where('email', $email)->exists();
+
+        return response()->json(['exists' => $exists]);
     }
 
     public function psikotesPaidRegisterStore(StoreRegistrationRequest $request): RedirectResponse

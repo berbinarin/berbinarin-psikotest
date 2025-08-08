@@ -15,10 +15,7 @@
                                 <p class="text-[15px] font-semibold text-[#3986A3] xl:text-lg">Kembali</p>
                             </div>
                         </a>
-
                     </div>
-
-
                 <h2 class="text-center mb-8 bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text text-transparent text-4xl font-bold">Isi Biodata</h2>
                 </div>
                 <form action="{{ route('psikotes-free.profile.store') }}" method="POST"
@@ -100,15 +97,30 @@
                 dotInput.value = `${day}/${month}/${year}`;
             }
         }
-        document.querySelector('form').addEventListener('submit', formatDateInputs);
+        // document.querySelector('form').addEventListener('submit', formatDateInputs);
 
-        // document.getElementById('openModal').addEventListener('click', function() {
-        //     document.getElementById('modal').classList.remove('hidden');
-        // });
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
 
-        // document.getElementById('closeModal').addEventListener('click', function() {
-        //     document.getElementById('modal').classList.add('hidden');
-        // });
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const gender = document.getElementById('gender').value;
+            const dob = document.getElementById('date_of_birth').value.trim();
+
+            if (!name || !email || gender === 'default' || !dob) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops...',
+                    text: 'Harap isi semua kolom sebelum melanjutkan!',
+                    confirmButtonColor: '#3986A3'
+                });
+                return;
+            }
+
+            formatDateInputs();
+
+            this.submit();
+        });
 
         const genderSelect = document.getElementById('gender');
         function updateGenderColor() {

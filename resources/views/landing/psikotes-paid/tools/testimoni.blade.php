@@ -86,6 +86,31 @@
         soalText.innerText = soal[index];
 
         button.addEventListener('click', function () {
+            if (index < 3) {
+                // Soal 1 sampai 3: textarea wajib diisi
+                if (textarea.value.trim() === '') {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Oops...',
+                        text: 'Harap isi jawabannya terlebih dahulu!',
+                        confirmButtonColor: '#6083F2',
+                    });
+                    return; // Jangan lanjut kalau kosong
+                }
+            } else if (index === 3) {
+                // Soal 4: radio wajib dipilih
+                const selected = document.querySelector('input[name="setuju"]:checked');
+                if (!selected) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Oops...',
+                        text: 'Harap pilih salah satu opsi terlebih dahulu!',
+                        confirmButtonColor: '#6083F2',
+                    });
+                    return; // Jangan lanjut kalau belum pilih
+                }
+            }
+
             // Simpan jawaban
             if (index === 0) {
                 answers.experience = textarea.value;
@@ -94,12 +119,7 @@
             } else if (index === 2) {
                 answers.suggestion = textarea.value;
             } else if (index === 3) {
-                const selected = document.querySelector('input[name="setuju"]:checked');
-                if (!selected) {
-                    alert("Pilih salah satu opsi terlebih dahulu.");
-                    return;
-                }
-                answers.testimonial = selected.value;
+                answers.testimonial = document.querySelector('input[name="setuju"]:checked').value;
             }
 
             index++;
@@ -135,7 +155,7 @@
                         sharing_testimonial: answers.testimonial,
                     })
                 })
-                .then(res => {
+                .then( async (res) => {
                     if (res.ok) {
                         // Sembunyikan elemen yang tidak diperlukan
                         soalText.parentElement.classList.add('hidden');
@@ -156,19 +176,20 @@
                         // Scroll ke thanks section
                         thanksSection.scrollIntoView({ behavior: 'smooth' });
                     } else {
+                        const data = await res.json();
                         Swal.fire({
                             icon: 'error',
                             title: 'Gagal mengirim testimoni',
-                            text: 'Mohon coba lagi',
+                            text: data.message || 'Mohon coba lagi',
                             confirmButtonColor: '#6083F2',
                         });
                     }
                 })
-                .catch(() => {
+                .catch((error) => {
                     Swal.fire({
                         icon: 'error',
                         title: 'Terjadi kesalahan',
-                        text: 'Mohon coba lagi nanti',
+                        text: error.message || 'Mohon coba lagi nanti',
                         confirmButtonColor: '#6083F2',
                     });
                     button.disabled = false;

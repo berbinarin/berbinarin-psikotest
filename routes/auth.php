@@ -15,17 +15,18 @@ Route::name('auth.')->group(function () {
     Route::middleware('guest')->group(function () {
         // Admin Login
         Route::get('login', [AuthenticatedSessionController::class, 'login'])->name('login');
-        
+
         // Psikotes Paid Registration
         Route::get('psikotes-paid/daftar', [RegisteredUserController::class, 'psikotesPaidRegister'])->name('psikotes-paid.register');
         Route::post('psikotes-paid/daftar', [RegisteredUserController::class, 'psikotesPaidRegisterStore'])->name('psikotes-paid.register');
+        Route::get('/psikotes-paid/daftar/check-email', [RegisteredUserController::class, 'checkEmail'])->name('psikotes-paid.register.check-email');
 
         // Psikotes Paid Login
         Route::get('psikotes-paid/login', [AuthenticatedSessionController::class, 'psikotesPaidLogin'])->name('psikotes-paid.login');
 
         // Psikotes Paid Login
         Route::get('psikotes-paid/summary', [RegisteredUserController::class, 'summary'])->name('psikotes-paid.register.summary');
-        
+
 
         // Authenticate
         Route::post('authenticate', [AuthenticatedSessionController::class, 'authenticate'])->name('authenticate');

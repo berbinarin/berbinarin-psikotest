@@ -55,3 +55,17 @@
         </div>
     </section>
 @endsection
+
+@push('script')
+@if ($errors->any())
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Login Gagal',
+        text: 'Username atau Password Salah',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK'
+    });
+</script>
+@endif
+@endpush
