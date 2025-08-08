@@ -27,7 +27,7 @@
                 </div>
                 <form action="{{ route("auth.logout") }}" method="POST">
                     @csrf
-                    <button class="mr-16 rounded-[5px] bg-[#3986A3] px-[10px] py-3 text-xs font-medium text-white" style="font-family: 'Plus Jakarta Sans', sans-serif">Logout</button>
+                    <button class="mr-16 rounded-[5px] bg-[#3986A3] px-[10px] py-3 text-xs font-medium text-white" style="font-family: 'Plus Jakarta Sans', sans-serif">Keluar</button>
                 </form>
             </div>
         </nav>
