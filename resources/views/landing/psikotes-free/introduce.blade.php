@@ -51,7 +51,7 @@
 
 <!--========== POP UP ==========-->
 <section class="relactive flex">
-    <div class="modal fixed bg-black/54 size-full start-0 overflow-x-hidden overflow-y-auto top-0 left-0 right-0 z-50 hidden justify-center items-center">
+    <div class="modal fixed bg-black/35 size-full start-0 overflow-x-hidden overflow-y-auto top-0 left-0 right-0 z-50 hidden justify-center items-center">
         <div class="modal-dialog max-sm:max-w-lg m-7 lg:mt-20 lg:w-[60%] mx-2 sm:mx-auto p-4 lg:pt-8 bg-white rounded-xl shadow-lg">
             <!-- <div class="text-right p-3 closeModal">
                 <i class='bx bxs-x-circle text-[48px] text-[#F34949]'></i>

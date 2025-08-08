@@ -65,18 +65,18 @@
                                         <td class="py-3 font-semibold">Feedback :
                                             <span>
                                                 @php
-                                                    $rating = optional($attempt->feedback)->rating;
+                                                    $rating = optional(value: optional($freeProfile)->feedback)->rating;
                                                 @endphp
                                                 @if ($rating == 5)
-                                                <img src="{{ asset('assets/images/psikotes/feedback/1-wahoo2.png') }}" alt="Happy" class="w-10 h-auto inline-block align-middle mr-2">
+                                                <img src="{{ asset('assets/landing/images/psikotes-free/feedback/1-wahoo2.png') }}" alt="Happy" class="w-10 h-auto inline-block align-middle mr-2">
                                                 @elseif ($rating == 4)
-                                                <img src="{{ asset('assets/images/psikotes/feedback/2-happy2.png') }}" alt="Happy" class="w-10 h-auto inline-block align-middle mr-2">
+                                                <img src="{{ asset('assets/landing/images/psikotes-free/feedback/2-happy2.png') }}" alt="Happy" class="w-10 h-auto inline-block align-middle mr-2">
                                                 @elseif ($rating == 3)
-                                                <img src="{{ asset('assets/images/psikotes/feedback/3-neutral2.png') }}" alt="Neutral" class="w-10 h-auto inline-block align-middle mr-2">
+                                                <img src="{{ asset('assets/landing/images/psikotes-free/feedback/3-neutral2.png') }}" alt="Neutral" class="w-10 h-auto inline-block align-middle mr-2">
                                                 @elseif ($rating == 2)
-                                                <img src="{{ asset('assets/images/psikotes/feedback/4-bummed2.png') }}" alt="Bummed" class="w-10 h-auto inline-block align-middle mr-2">
+                                                <img src="{{ asset('assets/landing/images/psikotes-free/feedback/4-bummed2.png') }}" alt="Bummed" class="w-10 h-auto inline-block align-middle mr-2">
                                                 @elseif ($rating == 1)
-                                                <img src="{{ asset('assets/images/psikotes/feedback/4-pissed2.png') }}" alt="Bummed Out" class="w-10 h-auto inline-block align-middle mr-2">
+                                                <img src="{{ asset('assets/landing/images/psikotes-free/feedback/4-pissed2.png') }}" alt="Bummed Out" class="w-10 h-auto inline-block align-middle mr-2">
                                                 @else
                                                 <span class="-ml-2 font-semibold"> tidak ada 😭
                                                     @endif
@@ -84,48 +84,46 @@
                                                 <span class="-ml-2 font-semibold">{{ $rating }}
                                                     ,</span>
                                                 @php
-                                                $experience = optional(optional($attempt)->feedback)->experience;
+                                                $experience = optional(optional($freeProfile)->feedback)->experience;
                                                 @endphp
                                                 <span class="ml-2 font-semibold">{{ $experience }}</span>
                                         </td>
                                     </tr>
-
-
                                 </table>
                             </div>
                             <div class="w-3/5">
                                 <table class="w-full table table-striped table-hover">
                                     <tr>
                                         <td class="py-2 font-semibold">Hasil Tes :
-                                            @if ($attempt->results)
+                                            @if ($data)
                                             <div class="flex flex-row py-3">
                                                 <p class="card-text"><strong>Agreeableness:</strong>
-                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-[13px] text-end" role="progressbar" style="width: {{ $attempt->results->agreeableness }}%" aria-valuenow="{{ $attempt->results->agreeableness }}% aria-valuemin=" 0" aria-valuemax="100">
-                                                    <span class="mr-3"> {{ $attempt->results->agreeableness }}%</span>
+                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-[13px] text-end" role="progressbar" style="width: {{ $agreeablenessPresentage }}%" aria-valuenow="{{ $agreeablenessPresentage }}% aria-valuemin=" 0" aria-valuemax="100">
+                                                    <span class="mr-3"> {{ $agreeablenessPresentage }}%</span>
                                                 </div>
                                                 </p>
                                             </div>
 
                                             <div class="flex flex-row py-3">
                                                 <p class="card-text"><strong>Conscientiousness:</strong>
-                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-[13px] text-end" role="progressbar" style="width: {{ $attempt->results->conscientiousness }}%" aria-valuenow="{{ $attempt->results->conscientiousness }}%" aria-valuemin="0" aria-valuemax="100">
-                                                    <span class="mr-3"> {{ $attempt->results->conscientiousness }}%</span>
+                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-[13px] text-end" role="progressbar" style="width: {{ $conscientiousnessPresentage }}%" aria-valuenow="{{ $conscientiousnessPresentage }}%" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="mr-3"> {{ $conscientiousnessPresentage }}%</span>
                                                 </div>
                                                 </p>
                                             </div>
 
                                             <div class="flex flex-row py-3">
                                                 <p class="card-text"><strong>Extraversion:</strong>
-                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-[13px] text-end" role="progressbar" style="width: {{ $attempt->results->neuroticism }}%" aria-valuenow="{{ $attempt->results->neuroticism }}%" aria-valuemin="0" aria-valuemax="100">
-                                                    <span class="mr-3"> {{ $attempt->results->neuroticism }}%</span>
+                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-[13px] text-end" role="progressbar" style="width: {{ $extraversionPresentage }}%" aria-valuenow="{{ $extraversionPresentage }}%" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="mr-3"> {{ $extraversionPresentage }}%</span>
                                                 </div>
                                                 </p>
                                             </div>
 
                                             <div class="flex flex-row py-3">
                                                 <p class="card-text"><strong>Neuroticism:</strong>
-                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-[13px] text-end" role="progressbar" style="width: {{ $attempt->results->neuroticism }}%" aria-valuenow="{{ $attempt->results->neuroticism }}%" aria-valuemin="0" aria-valuemax="100">
-                                                    <span class="mr-3"> {{ $attempt->results->neuroticism }}%</span>
+                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-[13px] text-end" role="progressbar" style="width: {{ $neuroticismPresentage }}%" aria-valuenow="{{ $neuroticismPresentage }}%" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="mr-3"> {{ $neuroticismPresentage }}%</span>
                                                 </div>
                                                 </p>
                                             </div>
@@ -133,8 +131,8 @@
                                             <div class="flex flex-row py-3">
                                                 <p class="card-text"><strong>Openness:</strong>
                                                 </p>
-                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-[13px] text-end" role="progressbar" style="width: {{ $attempt->results->openness }}%" aria-valuenow="{{ $attempt->results->openness }}%" aria-valuemin="0" aria-valuemax="100">
-                                                    <span class="mr-3"> {{ $attempt->results->openness }}%</span>
+                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-[13px] text-end" role="progressbar" style="width:{{ $opennessPresentage }}%" aria-valuenow="{{ $opennessPresentage }}%" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="mr-3">{{ $opennessPresentage }}%</span>
                                                 </div>
                                             </div>
                                             @else
@@ -161,7 +159,7 @@
                                                             </th>
                                                             @foreach ($attempt->responses as $answer)
                                                             <th class="border border-slate-100 px-4 py-3">
-                                                                {{ $answer->question->id }}
+                                                                {{ $loop->iteration }}
                                                             </th>
                                                             @endforeach
                                                         </tr>
@@ -171,7 +169,7 @@
                                                             <td class="border border-slate-100 px-4 py-3">Jawaban</td>
                                                             @foreach ($attempt->responses as $answer)
                                                             <td class="border border-slate-100 px-4 py-3">
-                                                                {{ $answer->answer }}
+                                                                {{ $answer->answer['value'] }}
                                                             </td>
                                                             @endforeach
                                                         </tr>

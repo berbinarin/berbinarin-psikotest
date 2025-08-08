@@ -114,8 +114,16 @@ class TestController extends Controller
         return redirect()->route('psikotes-free.feedback.show');
     }
 
-    // public function timesUp()
-    // {
-    //     $this->attemptService->destroySession();
-    // }
+    public function timesUp(Request $request)
+    {
+        $tool = Tool::with('sections.questions')->find($this->attemptService->getSession('tool_id'));
+
+        $currentSection = $tool->sections->firstWhere('order', $this->attemptService->getSession('section_order'));
+        $question = $currentSection->questions->firstWhere('order', $this->attemptService->getSession('question_order'));
+
+        // Simpan Jawaban User
+        $this->responseService->store($request, $question);
+
+        return redirect()->route('psikotes-free.feedback.show');
+    }
 }

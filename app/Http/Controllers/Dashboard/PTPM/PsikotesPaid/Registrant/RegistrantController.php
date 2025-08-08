@@ -111,8 +111,8 @@ class RegistrantController extends Controller
             'service' => 'required|string',
             'reason' => 'required|string',
             'test_type_id' => 'required|exists:test_types,id',
-            // 'psikotes_date' => 'required|date',
-            // 'psikotes_time' => 'required|date_format:H:i',
+            'psikotes_date' => 'required|date',
+            'psikotes_time' => 'required|date_format:H:i',
         ]);
 
         try {
@@ -132,7 +132,7 @@ class RegistrantController extends Controller
                     'phone_number' => $request->phone_number,
                     'psikotes_service' => $request->service,
                     'reason' => $request->reason,
-                    // 'schedule' => \Carbon\Carbon::createFromFormat('Y-m-d H:i', $request->psikotes_date . ' ' . $request->psikotes_time),
+                    'schedule' => \Carbon\Carbon::createFromFormat('Y-m-d H:i', $request->psikotes_date . ' ' . $request->psikotes_time),
                 ]);
             });
 

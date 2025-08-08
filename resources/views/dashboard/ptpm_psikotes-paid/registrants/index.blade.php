@@ -214,6 +214,16 @@
                             </div>
                             <div class="flex gap-5">
                                 <div class="flex w-full flex-col">
+                                    <label class="mb-2 font-bold text-[#9b9b9b]">Username</label>
+                                    <input type="text" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->user->username }}" readonly disabled />
+                                </div>
+                                <div class="flex w-full flex-col">
+                                    <label class="mb-2 font-bold text-[#9b9b9b]">Password</label>
+                                    <input type="text" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ \Illuminate\Support\Str::before($registrant->user->email, '@') }}" readonly disabled />
+                                </div>
+                            </div>
+                            <div class="flex gap-5">
+                                <div class="flex w-full flex-col">
                                     <label class="mb-2 font-bold text-[#9b9b9b]">Layanan Psikotes</label>
                                     <input type="text" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->psikotes_service }}" readonly disabled />
                                 </div>
@@ -225,7 +235,7 @@
                             <div class="flex gap-5">
                                 <div class="flex w-full flex-col">
                                     <label class="mb-2 font-bold text-[#9b9b9b]">Alasan</label>
-                                    <textarea rows="10" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0 max-h-48" readonly disabled>{{ $registrant->reason }}</textarea>
+                                    <textarea rows="5" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0 max-h-48" readonly disabled>{{ $registrant->reason }}</textarea>
                                 </div>
                             </div>
                         </form>
