@@ -45,7 +45,7 @@
                                     <td class="text-center">{{ $testType->description ?? "-" }}</td>
                                     <td class="flex items-center justify-center gap-2">
                                         <a href="{{ route('dashboard.price-list.test-types.edit', [ $testType->testCategory, $testType->id ]) }}" class="inline-flex items-start justify-start rounded p-2 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #e9b306">
-                                            <i class="bx bx-edit-alt text-black"></i>
+                                            <i class="bx bx-edit-alt text-white"></i>
                                         </a>
                                         <form id="deleteForm-{{ $testType->id }}" action="{{ route('dashboard.price-list.test-types.destroy', [$testType->testCategory, $testType->id]) }}" method="POST">
                                             @csrf

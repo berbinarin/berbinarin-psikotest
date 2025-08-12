@@ -55,7 +55,7 @@
                                             <i class="bx bx-show text-white"></i>
                                         </a>
                                         {{-- <a href="{{ route("dashboard.freeProfiles.edit", $freeProfile->id) }}" class="inline-flex items-start justify-start rounded p-2 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #e9b306">
-                                            <i class="bx bx-edit-alt text-black"></i>
+                                            <i class="bx bx-edit-alt text-white"></i>
                                         </a>
                                         <form id="deleteForm-{{ $freeProfile->id }}" action="{{ route("dashboard.freeprofiles.destroy", $registrant->id) }}" method="POST">
                                             @csrf

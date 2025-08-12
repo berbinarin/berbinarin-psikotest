@@ -87,7 +87,7 @@
                                             data-reason="{{ $registrant->reason }}"
                                             data-action="{{ route('dashboard.registrants.update', $registrant->id) }}"
                                         >
-                                            <i class="bx bx-edit-alt text-black"></i>
+                                            <i class="bx bx-edit-alt text-white"></i>
                                         </button> --}}
                                         <a href="{{route("dashboard.registrants.show", $registrant->id) }}" class="detail-button inline-flex items-start justify-start rounded p-2 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
                                             style="background-color: #3b82f6">
@@ -95,7 +95,7 @@
                                         </a>
                                         <a href="{{route("dashboard.registrants.edit", $registrant->id) }}" class="edit-button inline-flex items-start justify-start rounded p-2 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
                                             style="background-color: #e9b306">
-                                            <i class="bx bx-edit-alt text-black"></i>
+                                            <i class="bx bx-edit-alt text-white"></i>
                                         </a>
                                         <form id="deleteForm-{{ $registrant->id }}" action="{{ route("dashboard.registrants.destroy", $registrant->id) }}" method="POST">
                                             @csrf
