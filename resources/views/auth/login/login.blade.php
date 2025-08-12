@@ -6,57 +6,61 @@
 )
 
 @section("content")
-    <section class="h-full w-full bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset("assets/auth/images/loginbg.png") }}')">
+    <section class="fixed inset-0 flex h-full w-full flex-col bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset("assets/auth/images/loginbg.png") }}')">
         <!-- icon -->
-        <div class="ml-14 mt-14 flex flex-row items-center justify-start gap-4">
-            <img src="{{ asset("assets/auth/images/logo-berbinar.png") }}" alt="Logo Berbinar" class="h-[100px] w-[100px]" />
-            <h4 class="font-plusJakartaSans font-bold text-[#3986A3]">PT Berbinar Insightful Indonesia</h4>
+        <div class="ml-[36px] mt-[35px] flex flex-row items-center justify-start gap-4">
+            <img src="{{ asset("assets/auth/images/logo-berbinar.png") }}" alt="Logo Berbinar" class="h-[67px] w-[67px]" />
+            <h1 class="font-plusJakartaSans text-[13px] font-bold text-[#3986A3]">PT Berbinar Insightful Indonesia</h1>
         </div>
 
-        <!-- Form Login -->
-        <div class="flex items-center justify-center">
-            <div class="w-[701px] rounded-3xl bg-white p-14 shadow-[0px_1px_4px_0px_rgba(12,12,13,0.05)]">
-                <!-- Judul & Deskripsi -->
-                <div class="text-center">
-                    <h1 class="font-plusJakartaSans text-4xl font-bold text-[#1E1E1E]">
-                        Welcome to
-                        <br />
-                        Dashboard Admin Berbinarin
-                    </h1>
-                    <p class="mt-3 text-xl font-normal text-[#736565]">Masuk ke dashboard dan lakukan manajemen data secara menyeluruh untuk keperluan admin, konten, dan informasi di website Berbinarin.</p>
+        <!-- Login Form -->
+        <div class="-mt-16 flex min-h-screen items-center justify-center bg-none">
+            <div class="flex w-[467.33px] flex-col items-center justify-center gap-5 rounded-2xl bg-white p-9 font-plusJakartaSans shadow-[0px_1px_4px_0px_rgba(12,12,13,0.05)]">
+                <!-- Title -->
+                <div class="flex w-full flex-col items-center justify-start gap-5">
+                    <div class="flex w-full flex-col items-start justify-start gap-2">
+                        <div class="flex w-full flex-col items-start justify-start gap-2.5">
+                            <div class="w-full text-center text-2xl font-bold text-stone-900">
+                                Welcome to
+                                <br />
+                                Dashboard Admin Berbinarin
+                            </div>
+                            <div class="w-full text-center text-sm font-normal text-stone-500">Masuk ke dashboard dan lakukan manajemen data secara menyeluruh untuk keperluan admin, konten, dan informasi di website Berbinarin.</div>
+                        </div>
+                        <div class="w-full border-t border-[#CCCCCC]"></div>
+                    </div>
                 </div>
 
-                <!-- Garis Horizontal -->
-                <div class="mx-auto mt-8 w-full border-t border-[#CCCCCC]"></div>
-
-                <!-- Form Pengisian -->
-                <div class="mt-8 flex flex-col gap-4">
+                <!-- Form -->
+                <div class="flex w-full flex-col items-start justify-start gap-3">
                     <!-- Username -->
-                    <div class="flex flex-col gap-3">
-                        <label class="text-xl font-normal text-[#1E1E1E]">Username</label>
-                        <div class="flex h-16 items-center rounded-2xl bg-white px-4 outline outline-1 outline-stone-300/80">
-                            <img class="mr-3 size-12" src="assets/auth/images/Circled Envelope.png" alt="Username Icon" />
-                            <input type="text" placeholder="Username" class="flex-1 border-none bg-transparent text-xl text-[#A9A7A7] outline-none placeholder:translate-y-[1px] placeholder:text-xl focus:border-none focus:outline-none focus:ring-0" />
+                    <div class="flex w-full flex-col items-start justify-start gap-2">
+                        <label>Username</label>
+                        <div class="flex h-[47px] w-full items-center justify-start gap-3 rounded-lg bg-white outline outline-[0.67px] outline-offset-[-0.67px] outline-stone-300/80">
+                            <img src="assets/auth/images/Circled Envelope.png" alt="Username" class="mx-3 size-8" />
+                            <input type="text" placeholder="Username" class="flex-1 border-none bg-transparent text-[13px] text-[#A9A7A7] outline-none placeholder:translate-y-[1px] placeholder:text-[13px] focus:border-none focus:outline-none focus:ring-0" />
                         </div>
                     </div>
 
                     <!-- Password -->
-                    <div class="flex flex-col gap-3">
-                        <label class="text-xl font-normal text-[#1E1E1E]">Password</label>
-                        <div class="flex h-16 items-center rounded-2xl bg-white px-4 outline outline-1 outline-stone-300/80">
-                            <img class="mr-3 size-12" src="assets/auth/images/Secure.png" alt="Password Icon" />
-                            <input type="password" placeholder="Password" class="flex-1 border-none bg-transparent text-xl text-[#A9A7A7] outline-none placeholder:translate-y-[1px] placeholder:text-xl focus:border-none focus:outline-none focus:ring-0" />
+                    <div class="flex w-full flex-col items-start justify-start gap-2">
+                        <label>Password</label>
+                        <div class="flex h-[47px] w-full items-center justify-start gap-3 rounded-lg bg-white outline outline-[0.67px] outline-offset-[-0.67px] outline-stone-300/80">
+                            <img src="assets/auth/images/Circled Envelope.png" alt="Username" class="mx-3 size-8" />
+                            <input type="password" placeholder="Password" class="flex-1 border-none bg-transparent text-[13px] text-[#A9A7A7] outline-none placeholder:translate-y-[1px] placeholder:text-[13px] focus:border-none focus:outline-none focus:ring-0" />
                         </div>
                     </div>
+                </div>
 
-                    <!-- Tombol Login -->
-                    <button class="mt-4 h-[71px] rounded-xl bg-cyan-700 text-xl font-bold text-white transition hover:bg-cyan-800">Sign In</button>
+                <!-- Button -->
+                <div class="relative h-12 w-full cursor-pointer overflow-hidden rounded-lg bg-cyan-700 hover:bg-cyan-800">
+                    <div class="absolute left-[176.67px] top-[14.67px] text-center text-sm font-bold text-white">Sign in</div>
                 </div>
             </div>
         </div>
 
         <!-- Copyright -->
-        <div class="mr-24 mt-20 pb-20 text-end text-xl font-bold text-[#3986A3]">
+        <div class="-mt-14 mr-24 pb-[57px] text-end text-[13px] font-bold text-[#3986A3]">
             <h4>© 2025, Berbinar.in</h4>
         </div>
     </section>
