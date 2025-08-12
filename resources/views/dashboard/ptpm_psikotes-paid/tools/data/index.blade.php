@@ -6,7 +6,7 @@
 )
 
 @section("content")
-    <section class="max-h-[95vh] w-full p-5">
+    <section class="max-h-[95vh] w-full py-5">
         <div class="flex h-full flex-col">
             <!-- Header Section -->
             <div class="mb-8">
@@ -57,7 +57,7 @@
             <!-- Charts Section-->
             <div class="grid grid-cols-1 gap-6">
                 <!-- Summary Chart -->
-                <div class="flex h-[380px] flex-col rounded-xl bg-white p-6 shadow">
+                <div class="flex h-[350px] flex-col mb-7 rounded-xl bg-white p-6 shadow">
                     <div class="mb-4">
                         <span class="font-semibold text-gray-800">Summary</span>
                     </div>

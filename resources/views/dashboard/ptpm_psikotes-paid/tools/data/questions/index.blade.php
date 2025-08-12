@@ -9,15 +9,15 @@
     <section class="flex w-full">
         <div class="flex w-full flex-col">
             <div class="w-full">
-                <div class="py-4 md:pb-7 md:pt-12">
+                <div class="py-4 md:pb-7 md:pt-5">
                     <div>
                         <div class="mb-2 flex items-center gap-2">
                             <a href="{{ url()->previous() }}">
                                 <img src="{{ asset("assets/dashboard/images/back-btn.png") }}" alt="Back Button" />
                             </a>
-                            <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Detail soal</p>
+                            <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Detail soal</p>
                         </div>
-                        <p class="text-disabled py-2">Dashboard ini menampilkan informasi terkait soal tes pilihan ganda, tanggal Tes Papi Kostick.</p>
+                        <p class="text-gray-500 pb-2">Dashboard ini menampilkan informasi terkait soal tes pilihan ganda, tanggal Tes Papi Kostick.</p>
                     </div>
                 </div>
                 <div class="rounded-md bg-white px-4 py-4 md:px-8 md:py-7 xl:px-10">
@@ -56,8 +56,8 @@
                                         <td>{{ $option2 }}</td>
                                         <td class="text-center">{{ $question->created_at->format("d-m-Y") }}</td>
                                         <td class="whitespace-no-wrap px-6 py-4 text-center">
-                                            <a href="javascript:void(0)" 
-                                               class="btnEdit inline-flex items-start justify-start rounded p-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2" 
+                                            <a href="javascript:void(0)"
+                                               class="btnEdit inline-flex items-start justify-start rounded p-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
                                                style="background-color: #3B82F6"
                                                data-id="{{ $question->id }}"
                                                data-option1="{{ $option1 }}"
@@ -76,7 +76,7 @@
     </section>
 
     <div id="modalTambahData" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 hidden">
-        <div 
+        <div
             class="bg-white rounded-lg shadow-lg w-[50%] p-8 relative flex flex-col justify-center"
         >
             <button id="btnCloseModal" class="absolute top-4 right-4 text-gray-500 hover:text-red-500 text-2xl font-bold">&times;</button>

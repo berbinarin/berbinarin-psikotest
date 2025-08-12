@@ -8,7 +8,7 @@
             <div class="flex flex-col">
                 <div class="w-fit">
                     @foreach ($freeProfile->attempt as $attempt)
-                    <div class="py-4">
+                    <div class="py-5">
                         <div class="flex flex-row items-center">
                             <div class="">
                                 <a href="{{ route('dashboard.free-profiles.data.show') }}">
@@ -21,7 +21,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="relative w-[1240px] py-7 px-10 flex-auto bg-white rounded-md">
+                    <div class="relative w-[1240px] py-7 px-10 flex-auto bg-white rounded-[24px] shadow">
                         <div class="flex flex-row gap-10">
                             <div class="w-2/5">
                                 <table class="table table-striped table-hover">

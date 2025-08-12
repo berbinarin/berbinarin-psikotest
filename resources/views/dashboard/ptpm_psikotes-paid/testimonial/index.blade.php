@@ -8,9 +8,9 @@
 @section("content")
     <section class="flex w-full">
         <div class="w-full">
-            <div class="py-4 md:pb-7 md:pt-12">
+            <div class="py-4 md:pb-7 md:pt-5">
                 <div>
-                    <p tabindex="0" class="mb-2 text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Data Testimoni</p>
+                    <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Data Testimoni</p>
                     <p class="text-disabled py-2 text-gray-500">Fitur ini menampilkan data testimoni <span class="italic">user&nbsp;</span> yang telah melakukan Psikotes.</p>
                 </div>
             </div>

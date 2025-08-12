@@ -6,10 +6,10 @@
 )
 
 @section("content")
-    <section class="max-h-[95vh] w-full p-5">
+    <section class="max-h-[95vh] w-full py-5">
         <div class="mb-8">
-            <h1 class="text-3xl font-bold text-gray-900">Dashboard Pendaftaran Psikotes Gratis</h1>
-            <p class="mt-2 text-gray-500">Dashboard ini memberikan informasi mengenai jumlah pengguna yang telah mendaftar psikotes.</p>
+            <h1 class="text-3xl font-bold text-gray-900"><span class="italic">Dashboard&nbsp;</span> Pendaftaran Psikotes Gratis</h1>
+            <p class="mt-2 text-gray-500"><span class="italic">Dashboard&nbsp;</span> ini memberikan informasi mengenai jumlah pengguna yang telah mendaftar psikotes.</p>
         </div>
 
         <!-- Card Section -->
@@ -24,7 +24,7 @@
                         {{ $profilesCount }}
                     </span>
                     <div class="flex h-[64px] w-[64px] items-center justify-center rounded-xl bg-gray-100">
-                        <img src="{{ asset('assets/dashboard/images/arrow-down.svg') }}" alt="arrow down" class="w-10 h-10">
+                        <i class="fi fi-br-ballot w-10 h-10 text-4xl text-primary text-center"></i>
                     </div>
                 </div>
             </div>

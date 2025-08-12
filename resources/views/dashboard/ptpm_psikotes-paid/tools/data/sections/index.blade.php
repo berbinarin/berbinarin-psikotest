@@ -9,10 +9,10 @@
     <section class="flex w-full">
         <div class="flex w-full flex-col">
             <div class="w-full">
-                <div class="py-4 md:pb-7 md:pt-12">
+                <div class="py-4 md:pb-7 md:pt-5">
                     <div>
-                        <p tabindex="0" class="mb-2 text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Daftar Section Alat Tes {{ $tool->name }}</p>
-                        <p class="text-disabled w-2/4">Menampilkan Semua Section Alat Tes</p>
+                        <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Daftar Section Alat Tes {{ $tool->name }}</p>
+                        <p class="text-gray-500 py-2 w-2/4">Menampilkan Semua Section Alat Tes</p>
                     </div>
                 </div>
                 <div class="rounded-md bg-white px-4 py-4 md:px-8 md:py-7 xl:px-10">

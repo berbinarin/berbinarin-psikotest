@@ -19,15 +19,15 @@
     <section class="flex w-full">
         <div class="flex w-full flex-col">
             <div class="w-full">
-                <div class="py-4 md:pb-7 md:pt-12">
+                <div class="py-4 md:pb-7 md:pt-5">
                     <div>
-                        <div class="mb-2 flex items-center gap-2">
-                            <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">{{ $title }}</p>
+                        <div class="flex items-center gap-2">
+                            <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">{{ $title }}</p>
                         </div>
-                        <p class="text-disabled py-2">Fitur ini menampilkan data responden seperti nama, status, tanggal, dan email yang telah mengisi Tes {{ $tool->name }} Berbinar.</p>
+                        <p class="text-gray-500 py-2">Fitur ini menampilkan data responden seperti nama, status, tanggal, dan email yang telah mengisi Tes {{ $tool->name }} Berbinar.</p>
                     </div>
                 </div>
-                <div class="rounded-md bg-white px-4 py-4 md:px-8 md:py-7 xl:px-10">
+                <div class="rounded-md bg-white mb-7 px-4 py-4 md:px-8 md:py-7 xl:px-10">
                     <div class="mt-4 overflow-x-auto">
                         <table id="table" class="display w-full" style="overflow-x: scroll">
                             <thead>
@@ -51,7 +51,7 @@
                                         <td class="text-center">{{ \Carbon\Carbon::parse($attempt->created_at)->format("Y-m-d") }}</td>
                                         @if($tool->name === 'Papi Kostick')
                                             <td class="text-center">10:00 AM</td>
-                                            <td class="text-center">10:30 AM</td> 
+                                            <td class="text-center">10:30 AM</td>
                                             <td class="text-center">
                                                 <div class="inline-flex items-center justify-center">
                                                     @if ($attempt->is_completed)

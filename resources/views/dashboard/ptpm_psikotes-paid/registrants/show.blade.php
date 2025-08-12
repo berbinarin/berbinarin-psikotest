@@ -7,15 +7,15 @@
 
 @section("content")
     <section class="flex w-full flex-col">
-        <div class="py-4 md:pb-7 md:pt-12">
+        <div class="py-4 md:pb-7 md:pt-5">
             <div>
-                <div class="mb-2 flex items-center gap-2">
+                <div class="flex items-center gap-2">
                     <a href="{{ route("dashboard.registrants.index") }}">
                         <img src="{{ asset("assets/dashboard/images/back-btn.png") }}" alt="Back Button" />
                     </a>
-                    <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Detail Data Pendaftar</p>
+                    <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Detail Data Pendaftar</p>
                 </div>
-                <p class="text-disabled py-2">Fitur ini menampilkan data user seperti  Nama, Jenis kelamin, Tanggal lahir, Email yang telah mengisi  Psikotes Berbinar.</p>
+                <p class="text-gray-500 py-2">Fitur ini menampilkan data user seperti  Nama, Jenis kelamin, Tanggal lahir, Email yang telah mengisi  Psikotes Berbinar.</p>
             </div>
         </div>
         <div class="flex flex-col gap-10 rounded-[24px] bg-white px-10 py-7">

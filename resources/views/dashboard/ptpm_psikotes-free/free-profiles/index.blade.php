@@ -10,16 +10,16 @@
 @section("content")
     <section class="flex w-full">
         <div class="w-full">
-            <div class="py-4 md:pb-7 md:pt-12">
+            <div class="py-4 md:pb-7 md:pt-5">
                 <div>
-                    <p tabindex="0" class="mb-2 text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Data Pendaftar Psikotes</p>
-                    <p class="text-disabled py-2">Fitur ini menampilkan informasi data pengguna yang telah melakukan registrasi Psikotes Berbinar</p>
+                    <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Data Pendaftar Psikotes</p>
+                    <p class="text-gray-500 py-2">Fitur ini menampilkan informasi data pengguna yang telah melakukan registrasi Psikotes Berbinar</p>
                     {{-- <a href="{{ route("dashboard.registrants.create") }}" class="mt-8 inline-flex items-start justify-start rounded bg-primary px-6 py-3 text-white hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-3">
                         <span class="leading-none">Tambah Data</span>
                     </a> --}}
                 </div>
             </div>
-            <div class="rounded-[24px] bg-white px-10 py-7 mb-6">
+            <div class="rounded-[24px] bg-white px-10 py-7 mb-6 shadow">
                 <div class="mt-4 overflow-x-auto">
                     <table id="table" class="display gap-3" style="overflow-x: scroll">
                         <thead>

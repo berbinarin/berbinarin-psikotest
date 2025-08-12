@@ -28,8 +28,8 @@
                     <div class="relative mb-4">
                         @if($imagePath)
                             <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden relative group/image">
-                                <img 
-                                    src="{{ asset('storage/' . $imagePath) }}" 
+                                <img
+                                    src="{{ asset('storage/' . $imagePath) }}"
                                     alt="HTP Drawing by {{ $item['user_name'] ?? 'User' }}"
                                     class="w-full h-full object-cover transition-transform duration-500 group-hover/image:scale-110"
                                     loading="lazy"
@@ -40,7 +40,7 @@
                                 <i class="fas fa-image text-4xl mb-3 opacity-50"></i>
                                 <p class="text-sm font-medium mb-1">No Image Available</p>
                                 <p class="text-xs opacity-75 text-center px-4">This submission doesn't contain an image</p>
-                                
+
                                 <!-- Status Badge for No Image -->
                                 <div class="absolute top-2 right-2">
                                     <span class="bg-orange-500 text-white text-xs px-2 py-1 rounded-full font-medium">

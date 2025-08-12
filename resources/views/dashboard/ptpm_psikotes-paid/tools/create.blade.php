@@ -9,11 +9,11 @@
     <section class="flex w-full flex-col">
         <div class="py-4 md:pb-7 md:pt-12">
             <div>
-                <div class="mb-2 flex items-center gap-2">
+                <div class="flex items-center gap-2">
                     <a href="{{ route("dashboard.tools.index") }}">
                         <img src="{{ asset("assets/dashboard/images/back-btn.png") }}" alt="Back Button" />
                     </a>
-                    <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Tambah Alat Tes</p>
+                    <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Tambah Alat Tes</p>
                 </div>
                 <p class="text-disabled py-2">Fitur ini menambahkan data tes psikologi baru</p>
             </div>

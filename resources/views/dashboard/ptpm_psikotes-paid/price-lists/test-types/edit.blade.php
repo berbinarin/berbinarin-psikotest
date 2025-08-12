@@ -7,17 +7,17 @@
 
 @section("content")
     <section class="flex w-full flex-col">
-        <div class="py-4 md:pb-7 md:pt-12">
+        <div class="py-4 md:pb-7 md:pt-5">
             <div>
-                <div class="mb-2 flex items-center gap-2">
+                <div class="flex items-center gap-2">
                     <a href="{{ route('dashboard.price-list.test-types.by-category', $category->id) }}">
                         <img src="{{ asset('assets/dashboard/images/back-btn.png') }}" alt="Back Button" />
                     </a>
-                    <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">
+                    <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">
                         Edit Jenis Tes
                     </p>
                 </div>
-                <p class="text-disabled py-2">Silakan ubah data jenis tes psikotes pada form berikut.</p>
+                <p class="text-gray-500 py-2">Silakan ubah data jenis tes psikotes pada form berikut.</p>
             </div>
         </div>
 

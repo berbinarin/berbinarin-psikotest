@@ -8,15 +8,15 @@
 @section("content")
     <section class="flex w-full">
         <div class="w-full">
-            <div class="py-4 md:pb-7 md:pt-12">
+            <div class="py-4 md:pb-7 md:pt-5">
                 <div>
-                    <div class="mb-2 flex items-center gap-2">
+                    <div class="flex items-center gap-2">
                         <a href="{{ route("dashboard.price-list.test-category.index") }}">
                             <img src="{{ asset("assets/dashboard/images/back-btn.png") }}" alt="Back Button" />
                         </a>
-                        <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">{{ $category->name }}</p>
+                        <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">{{ $category->name }}</p>
                     </div>
-                    <p class="text-disabled py-2">Di halaman dashboard ini, anda dapat melihat berbagai layanan alat tes dan harga yang termasuk dalam kategori {{$category->name}}.</p>
+                    <p class="text-gray-500 py-2">Di halaman dashboard ini, anda dapat melihat berbagai layanan alat tes dan harga yang termasuk dalam kategori {{$category->name}}.</p>
                     <a href="{{ route('dashboard.price-list.test-types.create', $category->id) }}" class="mt-8 inline-flex items-start justify-start rounded bg-primary px-6 py-3 text-white hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-3">
                         <span class="leading-none">Tambah Data</span>
                     </a>

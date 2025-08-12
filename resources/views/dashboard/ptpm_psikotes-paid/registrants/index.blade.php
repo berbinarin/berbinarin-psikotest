@@ -10,9 +10,9 @@
 @section("content")
     <section class="flex w-full">
         <div class="w-full">
-            <div class="py-4 md:pb-7 md:pt-12">
+            <div class="py-4 md:pb-7 md:pt-5">
                 <div>
-                    <p tabindex="0" class="mb-2 text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Data Pendaftar Psikotes</p>
+                    <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Data Pendaftar Psikotes</p>
                     <p class="text-disabled py-2 text-gray-500">Fitur ini menampilkan data  seperti  Nama, Kategori, Jenis, dan Harga yang telah mengisi  Psikotes Berbinar.</p>
                     <a href="{{ route("dashboard.registrants.create") }}" class="mt-8 inline-flex items-start justify-start rounded-lg bg-primary px-6 py-3 text-white hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-3">
                         <span class="leading-none">Tambah Data</span>
@@ -116,7 +116,7 @@
             <div id="editModal" class="fixed inset-0 z-50 flex hidden items-center justify-center bg-black bg-opacity-50">
                 <div class="w-[90%] rounded-lg bg-white p-6">
                     <div class="mb-4 flex items-start gap-3">
-                        <button id="closeEditModal" class="text-gray-500 hover:text-gray-700 text-4xl text-center justify-center items-center"><img src="{{ asset("assets/dashboard/images/back-btn.png") }}" alt="Back Button" /></button>
+                        <button id="closeEditModal" class="text-gray-500 hover:text-gray-700 text-3xl text-center justify-center items-center"><img src="{{ asset("assets/dashboard/images/back-btn.png") }}" alt="Back Button" /></button>
                         <h2 class="text-3xl font-bold">Edit Data Pendaftar</h2>
                     </div>
                     <form id="editForm" method="POST" action="{{ route("dashboard.registrants.update", $registrant->id) }}">
@@ -196,7 +196,7 @@
                 <div class="w-[90%] rounded-lg bg-white p-6">
                     <div class="mb-4 flex flex-col justify-between items-center">
                         <div class="w-full flex flex-row justify-start gap-3 mb-4">
-                            <button id="closeDetailModal" class="text-gray-500 hover:text-gray-700 text-4xl text-start justify-start items-start"><img src="{{ asset("assets/dashboard/images/back-btn.png") }}" alt="Back Button" /></button>
+                            <button id="closeDetailModal" class="text-gray-500 hover:text-gray-700 text-3xl text-start justify-start items-start"><img src="{{ asset("assets/dashboard/images/back-btn.png") }}" alt="Back Button" /></button>
                             <h2 class="text-3xl font-bold">Detail Data Pendaftar</h2>
                         </div>
                         <form class="flex flex-col w-full">
