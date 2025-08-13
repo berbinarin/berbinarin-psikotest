@@ -25,8 +25,8 @@ Route::middleware(['auth', 'session.verified'])->prefix('psikotes-paid')->name('
     // Attempt
     Route::prefix('attempt')->name('attempt.')->group(function () {
         Route::get('/instruksi', [SubmittedResponseController::class, 'introduce'])->name('introduce');
-        Route::get('/soal', [SubmittedResponseController::class, 'soal'])->name('question');
-        Route::post('/soal', [SubmittedResponseController::class, 'submit'])->name('submit');
+        Route::get('/question', [SubmittedResponseController::class, 'question'])->name('question');
+        Route::post('/question', [SubmittedResponseController::class, 'submit'])->name('submit');
         Route::get('/selesai', [SubmittedResponseController::class, 'complete'])->name('complete');
         Route::post('/times-up', [SubmittedResponseController::class, 'timesUp'])->name('times-up');
     });
