@@ -18,7 +18,7 @@
                 <p class="text-gray-500 py-2">Fitur ini digunakan untuk edit data user seperti  Nama, Jenis kelamin, Tanggal lahir, Email yang telah mengisi  Psikotes Berbinar.</p>
             </div>
         </div>
-        <div class="flex flex-col gap-10 rounded-[24px] bg-white px-10 py-7">
+        <div class="flex flex-col gap-10 rounded-[24px] bg-white px-10 mb-7 py-7">
             <form method="POST" action="{{ route("dashboard.registrants.update", $registrant->id) }}" class="flex flex-col gap-10">
                 @csrf
                 @method("PUT")
