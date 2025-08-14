@@ -2,13 +2,13 @@
     <!-- Kiri: Biodata & Radar -->
     <div class="flex w-full flex-col gap-6 md:w-1/4">
         <!-- Radar -->
-        <div class="flex flex-col items-center justify-between rounded-xl bg-[#F7FAFC] p-0" style="height:250px;">
+        <div class="flex flex-col items-center justify-between shadow-md rounded-xl bg-[#F7FAFC] p-0" style="height:250px;">
             <div id="chart-container" class="flex min-h-0 w-full flex-1 justify-center">
                 <div id="chart" class="h-full w-full"></div>
             </div>
         </div>
         <!-- Biodata -->
-        <div class="flex w-full flex-col justify-center rounded-xl bg-[#236A7B] p-6 text-[13px] text-white">
+        <div class="flex w-full flex-col justify-center shadow-md rounded-xl bg-[#236A7B] p-6 text-[13px] text-white">
             <div>
                 <p class="mb-1 text-[12px] font-semibold">Nama</p>
                 <h1 class="mb-1 text-[16px] font-bold">{{ $attempt->user->name }}</h1>
@@ -24,7 +24,7 @@
 
     <!-- Rincian Jawaban -->
     <div class="flex w-full flex-col md:w-1/2">
-        <div class="rounded-lg bg-white p-6 shadow-sm" style="max-height: 510px; height: 510px; display: flex; flex-direction: column;">
+        <div class="rounded-lg bg-white p-6 shadow-md" style="max-height: 510px; height: 510px; display: flex; flex-direction: column;">
             <h2 class="mb-4 text-xl font-bold text-[#75BADB]">Rincian Jawaban</h2>
             <div class="flex-1 overflow-y-auto pr-2 text-[14px]">
                 @php

@@ -18,7 +18,7 @@
                 <p class="text-gray-500 py-2">Fitur ini menampilkan data user seperti  Nama, Jenis kelamin, Tanggal lahir, Email yang telah mengisi  Psikotes Berbinar.</p>
             </div>
         </div>
-        <div class="flex flex-col gap-10 rounded-[24px] bg-white mb-7 px-10 py-7">
+        <div class="flex flex-col gap-10 rounded-[24px] bg-white shadow mb-7 px-10 py-7">
             <form class="flex flex-col gap-10">
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">

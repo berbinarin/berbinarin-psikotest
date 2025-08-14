@@ -22,7 +22,7 @@
                     </a>
                 </div>
             </div>
-            <div class="rounded-[24px] bg-white px-10 mb-7 py-7">
+            <div class="rounded-[24px] bg-white shadow px-10 mb-7 py-7">
                 <div class="mt-4 overflow-x-auto">
                     <table id="table" class="display gap-3" style="overflow-x: scroll">
                         <thead>
@@ -42,7 +42,7 @@
                                     <td class="text-center">{{ $testType->name }}</td>
                                     <td class="text-center">{{ $testType->testCategory->name ?? "-" }}</td>
                                     <td class="text-center">{{ "Rp" . number_format($testType->price, 0, ",", ".") }}</td>
-                                    <td class="text-center">{{ $testType->description ?? "-" }}</td>
+                                    <td class="text-start">{{ $testType->description ?? "-" }}</td>
                                     <td class="flex items-center justify-center gap-2">
                                         <a href="{{ route('dashboard.price-list.test-types.edit', [ $testType->testCategory, $testType->id ]) }}" class="inline-flex items-start justify-start rounded p-2 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #e9b306">
                                             <i class="bx bx-edit-alt text-white"></i>
@@ -97,12 +97,12 @@
                 e.preventDefault();
                 const formId = this.getAttribute('data-id');
                 Swal.fire({
-                    title: 'Hapus Responden',
+                    title: 'Hapus Tes',
                     text: 'Apakah anda yakin menghapusnya?',
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
+                    confirmButtonColor: '#d1d5db',
+                    cancelButtonColor: '#3986A3',
                     confirmButtonText: 'Hapus',
                 }).then((result) => {
                     if (result.isConfirmed) {

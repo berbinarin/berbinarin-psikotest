@@ -21,34 +21,39 @@
             </div>
         </div>
 
-        <div class="flex flex-col gap-10 rounded-[24px] bg-white px-10 py-7">
+        <div class="flex flex-col gap-10 rounded-[24px] bg-white shadow px-10 py-7">
             <form action="{{ route('dashboard.price-list.test-types.store', $category->id) }}" method="POST" class="flex flex-col gap-10">
                 @csrf
-                <div class="flex gap-20">
+                <div class="flex gap-10">
                     <div class="flex w-full flex-col">
                         <label for="name" class="mb-2 font-bold text-[#9b9b9b]">Nama Jenis Tes</label>
                         <input type="text" name="name" id="name" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Nama Jenis Tes" value="{{ old('name') }}" required />
                     </div>
                     <div class="flex w-full flex-col">
                         <label for="price" class="mb-2 font-bold text-[#9b9b9b]">Harga</label>
-                        <input type="number" name="price" id="price" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Harga" value="{{ old('price') }}" required min="0" />
-                    </div>
-                </div>
-                <div class="flex gap-20">
-                    <div class="flex w-full flex-col">
-                        <label for="description" class="mb-2 font-bold text-[#9b9b9b]">Deskripsi</label>
-                        <textarea name="description" id="description" rows="3" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Deskripsi">{{ old('description') }}</textarea>
+                        <div class="relative w-full">
+                            <input type="number" name="price" id="price" class="w-full rounded-md border-0 px-6 pl-10 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Harga" value="{{ old('price') }}" required min="0" />
+                            <p class="absolute top-[18px] left-3 text-sm -translate-y-1/3 text-gray-500 font-semibold">Rp. </p>
+
+                        </div>
                     </div>
                     <div class="flex w-full flex-col">
                         <label for="test_category_id" class="mb-2 font-bold text-[#9b9b9b]">Kategori</label>
-                        <select name="test_category_id" id="test_category_id" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" required>
+                        <select name="test_category_id" id="test_category_id" class="appearance-none rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" required disabled>
                             <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
                         </select>
                     </div>
                 </div>
-                <div class="mt-8 flex gap-4 border-t-2 border-t-gray-400 pt-5">
-                    <button type="submit" class="flex h-12 flex-1 items-center justify-center rounded-xl text-lg" style="width: 50%; background: #3986a3; color: #fff">Simpan</button>
+                <div class="flex">
+                    <div class="flex w-full flex-col">
+                        <label for="description" class="mb-2 font-bold text-[#9b9b9b]">Deskripsi</label>
+                        <textarea name="description" id="description" rows="3" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Deskripsi">{{ old('description') }}</textarea>
+                    </div>
+                </div>
+                <hr class="border-t-2 border-t-gray-400">
+                <div class="flex gap-4">
                     <button type="button" id="cancelButton" class="flex h-12 flex-1 items-center justify-center rounded-xl text-lg" style="width: 50%; border: 2px solid #3986a3; color: #3986a3">Batal</button>
+                    <button type="submit" class="flex h-12 flex-1 items-center justify-center rounded-xl text-lg" style="width: 50%; background: #3986a3; color: #fff">Simpan</button>
                 </div>
             </form>
         </div>

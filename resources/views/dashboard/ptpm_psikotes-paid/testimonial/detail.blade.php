@@ -52,6 +52,16 @@
                 </p>
             </div>
         </div>
+        <div>
+            <p class="mb-2 font-semibold text-gray-700">
+                Apa SobatBinar setuju jika Berbinar membagikan testimoni SobatBinar melalui media sosial kami?
+            </p>
+            <div class="rounded-lg border border-gray-200 bg-[#FAFAFA] p-5">
+                <p class="text-gray-700">
+                    {{ $testimonial->sharing_suggestion ?? '-' }}
+                </p>
+            </div>
+        </div>
     </div>
 </section>
 @endsection

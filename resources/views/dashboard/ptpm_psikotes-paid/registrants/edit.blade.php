@@ -18,7 +18,7 @@
                 <p class="text-gray-500 py-2">Fitur ini digunakan untuk edit data user seperti  Nama, Jenis kelamin, Tanggal lahir, Email yang telah mengisi  Psikotes Berbinar.</p>
             </div>
         </div>
-        <div class="flex flex-col gap-10 rounded-[24px] bg-white px-10 mb-7 py-7">
+        <div class="flex flex-col gap-10 rounded-[24px] bg-white shadow px-10 mb-7 py-7">
             <form method="POST" action="{{ route("dashboard.registrants.update", $registrant->id) }}" class="flex flex-col gap-10">
                 @csrf
                 @method("PUT")
@@ -104,8 +104,8 @@
                         <textarea id="reason" name="reason" rows="10" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0">{{ $registrant->reason }}</textarea>
                     </div>
                 </div>
-
-                <div class="mt-8 flex gap-4 border-t-2 border-t-gray-400 pt-5">
+                <hr class="border-t-2 border-t-gray-400">
+                <div class="flex gap-4">
                     <button type="submit" class="flex h-12 flex-1 items-center justify-center rounded-xl text-lg" style="width: 50%; background: #3986a3; color: #fff">Simpan</button>
                     <button type="button" id="cancelButton" class="flex h-12 flex-1 items-center justify-center rounded-xl text-lg" style="width: 50%; border: 2px solid #3986a3; color: #3986a3">Batal</button>
                 </div>

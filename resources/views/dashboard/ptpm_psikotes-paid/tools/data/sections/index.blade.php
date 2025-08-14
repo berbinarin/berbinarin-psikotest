@@ -15,7 +15,7 @@
                         <p class="text-gray-500 py-2 w-2/4">Menampilkan Semua Section Alat Tes</p>
                     </div>
                 </div>
-                <div class="rounded-md bg-white px-4 py-4 md:px-8 md:py-7 mb-7 xl:px-10">
+                <div class="rounded-md bg-white shadow px-4 py-4 md:px-8 md:py-7 mb-7 xl:px-10">
                     <div class="mt-4 overflow-x-auto">
                         <table id="table" class="display w-full" style="overflow-x: scroll">
                             <thead>

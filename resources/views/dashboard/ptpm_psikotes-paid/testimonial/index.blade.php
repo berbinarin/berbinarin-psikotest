@@ -14,7 +14,7 @@
                     <p class="text-disabled py-2 text-gray-500">Fitur ini menampilkan data testimoni <span class="italic">user&nbsp;</span> yang telah melakukan Psikotes.</p>
                 </div>
             </div>
-            <div class="rounded-[24px] bg-white px-10 py-7 mb-7">
+            <div class="rounded-[24px] bg-white shadow px-10 py-7 mb-7">
                 <div class="mt-4 overflow-x-auto">
                     <table id="table" class="display gap-3" style="overflow-x: scroll">
                         <thead>

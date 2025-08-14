@@ -27,7 +27,7 @@
                         <p class="text-gray-500 py-2">Fitur ini menampilkan data responden seperti nama, status, tanggal, dan email yang telah mengisi Tes {{ $tool->name }} Berbinar.</p>
                     </div>
                 </div>
-                <div class="rounded-md bg-white mb-7 px-4 py-4 md:px-8 md:py-7 xl:px-10">
+                <div class="rounded-md bg-white shadow mb-7 px-4 py-4 md:px-8 md:py-7 xl:px-10">
                     <div class="mt-4 overflow-x-auto">
                         <table id="table" class="display w-full" style="overflow-x: scroll">
                             <thead>

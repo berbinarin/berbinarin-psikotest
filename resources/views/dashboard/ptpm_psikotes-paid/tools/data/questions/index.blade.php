@@ -20,7 +20,7 @@
                         <p class="text-gray-500 pb-2">Dashboard ini menampilkan informasi terkait soal tes pilihan ganda, tanggal Tes Papi Kostick.</p>
                     </div>
                 </div>
-                <div class="rounded-md bg-white px-4 py-4 md:px-8 md:py-7 xl:px-10">
+                <div class="rounded-md bg-white shadow mb-7 px-4 py-4 md:px-8 md:py-7 xl:px-10">
                     <div class="mt-4 overflow-x-auto">
                         <table id="table" class="display w-full" style="overflow-x: scroll">
                             <thead>
@@ -85,7 +85,7 @@
                     {{ $section->questions->count() + 1 }}
                 </div>
                 <input type="hidden" id="questionId">
-                <p class="ml-2">Detail soal</p>
+                <p class="ml-2">Detail Soal</p>
             </div>
             <form id="questionForm">
                 <div class="mt-2">

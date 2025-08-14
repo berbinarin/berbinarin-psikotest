@@ -21,7 +21,7 @@
 
         {{-- Wrapper Alpine.js --}}
         <div
-            class="flex flex-col gap-10 rounded-[24px] bg-white px-10 pt-7 pb-10 mb-7"
+            class="flex flex-col gap-10 rounded-[24px] bg-white mb-7 shadow px-10 pt-7 pb-10 mb-7"
             x-data="{
                 testCategories: {{ Js::from($testCategories) }},
                 selectedCategory: '{{ old("test_category_id") }}' || '',
