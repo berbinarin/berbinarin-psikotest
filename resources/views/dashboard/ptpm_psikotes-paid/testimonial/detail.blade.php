@@ -21,7 +21,7 @@
         </p>
     </div>
 
-    <div class="rounded-[16px] bg-white px-8 py-8 shadow-md flex flex-col gap-8 max-h-[70vh]">
+    <div class="rounded-[16px] bg-white px-8 py-8 shadow-md mb-7 flex flex-col gap-8 max-h-[70vh]">
         <div>
             <p class="mb-2 font-semibold text-gray-700">
                 Ceritakan pengalaman SobatBinar dalam mengikuti kegiatan psikotes di Berbinar!
