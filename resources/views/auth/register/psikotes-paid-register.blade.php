@@ -17,6 +17,20 @@
         select {
             background-image: none !important;
         }
+
+        .dropdown-select {
+            appearance: none !important;
+            -webkit-appearance: none !important;
+            -moz-appearance: none !important;
+
+            background-image: none !important;
+            background-repeat: no-repeat !important;
+            background-position: right 0.5rem center !important;
+            background-size: 0 !important;
+        }
+        select::-ms-expand {
+            display: none;
+        }
     </style>
 @endpush
 
@@ -29,9 +43,7 @@
                     <a href="{{ route("home.index") }}">
                         <div class="flex cursor-pointer items-center space-x-2">
                             <img src="{{ asset("/assets/landing/icons/left-arrow.svg") }}" alt="Left Arrow" class="h-3 w-auto" />
-                            <p class="flex text-[15px] font-semibold text-[#3986A3]">
-                                Kembali
-                            </p>
+                            <p class="flex text-[15px] font-semibold text-[#3986A3]">Kembali</p>
                         </div>
                     </a>
                 </template>
@@ -61,7 +73,7 @@
             <!-- Modal -->
             <!-- Modal -->
             <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
-                <div class="max-h-[90vh] w-[90%] max-w-4xl max-sm:overflow-y-auto rounded-2xl bg-white p-8 shadow-lg max-sm:p-4">
+                <div class="max-h-[90vh] w-[90%] max-w-4xl rounded-2xl bg-white p-8 shadow-lg max-sm:overflow-y-auto max-sm:p-4">
                     <div class="overflow-y-auto">
                         <!-- Judul Utama -->
                         <h1 class="mb-4 text-center text-3xl font-bold text-[#2C5C84] max-sm:text-2xl">Syarat dan Ketentuan</h1>
@@ -87,7 +99,8 @@
                                         Jika calon peserta tes
                                         <span class="font-bold">tidak membalas pesan</span>
                                         admin dalam waktu 1×24 jam setelah pengisian formulir, maka pendaftaran oleh calon peserta tes secara
-                                        <span class="font-bold">otomatis dibatalkan</span>.
+                                        <span class="font-bold">otomatis dibatalkan</span>
+                                        .
                                     </li>
                                     <li>
                                         Jika calon peserta tes
@@ -123,7 +136,6 @@
                         <div class="mt-6 flex justify-center">
                             <button id="closeModal" class="rounded-md bg-gradient-to-r from-[#3986A3] to-[#15323D] px-6 py-2 font-medium text-white shadow-sm transition">Saya Mengerti</button>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -148,8 +160,8 @@
                     <div class="flex flex-col space-y-1">
                         <p class="text-sm text-[#333333] sm:text-[17px]">Waktu Psikotes</p>
                         <div class="relative">
-                            <input type="time" id="psikotes_time" name="psikotes_time" class="w-full cursor-pointer rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none pr-16" placeholder="--:--" value="{{ old("psikotes_time") }}" readonly />
-                            <span class="absolute left-[64px] top-1/2 -translate-y-1/2 text-[#333] text-base pointer-events-none">WIB</span>
+                            <input type="time" id="psikotes_time" name="psikotes_time" class="w-full cursor-pointer rounded-lg border-none bg-[#F1F3F6] px-3 py-3 pr-16 shadow-md focus:ring-[#3986A3] md:shadow-none" placeholder="--:--" value="{{ old("psikotes_time") }}" readonly />
+                            <span class="pointer-events-none absolute left-[64px] top-1/2 -translate-y-1/2 text-base text-[#333]">WIB</span>
                             <img src="{{ asset("assets/landing/icons/clock.png") }}" class="absolute right-5 top-1/2 h-4 w-auto -translate-y-1/2 object-contain" onclick="document.getElementById('timepicker').focus()" />
                         </div>
                     </div>
@@ -157,9 +169,9 @@
                     <div class="flex flex-col space-y-1">
                         <p class="text-sm text-[#333333] sm:text-[17px]">Layanan Psikotes</p>
                         <div class="relative">
-                            <select id="service" name="service" class="dropdown-select w-full cursor-pointer appearance-none rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none">
-                                <option value="offline" {{ old("service" === "offline" ? "selected" : "") }}>Offline</option>
-                                <option value="online" {{ old("service" === "online" ? "selected" : "") }}>Online</option>
+                            <select id="service" name="service" class="dropdown-select w-full cursor-pointer appearance-none rounded-lg border-none bg-[#F1F3F6] bg-[length:0] bg-right bg-no-repeat px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none">
+                                <option value="offline" {{ old("service") === "offline" ? "selected" : "" }}>Offline</option>
+                                <option value="online" {{ old("service") === "online" ? "selected" : "" }}>Online</option>
                             </select>
                             <img src="{{ asset("assets/landing/icons/dropdown.png") }}" class="dropdown-icon pointer-events-none absolute right-5 top-1/2 h-2 w-auto -translate-y-1/2 object-contain transition-transform duration-300" />
                         </div>
@@ -168,7 +180,7 @@
                     <div class="flex flex-col space-y-1">
                         <p class="text-sm text-[#333333] sm:text-[17px]">Kategori Psikotes</p>
                         <div class="relative">
-                            <select id="test_category_id" name="test_category_id" class="dropdown-select w-full cursor-pointer appearance-none rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none">
+                            <select id="test_category_id" name="test_category_id" class="dropdown-select w-full cursor-pointer appearance-none rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none bg-[length:0] bg-no-repeat bg-right" style="">
                                 <option value=""></option>
                                 @foreach ($testCategories as $category)
                                     <option value="{{ $category->id }}" {{ old("test_category_id") == $category->id ? "selected" : "" }}>{{ $category->name }}</option>
@@ -181,7 +193,7 @@
                     <div class="flex flex-col space-y-1">
                         <p class="text-sm text-[#333333] sm:text-[17px]">Jenis Psikotes</p>
                         <div class="relative">
-                            <select id="test_type_id" name="test_type_id" class="dropdown-select w-full cursor-pointer appearance-none rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none">
+                            <select id="test_type_id" name="test_type_id" class="dropdown-select w-full cursor-pointer appearance-none rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none bg-[length:0] bg-no-repeat bg-right">
                                 <option value=""></option>
                             </select>
                             <img src="{{ asset("assets/landing/icons/dropdown.png") }}" class="dropdown-icon pointer-events-none absolute right-5 top-1/2 h-2 w-auto -translate-y-1/2 object-contain transition-transform duration-300" />
@@ -378,72 +390,71 @@
         });
 
         // Cek validasi data
-        document.querySelector('form[action="{{ route("auth.psikotes-paid.register") }}"]').addEventListener('submit', async function(e) {
-        e.preventDefault();
+        document.querySelector('form[action="{{ route("auth.psikotes-paid.register") }}"]').addEventListener('submit', async function (e) {
+            e.preventDefault();
 
-        const form = this;
+            const form = this;
 
-        // Ambil semua input yang wajib
-        const psikotes_date = form.psikotes_date.value.trim();
-        const psikotes_time = form.psikotes_time.value.trim();
-        const service = form.service.value.trim();
-        const test_category_id = form.test_category_id.value.trim();
-        const test_type_id = form.test_type_id.value.trim();
+            // Ambil semua input yang wajib
+            const psikotes_date = form.psikotes_date.value.trim();
+            const psikotes_time = form.psikotes_time.value.trim();
+            const service = form.service.value.trim();
+            const test_category_id = form.test_category_id.value.trim();
+            const test_type_id = form.test_type_id.value.trim();
 
-        const name = form.name.value.trim();
-        const email = form.email.value.trim();
-        const age = form.age.value.trim();
-        const domicile = form.domicile.value.trim();
-        const gender = form.gender.value.trim();
-        const phone_number = form.phone_number.value.trim();
-        const reason = form.reason.value.trim();
+            const name = form.name.value.trim();
+            const email = form.email.value.trim();
+            const age = form.age.value.trim();
+            const domicile = form.domicile.value.trim();
+            const gender = form.gender.value.trim();
+            const phone_number = form.phone_number.value.trim();
+            const reason = form.reason.value.trim();
 
-        // Cek input kosong
-        if (!psikotes_date || !psikotes_time || !service || !test_category_id || !test_type_id ||
-            !name || !email || !age || !domicile || !gender || !phone_number || !reason) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Form belum lengkap',
-                text: 'Mohon isi semua field yang wajib sebelum mengirim.',
-                confirmButtonColor: '#3986A3'
-            });
-            return;
-        }
-
-        // Cek format email sederhana
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Email tidak valid',
-                text: 'Mohon masukkan alamat email yang benar.',
-                confirmButtonColor: '#3986A3'
-            });
-            return;
-        }
-
-        // AJAX cek email terdaftar (ganti url dengan route backend yang cek email)
-        try {
-            const response = await fetch('{{ route("auth.psikotes-paid.register.check-email") }}?email=' + encodeURIComponent(email));
-            const data = await response.json();
-
-            if (data.exists) {
+            // Cek input kosong
+            if (!psikotes_date || !psikotes_time || !service || !test_category_id || !test_type_id || !name || !email || !age || !domicile || !gender || !phone_number || !reason) {
                 Swal.fire({
-                    icon: 'error',
-                    title: 'Email sudah terdaftar',
-                    text: 'Email ini sudah pernah digunakan, silakan gunakan email lain.',
-                    confirmButtonColor: '#3986A3'
+                    icon: 'warning',
+                    title: 'Form belum lengkap',
+                    text: 'Mohon isi semua field yang wajib sebelum mengirim.',
+                    confirmButtonColor: '#3986A3',
                 });
                 return;
             }
-        } catch (error) {
-            console.error('Error cek email:', error);
-            // Kalau error cek email, bisa lanjut atau tampil pesan lain sesuai kebutuhan
-        }
 
-        // Kalau semua lolos, submit form
-        form.submit();
-    });
+            // Cek format email sederhana
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Email tidak valid',
+                    text: 'Mohon masukkan alamat email yang benar.',
+                    confirmButtonColor: '#3986A3',
+                });
+                return;
+            }
+
+            // AJAX cek email terdaftar (ganti url dengan route backend yang cek email)
+            try {
+                const response = await fetch('{{ route("auth.psikotes-paid.register.check-email") }}?email=' + encodeURIComponent(email));
+                const data = await response.json();
+
+                if (data.exists) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Email sudah terdaftar',
+                        text: 'Email ini sudah pernah digunakan, silakan gunakan email lain.',
+                        confirmButtonColor: '#3986A3',
+                    });
+                    return;
+                }
+            } catch (error) {
+                console.error('Error cek email:', error);
+                // Kalau error cek email, bisa lanjut atau tampil pesan lain sesuai kebutuhan
+            }
+
+            // Kalau semua lolos, submit form
+            form.submit();
+        });
     </script>
 
     <script>
