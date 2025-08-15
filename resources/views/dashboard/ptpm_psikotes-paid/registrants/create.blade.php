@@ -15,7 +15,7 @@
                     </a>
                     <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Tambah Data Pendaftar</p>
                 </div>
-                <p class="text-gray-500 py-2">Fitur ini menambah data pengguna seperti  nama, jenis kelamin, tanggal lahir, dan email yang telah mengisi  Psikotes Berbinar.</p>
+                <p class="text-gray-500 py-2">Fitur ini menambah data pengguna seperti  nama, jenis kelamin, tanggal lahir, dan email yang telah mengisi  psikotes Berbinar.</p>
             </div>
         </div>
 
@@ -142,8 +142,8 @@
                 </div>
                 <hr class="border-t-2 border-t-gray-400">
                 <div class="flex gap-4">
-                    <button type="submit" class="flex h-12 flex-1 items-center justify-center rounded-xl text-lg" style="width: 50%; background: #3986a3; color: #fff">Simpan</button>
                     <button type="button" id="cancelButton" class="flex h-12 flex-1 items-center justify-center rounded-xl text-lg" style="width: 50%; border: 2px solid #3986a3; color: #3986a3">Batal</button>
+                    <button type="submit" class="flex h-12 flex-1 items-center justify-center rounded-xl text-lg" style="width: 50%; background: #3986a3; color: #fff">Simpan</button>
                 </div>
             </form>
         </div>

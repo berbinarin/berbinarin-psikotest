@@ -33,7 +33,7 @@
         </div>
 
         <!-- Charts Section -->
-        <div class="flex flex-1 flex-col rounded-lg bg-white p-5">
+        <div class="flex flex-1 flex-col rounded-lg bg-white shadow p-5">
             {{-- 1. Header dengan Judul dan Dropdown Tahun --}}
             <div class="mb-2 flex justify-end">
                 {{-- Hanya tampilkan dropdown jika ada data --}}
@@ -70,7 +70,7 @@
             // 4. Fungsi untuk membuat dataset berdasarkan tahun dan kategori yang ada
             function createDatasets(year) {
                 const dataForYear = chartData[year] || {}; // Ambil data untuk tahun terpilih, atau objek kosong jika tidak ada
-                
+
                 const monthlyData = labels.map((month) => {
                     // Cari data: dataForYear -> bulan -> kategori. Jika tidak ada, nilainya 0.
                     return dataForYear[month] ?? 0;

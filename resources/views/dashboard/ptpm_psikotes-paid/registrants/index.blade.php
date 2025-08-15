@@ -11,7 +11,7 @@
             <div class="py-4 md:pb-7 md:pt-5">
                 <div>
                     <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Data Pendaftar Psikotes</p>
-                    <p class="text-disabled py-2 text-gray-500">Fitur ini menampilkan data  seperti  nama, kategori, jenis, dan harga yang telah mengisi  Psikotes Berbinar.</p>
+                    <p class="text-disabled py-2 text-gray-500">Fitur ini menampilkan data  seperti  nama, kategori, jenis, dan harga yang telah mengisi  psikotes Berbinar.</p>
                     <a href="{{ route("dashboard.registrants.create") }}" class="mt-8 inline-flex items-start justify-start rounded-lg bg-primary px-6 py-3 text-white hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-3">
                         <span class="leading-none">Tambah Data</span>
                     </a>

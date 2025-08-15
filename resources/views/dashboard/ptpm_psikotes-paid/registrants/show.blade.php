@@ -15,7 +15,7 @@
                     </a>
                     <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Detail Data Pendaftar</p>
                 </div>
-                <p class="text-gray-500 py-2">Fitur ini menampilkan data pengguna seperti  nama, jenis kelamin, tanggal lahir, dan email yang telah mengisi  Psikotes Berbinar.</p>
+                <p class="text-gray-500 py-2">Fitur ini menampilkan data pengguna seperti  nama, jenis kelamin, tanggal lahir, dan email yang telah mengisi  psikotes Berbinar.</p>
             </div>
         </div>
         <div class="flex flex-col gap-10 rounded-[24px] bg-white shadow mb-7 px-10 py-7">

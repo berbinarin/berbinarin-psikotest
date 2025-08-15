@@ -18,9 +18,9 @@
 
                         <form action="{{ route("psikotes-free.submit") }}" method="POST" class="flex flex-col">
                             @csrf
-                            <p class="question mt-4 whitespace-normal break-words text-lg font-bold text-[#333333] md:text-2xl lg:mt-6" style="max-width: 800px; word-wrap: break-word">
+                            <div class="question mt-4 whitespace-normal lg:h-[72px] break-words text-lg font-bold text-[#333333] md:text-2xl lg:mt-6" style="max-width: 800px; word-wrap: break-word">
                                 {{ $question->text }}
-                            </p>
+                            </div>
 
                             <p class="question mt-4 text-lg text-[#70787D] md:text-2xl lg:mb-10 lg:mt-6">Pilih satu jawaban :</p>
 

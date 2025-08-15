@@ -39,7 +39,7 @@
         </div>
 
         <!-- Charts Section -->
-        <div class="flex flex-1 flex-col rounded-lg bg-white p-5">
+        <div class="flex flex-1 flex-col rounded-lg bg-white shadow p-5">
             {{-- 1. Header dengan Judul dan Dropdown Tahun --}}
             <div class="mb-2 flex justify-end">
                 {{-- Hanya tampilkan dropdown jika ada data --}}

@@ -12,7 +12,7 @@
                 <div class="py-4 md:pb-7 md:pt-5">
                     <div>
                         <div class="flex items-center gap-2">
-                            <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Data User</p>
+                            <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Data Responden</p>
                         </div>
                         <p class="py-2 text-gray-500">Fitur ini menampilkan data responden seperti nama, status, tanggal, dan email yang telah mengisi Tes {{ $tool->name }} Berbinar.</p>
                     </div>
@@ -23,8 +23,8 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Pengguna</th>
                                     <th>Nama</th>
+                                    <th>Nama Pengguna</th>
                                     <th>Tanggal</th>
                                     <th>Jangka Waktu</th>
                                     <th>Status</th>
@@ -35,8 +35,8 @@
                                 @foreach ($attempts as $attempt)
                                     <tr class="data-consume">
                                         <td class="text-center">{{ $loop->iteration }}</td>
-                                        <td>{{ $attempt->user->username }}</td>
                                         <td>{{ $attempt->user->name }}</td>
+                                        <td>{{ $attempt->user->username }}</td>
                                         <td class="text-center">{{ \Carbon\Carbon::parse($attempt->created_at)->format("d-m-Y") }}</td>
                                         <td class="text-center">{{ \Carbon\Carbon::parse($attempt->created_at)->format("H:i:s") }} - {{ \Carbon\Carbon::parse($attempt->updated_at)->format("H:i:s") }}</td>
                                         <td class="text-center">
