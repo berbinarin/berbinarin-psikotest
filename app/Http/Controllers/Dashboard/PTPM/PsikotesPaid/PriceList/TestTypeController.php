@@ -44,7 +44,7 @@ class TestTypeController extends Controller
             'price' => $request->price,
             'description' => $request->description,
         ]);
-        return redirect()->route('dashboard.price-list.test-types.by-category', $categoryId)->with('success', 'Jenis test berhasil ditambahkan.');
+        return redirect()->route('dashboard.price-list.test-types.by-category', $categoryId)->with('success', 'Jenis tes berhasil ditambahkan.');
     }
 
     /**
@@ -81,7 +81,7 @@ class TestTypeController extends Controller
             'price' => $request->price,
             'description' => $request->description,
         ]);
-        return redirect()->route('dashboard.price-list.test-types.by-category', $categoryId)->with('success', 'Jenis test berhasil diupdate.');
+        return redirect()->route('dashboard.price-list.test-types.by-category', $categoryId)->with('success', 'Jenis tes berhasil diupdate.');
     }
 
     /**
@@ -105,7 +105,7 @@ class TestTypeController extends Controller
         $testType->delete();
 
         return redirect()->route('dashboard.price-list.test-types.by-category', $categoryId)
-            ->with('success', 'Test Type berhasil dihapus.');
+            ->with('success', 'Jenis tes berhasil dihapus.');
     }
 
     public function byCategory($categoryId)

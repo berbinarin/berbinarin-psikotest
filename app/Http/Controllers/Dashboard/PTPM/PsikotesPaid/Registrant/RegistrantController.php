@@ -66,7 +66,7 @@ class RegistrantController extends Controller
             return back()->withInput()->with('error', 'Terjadi kesalahan saat pendaftaran. Silakan coba lagi.');
         }
 
-        return redirect()->route('dashboard.registrants.index');
+        return redirect()->route('dashboard.registrants.index')->with('success', 'Data berhasil ditambahkan.');
     }
 
     /**
@@ -124,12 +124,11 @@ class RegistrantController extends Controller
                 // Update registrant profile
                 $registrant->update([
                     'test_type_id' => $request->test_type_id,
-                    // 'gender' => (string) $request->gender, // ini yang sebelumnya
-                    'gender' => $request->gender, // ini gw ganti jadi ini
+                    'gender' => $request->gender,
                     'age' => $request->age,
                     'domicile' => $request->domicile,
                     'phone_number' => $request->phone_number,
-                    'psikotes_service' => $request->psikotes_service, // ini gw ganti namanya ditambahin psikotes. Sebelumnya service
+                    'psikotes_service' => $request->psikotes_service,
                     'reason' => $request->reason,
                     'schedule' => \Carbon\Carbon::createFromFormat('Y-m-d H:i', $request->psikotes_date . ' ' . $request->psikotes_time),
                 ]);
