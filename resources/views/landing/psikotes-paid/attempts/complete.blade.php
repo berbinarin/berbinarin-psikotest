@@ -16,13 +16,13 @@
                     <img class="h-11 w-11" src="{{ asset("/assets/landing/images/psikotes-paid/logo-berbinar-psikotes.png") }}" alt="Logo Berbinar Psikotes" />
                 </div>
             </div>
-            
+
             <div class="flex flex-col flex-1 items-center justify-center">
                 <img src="{{ asset("/assets/landing/images/psikotes-paid/psikotes-ikon-piala.png") }}" alt="Ikon" class="w-52 rounded-full" />
                 <p class="text-center text-xl font-bold">Selamat! Kamu sudah menyelesaikan Tes!</p>
 
                 <div class="mb-4 mt-10 flex justify-center">
-                    <a href="{{ route('psikotes-paid.tools.index') }}" class="rounded-full bg-primary px-10 py-2 text-white hover:bg-blue-600 focus:bg-blue-600 focus:outline-none">Kembali ke Halaman Utama</a>
+                    <a href="{{ route('psikotes-paid.tools.index', ['tes' => 'selesai']) }}" class="rounded-full bg-primary px-10 py-2 text-white hover:bg-blue-600 focus:bg-blue-600 focus:outline-none">Kembali ke Halaman Utama</a>
                 </div>
             </div>
         </div>

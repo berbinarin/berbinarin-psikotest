@@ -5,8 +5,6 @@
     ]
 )
 
-
-
 @section("content")
     <section class="flex w-full">
         <div class="w-full">
@@ -49,46 +47,6 @@
                                         {{ \Carbon\Carbon::parse($registrant->schedule)->format("d-m-Y H:i:s") }}
                                     </td>
                                     <td class="flex items-center justify-center gap-2">
-                                        {{-- <button
-                                            type="button"
-                                            class="detail-button inline-flex items-start justify-start rounded p-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                                            style="background-color: #3b82f6"
-                                            data-id="{{ $registrant->id }}"
-                                            data-name="{{ $registrant->user->name }}"
-                                            data-gender="{{ $registrant->gender }}"
-                                            data-age="{{ $registrant->age }}"
-                                            data-phone_number="{{ $registrant->phone_number }}"
-                                            data-email="{{ $registrant->user->email }}"
-                                            data-test_category="{{ $registrant->testType->testCategory->name }}"
-                                            data-psikotes_service="{{ $registrant->psikotes_service }}"
-                                            data-test_type="{{ $registrant->testType->name }}"
-                                            data-reason="{{ $registrant->reason }}"
-                                            data-action="{{ route('dashboard.registrants.show', $registrant->id) }}"
-                                        >
-                                            <i class="bx bx-show text-white"></i>
-                                        </button> --}}
-                                        {{-- <button
-                                            type="button"
-                                            class="edit-button inline-flex items-start justify-start rounded p-2 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                                            style="background-color: #e9b306"
-                                            data-id="{{ $registrant->id }}"
-                                            data-name="{{ $registrant->user->name }}"
-                                            data-gender="{{ $registrant->gender }}"
-                                            data-age="{{ $registrant->age }}"
-                                            data-phone_number="{{ $registrant->phone_number }}"
-                                            data-email="{{ $registrant->user->email }}"
-                                            data-test_category="{{ $registrant->testType->testCategory->name }}"
-                                            data-psikotes_service="{{ $registrant->psikotes_service }}"
-                                            data-test_type="{{ $registrant->testType->name }}"
-                                            data-domicile="{{ $registrant->domicile }}"
-                                            data-service="{{ $registrant->service }}"
-                                            data-psikotes_date="{{ optional($registrant->schedule)->format('Y-m-d') }}"
-                                            data-psikotes_time="{{ optional($registrant->schedule)->format('H:i') }}"
-                                            data-reason="{{ $registrant->reason }}"
-                                            data-action="{{ route('dashboard.registrants.update', $registrant->id) }}"
-                                        >
-                                            <i class="bx bx-edit-alt text-white"></i>
-                                        </button> --}}
                                         <a href="{{route("dashboard.registrants.show", $registrant->id) }}" class="detail-button inline-flex items-start justify-start rounded p-2 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
                                             style="background-color: #3b82f6">
                                             <i class="bx bx-show-alt text-white"></i>
@@ -263,8 +221,6 @@
                 </div>
             </div>
             <!-- End Modal Detail --> --}}
-
-
         </div>
     </section>
 @endsection
@@ -293,28 +249,6 @@
             document.getElementById(modalID).classList.toggle('flex');
             document.getElementById(modalID + '-backdrop').classList.toggle('flex');
         }
-    </script>
-
-    <script>
-        document.querySelectorAll('.delete-button').forEach((button) => {
-            button.addEventListener('click', function (e) {
-                e.preventDefault();
-                const formId = this.getAttribute('data-id');
-                Swal.fire({
-                    title: 'Hapus Responden',
-                    text: 'Apakah anda yakin menghapusnya?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Hapus',
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        document.getElementById('deleteForm-' + formId).submit();
-                    }
-                });
-            });
-        });
     </script>
 
     <script>

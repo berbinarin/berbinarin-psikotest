@@ -133,27 +133,34 @@
     </div>
 </div>
 
+<div id="chartModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-50 transition-opacity duration-300">
+    <div class="relative w-11/12 max-w-4xl rounded-lg bg-white p-4 shadow-xl md:p-6">
+        <button id="closeModalBtn" class="absolute -right-3 -top-3 flex h-8 w-8 items-center justify-center rounded-full bg-primary font-bold text-white shadow-lg transition-transform hover:scale-110">
+          <span class="text-sm">X</span>
+        </button>
+
+        <div id="modal-chart-container" style="height: 60vh"></div>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
+    // --- Bagian A: Kode Original Anda (sedikit diubah untuk aksesibilitas) ---
     const data = @json($data);
 
-    const categories = data.map((item) => {
-        return item.sub_code;
-    });
-
-    const originalScores = data.map((item) => {
-        return item.score;
-    });
+    const originalCategories = data.map((item) => item.sub_code);
+    const originalScores = data.map((item) => item.score);
 
     const plottedScores = originalScores.map((score, index) => {
-        const category = categories[index];
+        const category = originalCategories[index];
         if (category === 'K' || category === 'Z') {
             return 9 - score;
         }
         return score;
     });
 
-    var options = {
+    // Pindahkan 'options' ke variabel yang bisa diakses di luar
+    var chartOptions = {
         chart: {
             height: '100%',
             type: 'radar',
@@ -163,7 +170,7 @@
             },
         },
         xaxis: {
-            categories: categories,
+            categories: originalCategories,
             tooltip: {
                 enabled: false,
             },
@@ -182,8 +189,6 @@
         ],
         dataLabels: {
             enabled: true,
-            offsetX: 0,
-            offsetY: 0,
             style: {
                 colors: ['#236A7B'],
                 fontWeight: 600,
@@ -198,7 +203,7 @@
         },
         plotOptions: {
             radar: {
-                size: 90,
+                size: 90, // Ukuran untuk chart kecil
                 polygons: {
                     strokeColors: 'gray',
                     connectorColors: 'gray',
@@ -225,13 +230,11 @@
                 size: 6,
             },
         },
+        // Opsi responsif tetap berguna
         responsive: [
             {
                 breakpoint: 768,
                 options: {
-                    chart: {
-                        height: '100%',
-                    },
                     plotOptions: {
                         radar: {
                             size: 100,
@@ -242,14 +245,55 @@
         ],
     };
 
-    var chart = new ApexCharts(document.querySelector('#chart'), options);
-    chart.render();
+    // Render chart kecil yang original
+    var smallChart = new ApexCharts(document.querySelector('#chart'), chartOptions);
+    smallChart.render();
 
-    window.addEventListener('resize', function () {
-        chart.updateOptions({
-            chart: {
-                height: '100%',
-            },
-        });
+    // --- Modal Chart ---
+    const chartContainer = document.querySelector('#chart-container');
+    const modal = document.querySelector('#chartModal');
+    const closeModalBtn = document.querySelector('#closeModalBtn');
+    const modalChartContainer = document.querySelector('#modal-chart-container');
+    let modalChart = null;
+
+    // Open Modal
+    chartContainer.addEventListener('click', () => {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+
+        // Duplicate and change some options
+        let modalOptions = chartOptions;
+
+        modalOptions.chart.height = '100%';
+        modalOptions.plotOptions.radar.size = 180;
+        modalOptions.dataLabels.style.fontSize = '16px';
+        modalOptions.chart.toolbar.show = true;
+
+        // Hancurkan chart modal sebelumnya jika ada (untuk mencegah duplikasi)
+        if (modalChart) {
+            modalChart.destroy();
+        }
+
+        modalChart = new ApexCharts(modalChartContainer, modalOptions);
+        modalChart.render();
+    });
+
+    // Close Modal
+    function closeTheModal() {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        // Remove Instance Chart when close
+        if (modalChart) {
+            modalChart.destroy();
+            modalChart = null;
+        }
+    }
+
+    // Close Modal Event Listener
+    closeModalBtn.addEventListener('click', closeTheModal);
+    modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            closeTheModal();
+        }
     });
 </script>

@@ -20,8 +20,9 @@
                         <thead>
                             <tr>
                                 <th style="text-align: center">No</th>
-                                <th style="text-align: center"><span class="italic">User</span></th>
-                                <th style="text-align: center"><span class="italic">Date</span></th>
+                                <th style="text-align: center">Nama</th>
+                                <th style="text-align: center"><span class="italic">Username</span></th>
+                                <th style="text-align: center">Tanggal</th>
                                 <th style="text-align: center"><span class="italic">Action</span></th>
                             </tr>
                         </thead>
@@ -30,11 +31,19 @@
                                 <tr>
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td class="text-center">{{ $testimoni->userPsikotesPaid ? $testimoni->userPsikotesPaid->name : 'User tidak ditemukan' }}</td>
+                                    <td class="text-center">{{ $testimoni->userPsikotesPaid ? $testimoni->userPsikotesPaid->username : 'User tidak ditemukan' }}</td>
                                     <td class="text-center">{{ \Carbon\Carbon::parse($testimoni->created_at)->format("d-m-Y H:i:s") }}</td>
                                     <td class="flex items-center justify-center gap-2">
                                         <a href="{{ route('dashboard.testimonial.show', $testimoni->id) }}" class="inline-flex items-start justify-start rounded p-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #3b82f6">
                                             <i class="bx bx-show text-white"></i>
                                         </a>
+                                        <form id="deleteForm-{{ $testimoni->id }}" action="{{ route('dashboard.testimonial.destroy', [$testimoni->id]) }}" method="POST">
+                                            @csrf
+                                            @method("DELETE")
+                                            <button type="button" data-id="{{ $testimoni->id }}" class="delete-button inline-flex items-start justify-start rounded p-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #ef4444">
+                                                <i class="bx bx-trash-alt text-white"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

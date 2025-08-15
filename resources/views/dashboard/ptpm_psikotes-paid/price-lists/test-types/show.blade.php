@@ -80,7 +80,7 @@
         }
     </script>
 
-    <script>
+    {{-- <script>
         document.querySelectorAll('.delete-button').forEach((button) => {
             button.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -100,5 +100,5 @@
                 });
             });
         });
-    </script>
+    </script> --}}
 @endsection

@@ -19,4 +19,11 @@ class TestimonialController extends Controller
 
         return view('dashboard.ptpm_psikotes-paid.testimonial.detail', compact('testimonial'));
     }
+
+    public function destroy($id){
+        $testimonial = Testimonial::findOrFail($id);
+        $testimonial->delete();
+
+        return redirect()->route('dashboard.testimonial.index')->with('success', 'Testimoni berhasil dihapus.');
+    }
 }

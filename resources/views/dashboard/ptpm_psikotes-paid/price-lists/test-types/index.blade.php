@@ -88,26 +88,4 @@
             document.getElementById(modalID + '-backdrop').classList.toggle('flex');
         }
     </script>
-
-    <script>
-        document.querySelectorAll('.delete-button').forEach((button) => {
-            button.addEventListener('click', function (e) {
-                e.preventDefault();
-                const formId = this.getAttribute('data-id');
-                Swal.fire({
-                    title: 'Hapus Tes',
-                    text: 'Apakah anda yakin menghapusnya?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d1d5db',
-                    cancelButtonColor: '#3986A3',
-                    confirmButtonText: 'Hapus',
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        document.getElementById('deleteForm-' + formId).submit();
-                    }
-                });
-            });
-        });
-    </script>
 @endsection

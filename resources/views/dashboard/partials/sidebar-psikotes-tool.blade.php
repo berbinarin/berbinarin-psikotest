@@ -33,16 +33,15 @@
             </a>
         </li>
 
-        <li class="{{ isRouteActive("dashboard/tools/*/data/attempts") }} my-5 rounded-lg p-2">
-            <a href="{{ route('dashboard.tools.data.attempts.index', $tool->id) }}" class="{{ request()->is("dashboard/tools/*/data/attempts") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
-                <i class="fi fi-rr-notes {{ request()->is("dashboard/tools/*/data/attempts") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
+        <li class="{{ isRouteActive("dashboard/tools/*/data/*") }} my-5 rounded-lg p-2">
+            <a href="{{ route('dashboard.tools.data.attempts.index', $tool->id) }}" class="{{ request()->is("dashboard/tools/*/data/*") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
+                <i class="fi fi-rr-notes {{ request()->is("dashboard/tools/*/data/*") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
                 <span class="ml-4 text-base font-bold leading-5">
                     Data
                 </span>
             </a>
         </li>
-
-        @if(strtolower($tool->name) === 'papi kostick')
+        
         <li class="{{ isRouteActive("dashboard/tools/*/data/sections") }} my-5 rounded-lg p-2">
             <a href="{{ route('dashboard.tools.data.sections.index', $tool->id) }}" class="{{ request()->is("dashboard/tools/*/data/sections") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
                 <i class="bx bx-edit {{ request()->is("dashboard/tools/*/data/sections") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
@@ -51,7 +50,6 @@
                 </span>
             </a>
         </li>
-        @endif
 
         <li class="mt-20 rounded-lg p-2">
             <a href="{{ route('dashboard.tools.index') }}" class="fixed bottom-5 left-14 items-center gap-2 rounded-full bg-blue-500 px-6 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">

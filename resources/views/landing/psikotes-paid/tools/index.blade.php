@@ -92,24 +92,40 @@
         });
     </script>
 
+    // Sweet Alert Alat Tes
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const tesStatus = urlParams.get('tes');
+
+        if (tesStatus === 'selesai') {
+            Swal.fire({
+                title: 'Tes sudah selesai!',
+                text: 'Hasil tes kamu sudah tersimpan.',
+                icon: 'success',
+                confirmButtonText: 'Oke',
+                customClass: {
+                    popup: 'rounded-xl px-6 pt-6 pb-6',
+                    confirmButton: 'mt-6 rounded-md bg-[#3986A3] px-[112px] py-[10px] text-[15px] font-extrabold text-white',
+                },
+                backdrop: 'rgba(0,0,0,0.5)',
+            }).then(() => {
+                // Hapus query param biar tidak muncul lagi saat reload
+                const url = new URL(window.location.href);
+                url.searchParams.delete('tes');
+                window.history.replaceState({}, document.title, url.toString());
+            });
+        }
+    </script>
+
+    // Sweet Alert Testimoni
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const testimoniStatus = urlParams.get('testimoni');
-        const checkIcon = '{{ asset("assets/landing/images/psikotes-paid/check.png") }}';
 
         if (testimoniStatus === 'selesai') {
             Swal.fire({
-                html: `
-                            <div class="text-center">
-                                <img src="${checkIcon}" alt="sukses" class="mx-auto mb-[18px] h-[71px] w-[71px]" />
-                                <h2 class="text-2xl font-bold text-black" style="font-family: 'Plus Jakarta Sans', sans-serif">
-                                    Kamu telah mengisi testimoni
-                                </h2>
-                                <p class="text-lg font-medium text-[#A9A9A9]" style="font-family: 'Plus Jakarta Sans', sans-serif">
-                                    Silakan lanjutkan mengerjakan psikotes!
-                                </p>
-                            </div>
-                        `,
+                title: 'Kamu telah mengisi testimoni!',
+                icon: 'success',
                 showConfirmButton: true,
                 confirmButtonText: 'Lanjutkan',
                 customClass: {
