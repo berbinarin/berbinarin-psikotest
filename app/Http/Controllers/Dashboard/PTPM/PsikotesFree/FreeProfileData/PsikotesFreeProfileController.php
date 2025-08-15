@@ -23,7 +23,7 @@ class PsikotesFreeProfileController extends Controller
     public function show($id)
     {
         $attempt = PsikotesFreeAttempt::with('responses')->find($id);
-        
+
         $data = $this->resultService->resultData($attempt);
 
         $dimensions = ['extraversion', 'agreeableness', 'neuroticism', 'conscientiousness', 'openness'];
@@ -62,7 +62,13 @@ class PsikotesFreeProfileController extends Controller
                     $freeProfile->feedback->delete();
                 }
 
-                $freeProfile->attempt()->delete();
+                foreach ($freeProfile->attempt as $attempt) {
+                    // Hapus semua responses dari attempt
+                    $attempt->responses()->delete();
+
+                    // Hapus attempt
+                    $attempt->delete();
+                }
 
                 $freeProfile->delete();
             });
