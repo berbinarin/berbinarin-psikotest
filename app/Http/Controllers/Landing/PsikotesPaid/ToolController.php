@@ -14,11 +14,11 @@ class ToolController extends Controller
 
     public function index()
     {
-    //     $agent = new Agent();
+        $agent = new Agent();
 
-    //     if ($agent->isMobile() && !$agent->isTablet()) {
-    //     return view('landing.psikotes-paid.tools.block-mobile');
-    // }
+        if ($agent->isMobile() && !$agent->isTablet()) {
+        return view('landing.psikotes-paid.tools.block-mobile');
+    }
         $user = auth()->user();
         $tools = Tool::all();
 

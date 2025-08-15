@@ -1,46 +1,33 @@
 @extends(
     "landing.layouts.test",
     [
-        "title" => "Tes " . str_pad($tool->order, 2, "0", STR_PAD_LEFT),
+        "title" => "Tes 1",
     ]
 )
 
 @section("content")
-    <div class="container mx-auto">
-        <div class="fixed left-0 top-0 -z-10 h-screen w-screen bg-cover bg-center bg-no-repeat" style="background-image: url({{ asset("/assets/landing/images/psikotes-paid/psikotes-soal-bg.png") }})"></div>
-
-        <div class="relative flex h-[85vh] flex-col justify-between">
-            <div class="flex flex-col items-center justify-center gap-7">
-                <div class="mt-8 flex w-fit items-center gap-7 rounded-[70px] bg-white px-8 py-[10px]">
-                    <img class="h-10 w-10" src="{{ asset("/assets/landing/images/psikotes-paid/logo-berbinar.png") }}" alt="Logo Berbinar" />
-                    <img class="h-11 w-11" src="{{ asset("/assets/landing/images/psikotes-paid/logo-berbinar-psikotes.png") }}" alt="Logo Berbinar Psikotes" />
-                </div>
-                <div>
-                    <h2 class="text-[28px] font-bold">Tes {{ str_pad($tool->order, 2, "0", STR_PAD_LEFT) }}</h2>
-                </div>
-            </div>
-
-            <div class="mb-4 mt-10 flex flex-1">
-                <div class="mx-auto max-w-[871px] rounded-xl bg-white p-10 drop-shadow-[0_4px_12px_rgba(0,0,0,0.15)]">
-                    <div class="prose font-medium">
-                        @php
-                            $user_gender = $user->profile->gender ?? null;
-                            $gender_text = match ($user_gender) {
-                                "male" => "PRIA",
-                                "female" => "WANITA",
-                                default => "(PRIA/WANITA)",
-                            };
-                            $introduce_text = str_replace("(PRIA/WANITA)", $gender_text, $tool->introduce);
-                        @endphp
-
-                        {!! $introduce_text !!}
+    <section>
+        <div class="relative flex h-screen w-screen items-center justify-center overflow-hidden bg-cover bg-center md:bg-cover md:bg-center" style="background-image: url('{{ asset("assets/auth/images/Login.png") }}')">
+            <div class="h-[550px] w-[1227.33px] rounded-[20px] border-[1.33px] border-sky-100 bg-white/40 backdrop-blur-[6.67px]">
+                <div class="relative flex flex-row items-center px-[55.33px] pt-[23.33px]">
+                    <!-- Logo kiri -->
+                    <div class="flex flex-row gap-4 rounded-[50px] bg-gradient-to-b from-[#F7B23B] to-[#916823] p-[1px]">
+                        <div class="flex flex-row items-center justify-center gap-4 rounded-[50px] bg-white px-[19.92px] py-[7.47px]">
+                            <img src="{{ asset("assets/auth/images/logo-berbinar.png") }}" class="h-[34.36px] w-[33.36px]" />
+                            <img src="{{ asset("assets/auth/images/psikotest.png") }}" class="h-[34.36px] w-[33.36px]" />
+                        </div>
                     </div>
 
-                    <div class="mt-8 flex justify-center">
-                        <a href="{{ route('psikotes-paid.attempt.question') }}" class="rounded-full bg-[#6083F2] px-8 py-2 font-extrabold text-white">Selanjutnya</a>
-                    </div>
+                    <!-- Judul tengah -->
+                    <h1 class="absolute left-1/2 top-[65%] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text font-plusJakartaSans text-[26.67px] font-bold text-transparent">Tes 01</h1>
+                </div>
+
+                <!-- Teks dan tombol -->
+                <div class="flex h-full w-full flex-col items-center justify-start px-6 pt-12">
+                    <p class="w-[565.33px] text-justify font-plusJakartaSans text-[13.33px] font-normal">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur accusamus adipisci sequi rem fuga officia excepturi ea nihil enim maiores odit earum perspiciatis sint, rerum minima quibusdam corrupti alias nobis? Placeat optio incidunt expedita harum recusandae repellendus soluta quisquam voluptates obcaecati quos ullam esse corrupti cum reiciendis magnam, unde, animi, alias ea eaque? Esse dolore dicta sed nostrum ratione quaerat voluptates temporibus! A vitae modi omnis cumque ullam natus eum, animi earum. Necessitatibus autem voluptas ipsum eos illo modi sed tempore nisi vero, omnis quos facilis. Commodi nihil incidunt mollitia?</p>
+                    <button class="mt-6 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selanjutnya</button>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 @endsection

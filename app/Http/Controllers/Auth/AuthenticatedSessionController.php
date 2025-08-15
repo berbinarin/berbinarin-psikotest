@@ -30,6 +30,12 @@ class AuthenticatedSessionController extends Controller
 
     public function psikotesPaidLogin(): View
     {
+        $agent = new Agent();
+
+        if ($agent->isMobile() && !$agent->isTablet()) {
+            // Kalau user pakai HP, arahkan ke halaman error
+            return view('landing.psikotes-paid.tools.block-mobile');
+        }
         return view('auth.login.psikotes-paid-login');
     }
 
