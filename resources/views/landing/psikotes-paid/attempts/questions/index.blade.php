@@ -116,5 +116,20 @@
                 window.location.href = @json(route("psikotes-paid.attempt.complete"));
             }
         });
+
+        // Mereset input  ketika back menggunakan browser
+        window.addEventListener('pageshow', function (event) {
+            if (event.persisted || performance.getEntriesByType('navigation')[0].type === 'back_forward') {
+                document.querySelectorAll('input, textarea, select').forEach((el) => {
+                    if (el.type === 'radio' || el.type === 'checkbox') {
+                        el.checked = false;
+                    } else if (el.tagName.toLowerCase() === 'select') {
+                        el.selectedIndex = 0;
+                    } else {
+                        el.value = '';
+                    }
+                });
+            }
+        });
     </script>
 @endpush
