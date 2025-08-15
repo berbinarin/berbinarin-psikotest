@@ -33,9 +33,9 @@
             </a>
         </li>
 
-        <li class="{{ isRouteActive("dashboard/tools/*/data/*") }} my-5 rounded-lg p-2">
-            <a href="{{ route('dashboard.tools.data.attempts.index', $tool->id) }}" class="{{ request()->is("dashboard/tools/*/data/*") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
-                <i class="fi fi-rr-notes {{ request()->is("dashboard/tools/*/data/*") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
+        <li class="{{ isRouteActive("dashboard/tools/*/data/attempts*") }} my-5 rounded-lg p-2">
+            <a href="{{ route('dashboard.tools.data.attempts.index', $tool->id) }}" class="{{ request()->is("dashboard/tools/*/data/attempts*") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
+                <i class="fi fi-rr-notes {{ request()->is("dashboard/tools/*/data/attempts*") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
                 <span class="ml-4 text-base font-bold leading-5">
                     Data
                 </span>
