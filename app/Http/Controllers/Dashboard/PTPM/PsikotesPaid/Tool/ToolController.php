@@ -27,6 +27,6 @@ class ToolController extends Controller
         $tool->token = Str::random(8);
         $tool->save();
 
-        return redirect()->back()->with('success', 'Token generated successfully!');
+        return redirect()->back()->with('success', 'Token Berhasil Diperbarui!');
     }
 }

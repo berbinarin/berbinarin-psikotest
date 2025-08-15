@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->text('sharing_testimonial');
-            $table->text('sharing_experience');
-            $table->text('opinion_psikotes');
-            $table->text('criticism_suggestion');
+            $table->text('question');
+            $table->string('type');
+            $table->text('answer');
             $table->timestamps();
             $table->softDeletes();
         });

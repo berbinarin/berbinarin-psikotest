@@ -27,20 +27,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($testimonial as $testimoni)
+                            @foreach ($users as $user)
                                 <tr>
                                     <td class="text-center">{{ $loop->iteration }}</td>
-                                    <td class="text-center">{{ $testimoni->userPsikotesPaid ? $testimoni->userPsikotesPaid->name : 'User tidak ditemukan' }}</td>
-                                    <td class="text-center">{{ $testimoni->userPsikotesPaid ? $testimoni->userPsikotesPaid->username : 'User tidak ditemukan' }}</td>
-                                    <td class="text-center">{{ \Carbon\Carbon::parse($testimoni->created_at)->format("d-m-Y H:i:s") }}</td>
+                                    <td class="text-center">{{ $user->name }}</td>
+                                    <td class="text-center">{{ $user->username }}</td>
+                                    <td class="text-center">{{ \Carbon\Carbon::parse($user->testimonials[0]->created_at)->format("d-m-Y H:i:s") }}</td>
                                     <td class="flex items-center justify-center gap-2">
-                                        <a href="{{ route('dashboard.testimonial.show', $testimoni->id) }}" class="inline-flex items-start justify-start rounded p-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #3b82f6">
+                                        <a href="{{ route('dashboard.testimonial.show', $user->id) }}" class="inline-flex items-start justify-start rounded p-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #3b82f6">
                                             <i class="bx bx-show text-white"></i>
                                         </a>
-                                        <form id="deleteForm-{{ $testimoni->id }}" action="{{ route('dashboard.testimonial.destroy', [$testimoni->id]) }}" method="POST">
+                                        <form id="deleteForm-{{ $user->id }}" action="{{ route('dashboard.testimonial.destroy', [$user->id]) }}" method="POST">
                                             @csrf
                                             @method("DELETE")
-                                            <button type="button" data-id="{{ $testimoni->id }}" class="delete-button inline-flex items-start justify-start rounded p-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #ef4444">
+                                            <button type="button" data-id="{{ $user->id }}" class="delete-button inline-flex items-start justify-start rounded p-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #ef4444">
                                                 <i class="bx bx-trash-alt text-white"></i>
                                             </button>
                                         </form>

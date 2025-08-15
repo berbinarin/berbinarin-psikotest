@@ -69,8 +69,8 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
         // Testimonial
         Route::prefix('testimonial')->name('testimonial.')->group(function (){
             Route::get('/', [TestimonialController::class, 'index'])->name('index');
-            Route::get('/{id}', [TestimonialController::class, 'show'])->name('show');
-            Route::delete('/{id}', [TestimonialController::class, 'destroy'])->name('destroy');
+            Route::get('/{user}', [TestimonialController::class, 'show'])->name('show');
+            Route::delete('/{user}', [TestimonialController::class, 'destroy'])->name('destroy');
         });
     });
 

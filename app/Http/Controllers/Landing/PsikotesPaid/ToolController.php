@@ -20,7 +20,7 @@ class ToolController extends Controller
         return view('landing.psikotes-paid.tools.block-mobile');
     }
         $user = auth()->user();
-        $tools = Tool::all();
+        $tools = Tool::orderBy('order', 'ASC')->get();
 
         return view('landing.psikotes-paid.tools.index', compact('user', 'tools'));
     }

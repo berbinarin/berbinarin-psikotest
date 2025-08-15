@@ -23,7 +23,7 @@
                 <div class="flex h-full w-full flex-col items-center justify-start gap-12 px-6 pt-4">
                     <img src="{{ asset("assets/landing/images/psikotes-paid/psikotes-ikon-piala.png") }}" alt="congrats" class="h-[275px] w-[225px]" />
                     <h1 class="-mt-7 bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text font-plusJakartaSans text-xl font-bold text-transparent">Selamat, Anda telah menyelesaikan Tes!</h1>
-                    <button class="-mt-4 h-[35px] w-[200px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-xs font-bold text-white">Kembali ke Beranda</button>
+                    <a href="{{ route('psikotes-paid.tools.index') }}" class="flex justify-center items-center h-[35px] w-[200px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-xs font-bold text-white">Kembali ke Beranda</a>
                 </div>
             </div>
         </div>

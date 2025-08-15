@@ -47,7 +47,7 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function psikotesSessions()
+    public function attempts()
     {
         return $this->hasMany(Attempt::class);
     }
@@ -56,7 +56,7 @@ class User extends Authenticatable
         return $this->hasOne(RegistrantProfile::class);
     }
 
-    public function testimoni(): HasMany
+    public function testimonials(): HasMany
     {
         return $this->HasMany(Testimonial::class);
     }

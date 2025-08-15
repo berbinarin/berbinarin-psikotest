@@ -8,8 +8,8 @@
 @section("content")
     <section>
         <div class="relative flex h-screen w-screen items-center justify-center overflow-hidden bg-cover bg-center md:bg-cover md:bg-center" style="background-image: url('{{ asset("assets/auth/images/Login.png") }}')">
-            <div class="h-[550px] w-[1227.33px] rounded-[20px] border-[1.33px] border-sky-100 bg-white/40 backdrop-blur-[6.67px]">
-                <div class="relative flex flex-row items-center px-[55.33px] pt-[23.33px]">
+            <div class="flex flex-col h-[550px] w-[1227.33px] rounded-[20px] border-[1.33px] border-sky-100 bg-white/40 backdrop-blur-[6.67px]">
+                <div class="relative flex items-center px-[55.33px] pt-[23.33px]">
                     <!-- Logo kiri -->
                     <div class="flex flex-row gap-4 rounded-[50px] bg-gradient-to-b from-[#F7B23B] to-[#916823] p-[1px]">
                         <div class="flex flex-row items-center justify-center gap-4 rounded-[50px] bg-white px-[19.92px] py-[7.47px]">
@@ -23,9 +23,9 @@
                 </div>
 
                 <!-- Teks dan tombol -->
-                <div class="flex h-full w-full flex-col items-center justify-start px-6 pt-12">
-                    <p class="w-[565.33px] text-justify font-plusJakartaSans text-[13.33px] font-normal">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur accusamus adipisci sequi rem fuga officia excepturi ea nihil enim maiores odit earum perspiciatis sint, rerum minima quibusdam corrupti alias nobis? Placeat optio incidunt expedita harum recusandae repellendus soluta quisquam voluptates obcaecati quos ullam esse corrupti cum reiciendis magnam, unde, animi, alias ea eaque? Esse dolore dicta sed nostrum ratione quaerat voluptates temporibus! A vitae modi omnis cumque ullam natus eum, animi earum. Necessitatibus autem voluptas ipsum eos illo modi sed tempore nisi vero, omnis quos facilis. Commodi nihil incidunt mollitia?</p>
-                    <button class="mt-6 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selanjutnya</button>
+                <div class="flex h-full w-full flex-col items-center justify-start px-6 pt-12 ">
+                    <div class="flex-1 w-[565.33px] text-justify font-plusJakartaSans text-[13.33px] font-normal">{!! $tool->introduce !!}</div>
+                    <a href="{{ route('psikotes-paid.attempt.question') }}" class="mt-6 mb-8 flex h-[43.67px] w-[136px] items-center justify-center rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selanjutnya</a>
                 </div>
             </div>
         </div>

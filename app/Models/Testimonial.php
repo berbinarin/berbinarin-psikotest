@@ -14,13 +14,12 @@ class Testimonial extends Model
 
     protected $fillable = [
         'user_id',
-        'sharing_testimonial',
-        'sharing_experience',
-        'opinion_psikotes',
-        'criticism_suggestion',
+        'question',
+        'type',
+        'answer'
     ];
 
-    public function userPsikotesPaid()
+    public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }

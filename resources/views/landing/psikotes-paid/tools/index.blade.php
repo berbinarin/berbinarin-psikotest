@@ -17,21 +17,38 @@
 
 @section("content")
     <!-- Pindahkan x-data ke div utama -->
-    <div x-data="{ open: false, testNumber: null }" class="relative bg-none md:min-h-screen md:bg-cover md:bg-center" style="background-image: url('{{ asset("assets/auth/images/Login.png") }}')">
+    <div x-data="{ open: false, toolId: null }" class="relative bg-none md:min-h-screen md:bg-cover md:bg-center" style="background-image: url('{{ asset("assets/auth/images/Login.png") }}')">
         <!-- Header & Sambutan -->
-        <div class="flex flex-col items-center justify-center pt-5">
-            <!-- Logo -->
-            <div class="flex flex-row items-center justify-center gap-4 rounded-[50px] bg-gradient-to-b from-[#F7B23B] to-[#916823] p-[1px]">
-                <div class="flex flex-row items-center justify-center gap-4 rounded-[50px] bg-white px-[19.92px] py-[7.47px]">
-                    <img src="{{ asset("assets/auth/images/logo-berbinar.png") }}" class="h-[34.36px] w-[33.36px]" />
-                    <img src="{{ asset("assets/auth/images/psikotest.png") }}" class="h-[34.36px] w-[33.36px]" />
+        <div class="flex justify-between">
+            <div class="mx-8 mt-5">
+                @if (auth()->user()->testimonials)
+                    <button class="flex h-12 w-28 items-center justify-center rounded-xl bg-primary font-semibold text-white disabled:opacity-75 cursor-not-allowed" disabled>Testimoni</button>
+                @else
+                    <a href="{{ route("psikotes-paid.testimonial.index") }}" class="flex h-12 w-28 items-center justify-center rounded-xl bg-primary font-semibold text-white transition-all hover:opacity-90">Testimoni</a>
+                @endif
+            </div>
+
+            <div class="flex flex-col items-center justify-center pt-5">
+                <!-- Logo -->
+                <div class="flex flex-row items-center justify-center gap-4 rounded-[50px] bg-gradient-to-b from-[#F7B23B] to-[#916823] p-[1px]">
+                    <div class="flex flex-row items-center justify-center gap-4 rounded-[50px] bg-white px-[19.92px] py-[7.47px]">
+                        <img src="{{ asset("assets/auth/images/logo-berbinar.png") }}" class="h-[34.36px] w-[33.36px]" />
+                        <img src="{{ asset("assets/auth/images/psikotest.png") }}" class="h-[34.36px] w-[33.36px]" />
+                    </div>
+                </div>
+
+                <!-- Sambutan -->
+                <div class="mt-4 bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text font-plusJakartaSans font-bold text-transparent">
+                    <h1 class="hidden text-[26.67px] md:block">Temukan Psikotes yang Tepat untukmu</h1>
+                    <h1 class="block text-[24px] md:hidden">Discover Your Potential</h1>
                 </div>
             </div>
 
-            <!-- Sambutan -->
-            <div class="mt-4 bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text font-plusJakartaSans font-bold text-transparent">
-                <h1 class="hidden text-[26.67px] md:block">Temukan Psikotes yang Tepat untukmu</h1>
-                <h1 class="block text-[24px] md:hidden">Discover Your Potential</h1>
+            <div class="mx-8 mt-5">
+                <form action="{{ route("auth.logout") }}" method="POST">
+                    @csrf
+                    <button type="submit" class="flex h-12 w-28 items-center justify-center rounded-xl bg-primary font-semibold text-white transition-all hover:opacity-90">Logout</button>
+                </form>
             </div>
         </div>
 
@@ -41,16 +58,16 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide !h-auto">
                         <div class="mx-auto grid h-full max-w-[700px] grid-cols-2 justify-items-center gap-x-1 gap-y-5 md:max-w-[1200px] md:grid-cols-4 md:gap-x-3">
-                            @for ($i = 1; $i <= 16; $i++)
-                                <button type="button" @click="open = true; testNumber = {{ $i }}">
-                                    <div class="relative h-[89.84px] w-[161.02px] rounded-[10px] bg-[#3986A3] text-white md:h-[141.33px] md:w-[253.33px]">
-                                        <span class="absolute left-3 top-1 z-10 font-plusJakartaSans text-[20px] font-bold text-[#F5F5F6] md:text-[33.33px]">Tes {{ str_pad($i, 2, "0", STR_PAD_LEFT) }}</span>
+                            @foreach ($tools as $tool)
+                                <button type="button" @click="open = true; toolId = {{ $tool->id }}">
+                                    <div class="relative h-[89.84px] w-[161.02px] rounded-[10px] bg-[#3986A3] text-white transition-all hover:opacity-85 md:h-[141.33px] md:w-[253.33px]">
+                                        <span class="absolute left-3 top-1 z-10 font-plusJakartaSans text-[20px] font-bold text-[#F5F5F6] md:text-[33.33px]">Tes {{ str_pad($tool->order, 2, "0", STR_PAD_LEFT) }}</span>
                                         <span class="absolute -bottom-6 right-3 select-none font-sans text-[80px] font-extrabold text-white/20 md:-bottom-9 md:text-[120px]">
-                                            {{ $i }}
+                                            {{ $tool->order }}
                                         </span>
                                     </div>
                                 </button>
-                            @endfor
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -66,8 +83,16 @@
                 <div class="flex flex-col items-center px-4 py-4">
                     <h2 class="mb-[13.33px] self-start font-plusJakartaSans text-[14.67px] font-medium text-black">Token Akses</h2>
                     <span class="mb-5 text-center font-plusJakartaSans text-xs font-normal text-[#344054]">Masukkan token akses untuk memulai tes!</span>
-                    <input type="text" class="mb-5 h-[36px] w-[338.67px] rounded-lg border border-[#BDBDBD] bg-white px-3 py-2 font-plusJakartaSans text-[10.67px] font-normal focus:border-[#424242] focus:outline-none" placeholder="Token" />
-                    <button class="h-[27.33px] w-[116.67px] rounded-[5.33px] bg-[#106681] font-plusJakartaSans text-xs font-semibold text-white">Mulai</button>
+
+                    <form action="{{ route("psikotes-paid.tools.verify-token") }}" method="POST">
+                        @csrf
+                        <input type="text" name="token" class="mb-5 h-[36px] w-[338.67px] rounded-lg border border-[#BDBDBD] bg-white px-3 py-2 font-plusJakartaSans text-[10.67px] font-normal focus:border-[#424242] focus:outline-none" placeholder="Token" />
+                        <input type="hidden" name="tool_id" :value="toolId" />
+
+                        <div class="flex justify-center">
+                            <button class="h-[27.33px] w-[116.67px] rounded-[5.33px] bg-[#106681] font-plusJakartaSans text-xs font-semibold text-white">Mulai</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

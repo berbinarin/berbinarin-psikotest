@@ -1,4 +1,4 @@
-<p>{{ $question->text }}</p>
+<p class="text-justify text-sm">{{ $question->text }}</p>
 
 <label for="file-upload" class="flex mt-8 h-48 w-full cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-blue-500 bg-blue-50 transition-colors duration-200 hover:bg-blue-100">
     <svg class="mb-2 h-12 w-12 text-blue-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

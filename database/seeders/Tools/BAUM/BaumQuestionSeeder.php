@@ -20,30 +20,32 @@ class BaumQuestionSeeder extends Seeder
             [
                 'section_id' => $baum->sections[0]->id,
                 'order' => 1,
-                'text' => 'Silahkan menyiapkan 3 lembar kertas HVS berukuran A4 dan pensil HB seperti yang telah diinfokan sebelumnya. Silahkan tuliskan di masing-masing kertas pada pojok kiri atas identitas Anda mulai dari:
-                    Nama
-                    Usia
-                    Jenis Kelamin
-                    Diakhiri dengan tanda tangan Anda',
+                'text' => '<p>Silahkan<strong> menyiapkan 3 lembar kertas HVS berukuran A4 dan pensil HB</strong> seperti yang telah diinfokan sebelumnya.<strong> Silahkan tuliskan di masing-masing kertas pada pojok kiri atas identitas Anda mulai dari:</strong></p>
+                            <ul>
+                            <li>Nama</li>
+                            <li>Usia</li>
+                            <li>Jenis Kelamin</li>
+                            <li>Diakhiri dengan tanda tangan Anda</li>
+                            </ul>',
                 'type' => 'instruction',
             ],
             [
                 'section_id' => $baum->sections[0]->id,
                 'order' => 2,
-                'text' => 'Jika sudah menuliskan identitas Anda. Bisa diambil satu kertas saja dan kertas lainnya bisa disimpan atau ditaruh di samping terlebih dahulu, sehingga kertasnya tidak saling bertumpuk.
-                    Jika sudah silahkan balik kertasnya pada bagian yang kosong atau bagian yang tidak ada identitasnya.',
+                'text' => '<p>Jika sudah menuliskan identitas Anda. Bisa diambil satu kertas saja dan kertas lainnya bisa disimpan atau ditaruh di samping terlebih dahulu, sehingga kertasnya tidak saling bertumpuk.</p>
+                            <p><br />Jika sudah silahkan <strong>balik kertasnya pada bagian yang kosong atau bagian yang tidak ada identitasnya.</strong></p>',
                 'type' => 'instruction',
             ],
             [
                 'section_id' => $baum->sections[0]->id,
                 'order' => 3,
-                'text' => 'Pada tes ini, tugas Anda adalah menggambar sebuah pohon dan apabila Anda sudah selesai menggambar pohon, silahkan tuliskan nama pohon yang Anda gambar di halaman kertas yang ada identitasnya atau di halaman kertas sebaliknya.',
+                'text' => '<p>Pada tes ini, <strong>tugas Anda adalah menggambar sebuah pohon</strong> dan apabila Anda sudah selesai menggambar pohon, <strong>silahkan tuliskan nama pohon yang Anda gambar di halaman kertas yang ada identitasnya atau di halaman kertas sebaliknya.</strong></p>',
                 'type' => 'instruction',
             ],
             [
                 'section_id' => $baum->sections[0]->id,
                 'order' => 4,
-                'text' => 'Jika sudah, silakan foto kedua sisi kertas tersebut, baik bagian identitas maupun gambar Anda dan jika sudah di foto, silahkan mengunggah foto tersebut.',
+                'text' => '<p>ika sudah, silakan foto kedua sisi kertas tersebut, baik bagian identitas maupun gambar Anda dan jika sudah di foto, silahkan mengunggah foto tersebut.</p>',
                 'type' => 'image_upload',
             ],
         ];

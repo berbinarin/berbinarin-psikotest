@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Landing\LandingController;
-use App\Http\Controllers\Landing\PsikotesPaid\PsikotesPaidController;
 use App\Http\Controllers\Landing\PsikotesPaid\SubmittedResponseController;
 use App\Http\Controllers\Landing\PsikotesPaid\TestimonialController;
 use App\Http\Controllers\Landing\PsikotesPaid\ToolController;
@@ -13,16 +12,6 @@ use App\Http\Controllers\Landing\PsikotesFree\ResultController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingController::class, 'index'])->name('home.index');
-Route::get('/instruction', [LandingController::class, 'instruction'])->name('instruction');
-Route::get('/multiple', [LandingController::class, 'multiple'])->name('multiple-choice');
-Route::get('/end-testi', [LandingController::class, 'endtesti'])->name('end-testimoni');
-Route::get('/complete', [LandingController::class, 'success'])->name('complete');
-Route::get('/esai', [LandingController::class, 'esai'])->name('essay');
-Route::get('/binary', [LandingController::class, 'binary'])->name('binary-choice');
-
-
-
-
 
 // Psikotes Paid
 Route::middleware(['auth', 'session.verified'])->prefix('psikotes-paid')->name('psikotes-paid.')->group(function () {
@@ -35,7 +24,7 @@ Route::middleware(['auth', 'session.verified'])->prefix('psikotes-paid')->name('
     // Attempt
     Route::prefix('attempt')->name('attempt.')->group(function () {
         Route::get('/instruksi', [SubmittedResponseController::class, 'introduce'])->name('introduce');
-        Route::get('/question', [SubmittedResponseController::class, 'question'])->name('question');
+        Route::get('/soal', [SubmittedResponseController::class, 'question'])->name('question');
         Route::post('/question', [SubmittedResponseController::class, 'submit'])->name('submit');
         Route::get('/selesai', [SubmittedResponseController::class, 'complete'])->name('complete');
         Route::post('/times-up', [SubmittedResponseController::class, 'timesUp'])->name('times-up');

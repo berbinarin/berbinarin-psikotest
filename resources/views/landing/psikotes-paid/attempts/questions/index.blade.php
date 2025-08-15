@@ -5,43 +5,54 @@
     ]
 )
 
+@push('style')
+    <style>
+        ul {
+            padding-left: 1rem;
+            list-style: disc !important;
+        }
+    </style>
+@endpush
+
 @section("content")
-    <div class="container mx-auto">
-        <div class="fixed left-0 top-0 -z-10 h-screen w-screen bg-cover bg-center bg-no-repeat" style="background-image: url({{ asset("assets/landing/images/psikotes-paid/psikotes-soal-bg.png") }})"></div>
-
-        <form action="{{ route("psikotes-paid.attempt.submit") }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="relative flex h-[85vh] flex-col justify-between">
-                <div class="flex flex-col items-center justify-center gap-7">
-                    <div class="mt-8 flex w-fit items-center gap-7 rounded-[70px] bg-white px-8 py-[10px]">
-                        <img class="h-10 w-10" src="{{ asset("assets/landing/images/psikotes-paid/logo-berbinar.png") }}" alt="Logo Berbinar" />
-                        <img class="h-11 w-11" src="{{ asset("assets/landing/images/psikotes-paid/logo-berbinar-psikotes.png") }}" alt="Logo Berbinar Psikotes" />
-                    </div>
-                    <div>
-                        <h2 class="text-[28px] font-bold">Tes {{ str_pad($question->tool->order, 2, "0", STR_PAD_LEFT) }}</h2>
-                    </div>
-                </div>
-
-                <div class="mb-4 mt-10 flex flex-1 flex-col justify-center">
-                    @if ($question->type)
-                        @include("landing.psikotes-paid.attempts.questions." . Str::slug($question->type))
-                    @endif
-                </div>
-
-                <div class="flex gap-6 rounded-[10px] bg-white px-8 py-3 drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]">
-                    <div class="h-64px relative flex w-full flex-col justify-center">
-                        <div class="h-[3px] w-full rounded-md bg-black">
-                            <div class="relative h-[3px] rounded-md bg-[#232ACA]" style="width: {{ $progress }}%">
-                                <span class="absolute right-0 block h-2 w-2 -translate-y-1/3 translate-x-1/2 rounded-full bg-[#232ACA]"></span>
-                                <span class="absolute right-0 top-[150%] translate-x-[50%] text-[10px] font-bold">{{ $progress }}%</span>
-                            </div>
+    <section>
+        <div class="relative flex h-screen w-screen items-center justify-center overflow-hidden bg-cover bg-center md:bg-cover md:bg-center" style="background-image: url('{{ asset("assets/auth/images/Login.png") }}')">
+            <div class="flex flex-col h-[550px] w-[1227.33px] rounded-[20px] border-[1.33px] border-sky-100 bg-white/40 backdrop-blur-[6.67px]">
+                <div class="relative flex flex-row items-center px-[55.33px] pt-[23.33px]">
+                    <div class="flex flex-row gap-4 rounded-[50px] bg-gradient-to-b from-[#F7B23B] to-[#916823] p-[1px]">
+                        <div class="flex flex-row items-center justify-center gap-4 rounded-[50px] bg-white px-[19.92px] py-[7.47px]">
+                            <img src="{{ asset("assets/auth/images/logo-berbinar.png") }}" class="h-[34.36px] w-[33.36px]" />
+                            <img src="{{ asset("assets/auth/images/psikotest.png") }}" class="h-[34.36px] w-[33.36px]" />
                         </div>
                     </div>
-                    <button class="rounded-md bg-[#232ACA] px-3 py-[6px] text-xs text-white transition-all duration-300 hover:opacity-85">Selanjutnya</button>
+
+                    <h1 class="absolute left-1/2 top-[65%] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text font-plusJakartaSans text-[26.67px] font-bold text-transparent">Tes 01</h1>
                 </div>
+
+                <form class="flex-1" action="{{ route('psikotes-paid.attempt.submit') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mx-auto flex w-[565.33px] h-full flex-col items-center gap-8 px-6 pt-7">
+                        <div class="relative flex w-full flex-col items-center justify-center">
+                            <div class="relative h-[6.67px] w-full rounded-md bg-[#D3D3D3]">
+                                <div class="relative h-[6.67px] rounded-md bg-[#E9B306]" style="width: {{ $progress }}%">
+                                    <span class="absolute right-0 top-1/2 block h-[14.46px] w-[14.46px] -translate-y-1/2 translate-x-1/2 rounded-full bg-[#E9B306]"></span>
+                                </div>
+                            </div>
+                            <span class="absolute -top-6 right-0 text-xs font-bold text-black">{{ $progress }}%</span>
+                        </div>
+
+                        <div class="flex-1 mx-auto flex w-full flex-col gap-4">
+                            @if ($question->type)
+                                @include("landing.psikotes-paid.attempts.questions." . Str::slug($question->type))
+                            @endif
+                        </div>
+
+                        <button class="mt-2 mb-6 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selanjutnya</button>
+                    </div>
+                </form>
             </div>
-        </form>
-    </div>
+        </div>
+    </section>
 @endsection
 
 @push("script")
