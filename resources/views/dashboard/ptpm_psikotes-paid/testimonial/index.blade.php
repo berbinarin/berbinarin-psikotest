@@ -37,6 +37,13 @@
                                         <a href="{{ route('dashboard.testimonial.show', $testimoni->id) }}" class="inline-flex items-start justify-start rounded p-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #3b82f6">
                                             <i class="bx bx-show text-white"></i>
                                         </a>
+                                        <form id="deleteForm-{{ $testimoni->id }}" action="{{ route('dashboard.testimonial.destroy', [$testimoni->id]) }}" method="POST">
+                                            @csrf
+                                            @method("DELETE")
+                                            <button type="button" data-id="{{ $testimoni->id }}" class="delete-button inline-flex items-start justify-start rounded p-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #ef4444">
+                                                <i class="bx bx-trash-alt text-white"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
