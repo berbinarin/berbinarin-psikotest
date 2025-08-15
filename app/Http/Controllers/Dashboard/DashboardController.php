@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attempt;
 use App\Models\TestCategory;
 use App\Models\PsikotesFreeProfile;
 use Illuminate\Http\Request;
@@ -34,31 +35,92 @@ class DashboardController extends Controller
     {
         $testCategories = TestCategory::withCount('registrantProfiles')->get();
 
-        
+        $attempts = Attempt::all();
 
-        return view('dashboard.ptpm_psikotes-paid.index', compact('testCategories'));
+        $allCategories = $attempts
+            ->map(function ($attempt) {
+                return optional($attempt->user->profile->testType->testCategory)->name;
+            })
+            ->filter()
+            ->unique()
+            ->values()
+            ->all();
+
+        $chartData = [];
+        $indonesianMonths = [
+            1 => 'Januari',
+            2 => 'Februari',
+            3 => 'Maret',
+            4 => 'April',
+            5 => 'Mei',
+            6 => 'Juni',
+            7 => 'Juli',
+            8 => 'Agustus',
+            9 => 'September',
+            10 => 'Oktober',
+            11 => 'November',
+            12 => 'Desember'
+        ];
+
+        foreach ($attempts->sortByDesc('created_at') as $attempt) {
+            $categoryName = optional($attempt->user->profile->testType->testCategory)->name;
+
+            if ($categoryName) {
+                $year = $attempt->created_at->year;
+                $monthName = $indonesianMonths[$attempt->created_at->month];
+
+                if (!isset($chartData[$year])) {
+                    $chartData[$year] = [];
+                }
+                if (!isset($chartData[$year][$monthName])) {
+                    $chartData[$year][$monthName] = [];
+                }
+                if (!isset($chartData[$year][$monthName][$categoryName])) {
+                    $chartData[$year][$monthName][$categoryName] = 0;
+                }
+
+                $chartData[$year][$monthName][$categoryName]++;
+            }
+        }
+
+
+        return view('dashboard.ptpm_psikotes-paid.index', compact('testCategories', 'chartData', 'allCategories'));
     }
 
     private function ptpmPsikotesFree()
     {
-        $freeProfiles = PsikotesFreeProfile::all();
-        $profilesCount = PsikotesFreeProfile::count();
+        $profiles = PsikotesFreeProfile::orderBy('date_of_test', 'DESC')->get();
 
-        $weeklyRegistrants = collect();
-        $startOfWeek = Carbon::now()->copy()->subWeeks(3)->startOfWeek(); // 4 minggu terakhir
+        $chartData = [];
+        $indonesianMonths = [
+            1 => 'Januari',
+            2 => 'Februari',
+            3 => 'Maret',
+            4 => 'April',
+            5 => 'Mei',
+            6 => 'Juni',
+            7 => 'Juli',
+            8 => 'Agustus',
+            9 => 'September',
+            10 => 'Oktober',
+            11 => 'November',
+            12 => 'Desember'
+        ];
 
-        for ($i = 0; $i < 4; $i++) {
-            $weekStart = $startOfWeek->copy()->addWeeks($i);
-            $weekEnd = $weekStart->copy()->endOfWeek();
+        foreach ($profiles as $profile) {
+            $year = $profile->created_at->year;
+            $monthName = $indonesianMonths[$profile->created_at->month];
 
-            $count = PsikotesFreeProfile::whereBetween('created_at', [$weekStart, $weekEnd])->count();
+            if (!isset($chartData[$year])) {
+                $chartData[$year] = [];
+            }
+            if (!isset($chartData[$year][$monthName])) {
+                $chartData[$year][$monthName] = 0;
+            }
 
-            $weeklyRegistrants->push([
-                'label' => $weekStart->format('d M') . ' - ' . $weekEnd->format('d M'),
-                'value' => $count,
-            ]);
+            $chartData[$year][$monthName]++;
         }
 
-        return view('dashboard.ptpm_psikotes-free.index', compact('freeProfiles', 'profilesCount', 'weeklyRegistrants'));
+        return view('dashboard.ptpm_psikotes-free.index', compact('profiles', 'chartData'));
     }
 }

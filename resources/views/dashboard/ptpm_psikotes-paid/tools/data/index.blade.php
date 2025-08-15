@@ -6,7 +6,7 @@
 )
 
 @section("content")
-    <section class="max-h-[95vh] w-full py-5">
+    <section class="h-full max-h-[95vh] w-full py-5">
         <div class="flex h-full flex-col">
             <!-- Header Section -->
             <div class="mb-8">
@@ -16,87 +16,137 @@
 
             <!-- Card Section -->
             <div class="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-4">
-                <div class="flex h-[150px]   flex-col rounded-xl bg-white p-4 shadow">
+                <div class="flex h-[150px] flex-col rounded-xl bg-white p-4 shadow">
                     <span class="mb-0 flex-1 text-left text-[28px] font-semibold text-gray-800">Responden</span>
                     <div class="mt-auto flex items-center justify-between">
-                        <span class="text-[44px] font-bold text-gray-900">{{ $users->count() }}</span>
+                        <span class="text-[44px] font-bold text-gray-900">{{ $tool->attempts->count() }}</span>
                         <div class="flex h-[80px] w-[80px] items-center justify-center rounded-2xl bg-gray-100">
-                            <img src="{{ asset("assets/dashboard/images/arrow-down.svg") }}" alt="arrow down" class="w-12 h-12" />
+                            <img src="{{ asset("assets/dashboard/images/arrow-down.svg") }}" alt="arrow down" class="h-12 w-12" />
                         </div>
                     </div>
                 </div>
-                <div class="flex h-[150px]   flex-col rounded-xl bg-white p-4 shadow">
+                <div class="flex h-[150px] flex-col rounded-xl bg-white p-4 shadow">
                     <span class="mb-0 flex-1 text-left text-[28px] font-semibold text-gray-800">Soal</span>
                     <div class="mt-auto flex items-center justify-between">
-                        <span class="text-[44px] font-bold text-gray-900">{{ $questions->count() }}</span>
+                        <span class="text-[44px] font-bold text-gray-900">{{ $tool->questions->count() }}</span>
                         <div class="flex h-[80px] w-[80px] items-center justify-center rounded-2xl bg-gray-100">
-                            <img src="{{ asset("assets/dashboard/images/arrow-down.svg") }}" alt="arrow down" class="w-12 h-12" />
+                            <img src="{{ asset("assets/dashboard/images/arrow-down.svg") }}" alt="arrow down" class="h-12 w-12" />
                         </div>
                     </div>
                 </div>
-                <div class="flex h-[150px]   flex-col rounded-xl bg-white p-4 sha   dow">
+                <div class="flex h-[150px] flex-col rounded-xl bg-white p-4 shadow">
                     <span class="mb-0 flex-1 text-left text-[28px] font-semibold text-gray-800">Section</span>
                     <div class="mt-auto flex items-center justify-between">
-                        <span class="text-[44px] font-bold text-gray-900">{{ $sections->count() }}</span>
+                        <span class="text-[44px] font-bold text-gray-900">{{ $tool->sections->count() }}</span>
                         <div class="flex h-[80px] w-[80px] items-center justify-center rounded-2xl bg-gray-100">
-                            <img src="{{ asset("assets/dashboard/images/arrow-down.svg") }}" alt="arrow down" class="w-12 h-12" />
+                            <img src="{{ asset("assets/dashboard/images/arrow-down.svg") }}" alt="arrow down" class="h-12 w-12" />
                         </div>
                     </div>
                 </div>
-                <div class="flex h-[150px]   flex-col rounded-xl bg-white p-4 shadow">
+                <div class="flex h-[150px] flex-col rounded-xl bg-white p-4 shadow">
                     <span class="mb-0 flex-1 text-left text-[28px] font-semibold text-gray-800">Rata-rata Durasi</span>
                     <div class="mt-auto flex items-center justify-between">
-                        <span class="text-[44px] font-bold text-gray-900">29</span>
+                        <span class="text-[44px] font-bold text-gray-900">{{ $averageDurationMinutes }}</span>
                         <div class="flex h-[80px] w-[80px] items-center justify-center rounded-2xl bg-gray-100">
-                            <img src="{{ asset("assets/dashboard/images/arrow-down.svg") }}" alt="arrow down" class="w-12 h-12" />
+                            <img src="{{ asset("assets/dashboard/images/arrow-down.svg") }}" alt="arrow down" class="h-12 w-12" />
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Charts Section-->
-            <div class="grid grid-cols-1 gap-6">
-                <!-- Summary Chart -->
-                <div class="flex h-[350px] flex-col mb-7 rounded-xl bg-white p-6 shadow">
-                    <div class="mb-4">
-                        <span class="font-semibold text-gray-800">Summary</span>
-                    </div>
-                    <div class="relative mb-4 flex h-full items-end justify-between pl-10">
-                        <!-- Keterangan-->
-                        <div class="absolute bottom-0 left-0 top-0 flex flex-col justify-between py-2">
-                            <span class="absolute left-0 top-0 text-sm text-gray-500">50</span>
-                            <span class="absolute left-0 top-[45px] text-sm text-gray-500">40</span>
-                            <span class="absolute left-0 top-[95px] text-sm text-gray-500">30</span>
-                            <span class="absolute left-0 top-[145px] text-sm text-gray-500">20</span>
-                            <span class="absolute left-0 top-[195px] text-sm text-gray-500">10</span>
-                        </div>
+            <!-- Charts Section -->
+            <div class="flex-1 flex flex-col bg-white rounded-lg p-5">
+                {{-- 1. Header dengan Judul dan Dropdown Tahun --}}
+                <div class="mb-2 flex justify-end">
+                    {{-- Hanya tampilkan dropdown jika ada data --}}
+                    @if (! empty($chartData))
+                        <select id="yearSelector" class="rounded-lg border text-xs focus:outline-none focus:ring focus:ring-blue-300">
+                            @foreach (array_keys($chartData) as $year)
+                                <option value="{{ $year }}" {{ $loop->first ? "selected" : "" }}>{{ $year }}</option>
+                            @endforeach
+                        </select>
+                    @endif
+                </div>
 
-                        <!-- Batang Grafik -->
-                        <!-- data dummy -->
-                        @php
-                            $chartData = [
-                                ["label" => "Instansi", "value" => 20],
-                                ["label" => "Perusahaan", "value" => 40],
-                                ["label" => "Komunitas", "value" => 50],
-                            ];
-                            $maxValue = 50;
-                        @endphp
-
-                        @foreach ($chartData as $data)
-                            @php
-                                $barHeightPercentage = ($data["value"] / $maxValue) * 100;
-                            @endphp
-
-                            <div class="mx-2 flex h-full flex-1 flex-col items-center">
-                                <div class="relative h-full w-[13px] rounded-lg bg-gray-100">
-                                    <div class="absolute bottom-0 w-full rounded-lg bg-[#3986A3] transition-all duration-500 ease-out" style="height: {{ $barHeightPercentage }}%"></div>
-                                </div>
-                                <span class="mt-2 text-sm text-gray-700">{{ $data["label"] }}</span>
-                            </div>
-                        @endforeach
-                    </div>
+                {{-- 2. Elemen Canvas untuk Grafik --}}
+                <div class="flex-1">
+                    @if (! empty($chartData))
+                        <canvas id="myChart"></canvas>
+                    @else
+                        <p class="mt-12 text-center text-gray-500">Tidak ada data yang dapat ditampilkan.</p>
+                    @endif
                 </div>
             </div>
         </div>
     </section>
+@endsection
+
+@section("script")
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const chartData = @json($chartData);
+        const allCategories = @json($allCategories);
+
+        // Pastikan ada data sebelum menjalankan script grafik
+        if (Object.keys(chartData).length > 0) {
+            const labels = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+
+            // Palet warna untuk setiap kategori
+            const colorPalette = ['rgba(54, 162, 235, 0.6)', 'rgba(255, 99, 132, 0.6)', 'rgba(255, 206, 86, 0.6)', 'rgba(75, 192, 192, 0.6)', 'rgba(153, 102, 255, 0.6)', 'rgba(255, 159, 64, 0.6)'];
+
+            // 4. Fungsi untuk membuat dataset berdasarkan tahun dan kategori yang ada
+            function createDatasets(year) {
+                const dataForYear = chartData[year] || {}; // Ambil data untuk tahun terpilih, atau objek kosong jika tidak ada
+
+                return allCategories.map((category, index) => {
+                    // Untuk setiap kategori, buat array data per bulan
+                    const monthlyData = labels.map((month) => {
+                        // Cari data: dataForYear -> bulan -> kategori. Jika tidak ada, nilainya 0.
+                        return dataForYear[month]?.[category] ?? 0;
+                    });
+
+                    return {
+                        label: category,
+                        data: monthlyData,
+                        // Ambil warna dari palet, ulangi jika kategori lebih banyak dari warna
+                        backgroundColor: colorPalette[index % colorPalette.length],
+                        borderWidth: 1,
+                    };
+                });
+            }
+
+            // 5. Inisialisasi Grafik
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const yearSelector = document.getElementById('yearSelector');
+            const initialYear = yearSelector.value; // Ambil tahun pertama yang terpilih di dropdown
+
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: createDatasets(initialYear), // Muat data untuk tahun awal
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Laporan Jumlah Peserta per Kategori', font: { size: 18 } },
+                        tooltip: { mode: 'index', intersect: false },
+                        legend: { position: 'top' },
+                    },
+                    scales: {
+                        y: { beginAtZero: true, title: { display: true, text: 'Jumlah Peserta' } },
+                        x: { title: { display: true, text: 'Bulan' } },
+                    },
+                },
+            });
+
+            // 6. Event Listener untuk Dropdown
+            yearSelector.addEventListener('change', function () {
+                const selectedYear = this.value;
+                myChart.data.datasets = createDatasets(selectedYear);
+                myChart.update(); // Render ulang grafik dengan data baru
+            });
+        }
+    </script>
 @endsection

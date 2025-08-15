@@ -68,10 +68,11 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
         // Testimonial
         Route::prefix('testimonial')->name('testimonial.')->group(function (){
             Route::get('/', [TestimonialController::class, 'index'])->name('index');
-            Route::get('/{id}}', [TestimonialController::class, 'show'])->name('show');
+            Route::get('/{id}', [TestimonialController::class, 'show'])->name('show');
         });
     });
 
+    
     // Psychological Test Product Management - Free
     Route::middleware('role:ptpm_psikotes-free')->group(function () {
 
@@ -79,7 +80,7 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
         Route::prefix('free-profiles')->name('free-profiles.')->group(function () {
             Route::get('/', [DashboardController::class, 'index'])->name('index');
             Route::get('/data', [PsikotesFreeProfileController::class, 'index'])->name('data.show');
-            Route::get('/data/detail/{id}', [PsikotesFreeProfileController::class, 'show'])->name('data.detail');
+            Route::get('/data/detail/{psikotesFreeAttempt}', [PsikotesFreeProfileController::class, 'show'])->name('data.detail');
         });
     });
 });

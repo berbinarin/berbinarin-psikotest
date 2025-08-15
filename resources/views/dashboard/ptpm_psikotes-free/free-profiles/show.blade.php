@@ -1,198 +1,136 @@
-@extends('dashboard.layouts.app', [
-    'title' => 'Psikotes Free',
-    'active' => 'Dashboard',
-    'modul' => 'Psikotes Free Data',
-])
-@section('content')
-        <section class="flex">
-            <div class="flex flex-col">
-                <div class="w-fit">
-                    @php
-                        $attempt = $freeProfile->attempt->last();
-                    @endphp
-                    <div class="py-4">
-                        <div class="flex flex-row items-center">
-                            <div class="">
-                                <a href="{{ route('dashboard.free-profiles.data.show') }}">
-                                    <i class='bx bx-arrow-back text-[30px] text-primary mr-6 text-left'></i>
-                                </a>
-                            </div>
-                            <div class="">
-                                <p class="text-lg md:text-3xl font-bold leading-normal text-gray-800 mb-2">
-                                    Detail Responden</p>
-                            </div>
+@extends(
+    "dashboard.layouts.app",
+    [
+        "title" => "Psikotes Free",
+    ]
+)
+@section("content")
+    <section class="flex">
+        <div class="flex flex-col">
+            <div class="w-fit">
+                <div class="py-5">
+                    <div class="flex flex-row items-center">
+                        <div>
+                            <a href="{{ route("dashboard.free-profiles.data.show") }}">
+                                <i class="bx bx-arrow-back mr-6 text-left text-[30px] text-primary"></i>
+                            </a>
+                        </div>
+                        <div>
+                            <p class="mb-2 text-lg font-bold leading-normal text-gray-800 md:text-3xl">Detail Responden</p>
                         </div>
                     </div>
-                    <div class="relative w-[1240px] py-7 px-10 flex-auto bg-white rounded-[24px] shadow">
-                        <div class="flex flex-row gap-10">
-                            <div class="w-2/5">
-                                <table class="table table-striped table-hover">
-                                    <tr>
-                                        <td class="py-3 font-semibold">Nama
-                                            <span class="ml-16">: {{ $freeProfile->name }} </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="py-3 font-semibold">Jenis Kelamin
-                                            <span class="ml-2">
-                                                : {{ $freeProfile->gender == 'male' ? 'Laki-laki' : 'Perempuan' }}
-                                            </span>
+                </div>
+                <div class="relative w-[1240px] flex-auto rounded-[24px] bg-white px-10 py-7 shadow">
+                    <div class="flex gap-10">
+                        <div class="w-2/5">
+                            <div class="flex flex-col gap-3">
+                                <div class="flex flex-col">
+                                    <div class="col-span-2 font-bold">Nama</div>
+                                    <div class="col-span-3">{{ $attempt->profile->name }}</div>
+                                </div>
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="py-3 font-semibold">Tanggal Lahir
-                                            <span class="ml-2">
-                                                : {{ \Carbon\Carbon::parse($freeProfile->date_of_birth)->format('Y-m-d') }}
-                                            </span>
+                                <div class="flex flex-col">
+                                    <div class="col-span-5 font-bold">Jenis Kelamin</div>
+                                    <div class="col-span-7">{{ $attempt->profile->gender == "male" ? "Laki-laki" : "Perempuan" }}</div>
+                                </div>
 
-                                        </td>
-                                    </tr>
-                                    <!-- email -->
-                                    <tr>
-                                        <td class="py-3 font-semibold">Email
-                                            <span class="ml-16">: {{ $freeProfile->email }}</span>
-                                        </td>
-                                    </tr>
+                                <div class="flex flex-col">
+                                    <div class="col-span-5 font-bold">Tanggal Lahir</div>
+                                    <div class="col-span-7">{{ \Carbon\Carbon::parse($attempt->profile->date_of_birth)->format("Y-m-d") }}</div>
+                                </div>
 
-                                    <!-- tanggal tes -->
-                                    <tr>
-                                        <td class="py-3 font-semibold">Tanggal Tes
-                                            <span class="ml-4">: {{ \Carbon\Carbon::parse($freeProfile->test_date)->format('Y-m-d') }}</span>
-                                        </td>
-                                    </tr>
+                                <div class="flex flex-col">
+                                    <div class="col-span-5 font-bold">Email</div>
+                                    <div class="col-span-7">{{ $attempt->profile->email }}</div>
+                                </div>
 
-                                    <!-- feedback -->
-                                    <tr class="w-full">
-                                        <td class="py-3 font-semibold">Umpan Balik
-                                            <span class="ml-7"> :
-                                                @php
-                                                    $rating = optional(optional($freeProfile)->feedback)->rating;
-                                                @endphp
-                                                @if ($rating == 5)
-                                                <img src="{{ asset('assets/landing/images/psikotes-free/feedback/1-wahoo2.png') }}" alt="Happy" class="w-16 h-auto inline-block align-middle mr-2">
-                                                @elseif ($rating == 4)
-                                                <img src="{{ asset('assets/landing/images/psikotes-free/feedback/2-happy2.png') }}" alt="Happy" class="w-16 h-auto inline-block align-middle mr-2">
-                                                @elseif ($rating == 3)
-                                                <img src="{{ asset('assets/landing/images/psikotes-free/feedback/3-neutral2.png') }}" alt="Neutral" class="w-16 h-auto inline-block align-middle mr-2">
-                                                @elseif ($rating == 2)
-                                                <img src="{{ asset('assets/landing/images/psikotes-free/feedback/4-bummed2.png') }}" alt="Bummed" class="w-16 h-auto inline-block align-middle mr-2">
-                                                @elseif ($rating == 1)
-                                                <img src="{{ asset('assets/landing/images/psikotes-free/feedback/5-pissed2.png') }}" alt="Bummed Out" class="w-16 h-auto inline-block align-middle mr-2">
-                                                @else
-                                                <span class="-ml-2 font-semibold"> tidak ada umpan balik😭
-                                                @endif
-                                                </span>
-                                                <span class="-ml-2 font-semibold">{{ $rating }}
-                                                    ,</span>
-                                                @php
-                                                    $experience = optional(optional($freeProfile)->feedback)->experience;
-                                                @endphp
-                                                <span class="ml-2 font-semibold">{{ $experience }}</span>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="w-3/5">
-                                <table class="w-full table table-striped table-hover">
-                                    <tr>
-                                        <td class="py-2 font-semibold">Hasil Tes :
-                                            @if ($data)
-                                            <div class="flex flex-row py-3">
-                                                <p class="card-text w-40"><strong>Agreeableness:</strong>
-                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-white text-[13px] text-start" role="progressbar" style="width: {{ $agreeablenessPresentage }}%" aria-valuenow="{{ $agreeablenessPresentage }}% aria-valuemin=" 0" aria-valuemax="100">
-                                                    <span class="ml-3"> {{ round($agreeablenessPresentage) }}%</span>
-                                                </div>
-                                                </p>
-                                            </div>
+                                <div class="flex flex-col">
+                                    <div class="col-span-5 font-bold">Tanggal Tes</div>
+                                    <div class="col-span-7">{{ \Carbon\Carbon::parse($attempt->profile->test_date)->format("Y-m-d") }}</div>
+                                </div>
 
-                                            <div class="flex flex-row py-3">
-                                                <p class="card-text w-40"><strong>Conscientiousness:</strong>
-                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-white text-[13px] text-start" role="progressbar" style="width: {{ $conscientiousnessPresentage }}%" aria-valuenow="{{ $conscientiousnessPresentage }}%" aria-valuemin="0" aria-valuemax="100">
-                                                    <span class="ml-3"> {{ round($conscientiousnessPresentage) }}%</span>
-                                                </div>
-                                                </p>
-                                            </div>
+                                <div class="flex flex-col">
+                                    <span class="col-span-5 font-bold">Feedback</span>
+                                    <span class="">
+                                        @php
+                                            $rating = optional(value: optional($attempt->profile)->feedback)->rating;
+                                            $feedbackData = [5 => ["image" => "1-wahoo2.png", "alt" => "Sangat Puas"], 4 => ["image" => "2-happy2.png", "alt" => "Puas"], 3 => ["image" => "3-neutral2.png", "alt" => "Cukup"], 2 => ["image" => "4-bummed2.png", "alt" => "Kurang Puas"], 1 => ["image" => "4-pissed2.png", "alt" => "Sangat Tidak Puas"]];
+                                        @endphp
 
-                                            <div class="flex flex-row py-3">
-                                                <p class="card-text w-40"><strong>Extraversion:</strong>
-                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-white text-[13px] text-start" role="progressbar" style="width: {{ $extraversionPresentage }}%" aria-valuenow="{{ $extraversionPresentage }}%" aria-valuemin="0" aria-valuemax="100">
-                                                    <span class="ml-3"> {{ round($extraversionPresentage) }}%</span>
-                                                </div>
-                                                </p>
-                                            </div>
-
-                                            <div class="flex flex-row py-3">
-                                                <p class="card-text w-40"><strong>Neuroticism:</strong>
-                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-white text-[13px] text-start" role="progressbar" style="width: {{ $neuroticismPresentage }}%" aria-valuenow="{{ $neuroticismPresentage }}%" aria-valuemin="0" aria-valuemax="100">
-                                                    <span class="ml-3"> {{ round($neuroticismPresentage) }}%</span>
-                                                </div>
-                                                </p>
-                                            </div>
-
-                                            <div class="flex flex-row py-3">
-                                                <p class="card-text w-40"><strong>Openness:</strong>
-                                                </p>
-                                                <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-white text-[13px] text-start" role="progressbar" style="width:{{ $opennessPresentage }}%" aria-valuenow="{{ $opennessPresentage }}%" aria-valuemin="0" aria-valuemax="100">
-                                                    <span class="ml-3">{{ round($opennessPresentage) }}%</span>
-                                                </div>
-                                            </div>
-                                            @else
-                                            <p class="card-text">Belum ada hasil.</p>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                </table>
+                                        @if (isset($feedbackData[$rating]))
+                                            <img src="{{ asset("assets/landing/images/psikotes-free/feedback/" . $feedbackData[$rating]["image"]) }}" alt="{{ $feedbackData[$rating]["alt"] }}" class="mr-2 inline-block h-auto w-16 align-middle" />
+                                            <span class="font-semibold">{{ $rating }} ,</span>
+                                            <span class="ml-2">{{ optional(optional($attempt->profile)->feedback)->experience }}</span>
+                                        @else
+                                            <span class="">tidak ada 😭</span>
+                                        @endif
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                        <p class="font-semibold"> Detail Jawaban :</p>
-                        <div class="flex flex-col overflow-x-auto">
-                            <div class="inline-block min-w-full py-2">
-                                <div class="relative overflow-x">
-                                    <table class="table table-striped table-hover w-full text-sm text-left rtl:text-right">
-                                        <tr>
-                                            <td class="py-3 font-semibold">
-                                                <table class="w-full bg-slate-300 rounded-lg">
-                                                    <thead class="border-0">
-                                                        <tr class="">
-                                                            <th class="rounded-lg border border-slate-100 px-4 py-3">
-                                                                Nomor
-                                                                Soal
+
+                        <div class="w-3/5">
+                            <table class="table-striped table-hover table w-full">
+                                <tr>
+                                    <td class="py-2 font-semibold">
+                                        @if ($data)
+                                            <div class="grid grid-cols-12 gap-y-7">
+                                                @foreach ($percentages as $key => $value)
+                                                    <div class="col-span-4">
+                                                        <span class="font-bold">{{ Str::title($key) }}</span>
+                                                    </div>
+                                                    <div class="col-span-8 flex w-full gap-4">
+                                                        <span>:</span>
+                                                        <div class="flex items-center rounded-full min-w-14 bg-primary pl-4 text-[13px] text-white" style="width: {{ $value }}%">
+                                                            <span>{{ round($value) }}%</span>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        @else
+                                            <p class="card-text">No results available.</p>
+                                        @endif
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="flex flex-col overflow-x-auto">
+                        <div class="inline-block min-w-full py-2">
+                            <div class="overflow-x relative">
+                                <table class="table-striped table-hover table w-full text-left text-sm rtl:text-right">
+                                    <tr>
+                                        <td class="py-3 font-semibold">
+                                            <table class="w-full rounded-lg bg-slate-300">
+                                                <thead class="border-0">
+                                                    <tr class="">
+                                                        <th class="rounded-lg border border-slate-100 px-4 py-3">Nomor Soal</th>
+                                                        @foreach ($attempt->tool->sections[0]->questions as $question)
+                                                            <th class="border border-slate-100 px-4 py-3">
+                                                                {{ $question->order }}
                                                             </th>
-                                                            @if(!empty($attempt) && $attempt->responses && $attempt->responses->count() > 0)
-                                                                @foreach ($attempt->responses as $answer)
-                                                                    <th class="border border-slate-100 px-4 py-3">
-                                                                        {{ $loop->iteration }}
-                                                                    </th>
-                                                                @endforeach
-                                                            @else
-                                                                <th class="border border-slate-100 px-4 py-3 text-center text-gray-500" colspan="100%">
-                                                                    Pengguna belum menyelesaikan tes.
-                                                                </th>
-                                                            @endif
-                                                        </tr>
-                                                    </thead>
-                                                    @if(!empty($attempt) && $attempt->responses && $attempt->responses->count() > 0)
-                                                        <tbody>
-                                                            <tr>
-                                                                <td class="border border-slate-100 px-4 py-3">Jawaban</td>
-                                                                @foreach ($attempt->responses as $answer)
-                                                                    <td class="border border-slate-100 px-4 py-3">
-                                                                        {{ $answer->answer['value'] }}
-                                                                    </td>
-                                                                @endforeach
-                                                            </tr>
-                                                        </tbody>
-                                                    @endif
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
+                                                        @endforeach
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="border border-slate-100 px-4 py-3">Jawaban</td>
+                                                        @foreach ($attempt->tool->sections[0]->questions as $question)
+                                                            <td class="border border-slate-100 px-4 py-3">
+                                                                {{ $attempt->responses->where("question_id", $question->id)->first()->answer["value"] ?? 0 }}
+                                                            </td>
+                                                        @endforeach
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 @endsection

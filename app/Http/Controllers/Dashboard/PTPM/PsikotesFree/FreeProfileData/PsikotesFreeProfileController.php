@@ -13,30 +13,43 @@ class PsikotesFreeProfileController extends Controller
 {
     public function __construct(private ResultService $resultService) {}
 
-    public function index() {
-        $freeProfiles = PsikotesFreeProfile::with(['feedback', 'attempt'])->get();
+    public function index()
+    {
+        // $freeProfiles = PsikotesFreeProfile::with(['feedback', 'attempt'])->get();
+        $attempts = PsikotesFreeAttempt::with('profile')->get();
 
-        return view('dashboard.ptpm_psikotes-free.free-profiles.index', compact('freeProfiles'));
+        return view('dashboard.ptpm_psikotes-free.free-profiles.index', compact('attempts'));
     }
 
-    public function show($id) {
-        $attempt = PsikotesFreeAttempt::find($id);
+    public function show(PsikotesFreeAttempt $psikotesFreeAttempt)
+    {
+        $psikotesFreeAttempt->load('responses');
+        
+        $data = $this->resultService->resultData($psikotesFreeAttempt);
 
-        $tool = Tool::where('name', 'OCEAN')->first();
+        $dimensions = ['extraversion', 'agreeableness', 'neuroticism', 'conscientiousness', 'openness'];
+        $percentages = [];
 
-        $data = $this->resultService->resultData($tool, $attempt);
+        foreach ($dimensions as $dimension) {
+            $dimensionData = $data[$dimension];
+            $totalScore = $dimensionData['total_score'];
 
-        $freeProfile = PsikotesFreeProfile::with([
-            'feedback',
-            'attempt.responses.question' // load responses + pertanyaan
-        ])->findOrFail($id);
+            $questionCount = $dimensionData['question_count'];
+            if ($questionCount === 0) {
+                $percentages[$dimension] = 0;
+                continue;
+            }
 
-        $extraversionPresentage = (($data['extraversion']['question_count'] > 0 ? $data['extraversion']['question_count'] : 1) * 5) > 0 ? ($data['extraversion']['total_score'] / (($data['extraversion']['question_count'] > 0 ? $data['extraversion']['question_count'] : 1) * 5)) * 100 : 0; $maxValue = !empty($data['extraversion']['answer_distribution']) ? max($data['extraversion']['answer_distribution']) : 1;
-        $agreeablenessPresentage = (($data['agreeableness']['question_count'] > 0 ? $data['agreeableness']['question_count'] : 1) * 5) > 0 ? ($data['agreeableness']['total_score'] / (($data['agreeableness']['question_count'] > 0 ? $data['agreeableness']['question_count'] : 1) * 5)) * 100 : 0; $maxValue = !empty($data['agreeableness']['answer_distribution']) ? max($data['agreeableness']['answer_distribution']) : 1;
-        $neuroticismPresentage = (($data['neuroticism']['question_count'] > 0 ? $data['neuroticism']['question_count'] : 1) * 5) > 0 ? ($data['neuroticism']['total_score'] / (($data['neuroticism']['question_count'] > 0 ? $data['neuroticism']['question_count'] : 1) * 5)) * 100 : 0; $maxValue = !empty($data['neuroticism']['answer_distribution']) ? max($data['neuroticism']['answer_distribution']) : 1;
-        $conscientiousnessPresentage = (($data['conscientiousness']['question_count'] > 0 ? $data['conscientiousness']['question_count'] : 1) * 5) > 0 ? ($data['conscientiousness']['total_score'] / (($data['conscientiousness']['question_count'] > 0 ? $data['conscientiousness']['question_count'] : 1) * 5)) * 100 : 0; $maxValue = !empty($data['conscientiousness']['answer_distribution']) ? max($data['conscientiousness']['answer_distribution']) : 1;
-        $opennessPresentage = (($data['openness']['question_count'] > 0 ? $data['openness']['question_count'] : 1) * 5) > 0 ? ($data['openness']['total_score'] / (($data['openness']['question_count'] > 0 ? $data['openness']['question_count'] : 1) * 5)) * 100 : 0; $maxValue = !empty($data['openness']['answer_distribution']) ? max($data['openness']['answer_distribution']) : 1;
+            $maxPossibleScore = $questionCount * 5;
 
-        return view('dashboard.ptpm_psikotes-free.free-profiles.show', compact('freeProfile', 'data',  'extraversionPresentage', 'agreeablenessPresentage', 'neuroticismPresentage', 'conscientiousnessPresentage', 'opennessPresentage'));
+            $percentages[$dimension] = ($totalScore / $maxPossibleScore) * 100;
+        }
+
+        // 4. Kirim data ke view dengan lebih rapi
+        return view('dashboard.ptpm_psikotes-free.free-profiles.show', [
+            'attempt' => $psikotesFreeAttempt,
+            'data' => $data,
+            'percentages' => $percentages, // Kirim sebagai satu array
+        ]);
     }
 }

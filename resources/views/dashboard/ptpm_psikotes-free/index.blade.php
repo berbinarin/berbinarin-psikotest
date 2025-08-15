@@ -6,68 +6,53 @@
 )
 
 @section("content")
-    <section class="max-h-[95vh] w-full py-5">
+    <section class="flex h-full max-h-[95vh] w-full flex-col py-5">
         <div class="mb-8">
-            <h1 class="text-3xl font-bold text-gray-900"><span class="italic">Dashboard&nbsp;</span> Pendaftaran Psikotes Gratis</h1>
-            <p class="mt-2 text-gray-500"><span class="italic">Dashboard&nbsp;</span> ini memberikan informasi mengenai jumlah pengguna yang telah mendaftar psikotes.</p>
+            <h1 class="text-3xl font-bold text-gray-900">
+                <span class="italic">Dashboard&nbsp;</span>
+                Pendaftaran Psikotes Gratis
+            </h1>
+            <p class="mt-2 text-gray-500">
+                <span class="italic">Dashboard&nbsp;</span>
+                ini memberikan informasi mengenai jumlah pengguna yang telah mendaftar psikotes.
+            </p>
         </div>
 
         <!-- Card Section -->
         <div class="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <!-- Card Individu -->
             <div class="flex h-[150px] flex-col justify-between rounded-xl bg-white p-4 shadow">
-                <span class="text-left text-[20px] font-semibold text-gray-800">
-                    Data Pendaftar
-                </span>
-                <div class="flex items-center justify-between mt-auto">
-                    <span class="text-[36px] font-bold text-gray-900">
-                        {{ $profilesCount }}
-                    </span>
+                <span class="text-left text-[20px] font-semibold text-gray-800">Data Pendaftar</span>
+                <div class="mt-auto flex items-center justify-between">
+                    <span class="text-[36px] font-bold text-gray-900">{{ $profiles->count() }}</span>
                     <div class="flex h-[64px] w-[64px] items-center justify-center rounded-xl bg-gray-100">
-                        <i class="fi fi-br-ballot w-10 h-10 text-4xl text-primary text-center"></i>
+                        <i class="fi fi-br-ballot h-10 w-10 text-center text-4xl text-primary"></i>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Charts Section-->
-        <div class="grid grid-cols-1 gap-6 ">
-            <!-- Summary Chart -->
-            <div class="flex h-[350px] flex-col rounded-xl bg-white px-6 py-3 mb-6 shadow">
-                <div class="mb-4">
-                    <span class="font-semibold text-gray-800">Summary</span>
-                </div>
-                <div class="relative flex justify-between items-end h-full mb-4 pl-10">
-                    <!-- Keterangan-->
-                    <div class="absolute top-0 bottom-0 left-0 flex flex-col justify-between py-2">
-                        <span class="absolute left-0 text-sm text-gray-500 top-0">50</span>
-                        <span class="absolute left-0 text-sm text-gray-500 top-[45px]">40</span>
-                        <span class="absolute left-0 text-sm text-gray-500 top-[95px]">30</span>
-                        <span class="absolute left-0 text-sm text-gray-500 top-[145px]">20</span>
-                        <span class="absolute left-0 text-sm text-gray-500 top-[195px]">10</span>
-                    </div>
+        <!-- Charts Section -->
+        <div class="flex flex-1 flex-col rounded-lg bg-white p-5">
+            {{-- 1. Header dengan Judul dan Dropdown Tahun --}}
+            <div class="mb-2 flex justify-end">
+                {{-- Hanya tampilkan dropdown jika ada data --}}
+                @if (! empty($chartData))
+                    <select id="yearSelector" class="rounded-lg border text-xs focus:outline-none focus:ring focus:ring-blue-300">
+                        @foreach (array_keys($chartData) as $year)
+                            <option value="{{ $year }}" {{ $loop->first ? "selected" : "" }}>{{ $year }}</option>
+                        @endforeach
+                    </select>
+                @endif
+            </div>
 
-                    <!-- Batang Grafik -->
-                    @php
-                        $maxValue = 50;
-                    @endphp
-
-                    @foreach($weeklyRegistrants as $data)
-                        @php
-                            $barHeightPercentage = ($data['value'] / $maxValue) * 100;
-                        @endphp
-                        <div class="flex-1 flex flex-col items-center mx-2 h-full">
-                            <span class="mb-1 text-xs text-gray-600">{{ $data['value'] }}</span>
-                            <div class="w-[13px] h-full bg-gray-100 rounded-lg relative">
-                                <div
-                                    class="w-full bg-[#3986A3] rounded-lg absolute bottom-0 transition-all duration-500 ease-out"
-                                    style="height: {{ $barHeightPercentage }}%"
-                                ></div>
-                            </div>
-                            <span class="mt-2 text-xs text-gray-700 text-center">{{ $data['label'] }}</span>
-                        </div>
-                    @endforeach
-                </div>
+            {{-- 2. Elemen Canvas untuk Grafik --}}
+            <div class="flex-1">
+                @if (! empty($chartData))
+                    <canvas id="myChart"></canvas>
+                @else
+                    <p class="mt-12 text-center text-gray-500">Tidak ada data yang dapat ditampilkan.</p>
+                @endif
             </div>
         </div>
     </section>
@@ -76,39 +61,62 @@
 @section("script")
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const donutCtx = document.getElementById('donutChart').getContext('2d');
-            const donutChart = new Chart(donutCtx, {
-                type: 'doughnut',
+        const chartData = @json($chartData);
+
+        // Pastikan ada data sebelum menjalankan script grafik
+        if (Object.keys(chartData).length > 0) {
+            const labels = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+
+            // 4. Fungsi untuk membuat dataset berdasarkan tahun dan kategori yang ada
+            function createDatasets(year) {
+                const dataForYear = chartData[year] || {}; // Ambil data untuk tahun terpilih, atau objek kosong jika tidak ada
+                
+                const monthlyData = labels.map((month) => {
+                    // Cari data: dataForYear -> bulan -> kategori. Jika tidak ada, nilainya 0.
+                    return dataForYear[month] ?? 0;
+                });
+
+                return [
+                    {
+                        label: 'Jumlah Pendaftar',
+                        data: monthlyData,
+                        borderWidth: 1,
+                    },
+                ];
+            }
+
+            // 5. Inisialisasi Grafik
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const yearSelector = document.getElementById('yearSelector');
+            const initialYear = yearSelector.value; // Ambil tahun pertama yang terpilih di dropdown
+
+            const myChart = new Chart(ctx, {
+                type: 'line',
                 data: {
-                    labels: ['Individu', 'Instansi', 'Perusahaan', 'Komunitas'],
-                    datasets: [
-                        {
-                            data: [29, 15, 22, 8],
-                            backgroundColor: ['#2196bc', '#7fb1c3', '#5a8b9d', '#ffffff'],
-                            borderColor: '#2e5e6c',
-                            borderWidth: 0,
-                            hoverOffset: 0,
-                        },
-                    ],
+                    labels: labels,
+                    datasets: createDatasets(initialYear), // Muat data untuk tahun awal
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    cutout: '55%',
                     plugins: {
-                        legend: { display: false },
-                        tooltip: { enabled: false },
+                        title: { display: true, text: 'Laporan Jumlah Pendaftar', font: { size: 18 } },
+                        tooltip: { mode: 'index', intersect: false },
+                        legend: { position: 'top' },
                     },
-                    animation: {
-                        animateScale: false,
-                        animateRotate: true,
-                    },
-                    onHover: (event, chartElement) => {
-                        event.native.target.style.cursor = 'default';
+                    scales: {
+                        y: { beginAtZero: true, title: { display: true, text: 'Jumlah Peserta' } },
+                        x: { title: { display: true, text: 'Bulan' } },
                     },
                 },
             });
-        });
+
+            // 6. Event Listener untuk Dropdown
+            yearSelector.addEventListener('change', function () {
+                const selectedYear = this.value;
+                myChart.data.datasets = createDatasets(selectedYear);
+                myChart.update(); // Render ulang grafik dengan data baru
+            });
+        }
     </script>
 @endsection

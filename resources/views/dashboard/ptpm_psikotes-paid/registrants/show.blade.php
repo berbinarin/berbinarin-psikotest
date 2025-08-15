@@ -53,7 +53,7 @@
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label class="mb-2 font-bold text-[#9b9b9b]">Tanggal Psikotes</label>
-                        <input type="date" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ \Carbon\Carbon::parse($registrant->schedule)->format("d-m-Y") }}" readonly disabled />
+                        <input type="date" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ \Carbon\Carbon::parse($registrant->schedule)->format("Y-m-d") }}" readonly disabled />
                     </div>
                     <div class="flex w-full flex-col">
                         <label class="mb-2 font-bold text-[#9b9b9b]">Waktu Psikotes</label>

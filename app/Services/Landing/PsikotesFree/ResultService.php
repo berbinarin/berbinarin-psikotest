@@ -8,10 +8,10 @@ use Illuminate\Support\Str;
 
 class ResultService
 {
-    public function resultData(Tool $tool, PsikotesFreeAttempt $attempt)
+    public function resultData(PsikotesFreeAttempt $attempt)
     {
-        $methodName = Str::camel(strtolower($tool->name));
-        return $this->{$methodName}($attempt);
+        // $methodName = Str::camel(strtolower($tool->name));
+        return $this->{'ocean'}($attempt);
     }
 
     private function ocean(PsikotesFreeAttempt $attempt)

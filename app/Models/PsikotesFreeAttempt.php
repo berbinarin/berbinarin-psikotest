@@ -16,7 +16,7 @@ class PsikotesFreeAttempt extends Model
         'status',
     ];
 
-    public function psikotesFreeProfile()
+    public function profile()
     {
         return $this->belongsTo(PsikotesFreeProfile::class, 'psikotes_free_profile_id');
     }

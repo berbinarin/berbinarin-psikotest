@@ -29,7 +29,6 @@
                             <tr>
                                 <th style="text-align: center">No</th>
                                 <th style="text-align: center">Nama Jenis Tes</th>
-                                <th style="text-align: center">Kategori</th>
                                 <th style="text-align: center">Harga</th>
                                 <th style="text-align: center">Deskripsi</th>
                                 <th style="text-align: center">Action</th>
@@ -39,10 +38,9 @@
                             @foreach ($testTypes as $testType)
                                 <tr>
                                     <td class="text-center">{{ $loop->iteration }}</td>
-                                    <td class="text-center">{{ $testType->name }}</td>
-                                    <td class="text-center">{{ $testType->testCategory->name ?? "-" }}</td>
-                                    <td class="text-center">{{ "Rp" . number_format($testType->price, 0, ",", ".") }}</td>
-                                    <td class="text-start">{{ $testType->description ?? "-" }}</td>
+                                    <td>{{ $testType->name }}</td>
+                                    <td class="text-end">{{ "Rp" . number_format($testType->price, 0, ",", ".") }}</td>
+                                    <td class="text-justify">{{ $testType->description ?? "-" }}</td>
                                     <td class="flex items-center justify-center gap-2">
                                         <a href="{{ route('dashboard.price-list.test-types.edit', [ $testType->testCategory, $testType->id ]) }}" class="inline-flex items-start justify-start rounded p-2 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #e9b306">
                                             <i class="bx bx-edit-alt text-white"></i>

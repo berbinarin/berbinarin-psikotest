@@ -8,7 +8,7 @@
         @yield('style')
     </head>
     <body class="font-plusJakartaSans">
-        <div class="flex h-screen w-full select-none">
+        <div class="flex h-screen w-full">
 
             {{-- Link Flatpickr --}}
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">

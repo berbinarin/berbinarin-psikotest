@@ -26,38 +26,35 @@
                             <tr>
                                 <th style="text-align: center">No</th>
                                 <th style="text-align: center">Nama Lengkap</th>
+                                <th style="text-align: center">Email</th>
                                 <th style="text-align: center">Jenis Kelamin</th>
                                 <th style="text-align: center">Tanggal Lahir</th>
-                                <th style="text-align: center">Email</th>
                                 <th style="text-align: center">Tanggal Tes</th>
                                 {{-- <th style="text-align: center">Jam</th> --}}
                                 <th style="text-align: center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($freeProfiles as $freeProfile)
+                            @foreach ($attempts as $attempt)
                                 <tr id="" class="data-consume">
                                     <td class="text-center">{{ $loop->iteration }}</td>
-                                    <td class="text-center">{{ $freeProfile->name }}</td>
-                                    <td class="text-center">{{ $freeProfile->gender === 'female' ? 'Perempuan' : 'Laki-Laki' }}</td>
+                                    <td class="text-left">{{ $attempt->profile->name }}</td>
+                                    <td class="text-left">{{ $attempt->profile->email }}</td>
+                                    <td class="text-center">{{ $attempt->gender === 'female' ? 'Perempuan' : 'Laki-Laki' }}</td>
                                     <td class="text-center">
-                                        {{ \Carbon\Carbon::parse($freeProfile->date_of_birth)->format("d-m-Y") }}
+                                        {{ \Carbon\Carbon::parse($attempt->date_of_birth)->format("d-m-Y") }}
                                     </td>
-                                    <td class="text-center">{{ $freeProfile->email }}</td>
                                     <td class="text-center">
-                                        {{ \Carbon\Carbon::parse($freeProfile->date_of_test)->format("d-m-Y") }}
+                                        {{ \Carbon\Carbon::parse($attempt->date_of_test)->format("d-m-Y") }}
                                     </td>
-                                    {{-- <td class="text-center">
-                                        {{ \Carbon\Carbon::parse($freeProfile->date_of_test)->format("H:i:s") }}
-                                    </td> --}}
                                     <td class="flex items-center justify-center gap-2">
-                                        <a href="{{ route("dashboard.free-profiles.data.detail", $freeProfile->id) }}" class="inline-flex items-start justify-start rounded p-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #3b82f6">
+                                        <a href="{{ route("dashboard.free-profiles.data.detail", $attempt->id) }}" class="inline-flex items-start justify-start rounded p-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #3b82f6">
                                             <i class="bx bx-show text-white"></i>
                                         </a>
-                                        {{-- <a href="{{ route("dashboard.freeProfiles.edit", $freeProfile->id) }}" class="inline-flex items-start justify-start rounded p-2 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #e9b306">
+                                        {{-- <a href="{{ route("dashboard.attempts.edit", $attempt->id) }}" class="inline-flex items-start justify-start rounded p-2 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #e9b306">
                                             <i class="bx bx-edit-alt text-white"></i>
                                         </a>
-                                        <form id="deleteForm-{{ $freeProfile->id }}" action="{{ route("dashboard.freeprofiles.destroy", $registrant->id) }}" method="POST">
+                                        <form id="deleteForm-{{ $attempt->id }}" action="{{ route("dashboard.attempts.destroy", $registrant->id) }}" method="POST">
                                             @csrf
                                             @method("DELETE")
                                             <button type="button" class="delete-button inline-flex items-start justify-start rounded p-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #ef4444" data-id="{{ $registrant->id }}">
