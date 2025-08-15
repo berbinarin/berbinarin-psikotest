@@ -23,12 +23,12 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Username</th>
-                                    <th>Name</th>
-                                    <th>Date</th>
-                                    <th>Time Range</th>
+                                    <th>Nama Pengguna</th>
+                                    <th>Nama</th>
+                                    <th>Tanggal</th>
+                                    <th>Jangka Waktu</th>
                                     <th>Status</th>
-                                    <th>Action</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>

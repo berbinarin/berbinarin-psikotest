@@ -31,7 +31,7 @@
                                 <th style="text-align: center">Tanggal Lahir</th>
                                 <th style="text-align: center">Tanggal Tes</th>
                                 {{-- <th style="text-align: center">Jam</th> --}}
-                                <th style="text-align: center">Action</th>
+                                <th style="text-align: center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -17,7 +17,7 @@
                             </a>
                             <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Detail soal</p>
                         </div>
-                        <p class="text-gray-500 pb-2">Dashboard ini menampilkan informasi terkait soal tes pilihan ganda, tanggal Tes Papi Kostick.</p>
+                        <p class="text-gray-500 pb-2">Dashboard ini menampilkan informasi terkait soal tes pilihan ganda dan tanggal Tes Papi Kostick.</p>
                     </div>
                 </div>
                 <div class="rounded-md bg-white shadow mb-7 px-4 py-4 md:px-8 md:py-7 xl:px-10">
@@ -29,7 +29,7 @@
                                     <th>Pilihan 1</th>
                                     <th>Pilihan 2</th>
                                     <th>Tanggal</th>
-                                    <th>Action</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>

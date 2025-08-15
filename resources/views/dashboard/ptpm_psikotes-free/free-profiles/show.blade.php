@@ -51,7 +51,7 @@
                                 </div>
 
                                 <div class="flex flex-col">
-                                    <span class="col-span-5 font-bold">Feedback</span>
+                                    <span class="col-span-5 font-bold">Umpan Balik</span>
                                     <span class="">
                                         @php
                                             $rating = optional(value: optional($attempt->profile)->feedback)->rating;
@@ -89,7 +89,7 @@
                                                 @endforeach
                                             </div>
                                         @else
-                                            <p class="card-text">No results available.</p>
+                                            <p class="card-text">Tidak ada hasil yang tersedia</p>
                                         @endif
                                     </td>
                                 </tr>

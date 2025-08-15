@@ -11,7 +11,7 @@
             <div class="py-4 md:pb-7 md:pt-5">
                 <div>
                     <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Data Pendaftar Psikotes</p>
-                    <p class="text-disabled py-2 text-gray-500">Fitur ini menampilkan data  seperti  Nama, Kategori, Jenis, dan Harga yang telah mengisi  Psikotes Berbinar.</p>
+                    <p class="text-disabled py-2 text-gray-500">Fitur ini menampilkan data  seperti  nama, kategori, jenis, dan harga yang telah mengisi  Psikotes Berbinar.</p>
                     <a href="{{ route("dashboard.registrants.create") }}" class="mt-8 inline-flex items-start justify-start rounded-lg bg-primary px-6 py-3 text-white hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-3">
                         <span class="leading-none">Tambah Data</span>
                     </a>
@@ -24,13 +24,13 @@
                             <tr>
                                 <th style="text-align: center">No</th>
                                 <th style="text-align: center">Nama Lengkap</th>
-                                <th style="text-align: center">Username</th>
-                                <th style="text-align: center">Password</th>
+                                <th style="text-align: center">Nama Pengguna</th>
+                                <th style="text-align: center">Kata Sandi</th>
                                 <th style="text-align: center">Layanan</th>
                                 <th style="text-align: center">Kategori</th>
                                 <th style="text-align: center">Harga</th>
                                 <th style="text-align: center">Jadwal</th>
-                                <th style="text-align: center"><span class="italic">Action</span></th>
+                                <th style="text-align: center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>

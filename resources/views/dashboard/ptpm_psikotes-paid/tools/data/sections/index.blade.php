@@ -11,8 +11,8 @@
             <div class="w-full">
                 <div class="py-4 md:pb-7 md:pt-5">
                     <div>
-                        <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Daftar Section Alat Tes {{ $tool->name }}</p>
-                        <p class="text-gray-500 py-2 w-2/4">Menampilkan Semua Section Alat Tes</p>
+                        <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Daftar Bagian Alat Tes {{ $tool->name }}</p>
+                        <p class="text-gray-500 py-2 w-2/4">Menampilkan semua Section Alat Tes</p>
                     </div>
                 </div>
                 <div class="rounded-md bg-white shadow px-4 py-4 md:px-8 md:py-7 mb-7 xl:px-10">
@@ -21,11 +21,11 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Title</th>
-                                    <th>Order</th>
-                                    <th>Duration</th>
-                                    <th>Total Question</th>
-                                    <th>Action</th>
+                                    <th>Judul</th>
+                                    <th>Urutan</th>
+                                    <th>Durasi</th>
+                                    <th>Jumlah Pertanyaan</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>

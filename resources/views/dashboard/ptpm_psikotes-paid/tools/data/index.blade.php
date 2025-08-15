@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="flex h-[150px] flex-col rounded-xl bg-white p-4 shadow">
-                    <span class="mb-0 flex-1 text-left text-[28px] font-semibold text-gray-800">Section</span>
+                    <span class="mb-0 flex-1 text-left text-[28px] font-semibold text-gray-800">Bagian</span>
                     <div class="mt-auto flex items-center justify-between">
                         <span class="text-[44px] font-bold text-gray-900">{{ $tool->sections->count() }}</span>
                         <div class="flex h-[80px] w-[80px] items-center justify-center rounded-2xl bg-gray-100">

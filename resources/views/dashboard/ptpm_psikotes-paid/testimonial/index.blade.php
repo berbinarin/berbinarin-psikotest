@@ -11,7 +11,7 @@
             <div class="py-4 md:pb-7 md:pt-5">
                 <div>
                     <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Data Testimoni</p>
-                    <p class="text-disabled py-2 text-gray-500">Fitur ini menampilkan data testimoni <span class="italic">user&nbsp;</span> yang telah melakukan Psikotes.</p>
+                    <p class="text-disabled py-2 text-gray-500">Fitur ini menampilkan data testimoni pengguna yang telah melakukan Psikotes.</p>
                 </div>
             </div>
             <div class="rounded-[24px] bg-white shadow px-10 py-7 mb-7">
@@ -21,9 +21,9 @@
                             <tr>
                                 <th style="text-align: center">No</th>
                                 <th style="text-align: center">Nama</th>
-                                <th style="text-align: center"><span class="italic">Username</span></th>
+                                <th style="text-align: center">Nama Pengguna</th>
                                 <th style="text-align: center">Tanggal</th>
-                                <th style="text-align: center"><span class="italic">Action</span></th>
+                                <th style="text-align: center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>

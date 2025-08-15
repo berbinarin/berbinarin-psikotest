@@ -26,7 +26,7 @@
                                 <th style="text-align: center">Nama Alat Tes</th>
                                 <th style="text-align: center">Nomor Alat Tes</th>
                                 <th style="text-align: center">Token</th>
-                                <th style="text-align: center" class="w-80"><span class="italic">Action</span></th>
+                                <th style="text-align: center" class="w-80">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>

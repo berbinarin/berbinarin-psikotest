@@ -15,7 +15,7 @@
                     </a>
                     <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Detail Data Pendaftar</p>
                 </div>
-                <p class="text-gray-500 py-2">Fitur ini menampilkan data user seperti  Nama, Jenis kelamin, Tanggal lahir, Email yang telah mengisi  Psikotes Berbinar.</p>
+                <p class="text-gray-500 py-2">Fitur ini menampilkan data pengguna seperti  nama, jenis kelamin, tanggal lahir, dan email yang telah mengisi  Psikotes Berbinar.</p>
             </div>
         </div>
         <div class="flex flex-col gap-10 rounded-[24px] bg-white shadow mb-7 px-10 py-7">
@@ -42,11 +42,11 @@
                 </div>
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
-                        <label class="mb-2 font-bold text-[#9b9b9b]">Username</label>
+                        <label class="mb-2 font-bold text-[#9b9b9b]">Nama Pengguna</label>
                         <input type="text" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->user->username }}" readonly disabled />
                     </div>
                     <div class="flex w-full flex-col">
-                        <label class="mb-2 font-bold text-[#9b9b9b]">Password</label>
+                        <label class="mb-2 font-bold text-[#9b9b9b]">Kata Sandi</label>
                         <input type="tel" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="berbinar" readonly disabled />
                     </div>
                 </div>

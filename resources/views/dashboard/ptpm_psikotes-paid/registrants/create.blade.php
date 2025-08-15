@@ -15,7 +15,7 @@
                     </a>
                     <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Tambah Data Pendaftar</p>
                 </div>
-                <p class="text-gray-500 py-2">Fitur ini menambah data user seperti  Nama, Jenis kelamin, Tanggal lahir, dan Email yang telah mengisi  Psikotes Berbinar.</p>
+                <p class="text-gray-500 py-2">Fitur ini menambah data pengguna seperti  nama, jenis kelamin, tanggal lahir, dan email yang telah mengisi  Psikotes Berbinar.</p>
             </div>
         </div>
 

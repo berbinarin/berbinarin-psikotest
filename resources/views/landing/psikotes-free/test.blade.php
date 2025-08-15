@@ -27,7 +27,7 @@
                             <div class="flex flex-row md:flex-col">
                                 <div class="radio inline-box mt-6 flex w-full flex-col justify-between gap-5 md:flex-row md:gap-10 lg:flex-row">
                                     @foreach ($question->options as $option)
-                                        <div class="flex flex-col items-center max-sm:flex-row">
+                                        <div class="flex flex-col items-center max-sm:flex-row lg:w-1/6">
                                             <label class="cursor-pointer" for="{{ $option["value"] }}">
                                                 <input id="{{ $option["value"] }}" type="radio" name="answer" value="{{ $option["value"] }}" class="peer hidden" required />
                                                 <div class="peer-checked:border-primary-alt flex h-14 w-14 items-center justify-center rounded-full border border-gray-300 font-bold shadow-[0_0_10px_0_#3986A380] transition peer-checked:bg-primary peer-checked:text-white lg:h-16 lg:w-16 lg:text-2xl">
@@ -51,7 +51,7 @@
                     <div class="1/3 lg:flex">
                         <div class="bg-white">
                             {{-- HERO IMG DESKTOP --}}
-                            <div class="absolute right-44 top-1/2 -translate-y-1/2 max-sm:hidden" style="width: 300px; height: 300px; border-radius: 50%; background: #a2d7f0cc; filter: blur(60px); opacity: 1; z-index: 0"></div>
+                            <div class="absolute right-[14%] top-[45%] -translate-y-1/2 max-sm:hidden" style="width: 300px; height: 300px; border-radius: 50%; background: #a2d7f0cc; filter: blur(60px); opacity: 1; z-index: 0"></div>
 
                             @if ($progress < 16.66)
                                 <img src="{{ asset("assets/landing/images/psikotes-free/progress1.png") }}" alt="Ilustrasi-Tes" class="mt-10 hidden h-[600px] w-[600px] scale-75 lg:block" data-aos="fade-left" data-aos-duration="1500" />

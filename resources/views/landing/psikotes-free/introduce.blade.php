@@ -60,15 +60,15 @@
                 <div class="text-center">
                     <h1 class="bg-gradient-to-r from-[#F3AF3A] to-[#966C24] bg-clip-text text-transparent items-start font-semibold text-center max-sm:text-xl text-3xl">Instruksi Pengisian</h1>
                 </div>
-                <div class="lg:px-16 pt-5 max-sm:pt-2 lg:pt-10 pb-5">
-                    <p class="text-justify text-[13px]/6 lg:text-xl/8 text-[#333333]">Pada tes ini, setiap nomor berisikan satu pernyataan beserta lima pilihan
+                <div class="lg:px-8 pt-5 max-sm:pt-2 lg:pt-7 pb-5">
+                    <p class="text-justify text-[13px]/6 lg:text-lg/7 text-[#333333]">Pada tes ini, setiap nomor berisikan satu pernyataan beserta lima pilihan
                         skor jawaban. Tugas SobatBinar adalah menentukan <span class="">skor kesesuaian</span>
                         setiap
                         pernyataan dengan keadaan diri SobatBinar yang sebenarnya. Tiap pilihan skor kesesuaian yang
                         SobatBinar
                         pilih memiliki kriterianya masing-masing.</p>
-                    <p class="text-[13px]/6 lg:text-xl/8 text-[#333333]"><br>Keterangan Skor:</p>
-                    <ul class="pl-3 text-[13px]/6 lg:text-xl/8 text-[#333333]">
+                    <p class="text-[13px]/6 lg:text-lg/7 text-[#333333]"><br>Keterangan Skor:</p>
+                    <ul class="pl-3 text-[13px]/6 lg:text-lg/7 text-[#333333]">
                         <li>1=Sangat tidak sesuai</li>
                         <li>2=Tidak sesuai</li>
                         <li>3=Ragu-ragu</li>
@@ -81,7 +81,7 @@
                 @csrf
                 <div class="flex flex-col justify-center justify-self-center items-center w-full lg:p-5">
                     <input type="hidden" name="user_id" value="{{ $user->id }}">
-                    <button type="submit" class="rounded-md bg-gradient-to-r from-[#3986A3] to-[#225062] w-full text-xl lg:w-1/2 py-1.5 font-medium text-white max-sm:text-[15px]">
+                    <button type="submit" class="rounded-md bg-gradient-to-r from-[#3986A3] to-[#225062] w-full text-xl lg:w-1/3 py-1.5 font-medium text-white max-sm:text-[15px]">
                         Mulai Tes
                     </button>
                 </div>

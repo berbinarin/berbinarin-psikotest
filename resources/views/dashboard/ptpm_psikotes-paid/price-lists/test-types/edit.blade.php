@@ -25,26 +25,30 @@
             <form action="{{ route('dashboard.price-list.test-types.update', [$category->id, $testType->id]) }}" method="POST" class="flex flex-col gap-10">
                 @csrf
                 @method('PUT')
-                <div class="flex gap-20">
+                <div class="flex gap-10">
                     <div class="flex w-full flex-col">
                         <label for="name" class="mb-2 font-bold text-[#9b9b9b]">Nama Jenis Tes</label>
                         <input type="text" name="name" id="name" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Nama Jenis Tes" value="{{ old('name', $testType->name) }}" required />
                     </div>
                     <div class="flex w-full flex-col">
                         <label for="price" class="mb-2 font-bold text-[#9b9b9b]">Harga</label>
-                        <input type="number" name="price" id="price" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Harga" value="{{ old('price', $testType->price) }}" required min="0" />
+                        <div class="relative w-full">
+                            <input type="number" name="price" id="price" class="w-full rounded-md border-0 px-6 pl-10 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Harga" value="{{ old('price', $testType->price) }}" required min="0" />
+                            <p class="absolute top-[18px] left-3 text-sm -translate-y-1/3 text-gray-500 font-semibold">Rp. </p>
+
+                        </div>
+                    </div>
+                    <div class="flex w-full flex-col">
+                        <label for="test_category_id" class="mb-2 font-bold text-[#9b9b9b]">Kategori</label>
+                        <select name="test_category_id" id="test_category_id" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" required disabled>
+                            <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                        </select>
                     </div>
                 </div>
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="description" class="mb-2 font-bold text-[#9b9b9b]">Deskripsi</label>
                         <textarea name="description" id="description" rows="3" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Deskripsi">{{ old('description', $testType->description) }}</textarea>
-                    </div>
-                    <div class="flex w-full flex-col">
-                        <label for="test_category_id" class="mb-2 font-bold text-[#9b9b9b]">Kategori</label>
-                        <select name="test_category_id" id="test_category_id" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" required>
-                            <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
-                        </select>
                     </div>
                 </div>
                 <hr class="border-t-2 border-t-gray-400">
