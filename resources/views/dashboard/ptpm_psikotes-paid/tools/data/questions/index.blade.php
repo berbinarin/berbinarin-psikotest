@@ -15,9 +15,9 @@
                             <a href="{{ url()->previous() }}">
                                 <img src="{{ asset("assets/dashboard/images/back-btn.png") }}" alt="Back Button" />
                             </a>
-                            <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Detail soal</p>
+                            <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Detail Soal</p>
                         </div>
-                        <p class="text-gray-500 pb-2">Dashboard ini menampilkan informasi terkait soal tes pilihan ganda dan tanggal Tes Papi Kostick.</p>
+                        <p class="text-gray-500 pb-2">Dashboard ini menampilkan informasi terkait soal tes pilihan ganda dan tanggal tes papi kostick.</p>
                     </div>
                 </div>
                 <div class="rounded-md bg-white shadow mb-7 px-4 py-4 md:px-8 md:py-7 xl:px-10">

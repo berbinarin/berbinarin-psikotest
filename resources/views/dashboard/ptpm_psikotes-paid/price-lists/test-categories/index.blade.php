@@ -10,7 +10,7 @@
         <div class="py-4 md:pb-7 md:pt-5">
             <div>
                 <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Daftar Harga</p>
-                <p class="text-gray-500 py-2">Terdapat {{ $testCategories->count() }} menu pada Daftar Harga yang dapat dipilih sesuai kebutuhan.</p>
+                <p class="text-gray-500 py-2">Terdapat {{ $testCategories->count() }} menu pada daftar harga yang dapat dipilih sesuai kebutuhan.</p>
             </div>
         </div>
 
