@@ -3,13 +3,24 @@
 ])
 
 @section('content')
+<style>
+    .rating_item label img,
+    .rating_item label p {
+        filter: grayscale(100%);
+        transition: filter 0.5s ease;
+    }
+
+    .rating_item input[type="radio"]:checked + label img,
+    .rating_item input[type="radio"]:checked + label p {
+        filter: none;
+    }
+</style>
 <sections>
     <div class="max-h-screen flex justify-center items-center w-full">
         <div class="flex flex-col md:flex-row w-full md:max-w-[90%] md:mt-10 md:mb-8 justify-center md:shadow-xl md:bg-white rounded-3xl px-7 lg:pb-5 lg:pt-1 sm:p-10 relative" style="box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);">
             <div class="lg:w-[95%]">
 
                 <div class="flex flex-row justify-between mb-8">
-
                 </div>
 
                 <h2 class="text-center h-auto z-50 text-2xl lg:text-4xl pb-1 font-bold mb-1 lg:mb-8 bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text text-transparent">Gimana Perasaan Kamu Setelah <br> Mengikuti Psikotes Ini?</h2>
@@ -19,54 +30,19 @@
                     @csrf
 
                     <div class="rating_list z-0 relative flex lg:w-[80%] flex-row mb-1 lg:mb-12 justify-self-center justify-between md:gap-4">
+
                         <div class="rating_item flex flex-col items-center">
-                            <input class="hidden peer" id="rating-5-1" type="radio" value="5" name="rating" required>
-                            <label for="rating-5-1" class="cursor-pointer transition-all duration-300 ease-in-out peer-checked:bg-gradient-to-b from-[#75BADB] to-[#F7B23B] rounded-full group hover:bg-gradient-to-b relative w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 flex items-center justify-center">
+                            <input class="hidden peer" id="rating-1-1" type="radio" value="1" name="rating">
+                            <label for="rating-1-1" class="cursor-pointer transition-all duration-300 ease-in-out peer-checked:bg-gradient-to-b from-[#FF004F] to-[#F7B23B] rounded-full group hover:bg-gradient-to-b relative w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 flex items-center justify-center">
                                 <span class="block w-full h-full relative">
                                     <!-- Default image -->
-                                    <img src="{{ asset('assets/landing/images/psikotes-free/feedback/1-wahoo.png') }}"
-                                        alt="Sangat Senang"
+                                    <img src="{{ asset('assets/landing/images/psikotes-free/feedback/5-pissed.png') }}"
+                                        alt="Tidak Suka"
                                         class="absolute inset-0 w-full h-full object-contain transition duration-200 scale-150" />
                                     <!-- Text -->
                                     <div class="text max-sm:block max-sm:pt-12 flex inset-8 max-sm:pb-[4px] w-full shadow-yellow-400/50 h-full justify-center items-end max-sm:items-center">
                                         <p class="bg-white max-sm:px-0 px-2 max-sm:w-[80%] justify-self-center text-center max-sm:text-[6px] text-xs md:text-[10px] xl:text-[15px] rounded-3xl max-sm:py-[1px] py-1 shadow-md shadow-yellow-400/50 font-bold text-[#F7B23B]">
-                                            Sangat Senang
-                                        </p>
-                                    </div>
-                                </span>
-                            </label>
-                        </div>
-
-                        <div class="rating_item flex flex-col items-center">
-                            <input class="hidden peer" id="rating-4-1" type="radio" value="4" name="rating">
-                            <label for="rating-4-1" class="cursor-pointer transition-all duration-300 ease-in-out peer-checked:bg-gradient-to-b from-[#4CAF50] to-[#F7B23B] rounded-full group hover:bg-gradient-to-b relative w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 flex items-center justify-center">
-                                <span class="block w-full h-full relative">
-                                    <!-- Default image -->
-                                    <img src="{{ asset('assets/landing/images/psikotes-free/feedback/2-happy.png') }}"
-                                        alt="Senang"
-                                        class="absolute inset-0 w-full h-full object-contain transition duration-200 scale-150" />
-                                    <!-- Text -->
-                                    <div class="text max-sm:block max-sm:pt-12 flex inset-8 max-sm:pb-[4px] w-full shadow-yellow-400/50 h-full justify-center items-end max-sm:items-center">
-                                        <p class="bg-white max-sm:px-0 px-2 max-sm:w-[80%] justify-self-center items-center text-center max-sm:text-[6px] text-xs md:text-[10px] xl:text-[15px] rounded-3xl max-sm:py-[1px] py-1 shadow-md shadow-yellow-400/50 font-bold text-[#F7B23B]">
-                                            Senang
-                                        </p>
-                                    </div>
-                                </span>
-                            </label>
-                        </div>
-
-                        <div class="rating_item flex flex-col items-center">
-                            <input class="hidden peer" id="rating-3-1" type="radio" value="3" name="rating">
-                            <label for="rating-3-1" class="cursor-pointer transition-all duration-300 ease-in-out peer-checked:bg-gradient-to-b from-[#FFE500] to-[#F7B23B] rounded-full group hover:bg-gradient-to-b relative w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 flex items-center justify-center">
-                                <span class="block w-full h-full relative">
-                                    <!-- Default image -->
-                                    <img src="{{ asset('assets/landing/images/psikotes-free/feedback/3-neutral.png') }}"
-                                        alt="Biasa Saja"
-                                        class="absolute inset-0 w-full h-full object-contain transition duration-200 scale-150" />
-                                    <!-- Text -->
-                                    <div class="text max-sm:block max-sm:pt-12 flex inset-8 max-sm:pb-[4px] w-full shadow-yellow-400/50 h-full justify-center items-end max-sm:items-center">
-                                        <p class="bg-white max-sm:px-0 px-2 max-sm:w-[80%] justify-self-center text-center max-sm:text-[6px] text-xs md:text-[10px] xl:text-[15px] rounded-3xl max-sm:py-[1px] py-1 shadow-md shadow-yellow-400/50 font-bold text-[#F7B23B]">
-                                            Biasa Saja
+                                            Tidak Suka
                                         </p>
                                     </div>
                                 </span>
@@ -92,17 +68,53 @@
                         </div>
 
                         <div class="rating_item flex flex-col items-center">
-                            <input class="hidden peer" id="rating-1-1" type="radio" value="1" name="rating">
-                            <label for="rating-1-1" class="cursor-pointer transition-all duration-300 ease-in-out peer-checked:bg-gradient-to-b from-[#FF004F] to-[#F7B23B] rounded-full group hover:bg-gradient-to-b relative w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 flex items-center justify-center">
+                            <input class="hidden peer" id="rating-3-1" type="radio" value="3" name="rating">
+                            <label for="rating-3-1" class="cursor-pointer transition-all duration-300 ease-in-out peer-checked:bg-gradient-to-b from-[#FFE500] to-[#F7B23B] rounded-full group hover:bg-gradient-to-b relative w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 flex items-center justify-center">
                                 <span class="block w-full h-full relative">
                                     <!-- Default image -->
-                                    <img src="{{ asset('assets/landing/images/psikotes-free/feedback/5-pissed.png') }}"
-                                        alt="Tidak Suka"
+                                    <img src="{{ asset('assets/landing/images/psikotes-free/feedback/3-neutral.png') }}"
+                                        alt="Biasa Saja"
                                         class="absolute inset-0 w-full h-full object-contain transition duration-200 scale-150" />
                                     <!-- Text -->
                                     <div class="text max-sm:block max-sm:pt-12 flex inset-8 max-sm:pb-[4px] w-full shadow-yellow-400/50 h-full justify-center items-end max-sm:items-center">
                                         <p class="bg-white max-sm:px-0 px-2 max-sm:w-[80%] justify-self-center text-center max-sm:text-[6px] text-xs md:text-[10px] xl:text-[15px] rounded-3xl max-sm:py-[1px] py-1 shadow-md shadow-yellow-400/50 font-bold text-[#F7B23B]">
-                                            Tidak Suka
+                                            Biasa Saja
+                                        </p>
+                                    </div>
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="rating_item flex flex-col items-center">
+                            <input class="hidden peer" id="rating-4-1" type="radio" value="4" name="rating">
+                            <label for="rating-4-1" class="cursor-pointer transition-all duration-300 ease-in-out peer-checked:bg-gradient-to-b from-[#4CAF50] to-[#F7B23B] rounded-full group hover:bg-gradient-to-b relative w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 flex items-center justify-center">
+                                <span class="block w-full h-full relative">
+                                    <!-- Default image -->
+                                    <img src="{{ asset('assets/landing/images/psikotes-free/feedback/2-happy.png') }}"
+                                        alt="Senang"
+                                        class="absolute inset-0 w-full h-full object-contain transition duration-200 scale-150" />
+                                    <!-- Text -->
+                                    <div class="text max-sm:block max-sm:pt-12 flex inset-8 max-sm:pb-[4px] w-full shadow-yellow-400/50 h-full justify-center items-end max-sm:items-center">
+                                        <p class="bg-white max-sm:px-0 px-2 max-sm:w-[80%] justify-self-center items-center text-center max-sm:text-[6px] text-xs md:text-[10px] xl:text-[15px] rounded-3xl max-sm:py-[1px] py-1 shadow-md shadow-yellow-400/50 font-bold text-[#F7B23B]">
+                                            Senang
+                                        </p>
+                                    </div>
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="rating_item flex flex-col items-center">
+                            <input class="hidden peer" id="rating-5-1" type="radio" value="5" name="rating">
+                            <label for="rating-5-1" class="cursor-pointer transition-all duration-300 ease-in-out peer-checked:bg-gradient-to-b from-[#75BADB] to-[#F7B23B] rounded-full group hover:bg-gradient-to-b relative w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 flex items-center justify-center">
+                                <span class="block w-full h-full relative">
+                                    <!-- Default image -->
+                                    <img src="{{ asset('assets/landing/images/psikotes-free/feedback/1-wahoo.png') }}"
+                                        alt="Sangat Senang"
+                                        class="absolute inset-0 w-full h-full object-contain transition duration-200 scale-150" />
+                                    <!-- Text -->
+                                    <div class="text max-sm:block max-sm:pt-12 flex inset-8 max-sm:pb-[4px] w-full shadow-yellow-400/50 h-full justify-center items-end max-sm:items-center">
+                                        <p class="bg-white max-sm:px-0 px-2 max-sm:w-[80%] justify-self-center text-center max-sm:text-[6px] text-xs md:text-[10px] xl:text-[15px] rounded-3xl max-sm:py-[1px] py-1 shadow-md shadow-yellow-400/50 font-bold text-[#F7B23B]">
+                                            Sangat Senang
                                         </p>
                                     </div>
                                 </span>
@@ -131,6 +143,7 @@
     </div>
 </sections>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function () {
     // Disable tombol saat halaman pertama kali dibuka
@@ -170,6 +183,59 @@ $(document).ready(function () {
             enable_submit();
         }
     }
+
+    // Tangkap event submit form
+    $('form.rating').on('submit', function(e) {
+        e.preventDefault(); // cegah submit default
+
+        // Ambil nilai rating dan pengalaman
+        var ratingValue = $('input[name="rating"]:checked').val();
+        var experienceText = $('textarea[name="experience"]').val().trim();
+
+        if (!ratingValue) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Eits, jangan lupa pilih perasaanmu dulu ya!',
+                text: 'Pilih salah satu gambar emosi supaya kami tahu gimana rasamu',
+                confirmButtonText: 'Oke deh, aku pilih sekarang!',
+                background: '#fff',
+                confirmButtonColor: '#225062',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                },
+                customClass: {
+                    popup: 'rounded-xl shadow-lg'
+                }
+            });
+            return;
+        }
+
+        if (experienceText.length < 3) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Tunggu dulu!',
+                text: 'Tolong ceritakan sedikit pengalamanmu ya',
+                confirmButtonText: 'Siap, aku tulis sekarang!',
+                background: '#fff',
+                confirmButtonColor: '#225062',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                },
+                customClass: {
+                    popup: 'rounded-xl shadow-lg'
+                }
+            });
+            return;
+        }
+
+        this.submit();
+    });
 });
 </script>
 @endsection

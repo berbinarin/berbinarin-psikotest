@@ -1,14 +1,16 @@
-    @extends('dashboard.layouts.app', [
+@extends('dashboard.layouts.app', [
     'title' => 'Psikotes Free',
     'active' => 'Dashboard',
     'modul' => 'Psikotes Free Data',
-    ])
-    @section('content')
+])
+@section('content')
         <section class="flex">
             <div class="flex flex-col">
                 <div class="w-fit">
-                    @foreach ($freeProfile->attempt as $attempt)
-                    <div class="py-5">
+                    @php
+                        $attempt = $freeProfile->attempt->last();
+                    @endphp
+                    <div class="py-4">
                         <div class="flex flex-row items-center">
                             <div class="">
                                 <a href="{{ route('dashboard.free-profiles.data.show') }}">
@@ -62,10 +64,10 @@
 
                                     <!-- feedback -->
                                     <tr class="w-full">
-                                        <td class="py-3 font-semibold">Feedback
+                                        <td class="py-3 font-semibold">Umpan Balik
                                             <span class="ml-7"> :
                                                 @php
-                                                    $rating = optional(value: optional($freeProfile)->feedback)->rating;
+                                                    $rating = optional(optional($freeProfile)->feedback)->rating;
                                                 @endphp
                                                 @if ($rating == 5)
                                                 <img src="{{ asset('assets/landing/images/psikotes-free/feedback/1-wahoo2.png') }}" alt="Happy" class="w-16 h-auto inline-block align-middle mr-2">
@@ -76,15 +78,15 @@
                                                 @elseif ($rating == 2)
                                                 <img src="{{ asset('assets/landing/images/psikotes-free/feedback/4-bummed2.png') }}" alt="Bummed" class="w-16 h-auto inline-block align-middle mr-2">
                                                 @elseif ($rating == 1)
-                                                <img src="{{ asset('assets/landing/images/psikotes-free/feedback/4-pissed2.png') }}" alt="Bummed Out" class="w-16 h-auto inline-block align-middle mr-2">
+                                                <img src="{{ asset('assets/landing/images/psikotes-free/feedback/5-pissed2.png') }}" alt="Bummed Out" class="w-16 h-auto inline-block align-middle mr-2">
                                                 @else
-                                                <span class="-ml-2 font-semibold"> tidak ada 😭
-                                                    @endif
+                                                <span class="-ml-2 font-semibold"> tidak ada umpan balik😭
+                                                @endif
                                                 </span>
                                                 <span class="-ml-2 font-semibold">{{ $rating }}
                                                     ,</span>
                                                 @php
-                                                $experience = optional(optional($freeProfile)->feedback)->experience;
+                                                    $experience = optional(optional($freeProfile)->feedback)->experience;
                                                 @endphp
                                                 <span class="ml-2 font-semibold">{{ $experience }}</span>
                                         </td>
@@ -99,7 +101,7 @@
                                             <div class="flex flex-row py-3">
                                                 <p class="card-text w-40"><strong>Agreeableness:</strong>
                                                 <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-white text-[13px] text-start" role="progressbar" style="width: {{ $agreeablenessPresentage }}%" aria-valuenow="{{ $agreeablenessPresentage }}% aria-valuemin=" 0" aria-valuemax="100">
-                                                    <span class="ml-3"> {{ $agreeablenessPresentage }}%</span>
+                                                    <span class="ml-3"> {{ round($agreeablenessPresentage) }}%</span>
                                                 </div>
                                                 </p>
                                             </div>
@@ -107,7 +109,7 @@
                                             <div class="flex flex-row py-3">
                                                 <p class="card-text w-40"><strong>Conscientiousness:</strong>
                                                 <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-white text-[13px] text-start" role="progressbar" style="width: {{ $conscientiousnessPresentage }}%" aria-valuenow="{{ $conscientiousnessPresentage }}%" aria-valuemin="0" aria-valuemax="100">
-                                                    <span class="ml-3"> {{ $conscientiousnessPresentage }}%</span>
+                                                    <span class="ml-3"> {{ round($conscientiousnessPresentage) }}%</span>
                                                 </div>
                                                 </p>
                                             </div>
@@ -115,7 +117,7 @@
                                             <div class="flex flex-row py-3">
                                                 <p class="card-text w-40"><strong>Extraversion:</strong>
                                                 <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-white text-[13px] text-start" role="progressbar" style="width: {{ $extraversionPresentage }}%" aria-valuenow="{{ $extraversionPresentage }}%" aria-valuemin="0" aria-valuemax="100">
-                                                    <span class="ml-3"> {{ $extraversionPresentage }}%</span>
+                                                    <span class="ml-3"> {{ round($extraversionPresentage) }}%</span>
                                                 </div>
                                                 </p>
                                             </div>
@@ -123,7 +125,7 @@
                                             <div class="flex flex-row py-3">
                                                 <p class="card-text w-40"><strong>Neuroticism:</strong>
                                                 <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-white text-[13px] text-start" role="progressbar" style="width: {{ $neuroticismPresentage }}%" aria-valuenow="{{ $neuroticismPresentage }}%" aria-valuemin="0" aria-valuemax="100">
-                                                    <span class="ml-3"> {{ $neuroticismPresentage }}%</span>
+                                                    <span class="ml-3"> {{ round($neuroticismPresentage) }}%</span>
                                                 </div>
                                                 </p>
                                             </div>
@@ -132,11 +134,11 @@
                                                 <p class="card-text w-40"><strong>Openness:</strong>
                                                 </p>
                                                 <div class="progress-bar w-[20px] h-5 ml-5 my-1 bg-primary rounded-full text-white text-[13px] text-start" role="progressbar" style="width:{{ $opennessPresentage }}%" aria-valuenow="{{ $opennessPresentage }}%" aria-valuemin="0" aria-valuemax="100">
-                                                    <span class="ml-3">{{ $opennessPresentage }}%</span>
+                                                    <span class="ml-3">{{ round($opennessPresentage) }}%</span>
                                                 </div>
                                             </div>
                                             @else
-                                            <p class="card-text">No results available.</p>
+                                            <p class="card-text">Belum ada hasil.</p>
                                             @endif
                                         </td>
                                     </tr>
@@ -157,23 +159,31 @@
                                                                 Nomor
                                                                 Soal
                                                             </th>
-                                                            @foreach ($attempt->responses as $answer)
-                                                            <th class="border border-slate-100 px-4 py-3">
-                                                                {{ $loop->iteration }}
-                                                            </th>
-                                                            @endforeach
+                                                            @if(!empty($attempt) && $attempt->responses && $attempt->responses->count() > 0)
+                                                                @foreach ($attempt->responses as $answer)
+                                                                    <th class="border border-slate-100 px-4 py-3">
+                                                                        {{ $loop->iteration }}
+                                                                    </th>
+                                                                @endforeach
+                                                            @else
+                                                                <th class="border border-slate-100 px-4 py-3 text-center text-gray-500" colspan="100%">
+                                                                    Pengguna belum menyelesaikan tes.
+                                                                </th>
+                                                            @endif
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="border border-slate-100 px-4 py-3">Jawaban</td>
-                                                            @foreach ($attempt->responses as $answer)
-                                                            <td class="border border-slate-100 px-4 py-3">
-                                                                {{ $answer->answer['value'] }}
-                                                            </td>
-                                                            @endforeach
-                                                        </tr>
-                                                    </tbody>
+                                                    @if(!empty($attempt) && $attempt->responses && $attempt->responses->count() > 0)
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="border border-slate-100 px-4 py-3">Jawaban</td>
+                                                                @foreach ($attempt->responses as $answer)
+                                                                    <td class="border border-slate-100 px-4 py-3">
+                                                                        {{ $answer->answer['value'] }}
+                                                                    </td>
+                                                                @endforeach
+                                                            </tr>
+                                                        </tbody>
+                                                    @endif
                                                 </table>
                                             </td>
                                         </tr>
@@ -182,8 +192,7 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
                 </div>
             </div>
         </section>
-    @endsection
+@endsection
