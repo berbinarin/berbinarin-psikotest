@@ -53,6 +53,7 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
                 // Attempts
                 Route::get('/attempts', [AttemptController::class, 'index'])->name('attempts.index');
                 Route::get('/attempts/{attempt}', [AttemptController::class, 'show'])->name('attempts.show');
+                Route::delete('/attempts/{attempt}', [AttemptController::class, 'destroy'])->name('attempts.destroy');
                 // Sections
                 Route::resource('/sections', SectionController::class)->only('index');
                 Route::prefix('/sections/{section}')->name('sections.')->group(function () {
@@ -73,7 +74,7 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
         });
     });
 
-    
+
     // Psychological Test Product Management - Free
     Route::middleware('role:ptpm_psikotes-free')->group(function () {
 

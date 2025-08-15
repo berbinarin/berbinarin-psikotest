@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Tool;
 
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Attempt;
 use App\Models\Tool;
@@ -27,5 +28,18 @@ class AttemptController extends Controller
         $data = $this->resultService->resultData($tool, $attempt);
 
         return view('dashboard.ptpm_psikotes-paid.tools.data.attempts.results.index', compact('tool', 'attempt', 'data'));
+    }
+
+    public function destroy(Tool $tool, Attempt $attempt){
+        try {
+            DB::transaction(function () use ($attempt) {
+                $attempt->delete();
+            });
+
+            return redirect()->route('dashboard.tools.data.attempts.index', [$tool->id])->with('success', 'Data berhasil dihapus.');
+        } catch (\Exception $e) {
+            dd($e);
+            return back()->with('error', 'Terjadi kesalahan saat menghapus data.');
+        }
     }
 }
