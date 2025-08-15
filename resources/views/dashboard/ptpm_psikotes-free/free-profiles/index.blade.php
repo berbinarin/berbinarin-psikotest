@@ -5,8 +5,6 @@
     ]
 )
 
-
-
 @section("content")
     <section class="flex w-full">
         <div class="w-full">
