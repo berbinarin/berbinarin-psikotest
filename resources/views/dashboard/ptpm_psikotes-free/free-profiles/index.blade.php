@@ -40,12 +40,12 @@
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td class="text-left">{{ $attempt->profile->name }}</td>
                                     <td class="text-left">{{ $attempt->profile->email }}</td>
-                                    <td class="text-center">{{ $attempt->gender === "female" ? "Perempuan" : "Laki-Laki" }}</td>
+                                    <td class="text-center">{{ $attempt->profile->gender === 'female' ? 'Perempuan' : 'Laki-Laki' }}</td>
                                     <td class="text-center">
-                                        {{ \Carbon\Carbon::parse($attempt->date_of_birth)->format("d-m-Y") }}
+                                        {{ \Carbon\Carbon::parse($attempt->profile->date_of_birth)->format("d-m-Y") }}
                                     </td>
                                     <td class="text-center">
-                                        {{ \Carbon\Carbon::parse($attempt->date_of_test)->format("d-m-Y") }}
+                                        {{ \Carbon\Carbon::parse($attempt->profile->date_of_test)->format("d-m-Y") }}
                                     </td>
                                     <td class="flex items-center justify-center gap-2">
                                         <a href="{{ route("dashboard.free-profiles.data.detail", $attempt->id) }}" class="inline-flex items-start justify-start rounded p-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #3b82f6">
@@ -54,8 +54,7 @@
                                         {{--
                                             <a href="{{ route("dashboard.attempts.edit", $attempt->id) }}" class="inline-flex items-start justify-start rounded p-2 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #e9b306">
                                             <i class="bx bx-edit-alt text-white"></i>
-                                            </a>
-                                        --}}
+                                        </a> --}}
                                         <form id="deleteForm-{{ $attempt->id }}" action="{{ route("dashboard.free-profiles.destroy", $attempt->id) }}" method="POST">
                                             @csrf
                                             @method("DELETE")
