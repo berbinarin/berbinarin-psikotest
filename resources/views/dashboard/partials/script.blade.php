@@ -39,7 +39,7 @@
             e.preventDefault();
             const formId = this.getAttribute('data-id');
             Swal.fire({
-                title: 'Hapus Responden',
+                title: 'Hapus Data',
                 text: 'Apakah anda yakin menghapusnya?',
                 icon: 'warning',
                 showCancelButton: true,
