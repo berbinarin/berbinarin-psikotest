@@ -54,14 +54,14 @@
                                         </a>
                                         {{-- <a href="{{ route("dashboard.freeProfiles.edit", $freeProfile->id) }}" class="inline-flex items-start justify-start rounded p-2 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #e9b306">
                                             <i class="bx bx-edit-alt text-white"></i>
-                                        </a>
-                                        <form id="deleteForm-{{ $freeProfile->id }}" action="{{ route("dashboard.freeprofiles.destroy", $registrant->id) }}" method="POST">
+                                        </a> --}}
+                                        <form id="deleteForm-{{ $freeProfile->id }}" action="{{ route("dashboard.free-profiles.destroy", $freeProfile->id) }}" method="POST">
                                             @csrf
                                             @method("DELETE")
-                                            <button type="button" class="delete-button inline-flex items-start justify-start rounded p-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #ef4444" data-id="{{ $registrant->id }}">
+                                            <button type="button" class="delete-button inline-flex items-start justify-start rounded p-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #ef4444" data-id="{{ $freeProfile->id }}">
                                                 <i class="bx bx-trash-alt text-white"></i>
                                             </button>
-                                        </form> --}}
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

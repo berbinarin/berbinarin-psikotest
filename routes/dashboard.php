@@ -81,6 +81,7 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
             Route::get('/', [DashboardController::class, 'index'])->name('index');
             Route::get('/data', [PsikotesFreeProfileController::class, 'index'])->name('data.show');
             Route::get('/data/detail/{id}', [PsikotesFreeProfileController::class, 'show'])->name('data.detail');
+            Route::delete('/{id}', [PsikotesFreeProfileController::class, 'destroy'])->name('destroy');
         });
     });
 });
