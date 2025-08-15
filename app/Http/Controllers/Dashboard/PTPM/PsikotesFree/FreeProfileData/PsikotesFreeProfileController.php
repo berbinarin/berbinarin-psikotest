@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers\Dashboard\PTPM\PsikotesFree\FreeProfileData;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\PsikotesFreeProfile;
 use App\Models\PsikotesFreeAttempt;
-use App\Models\Tool;
 use App\Http\Controllers\Controller;
 use App\Services\Landing\PsikotesFree\ResultService;
 
@@ -22,11 +20,11 @@ class PsikotesFreeProfileController extends Controller
         return view('dashboard.ptpm_psikotes-free.free-profiles.index', compact('attempts'));
     }
 
-    public function show(PsikotesFreeAttempt $psikotesFreeAttempt)
+    public function show($id)
     {
-        $psikotesFreeAttempt->load('responses');
+        $attempt = PsikotesFreeAttempt::with('responses')->find($id);
         
-        $data = $this->resultService->resultData($psikotesFreeAttempt);
+        $data = $this->resultService->resultData($attempt);
 
         $dimensions = ['extraversion', 'agreeableness', 'neuroticism', 'conscientiousness', 'openness'];
         $percentages = [];
@@ -48,7 +46,7 @@ class PsikotesFreeProfileController extends Controller
 
         // 4. Kirim data ke view dengan lebih rapi
         return view('dashboard.ptpm_psikotes-free.free-profiles.show', [
-            'attempt' => $psikotesFreeAttempt,
+            'attempt' => $attempt,
             'data' => $data,
             'percentages' => $percentages, // Kirim sebagai satu array
         ]);

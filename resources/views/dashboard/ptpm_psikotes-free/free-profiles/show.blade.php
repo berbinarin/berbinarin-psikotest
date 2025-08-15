@@ -4,6 +4,7 @@
         "title" => "Psikotes Free",
     ]
 )
+
 @section("content")
     <section class="flex">
         <div class="flex flex-col">

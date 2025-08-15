@@ -72,9 +72,11 @@
             </div>
         </div>
 
-        {{-- <div id="countdownExample" class="absolute right-4 top-4">
+        {{--
+            <div id="countdownExample" class="absolute right-4 top-4">
             <div class="values rounded-full bg-blue-500 px-5 py-3 text-white">00:00:00</div>
-        </div> --}}
+            </div>
+        --}}
     </section>
 @endsection
 
@@ -165,6 +167,21 @@
                 localStorage.removeItem('target-time');
                 localStorage.removeItem('section-order');
                 window.location.href = @json(route("psikotes-free.feedback.show"));
+            }
+        });
+
+        // Mereset input  ketika back menggunakan browser
+        window.addEventListener('pageshow', function (event) {
+            if (event.persisted || performance.getEntriesByType('navigation')[0].type === 'back_forward') {
+                document.querySelectorAll('input, textarea, select').forEach((el) => {
+                    if (el.type === 'radio' || el.type === 'checkbox') {
+                        el.checked = false;
+                    } else if (el.tagName.toLowerCase() === 'select') {
+                        el.selectedIndex = 0;
+                    } else {
+                        el.value = '';
+                    }
+                });
             }
         });
     </script>
