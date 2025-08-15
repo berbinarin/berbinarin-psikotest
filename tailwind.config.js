@@ -13,6 +13,7 @@ export default {
             },
             colors: {
                 primary: "#3986a3",
+                "blue-transparent": "rgba(16, 102, 129, 0.2)", // The 0.2 represents 20% opacity
             },
         },
     },

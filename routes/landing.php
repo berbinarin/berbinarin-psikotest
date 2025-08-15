@@ -13,6 +13,16 @@ use App\Http\Controllers\Landing\PsikotesFree\ResultController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingController::class, 'index'])->name('home.index');
+Route::get('/instruction', [LandingController::class, 'instruction'])->name('instruction');
+Route::get('/multiple', [LandingController::class, 'multiple'])->name('multiple-choice');
+Route::get('/end-testi', [LandingController::class, 'endtesti'])->name('end-testimoni');
+Route::get('/complete', [LandingController::class, 'success'])->name('complete');
+Route::get('/esai', [LandingController::class, 'esai'])->name('essay');
+Route::get('/binary', [LandingController::class, 'binary'])->name('binary-choice');
+
+
+
+
 
 // Psikotes Paid
 Route::middleware(['auth', 'session.verified'])->prefix('psikotes-paid')->name('psikotes-paid.')->group(function () {
