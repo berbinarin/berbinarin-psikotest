@@ -18,28 +18,30 @@ class ToolSeeder extends Seeder
                 'name' => 'Papi Kostick',
                 'order' => 1,
                 'token' => '1',
-                'introduce' => 'ini introduce',
+                'introduce' => '<p style="text-align: justify;">Akan terdapat 90 pasang pernyataan. Pilihlah satu pernyataan dari pasangan pernyataan yang Anda rasakan paling mendekati gambaran diri Anda, atau yang paling menunjukkan perasaan Anda.</p>
+                                <p style="text-align: justify;">Terkadang Anda akan merasa bahwa kedua pernyataan itu sesuai benar dengan diri Anda, meskipun demikian Anda harus tetap memilih satu pernyataan yang paling menunjukkan diri Anda.</p>
+                                <p style="text-align: justify;">Anda <strong>HARUS</strong> memilih salah satu yang dominan serta mengisi semua nomor.</p>',
                 'is_active' => true,
             ],
             [
                 'name' => 'BAUM',
                 'order' => 2,
                 'token' => '2',
-                'introduce' => 'ini introduce',
+                'introduce' => null,
                 'is_active' => true
             ],
             [
                 'name' => 'DAP',
                 'order' => 3,
                 'token' => '3',
-                'introduce' => 'ini introduce',
+                'introduce' => null,
                 'is_active' => true
             ],
             [
                 'name' => 'HTP',
                 'order' => 4,
                 'token' => '4',
-                'introduce' => 'ini introduce',
+                'introduce' => null,
                 'is_active' => true
             ],
             [
@@ -55,14 +57,26 @@ class ToolSeeder extends Seeder
                 'name' => 'OCEAN',
                 'order' => 7,
                 'token' => '7',
-                'introduce' => 'ini introduce',
+                'introduce' => '<p>Pada tes ini, setiap nomor berisikan satu pernyataan beserta lima pilihan skor jawaban. Tugas Kamu adalah menentukan skor kesesuaian setiap pernyataan dengan keadaan diri Kamu yang sebenarnya. Tiap pilihan skor kesesuaian yang kamu pilih memiliki kriterianya masing-masing.</p>
+                                <p>Keterangan Skor:</p>
+                                <div><strong>1: Sangat tidak sesuai</strong></div>
+                                <div><strong>2: Tidak sesuai</strong></div>
+                                <div><strong>3: Ragu-ragu</strong></div>
+                                <div><strong>4: Sesuai</strong></div>
+                                <div><strong>5: Sangat sesuai</strong></div>',
                 'is_active' => true,
             ],
             [
                 'name' => 'DASS-42',
                 'order' => 10,
                 'token' => '10',
-                'introduce' => 'ini introduce',
+                'introduce' => '<p>Tes ini terdiri dari berbagai pernyataan yang mungkin sesuai dengan pengalaman Anda dalam menghadapi situasi hidup sehari-hari. Terdapat empat pilihan jawaban yang disediakan untuk setiap pernyataan yaitu:</p>
+                                <p><strong>Keterangan pilihan jawaban:</strong></p>
+                                <div>0 : Tidak sesuai dengan saya sama sekali, atau tidak pernah.</div>
+                                <div>1 : Sesuai dengan saya sampai tingkat tertentu, atau kadang kadang.</div>
+                                <div>2 : Sesuai dengan saya sampai batas yang dapat dipertimbangkan, atau lumayan sering.</div>
+                                <div>3 : Sangat sesuai dengan saya, atau sering sekali.</div>
+                                <p>Selanjutnya, Anda diminta untuk memilih salah satu kolom yang paling sesuai dengan pengalaman Anda selama satu minggu belakangan ini. Tidak ada jawaban yang benar ataupun salah, karena itu isilah sesuai dengan keadaan diri Anda yang sesungguhnya, yaitu berdasarkan jawaban pertama yang terlintas dalam pikiran Anda.</p>',
                 'is_active' => true,
             ],
             [
@@ -89,51 +103,55 @@ class ToolSeeder extends Seeder
                 'order' => 19,
                 'token' => '19',
                 'introduce' => '<p>Bayangkan Anda dikelompokkan dengan sebelas orang mahasiswa <strong>(PRIA/WANITA)</strong> dalam proyek "Wisma Kerja Nyata" (disingkat WKN), yang bertujuan menyadari makna Kelestarian Lingkungan Hidup (KLH). Perjalanan akan berlangsung ke beberapa tempat.</p>
-                    <p>Di tempat-tempat tertentu, tim atau "keduabelasan" Anda akan mengerjakan proyek dan mendapat&nbsp; bantuan ahli-ahli yang akan membimbing dan melatih anggota-anggota tim bila diperlukan. Perusahaan "Supra Motor" telah bersedia menjadi sponsor kegiatan ini.</p>
-                    <p>Setiap ada kegiatan tim, anggota-anggota membagi tugas sesuai dengan kesediaan masing-masing. Caranya adalah disajikan daftar tugas, kemudian setiap anggota mengurutkan tugas yang paling ia senangi sampai tugas yang paling tidak ia senangi, tidak peduli apakah dia mampu melakukannya (karena akan dilatih). Yang penting adalah minat dan kesediaan Anda melakukan tugas-tugas tersebut.</p>
-                    <p>Urutkan pilihan tugas, mulai dari yang paling Anda senangi (nomor 1), nomor 2 Anda senangi, nomor 3, dan seterusnya, sampai pilihan paling akhir nomor 12, ialah yang paling tidak Anda senangi. Kemudian teliti kembali, jangan sampai ada yang Anda lewati, sebab keberhasilan WKN ini sangat tergantung pada kesadaran anggota.</p>',
+                                <p>Di tempat-tempat tertentu, tim atau "keduabelasan" Anda akan mengerjakan proyek dan mendapat&nbsp; bantuan ahli-ahli yang akan membimbing dan melatih anggota-anggota tim bila diperlukan. Perusahaan "Supra Motor" telah bersedia menjadi sponsor kegiatan ini.</p>
+                                <p>Setiap ada kegiatan tim, anggota-anggota membagi tugas sesuai dengan kesediaan masing-masing. Caranya adalah disajikan daftar tugas, kemudian setiap anggota mengurutkan tugas yang paling ia senangi sampai tugas yang paling tidak ia senangi, tidak peduli apakah dia mampu melakukannya (karena akan dilatih). Yang penting adalah minat dan kesediaan Anda melakukan tugas-tugas tersebut.</p>
+                                <p>Urutkan pilihan tugas, mulai dari yang paling Anda senangi (nomor 1), nomor 2 Anda senangi, nomor 3, dan seterusnya, sampai pilihan paling akhir nomor 12, ialah yang paling tidak Anda senangi. Kemudian teliti kembali, jangan sampai ada yang Anda lewati, sebab keberhasilan WKN ini sangat tergantung pada kesadaran anggota.</p>',
                 'is_active' => true,
             ],
             [
                 'name' => 'EPI',
                 'order' => 27,
                 'token' => '27',
-                'introduce' => 'ini introduce',
+                'introduce' => '<p>Berikut ini, terdapat pertanyaan-pertanyaan yang menyangkut tingkah laku, perasaan dan perbuatan Anda. Di bawah setiap pertanyaan disediakan tempat untuk menjawab:</p>
+                                <p style="text-align: center;"><strong><span style="color: #4caf50;">YA </span>atau <span style="color: #ef5350;">TIDAK</span></strong></p>
+                                <p style="text-align: justify;">Hendaknya Anda mencoba menentukan jawaban manakah yang paling tepat dengan yang Anda rasakan atau Anda lakukan, pilihlah opsi "<strong><span style="color: #4caf50;">YA</span></strong>", jika jawaban Anda adalah YA, dan&nbsp; pilihlah opsi "<strong><span style="color: #ef5350;">TIDAK</span></strong>" jika jawaban Anda adalah TIDAK.</p>
+                                <p style="text-align: justify;">Pilihlah jawaban setiap Anda selesai membaca pertanyaan sehingga Anda <strong>tidak perlu untuk melakukan proses pemikiran panjang</strong></p>
+                                <p style="text-align: justify;">Untuk menyelesaikan daftar pertanyaan ini diperlukan waktu yang terbatas. Silahkan Anda membaca halaman berikutnya dan mulailah menjawab setiap pertanyaan. <strong>Dalam hal ini tidak ada penilaian yang salah terhadap tiap jawaban yang Anda berikan</strong>. Pertanyaan-pertanyaan ini bukanlah untuk tes inteligensi atau tes kecakapan, hal ini melainkan semata-mata bertujuan hanya untuk mengukur cara perilaku, perasaan, dan pikiran Anda</p>',
                 'is_active' => true,
             ],
             [
                 'name' => 'Biodata Perusahaan',
                 'order' => 22,
                 'token' => '22',
-                'introduce' => 'ini introduce Biodata Perusahaan',
+                'introduce' => null,
                 'is_active' => true,
             ],
             [
                 'name' => 'Biodata Pendidikan',
                 'order' => 23,
                 'token' => '23',
-                'introduce' => 'ini introduce biodata pendidikan',
+                'introduce' => null,
                 'is_active' => true,
             ],
             [
                 'name' => 'Biodata Komunitas',
                 'order' => 24,
                 'token' => '24',
-                'introduce' => 'ini introduce biodata komunitas',
+                'introduce' => null,
                 'is_active' => true,
             ],
             [
                 'name' => 'Biodata Individual',
                 'order' => 25,
                 'token' => '25',
-                'introduce' => 'ini introduce biodata individual',
+                'introduce' => null,
                 'is_active' => true,
             ],
             [
                 'name' => 'Biodata Klinis',
                 'order' => 26,
                 'token' => '26',
-                'introduce' => 'ini introduce biodata klinis',
+                'introduce' => null,
                 'is_active' => true,
             ],
         ];

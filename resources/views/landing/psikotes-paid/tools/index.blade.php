@@ -21,8 +21,8 @@
         <!-- Header & Sambutan -->
         <div class="flex justify-between">
             <div class="mx-8 mt-5">
-                @if (auth()->user()->testimonials)
-                    <button class="flex h-12 w-28 items-center justify-center rounded-xl bg-primary font-semibold text-white disabled:opacity-75 cursor-not-allowed" disabled>Testimoni</button>
+                @if (auth()->user()->testimonials->count() > 0)
+                    <button class="flex h-12 w-28 cursor-not-allowed items-center justify-center rounded-xl bg-primary font-semibold text-white disabled:opacity-75" disabled>Testimoni</button>
                 @else
                     <a href="{{ route("psikotes-paid.testimonial.index") }}" class="flex h-12 w-28 items-center justify-center rounded-xl bg-primary font-semibold text-white transition-all hover:opacity-90">Testimoni</a>
                 @endif
