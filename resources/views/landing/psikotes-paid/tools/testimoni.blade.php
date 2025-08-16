@@ -217,9 +217,9 @@
                 if (!value) {
                     Swal.fire({
                         icon: 'warning',
-                        title: '⚠️ Oops...',
                         text: 'Harap isi jawaban terlebih dahulu.',
-                        confirmButtonText: 'OK'
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#106681';
                     });
                     return false;
                 }
