@@ -6,7 +6,7 @@
 )
 
 @section("content")
-    <section class="flex w-full">
+    <section class="flex w-full select-text">
         <div class="flex w-full flex-col">
             <div class="w-full">
                 <div class="py-4 md:pb-7 md:pt-5">
