@@ -41,10 +41,14 @@
                                         <td class="text-center">{{ \Carbon\Carbon::parse($attempt->created_at)->format("H:i:s") }} - {{ \Carbon\Carbon::parse($attempt->updated_at)->format("H:i:s") }}</td>
                                         <td class="text-center">
                                             <div class="inline-flex items-center justify-center">
-                                                @if ($attempt->is_completed)
-                                                    <span class="inline-flex items-center rounded-[5px] bg-[#04CA00] px-2.5 py-0.5 text-[15px] font-medium text-white">Finished</span>
-                                                @else
-                                                    <span class="inline-flex items-center rounded-[5px] bg-[#75BADB] px-2.5 py-0.5 text-[15px] font-medium text-white">Progress</span>
+                                                @if ($attempt->status === 'completed')
+                                                    <span class="inline-flex items-center rounded-[5px] bg-[#04CA00] px-2.5 py-0.5 text-[15px] font-medium text-white">
+                                                        Finished
+                                                    </span>
+                                                @elseif ($attempt->status === 'in_progress')
+                                                    <span class="inline-flex items-center rounded-[5px] bg-[#75BADB] px-2.5 py-0.5 text-[15px] font-medium text-white">
+                                                        Progress
+                                                    </span>
                                                 @endif
                                             </div>
                                         </td>
