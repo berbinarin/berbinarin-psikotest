@@ -17,7 +17,9 @@
                 <p class="select-text mb-1 text-[12px] font-semibold">Tanggal Pengerjaan</p>
                 <p class="select-text mb-1 text-[16px]">{{ \Carbon\Carbon::parse($attempt->created_at)->format("d F Y") }}</p>
                 <p class="select-text mb-1 text-[12px] font-semibold">Status</p>
-                <p>{{ $attempt->status ?? "Finished" }}</p>
+                <p>
+                    {{ $attempt->status === 'in_progress' ? 'Dalam Proses Pengerjaan' : ($attempt->status ?? 'Finished') }}
+                </p>
             </div>
         </div>
     </div>
