@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard\PTPM\PsikotesFree\FreeProfileData;
 use Illuminate\Support\Facades\DB;
 use App\Models\PsikotesFreeProfile;
 use App\Models\PsikotesFreeAttempt;
+use App\Models\Tool;
 use App\Http\Controllers\Controller;
 use App\Services\Landing\PsikotesFree\ResultService;
 
@@ -24,7 +25,9 @@ class PsikotesFreeProfileController extends Controller
     {
         $attempt = PsikotesFreeAttempt::with('responses')->find($id);
 
-        $data = $this->resultService->resultData($attempt);
+        $tool = Tool::where('name', 'OCEAN')->first();
+
+        $data = $this->resultService->resultData($tool, $attempt);
 
         $dimensions = ['extraversion', 'agreeableness', 'neuroticism', 'conscientiousness', 'openness'];
         $percentages = [];
