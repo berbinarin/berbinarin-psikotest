@@ -23,10 +23,10 @@
                         <div class="flex h-full items-center justify-center">
                             <div id="testimoni-container" class="flex h-full w-full flex-col">
                                 <div class="my-7 flex w-full items-center justify-center">
-                                    <h1 id="question" class="w-[395px] text-center text-base font-bold" style="font-family: 'Plus Jakarta Sans', sans-serif"></h1>
+                                    <h1 id="question" class="text-center text-base font-bold" style="font-family: 'Plus Jakarta Sans', sans-serif"></h1>
                                 </div>
 
-                                <div class="flex h-full items-start justify-center rounded-xl pt-10">
+                                <div class="flex h-full items-start justify-center rounded-xl pt-5">
                                     <form method="POST" action="{{ route("psikotes-paid.testimonial.store") }}" id="testimoni-form" class="flex h-full flex-col justify-between px-6 pb-6">
                                         @csrf
 
@@ -106,8 +106,6 @@
                                 <img src="{{ asset("assets/landing/images/psikotes-paid/congrats.png") }}" alt="Congrats" class="h-auto w-[638px] -mt-" />
                                 <h1 class="mb-6 text-m font-semibold text-black">
                                     Terima kasih atas testimoni yang Anda diberikan!
-                                    <br />
-                                    Masukanmu sangat berarti bagi kami untuk terus berkembang.
                                 </h1>
                                 <a href="{{ route("psikotes-paid.tools.index", ["testimoni" => "selesai"]) }}" class="flex justify-center items-center mb-6 mt-2 h-[43.67px] w-[160px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Kembali ke Beranda</a>
                             </div>
@@ -129,9 +127,9 @@
                 { text: 'Apakah Anda merasa kesulitan dalam menjawab pernyataan yang diberikan?', type: 'multiple_choice' },
                 { text: 'Apakah terdapat kata-kata yang membingungkan?', type: 'multiple_choice' },
                 { text: 'Pada bagian pertanyaan manakah terdapat kata-kata/kalimat yang membingungkan/kurang jelas?', type: 'essay' },
-                { text: 'Jika Anda merasa kesulitan silakan tuliskan alasannya dibawah ini (Jika tidak, berikan tanda "-")', type: 'essay' },
-                { text: 'Berapa rating yang diberikan secara keseluruhan untuk Tes yang telah dilaksanakan? (1-5)', type: 'likert', options:['Kurang Baik', 'Sangat Baik'] },
-                { text: 'Masukan atau saran untuk Tes yang telah dilaksanakan (Jika tidak ada, berikan tanda "-")', type: 'essay' },
+                { text: 'Jika Anda merasa kesulitan silakan tuliskan alasannya dibawah ini <br/> (Jika tidak, berikan tanda "-")', type: 'essay' },
+                { text: 'Berapa rating yang diberikan secara keseluruhan untuk Tes yang telah dilaksanakan?', type: 'likert', options:['Kurang Baik', 'Sangat Baik'] },
+                { text: 'Masukan atau saran untuk Tes yang telah dilaksanakan <br/> (Jika tidak ada, berikan tanda "-")', type: 'essay' },
             ];
 
             let currentQuestionIndex = 0;
