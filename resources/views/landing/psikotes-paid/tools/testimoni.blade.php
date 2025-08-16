@@ -219,7 +219,7 @@
                         icon: 'warning',
                         text: 'Harap isi jawaban terlebih dahulu.',
                         confirmButtonText: 'OK',
-                        confirmButtonColor: '#106681';
+                        confirmButtonColor: '#106681'
                     });
                     return false;
                 }
