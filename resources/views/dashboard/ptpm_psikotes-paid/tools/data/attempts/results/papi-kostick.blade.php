@@ -1,4 +1,4 @@
-<div class="flex w-full flex-col gap-5 md:flex-row">
+<div class="flex w-full flex-col gap-5 md:flex-row select-all">
     <!-- Kiri: Biodata & Radar -->
     <div class="flex w-full flex-col gap-6 md:w-1/4">
         <!-- Radar -->
