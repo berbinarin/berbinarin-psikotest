@@ -106,6 +106,56 @@
 @endsection
 
 @push("script")
+    {{-- Sweet Alert Selesai Tes --}}
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const tesStatus = urlParams.get('tes');
+
+        if (tesStatus === 'selesai') {
+            Swal.fire({
+                title: 'Tes sudah selesai!',
+                text: 'Hasil tes kamu sudah tersimpan.',
+                icon: 'success',
+                confirmButtonText: 'Oke',
+                customClass: {
+                    popup: 'rounded-xl px-6 pt-6 pb-6',
+                    confirmButton: 'mt-6 rounded-md bg-[#3986A3] px-[112px] py-[10px] text-[15px] font-extrabold text-white',
+                },
+                backdrop: 'rgba(0,0,0,0.5)',
+            }).then(() => {
+                // Hapus query param biar tidak muncul lagi saat reload
+                const url = new URL(window.location.href);
+                url.searchParams.delete('tes');
+                window.history.replaceState({}, document.title, url.toString());
+            });
+        }
+    </script>
+
+        {{-- Sweet Alert Selesai Tes --}}
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const tesStatus = urlParams.get('testimoni');
+
+        if (tesStatus === 'selesai') {
+            Swal.fire({
+                title: 'Tes sudah selesai!',
+                text: 'Hasil tes kamu sudah tersimpan.',
+                icon: 'success',
+                confirmButtonText: 'Oke',
+                customClass: {
+                    popup: 'rounded-xl px-6 pt-6 pb-6',
+                    confirmButton: 'mt-6 rounded-md bg-[#3986A3] px-[112px] py-[10px] text-[15px] font-extrabold text-white',
+                },
+                backdrop: 'rgba(0,0,0,0.5)',
+            }).then(() => {
+                // Hapus query param biar tidak muncul lagi saat reload
+                const url = new URL(window.location.href);
+                url.searchParams.delete('tes');
+                window.history.replaceState({}, document.title, url.toString());
+            });
+        }
+    </script>
+
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
