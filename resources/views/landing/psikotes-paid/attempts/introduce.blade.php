@@ -19,7 +19,7 @@
                     </div>
 
                     <!-- Judul tengah -->
-                    <h1 class="absolute left-1/2 top-[65%] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text font-plusJakartaSans text-[26.67px] font-bold text-transparent">Tes 01</h1>
+                    <h1 class="absolute left-1/2 top-[65%] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text font-plusJakartaSans text-[26.67px] font-bold text-transparent">Tes {{ str_pad($tool->order, 2, "0", STR_PAD_LEFT) }}</h1>
                 </div>
 
                 <!-- Teks dan tombol -->
