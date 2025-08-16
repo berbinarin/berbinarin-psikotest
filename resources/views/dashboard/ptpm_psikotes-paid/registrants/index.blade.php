@@ -36,7 +36,18 @@
                         <tbody>
                             @foreach ($registrants as $registrant)
                                 <tr id="" class="data-consume">
-                                    <td class="text-center">{{ $loop->iteration }}</td>
+                                    <td class="text-center">
+                                        @if($registrant->user->testimonials->isNotEmpty())
+                                            <div class=" inline-flex items-center justify-center rounded p-2"
+                                                style="background-color: #106681">
+                                                <i class="bx text-white text-center">{{ $loop->iteration }}</i>
+                                            </div>
+                                        @else
+                                            <span class="inline-flex items-center justify-center rounded px-3 py-1 text-black #3986A3">
+                                                {{ $loop->iteration }}
+                                            </span>
+                                        @endif
+                                    </td>
                                     <td>{{ $registrant->user->name }}</td>
                                     <td>{{ $registrant->user->username }}</td>
                                     <td>berbinar</td>
