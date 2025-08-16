@@ -47,7 +47,7 @@
             <div class="mx-8 mt-5">
                 <form action="{{ route("auth.logout") }}" method="POST">
                     @csrf
-                    <button type="submit" class="flex h-12 w-28 items-center justify-center rounded-xl bg-primary font-semibold text-white transition-all hover:opacity-90">Logout</button>
+                    <button type="submit" class="flex h-12 w-28 items-center justify-center rounded-xl bg-primary font-semibold text-white transition-all hover:opacity-90">Keluar</button>
                 </form>
             </div>
         </div>

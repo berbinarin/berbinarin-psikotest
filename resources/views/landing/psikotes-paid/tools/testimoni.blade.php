@@ -215,7 +215,12 @@
 
                 // Validasi: pastikan ada jawaban yang diisi
                 if (!value) {
-                    alert('Harap isi jawaban terlebih dahulu.');
+                    Swal.fire({
+                        icon: 'warning',
+                        title: '⚠️ Oops...',
+                        text: 'Harap isi jawaban terlebih dahulu.',
+                        confirmButtonText: 'OK'
+                    });
                     return false;
                 }
 
