@@ -10,7 +10,7 @@ class TestimonialController extends Controller
 {
     public function index()
     {
-        $testimonials = Testimonial::with('userPsikotesPaid')->get();
+        $testimonials = Testimonial::with('user')->get();
         return view('landing.psikotes-paid.tools.testimoni', compact('testimonials'));
     }
 
