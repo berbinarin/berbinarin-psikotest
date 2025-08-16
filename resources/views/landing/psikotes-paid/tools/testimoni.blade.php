@@ -39,13 +39,13 @@
                                             {{-- Tipe Pilihan Ganda --}}
 
                                             <div id="multiple-choice-container" class="flex hidden flex-wrap justify-center gap-4">
-                                                <label class="relative h-[107.33px] w-[197.33px] cursor-pointer">
+                                                {{-- <label class="relative h-[107.33px] w-[197.33px] cursor-pointer">
                                                     <input type="radio" name="multiple_choice" value="Ya" class="peer absolute h-full w-full opacity-0 cursor-pointer" />
                                                     <div class="flex h-full w-full items-center justify-center rounded-[6.67px] border-[1.33px] border-[#555555] bg-white font-plusJakartaSans text-[13.33px] font-semibold text-black transition-colors duration-200 peer-checked:border-blue-700 peer-checked:bg-[#106681]/20">Ya</div>
                                                     <img src="{{ asset("assets/landing/icons/centang.png") }}" class="absolute right-2 top-2 h-5 w-5 opacity-0 transition-opacity duration-200 peer-checked:opacity-100" alt="Checkmark" />
                                                 </label>
                                                 <label class="relative h-[107.33px] w-[197.33px] cursor-pointer">
-                                                    <input type="radio" name="multiple_choice" value="Tidak" class="peer absolute h-full w-full opacity-0 cursor-pointer" />
+                                                    <input type="radio" name="multiple_choice" value="Mungkin" class="peer absolute h-full w-full opacity-0 cursor-pointer" />
                                                     <div class="flex h-full w-full items-center justify-center rounded-[6.67px] border-[1.33px] border-[#555555] bg-white font-plusJakartaSans text-[13.33px] font-semibold text-black transition-colors duration-200 peer-checked:border-blue-700 peer-checked:bg-[#106681]/20">Mungkin</div>
                                                     <img src="{{ asset("assets/landing/icons/centang.png") }}" class="absolute right-2 top-2 h-5 w-5 opacity-0 transition-opacity duration-200 peer-checked:opacity-100" alt="Checkmark" />
                                                 </label>
@@ -53,6 +53,27 @@
                                                     <input type="radio" name="multiple_choice" value="Tidak" class="peer absolute h-full w-full opacity-0 cursor-pointer" />
                                                     <div class="flex h-full w-full items-center justify-center rounded-[6.67px] border-[1.33px] border-[#555555] bg-white font-plusJakartaSans text-[13.33px] font-semibold text-black transition-colors duration-200 peer-checked:border-blue-700 peer-checked:bg-[#106681]/20">Tidak</div>
                                                     <img src="{{ asset("assets/landing/icons/centang.png") }}" class="absolute right-2 top-2 h-5 w-5 opacity-0 transition-opacity duration-200 peer-checked:opacity-100" alt="Checkmark" />
+                                                </label> --}}
+                                                <label class="relative flex h-[62.67px] w-[520.33px] cursor-pointer items-center">
+                                                    <input type="radio" name="multiple_choice" value="Ya" class="peer absolute h-full w-full opacity-0" />
+                                                    <div class="flex h-full w-full items-center justify-start rounded-[13px] border-[1.33px] border-[#9E9E9E] font-plusJakartaSans text-[13.33px] font-semibold text-black transition-colors duration-200 peer-checked:bg-[#3986A3] peer-checked:text-white">
+                                                        <div class="ml-4 mr-4 h-5 w-5 rounded-full border-2 border-[#9E9E9E] bg-white peer-checked:border-4 peer-checked:border-white peer-checked:bg-[#3986A3]"></div>
+                                                        Ya
+                                                    </div>
+                                                </label>
+                                                <label class="relative flex h-[62.67px] w-[520.33px] cursor-pointer items-center">
+                                                    <input type="radio" name="multiple_choice" value="Mungkin" class="peer absolute h-full w-full opacity-0" />
+                                                    <div class="flex h-full w-full items-center justify-start rounded-[13px] border-[1.33px] border-[#9E9E9E] font-plusJakartaSans text-[13.33px] font-semibold text-black transition-colors duration-200 peer-checked:bg-[#3986A3] peer-checked:text-white">
+                                                        <div class="ml-4 mr-4 h-5 w-5 rounded-full border-2 border-[#9E9E9E] bg-white peer-checked:border-4 peer-checked:border-white peer-checked:bg-[#3986A3]"></div>
+                                                        Mungkin
+                                                    </div>
+                                                </label>
+                                                <label class="relative flex h-[62.67px] w-[520.33px] cursor-pointer items-center">
+                                                    <input type="radio" name="multiple_choice" value="Tidak" class="peer absolute h-full w-full opacity-0" />
+                                                    <div class="flex h-full w-full items-center justify-start rounded-[13px] border-[1.33px] border-[#9E9E9E] font-plusJakartaSans text-[13.33px] font-semibold text-black transition-colors duration-200 peer-checked:bg-[#3986A3] peer-checked:text-white">
+                                                        <div class="ml-4 mr-4 h-5 w-5 rounded-full border-2 border-[#9E9E9E] bg-white peer-checked:border-4 peer-checked:border-white peer-checked:bg-[#3986A3]"></div>
+                                                        Tidak
+                                                    </div>
                                                 </label>
                                             </div>
 
@@ -61,14 +82,14 @@
                                                 <div class="mt-4 flex w-[600px] justify-around">
                                                     <label class="flex flex-1 cursor-pointer flex-col items-center gap-4" for="likert-1">
                                                         <input type="radio" id="likert-1" name="likert_scale" value="1" class="h-10 w-10 text-[#106681] focus:ring-0" />
-                                                        <span class="font-semibold">Kurang Jelas</span>
+                                                        <span id="likert-left-label" class="font-semibold"></span>
                                                     </label>
                                                     <label class="flex-1 cursor-pointer" for="likert-2"><input type="radio" id="likert-2" name="likert_scale" value="2" class="h-10 w-10 text-[#106681] focus:ring-0" /></label>
                                                     <label class="flex-1 cursor-pointer" for="likert-3"><input type="radio" id="likert-3" name="likert_scale" value="3" class="h-10 w-10 text-[#106681] focus:ring-0" /></label>
                                                     <label class="flex-1 cursor-pointer" for="likert-4"><input type="radio" id="likert-4" name="likert_scale" value="4" class="h-10 w-10 text-[#106681] focus:ring-0" /></label>
                                                     <label class="flex flex-1 cursor-pointer flex-col items-center gap-4" for="likert-5">
                                                         <input type="radio" id="likert-5" name="likert_scale" value="5" class="h-10 w-10 text-[#106681] focus:ring-0" />
-                                                        <span class="font-semibold">Sangat Jelas</span>
+                                                        <span id="likert-right-label"  class="font-semibold"></span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -160,6 +181,9 @@
                     multipleChoiceContainer.classList.remove('hidden');
                 } else if (currentQuestion.type === 'likert') {
                     likertContainer.classList.remove('hidden');
+
+                    document.getElementById('likert-left-label').innerText = currentQuestion.options[0] ?? '';
+                    document.getElementById('likert-right-label').innerText = currentQuestion.options[1] ?? '';
                 }
 
                 // Ubah teks tombol menjadi 'Selesai' jika ini adalah pertanyaan terakhir
