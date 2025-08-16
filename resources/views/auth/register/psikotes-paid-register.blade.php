@@ -387,12 +387,22 @@
             const phone_number = form.phone_number.value.trim();
             const reason = form.reason.value.trim();
 
+            if (phone_number.length < 8) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Nomor WhatsApp tidak valid',
+                    text: 'Nomor WhatsApp harus memiliki minimal 8 digit.',
+                    confirmButtonColor: '#3986A3',
+                });
+                return;
+            }
+
             // Cek input kosong
             if (!psikotes_date || !psikotes_time || !service || !test_category_id || !test_type_id || !name || !email || !age || !domicile || !gender || !phone_number || !reason) {
                 Swal.fire({
                     icon: 'warning',
-                    title: 'Form belum lengkap',
-                    text: 'Mohon isi semua field yang wajib sebelum mengirim.',
+                    title: 'Form Belum Lengkap',
+                    text: 'Mohon pastikan semua bagian telah diisi.',
                     confirmButtonColor: '#3986A3',
                 });
                 return;

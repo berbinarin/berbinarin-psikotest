@@ -81,8 +81,8 @@
                 <button @click="open = false" class="absolute right-3 top-3 text-gray-400 hover:text-gray-600">✕</button>
 
                 <div class="flex flex-col items-center px-4 py-4">
-                    <h2 class="mb-[13.33px] self-start font-plusJakartaSans text-[14.67px] font-medium text-black">Token Akses</h2>
-                    <span class="mb-5 text-center font-plusJakartaSans text-xs font-normal text-[#344054]">Masukkan token akses untuk memulai tes!</span>
+                    <h2 class="mb-[13.33px] self-start font-plusJakartaSans font-medium text-black">Token Akses</h2>
+                    <span class="mb-4 text-center font-plusJakartaSans text-sm font-normal text-[#344054]">Masukkan token akses untuk memulai tes!</span>
 
                     <form action="{{ route("psikotes-paid.tools.verify-token") }}" method="POST">
                         @csrf

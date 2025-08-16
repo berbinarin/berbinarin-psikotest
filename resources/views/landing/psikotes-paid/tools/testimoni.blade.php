@@ -16,7 +16,7 @@
                             <img src="{{ asset("assets/auth/images/psikotest.png") }}" class="h-[34.36px] w-[33.36px]" />
                         </div>
                     </div>
-                    <h1 class="absolute left-1/2 top-[65%] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text font-plusJakartaSans text-[26.67px] font-bold text-transparent">Tes 01</h1>
+                    <h1 class="absolute left-1/2 top-[65%] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text font-plusJakartaSans text-[26.67px] font-bold text-transparent">Testimoni</h1>
                 </div>
                 <div class="mx-auto flex h-full w-[565.33px] flex-col items-center gap-8 px-6 pt-7">
                     <div class="mx-auto flex w-full flex-1 flex-col gap-4">
@@ -46,6 +46,11 @@
                                                 </label>
                                                 <label class="relative h-[107.33px] w-[197.33px] cursor-pointer">
                                                     <input type="radio" name="multiple_choice" value="Tidak" class="peer absolute h-full w-full opacity-0 cursor-pointer" />
+                                                    <div class="flex h-full w-full items-center justify-center rounded-[6.67px] border-[1.33px] border-[#555555] bg-white font-plusJakartaSans text-[13.33px] font-semibold text-black transition-colors duration-200 peer-checked:border-blue-700 peer-checked:bg-[#106681]/20">Mungkin</div>
+                                                    <img src="{{ asset("assets/landing/icons/centang.png") }}" class="absolute right-2 top-2 h-5 w-5 opacity-0 transition-opacity duration-200 peer-checked:opacity-100" alt="Checkmark" />
+                                                </label>
+                                                <label class="relative h-[107.33px] w-[197.33px] cursor-pointer">
+                                                    <input type="radio" name="multiple_choice" value="Tidak" class="peer absolute h-full w-full opacity-0 cursor-pointer" />
                                                     <div class="flex h-full w-full items-center justify-center rounded-[6.67px] border-[1.33px] border-[#555555] bg-white font-plusJakartaSans text-[13.33px] font-semibold text-black transition-colors duration-200 peer-checked:border-blue-700 peer-checked:bg-[#106681]/20">Tidak</div>
                                                     <img src="{{ asset("assets/landing/icons/centang.png") }}" class="absolute right-2 top-2 h-5 w-5 opacity-0 transition-opacity duration-200 peer-checked:opacity-100" alt="Checkmark" />
                                                 </label>
@@ -56,7 +61,7 @@
                                                 <div class="mt-4 flex w-[600px] justify-around">
                                                     <label class="flex flex-1 cursor-pointer flex-col items-center gap-4" for="likert-1">
                                                         <input type="radio" id="likert-1" name="likert_scale" value="1" class="h-10 w-10 text-[#106681] focus:ring-0" />
-                                                        <span class="font-semibold">Tidak Jelas</span>
+                                                        <span class="font-semibold">Kurang Jelas</span>
                                                     </label>
                                                     <label class="flex-1 cursor-pointer" for="likert-2"><input type="radio" id="likert-2" name="likert_scale" value="2" class="h-10 w-10 text-[#106681] focus:ring-0" /></label>
                                                     <label class="flex-1 cursor-pointer" for="likert-3"><input type="radio" id="likert-3" name="likert_scale" value="3" class="h-10 w-10 text-[#106681] focus:ring-0" /></label>
@@ -78,8 +83,8 @@
 
                             <div id="thanks-section" class="hidden flex gap-4 flex-col items-center justify-center px-6 text-center">
                                 <img src="{{ asset("assets/landing/images/psikotes-paid/congrats.png") }}" alt="Congrats" class="h-auto w-[638px] -mt-" />
-                                <h1 class="mb-6 text-sm font-semibold text-black">
-                                    Terima kasih SobatBinar atas testimoni yang diberikan!
+                                <h1 class="mb-6 text-m font-semibold text-black">
+                                    Terima kasih atas testimoni yang Anda diberikan!
                                     <br />
                                     Masukanmu sangat berarti bagi kami untuk terus berkembang.
                                 </h1>
@@ -98,13 +103,13 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Daftar pertanyaan dan tipenya
             const questions = [
-                { text: 'Apakah instruksi yang dituliskan sudah cukup jelas?', type: 'likert' },
-                { text: 'Apakah daftar tugas yang diberikan mudah untuk dipahami?', type: 'likert' },
-                { text: 'Apakah Anda merasa kesulitan dalam menjawab pernyataan yang diberikan?', type: 'likert' },
+                { text: 'Apakah instruksi yang dituliskan sudah cukup jelas?', type: 'likert', options:['Kurang Jelas', 'Sangat Jelas'] },
+                { text: 'Apakah daftar tugas yang diberikan mudah untuk dipahami?', type: 'likert', options:['Sulit Dipahami', 'Sangat Mudah Dipahami'] },
+                { text: 'Apakah Anda merasa kesulitan dalam menjawab pernyataan yang diberikan?', type: 'multiple_choice' },
                 { text: 'Apakah terdapat kata-kata yang membingungkan?', type: 'multiple_choice' },
                 { text: 'Pada bagian pertanyaan manakah terdapat kata-kata/kalimat yang membingungkan/kurang jelas?', type: 'essay' },
                 { text: 'Jika Anda merasa kesulitan silakan tuliskan alasannya dibawah ini (Jika tidak, berikan tanda "-")', type: 'essay' },
-                { text: 'Berapa rating yang diberikan secara keseluruhan untuk Tes yang telah dilaksanakan? (1-5)', type: 'likert' },
+                { text: 'Berapa rating yang diberikan secara keseluruhan untuk Tes yang telah dilaksanakan? (1-5)', type: 'likert', options:['Kurang Baik', 'Sangat Baik'] },
                 { text: 'Masukan atau saran untuk Tes yang telah dilaksanakan (Jika tidak ada, berikan tanda "-")', type: 'essay' },
             ];
 

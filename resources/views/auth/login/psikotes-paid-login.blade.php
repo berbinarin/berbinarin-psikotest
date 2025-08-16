@@ -26,8 +26,8 @@
                         <div class="h-[246.46px] w-[320px] rounded-[10px] border border-[#E0E0E0] bg-white font-plusJakartaSans drop-shadow-lg md:h-[293px] md:w-[450.67px] md:rounded-[13.33px]">
                             <!-- Title -->
                             <div class="mt-[21.92px] flex flex-col items-center justify-center gap-[2.19px] text-center md:mt-[26.67px] md:gap-[2.67px]">
-                                <h1 class="text-xl font-bold text-black md:text-[26px]">Log In</h1>
-                                <h5 class="text-xs font-normal text-[#757575] md:text-[11]">Selamat Datang di Psikotest Berbinar</h5>
+                                <h1 class="text-xl font-bold text-black md:text-[26px]">Masuk</h1>
+                                <h5 class="text-sm font-normal text-[#757575] md:text-[11]">Selamat Datang di Psikotest Berbinar</h5>
                             </div>
                             <!-- Form pengisian -->
                             <div class="mt-[21.92px] flex items-center justify-center md:mt-[26.67px]">
