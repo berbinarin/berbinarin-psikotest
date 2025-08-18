@@ -20,7 +20,11 @@ class RegistrantProfile extends Model
         'phone_number',
         'psikotes_service',
         'reason',
-        'schedule'
+        'schedule',
+        'kategori_voucher',
+        'code_voucher',
+        'presentase_diskon',
+        'bukti_kartu_pelajar'
     ];
 
     public function user(): BelongsTo
