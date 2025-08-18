@@ -277,7 +277,7 @@
             options = [
                 { value: 'individu', text: 'Individu' },
                 { value: 'komunitas', text: 'Komunitas' },
-                { value: 'instansi_pendidikan', text: 'Instansi Pendidikan' },
+                { value: 'instansi pendidikan', text: 'Instansi Pendidikan' },
                 { value: 'perusahaan', text: 'Perusahaan' }
             ];
         }
