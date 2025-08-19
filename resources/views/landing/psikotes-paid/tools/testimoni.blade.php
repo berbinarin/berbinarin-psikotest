@@ -36,8 +36,21 @@
                                                 <textarea name="essay" rows="6" class="rounded w-[520px] border-0 shadow-inner bg-slate-100 focus:ring-slate-200" placeholder="Tulis disini..."></textarea>
                                             </div>
 
-                                            {{-- Tipe Pilihan Ganda --}}
+                                            {{-- Tipe Pilihan Ya atau Tidak --}}
+                                            <div id="binary-choice-container" class="flex hidden flex-wrap justify-center gap-4">
+                                                <label class="relative h-[107.33px] w-[197.33px] cursor-pointer">
+                                                    <input type="radio" name="binary_choice" value="Ya" class="peer absolute h-full w-full opacity-0" />
+                                                    <div class="flex h-full w-full items-center justify-center rounded-[6.67px] border-[1.33px] border-[#555555] bg-white font-plusJakartaSans text-[13.33px] font-semibold text-black transition-colors duration-200 peer-checked:border-blue-700 peer-checked:bg-[#106681]/20">Ya</div>
+                                                    <img src="{{ asset("assets/landing/icons/centang.png") }}" class="absolute right-2 top-2 h-5 w-5 opacity-0 transition-opacity duration-200 peer-checked:opacity-100" alt="Checkmark" />
+                                                </label>
+                                                <label class="relative h-[107.33px] w-[197.33px] cursor-pointer">
+                                                    <input type="radio" name="binary_choice" value="Tidak" class="peer absolute h-full w-full opacity-0" />
+                                                    <div class="flex h-full w-full items-center justify-center rounded-[6.67px] border-[1.33px] border-[#555555] bg-white font-plusJakartaSans text-[13.33px] font-semibold text-black transition-colors duration-200 peer-checked:border-blue-700 peer-checked:bg-[#106681]/20">Tidak</div>
+                                                    <img src="{{ asset("assets/landing/icons/centang.png") }}" class="absolute right-2 top-2 h-5 w-5 opacity-0 transition-opacity duration-200 peer-checked:opacity-100" alt="Checkmark" />
+                                                </label>
+                                            </div>
 
+                                            {{-- Tipe Pilihan Ganda --}}
                                             <div id="multiple-choice-container" class="flex hidden flex-wrap justify-center gap-4">
                                                 {{-- <label class="relative h-[107.33px] w-[197.33px] cursor-pointer">
                                                     <input type="radio" name="multiple_choice" value="Ya" class="peer absolute h-full w-full opacity-0 cursor-pointer" />
@@ -127,9 +140,13 @@
                 { text: 'Apakah Anda merasa kesulitan dalam menjawab pernyataan yang diberikan?', type: 'multiple_choice' },
                 { text: 'Apakah terdapat kata-kata yang membingungkan?', type: 'multiple_choice' },
                 { text: 'Pada bagian pertanyaan manakah terdapat kata-kata/kalimat yang membingungkan/kurang jelas?', type: 'essay' },
-                { text: 'Jika Anda merasa kesulitan silakan tuliskan alasannya dibawah ini <br/> (Jika tidak, berikan tanda "-")', type: 'essay' },
+                { text: 'Jika Anda merasa kesulitan silakan tuliskan alasannya dibawah ini.\n(Jika tidak, berikan tanda "-")', type: 'essay' },
                 { text: 'Berapa rating yang diberikan secara keseluruhan untuk Tes yang telah dilaksanakan?', type: 'likert', options:['Kurang Baik', 'Sangat Baik'] },
-                { text: 'Masukan atau saran untuk Tes yang telah dilaksanakan <br/> (Jika tidak ada, berikan tanda "-")', type: 'essay' },
+                { text: 'Masukan atau saran untuk Tes yang telah dilaksanakan.\n(Jika tidak ada, berikan tanda "-")', type: 'essay' },
+                { text: 'Apakah tampilan antarmuka (Kombinasi warna, font, dan tata letka) mudah dipahami dan navigasinya jelas?', type: 'likert', options:['Tidak Jelas', 'Sangat Jelas'] },
+                { text: 'Jika terdapat tampilan yang menurut Anda kurang nyaman atau membingungkan, mohon jelaskan.\n(Jika tidak berikan tanda "-"),', type: 'essay' },
+                { text: 'Apakah selama menjalankan test Anda pernah mengalami kendala seperti halaman lambat dimuat atau error?', type: 'binary_choice' },
+                { text: 'Jika pernah mengalami kendala performa, mohon jelaskan apa kendalanya.\n(Jika tidak, berikan tanda "-")', type: 'essay' }
             ];
 
             let currentQuestionIndex = 0;
@@ -143,10 +160,12 @@
             const essayContainer = document.getElementById('essay-container');
             const multipleChoiceContainer = document.getElementById('multiple-choice-container');
             const likertContainer = document.getElementById('likert-container');
+            const binaryChoiceContainer = document.getElementById('binary-choice-container');
 
             const essayInput = essayContainer.querySelector('textarea');
             const mcInputs = multipleChoiceContainer.querySelectorAll('input[type="radio"]');
             const likertInputs = likertContainer.querySelectorAll('input[type="radio"]');
+            const bcInputs = likertContainer.querySelectorAll('input[type="radio"]');
 
             /**
              * Menampilkan pertanyaan saat ini berdasarkan index.
@@ -166,11 +185,13 @@
                 essayContainer.classList.add('hidden');
                 multipleChoiceContainer.classList.add('hidden');
                 likertContainer.classList.add('hidden');
+                binaryChoiceContainer.classList.add('hidden');
 
                 // Reset nilai input dari sesi sebelumnya
                 essayInput.value = '';
                 mcInputs.forEach((input) => (input.checked = false));
                 likertInputs.forEach((input) => (input.checked = false));
+                bcInputs.forEach((input) => (input.checked = false));
 
                 // Tampilkan container input yang sesuai dengan tipe pertanyaan
                 if (currentQuestion.type === 'essay') {
@@ -182,6 +203,8 @@
 
                     document.getElementById('likert-left-label').innerText = currentQuestion.options[0] ?? '';
                     document.getElementById('likert-right-label').innerText = currentQuestion.options[1] ?? '';
+                } else if (currentQuestion.type === 'binary_choice') {
+                    binaryChoiceContainer.classList.remove('hidden');
                 }
 
                 // Ubah teks tombol menjadi 'Selesai' jika ini adalah pertanyaan terakhir
@@ -208,6 +231,9 @@
                     if (selected) value = selected.value;
                 } else if (currentQuestion.type === 'likert') {
                     const selected = document.querySelector('input[name="likert_scale"]:checked');
+                    if (selected) value = selected.value;
+                } else if (currentQuestion.type === 'binary_choice') {
+                    const selected = document.querySelector('input[name="binary_choice"]:checked');
                     if (selected) value = selected.value;
                 }
 
