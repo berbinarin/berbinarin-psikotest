@@ -157,15 +157,15 @@ class RegistrantController extends Controller
 
                 if ($user) {
                     // Hapus data response dulu
-                    foreach ($user->psikotesSessions as $attempt) {
+                    foreach ($user->attempts as $attempt) {
                         $attempt->responses()->delete();
                     }
 
                     // Hapus semua attempts
-                    $user->psikotesSessions()->delete();
+                    $user->attempts()->delete();
 
                     // Hapus testimoni
-                    $user->testimoni()->delete();
+                    $user->testimonials()->delete();
 
                     // Hapus user
                     $user->delete();
