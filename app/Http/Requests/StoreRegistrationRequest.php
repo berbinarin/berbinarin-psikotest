@@ -42,8 +42,11 @@ class StoreRegistrationRequest extends FormRequest
             'domicile' => ['required', 'string'],
             'gender' => ['required', 'string', Rule::in(['male', 'female'])],
             'phone_number' => ['required', 'string', 'min:8', 'max:15'],
-            'reason' => ['required', 'string']
-        ];
+            'reason' => ['required', 'string'],
+            'kategori_voucher' => ['nullable'],
+            'code_voucher' => ['nullable'],
+            'presentase_diskon' => ['nullable'],
+            'bukti_kartu_pelajar' => ['nullable', 'file', 'mimes:jpg,jpeg,png', 'max:1024'],        ];
     }
 
     protected function failedValidation(Validator $validator)
