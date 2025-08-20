@@ -20,115 +20,115 @@ class TestTypeSeeder extends Seeder
             [
                 [
                     'test_category_id' => $categories->where('name', 'Komunitas')->first()->id,
-                    'name' => 'Tes kesiapan pernikahan',
+                    'name' => 'Tes Kesiapan Pernikahan',
                     'description' => 'Tes ini bertujuan untuk mengevaluasi kesiapan SobatBinar dalam menjalani pernikahan dengan mengidentifikasi aspek-aspek psikologis dan kepribadian.',
-                    'price' => 299000
+                    'price' => 299999
                 ],
                 [
                     'test_category_id' => $categories->where('name', 'Komunitas')->first()->id,
-                    'name' => 'Tes kesiapan menjadi orang tua',
+                    'name' => 'Tes Kesiapan Menjadi Orang Tua',
                     'description' => 'Tes ini bertujuan untuk menilai kesiapan SobatBinar dalam menjalani peran sebagai orang tua dengan mengidentifikasi aspek kepribadian.',
-                    'price' => 299000
+                    'price' => 299999
                 ],
                 [
                     'test_category_id' => $categories->where('name', 'Komunitas')->first()->id,
-                    'name' => 'Tes kecocokan pasangan',
+                    'name' => 'Tes Kecocokan Pasangan',
                     'description' => 'Tes ini membantu dalam menilai kesesuaian antara dua individu dalam sebuah hubungan dengan mengidentifikasi aspek kepribadian.',
-                    'price' => 299000
+                    'price' => 299999
                 ],
                 [
                     'test_category_id' => $categories->where('name', 'Komunitas')->first()->id,
-                    'name' => 'Tes stress',
+                    'name' => 'Tes Stress',
                     'description' => 'Membantu SobatBinar mengetahui gejala dan tingkat stres yang sedang dialami.',
                     'price' => 159999
                 ],
                 [
                     'test_category_id' => $categories->where('name', 'Komunitas')->first()->id,
-                    'name' => 'Tes depresi',
+                    'name' => 'Tes Depresi',
                     'description' => 'Membantu SobatBinar untuk mengetahui gejala dan tingkat depresi yang dialami.',
                     'price' => 159999
                 ],
                 [
                     'test_category_id' => $categories->where('name', 'Komunitas')->first()->id,
-                    'name' => 'Tes kecemasan',
+                    'name' => 'Tes Kecemasan',
                     'description' => 'Membantu SobatBinar untuk mengetahui gejala dan tingkat kecemasan.',
                     'price' => 159999
                 ],
                 [
                     'test_category_id' => $categories->where('name', 'Komunitas')->first()->id,
-                    'name' => 'Tes kecemasan +',
+                    'name' => 'Tes Kecemasan +',
                     'description' => 'Membantu SobatBinar untuk mengetahui gejala dan tingkat kecemasan disertai dengan konseling bersama psikolog.',
-                    'price' => 299000
+                    'price' => 299999
                 ],
                 [
                     'test_category_id' => $categories->where('name', 'Komunitas')->first()->id,
-                    'name' => 'Tes fungsi kognitif',
+                    'name' => 'Tes Fungsi Kognitif',
                     'description' => 'Tes ini bertujuan untuk mengevaluasi kemampuan kognitif seseorang, seperti kemampuan problem solving, pemahaman, dan proses berpikir.',
                     'price' => 129999
                 ],
                 [
                     'test_category_id' => $categories->where('name', 'Komunitas')->first()->id,
-                    'name' => 'Tes memori',
+                    'name' => 'Tes Memori',
                     'description' => 'Membantu SobatBinar untuk menilai kemampuan memori, seperti daya ingat jangka pendek dan jangka panjang.',
                     'price' => 129999
                 ],
                 [
                     'test_category_id' => $categories->where('name', 'Komunitas')->first()->id,
-                    'name' => 'Tes kepribadian gratis',
+                    'name' => 'Tes Demensia',
+                    'description' => 'Tes ini bertujuan untuk menilai kemungkinan adanya demensia.',
+                    'price' => 199999
+                ],
+                [
+                    'test_category_id' => $categories->where('name', 'Komunitas')->first()->id,
+                    'name' => 'Tes Kepribadian Gratis',
                     'description' => '',
                     'price' => 0
                 ],
                 [
-                    'test_category_id' => $categories->where('name', 'Komunitas')->first()->id,
-                    'name' => 'Tes demensia',
-                    'description' => 'Tes ini bertujuan untuk menilai kemungkinan adanya demensia.',
-                    'price' => 129999
-                ],
-                [
                     'test_category_id' => $categories->where('name', 'Individu')->first()->id,
-                    'name' => 'Tes memori',
+                    'name' => 'Tes Memori',
                     'description' => 'Membantu SobatBinar untuk menilai kemampuan memori, seperti daya ingat jangka pendek dan jangka panjang.',
                     'price' => 129999
                 ],
                 [
                     'test_category_id' => $categories->where('name', 'Individu')->first()->id,
-                    'name' => 'Tes Self-love',
+                    'name' => 'Tes Self-Love',
                     'description' => 'Membantu SobatBinar memahami diri sendiri, khususnya dari aspek hubungan sosial, sikap, dan aktivitas.',
                     'price' => 99000
                 ],
                 [
                     'test_category_id' => $categories->where('name', 'Individu')->first()->id,
-                    'name' => 'Tes demensia',
+                    'name' => 'Tes Demensia',
                     'description' => 'Tes ini bertujuan untuk menilai kemungkinan adanya demensia.',
-                    'price' => 129999
+                    'price' => 199999
                 ],
                 [
                     'test_category_id' => $categories->where('name', 'Individu')->first()->id,
-                    'name' => 'Tes stress',
+                    'name' => 'Tes Stress',
                     'description' => 'Membantu SobatBinar mengetahui gejala dan tingkat stres yang sedang dialami.',
-                    'price' => 159999
+                    'price' => 159000
                 ],
                 [
                     'test_category_id' => $categories->where('name', 'Individu')->first()->id,
-                    'name' => 'Tes depresi',
+                    'name' => 'Tes Depresi',
                     'description' => 'Membantu SobatBinar untuk mengetahui gejala dan tingkat depresi yang dialami.',
-                    'price' => 159999
+                    'price' => 159000
                 ],
                 [
                     'test_category_id' => $categories->where('name', 'Individu')->first()->id,
-                    'name' => 'Tes kecemasan',
+                    'name' => 'Tes Kecemasan',
                     'description' => 'Membantu SobatBinar untuk mengetahui gejala dan tingkat kecemasan.',
-                    'price' => 159999
+                    'price' => 159000
                 ],
                 [
                     'test_category_id' => $categories->where('name', 'Individu')->first()->id,
-                    'name' => 'Tes kecemasan +',
+                    'name' => 'Tes Kecemasan +',
                     'description' => 'Membantu SobatBinar untuk mengetahui gejala dan tingkat kecemasan disertai dengan konseling bersama psikolog.',
                     'price' => 299000
                 ],
                 [
                     'test_category_id' => $categories->where('name', 'Individu')->first()->id,
-                    'name' => 'Tes fungsi kognitif',
+                    'name' => 'Tes Fungsi Kognitif',
                     'description' => 'Tes ini bertujuan untuk mengevaluasi kemampuan kognitif seseorang, seperti kemampuan problem solving, pemahaman, dan proses berpikir.',
                     'price' => 129999
                 ],
@@ -136,13 +136,13 @@ class TestTypeSeeder extends Seeder
                     'test_category_id' => $categories->where('name', 'Instansi Pendidikan')->first()->id,
                     'name' => 'Paket WOW Gaya Belajar',
                     'description' => 'Membantu SobatBinar dalam mengenai gaya belajar yang dominan, sehingga dapat meningkatkan efektivitas dalam belajar.',
-                    'price' => 99000
+                    'price' => 99999
                 ],
                 [
                     'test_category_id' => $categories->where('name', 'Instansi Pendidikan')->first()->id,
                     'name' => 'Paket Hemat Cita-cita',
                     'description' => 'Membantu SobatBinar mengenali jenis pekerjaan yang sesuai dengan kepribadian SobatBinar.',
-                    'price' => 99000
+                    'price' => 99999
                 ],
                 [
                     'test_category_id' => $categories->where('name', 'Instansi Pendidikan')->first()->id,
@@ -152,9 +152,9 @@ class TestTypeSeeder extends Seeder
                 ],
                 [
                     'test_category_id' => $categories->where('name', 'Instansi Pendidikan')->first()->id,
-                    'name' => 'Tes memori',
+                    'name' => 'Tes Memori',
                     'description' => 'Membantu SobatBinar untuk menilai kemampuan memori, seperti daya ingat jangka pendek dan jangka panjang.',
-                    'price' => 129999
+                    'price' => 99999
                 ],
                 [
                     'test_category_id' => $categories->where('name', 'Instansi Pendidikan')->first()->id,
@@ -171,7 +171,7 @@ class TestTypeSeeder extends Seeder
                 [
                     'test_category_id' => $categories->where('name', 'Instansi Pendidikan')->first()->id,
                     'name' => 'Paket Tahu Minat Bakat',
-                    'description' => '',
+                    'description' => 'Membantu SobatBinar dalam mengetahui minat dan bakat yang dimiliki.',
                     'price' => 351000
                 ],
                 [
