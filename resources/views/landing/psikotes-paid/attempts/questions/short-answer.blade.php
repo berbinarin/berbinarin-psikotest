@@ -1,9 +1,13 @@
 <div>
-    <label for="answer" class="text-center">
+    <label for="answer" class="text-left">
         <p class="font-medium">{{ $question->text }}</p>
     </label>
 
     <div class="mt-8 flex justify-center">
-        <input type="text" name="answer" placeholder="Ketik disini..." class="w-[500px] text-wrap rounded-2xl border-none py-4 text-center drop-shadow-[0_4px_30px_rgba(0,0,0,0.25)] placeholder:text-[#d3d3d3] focus:ring-primary" autofocus/>
+        <input type="text" name="answer" placeholder="Ketik disini..." 
+            class="w-[620px] rounded-[13.33px] border border-slate-300 py-4 text-start 
+                   placeholder:text-[#d3d3d3] focus:border-primary focus:ring-2 focus:ring-primary" 
+            autofocus />
     </div>
 </div>
+

@@ -38,9 +38,9 @@
                                 <tr id="" class="data-consume">
                                     <td class="text-center">
                                         @if($registrant->user->testimonials->isNotEmpty())
-                                            <div class=" inline-flex items-center justify-center rounded p-2"
+                                            <div class=" inline-flex items-center justify-center rounded p-2 w-10"
                                                 style="background-color: #106681">
-                                                <i class="bx text-white text-center">{{ $loop->iteration }}</i>
+                                                <span class="text-white text-center">{{ $loop->iteration }}</span>
                                             </div>
                                         @else
                                             <span class="inline-flex items-center justify-center rounded px-3 py-1 text-black #3986A3">

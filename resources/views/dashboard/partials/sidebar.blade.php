@@ -45,9 +45,9 @@
         @endif
 
         <li class="mt-20 rounded-lg p-2">
-            <form action="{{ route("auth.logout") }}" method="POST">
+            <form id="logout-form" action="{{ route("auth.logout") }}" method="POST">
                 @csrf
-                <button type="submit" class="fixed bottom-5 left-14 items-center gap-2 rounded-full bg-blue-500 px-6 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                <button type="button" id="logout-button" class="fixed bottom-5 left-14 items-center gap-2 rounded-full bg-blue-500 px-6 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
                     <i class="bx bx-log-out text-lg"></i>
                     <span class="text-center text-base">Keluar</span>
                 </button>
@@ -55,3 +55,27 @@
         </li>
     </ul>
 </nav>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.getElementById("logout-button").addEventListener("click", function () {
+        Swal.fire({
+            title: 'Apakah Anda yakin ingin keluar?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, Keluar',
+            cancelButtonText: 'Batal',
+            customClass: {
+                popup: 'rounded-xl px-6 pt-6 pb-6',
+                confirmButton: 'mt-4 rounded-md bg-[#3986A3] px-6 py-2 text-[15px] font-extrabold text-white',
+                cancelButton: 'mt-4 rounded-md bg-gray-400 px-6 py-2 text-[15px] font-semibold text-white'
+            },
+            reverseButtons: true,
+            backdrop: 'rgba(0,0,0,0.5)',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById("logout-form").submit();
+            }
+        });
+    });
+</script>

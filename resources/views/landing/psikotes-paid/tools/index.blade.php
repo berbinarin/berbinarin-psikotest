@@ -45,9 +45,9 @@
             </div>
 
             <div class="mx-8 mt-5">
-                <form action="{{ route("auth.logout") }}" method="POST">
+                <form id="logout-form" action="{{ route("auth.logout") }}" method="POST">
                     @csrf
-                    <button type="submit" class="flex h-12 w-28 items-center justify-center rounded-xl bg-primary font-semibold text-white transition-all hover:opacity-90">Keluar</button>
+                    <button type="button" id="logout-button" class="flex h-12 w-28 items-center justify-center rounded-xl bg-primary font-semibold text-white transition-all hover:opacity-90">Keluar</button>
                 </form>
             </div>
         </div>
@@ -106,6 +106,70 @@
 @endsection
 
 @push("script")
+    {{-- Sweet Alert --}}
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const tesStatus = urlParams.get('tes');
+        const testimoniStatus = urlParams.get('testimoni');
+
+        if (tesStatus === 'selesai') {
+            Swal.fire({
+                title: 'Anda telah menyelesaikan tes!',
+                icon: 'success',
+                confirmButtonText: 'Oke',
+                customClass: {
+                    popup: 'rounded-xl px-6 pt-6 pb-6',
+                    confirmButton: 'mt-6 rounded-md bg-[#3986A3] px-[112px] py-[10px] text-[15px] font-extrabold text-white',
+                },
+                backdrop: 'rgba(0,0,0,0.5)',
+            }).then(() => {
+                // Hapus query param biar tidak muncul lagi saat reload
+                const url = new URL(window.location.href);
+                url.searchParams.delete('tes');
+                window.history.replaceState({}, document.title, url.toString());
+            });
+        }
+
+        if (testimoniStatus === 'selesai') {
+            Swal.fire({
+                title: 'Anda telah mengisi testimoni!',
+                icon: 'success',
+                confirmButtonText: 'Oke',
+                customClass: {
+                    popup: 'rounded-xl px-6 pt-6 pb-6',
+                    confirmButton: 'mt-6 rounded-md bg-[#3986A3] px-[112px] py-[10px] text-[15px] font-extrabold text-white',
+                },
+                backdrop: 'rgba(0,0,0,0.5)',
+            }).then(() => {
+                // Hapus query param biar tidak muncul lagi saat reload
+                const url = new URL(window.location.href);
+                url.searchParams.delete('testimoni');
+                window.history.replaceState({}, document.title, url.toString());
+            });
+        }
+
+        document.getElementById("logout-button").addEventListener("click", function () {
+        Swal.fire({
+            title: 'Apakah Anda yakin ingin keluar?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, Keluar',
+            cancelButtonText: 'Batal',
+            customClass: {
+                popup: 'rounded-xl px-6 pt-6 pb-6',
+                confirmButton: 'mt-4 rounded-md bg-[#3986A3] px-6 py-2 text-[15px] font-extrabold text-white',
+                cancelButton: 'mt-4 rounded-md bg-gray-400 px-6 py-2 text-[15px] font-semibold text-white'
+            },
+            reverseButtons: true,
+            backdrop: 'rgba(0,0,0,0.5)',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById("logout-form").submit();
+            }
+        });
+    });
+    </script>
+
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
