@@ -14,9 +14,9 @@
         </div>
 
         <!-- Form Login -->
-        <form action="{{ route('auth.authenticate') }}" method  ="post">
+        <form action="{{ route("auth.authenticate") }}" method="post">
             @csrf
-            <input type="hidden" name="login_type" value="admin">
+            <input type="hidden" name="login_type" value="admin" />
             <!-- Login Form -->
             <div class="-mt-16 flex min-h-screen items-center justify-center bg-none">
                 <div class="flex w-[467.33px] flex-col items-center justify-center gap-5 rounded-2xl bg-white p-9 font-plusJakartaSans shadow-[0px_1px_4px_0px_rgba(12,12,13,0.05)]">
@@ -71,16 +71,16 @@
     </section>
 @endsection
 
-@push('script')
-@if ($errors->any())
-<script>
-    Swal.fire({
-        icon: 'error',
-        title: 'Login Gagal',
-        text: 'Username atau Password Salah',
-        confirmButtonColor: '#3085d6',
-        confirmButtonText: 'OK'
-    });
-</script>
-@endif
+@push("script")
+    @if ($errors->any())
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Login Gagal',
+                text: 'Username atau Password Salah',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK',
+            });
+        </script>
+    @endif
 @endpush
