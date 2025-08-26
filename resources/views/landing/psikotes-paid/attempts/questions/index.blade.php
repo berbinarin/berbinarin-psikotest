@@ -47,7 +47,10 @@
                             @endif
                         </div>
 
-                        <button class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selanjutnya</button>
+
+                        @if ($question->type !== "ordering")
+                            <button class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selanjutnya</button>
+                        @endif
                     </div>
                 </form>
             </div>
