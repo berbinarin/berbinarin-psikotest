@@ -138,7 +138,7 @@
 <div id="chartModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-50 transition-opacity duration-300">
     <div class="relative w-11/12 max-w-4xl rounded-lg bg-white p-4 shadow-xl md:p-6">
         <button id="closeModalBtn" class="absolute -right-3 -top-3 flex h-8 w-8 items-center justify-center rounded-full bg-primary font-bold text-white shadow-lg transition-transform hover:scale-110">
-          <span class="text-sm">X</span>
+            <span class="text-sm">X</span>
         </button>
 
         <div id="modal-chart-container" style="height: 60vh"></div>
@@ -266,8 +266,8 @@
         // Duplicate and change some options
         let modalOptions = chartOptions;
 
-        modalOptions.chart.height = '100%';
-        modalOptions.plotOptions.radar.size = 180;
+        modalOptions.chart.height = 'auto';
+        modalOptions.plotOptions.radar.size = undefined;
         modalOptions.dataLabels.style.fontSize = '16px';
         modalOptions.chart.toolbar.show = true;
 
@@ -278,6 +278,14 @@
 
         modalChart = new ApexCharts(modalChartContainer, modalOptions);
         modalChart.render();
+
+        modal.addEventListener('transitionend', () => {
+            if (modalChart) {
+                modalChart.updateOptions({
+                    chart: { height: 'auto' }
+                });
+            }
+        }, { once: true });
     });
 
     // Close Modal
