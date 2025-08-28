@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\PriceList;
 
 use App\Models\TestCategory;
 use App\Models\TestType;

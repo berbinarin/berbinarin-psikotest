@@ -16,10 +16,10 @@ class DatabaseSeeder extends Seeder
         // Test
         $this->call([
             // Test Category
-            TestCategorySeeder::class,
+            PriceList\TestCategorySeeder::class,
 
             // Test Type
-            TestTypeSeeder::class,
+            PriceList\TestTypeSeeder::class,
         ]);
 
         // User and Role Seeder
@@ -98,6 +98,11 @@ class DatabaseSeeder extends Seeder
             // Biodata Klinis
             Tools\BiodataKlinis\BiodataKlinisSectionSeeder::class,
             Tools\BiodataKlinis\BiodataKlinisQuestionSeeder::class,
+        ]);
+
+        $this->call([
+            // Checkpoint
+           Checkpoint\CheckpointQuestionSeeder::class, 
         ]);
     }
 }
