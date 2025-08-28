@@ -165,7 +165,7 @@
     </div>
 </div>
 
-@section("script")
+@push("script")
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -305,4 +305,4 @@
             document.getElementById(`tab-${tabName}`).classList.add('border-[#75BADB]', 'text-[#75BADB]');
         }
     </script>
-@endsection
+@endpush

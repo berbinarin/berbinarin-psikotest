@@ -101,7 +101,7 @@
     </div>
 @endsection
 
-@section("script")
+@push("script")
     <script>
         $(document).ready(function () {
             $('#table').DataTable();
@@ -139,4 +139,4 @@
             });
         });
     </script>
-@endsection
+@endpush

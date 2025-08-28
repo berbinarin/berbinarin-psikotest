@@ -29,7 +29,7 @@
                     <h1 class="absolute left-1/2 top-[65%] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text font-plusJakartaSans text-[26.67px] font-bold text-transparent">Tes {{ str_pad($question->tool->order, 2, "0", STR_PAD_LEFT) }}</h1>
                 </div>
 
-                <form class="flex-1" action="{{ route("psikotes-paid.attempt.submit") }}" method="post" enctype="multipart/form-data">
+                <form id="question-form" class="flex-1" action="{{ route("psikotes-paid.attempt.submit") }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mx-auto flex h-full w-[565.33px] flex-col items-center gap-8 px-6 pt-7">
                         <div class="relative flex w-full flex-col items-center justify-center">
@@ -58,22 +58,23 @@
     </section>
 
     <!-- Modal -->
-    <div id="quick-question-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-        <div class="w-[400px] rounded-xl bg-white p-6 shadow-lg">
-            <!-- Header -->
+    {{-- SELALU RENDER KERANGKA MODAL INI, TAPI DENGAN CLASS "hidden" --}}
+    <div id="checkpoint-modal" class="fixed inset-0 z-[999] flex hidden items-center justify-center bg-black/50">
+        <div class="min-w-[400px] rounded-xl bg-white p-6 px-10 shadow-lg">
             <h2 class="mb-4 text-lg font-bold">Pertanyaan Cepat!</h2>
 
-            <!-- Isi pertanyaan -->
-            <p id="question-text" class="mb-4 text-center"></p>
+            {{-- Konten dinamis akan diisi oleh JavaScript --}}
+            <p id="checkpoint-text" class="mb-4 text-center"></p>
+            <div id="checkpoint-answers" class="mb-6 flex justify-center gap-4"></div>
 
-            <!-- Pilihan jawaban -->
-            <div id="answers" class="mb-6 flex justify-center gap-4"></div>
-
-            <!-- Tombol lanjut -->
             <div class="flex justify-center">
-                <button id="next-btn" class="rounded-lg bg-[#106681] px-6 py-2 font-bold text-white">Selanjutnya</button>
+                <button id="checkpoint-submit-button" type="button" class="rounded-lg bg-[#106681] px-6 py-2 font-bold text-white">Selanjutnya</button>
             </div>
         </div>
+    </div>
+
+    <div id="countdownExample" class="absolute right-0 top-0">
+        <span class="values"></span>
     </div>
 @endsection
 
@@ -146,6 +147,7 @@
             } finally {
                 localStorage.removeItem('target-time');
                 localStorage.removeItem('section-order');
+                localStorage.removeItem('checkpoint_deadline');
                 window.location.href = @json(route("psikotes-paid.attempt.complete"));
             }
         });
@@ -164,65 +166,121 @@
                 });
             }
         });
-    </script>
 
-    <script type="module">
-        // generate soal
-        function generateQuestion() {
-            const a = Math.floor(Math.random() * 10) + 1;
-            const b = Math.floor(Math.random() * 10) + 1;
-            const correctAnswer = a + b;
+        // ---===[ LOGIKA CHECKPOINT BARU (CLIENT-SIDE) ]===---
+        const CHECKPOINT_INTERVAL_MS = 10 * 60 * 1000; // 10 menit
+        const CHECKPOINT_DEADLINE_KEY = 'checkpoint_deadline';
 
-            document.getElementById('question-text').innerText = `Berapa hasil dari ${a} + ${b}?`;
-
-            // buat pilihan jawaban
-            let options = new Set([correctAnswer]);
-            while (options.size < 4) {
-                let fake = Math.floor(Math.random() * 20) + 1;
-                if (fake !== correctAnswer) options.add(fake);
-            }
-
-            // acak urutan
-            const shuffled = Array.from(options).sort(() => Math.random() - 0.5);
-
-            const answersDiv = document.getElementById('answers');
-            answersDiv.innerHTML = '';
-            shuffled.forEach((num) => {
-                const btn = document.createElement('button');
-                btn.innerText = num;
-                btn.className = 'answer h-[40px] w-[40px] rounded-lg border bg-white text-black';
-                btn.addEventListener('click', () => {
-                    document.querySelectorAll('.answer').forEach((b) => {
-                        b.classList.remove('bg-[#E5A639]', 'text-white');
-                        b.classList.add('bg-white', 'text-black');
-                    });
-                    btn.classList.remove('bg-white', 'text-black');
-                    btn.classList.add('bg-[#E5A639]', 'text-white');
-                });
-                answersDiv.appendChild(btn);
-            });
-
-            return correctAnswer;
+        // Inisialisasi deadline jika belum ada
+        if (!localStorage.getItem(CHECKPOINT_DEADLINE_KEY)) {
+            localStorage.setItem(CHECKPOINT_DEADLINE_KEY, new Date().getTime() + CHECKPOINT_INTERVAL_MS);
         }
 
-        let correctAnswer = generateQuestion();
+        // Ambil semua elemen yang dibutuhkan
+        const mainForm = document.getElementById('question-form');
+        const nextButton = document.getElementById('next-button');
+        const checkpointModal = document.getElementById('checkpoint-modal');
 
-        // selanjutnya
-        document.getElementById('next-btn').addEventListener('click', () => {
-            // Cek jawaban
-            const selected = document.querySelector('.answer.bg-\\[\\#E5A639\\]');
-            // if (!selected) {
-            //     alert('Pilih salah satu jawaban');
-            //     return;
-            // }
-            // if (parseInt(selected.innerText) === correctAnswer) {
-            //     alert('Benar');
-            // } else {
-            //     alert('Salah');
-            // }
+        // Fungsi untuk menampilkan modal
+        async function showCheckpointModal() {
+            try {
+                // 1. Ambil soal dari server
+                const response = await fetch('{{ route("psikotes-paid.attempt.get-checkpoint-question") }}');
+                if (!response.ok) throw new Error('Failed to fetch question');
+                const question = await response.json();
 
-            // Tutup modal
-            document.getElementById('quick-question-modal').classList.add('hidden');
+                // 2. Isi konten modal dengan data dari server
+                document.getElementById('checkpoint-text').textContent = question.text;
+                const answersContainer = document.getElementById('checkpoint-answers');
+                answersContainer.innerHTML = ''; // Kosongkan dulu
+
+                // Buat input tersembunyi untuk ID
+                const idInput = `<input type="hidden" name="checkpoint_question_id" value="${question.id}">`;
+                answersContainer.insertAdjacentHTML('beforeend', idInput);
+
+                // Buat pilihan jawaban
+                if (question.type === 'multiple_choice') {
+                    const ul = document.createElement('ul');
+                    ul.className = 'flex !list-none gap-4 !pl-0';
+                    question.options.forEach((option) => {
+                        ul.innerHTML += `
+                        <li>
+                            <label class="flex h-10 min-w-10 items-center justify-center rounded-lg border bg-white px-4 text-black has-[input:checked]:bg-[#E5A639] has-[input:checked]:text-white">
+                                <input type="radio" name="checkpoint_answer" value="${option.key}" class="hidden" required />
+                                <span>${option.text}</span>
+                            </label>
+                        </li>
+                    `;
+                    });
+                    answersContainer.appendChild(ul);
+                } else {
+                    answersContainer.innerHTML += `<input type="text" class="w-full rounded-lg border-primary" name="checkpoint_answer" placeholder="Ketik jawaban Anda..." required />`;
+                }
+
+                // 3. Tampilkan modal
+                checkpointModal.classList.remove('hidden');
+            } catch (error) {
+                console.error('Could not show checkpoint modal:', error);
+                // Jika gagal memuat modal, kirim saja formnya agar user tidak stuck.
+                mainForm.submit();
+            }
+        }
+
+        // Listener untuk tombol "Selanjutnya" UTAMA
+        nextButton.addEventListener('click', () => {
+            const deadline = localStorage.getItem(CHECKPOINT_DEADLINE_KEY);
+            const now = new Date().getTime();
+
+            if (deadline && now >= parseInt(deadline)) {
+                // WAKTUNYA CHECKPOINT: Tampilkan modal, JANGAN submit form
+                showCheckpointModal();
+            } else {
+                // BUKAN WAKTUNYA CHECKPOINT: Langsung submit form
+                mainForm.submit();
+            }
+        });
+
+        // Listener untuk tombol "Selanjutnya" DI DALAM MODAL (DENGAN PERBAIKAN)
+        document.getElementById('checkpoint-submit-button').addEventListener('click', () => {
+            // Ambil form utama
+            const mainForm = document.getElementById('question-form');
+
+            // 1. Ambil input jawaban dari modal
+            const answer = document.querySelector('[name="checkpoint_answer"]:checked, [name="checkpoint_answer"][type="text"]');
+
+            // ---===[ PERBAIKAN 1: Tambahkan baris ini untuk mencari input ID ]===---
+            // 2. Ambil input ID pertanyaan yang tersembunyi dari modal
+            const questionIdInput = document.querySelector('[name="checkpoint_question_id"]');
+
+            // Validasi sederhana
+            if (!answer || !answer.value) {
+                alert('Silakan pilih atau isi jawaban terlebih dahulu.');
+                return;
+            }
+
+            // Buat elemen <input> baru untuk jawaban checkpoint
+            const hiddenAnswer = document.createElement('input');
+            hiddenAnswer.type = 'hidden';
+            hiddenAnswer.name = 'checkpoint_answer';
+            // ---===[ PERBAIKAN 2: Gunakan variabel 'answer' yang benar ]===---
+            hiddenAnswer.value = answer.value;
+
+            // Buat elemen <input> baru untuk ID pertanyaan checkpoint
+            const hiddenId = document.createElement('input');
+            hiddenId.type = 'hidden';
+            hiddenId.name = 'checkpoint_question_id';
+            // ---===[ PERBAIKAN 3: Gunakan variabel 'questionIdInput' yang baru kita ambil ]===---
+            hiddenId.value = questionIdInput.value;
+
+            // Masukkan (inject) kedua elemen baru tersebut ke dalam form utama
+            mainForm.appendChild(hiddenAnswer);
+            mainForm.appendChild(hiddenId);
+
+            // Reset deadline untuk siklus 10 menit berikutnya
+            localStorage.setItem(CHECKPOINT_DEADLINE_KEY, new Date().getTime() + CHECKPOINT_INTERVAL_MS);
+
+            // Submit form utama yang SEKARANG sudah berisi data checkpoint
+            mainForm.submit();
         });
     </script>
 @endpush

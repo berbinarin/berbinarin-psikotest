@@ -21,11 +21,10 @@
                 @yield("content")
             </main>
         </div>
-
         {{-- Script --}}
         @include('dashboard.partials.script')
 
         {{-- Additional Script --}}
-        @yield('script')
+        @stack('script')
     </body>
 </html>

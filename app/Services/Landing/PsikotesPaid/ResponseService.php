@@ -2,6 +2,8 @@
 
 namespace App\Services\Landing\PsikotesPaid;
 
+use App\Models\CheckpointQuestion;
+use App\Models\CheckpointResponse;
 use App\Models\Question;
 use App\Models\Response;
 use App\Services\File\FileUploadService;
@@ -20,6 +22,23 @@ class ResponseService
             Response::create([
                 'attempt_id' => $this->attemptService->getSession('attempt_id'),
                 'question_id' => $question->id,
+                'answer' => $answer,
+            ]);
+        }
+    }
+
+    public function storeCheckpoint(Request $request)
+    {
+        $checkpointQuestion = CheckpointQuestion::find($request->checkpoint_question_id);
+        $methodName = Str::camel($checkpointQuestion->type);
+        $answer = $checkpointQuestion->type === 'multiple_choice' 
+                    ? ['choice' => $request->checkpoint_answer]
+                    : ['value' => $request->checkpoint_answer];
+                    
+        if ($answer !== null) {
+            CheckpointResponse::create([
+                'attempt_id' => $this->attemptService->getSession('attempt_id'),
+                'checkpoint_question_id' => $checkpointQuestion->id,
                 'answer' => $answer,
             ]);
         }

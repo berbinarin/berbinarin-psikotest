@@ -64,7 +64,7 @@
     </div>
 @endsection
 
-@section("script")
+@push("script")
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const cancelButton = document.getElementById('cancelButton');
@@ -86,4 +86,4 @@
             });
         });
     </script>
-@endsection
+@endpush
