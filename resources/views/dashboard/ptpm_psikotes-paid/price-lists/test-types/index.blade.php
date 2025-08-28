@@ -65,7 +65,7 @@
     </section>
 @endsection
 
-@section("script")
+@push("script")
     <script>
         $(document).ready(function () {
             $('#table').DataTable();
@@ -90,4 +90,4 @@
             document.getElementById(modalID + '-backdrop').classList.toggle('flex');
         }
     </script>
-@endsection
+@endpush

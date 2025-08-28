@@ -133,7 +133,7 @@
     </div>
 </div>
 
-@section("script")
+@push("script")
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         document.addEventListener('alpine:init', () => {
@@ -228,4 +228,4 @@
                 @endforeach
             });
     </script>
-@endsection
+@endpush

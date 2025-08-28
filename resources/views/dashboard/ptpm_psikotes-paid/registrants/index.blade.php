@@ -236,7 +236,7 @@
     </section>
 @endsection
 
-@section("script")
+@push("script")
     <script>
         $(document).ready(function () {
             $('#table').DataTable();
@@ -309,4 +309,4 @@
             document.getElementById('detailModal').classList.add('hidden');
         };
     </script>
-@endsection
+@endpush
