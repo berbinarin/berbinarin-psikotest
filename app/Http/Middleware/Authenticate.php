@@ -15,7 +15,7 @@ class Authenticate extends Middleware
         // Jika permintaan bukan JSON (bukan API), jalankan logika di bawah.
         // Jika permintaan adalah API, Laravel akan otomatis mengembalikan respons JSON 401.
         if (! $request->expectsJson()) {
-            
+
             // Jika pengguna mencoba mengakses route yang diawali dengan 'admin/'
             if ($request->is('dashboard*')) {
                 return route('auth.login');
@@ -25,7 +25,7 @@ class Authenticate extends Middleware
             if ($request->is('psikotes-paid/*')) {
                 return route('auth.psikotes-paid.login');
             }
-            
+
             // Fallback jika bukan route route diatas
             return route('auth.psikotes-paid.login');
         }
