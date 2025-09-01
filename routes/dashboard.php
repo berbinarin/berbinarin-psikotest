@@ -12,6 +12,7 @@ use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Tool\QuestionController;
 use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Tool\SectionController;
 use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Tool\ToolController;
 use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Testimonial\TestimonialController;
+use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\ExportPDFController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(function () {
@@ -31,6 +32,8 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
             Route::get('/{id}/edit', [RegistrantController::class, 'edit'])->name('edit');
             Route::put('/{id}', [RegistrantController::class, 'update'])->name('update');
             Route::delete('/{id}', [RegistrantController::class, 'destroy'])->name('destroy');
+            Route::get('/{id}/report', [ExportPDFController::class, 'index'])->name('report.index');
+            Route::get('/{id}/report/export', [ExportPDFController::class, 'export'])->name('report.export');
         });
 
         // Price Lists
