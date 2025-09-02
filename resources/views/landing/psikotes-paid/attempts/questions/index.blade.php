@@ -48,7 +48,7 @@
                         </div>
 
                         @if ($question->type !== "ordering")
-                            <button class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selanjutnya</button>
+                            <button id="next-button" class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selanjutnya</button>
                         @endif
                     </div>
                 </form>
@@ -186,22 +186,22 @@
                 // 1. Ambil soal dari server
                 const response = await fetch('{{ route("psikotes-paid.attempt.get-checkpoint-question") }}');
                 if (!response.ok) throw new Error('Failed to fetch question');
-                const question = await response.json();
+                const checkpointQuestion = await response.json();
 
                 // 2. Isi konten modal dengan data dari server
-                document.getElementById('checkpoint-text').textContent = question.text;
+                document.getElementById('checkpoint-text').textContent = checkpointQuestion.text;
                 const answersContainer = document.getElementById('checkpoint-answers');
                 answersContainer.innerHTML = ''; // Kosongkan dulu
 
                 // Buat input tersembunyi untuk ID
-                const idInput = `<input type="hidden" name="checkpoint_question_id" value="${question.id}">`;
+                const idInput = `<input type="hidden" name="checkpoint_question_id" value="${checkpointQuestion.id}">`;
                 answersContainer.insertAdjacentHTML('beforeend', idInput);
 
                 // Buat pilihan jawaban
-                if (question.type === 'multiple_choice') {
+                if (checkpointQuestion.type === 'multiple_choice') {
                     const ul = document.createElement('ul');
                     ul.className = 'flex !list-none gap-4 !pl-0';
-                    question.options.forEach((option) => {
+                    checkpointQuestion.options.forEach((option) => {
                         ul.innerHTML += `
                         <li>
                             <label class="flex h-10 min-w-10 items-center justify-center rounded-lg border bg-white px-4 text-black has-[input:checked]:bg-[#E5A639] has-[input:checked]:text-white">
@@ -226,7 +226,8 @@
         }
 
         // Listener untuk tombol "Selanjutnya" UTAMA
-        nextButton.addEventListener('click', () => {
+        nextButton.addEventListener('click', (e) => {
+            e.preventDefault();
             const deadline = localStorage.getItem(CHECKPOINT_DEADLINE_KEY);
             const now = new Date().getTime();
 
