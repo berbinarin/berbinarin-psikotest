@@ -5,7 +5,7 @@
         @include('dashboard.partials.header')
 
         {{-- Additional Style --}}
-        @yield('style')
+        @stack('style')
     </head>
     <body class="font-plusJakartaSans">
         <div class="flex h-screen w-full">

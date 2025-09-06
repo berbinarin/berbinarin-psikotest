@@ -76,7 +76,20 @@ class RegistrantController extends Controller
     {
         $registrant = RegistrantProfile::with(['user', 'testType.testCategory'])->findOrFail($id);
 
-        return view('dashboard.ptpm_psikotes-paid.registrants.show', compact('registrant'));
+        // Buat Ambil semua attempts user beserta toolnya dan responses
+        $attempts = $registrant->user->attempts()->with('tool', 'responses')->get();
+
+        $testResults = [];
+        foreach ($attempts as $attempt) {
+            $data = $attempt->responses()->with('question')->get();
+            $testResults[] = [
+                'tool' => $attempt->tool,
+                'attempt' => $attempt,
+                'data' => $data,
+            ];
+        }
+
+        return view('dashboard.ptpm_psikotes-paid.registrants.show', compact('registrant', 'testResults'));
     }
 
 
