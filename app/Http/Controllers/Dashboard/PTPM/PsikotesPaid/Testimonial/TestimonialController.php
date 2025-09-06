@@ -4,25 +4,26 @@ namespace App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Testimonial;
 
 use App\Http\Controllers\Controller;
 use App\Models\Testimonial;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TestimonialController extends Controller
 {
-    public function index() {
-        $testimonial = Testimonial::with('userPsikotesPaid')->get();
+    public function index()
+    {
+        $users = User::has('testimonials')->get();
 
-        return view('dashboard.ptpm_psikotes-paid.testimonial.index', compact('testimonial'));
+        return view('dashboard.ptpm_psikotes-paid.testimonial.index', compact('users'));
     }
 
-    public function show($id) {
-        $testimonial = Testimonial::with('userPsikotesPaid')->findOrFail($id);
-
-        return view('dashboard.ptpm_psikotes-paid.testimonial.detail', compact('testimonial'));
+    public function show(User $user)
+    {
+        return view('dashboard.ptpm_psikotes-paid.testimonial.detail', compact('user'));
     }
 
-    public function destroy($id){
-        $testimonial = Testimonial::findOrFail($id);
-        $testimonial->delete();
+    public function destroy(User $user)
+    {
+        $user->testimonials()->delete();
 
         return redirect()->route('dashboard.testimonial.index')->with('success', 'Testimoni berhasil dihapus.');
     }

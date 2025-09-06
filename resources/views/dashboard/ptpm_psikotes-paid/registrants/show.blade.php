@@ -96,6 +96,24 @@
                         <textarea rows="10" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" readonly disabled>{{ $registrant->reason }}</textarea>
                     </div>
                 </div>
+                <div class="flex gap-20">
+                    <div class="flex w-full flex-col">
+                        <label class="mb-2 font-bold text-[#9b9b9b]">Code Voucher</label>
+                        <input type="text" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0"
+                            value="{{ $registrant->code_voucher ? $registrant->code_voucher : '-' }}" readonly disabled />                    </div>
+                    <div class="flex w-full flex-col">
+                        <label class="mb-2 font-bold text-[#9b9b9b]">Bukti Kartu Pelajar</label>
+                             @if($registrant->bukti_kartu_pelajar)
+                                <a href="{{ asset('storage/' . $registrant->bukti_kartu_pelajar) }}" target="_blank">
+                                    <img src="{{ asset('storage/' . $registrant->bukti_kartu_pelajar) }}"
+                                        alt="Bukti Kartu Pelajar"
+                                        style="max-width:120px;max-height:120px;border-radius:8px;border:1px solid #ccc;">
+                                </a>
+                            @else
+                                <span>-</span>
+                            @endif
+                    </div>
+                </div>
             </form>
         </div>
     </section>

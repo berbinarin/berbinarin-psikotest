@@ -10,27 +10,30 @@ class TestimonialController extends Controller
 {
     public function index()
     {
-        $testimonials = Testimonial::with('userPsikotesPaid')->get();
+        $testimonials = Testimonial::with('user')->get();
         return view('landing.psikotes-paid.tools.testimoni', compact('testimonials'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'sharing_testimonial' => 'required|string|max:500',
-            'sharing_experience' => 'required|string|max:500',
-            'opinion_psikotes' => 'required|string|max:500',
-            'criticism_suggestion' => 'nullable|string|max:500',
-        ]);
+        // // Validasi untuk memastikan 'answer' adalah array dan tidak kosong
+        // $request->validate([
+        //     'answer' => 'required|array',
+        //     'answer.*.question' => 'required|string',
+        //     'answer.*.type' => 'required|string',
+        //     'answer.*.value' => 'required',
+        // ]);
 
-        Testimonial::create([
-            'user_id' => auth()->id(),
-            'sharing_testimonial' => $request->sharing_testimonial,
-            'sharing_experience' => $request->sharing_experience,
-            'opinion_psikotes' => $request->opinion_psikotes,
-            'criticism_suggestion' => $request->criticism_suggestion,
-        ]);
+        foreach ($request->answer as $data) {
+            Testimonial::create([
+                // --- PERUBAHAN DI SINI ---
+                'user_id' => auth()->id(), // Cara yang benar dan aman
+                'question' => $data['question'],
+                'type' => $data['type'],
+                'answer' => $data['value']
+            ]);
+        }
 
-        return response()->json(['message' => 'Testimoni berhasil disimpan.']);
+        return response()->json(['message' => 'Testimoni berhasil disimpan.'], 201);
     }
 }

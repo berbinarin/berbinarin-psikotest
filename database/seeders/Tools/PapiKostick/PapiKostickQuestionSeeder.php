@@ -1117,8 +1117,8 @@ class PapiKostickQuestionSeeder extends Seeder
                     ['key' => 'B', 'text' => 'Saya cepat merasa lelah'],
                 ],
                 'scoring' => [
-                    'A' => 'S',
-                    'B' => 'V',
+                    'A' => 'V',
+                    'B' => 'S',
                 ],
             ],
             [

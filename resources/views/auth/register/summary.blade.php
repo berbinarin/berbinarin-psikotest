@@ -2,8 +2,6 @@
     "landing.layouts.app",
     [
         "title" => "Berbinar Insightful Indonesia",
-        "active" => "Produk Berbinar",
-        "page" => "Cerita Konseling",
     ]
 )
 

@@ -22,7 +22,8 @@ class VerifyTokenRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'tool_id' => 'required|string',
+            'token' => 'required|string'
         ];
     }
 }

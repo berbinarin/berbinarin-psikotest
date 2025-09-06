@@ -11,9 +11,9 @@
             <div class="flex flex-col items-center justify-center">
                 <!-- Logo -->
                 <div class="mt-[15px] flex flex-row items-center justify-center gap-4 rounded-[50px] bg-gradient-to-b from-[#F7B23B] to-[#916823] p-[1px] px-[2px] py-[2px] md:mt-[48px]">
-                    <div class="flex flex-row items-center justify-center gap-4 rounded-[50px] bg-white px-[19.92px] py-[7.47px] md:px-[26px] md:py-[10px]">
-                        <img src="{{ asset("assets/auth/images/logo-berbinar.png") }}" alt="logo berbinar" class="h-[34.36px] w-[33.36px] md:h-[45px] md:w-[46px]" />
-                        <img src="{{ asset("assets/auth/images/psikotest.png") }}" alt="psikotest" class="h-[34.36px] w-[33.36px] md:h-[45px] md:w-[46px]" />
+                    <div class="flex flex-row items-center justify-center gap-4 rounded-[50px] bg-white px-[19.92px] py-[7.47px] md:gap-6 md:px-8 md:py-[10px]">
+                        <img src="{{ asset("assets/auth/images/logo-berbinar.png") }}" alt="logo berbinar" class="h-[34.36px] w-[33.36px] md:h-[42px] md:w-[40px]" />
+                        <img src="{{ asset("assets/auth/images/psikotest.png") }}" alt="psikotest" class="h-[34.36px] w-[33.36px] md:h-[46px] md:w-[44px]" />
                     </div>
                 </div>
 
@@ -23,25 +23,25 @@
                     <input type="hidden" name="login_type" value="user" />
 
                     <div class="mt-[101px] flex flex-col items-center justify-center md:mt-[100.67px]">
-                        <div class="h-[246.46px] w-[280px] rounded-[10px] border border-[#E0E0E0] bg-white font-plusJakartaSans drop-shadow-lg md:h-[293px] md:w-[346.67px] md:rounded-[13.33px]">
+                        <div class="h-[246.46px] w-[320px] rounded-[10px] border border-[#E0E0E0] bg-white font-plusJakartaSans drop-shadow-lg md:h-[293px] md:w-[450.67px] md:rounded-[13.33px]">
                             <!-- Title -->
                             <div class="mt-[21.92px] flex flex-col items-center justify-center gap-[2.19px] text-center md:mt-[26.67px] md:gap-[2.67px]">
-                                <h1 class="text-xl font-bold text-black md:text-[23.33px]">Log In</h1>
-                                <h5 class="text-xs font-normal text-[#757575] md:text-[9.33px]">Selamat Datang di Psikotest Berbinar</h5>
+                                <h1 class="text-xl font-bold text-black md:text-[26px]">Masuk</h1>
+                                <h5 class="text-sm font-normal text-[#757575] md:text-[11]">Selamat Datang di Psikotest Berbinar</h5>
                             </div>
                             <!-- Form pengisian -->
                             <div class="mt-[21.92px] flex items-center justify-center md:mt-[26.67px]">
                                 <div class="flex flex-col items-center justify-center gap-[10.96px] font-plusJakartaSans font-normal md:gap-[13.33px]">
                                     <!-- Username -->
-                                    <div class="relative h-[36.72px] w-[240px] md:h-[44.67px] md:w-[253.33px]">
-                                        <label class="absolute -top-1 left-3 bg-white px-1 text-[8px] text-[#BDBDBD] peer-focus:text-[#424242]">Username</label>
-                                        <input type="text" name="username" id="username" class="peer w-full rounded-[5px] border border-[#BDBDBD] bg-white px-[10px] py-[8px] text-[12px] focus:border-[#424242] focus:outline-none" />
+                                    <div class="relative h-[36.72px] w-[240px] md:h-[44.67px] md:w-[280px]">
+                                        <label class="absolute -top-1 left-3 bg-white px-1 text-[10px] text-[#BDBDBD] peer-focus:text-[#424242]">Username</label>
+                                        <input type="text" name="username" id="username" value="{{ old("username") }}" class="peer w-full rounded-[5px] border border-[#BDBDBD] bg-white px-[10px] py-[8px] text-[12px] focus:border-[#424242] focus:outline-none focus:ring-0" />
                                     </div>
 
                                     <!-- Password -->
-                                    <div class="relative h-[36.72px] w-[240px] md:h-[44.67px] md:w-[253.33px]">
-                                        <label class="absolute -top-1 left-3 bg-white px-1 text-[8px] text-[#BDBDBD] peer-focus:text-[#424242]">Password</label>
-                                        <input type="password" name="password" id="password" class="peer w-full rounded-[5px] border border-[#BDBDBD] bg-white px-[10px] py-[8px] text-[12px] outline-none focus:border-[#424242]" />
+                                    <div class="relative h-[36.72px] w-[240px] md:h-[44.67px] md:w-[280px]">
+                                        <label class="absolute -top-1 left-3 bg-white px-1 text-[10px] text-[#BDBDBD] peer-focus:text-[#424242]">Password</label>
+                                        <input type="password" name="password" id="password" class="peer w-full rounded-[5px] border border-[#BDBDBD] bg-white px-[10px] py-[8px] text-[12px] outline-none focus:border-[#424242] focus:outline-none focus:ring-0"  />
                                     </div>
                                 </div>
                             </div>

@@ -1,4 +1,4 @@
-<div class="flex w-full flex-col gap-5 md:flex-row">
+<div class="flex w-full flex-col gap-5 md:flex-row select-text">
     <!-- Kiri: Biodata & Radar -->
     <div class="flex w-full flex-col gap-6 md:w-1/4">
         <!-- Radar -->
@@ -10,21 +10,23 @@
         <!-- Biodata -->
         <div class="flex w-full flex-col justify-center rounded-xl bg-[#236A7B] p-6 text-[13px] text-white shadow-md">
             <div>
-                <p class="mb-1 text-[12px] font-semibold">Nama</p>
-                <h1 class="mb-1 text-[16px] font-bold">{{ $attempt->user->name }}</h1>
-                <p class="mb-1 text-[12px] font-semibold">Email</p>
-                <p class="mb-1 text-[16px]">{{ $attempt->user->email ?? "-" }}</p>
-                <p class="mb-1 text-[12px] font-semibold">Tanggal Pengerjaan</p>
-                <p class="mb-1 text-[16px]">{{ \Carbon\Carbon::parse($attempt->created_at)->format("d F Y") }}</p>
-                <p class="mb-1 text-[12px] font-semibold">Status</p>
-                <p>{{ $attempt->status ?? "Finished" }}</p>
+                <p class="select-text mb-1 text-[12px] font-semibold">Nama</p>
+                <h1 class="select-text mb-1 text-[16px] font-bold">{{ $attempt->user->name }}</h1>
+                <p class="select-text mb-1 text-[12px] font-semibold">Email</p>
+                <p class="select-text mb-1 text-[16px]">{{ $attempt->user->email ?? "-" }}</p>
+                <p class="select-text mb-1 text-[12px] font-semibold">Tanggal Pengerjaan</p>
+                <p class="select-text mb-1 text-[16px]">{{ \Carbon\Carbon::parse($attempt->created_at)->format("d F Y") }}</p>
+                <p class="select-text mb-1 text-[12px] font-semibold">Status</p>
+                <p>
+                    {{ $attempt->status === 'in_progress' ? 'Dalam Proses Pengerjaan' : ($attempt->status ?? 'Selesai') }}
+                </p>
             </div>
         </div>
     </div>
 
     <!-- Rincian Jawaban -->
     <div class="flex w-full flex-col md:w-1/2">
-        <div class="rounded-lg bg-white p-6 shadow-md" style="max-height: 510px; height: 510px; display: flex; flex-direction: column">
+        <div class="select-text rounded-lg bg-white p-6 shadow-md" style="max-height: 510px; height: 510px; display: flex; flex-direction: column">
             <h2 class="mb-4 text-xl font-bold text-[#75BADB]">Rincian Jawaban</h2>
             <div class="flex-1 overflow-y-auto pr-2 text-[14px]">
                 @php
@@ -94,7 +96,7 @@
     </div>
 
     <!-- Kanan: Detail Jawaban -->
-    <div class="flex w-full flex-col self-start rounded-lg bg-white p-6 shadow-md md:w-1/3" style="max-height: 510px; height: 510px">
+    <div class="select-text flex w-full flex-col self-start rounded-lg bg-white p-6 shadow-md md:w-1/3" style="max-height: 510px; height: 510px">
         <h3 class="mb-4 text-lg font-bold">Jawaban</h3>
         <div class="flex-1 overflow-y-auto">
             <table class="w-full text-sm">

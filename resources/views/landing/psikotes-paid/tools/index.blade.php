@@ -16,39 +16,55 @@
 @endpush
 
 @section("content")
-    <div class="h-screen overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset("assets/landing/images/psikotes-paid/psikotes-home-bg.png") }}')">
-        <!-- Navbar Start -->
-        <nav>
-            <div class="mt-4 flex w-full flex-row items-center justify-between">
-                <a href="{{ route("psikotes-paid.testimonial.index") }}" class="ml-16 rounded-[5px] bg-[#3986A3] px-[10px] py-3 text-xs font-medium text-white">Testimoni</a>
-                <div class="flex items-center justify-center gap-4 rounded-full bg-white px-8 py-2 drop-shadow-lg">
-                    <img class="h-10 w-10" src="{{ asset("assets/landing/images/psikotes-paid/logo-berbinar.png") }}" alt="Logo Berbinar" />
-                    <img class="h-11 w-11" src="{{ asset("assets/landing/images/psikotes-paid/logo-berbinar-psikotes.png") }}" alt="Logo Berbinar Psikotes" />
+    <!-- Pindahkan x-data ke div utama -->
+    <div x-data="{ open: false, toolId: null }" class="relative bg-none md:min-h-screen md:bg-cover md:bg-center" style="background-image: url('{{ asset("assets/auth/images/Login.png") }}')">
+        <!-- Header & Sambutan -->
+        <div class="flex justify-between">
+            <div class="mx-8 mt-5">
+                @if (auth()->user()->testimonials->count() > 0)
+                    <button class="flex h-12 w-28 cursor-not-allowed items-center justify-center rounded-xl bg-primary font-semibold text-white disabled:opacity-75" disabled>Testimoni</button>
+                @else
+                    <a href="{{ route("psikotes-paid.testimonial.index") }}" class="flex h-12 w-28 items-center justify-center rounded-xl bg-primary font-semibold text-white transition-all hover:opacity-90">Testimoni</a>
+                @endif
+            </div>
+
+            <div class="flex flex-col items-center justify-center pt-5">
+                <!-- Logo -->
+                <div class="flex flex-row items-center justify-center gap-4 rounded-[50px] bg-gradient-to-b from-[#F7B23B] to-[#916823] p-[1px]">
+                    <div class="flex flex-row items-center justify-center gap-4 rounded-[50px] bg-white px-[19.92px] py-[7.47px]">
+                        <img src="{{ asset("assets/auth/images/logo-berbinar.png") }}" class="h-[34.36px] w-[33.36px]" />
+                        <img src="{{ asset("assets/auth/images/psikotest.png") }}" class="h-[34.36px] w-[33.36px]" />
+                    </div>
                 </div>
-                <form action="{{ route("auth.logout") }}" method="POST">
+
+                <!-- Sambutan -->
+                <div class="mt-4 bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text font-plusJakartaSans font-bold text-transparent">
+                    <h1 class="hidden text-[26.67px] md:block">Temukan Psikotes yang Tepat untukmu</h1>
+                    <h1 class="block text-[24px] md:hidden">Discover Your Potential</h1>
+                </div>
+            </div>
+
+            <div class="mx-8 mt-5">
+                <form id="logout-form" action="{{ route("auth.logout") }}" method="POST">
                     @csrf
-                    <button class="mr-16 rounded-[5px] bg-[#3986A3] px-[10px] py-3 text-xs font-medium text-white" style="font-family: 'Plus Jakarta Sans', sans-serif">Keluar</button>
+                    <button type="button" id="logout-button" class="flex h-12 w-28 items-center justify-center rounded-xl bg-primary font-semibold text-white transition-all hover:opacity-90">Keluar</button>
                 </form>
             </div>
-        </nav>
-        <!-- Navbar End -->
-
-        <!-- Tagline Start -->
-        <div class="my-7 flex w-full items-center justify-center">
-            <h1 class="text-2xl font-bold" style="font-family: 'Plus Jakarta Sans', sans-serif">Temukan Potensimu - Selamat Datang di Situs Psikotes Kami!</h1>
         </div>
-        <!-- Tagline End -->
 
-        <section x-data="{ open: false, testNumber: null }">
-            <!-- Box Test Swiper Start -->
-            <div class="swiper mySwiper h-[475px]">
-                <div class="swiper-wrapper mx-4">
-                    <div class="swiper-slide !h-auto py-1">
-                        <div class="mx-auto grid h-full max-w-[1200px] grid-cols-4 justify-items-center gap-x-3 gap-y-3">
+        <!-- Swiper Section Fixed -->
+        <section class="fixed bottom-0 left-0 right-0 top-[160px] mb-6">
+            <div class="swiper mySwiper h-full">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide !h-auto">
+                        <div class="mx-auto grid h-full max-w-[700px] grid-cols-2 justify-items-center gap-x-1 gap-y-5 md:max-w-[1200px] md:grid-cols-4 md:gap-x-3">
                             @foreach ($tools as $tool)
-                                <button type="button" @click="open = true; testNumber = {{ $tool->id }}">
-                                    <div class="flex h-[180px] w-[270px] items-center justify-center rounded-[5px] bg-[#3986A3] transition hover:scale-105">
-                                        <p class="text-xl font-bold text-white" style="font-family: 'Plus Jakarta Sans', sans-serif">Tes {{ str_pad($tool->order, 2, "0", STR_PAD_LEFT) }}</p>
+                                <button type="button" @click="open = true; toolId = {{ $tool->id }}">
+                                    <div class="relative h-[89.84px] w-[161.02px] rounded-[10px] bg-[#3986A3] text-white transition-all hover:opacity-85 md:h-[141.33px] md:w-[253.33px]">
+                                        <span class="absolute left-3 top-1 z-10 font-plusJakartaSans text-[20px] font-bold text-[#F5F5F6] md:text-[33.33px]">Tes {{ str_pad($tool->order, 2, "0", STR_PAD_LEFT) }}</span>
+                                        <span class="absolute -bottom-6 right-3 select-none font-sans text-[80px] font-extrabold text-white/20 md:-bottom-9 md:text-[120px]">
+                                            {{ $tool->order }}
+                                        </span>
                                     </div>
                                 </button>
                             @endforeach
@@ -56,51 +72,49 @@
                     </div>
                 </div>
             </div>
-            <!-- Box Test Swiper End -->
+        </section>
 
-            <!-- Modal Redeem Code Start -->
-            <div x-show="open" x-cloak @click.outside="open = false" @keydown.escape.window="open = false" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-                <div class="h-[298px] w-[560px] rounded-lg bg-white p-6 shadow-lg">
-                    <h2 class="mb-5 text-center text-2xl font-bold" style="font-family: 'Plus Jakarta Sans', sans-serif">Kode Tes</h2>
-                    <h2 class="mb-6 text-center text-[15px] text-[#D1D1D1]" style="font-family: 'Plus Jakarta Sans', sans-serif">Masukkan kode tes yang diberikan untuk memulai tes.</h2>
-                    <form method="POST" action="{{ route("psikotes-paid.tools.verify-token") }}">
+        <!-- Modal -->
+        <div x-show="open" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+            <div class="relative h-[184.67px] w-[370.67px] rounded-[10.67px] bg-white shadow-lg">
+                <!-- Tombol close -->
+                <button @click="open = false" class="absolute right-3 top-3 text-gray-400 hover:text-gray-600">✕</button>
+
+                <div class="flex flex-col items-center px-4 py-4">
+                    <h2 class="mb-[13.33px] self-start font-plusJakartaSans font-medium text-black">Token Akses</h2>
+                    <span class="mb-4 text-center font-plusJakartaSans text-sm font-normal text-[#344054]">Masukkan token akses untuk memulai tes!</span>
+
+                    <form action="{{ route("psikotes-paid.tools.verify-token") }}" method="POST">
                         @csrf
-                        <input type="hidden" name="tool_id" :value="testNumber" />
+                        <input type="text" name="token" class="mb-5 h-[36px] w-[338.67px] rounded-lg border border-[#BDBDBD] bg-white px-3 py-2 font-plusJakartaSans text-[10.67px] font-normal focus:border-[#424242] focus:outline-none" placeholder="Token" />
+                        <input type="hidden" name="tool_id" :value="toolId" />
+
                         <div class="flex justify-center">
-                            <input type="text" name="token" placeholder="Enter code" class="h-[47px] w-[458px] rounded-[10px] bg-[#E1E1E1] px-3 text-[15px] font-bold outline-none placeholder:text-white" style="font-family: 'Plus Jakarta Sans', sans-serif" required />
-                        </div>
-                        <div class="mt-4 flex justify-center gap-2">
-                            <button type="submit" class="rounded-xl bg-[#3986A3] px-28 py-3 text-[15px] font-extrabold text-white" style="font-family: 'Plus Jakarta Sans', sans-serif">Redeem</button>
+                            <button class="h-[27.33px] w-[116.67px] rounded-[5.33px] bg-[#106681] font-plusJakartaSans text-xs font-semibold text-white">Mulai</button>
                         </div>
                     </form>
                 </div>
             </div>
-            <!-- Modal Redeem Code End -->
-        </section>
+        </div>
+        <footer>
+            <!-- Footer hanya di mobile -->
+            <div class="mt-auto w-full md:hidden">
+                <img src="{{ asset("assets/auth/images/Footer - Section.png") }}" alt="footer" class="w-full object-cover" />
+            </div>
+        </footer>
     </div>
 @endsection
 
 @push("script")
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-        const swiper = new Swiper('.mySwiper', {
-            direction: 'vertical',
-            slidesPerView: 'auto',
-            mousewheel: true,
-            freeMode: true,
-        });
-    </script>
-
-    // Sweet Alert Alat Tes
+    {{-- Sweet Alert --}}
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const tesStatus = urlParams.get('tes');
+        const testimoniStatus = urlParams.get('testimoni');
 
         if (tesStatus === 'selesai') {
             Swal.fire({
-                title: 'Tes sudah selesai!',
-                text: 'Hasil tes kamu sudah tersimpan.',
+                title: 'Anda telah menyelesaikan tes!',
                 icon: 'success',
                 confirmButtonText: 'Oke',
                 customClass: {
@@ -115,55 +129,57 @@
                 window.history.replaceState({}, document.title, url.toString());
             });
         }
-    </script>
-
-    // Sweet Alert Testimoni
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const testimoniStatus = urlParams.get('testimoni');
 
         if (testimoniStatus === 'selesai') {
             Swal.fire({
-                title: 'Kamu telah mengisi testimoni!',
+                title: 'Anda telah mengisi testimoni!',
                 icon: 'success',
-                showConfirmButton: true,
-                confirmButtonText: 'Lanjutkan',
+                confirmButtonText: 'Oke',
                 customClass: {
                     popup: 'rounded-xl px-6 pt-6 pb-6',
-                    confirmButton: 'mt-6 rounded-md bg-[#3986A3] px-[112px] py-[10px] text-[15px] font-extrabold text-white transition hover:bg-blue-600',
+                    confirmButton: 'mt-6 rounded-md bg-[#3986A3] px-[112px] py-[10px] text-[15px] font-extrabold text-white',
                 },
-                confirmButtonColor: undefined,
                 backdrop: 'rgba(0,0,0,0.5)',
             }).then(() => {
+                // Hapus query param biar tidak muncul lagi saat reload
                 const url = new URL(window.location.href);
                 url.searchParams.delete('testimoni');
                 window.history.replaceState({}, document.title, url.toString());
             });
         }
+
+        document.getElementById("logout-button").addEventListener("click", function () {
+        Swal.fire({
+            title: 'Apakah Anda yakin ingin keluar?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, Keluar',
+            cancelButtonText: 'Batal',
+            customClass: {
+                popup: 'rounded-xl px-6 pt-6 pb-6',
+                confirmButton: 'mt-4 rounded-md bg-[#3986A3] px-6 py-2 text-[15px] font-extrabold text-white',
+                cancelButton: 'mt-4 rounded-md bg-gray-400 px-6 py-2 text-[15px] font-semibold text-white'
+            },
+            reverseButtons: true,
+            backdrop: 'rgba(0,0,0,0.5)',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById("logout-form").submit();
+            }
+        });
+    });
     </script>
 
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const logoutForm = document.querySelector('form[action="{{ route("auth.logout") }}"]');
-            if (!logoutForm) return;
-
-            logoutForm.addEventListener('submit', function(e) {
-                e.preventDefault(); // cegah submit langsung
-
-                Swal.fire({
-                    title: 'Apakah kamu yakin ingin keluar?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3986A3',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya, keluar',
-                    cancelButtonText: 'Batal'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        logoutForm.submit(); // submit form jika sudah konfirmasi
-                    }
-                });
-            });
+        const swiper = new Swiper('.mySwiper', {
+            direction: 'vertical',
+            slidesPerView: 'auto',
+            mousewheel: true,
+            freeMode: true,
         });
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 @endpush

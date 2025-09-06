@@ -26,7 +26,7 @@
                 <h1 class="text-lg font-semibold text-[#3F3F3F]">
                     Terjadi kesalahan,
                     <br />
-                    Dashboard hanya bisa diakses
+                    Psikotes hanya bisa diakses
                     <br />
                     melalui perangkat desktop.
                 </h1>

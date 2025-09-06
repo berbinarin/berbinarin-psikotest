@@ -18,6 +18,10 @@ class SubmittedResponseController extends Controller
         $user = auth()->user();
         $tool = Tool::find($this->attemptService->getSession('tool_id'));
 
+        if (!$tool->introduce) {
+            return redirect()->route('psikotes-paid.attempt.question');
+        }
+
         return view('landing.psikotes-paid.attempts.introduce', compact('user', 'tool'));
     }
 

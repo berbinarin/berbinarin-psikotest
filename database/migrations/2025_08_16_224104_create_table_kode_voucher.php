@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('testimonials', function (Blueprint $table) {
+        Schema::create('kode_voucher', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->text('question');
-            $table->string('type');
-            $table->text('answer');
+            $table->string('category'); 
+            $table->string('nama_voucher'); 
+            $table->string('code')->unique(); 
+            $table->integer('percentage'); 
+            $table->string('tipe'); 
+            $table->string('detail'); 
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('testimonials');
+        Schema::dropIfExists('kode_voucher');
     }
 };
