@@ -72,9 +72,9 @@
         </div>
     </div>
 
-    <div id="countdownExample" class="absolute right-0 top-0">
+    {{-- <div id="countdownExample" class="absolute right-0 top-0">
         <span class="values"></span>
-    </div>
+    </div> --}}
 @endsection
 
 @push("script")
