@@ -5,7 +5,7 @@
         @include("landing.partials.header")
 
         {{-- Additional Style --}}
-        @push("style")
+        @stack("style")
     </head>
     <body class="relative w-full overflow-x-hidden">
         {{-- Navbar --}}

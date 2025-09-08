@@ -81,7 +81,7 @@
     </section>
 @endsection
 
-@section("script")
+@push("script")
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         const chartData = @json($chartData);
@@ -149,4 +149,4 @@
             });
         }
     </script>
-@endsection
+@endpush

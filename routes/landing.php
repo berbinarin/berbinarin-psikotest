@@ -28,6 +28,9 @@ Route::middleware(['auth', 'session.verified'])->prefix('psikotes-paid')->name('
         Route::post('/question', [SubmittedResponseController::class, 'submit'])->name('submit');
         Route::get('/selesai', [SubmittedResponseController::class, 'complete'])->name('complete');
         Route::post('/times-up', [SubmittedResponseController::class, 'timesUp'])->name('times-up');
+        
+        Route::get('/checkpoint-question', [SubmittedResponseController::class, 'getCheckpointQuestion'])->name('get-checkpoint-question')->withoutMiddleware(['session.verified']);
+        Route::put('/set-checkpoint', [SubmittedResponseController::class, 'setCheckpoint'])->name('set-checkpoint')->withoutMiddleware(['session.verified']);
     });
 
     // Testimonial
@@ -38,7 +41,7 @@ Route::middleware(['auth', 'session.verified'])->prefix('psikotes-paid')->name('
 });
 
 // Psikotes Free
-Route::prefix('psikotes-free')->name('psikotes-free.')->group( function() {
+Route::prefix('psikotes-free')->name('psikotes-free.')->group(function () {
     Route::get('/biodata', [PsikotesFreeProfileController::class, 'index'])->name('profile');
     Route::post('/biodata/store', [PsikotesFreeProfileController::class, 'store'])->name('profile.store');
     Route::get('/pengenalan', [PsikotesFreeController::class, 'introduce'])->name('introduce');
@@ -47,7 +50,7 @@ Route::prefix('psikotes-free')->name('psikotes-free.')->group( function() {
     Route::post('/submit', [TestController::class, 'submit'])->name('submit');
     Route::get('/umpan-balik', [FeedbackController::class, 'show'])->name('feedback.show');
     Route::post('/feedback/store', [FeedbackController::class, 'store'])->name('feedback.store');
-    Route::get('/hasil',[ResultController::class, 'result'])->name('result');
+    Route::get('/hasil', [ResultController::class, 'result'])->name('result');
     Route::post('/times-up', [TestController::class, 'timesUp'])->name('attempt.times-up');
     Route::get('/selesai', [ResultController::class, 'finish'])->name('finish');
 });

@@ -43,6 +43,6 @@
 
 @endsection
 
-@section('script')
+@push('script')
 
-@endsection
+@endpush

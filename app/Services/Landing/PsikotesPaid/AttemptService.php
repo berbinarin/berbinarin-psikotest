@@ -26,6 +26,7 @@ class AttemptService
                 'attempt_id' => $attempt->id,
                 'section_order' => 1,
                 'question_order' => 1,
+                'is_checkpoint' => false,
             ]
         ]);
     }
@@ -38,6 +39,18 @@ class AttemptService
     public function getSession($name = null)
     {
         return $name ?  session(self::KEY, [])[$name] : session(self::KEY, []);
+    }
+
+    public function updateSession(array $data): void
+    {
+        // Ambil semua data session yang ada saat ini
+        $currentSession = session(self::KEY, []);
+
+        // Gabungkan data lama dengan data baru (data baru akan menimpa yang lama jika key-nya sama)
+        $newSessionData = array_merge($currentSession, $data);
+
+        // Simpan kembali data yang sudah diperbarui ke dalam session
+        session([self::KEY => $newSessionData]);
     }
 
     /**
@@ -83,7 +96,7 @@ class AttemptService
         Attempt::find($this->getSession('attempt_id'))->update([
             'status' => 'completed',
         ]);
-        
+
         $this->destroySession();
         return false;
     }

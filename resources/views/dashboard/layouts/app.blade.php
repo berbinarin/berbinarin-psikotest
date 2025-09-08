@@ -5,7 +5,7 @@
         @include('dashboard.partials.header')
 
         {{-- Additional Style --}}
-        @yield('style')
+        @stack('style')
     </head>
     <body class="font-plusJakartaSans">
         <div class="flex h-screen w-full">
@@ -21,11 +21,10 @@
                 @yield("content")
             </main>
         </div>
-
         {{-- Script --}}
         @include('dashboard.partials.script')
 
         {{-- Additional Script --}}
-        @yield('script')
+        @stack('script')
     </body>
 </html>
