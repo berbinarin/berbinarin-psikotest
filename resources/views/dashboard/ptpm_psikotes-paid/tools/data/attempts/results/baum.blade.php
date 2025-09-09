@@ -7,7 +7,7 @@
 
     <!-- Results Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        <div class="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-blue-200">
+        <div class="group bg-white w-[450px] rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-blue-200">
             <div class="p-4">
                 @php
                     $imagePath = $data->answer["file_path"] ?? null;
