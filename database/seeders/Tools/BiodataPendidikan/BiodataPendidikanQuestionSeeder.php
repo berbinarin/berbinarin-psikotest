@@ -246,7 +246,7 @@ class BiodataPendidikanQuestionSeeder extends Seeder
                     ],
                     [
                         'title' => 'SMA',
-'group' => 'senior_high_school',
+                        'group' => 'senior_high_school',
                         'repeatable' => false,
                         'inputs' => [
                             [

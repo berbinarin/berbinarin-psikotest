@@ -28,7 +28,7 @@ Route::middleware(['auth', 'session.verified'])->prefix('psikotes-paid')->name('
         Route::post('/question', [SubmittedResponseController::class, 'submit'])->name('submit');
         Route::get('/selesai', [SubmittedResponseController::class, 'complete'])->name('complete');
         Route::post('/times-up', [SubmittedResponseController::class, 'timesUp'])->name('times-up');
-        
+
         Route::get('/checkpoint-question', [SubmittedResponseController::class, 'getCheckpointQuestion'])->name('get-checkpoint-question')->withoutMiddleware(['session.verified']);
         Route::put('/set-checkpoint', [SubmittedResponseController::class, 'setCheckpoint'])->name('set-checkpoint')->withoutMiddleware(['session.verified']);
     });
@@ -54,3 +54,14 @@ Route::prefix('psikotes-free')->name('psikotes-free.')->group(function () {
     Route::post('/times-up', [TestController::class, 'timesUp'])->name('attempt.times-up');
     Route::get('/selesai', [ResultController::class, 'finish'])->name('finish');
 });
+
+// Route get image from storage
+Route::get('/image/{path}', function ($path) {
+    $path = storage_path("app/public/" . $path);
+
+    if (!file_exists($path)) {
+        abort(404);
+    }
+
+    return response()->file($path);
+})->where('path', '.*');

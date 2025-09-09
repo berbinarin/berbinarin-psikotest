@@ -17,7 +17,7 @@
                     @if($imagePath)
                         <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden relative group/image">
                             <img
-                                src="{{ asset('storage/' . $imagePath) }}"
+                                src="{{ asset('/image/' . $imagePath) }}"
                                 alt="Baum Drawing by {{ $attempt->user->name }}"
                                 class="w-full h-full object-cover transition-transform duration-500 group-hover/image:scale-110"
                                 loading="lazy"
