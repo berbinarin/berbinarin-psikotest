@@ -45,7 +45,7 @@ class BaumQuestionSeeder extends Seeder
             [
                 'section_id' => $baum->sections[0]->id,
                 'order' => 4,
-                'text' => '<p>ika sudah, silakan foto kedua sisi kertas tersebut, baik bagian identitas maupun gambar Anda dan jika sudah di foto, silahkan mengunggah foto tersebut.</p>',
+                'text' => 'Jika sudah, silakan foto kedua sisi kertas tersebut, baik bagian identitas maupun gambar Anda dan jika sudah di foto, silahkan mengunggah foto tersebut.',
                 'type' => 'image_upload',
             ],
         ];

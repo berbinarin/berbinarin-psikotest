@@ -54,3 +54,14 @@ Route::prefix('psikotes-free')->name('psikotes-free.')->group(function () {
     Route::post('/times-up', [TestController::class, 'timesUp'])->name('attempt.times-up');
     Route::get('/selesai', [ResultController::class, 'finish'])->name('finish');
 });
+
+// Route get image from storage
+Route::get('/image/{path}', function ($path) {
+    $path = storage_path("app/public/" . $path);
+
+    if (!file_exists($path)) {
+        abort(404);
+    }
+
+    return response()->file($path);
+})->where('path', '.*');
