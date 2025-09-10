@@ -437,7 +437,7 @@
                 typeSelect.dispatchEvent(new Event('change'));
             }
         });
-        
+
         function formatRupiah(num) {
             num = parseInt(num) || 0;
             return 'Rp' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
@@ -456,7 +456,7 @@
                 priceInput.dataset.hargaFinal = diskon;
             } else {
                 hargaAsliSpan.textContent = formatRupiah(harga);
-                hargaAsliSpan.className = 'text-[17px]'; 
+                hargaAsliSpan.className = 'text-[17px]';
                 hargaDiskonSpan.textContent = '';
                 hargaDiskonSpan.className = '';
                 priceInput.value = harga;
@@ -464,7 +464,7 @@
             }
             priceInput.dataset.hargaAsli = harga;
         }
-        
+
         typeSelect.addEventListener('change', function () {
             const selectedType = typeSelect.options[typeSelect.selectedIndex];
             const price = selectedType.getAttribute('data-price');
@@ -534,11 +534,11 @@
 
         return null;
         }
-        
+
         // Data Voucher
         const vouchers = @json($vouchers);
 
-    
+
         function redeemVoucher() {
             const kode = document.getElementById('kode_promo').value.trim().toLowerCase();
             const service = document.getElementById('service').value;
