@@ -27,4 +27,9 @@ class TestimonialController extends Controller
 
         return redirect()->route('dashboard.testimonial.index')->with('success', 'Testimoni berhasil dihapus.');
     }
+
+    public function response()
+    {
+        return view('dashboard.ptpm_psikotes-paid.check-point.index');
+    }
 }

@@ -84,6 +84,11 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
             Route::put('/{id}', [KodeVoucherController::class, 'update'])->name('update');
             Route::delete('/{id}', [KodeVoucherController::class, 'destroy'])->name('destroy');
         });
+
+        // Check Point
+        Route::prefix('check-point')->name('check-point.')->group(function () {
+            Route::get('/', [TestimonialController::class, 'response'])->name('index');
+        });
     });
 
 

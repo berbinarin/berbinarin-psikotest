@@ -47,3 +47,10 @@
         <span class="ml-4 text-base font-bold leading-5">Kode Voucher</span>
     </a>
 </li>
+
+<li class="{{ isRouteNameStartWith("dashboard.check-point") }} my-5 rounded-lg p-2">
+    <a href="{{ route("dashboard.check-point.index") }}" class="{{ Str::startsWith(Route::currentRouteName(), "dashboard.check-point") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
+        <i class="bx bx-book {{ Str::startsWith(Route::currentRouteName(), "dashboard.check-point") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
+        <span class="ml-4 text-base font-bold leading-5">Respon</span>
+    </a>
+</li>
