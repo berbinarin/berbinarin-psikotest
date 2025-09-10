@@ -26,7 +26,7 @@
                         >
                             <img
                                 src="{{ $imageUrl }}"
-                                alt="Baum Drawing by {{ $attempt->user->name }}"
+                                alt="BAUM Drawing by {{ $attempt->user->name }}"
                                 class="w-full h-full object-cover transition-transform duration-500 group-hover/image:scale-110 group-hover/image:brightness-50"
                                 loading="lazy"
                             >
@@ -37,7 +37,7 @@
                             </span>
                         </button>
                     @else
-                        <div class="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex flex-col items-center justify-center text-gray-500 border-2 border-dashed     border-gray-300">
+                        <div class="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex flex-col items-center justify-center text-gray-500 border-2 border-dashed border-gray-300">
                             <i class="fas fa-image text-4xl mb-3 opacity-50"></i>
                             <p class="text-sm font-medium mb-1">No Image Available</p>
                             <p class="text-xs opacity-75 text-center px-4">This submission doesn't contain an image</p>
@@ -66,7 +66,8 @@
         <div class="flex items-center justify-between p-3 border-b">
             <div class="text-sm text-gray-600">Detail Gambar</div>
             <div class="flex items-center gap-2">
-                <a id="downloadBtn" href="{{ $imageUrl }}" download="{{ basename($imagePath) }}" class="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700">
+                <a id="downloadBtn" href="{{ $imageUrl }}" download="Tes_BAUM_{{ $attempt->user->name }}_{{ now()->format('Y-m-d') }}.{{ pathinfo($imagePath, PATHINFO_EXTENSION) }}"
+                    class="inline-flex items-center gap-2 px-3 py-1.5 bg-primary text-white rounded-md text-sm hover:bg-primary">
                     <i class="fas fa-download"></i>
                     <span>Download</span>
                 </a>
@@ -80,7 +81,7 @@
 
         <!-- content: image contained inside modal container  -->
         <div class="p-4 flex items-center justify-center">
-            <img id="modalImage" src="{{ $imageUrl }}" alt="Full Baum Drawing by {{ $attempt->user->name }}" class="max-h-[80vh] w-full object-contain rounded-md" />
+            <img id="modalImage" src="{{ $imageUrl }}" alt="Full BAUM Drawing by {{ $attempt->user->name }}" class="max-h-[80vh] w-full object-contain rounded-md" />
         </div>
     </div>
 </div>
@@ -113,7 +114,7 @@
 
         openBtn.addEventListener('click', function(e){
             const src = this.getAttribute('data-image-url') || this.querySelector('img')?.src;
-            const filename = src ? src.split('/').pop().split('?')[0] : 'image';
+            const filename = `Tes_BAUM_{{ $attempt->user->name }}_{{ now()->format('Y-m-d') }}.${src ? src.split('.').pop().split('?')[0] : 'jpg'}`;
             openModal(src, filename);
         });
 
@@ -132,5 +133,3 @@
     })();
 </script>
 @endif
-
-

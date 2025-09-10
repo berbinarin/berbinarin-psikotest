@@ -1,8 +1,7 @@
 <div class="w-full p-6 bg-gray-50">
     <!-- Header Section -->
     <div class="mb-8">
-        <h1 class="text-3xl font-bold text-blue-700 mb-2">Tes DAP Results</h1>
-        <p class="text-gray-600">Berikut adalah rincian jawaban dan gambar dari tes DAP.</p>
+        <h1 class="text-3xl font-bold text-[#75BADB] mb-2">Name: {{ $attempt->user->name }}</h1>
         <div class="w-20 h-1 bg-blue-500 mt-2"></div>
     </div>
 
@@ -23,14 +22,12 @@
                                 aria-haspopup="dialog"
                                 aria-label="Open full image"
                                 data-image-url="{{ $imageUrl }}"
-
                                 data-filename="{{ basename($imagePath) }}"
 
                             >
                                 <img
                                     src="{{ $imageUrl }}"
-
-                                    alt="DAP Drawing"
+                                    alt="DAP Drawing by {{ $attempt->user->name }}"
                                     class="w-full h-full object-cover transition-transform duration-500 group-hover/image:scale-110 group-hover/image:brightness-50"
                                     loading="lazy"
                                 >
@@ -76,7 +73,7 @@
         <div class="flex items-center justify-between p-3 border-b">
             <div class="text-sm text-gray-600">Detail Gambar</div>
             <div class="flex items-center gap-2">
-                <a id="downloadBtn" href="#" download="" class="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700">
+                <a id="downloadBtn" href="#" download="Tes_DAP_{{ $attempt->user->name }}_{{ now()->format('Y-m-d') }}.{{ pathinfo($imagePath, PATHINFO_EXTENSION) }}" class="inline-flex items-center gap-2 px-3 py-1.5 bg-primary text-white rounded-md text-sm hover:bg-primary">
                     <i class="fas fa-download"></i>
                     <span>Download</span>
                 </a>
@@ -90,7 +87,7 @@
 
         <!-- content: image contained inside modal container -->
         <div class="p-4 flex items-center justify-center">
-            <img id="modalImage" src="#" alt="Full DAP Drawing" class="max-h-[80vh] w-full object-contain rounded-md" />
+            <img id="modalImage" src="#" alt="Full DAP Drawing by {{ $attempt->user->name }}" class="max-h-[80vh] w-full object-contain rounded-md" />
         </div>
     </div>
 </div>
@@ -127,7 +124,7 @@
         openBtns.forEach(btn => {
             btn.addEventListener('click', function(){
                 const src = this.dataset.imageUrl || this.querySelector('img')?.src;
-                const filename = this.dataset.filename || (src ? src.split('/').pop().split('?')[0] : 'image');
+                const filename = `Tes_DAP_{{ $attempt->user->name }}_{{ now()->format('Y-m-d') }}.${src ? src.split('.').pop().split('?')[0] : 'jpg'}`;
                 openModal(src, filename);
             });
         });

@@ -2,8 +2,7 @@
     @forelse($data as $index => $item)
     <!-- Header Section -->
     <div class="mb-8">
-        <h1 class="text-3xl font-bold text-gray-800 mb-2">{{ $item['user_name'] ?? 'Unknown User' }}</h1>
-        <p class="text-gray-600">Submissions Tes HTP</p>
+        <h1 class="text-3xl font-bold text-[#75BADB] mb-2">Name: {{ $item['user_name'] ?? 'Unknown User' }}</</h1>
         <div class="w-20 h-1 bg-blue-500 mt-2"></div>
     </div>
 
@@ -86,7 +85,7 @@
         <div class="flex items-center justify-between p-3 border-b">
             <div class="text-sm text-gray-600">Detail Gambar</div>
             <div class="flex items-center gap-2">
-                <a id="downloadBtn" href="#" download="" class="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700">
+                <a id="downloadBtn" href="#" download="Tes_HTP_{{ $item['user_name'] }}_{{ now()->format('Y-m-d') }}.{{ pathinfo($imagePath, PATHINFO_EXTENSION) }}" class="inline-flex items-center gap-2 px-3 py-1.5 bg-primary text-white rounded-md text-sm hover:bg-primary">
                     <i class="fas fa-download"></i>
                     <span>Download</span>
                 </a>
@@ -100,7 +99,7 @@
 
         <!-- content: image contained inside modal container -->
         <div class="p-4 flex items-center justify-center">
-            <img id="modalImage" src="#" alt="Full HTP Drawing" class="max-h-[80vh] w-full object-contain rounded-md" />
+            <img id="modalImage" src="#" alt="Full HTP Drawing by {{ $item['user_name'] }}" class="max-h-[80vh] w-full object-contain rounded-md" />
         </div>
     </div>
 </div>
@@ -136,7 +135,7 @@
         openBtns.forEach(btn => {
             btn.addEventListener('click', function(){
                 const src = this.dataset.imageUrl || this.querySelector('img')?.src;
-                const filename = this.dataset.filename || (src ? src.split('/').pop().split('?')[0] : 'image');
+                const filename = `Tes_HTP_{{ $item['user_name'] }}_{{ now()->format('Y-m-d') }}.${src ? src.split('.').pop().split('?')[0] : 'jpg'}`;
                 openModal(src, filename);
             });
         });
