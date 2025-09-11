@@ -10,7 +10,12 @@
         <div class="w-full">
             <div class="py-4 md:pb-7 md:pt-5">
                 <div>
-                    <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Detail Data Jawaban Checkpoint</p>
+                    <div class="flex items-center gap-2">
+                        <a href="{{ route("dashboard.check-point.jawaban.index") }}">
+                            <img src="{{ asset("assets/dashboard/images/back-btn.png") }}" alt="Back Button" />
+                        </a>
+                        <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Detail Data Jawaban Checkpoint</p>
+                    </div>
                     <p class="text-disabled py-2 text-gray-500">Halaman dashboard ini menampilkan detail jawaban yang telah dikumpulkan dari pengguna.</p>
                 </div>
             </div>
