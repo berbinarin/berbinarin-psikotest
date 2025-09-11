@@ -10,11 +10,11 @@
 <section class="flex w-full">
     <div class="flex flex-col">
         <div class="w-full">
-            <div class="py-4 md:pb-7 md:pt-12">
+            <div class="py-4 md:pb-7 md:pt-5">
                 <div>
-                    <p tabindex="0" class="mb-2 text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Kode Voucher</p>
-                    <p class="text-disabled">Halaman yang menampilkan dan mengelola Kode Voucher.</p>
-                    <a href="javascript:void(0);" onclick="openCreateModal()" class="mt-8 inline-flex items-start justify-start rounded bg-primary px-6 py-3 text-white hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-3">
+                    <p tabindex="0" class="mb-2 text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Kode Voucher</p>
+                    <p class="text-gray-500 pb-2">Halaman yang menampilkan dan mengelola Kode Voucher.</p>
+                    <a href="javascript:void(0);" onclick="openCreateModal()" class="mt-8 inline-flex items-start justify-start rounded-lg bg-primary px-6 py-3 text-white hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-3">
                         <p class="text-dark font-medium leading-none">Tambah Data</p>
                     </a>
                 </div>

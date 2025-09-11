@@ -87,7 +87,18 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
 
         // Check Point
         Route::prefix('check-point')->name('check-point.')->group(function () {
-            Route::get('/', [TestimonialController::class, 'response'])->name('index');
+            Route::get('/', [TestimonialController::class, 'checkpointIndex'])->name('index');
+
+            Route::prefix('soal')->name('soal.')->group(function (){
+                Route::get('/', [TestimonialController::class, 'soalIndex'])->name('index');
+            });
+
+            Route::prefix('jawaban')->name('jawaban.')->group(function (){
+                Route::get('/', [TestimonialController::class, 'jawabanIndex'])->name('index');
+                Route::get('/show', [TestimonialController::class, 'jawabanShow'])->name('show');
+            });
+
+
         });
     });
 

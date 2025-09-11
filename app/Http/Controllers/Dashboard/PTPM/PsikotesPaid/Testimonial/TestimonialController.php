@@ -28,8 +28,23 @@ class TestimonialController extends Controller
         return redirect()->route('dashboard.testimonial.index')->with('success', 'Testimoni berhasil dihapus.');
     }
 
-    public function response()
+    public function checkpointIndex()
     {
         return view('dashboard.ptpm_psikotes-paid.check-point.index');
+    }
+
+    public function soalIndex()
+    {
+        return view('dashboard.ptpm_psikotes-paid.check-point.soal.index');
+    }
+
+    public function jawabanIndex()
+    {
+        return view('dashboard.ptpm_psikotes-paid.check-point.jawaban.index');
+    }
+
+    public function jawabanShow()
+    {
+        return view('dashboard.ptpm_psikotes-paid.check-point.jawaban.show');
     }
 }
