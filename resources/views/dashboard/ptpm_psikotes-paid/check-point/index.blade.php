@@ -15,11 +15,11 @@
         </div>
 
         <!-- Card Section -->
-        <div class="mb-8 grid grid-cols-1 gaps-6 md:grid-cols-2">
+        <div class="mb-8 w-full flex flex-row justify-between gap-6">
 
             <a href="{{ route('dashboard.check-point.soal.index') }}" class="flex h-[145px] w-[90%] flex-row items-center rounded-xl bg-white p-6 shadow hover:bg-gray-100 transition">
                 <div class="flex h-[104px] w-[119px] items-center justify-center rounded-lg bg-gray-100">
-                    <i class="bx bx-list-ul text-primary text-6xl"></i>
+                    <img src="{{ asset("assets/dashboard/images/checkpoint-question.png") }}" alt="" class="w-16 h-16">
                 </div>
                 <div class="ml-6">
                     <p class="text-[28px] font-semibold text-gray-800">20</p>
@@ -29,7 +29,7 @@
 
             <a href="{{ route('dashboard.check-point.jawaban.index') }}" class="flex h-[145px] w-[90%] flex-row items-center rounded-xl bg-white p-6 shadow hover:bg-gray-100 transition">
                 <div class="flex h-[104px] w-[119px] items-center justify-center rounded-lg bg-gray-100">
-                    <i class="bx bx-check-shield text-primary text-6xl"></i>
+                    <img src="{{ asset("assets/dashboard/images/checkpoint-answer.png") }}" alt="" class="w-16 h-16">
                 </div>
                 <div class="ml-6">
                     <p class="text-[28px] font-semibold text-gray-800">30</p>
