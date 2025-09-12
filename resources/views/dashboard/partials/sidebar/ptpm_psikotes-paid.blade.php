@@ -41,9 +41,9 @@
     </a>
 </li>
 
-<li class="{{ isRouteNameStartWith("dashboard.kode_voucher") }} my-5 rounded-lg p-2">
-    <a href="{{ route("dashboard.kode_voucher.index") }}" class="{{ Str::startsWith(Route::currentRouteName(), "dashboard.kode_voucher") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
-        <i class="bx bxs-purchase-tag {{ Str::startsWith(Route::currentRouteName(), "dashboard.kode_voucher") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
+<li class="{{ isRouteNameStartWith("dashboard.kode-voucher") }} my-5 rounded-lg p-2">
+    <a href="{{ route("dashboard.kode-voucher.index") }}" class="{{ Str::startsWith(Route::currentRouteName(), "dashboard.kode-voucher") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
+        <i class="bx bxs-purchase-tag {{ Str::startsWith(Route::currentRouteName(), "dashboard.kode-voucher") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
         <span class="ml-4 text-base font-bold leading-5">Kode Voucher</span>
     </a>
 </li>
