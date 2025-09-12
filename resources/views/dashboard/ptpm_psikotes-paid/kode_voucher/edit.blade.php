@@ -125,7 +125,7 @@
                                     <option value="">Pilih Tipe</option>
                                     <option value="metode">Metode</option>
                                     <option value="hari">Hari</option>
-                                    <option value="sesi">Sesi</option>                
+                                    {{-- <option value="sesi">Sesi</option>                 --}}
                                 </select>
                             </div>
                             <div class="text-left w-1/2">
