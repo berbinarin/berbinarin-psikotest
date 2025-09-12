@@ -87,7 +87,6 @@
     <!-- Modal Tambah Data Soal -->
     <div id="createSoalModal" class="fixed inset-0 z-10 hidden items-center justify-center bg-black bg-opacity-50 flex">
         <div class="w-full max-w-xl rounded-xl bg-white p-6 text-center relative">
-            <button type="button" onclick="closeCreateSoalModal()" class="absolute top-2 right-2 text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
             <h3 class="mb-4 text-xl leading-6 text-black font-bold" id="modal-title">Tambah Soal <span class="italic">Checkpoint</span></h3>
             <form id="createSoalForm" method="POST" action="{{ route('dashboard.check-point.soal.index') }}">
                 @csrf
@@ -103,7 +102,7 @@
                         <label class="block mb-1 font-medium text-gray-600">Pertanyaan</label>
                         <input type="text" id="question" name="question" class="w-full rounded-lg border border-gray-300 px-3 py-2" placeholder="Berapa hasil dari 2 + 5?" required>
                     </div>
-                    <div id="pilihanGandaSection">
+                    <div id="pilihanGandaSection" class="max-h-52 overflow-y-auto">
                         <div class="text-left">
                             <div class="mb-6 mt-2 flex cursor-pointer items-center justify-center rounded-lg border border-dashed border-blue-500 py-2 text-blue-500" id="addOptionButton">
                                 <h1 class="flex items-center gap-2">
@@ -114,7 +113,7 @@
                             <div id="pilihanContainer"></div>
                         </div>
                     </div>
-                    <div id="uraianSection" class="hidden">
+                    <div id="uraianSection" class="hidden max-h-52 overflow-y-auto">
                         <label class="block mb-1 font-medium text-gray-600">Jawaban Uraian</label>
                         <input type="text" name="jawaban_uraian" class="w-full rounded-lg border border-gray-300 px-3 py-2" placeholder="Jawaban uraian..." />
                     </div>
@@ -130,7 +129,6 @@
     <!-- Modal Edit Data Soal -->
     <div id="editSoalModal" class="fixed inset-0 z-10 hidden items-center justify-center bg-black bg-opacity-50 flex">
         <div class="w-full max-w-xl rounded-xl bg-white p-6 text-center relative">
-            <button type="button" onclick="closeEditSoalModal()" class="absolute top-2 right-2 text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
             <h3 class="mb-4 text-xl leading-6 text-black font-bold" id="modal-title">Edit Soal <span class="italic">Checkpoint</span></h3>
             <form id="editSoalForm" method="POST" action="">
                 @csrf
@@ -147,7 +145,7 @@
                         <label class="block mb-1 font-medium text-gray-600">Pertanyaan</label>
                         <input type="text" id="edit_question" name="question" class="w-full rounded-lg border border-gray-300 px-3 py-2" placeholder="Berapa hasil dari 2 + 5?" required>
                     </div>
-                    <div id="pilihanGandaSection">
+                    <div id="pilihanGandaSection" class="max-h-52 overflow-y-auto">
                         <div class="text-left">
                             <div class="mb-6 mt-2 flex cursor-pointer items-center justify-center rounded-lg border border-dashed border-blue-500 py-2 text-blue-500" id="addOptionButton">
                                 <h1 class="flex items-center gap-2">
@@ -158,7 +156,7 @@
                             <div id="pilihanContainer"></div>
                         </div>
                     </div>
-                    <div id="uraianSection" class="hidden">
+                    <div id="uraianSection" class="hidden max-h-52 overflow-y-auto">
                         <label class="block mb-1 font-medium text-gray-600">Jawaban Uraian</label>
                         <input type="text" name="jawaban_uraian" class="w-full rounded-lg border border-gray-300 px-3 py-2" placeholder="Jawaban uraian..." />
                     </div>
@@ -174,7 +172,6 @@
     <!-- Modal Detail Data Soal -->
     <div id="detailSoalModal" class="fixed inset-0 z-10 hidden items-center justify-center bg-black bg-opacity-50 flex">
         <div class="w-full max-w-xl rounded-xl bg-white p-6 text-center relative">
-            <button type="button" onclick="closeDetailSoalModal()" class="absolute top-2 right-2 text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
             <h3 class="mb-4 text-xl leading-6 text-black font-bold">Detail Soal <span class="italic">Checkpoint</span></h3>
             <div class="flex flex-col gap-4 mb-5 mt-6">
                 <div class="text-left">
@@ -190,11 +187,11 @@
                 </div>
                 <div class="text-left">
                     <label class="block mb-1 font-medium text-gray-600">Pilihan Jawaban</label>
-                    <div id="detailPilihanContainer">
+                    <div id="detailPilihanContainer" class="max-h-52 overflow-y-auto">
                         <div class="flex items-center gap-2 mb-2">
                             <div class="font-bold w-1/12 h-auto py-2 bg-primary rounded-lg text-white text-center">A.</div>
                             <input type="text" class="w-4/5 rounded-lg border border-gray-300 px-3 py-2 bg-gray-100" value="Belum pernah" readonly>
-                            <select class="rounded-lg border appearance-none bg-none border-gray-300 px-2 py-2 bg-gray-100" disabled>
+                            <select class="rounded-lg border appearance-none bg-none border-gray-300 px-2 py-2 bg-green-200 text-green-950" disabled>
                                 <option value="benar" selected>Benar</option>
                                 <option value="salah">Salah</option>
                             </select>
@@ -202,7 +199,7 @@
                         <div class="flex items-center gap-2 mb-2">
                             <div class="font-bold w-1/12 h-auto py-2 bg-primary rounded-lg text-white text-center">B.</div>
                             <input type="text" class="w-4/5 rounded-lg border border-gray-300 px-3 py-2 bg-gray-100" value="Sudah 3x" readonly>
-                            <select class="rounded-lg border appearance-none bg-none border-gray-300 px-2 py-2 bg-gray-100" disabled>
+                            <select class="rounded-lg border appearance-none bg-none border-gray-300 px-2 py-2 bg-red-200 text-red-950" disabled>
                                 <option value="benar">Benar</option>
                                 <option value="salah" selected>Salah</option>
                             </select>
@@ -210,7 +207,7 @@
                         <div class="flex items-center gap-2 mb-2">
                             <div class="font-bold w-1/12 h-auto py-2 bg-primary rounded-lg text-white text-center">C.</div>
                             <input type="text" class="w-4/5 rounded-lg border border-gray-300 px-3 py-2 bg-gray-100" value="Rahasia" readonly>
-                            <select class="rounded-lg border appearance-none bg-none border-gray-300 px-2 py-2 bg-gray-100" disabled>
+                            <select class="rounded-lg border appearance-none bg-none border-gray-300 px-2 py-2 bg-red-200 text-red-950" disabled>
                                 <option value="benar">Benar</option>
                                 <option value="salah" selected>Salah</option>
                             </select>
@@ -218,7 +215,7 @@
                         <div class="flex items-center gap-2 mb-2">
                             <div class="font-bold w-1/12 h-auto py-2 bg-primary rounded-lg text-white text-center">D.</div>
                             <input type="text" class="w-4/5 rounded-lg border border-gray-300 px-3 py-2 bg-gray-100" value="Tidak akan pernah" readonly>
-                            <select class="rounded-lg border appearance-none bg-none border-gray-300 px-2 py-2 bg-gray-100" disabled>
+                            <select class="rounded-lg border appearance-none bg-none border-gray-300 px-2 py-2 bg-red-200 text-red-950" disabled>
                                 <option value="benar">Benar</option>
                                 <option value="salah" selected>Salah</option>
                             </select>
@@ -226,7 +223,7 @@
                         <div class="flex items-center gap-2 mb-2">
                             <div class="font-bold w-1/12 h-auto py-2 bg-primary rounded-lg text-white text-center">E.</div>
                             <input type="text" class="w-4/5 rounded-lg border border-gray-300 px-3 py-2 bg-gray-100" value="3 bulan lagi" readonly>
-                            <select class="rounded-lg border appearance-none bg-none border-gray-300 px-2 py-2 bg-gray-100" disabled>
+                            <select class="rounded-lg border appearance-none bg-none border-gray-300 px-2 py-2 bg-red-200 text-red-950" disabled>
                                 <option value="benar">Benar</option>
                                 <option value="salah" selected>Salah</option>
                             </select>
@@ -393,6 +390,7 @@
     });
 </script>
 
+
 <script>
     // Ambil elemen pada modal edit
     const editTipeSelect = document.getElementById('edit_tipe');
@@ -468,5 +466,52 @@
     function closeDetailSoalModal() {
         document.getElementById('detailSoalModal').classList.add('hidden');
     }
+</script>
+
+<script>
+    function openDetailSoalModal(soal) {
+    document.getElementById('detailSoalModal').classList.remove('hidden');
+
+    // Isi tipe soal dan pertanyaan
+    const tipeSelect = document.querySelector('#detailSoalModal select');
+    tipeSelect.value = soal.tipe;
+    const questionInput = document.querySelector('#detailSoalModal input[type="text"]');
+    questionInput.value = soal.question;
+
+    // Isi pilihan jawaban
+    const pilihanContainer = document.getElementById('detailPilihanContainer');
+    pilihanContainer.innerHTML = '';
+
+    if (soal.tipe === 'pilihan_ganda' && soal.pilihan && Array.isArray(soal.pilihan)) {
+        soal.pilihan.forEach(function(pilihan) {
+            const abjad = pilihan.abjad;
+            const jawaban = pilihan.jawaban;
+            const status = pilihan.status;
+
+            // Tentukan warna background dropdown
+            const dropdownClass = status === 'benar'
+                ? 'bg-green-500 text-white'
+                : 'bg-red-500 text-white';
+
+            const pilihanDiv = document.createElement('div');
+            pilihanDiv.className = 'flex items-center gap-2 mb-2';
+
+            pilihanDiv.innerHTML = `
+                <div class="font-bold w-1/12 h-auto py-2 bg-primary rounded-lg text-white text-center">${abjad}.</div>
+                <input type="text" class="w-4/5 rounded-lg border border-gray-300 px-3 py-2 bg-gray-100" value="${jawaban}" readonly>
+                <select class="rounded-lg border appearance-none bg-none border-gray-300 px-2 py-2 ${dropdownClass}" disabled>
+                    <option value="benar" ${status === 'benar' ? 'selected' : ''}>Benar</option>
+                    <option value="salah" ${status === 'salah' ? 'selected' : ''}>Salah</option>
+                </select>
+            `;
+            pilihanContainer.appendChild(pilihanDiv);
+        });
+    } else if (soal.tipe === 'uraian') {
+        pilihanContainer.innerHTML = `
+            <label class="block mb-1 font-medium text-gray-600">Jawaban Uraian</label>
+            <input type="text" class="w-full rounded-lg border border-gray-300 px-3 py-2 bg-gray-100" value="${soal.jawaban_uraian || ''}" readonly>
+        `;
+    }
+}
 </script>
 @endpush

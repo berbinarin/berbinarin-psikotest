@@ -53,7 +53,7 @@
                                     <td>Dummy Name</td>
                                     <td class="text-center">Dummy Test</td>
                                     <td class="flex items-center justify-center gap-2">
-                                        <a href="{{route("dashboard.check-point.jawaban.show") }}" class="detail-button inline-flex items-start justify-start rounded p-2 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                                        <a href="javascript:void(0);" onclick="openDetailJawabanModal()" class="detail-button inline-flex items-start justify-start rounded p-2 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
                                             style="background-color: #3b82f6">
                                             <i class="bx bx-show-alt text-white"></i>
                                         </a>
@@ -78,6 +78,53 @@
 
         </div>
     </section>
+
+    <!-- Modal Detail Data Soal -->
+    <div id="detailJawabanModal" class="fixed inset-0 z-10 hidden items-center justify-center bg-black bg-opacity-50 flex">
+        <div class="w-full max-w-2xl rounded-xl bg-white p-6 text-center relative">
+            <div class="flex flex-row w-full justify-between mb-4">
+                <p class="font-semibold text-lg">Detail Jawaban</p>
+                <div class="px-5 py-1 bg-[#75BADB] rounded-3xl text-white text-sm">Nama Tes</div>
+            </div>
+                <table class="w-full display gap-3 overflow-x-scroll mb-6 max-h-40 overflow-y-auto" style="overflow-x: scroll">
+                    <thead class="w-full border-b border-gray-300 overflow-x-scroll">
+                        <tr>
+                            <th class="text-center text-gray-400">No</th>
+                            <th class="text-center text-gray-400">Pertanyaan</th>
+                            <th class="text-center text-gray-400">Jawaban</th>
+                            <th class="text-center text-gray-400">Jawaban Benar</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center px-2">
+                        {{-- Ini buat detailnya. Bisa dikasih foreach di sini --}}
+                        <tr class="border-b border-gray-300" style="padding-top : 10px">
+                            <td class="py-4 pr-6">1</td>
+                            <td>Kapan Kanz memiliki pacar history nerd?</td>
+                            <td>A</td>
+                            <td>A</td>
+                        </tr>
+
+                        <tr class="border-b border-gray-300" style="padding-top : 10px">
+                            <td class="py-4 pr-6">2</td>
+                            <td>Mengapa Kanz diberi nama Kanz?</td>
+                            <td>E</td>
+                            <td>C</td>
+                        </tr>
+
+                        <tr class="border-b border-gray-300" style="padding-top : 10px">
+                            <td class="py-4 pr-6">3</td>
+                            <td>Siapa nama pacar Kanz?</td>
+                            <td>B</td>
+                            <td>D</td>
+                        </tr>
+
+                        {{-- Ini buat penutup foreach-nya --}}
+
+                    </tbody>
+                </table>
+            <button type="button" class="rounded-lg border border-[#3986A3] w-1/2 px-6 py-2 text-[#3986A3] focus:outline-none focus:ring-2 focus:ring-[#3986A3] focus:ring-offset-2" onclick="closeDetailJawabanModal()">Kembali</button>
+        </div>
+    </div>
 @endsection
 
 @push("script")
@@ -103,6 +150,15 @@
             document.getElementById(modalID + '-backdrop').classList.toggle('hidden');
             document.getElementById(modalID).classList.toggle('flex');
             document.getElementById(modalID + '-backdrop').classList.toggle('flex');
+        }
+    </script>
+
+    <script>
+        function openDetailJawabanModal() {
+            document.getElementById('detailJawabanModal').classList.remove('hidden');
+        }
+        function closeDetailJawabanModal() {
+            document.getElementById('detailJawabanModal').classList.add('hidden');
         }
     </script>
 @endpush
