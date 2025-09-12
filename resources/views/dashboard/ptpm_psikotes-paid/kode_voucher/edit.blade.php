@@ -69,7 +69,8 @@
                                     <option value="">Pilih Tipe</option>
                                     <option value="metode" {{ $t == 'metode' ? 'selected' : '' }}>Metode</option>
                                     <option value="hari" {{ $t == 'hari' ? 'selected' : '' }}>Hari</option>
-                                    <option value="sesi" {{ $t == 'sesi' ? 'selected' : '' }}>Sesi</option>
+                                    {{-- Tidak Ada sesi --}}
+                                    {{-- <option value="sesi" {{ $t == 'sesi' ? 'selected' : '' }}>Sesi</option> --}}
                                 </select>
                             </div>
                             <div class="text-left w-1/2">
