@@ -66,7 +66,7 @@
         <div class="flex items-center justify-between p-3 border-b">
             <div class="text-sm text-gray-600">Detail Gambar</div>
             <div class="flex items-center gap-2">
-                <a id="downloadBtn" href="{{ $imageUrl }}" download="Tes_BAUM_{{ $attempt->user->name }}_{{ now()->format('Y-m-d') }}.{{ pathinfo($imagePath, PATHINFO_EXTENSION) }}"
+                <a id="downloadBtn" href="#" download
                     class="inline-flex items-center gap-2 px-3 py-1.5 bg-primary text-white rounded-md text-sm hover:bg-primary">
                     <i class="fas fa-download"></i>
                     <span>Download</span>
@@ -81,7 +81,7 @@
 
         <!-- content: image contained inside modal container  -->
         <div class="p-4 flex items-center justify-center">
-            <img id="modalImage" src="{{ $imageUrl }}" alt="Full BAUM Drawing by {{ $attempt->user->name }}" class="max-h-[80vh] w-full object-contain rounded-md" />
+            <img id="modalImage" src="" alt="" class="max-h-[80vh] w-full object-contain rounded-md" />
         </div>
     </div>
 </div>
@@ -99,10 +99,19 @@
         if (!modal) return;
 
         const openModal = (src, filename) => {
-            if (!src) return;
+            if (!src) {
+                console.error('No source URL provided');
+                return;
+            }
+
             modalImage.src = src;
+            modalImage.alt = `Full BAUM Drawing by {{ $attempt->user->name }}`;
             downloadBtn.href = src;
-            try { downloadBtn.setAttribute('download', filename || 'image'); } catch(e){}
+
+            // Get file extension from URL
+            const extension = src.split('.').pop().split('?')[0] || 'jpg';
+            const downloadFilename = `Tes_BAUM_{{ $attempt->user->name }}_{{ now()->format('Y-m-d') }}.${extension}`;
+            downloadBtn.setAttribute('download', downloadFilename);
 
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
@@ -112,14 +121,18 @@
         const closeModal = () => {
             modal.classList.add('hidden');
             document.body.style.overflow = '';
-            // modalImage.src = '#';
+            modalImage.src = '';
         };
 
         openBtns.forEach(btn => {
-            btn.addEventListener('click', function(){
-                const src = this.dataset.imageUrl || this.querySelector('img')?.src;
-                const filename = `Tes_DAP_{{ $attempt->user->name }}_{{ now()->format('Y-m-d') }}.${src ? src.split('.').pop().split('?')[0] : 'jpg'}`;
-                openModal(src, filename);
+            btn.addEventListener('click', function(e){
+                e.preventDefault();
+                const src = this.getAttribute('data-image-url');
+                if (!src) {
+                    console.error('No image URL found in data-image-url attribute');
+                    return;
+                }
+                openModal(src);
             });
         });
 
