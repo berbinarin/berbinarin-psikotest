@@ -37,7 +37,11 @@ class AttemptService
      */
     public function getSession($name = null)
     {
-        return $name ?  session(self::KEY, [])[$name] : session(self::KEY, []);
+        $sessionData = session(self::KEY, []);
+        if ($name === null) {
+            return $sessionData;
+        }
+        return $sessionData[$name] ?? null;
     }
 
     /**
