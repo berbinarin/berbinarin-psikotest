@@ -56,7 +56,6 @@
 </div>
 
 <!-- Image Modal -->
-@if($imagePath)
 <div id="imageModal" class="fixed inset-0 z-50 hidden flex items-center justify-center px-4 py-6" role="dialog" aria-modal="true" tabindex="-1">
     <!-- backdrop -->
     <div id="modalBackdrop" class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
@@ -137,4 +136,3 @@
         });
     })();
 </script>
-@endif
