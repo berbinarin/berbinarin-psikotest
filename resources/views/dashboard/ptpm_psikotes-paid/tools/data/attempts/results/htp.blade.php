@@ -1,7 +1,7 @@
-<div class="w-full p-6 bg-gray-50 ">
+<div class="w-full p-6 bg-gray-50">
     <!-- Header Section -->
     <div class="mb-8">
-        <h1 class="text-3xl font-bold text-[#75BADB] mb-2">Name: {{ $attempt->user->name }}</</h1>
+        <h1 class="text-3xl font-bold text-[#75BADB] mb-2">Name: {{ $attempt->user->name }}</h1>
         <div class="w-20 h-1 bg-blue-500 mt-2"></div>
     </div>
 
@@ -23,7 +23,6 @@
                                 aria-label="Open full image"
                                 data-image-url="{{ $imageUrl }}"
                                 data-filename="{{ basename($imagePath) }}"
-
                             >
                                 <img
                                     src="{{ $imageUrl }}"
@@ -31,7 +30,6 @@
                                     class="w-full h-full object-cover transition-transform duration-500 group-hover/image:scale-110 group-hover/image:brightness-50"
                                     loading="lazy"
                                 >
-
                                 <!-- hover overlay -->
                                 <span class="absolute inset-0 flex items-center justify-center text-white text-sm font-medium opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 bg-black/30">
                                     Lihat detail gambar
@@ -73,7 +71,7 @@
         <div class="flex items-center justify-between p-3 border-b">
             <div class="text-sm text-gray-600">Detail Gambar</div>
             <div class="flex items-center gap-2">
-                <a id="downloadBtn" href="#" download="Tes_HTP_{{ $attempt->user->name }}_{{ now()->format('Y-m-d') }}.{{ pathinfo($imagePath, PATHINFO_EXTENSION) }}" class="inline-flex items-center gap-2 px-3 py-1.5 bg-primary text-white rounded-md text-sm hover:bg-primary">
+                <a id="downloadBtn" href="#" download="image.jpg" class="inline-flex items-center gap-2 px-3 py-1.5 bg-primary text-white rounded-md text-sm hover:bg-primary">
                     <i class="fas fa-download"></i>
                     <span>Download</span>
                 </a>
@@ -108,7 +106,7 @@
             if (!src) return;
             modalImage.src = src;
             downloadBtn.href = src;
-            try { downloadBtn.setAttribute('download', filename || 'image'); } catch(e){}
+            try { downloadBtn.setAttribute('download', filename || 'image.jpg'); } catch(e){}
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
             closeBtn?.focus();
@@ -117,7 +115,6 @@
         const closeModal = () => {
             modal.classList.add('hidden');
             document.body.style.overflow = '';
-            // modalImage.src = '#';
         };
 
         openBtns.forEach(btn => {

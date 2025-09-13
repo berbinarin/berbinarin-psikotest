@@ -99,16 +99,12 @@
         if (!modal) return;
 
         const openModal = (src, filename) => {
-            if (!src) {
-                console.error('No source URL provided');
-                return;
-            }
+            if (!src) return;
 
             modalImage.src = src;
             modalImage.alt = `Full BAUM Drawing by {{ $attempt->user->name }}`;
             downloadBtn.href = src;
 
-            // Get file extension from URL
             const extension = src.split('.').pop().split('?')[0] || 'jpg';
             const downloadFilename = `Tes_BAUM_{{ $attempt->user->name }}_{{ now()->format('Y-m-d') }}.${extension}`;
             downloadBtn.setAttribute('download', downloadFilename);
@@ -127,11 +123,8 @@
         openBtns.forEach(btn => {
             btn.addEventListener('click', function(e){
                 e.preventDefault();
-                const src = this.getAttribute('data-image-url');
-                if (!src) {
-                    console.error('No image URL found in data-image-url attribute');
-                    return;
-                }
+                const src = this.dataset.imageUrl;
+                if (!src) return;
                 openModal(src);
             });
         });
@@ -143,7 +136,6 @@
             if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
         });
 
-        // prevent clicks inside container from closing modal
         modalContainer?.addEventListener('click', function(e){
             e.stopPropagation();
         });

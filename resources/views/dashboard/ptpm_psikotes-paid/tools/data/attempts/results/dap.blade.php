@@ -23,7 +23,6 @@
                                 aria-label="Open full image"
                                 data-image-url="{{ $imageUrl }}"
                                 data-filename="{{ basename($imagePath) }}"
-
                             >
                                 <img
                                     src="{{ $imageUrl }}"
@@ -73,7 +72,7 @@
         <div class="flex items-center justify-between p-3 border-b">
             <div class="text-sm text-gray-600">Detail Gambar</div>
             <div class="flex items-center gap-2">
-                <a id="downloadBtn" href="#" download="Tes_DAP_{{ $attempt->user->name }}_{{ now()->format('Y-m-d') }}.{{ pathinfo($imagePath, PATHINFO_EXTENSION) }}" class="inline-flex items-center gap-2 px-3 py-1.5 bg-primary text-white rounded-md text-sm hover:bg-primary">
+                <a id="downloadBtn" href="#" download="image.jpg" class="inline-flex items-center gap-2 px-3 py-1.5 bg-primary text-white rounded-md text-sm hover:bg-primary">
                     <i class="fas fa-download"></i>
                     <span>Download</span>
                 </a>
@@ -108,8 +107,7 @@
             if (!src) return;
             modalImage.src = src;
             downloadBtn.href = src;
-            try { downloadBtn.setAttribute('download', filename || 'image'); } catch(e){}
-
+            try { downloadBtn.setAttribute('download', filename || 'image.jpg'); } catch(e){}
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
             closeBtn?.focus();
@@ -118,7 +116,6 @@
         const closeModal = () => {
             modal.classList.add('hidden');
             document.body.style.overflow = '';
-            // modalImage.src = '#';
         };
 
         openBtns.forEach(btn => {
@@ -136,7 +133,6 @@
             if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
         });
 
-        // prevent clicks inside container from closing modal
         modalContainer?.addEventListener('click', function(e){
             e.stopPropagation();
         });
