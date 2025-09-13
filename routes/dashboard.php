@@ -12,6 +12,7 @@ use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Tool\QuestionController;
 use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Tool\SectionController;
 use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Tool\ToolController;
 use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Testimonial\TestimonialController;
+use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Checkpoint\CheckpointController;
 use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\ExportPDFController;
 use Illuminate\Support\Facades\Route;
 
@@ -70,13 +71,14 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
             Route::resource('/', ToolController::class)->parameters(['' => 'tool']);
         });
 
-        // Testimonial
+        // Testimonials
         Route::prefix('testimonial')->name('testimonial.')->group(function (){
             Route::get('/', [TestimonialController::class, 'index'])->name('index');
             Route::get('/{user}', [TestimonialController::class, 'show'])->name('show');
             Route::delete('/{user}', [TestimonialController::class, 'destroy'])->name('destroy');
         });
 
+        // Voucher Codes
         Route::prefix('kode_voucher')->name('kode_voucher.')->group(function (){
             Route::get('/', [KodeVoucherController::class, 'index'])->name('index');
             Route::post('/', [KodeVoucherController::class, 'store'])->name('store');
@@ -85,20 +87,22 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
             Route::delete('/{id}', [KodeVoucherController::class, 'destroy'])->name('destroy');
         });
 
-        // Check Point
-        Route::prefix('check-point')->name('check-point.')->group(function () {
-            Route::get('/', [TestimonialController::class, 'checkpointIndex'])->name('index');
+        // Checkpoints
+        Route::prefix('checkpoint')->name('checkpoint.')->group(function () {
+            Route::get('/', [CheckpointController::class, 'index'])->name('index');
 
-            Route::prefix('soal')->name('soal.')->group(function (){
-                Route::get('/', [TestimonialController::class, 'soalIndex'])->name('index');
+            Route::prefix('responses')->name('responses.')->group(function () {
+                Route::get('/', [CheckpointController::class, 'responses'])->name('index');
+                Route::get('/{id}', [CheckpointController::class, 'showResponse'])->name('show');
+                Route::delete('/{id}', [CheckpointController::class, 'deleteResponse'])->name('destroy');
             });
 
-            Route::prefix('jawaban')->name('jawaban.')->group(function (){
-                Route::get('/', [TestimonialController::class, 'jawabanIndex'])->name('index');
-                Route::get('/show', [TestimonialController::class, 'jawabanShow'])->name('show');
+            Route::prefix('questions')->name('questions.')->group(function () {
+                Route::get('/', [CheckpointController::class, 'questions'])->name('index');
+                Route::post('/store', [CheckpointController::class, 'storeQuestion'])->name('store');
+                Route::put('/{id}', [CheckpointController::class, 'updateQuestion'])->name('update');
+                Route::delete('/{id}', [CheckpointController::class, 'destroyQuestion'])->name('destroy');
             });
-
-
         });
     });
 

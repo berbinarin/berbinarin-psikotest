@@ -21,4 +21,8 @@ class CheckpointQuestion extends Model
         'scoring',
         'options',
     ];
+
+    public function responses() {
+        return $this->hasMany(CheckpointResponse::class, 'checkpoint_question_id');
+    }
 }

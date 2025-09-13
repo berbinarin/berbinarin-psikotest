@@ -1,7 +1,7 @@
 @extends(
     "dashboard.layouts.app",
     [
-        "title" => "Pendaftaran Psikotes",
+        "title" => "Checkpoint",
     ]
 )
 
@@ -17,22 +17,22 @@
         <!-- Card Section -->
         <div class="mb-8 w-full flex flex-row justify-between gap-6">
 
-            <a href="{{ route('dashboard.check-point.soal.index') }}" class="flex h-[145px] w-[90%] flex-row items-center rounded-xl bg-white p-6 shadow hover:bg-gray-100 transition">
+            <a href="{{ route('dashboard.checkpoint.questions.index') }}" class="flex h-[145px] w-[90%] flex-row items-center rounded-xl bg-white p-6 shadow hover:bg-gray-100 transition">
                 <div class="flex h-[104px] w-[119px] items-center justify-center rounded-lg bg-gray-100">
                     <img src="{{ asset("assets/dashboard/images/checkpoint-question.png") }}" alt="" class="w-16 h-16">
                 </div>
                 <div class="ml-6">
-                    <p class="text-[28px] font-semibold text-gray-800">20</p>
+                    <p class="text-[28px] font-semibold text-gray-800">{{ $questions->count() }}</p>
                     <p class="text-[20px] text-gray-800">Soal <span class="italic">checkpoint</span></p>
                 </div>
             </a>
 
-            <a href="{{ route('dashboard.check-point.jawaban.index') }}" class="flex h-[145px] w-[90%] flex-row items-center rounded-xl bg-white p-6 shadow hover:bg-gray-100 transition">
+            <a href="{{ route('dashboard.checkpoint.responses.index') }}" class="flex h-[145px] w-[90%] flex-row items-center rounded-xl bg-white p-6 shadow hover:bg-gray-100 transition">
                 <div class="flex h-[104px] w-[119px] items-center justify-center rounded-lg bg-gray-100">
                     <img src="{{ asset("assets/dashboard/images/checkpoint-answer.png") }}" alt="" class="w-16 h-16">
                 </div>
                 <div class="ml-6">
-                    <p class="text-[28px] font-semibold text-gray-800">30</p>
+                    <p class="text-[28px] font-semibold text-gray-800">{{ $responses->count() }}</p>
                     <p class="text-[20px] text-gray-800">Jawaban <span class="italic">checkpoint</span></p>
                 </div>
             </a>

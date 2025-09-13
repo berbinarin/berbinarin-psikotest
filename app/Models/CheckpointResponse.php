@@ -19,4 +19,12 @@ class CheckpointResponse extends Model
         'checkpoint_question_id',
         'answer',
     ];
+
+    public function question() {
+        return $this->belongsTo(CheckpointQuestion::class, 'checkpoint_question_id');
+    }
+
+    public function attempt() {
+        return $this->belongsTo(Attempt::class, 'attempt_id');
+    }
 }

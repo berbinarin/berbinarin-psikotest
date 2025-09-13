@@ -30,4 +30,8 @@ class Attempt extends Model
     public function tool(): BelongsTo {
         return $this->belongsTo(Tool::class);
     }
+
+    public function checkpointResponses(): HasMany {
+        return $this->hasMany(CheckpointResponse::class);
+    }
 }

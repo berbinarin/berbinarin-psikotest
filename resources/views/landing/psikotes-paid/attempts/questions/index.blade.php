@@ -167,7 +167,7 @@
         });
 
         // ---===[ LOGIKA CHECKPOINT BARU (CLIENT-SIDE) ]===---
-        const CHECKPOINT_INTERVAL_MS = 10 * 60 * 1000; // 10 menit
+        const CHECKPOINT_INTERVAL_MS = 5 * 60 * 1000; // 5 menit
         const CHECKPOINT_DEADLINE_KEY = 'checkpoint_deadline';
 
         // Inisialisasi deadline jika belum ada

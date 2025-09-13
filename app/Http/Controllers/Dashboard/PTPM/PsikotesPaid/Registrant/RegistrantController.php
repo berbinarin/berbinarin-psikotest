@@ -171,6 +171,15 @@ class RegistrantController extends Controller
                 if ($user) {
                     // Hapus data response dulu
                     foreach ($user->attempts as $attempt) {
+                        try {
+                            // Coba hapus checkpoint responses
+                            $attempt->checkpointResponses()->delete();
+                        } catch (\Exception $e) {
+                            // Lanjutkan jika tidak ada tabel atau relasi checkpoint
+                            \Log::info('No checkpoint responses found for attempt: ' . $attempt->id);
+                        }
+
+                        // Hapus responses biasa
                         $attempt->responses()->delete();
                     }
 
