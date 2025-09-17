@@ -48,7 +48,13 @@ class KodeVoucherController extends Controller
             'detail'        => $request->detail,
         ]);
 
-        return redirect()->route('dashboard.kode_voucher.index')->with('success', 'Kode voucher berhasil ditambahkan.');
+        return redirect()->route('dashboard.kode_voucher.index')->with([
+            'alert'   => true,
+            'type'    => 'success',
+            'title'   => 'Berhasil!',
+            'message' => 'Kode voucher berhasil ditambahkan.',
+            'icon'    => asset('assets/dashboard/images/success.png'),
+        ]);
     }
 
     /**
@@ -92,7 +98,13 @@ class KodeVoucherController extends Controller
             'detail'        => $request->detail,
         ]);
 
-        return redirect()->route('dashboard.kode_voucher.index')->with('success', 'Kode voucher berhasil diupdate.');
+        return redirect()->route('dashboard.kode_voucher.index')->with([
+            'alert'   => true,
+            'type'    => 'success',
+            'title'   => 'Berhasil!',
+            'message' => 'Kode voucher berhasil diupdate.',
+            'icon'    => asset('assets/dashboard/images/success.png'),
+        ]);
     }
 
     /**
@@ -103,6 +115,12 @@ class KodeVoucherController extends Controller
         $voucher = KodeVoucher::findOrFail($id);
         $voucher->delete();
 
-        return redirect()->route('dashboard.kode_voucher.index')->with('success', 'Kode voucher berhasil dihapus.');
+        return redirect()->route('dashboard.kode_voucher.index')->with([
+            'alert'   => true,
+            'type'    => 'success',
+            'title'   => 'Berhasil!',
+            'message' => 'Kode voucher berhasil dihapus',
+            'icon'    => asset('assets/dashboard/images/success.png'),
+        ]);
     }
 }
