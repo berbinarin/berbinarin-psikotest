@@ -22,7 +22,8 @@ class KodeVoucherController extends Controller
      */
     public function create()
     {
-        //
+        $vouchers = KodeVoucher::all();
+        return view('dashboard.ptpm_psikotes-paid.kode_voucher.create', compact('vouchers'));
     }
 
     /**
@@ -31,22 +32,20 @@ class KodeVoucherController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'category'      => 'required|string',
-            'nama_voucher'  => 'required|string',
-            'code'          => 'required',
-            'percentage'    => 'required|integer',
-            'tipe'          => 'required',
-            'detail'        => 'required',
+            'category' => 'required',
+            'code' => 'required',
+            'percentage' => 'required',
+            'nama_voucher' => 'required',
+            'tipe' => 'required|array',
+            'detail' => 'required|array',
         ]);
+        if (KodeVoucher::where('code', $request->code)->exists()) {
+            return redirect()->back()->withInput()->withErrors(['code' => 'Kode voucher sudah digunakan!']);
+        }
 
-        KodeVoucher::create([
-            'category'      => $request->category,
-            'nama_voucher'  => $request->nama_voucher,
-            'code'          => $request->code,
-            'percentage'    => $request->percentage,
-            'tipe'          => $request->tipe,
-            'detail'        => $request->detail,
-        ]);
+        $data = $request->all();
+        $data['tipe'] = json_encode($request->tipe);
+        $data['detail'] = json_encode($request->detail);
 
         return redirect()->route('dashboard.kode_voucher.index')->with([
             'alert'   => true,
@@ -70,7 +69,9 @@ class KodeVoucherController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $voucher = KodeVoucher::findOrFail($id);
+        $vouchers = KodeVoucher::where('id', '!=', $id)->get();
+        return view('dashboard.ptpm_psikotes-paid.kode_voucher.edit', compact('voucher', 'vouchers'));
     }
 
     /**
@@ -78,25 +79,26 @@ class KodeVoucherController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'category' => 'required',
+            'code' => 'required',
+            'percentage' => 'required',
+            'nama_voucher' => 'required',
+            'tipe' => 'required|array',
+            'detail' => 'required|array',
+        ]);
+
+        if (KodeVoucher::where('code', $request->code)->where('id', '!=', (int)$id)->exists()) {
+            return redirect()->back()->withInput()->withErrors(['code' => 'Kode voucher sudah digunakan!']);
+        }
+
         $voucher = KodeVoucher::findOrFail($id);
 
-        $request->validate([
-            'category'      => 'required|string|max:100',
-            'nama_voucher'  => 'required|string|max:100',
-            'code'          => 'required|string|max:100|unique:kode_voucher,code,' . $voucher->id,
-            'percentage'    => 'required|integer|min:1|max:100',
-            'tipe'          => 'required|string',
-            'detail'        => 'required|string',
-        ]);
+        $data = $request->all();
+        $data['tipe'] = json_encode($request->tipe);
+        $data['detail'] = json_encode($request->detail);
 
-        $voucher->update([
-            'category'      => $request->category,
-            'nama_voucher'  => $request->nama_voucher,
-            'code'          => $request->code,
-            'percentage'    => $request->percentage,
-            'tipe'          => $request->tipe,
-            'detail'        => $request->detail,
-        ]);
+        $voucher->update($data);
 
         return redirect()->route('dashboard.kode_voucher.index')->with([
             'alert'   => true,

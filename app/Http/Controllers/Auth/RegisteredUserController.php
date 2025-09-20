@@ -27,14 +27,14 @@ class RegisteredUserController extends Controller
         return view('auth.register.psikotes-paid-register', compact('testCategories', 'testTypes', 'vouchers'));
     }
 
-    public function checkEmail(Request $request)
-    {
-        $email = $request->query('email');
+    // public function checkEmail(Request $request)
+    // {
+    //     $email = $request->query('email');
 
-        $exists = User::where('email', $email)->exists();
+    //     $exists = User::where('email', $email)->exists();
 
-        return response()->json(['exists' => $exists]);
-    }
+    //     return response()->json(['exists' => $exists]);
+    // }
 
     public function psikotesPaidRegisterStore(StoreRegistrationRequest $request): RedirectResponse
     {
@@ -71,7 +71,7 @@ class RegisteredUserController extends Controller
                     'presentase_diskon' => $request->input('presentase_diskon'),
                     'bukti_kartu_pelajar' => $buktiKartuPath,
                 ]);
-                
+
             });
         } catch (\Exception $e) {
             return back()->withInput()->with('error', 'Terjadi kesalahan saat pendaftaran. Silakan coba lagi.');

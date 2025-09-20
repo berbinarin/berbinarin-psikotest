@@ -142,5 +142,12 @@
                 });
             }
         });
+
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function() {
+            // Hapus target-time dan section-order saat submit
+            localStorage.removeItem('target-time');
+            localStorage.removeItem('section-order');
+        });
     </script>
 @endpush

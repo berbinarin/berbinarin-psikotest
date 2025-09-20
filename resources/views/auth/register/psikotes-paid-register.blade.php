@@ -472,60 +472,73 @@
         // Data Voucher
         const vouchers = @json($vouchers);
 
+        function isVoucherEligible(voucher, psikotesDate, service, testCategoryName) {
     
-        function redeemVoucher() {
-            const kode = document.getElementById('kode_promo').value.trim().toLowerCase();
-            const service = document.getElementById('service').value;
-            const categorySelect = document.getElementById('test_category_id');
-            const testCategoryName = categorySelect.options[categorySelect.selectedIndex]?.text?.toLowerCase() || '';
-            const psikotesDate = document.getElementById('psikotes_date').value;
-            let found = false;
+        const tipeArr = Array.isArray(voucher.tipe) ? voucher.tipe : JSON.parse(voucher.tipe || '[]');
+        const detailArr = Array.isArray(voucher.detail) ? voucher.detail : JSON.parse(voucher.detail || '[]');
+        for (let i = 0; i < tipeArr.length; i++) {
+            const tipe = tipeArr[i];
+            const detail = detailArr[i];
 
-            vouchers.forEach(function(voucher) {
-                if (voucher.code.toLowerCase() === kode) {
-                    // Validasi detail voucher
-                    if (voucher.tipe === 'tanggal') {
-                        const tanggal = new Date(psikotesDate);
-                        const day = tanggal.getDay(); // 0: Minggu, 6: Sabtu
-                        const isWeekend = (day === 0 || day === 6);
-                        if (voucher.detail === 'weekend' && !isWeekend) return;
-                        if (voucher.detail === 'weekdays' && isWeekend) return;
-                    }
-                    if (voucher.tipe === 'layanan_psikotest' && voucher.detail !== service) return;
-                    if (voucher.tipe === 'kategori_psikotes' && testCategoryName !== voucher.detail.toLowerCase()) return;
+            if (tipe === 'hari') {
+                const tanggal = new Date(psikotesDate);
+                const day = tanggal.getDay(); // 0: Minggu, 6: Sabtu
+                const isWeekend = (day === 0 || day === 6);
+                if (detail === 'weekdays' && isWeekend) return false;
+                if (detail === 'weekend' && !isWeekend) return false;
+            }
+            if (tipe === 'metode' && service.toLowerCase() !== detail.toLowerCase()) return false;
+            if (tipe === 'kategori_psikotes' && testCategoryName !== detail.toLowerCase()) return false;
+            
+        }
+        return true;
+    }
 
-                    found = true;
-                    // Hitung diskon
-                    const hargaAsliRaw = document.getElementById('price').dataset.hargaAsli || document.getElementById('price').value.replace(/[^\d]/g, '');
-                    const hargaAsli = parseInt(hargaAsliRaw) || 0;
-                    const diskon = voucher.percentage;
-                    const hargaDiskon = hargaAsli - (hargaAsli * diskon / 100);
+    function redeemVoucher() {
+        const kode = document.getElementById('kode_promo').value.trim().toLowerCase();
+        const service = document.getElementById('service').value;
+        const categorySelect = document.getElementById('test_category_id');
+        const testCategoryName = categorySelect.options[categorySelect.selectedIndex]?.text?.toLowerCase() || '';
+        const psikotesDate = document.getElementById('psikotes_date').value;
+        let found = false;
 
-                    updateHargaDisplay(hargaAsli, hargaDiskon);
+        vouchers.forEach(function(voucher) {
+            if (voucher.code.toLowerCase() === kode) {
+                // Validasi semua kondisi voucher
+                if (!isVoucherEligible(voucher, psikotesDate, service, testCategoryName)) return;
 
-                    // Jika kategori pelajar, tampilkan upload kartu pelajar
-                    if (voucher.category && voucher.category.toLowerCase() === 'pelajar') {
-                        document.getElementById('bukti-kartu-pelajar-container').style.display = 'block';
-                        document.getElementById('bukti_kartu_pelajar').setAttribute('required', 'required');
-                    } else {
-                        document.getElementById('bukti-kartu-pelajar-container').style.display = 'none';
-                        document.getElementById('bukti_kartu_pelajar').removeAttribute('required');
-                    }
+                found = true;
+                // Hitung diskon
+                const hargaAsliRaw = document.getElementById('price').dataset.hargaAsli || document.getElementById('price').value.replace(/[^\d]/g, '');
+                const hargaAsli = parseInt(hargaAsliRaw) || 0;
+                const diskon = voucher.percentage;
+                const hargaDiskon = hargaAsli - (hargaAsli * diskon / 100);
 
-                    document.getElementById('kategori_voucher').value = voucher.category || '';
-                    document.getElementById('code_voucher').value = voucher.code || '';
-                    document.getElementById('presentase_diskon').value = voucher.percentage || '';
+                updateHargaDisplay(hargaAsli, hargaDiskon);
 
-                    Swal.fire({
-                        toast: true,
-                        position: "top-end",
-                        icon: "success",
-                        title: "Kode voucher berhasil digunakan!",
-                        showConfirmButton: false,
-                        showCloseButton: true,
-                        timer: 4000
-                    });
+                // Jika kategori pelajar, tampilkan upload kartu pelajar
+                if (voucher.category && voucher.category.toLowerCase() === 'pelajar') {
+                    document.getElementById('bukti-kartu-pelajar-container').style.display = 'block';
+                    document.getElementById('bukti_kartu_pelajar').setAttribute('required', 'required');
+                } else {
+                    document.getElementById('bukti-kartu-pelajar-container').style.display = 'none';
+                    document.getElementById('bukti_kartu_pelajar').removeAttribute('required');
                 }
+
+                document.getElementById('kategori_voucher').value = voucher.category || '';
+                document.getElementById('code_voucher').value = voucher.code || '';
+                document.getElementById('presentase_diskon').value = voucher.percentage || '';
+
+                Swal.fire({
+                    toast: true,
+                    position: "top-end",
+                    icon: "success",
+                    title: "Kode voucher berhasil digunakan!",
+                    showConfirmButton: false,
+                    showCloseButton: true,
+                    timer: 4000
+                });
+            }
         });
 
         if (!found) {
@@ -538,13 +551,11 @@
                 showCloseButton: true,
                 timer: 4000
             });
-            // Reset harga dan upload kartu pelajar
             updateHargaDisplay(parseInt(document.getElementById('price').dataset.hargaAsli) || 0, null);
             document.getElementById('bukti-kartu-pelajar-container').style.display = 'none';
             document.getElementById('bukti_kartu_pelajar').removeAttribute('required');
         }
     }
-
     document.getElementById('bukti_kartu_pelajar').addEventListener('change', function() {
         const fileNameSpan = document.getElementById('fileName');
         if (this.files && this.files.length > 0) {

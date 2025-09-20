@@ -41,6 +41,13 @@ class SubmittedResponseController extends Controller
     public function submit(Request $request)
     {
         $tool = Tool::with('sections.questions')->find($this->attemptService->getSession('tool_id'));
+        
+        // Log session state before processing
+        \Log::info('Before processing answer:', [
+            'tool_id' => $this->attemptService->getSession('tool_id'),
+            'section_order' => $this->attemptService->getSession('section_order'),
+            'question_order' => $this->attemptService->getSession('question_order')
+        ]);
 
         $currentSection = $tool->sections->firstWhere('order', $this->attemptService->getSession('section_order'));
         $question = $currentSection->questions->firstWhere('order', $this->attemptService->getSession('question_order'));
@@ -50,6 +57,14 @@ class SubmittedResponseController extends Controller
 
 
         $isTestOngoing = $this->attemptService->progressToNextStep();
+        
+        // Log session state after processing
+        \Log::info('After processing answer:', [
+            'section_order' => $this->attemptService->getSession('section_order'),
+            'question_order' => $this->attemptService->getSession('question_order'),
+            'isTestOngoing' => $isTestOngoing
+        ]);
+
         if ($isTestOngoing) {
             return redirect()->route('psikotes-paid.attempt.question');
         }
