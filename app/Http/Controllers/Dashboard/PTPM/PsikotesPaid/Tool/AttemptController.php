@@ -36,10 +36,22 @@ class AttemptController extends Controller
                 $attempt->delete();
             });
 
-            return redirect()->route('dashboard.tools.data.attempts.index', [$tool->id])->with('success', 'Data berhasil dihapus.');
+            return redirect()->route('dashboard.tools.data.attempts.index', [$tool->id])->with([
+            'alert'   => true,
+            'type'    => 'success',
+            'title'   => 'Berhasil!',
+            'message' => 'Yeeee!! Data berhasil dihapus',
+            'icon'    => asset('assets/dashboard/images/success.png'),
+        ]);
         } catch (\Exception $e) {
             dd($e);
-            return back()->with('error', 'Terjadi kesalahan saat menghapus data.');
+            return back()->with([
+            'alert'   => true,
+            'type'    => 'error',
+            'title'   => 'Gagal',
+            'message' => 'Terjdi kesalahan saat menghapus data... Sorry 😺',
+            'icon'    => asset('assets/dashboard/images/error.png'),
+        ]);
         }
     }
 }

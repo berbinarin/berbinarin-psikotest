@@ -38,7 +38,11 @@ class AttemptService
      */
     public function getSession($name = null)
     {
-        return $name ?  session(self::KEY, [])[$name] : session(self::KEY, []);
+        $sessionData = session(self::KEY, []);
+        if ($name === null) {
+            return $sessionData;
+        }
+        return $sessionData[$name] ?? null;
     }
 
     public function updateSession(array $data): void
@@ -73,7 +77,14 @@ class AttemptService
         $currentSectionOrder = $this->getSession('section_order');
         $currentQuestionOrder = $this->getSession('question_order');
 
+        \Log::info('Starting progressToNextStep:', [
+            'toolId' => $toolId,
+            'currentSectionOrder' => $currentSectionOrder,
+            'currentQuestionOrder' => $currentQuestionOrder
+        ]);
+
         if (!$toolId) {
+            \Log::warning('No tool_id found in session');
             return false;
         }
 
@@ -81,17 +92,45 @@ class AttemptService
         $currentSection = $tool->sections->firstWhere('order', $currentSectionOrder);
 
         $totalQuestionsInSection = $currentSection->questions->count();
+
+        \Log::info('Section info:', [
+            'totalQuestionsInSection' => $totalQuestionsInSection,
+            'currentQuestionOrder' => $currentQuestionOrder,
+            'sectionId' => $currentSection->id
+        ]);
+
         if ($currentQuestionOrder < $totalQuestionsInSection) {
             session()->increment(self::KEY . '.question_order');
+
+            \Log::info('Incremented question order', [
+                'new_question_order' => $this->getSession('question_order')
+            ]);
+
             return true;
         }
 
         $totalSections = $tool->sections->count();
+
+        \Log::info('Section transition check:', [
+            'currentSectionOrder' => $currentSectionOrder,
+            'totalSections' => $totalSections
+        ]);
+
         if ($currentSectionOrder < $totalSections) {
+            $oldSectionOrder = $this->getSession('section_order');
             session()->increment(self::KEY . '.section_order');
             session([self::KEY . '.question_order' => 1]);
+
+            \Log::info('Moving to next section', [
+                'old_section' => $oldSectionOrder,
+                'new_section' => $this->getSession('section_order'),
+                'reset_question_order' => 1
+            ]);
+
             return true;
         }
+
+        \Log::info('Test completed, updating attempt status');
 
         Attempt::find($this->getSession('attempt_id'))->update([
             'status' => 'completed',

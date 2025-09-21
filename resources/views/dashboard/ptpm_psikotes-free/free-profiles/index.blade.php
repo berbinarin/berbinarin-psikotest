@@ -6,6 +6,7 @@
 )
 
 @section("content")
+    @include("components.confirm", ["type" => "delete"])
     <section class="flex w-full">
         <div class="w-full">
             <div class="py-4 md:pb-7 md:pt-5">
@@ -58,7 +59,7 @@
                                         <form id="deleteForm-{{ $attempt->id }}" action="{{ route("dashboard.free-profiles.destroy", $attempt->id) }}" method="POST">
                                             @csrf
                                             @method("DELETE")
-                                            <button type="button" class="delete-button inline-flex items-start justify-start rounded p-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #ef4444" data-id="{{ $attempt->id }}">
+                                            <button type="button" class="delete-alert inline-flex items-start justify-start rounded p-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #ef4444" data-id="{{ $attempt->id }}">
                                                 <i class="bx bx-trash-alt text-white"></i>
                                             </button>
                                         </form>
@@ -100,24 +101,24 @@
     </script>
 
     <script>
-        document.querySelectorAll('.delete-button').forEach((button) => {
-            button.addEventListener('click', function (e) {
-                e.preventDefault();
-                const formId = this.getAttribute('data-id');
-                Swal.fire({
-                    title: 'Hapus Responden',
-                    text: 'Apakah anda yakin menghapusnya?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Hapus',
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        document.getElementById('deleteForm-' + formId).submit();
-                    }
-                });
+        let deleteFormId = null;
+
+        document.querySelectorAll('.delete-alert').forEach((btn) => {
+            btn.addEventListener('click', function () {
+                deleteFormId = this.dataset.id;
+                document.getElementById('deleteModal').classList.remove('hidden');
             });
+        });
+
+        document.getElementById('cancelDelete').addEventListener('click', function () {
+            document.getElementById('deleteModal').classList.add('hidden');
+            deleteFormId = null;
+        });
+
+        document.getElementById('confirmDelete').addEventListener('click', function () {
+            if (deleteFormId) {
+                document.getElementById('deleteForm-' + deleteFormId).submit();
+            }
         });
     </script>
 @endsection

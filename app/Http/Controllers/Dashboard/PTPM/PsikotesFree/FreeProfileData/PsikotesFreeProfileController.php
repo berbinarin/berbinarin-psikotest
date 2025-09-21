@@ -76,10 +76,22 @@ class PsikotesFreeProfileController extends Controller
                 $freeProfile->delete();
             });
 
-            return redirect()->route('dashboard.free-profiles.data.show')->with('success', 'Data berhasil dihapus.');
+            return redirect()->route('dashboard.free-profiles.data.show')->with([
+            'alert'   => true,
+            'type'    => 'success',
+            'title'   => 'Berhasil!',
+            'message' => 'Yeeee!! Data berhasil dihapus',
+            'icon'    => asset('assets/dashboard/images/success.png'),
+        ]);
         } catch (\Exception $e) {
             dd($e);
-            return back()->with('error', 'Terjadi kesalahan saat menghapus data.');
+            return back()->with([
+            'alert'   => true,
+            'type'    => 'error',
+            'title'   => 'Gagal!',
+            'message' => 'Terjadi kesalahan saat menghapus data... Sorry 😺',
+            'icon'    => asset('assets/dashboard/images/success.png'),
+        ]);
         }
     }
 }

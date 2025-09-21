@@ -77,12 +77,8 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
             Route::delete('/{user}', [TestimonialController::class, 'destroy'])->name('destroy');
         });
 
-        Route::prefix('kode_voucher')->name('kode_voucher.')->group(function (){
-            Route::get('/', [KodeVoucherController::class, 'index'])->name('index');
-            Route::post('/', [KodeVoucherController::class, 'store'])->name('store');
-            Route::get('/{id}/edit', [KodeVoucherController::class, 'edit'])->name('edit');
-            Route::put('/{id}', [KodeVoucherController::class, 'update'])->name('update');
-            Route::delete('/{id}', [KodeVoucherController::class, 'destroy'])->name('destroy');
+        Route::prefix('kode-voucher')->name('kode-voucher.')->group(function (){
+            Route::resource('/', KodeVoucherController::class)->parameters(['' => 'kode_voucher']);
         });
     });
 

@@ -33,9 +33,16 @@ class ToolController extends Controller
 
         if ($tool->token === $request->token) {
             $this->attemptService->start($tool);
+            return redirect()->route('psikotes-paid.attempt.introduce');
         }
 
-        return redirect()->route('psikotes-paid.attempt.introduce');
+        return redirect()->back()->withInput()->with([
+            'alert' => true,
+            'icon' => asset('assets/dashboard/images/error.png'),
+            'type' => 'error',
+            'title' => 'Token Salah',
+            'message' => 'Token yang kamu masukkan tidak valid. Silakan coba lagi.',
+        ]);
     }
 
     public function testimoni()

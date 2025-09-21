@@ -37,7 +37,8 @@ class StoreRegistrationRequest extends FormRequest
                 })
             ],
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
+            // 'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
             'age' => ['required', 'integer', 'min:1'],
             'domicile' => ['required', 'string'],
             'gender' => ['required', 'string', Rule::in(['male', 'female'])],

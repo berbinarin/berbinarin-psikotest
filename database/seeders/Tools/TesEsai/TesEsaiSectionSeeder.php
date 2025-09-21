@@ -19,7 +19,7 @@ class TesEsaiSectionSeeder extends Seeder
             'tool_id' => $tesEsai->id,
             'title' => 'Main',
             'order' => 1,
-            'duration' => 20
+            'duration' => 30
         ]);
     }
 }
