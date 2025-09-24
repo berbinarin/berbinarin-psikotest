@@ -44,7 +44,13 @@ class TestTypeController extends Controller
             'price' => $request->price,
             'description' => $request->description,
         ]);
-        return redirect()->route('dashboard.price-list.test-types.by-category', $categoryId)->with('success', 'Jenis tes berhasil ditambahkan.');
+        return redirect()->route('dashboard.price-list.test-types.by-category', $categoryId)->with([
+            'alert'   => true,
+            'type'    => 'success',
+            'title'   => 'Berhasil!',
+            'message' => 'Jenis Tes berhasil ditambahkan.',
+            'icon'    => asset('assets/dashboard/images/success.png'),
+        ]);
     }
 
     /**
@@ -81,7 +87,13 @@ class TestTypeController extends Controller
             'price' => $request->price,
             'description' => $request->description,
         ]);
-        return redirect()->route('dashboard.price-list.test-types.by-category', $categoryId)->with('success', 'Jenis tes berhasil diupdate.');
+        return redirect()->route('dashboard.price-list.test-types.by-category', $categoryId)->with([
+            'alert'   => true,
+            'type'    => 'success',
+            'title'   => 'Berhasil!',
+            'message' => 'Jenis Tes berhasil diupdate.',
+            'icon'    => asset('assets/dashboard/images/success.png'),
+        ]);
     }
 
     /**
@@ -98,14 +110,26 @@ class TestTypeController extends Controller
     {
         $count = RegistrantProfile::where('test_type_id', $testTypeId)->count();
         if ($count > 0) {
-            return redirect()->back()->with('error', 'Data ini tidak bisa dihapus karena masih digunakan di registrant profiles.');
+            return redirect()->back()->with([
+            'alert'   => true,
+            'type'    => 'error',
+            'title'   => 'Gagal!',
+            'message' => 'Data ini tidak bisa dihapus karena masih digunakan di registrant profile.',
+            'icon'    => asset('assets/dashboard/images/error.png'),
+        ]);
         }
 
         $testType = TestType::findOrFail($testTypeId);
         $testType->delete();
 
         return redirect()->route('dashboard.price-list.test-types.by-category', $categoryId)
-            ->with('success', 'Jenis tes berhasil dihapus.');
+            ->with([
+            'alert'   => true,
+            'type'    => 'success',
+            'title'   => 'Berhasil!',
+            'message' => 'Jenis Tes berhasil dihapus.',
+            'icon'    => asset('assets/dashboard/images/success.png'),
+        ]);
     }
 
     public function byCategory($categoryId)

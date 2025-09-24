@@ -63,10 +63,22 @@ class RegistrantController extends Controller
             });
         } catch (\Exception $e) {
             dd($e);
-            return back()->withInput()->with('error', 'Terjadi kesalahan saat pendaftaran. Silakan coba lagi.');
+            return back()->withInput()->with([
+            'alert'   => true,
+            'type'    => 'error',
+            'title'   => 'Gagal',
+            'message' => 'Terjdi kesalahan saat mendaftarkan... Sorry 😺',
+            'icon'    => asset('assets/dashboard/images/error.png'),
+        ]);
         }
 
-        return redirect()->route('dashboard.registrants.index')->with('success', 'Data berhasil ditambahkan.');
+        return redirect()->route('dashboard.registrants.index')->with([
+            'alert'   => true,
+            'type'    => 'success',
+            'title'   => 'Berhasil!',
+            'message' => 'Yeeee!! Data berhasil ditambahkan.',
+            'icon'    => asset('assets/dashboard/images/success.png'),
+        ]);
     }
 
     /**
@@ -147,10 +159,22 @@ class RegistrantController extends Controller
                 ]);
             });
 
-            return redirect()->route('dashboard.registrants.index')->with('success', 'Data berhasil diperbarui.');
+            return redirect()->route('dashboard.registrants.index')->with([
+            'alert'   => true,
+            'type'    => 'success',
+            'title'   => 'Berhasil!',
+            'message' => 'Yeeee!! Data berhasil diupdate',
+            'icon'    => asset('assets/dashboard/images/success.png'),
+        ]);
         } catch (\Exception $e) {
             dd($e);
-            return back()->withInput()->with('error', 'Terjadi kesalahan saat memperbarui data.');
+            return back()->withInput()->with([
+            'alert'   => true,
+            'type'    => 'error',
+            'title'   => 'Gagal',
+            'message' => 'Terjdi kesalahan saat mengupdate data... Sorry 😺',
+            'icon'    => asset('assets/dashboard/images/error.png'),
+        ]);
         }
     }
 
@@ -194,10 +218,22 @@ class RegistrantController extends Controller
                 }
             });
 
-            return redirect()->route('dashboard.registrants.index')->with('success', 'Data berhasil dihapus.');
+            return redirect()->route('dashboard.registrants.index')->with([
+            'alert'   => true,
+            'type'    => 'success',
+            'title'   => 'Berhasil!',
+            'message' => 'Yeeee!! Data berhasil dihapus',
+            'icon'    => asset('assets/dashboard/images/success.png'),
+        ]);
         } catch (\Exception $e) {
             dd($e);
-            return back()->with('error', 'Terjadi kesalahan saat menghapus data.');
+            return back()->with([
+            'alert'   => true,
+            'type'    => 'error',
+            'title'   => 'Gagal',
+            'message' => 'Terjadi kesalahan saat menghapus data... Sorry 😺',
+            'icon'    => asset('assets/dashboard/images/error.png'),
+        ]);
         }
     }
 }

@@ -2,29 +2,31 @@
 <html lang="en">
     <head>
         {{-- Header --}}
-        @include('dashboard.partials.header')
+        @include("dashboard.partials.header")
 
         {{-- Additional Style --}}
-        @stack('style')
+        @stack("style")
     </head>
+
     <body class="font-plusJakartaSans">
         <div class="flex h-screen w-full">
-
             {{-- Link Flatpickr --}}
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
 
             {{-- Sidebar --}}
             @include("dashboard.partials.sidebar")
-
             {{-- Main Content --}}
             <main class="my-1 flex-1 overflow-y-auto rounded-l-lg bg-gray-100 px-10 pb-2 pt-2 transition duration-500 ease-in-out">
                 @yield("content")
             </main>
         </div>
+
         {{-- Script --}}
-        @include('dashboard.partials.script')
+        @include("dashboard.partials.script")
 
         {{-- Additional Script --}}
-        @stack('script')
+        @stack("script")
+
+        @include("components.alert")
     </body>
 </html>

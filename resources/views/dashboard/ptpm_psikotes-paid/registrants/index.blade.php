@@ -6,6 +6,7 @@
 )
 
 @section("content")
+@include('components.confirm', ['type' => 'delete'])
     <section class="flex w-full">
         <div class="w-full">
             <div class="py-4 md:pb-7 md:pt-5">
@@ -69,7 +70,10 @@
                                         <form id="deleteForm-{{ $registrant->id }}" action="{{ route("dashboard.registrants.destroy", $registrant->id) }}" method="POST">
                                             @csrf
                                             @method("DELETE")
-                                            <button type="button" class="delete-button inline-flex items-start justify-start rounded p-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #ef4444" data-id="{{ $registrant->id }}">
+                                            <button type="button" 
+                                                class="delete-alert inline-flex items-start justify-start rounded p-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2" 
+                                                style="background-color: #ef4444" 
+                                                data-id="{{ $registrant->id }}">
                                                 <i class="bx bx-trash-alt text-white"></i>
                                             </button>
                                         </form>
@@ -263,37 +267,31 @@
     </script>
 
     <script>
-        // Modal Edit
-        // document.querySelectorAll('.edit-button').forEach((button) => {
-        //     button.addEventListener('click', function () {
-        //         // Isi form modal dengan data dari button
-        //         document.getElementById('edit_name').value = this.dataset.name;
-        //         document.getElementById('edit_gender').value = this.dataset.gender;
-        //         document.getElementById('edit_age').value = this.dataset.age;
-        //         document.getElementById('edit_phone_number').value = this.dataset.phone_number;
-        //         document.getElementById('edit_email').value = this.dataset.email;
-        //         document.getElementById('edit_test_category').value = this.dataset.test_category;
-        //         document.getElementById('edit_psikotes_service').value = this.dataset.psikotes_service;
-        //         document.getElementById('edit_test_type_id').value = this.dataset.test_type;
-        //         document.getElementById('edit_psikotes_date').value = this.dataset.psikotes_date;
-        //         document.getElementById('edit_psikotes_time').value = this.dataset.psikotes_time;
-        //         // document.getElementById('edit_domicile').value = this.dataset.domicile;
-        //         document.getElementById('edit_reason').value = this.dataset.reason;
-        //         // Set action form
-        //         document.getElementById('editForm').action = this.dataset.action;
-        //         // Tampilkan modal
-        //         document.getElementById('editModal').classList.remove('hidden');
-        //     });
-        // });
+    let deleteFormId = null;
 
-        // Tutup modal
-        document.getElementById('closeEditModal').onclick = function() {
-            document.getElementById('editModal').classList.add('hidden');
-        };
-        document.getElementById('cancelEditModal').onclick = function() {
-            document.getElementById('editModal').classList.add('hidden');
-        };
-    </script>
+    // ketika tombol delete diklik
+    document.querySelectorAll('.delete-alert').forEach((btn) => {
+        btn.addEventListener('click', function () {
+            deleteFormId = this.dataset.id; // simpan id form yang mau dihapus
+            document.getElementById('deleteModal').classList.remove('hidden');
+        });
+    });
+
+    // tombol batal
+    document.getElementById('cancelDelete').addEventListener('click', function () {
+        document.getElementById('deleteModal').classList.add('hidden');
+        deleteFormId = null;
+    });
+
+    // tombol konfirmasi hapus
+    document.getElementById('confirmDelete').addEventListener('click', function () {
+        if (deleteFormId) {
+            document.getElementById('deleteForm-' + deleteFormId).submit();
+        }
+    });
+</script>
+
+
 
     <script>
         // Modal Detail
