@@ -51,7 +51,14 @@ Alasan memilih menggambar itu',
             [
                 'section_id' => $dap->sections[0]->id,
                 'order' => 4,
-                'text' => 'Jika sudah, silakan foto kedua sisi kertas tersebut, baik bagian identitas maupun gambar Anda dan jika sudah di foto, silahkan mengunggah foto tersebut.',
+                'text' => 'Jika sudah, silakan foto sisi pertama kertas yang berisi identitas Anda dan jika sudah di foto, silahkan mengunggah foto tersebut.',
+                'type' => 'image_upload',
+            ],
+
+            [
+                'section_id' => $dap->sections[0]->id,
+                'order' => 5,
+                'text' => 'Jika sudah, silakan foto sisi kedua kertas yang berisi gambar Anda dan jika sudah di foto, silahkan mengunggah foto tersebut.',
                 'type' => 'image_upload',
             ],
         ];

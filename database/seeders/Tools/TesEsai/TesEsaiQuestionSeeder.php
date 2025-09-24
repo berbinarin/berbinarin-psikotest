@@ -17,7 +17,7 @@ class TesEsaiQuestionSeeder extends Seeder
         $tesEsai = Tool::with('sections')->firstWhere('name', 'Tes Esai');
 
         $questions = [
-[
+            [
                 'section_id' => $tesEsai->sections[0]->id,
                 'order' => 1,
                 'text' => 'Jelaskan pandangan Anda mengenai peran Anda dalam perubahan ini nantinya dan apa saja yang harus dilakukan sebagai seorang karyawan di posisi tersebut?',
