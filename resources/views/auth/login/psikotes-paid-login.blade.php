@@ -19,6 +19,16 @@
                     </div>
                 </div>
 
+                {{-- Cek apakah ada error dengan key 'message' --}}
+                {{-- @if ($errors->has('message'))
+                    {{-- Jika ada, tampilkan dalam sebuah kotak alert --}}
+                {{-- <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
+                        role="alert">
+                        <span class="block sm:inline">{{ $errors->first('message') }}</span>
+                    </div> --}}
+                @endif --}}
+
+
                 <!-- div Form Login -->
                 <form action="{{ route('auth.authenticate') }}" method="POST">
                     @csrf

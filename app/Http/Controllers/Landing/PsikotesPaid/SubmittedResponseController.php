@@ -38,8 +38,8 @@ class SubmittedResponseController extends Controller
 
         // Checkpoint Question
         $checkpointQuestion = $this->attemptService->getSession('is_checkpoint') ? CheckpointQuestion::inRandomOrder()->first() : null;
-
-        return view('landing.psikotes-paid.attempts.questions.index', compact('question', 'progress', 'checkpointQuestion'));
+        $attemptId = $this->attemptService->getSession('attempt_id');
+        return view('landing.psikotes-paid.attempts.questions.index', compact('question', 'progress', 'checkpointQuestion', 'attemptId'));
     }
 
     public function submit(Request $request)
