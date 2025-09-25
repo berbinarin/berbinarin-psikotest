@@ -29,7 +29,8 @@ class Handler extends ExceptionHandler
         });
     }
 
-    public function render($request, Throwable $e) {
+    public function render($request, Throwable $e)
+    {
         if ($e instanceof TokenMismatchException) {
             // Jika akses route dashboard → arahkan ke login admin
             if ($request->is('dashboard*')) {
@@ -42,7 +43,10 @@ class Handler extends ExceptionHandler
                 return redirect()->route('auth.psikotes-paid.login')
                     ->withErrors(['message' => 'Sesi psikotes Anda sudah habis, silakan login kembali.']);
             }
-
+            if ($request->is('psikotes-free/*')) {
+                return redirect()->route('psikotes-free.profile') // Arahkan ke halaman biodata
+                    ->withErrors(['message' => 'Sesi Anda sudah habis, silakan isi kembali data Anda untuk memulai.']);
+            }
             // Fallback → default login
             return redirect()->route('auth.psikotes-paid.login')
                 ->withErrors(['message' => 'Sesi Anda sudah habis, silakan login kembali.']);
