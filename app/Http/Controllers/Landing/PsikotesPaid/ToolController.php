@@ -17,8 +17,8 @@ class ToolController extends Controller
         $agent = new Agent();
 
         if ($agent->isMobile() && !$agent->isTablet()) {
-        return view('landing.psikotes-paid.tools.block-mobile');
-    }
+            return view('landing.psikotes-paid.tools.block-mobile');
+        }
         $user = auth()->user();
         $tools = Tool::orderBy('order', 'ASC')->get();
 
@@ -32,7 +32,7 @@ class ToolController extends Controller
         $tool = Tool::find($request->tool_id);
 
         if ($tool->token === $request->token) {
-            $this->attemptService->start($tool);
+            $this->attemptService->startOrResume($tool);
         }
 
         return redirect()->route('psikotes-paid.attempt.introduce');

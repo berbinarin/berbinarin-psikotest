@@ -2,17 +2,98 @@
 
 namespace App\Services\Landing\PsikotesPaid;
 
-use App\Models\Attempt;
 use App\Models\Tool;
+use App\Models\Attempt;
+use App\Models\Response;
 
 class AttemptService
 {
     private const KEY = 'attempt_session';
 
     /**
-     * Memulai session test baru dan menyimpannya di session
+     * Metode utama yang cerdas:
+     * - Cek apakah ada tes yang belum selesai.
+     * - Jika ada, lanjutkan tes tersebut (rebuild session).
+     * - Jika tidak ada, mulai tes baru.
      */
-    public function start(Tool $tool)
+    public function startOrResume(Tool $tool): void
+    {
+        $existingAttempt = Attempt::where('user_id', auth()->id())
+            ->where('tool_id', $tool->id)
+            ->where('status', 'in_progress')
+            ->latest() // Ambil yang paling baru jika ada duplikat
+            ->first();
+
+        if ($existingAttempt) {
+            // JIKA DITEMUKAN TES LAMA: Lanjutkan tes
+            $this->rebuildSessionFromAttempt($existingAttempt);
+        } else {
+            // JIKA TIDAK ADA: Mulai tes baru
+            $this->startNewAttempt($tool);
+        }
+    }
+
+    /**
+     * Membangun kembali session dari data attempt yang ada di database.
+     */
+    private function rebuildSessionFromAttempt(Attempt $attempt): void
+    {
+        // Cari jawaban terakhir yang diberikan oleh user untuk attempt ini
+        $lastResponse = Response::where('attempt_id', $attempt->id)
+            ->latest('created_at')
+            ->first();
+
+        $sectionOrder = 1;
+        $questionOrder = 1;
+
+        if ($lastResponse) {
+            // Jika ada jawaban, tentukan posisi soal berikutnya
+            // Kita "pura-pura" berada di posisi soal terakhir yang dijawab
+            // lalu gunakan logic progressToNextStep untuk maju
+            session([
+                self::KEY => [
+                    'tool_id' => $attempt->tool_id,
+                    'attempt_id' => $attempt->id,
+                    'section_order' => $lastResponse->question->section->order,
+                    'question_order' => $lastResponse->question->order,
+                    'is_checkpoint' => false,
+                ]
+            ]);
+            // Maju ke soal berikutnya
+            $this->progressToNextStep();
+
+            // Jika progressToNextStep me-return false (tes sudah selesai),
+            // kita reset saja ke awal (kasus langka)
+            if (!session()->has(self::KEY)) {
+                session([
+                    self::KEY => [
+                        'tool_id' => $attempt->tool_id,
+                        'attempt_id' => $attempt->id,
+                        'section_order' => 1,
+                        'question_order' => 1,
+                        'is_checkpoint' => false,
+                    ]
+                ]);
+            }
+        } else {
+            // Jika belum ada jawaban sama sekali, mulai dari awal
+            session([
+                self::KEY => [
+                    'tool_id' => $attempt->tool_id,
+                    'attempt_id' => $attempt->id,
+                    'section_order' => $sectionOrder,
+                    'question_order' => $questionOrder,
+                    'is_checkpoint' => false,
+                ]
+            ]);
+        }
+    }
+
+    /**
+     * Logika untuk memulai tes yang benar-benar baru.
+     * (Ini adalah isi dari fungsi start() Anda yang lama)
+     */
+    private function startNewAttempt(Tool $tool): void
     {
         $attempt = Attempt::create([
             'user_id' => auth()->user()->id,
@@ -30,7 +111,6 @@ class AttemptService
             ]
         ]);
     }
-
     /**
      * Mengambil data session berdasarakan nama keynya
      *
