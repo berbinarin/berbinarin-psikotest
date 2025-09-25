@@ -1,11 +1,8 @@
-@extends(
-    "dashboard.layouts.psikotes-tool",
-    [
-        "title" => "Jawaban" . $tool->name,
-    ]
-)
+@extends('dashboard.layouts.psikotes-tool', [
+    'title' => 'Pertanyaan ' . $tool->name,
+])
 
-@section("content")
+@section('content')
     <section class="flex w-full">
         <div class="flex w-full flex-col">
             <div class="w-full">
@@ -13,60 +10,101 @@
                     <div>
                         <div class="mb-2 flex items-center gap-2">
                             <a href="{{ url()->previous() }}">
-                                <img src="{{ asset("assets/dashboard/images/back-btn.png") }}" alt="Back Button" />
+                                <img src="{{ asset('assets/dashboard/images/back-btn.png') }}" alt="Back Button" />
                             </a>
-                            <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">Detail Soal</p>
+                            <p tabindex="0"
+                                class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">
+                                Detail Soal untuk {{ $tool->name }}</p>
                         </div>
-                        <p class="text-gray-500 pb-2">Dashboard ini menampilkan informasi terkait soal tes pilihan ganda dan tanggal tes papi kostick.</p>
+                        <p class="text-gray-500 pb-2">Dashboard ini menampilkan daftar pertanyaan untuk alat tes
+                            {{ $tool->name }}.</p>
                     </div>
                 </div>
                 <div class="rounded-md bg-white shadow mb-7 px-4 py-4 md:px-8 md:py-7 xl:px-10">
                     <div class="mt-4 overflow-x-auto">
-                        <table id="table" class="display w-full" style="overflow-x: scroll">
+                        <table id="table" class="display w-full whitespace-normal" style="overflow-x: scroll">
+                            {{-- Header tabel yang bersih dan informatif --}}
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Pilihan 1</th>
-                                    <th>Pilihan 2</th>
-                                    <th>Tanggal</th>
-                                    <th>Aksi</th>
+                                    <th class="w-16">No</th>
+                                    <th>Pertanyaan / Pernyataan</th>
+                                    <th class="w-48">Tipe Soal</th>
+                                    <th class="w-56">Format Jawaban</th>
+                                    <th class="w-32">Aksi</th>
                                 </tr>
                             </thead>
+
                             <tbody>
-                                @foreach ($section->questions as $question)
-                                    @php
-                                        $options = $question->options ?? collect([]);
-
-                                        $getOptionText = function ($option) {
-                                            if (is_array($option)) {
-                                                return $option["text"] ?? "Tidak ada teks";
-                                            } elseif (is_object($option)) {
-                                                return $option->text ?? "Tidak ada teks";
-                                            }
-                                            return $option;
-                                        };
-
-                                        $option1 = $getOptionText(is_array($options) ? $options[0] ?? null : $options->get(0) ?? null);
-                                        $option2 = $getOptionText(is_array($options) ? $options[1] ?? null : $options->get(1) ?? null);
-                                    @endphp
-
-                                    <tr class="data-consume">
+                                @forelse ($section->questions as $question)
+                                    <tr>
                                         <td class="text-center">{{ $loop->iteration }}</td>
-                                        <td>{{ $option1 }}</td>
-                                        <td>{{ $option2 }}</td>
-                                        <td class="text-center">{{ $question->created_at->format("d-m-Y") }}</td>
+
+                                        {{-- Kolom Pertanyaan Utama --}}
+                                        <td>
+                                            @if ($question->type === 'multiple_choice' && empty($question->text))
+                                                {{-- Khusus Papi Kostick, gabungkan pilihan jadi satu --}}
+                                                <span class="font-semibold">A:</span>
+                                                {{ $question->options[0]['text'] ?? 'N/A' }} <br>
+                                                <span class="font-semibold">B:</span>
+                                                {{ $question->options[1]['text'] ?? 'N/A' }}
+                                            @else
+                                                {{-- Untuk tipe lain, render teksnya (mendukung HTML) --}}
+                                                {!! $question->text ?? '<span class="text-red-500">Teks pertanyaan tidak ada.</span>' !!}
+                                            @endif
+                                        </td>
+
+                                        {{-- Kolom Tipe Soal --}}
+                                        <td class="text-center">
+                                            <span
+                                                class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full">
+                                                {{ Str::title(str_replace('_', ' ', $question->type)) }}
+                                            </span>
+                                        </td>
+
+                                        {{-- Kolom Format Jawaban (LOGIKA UTAMA YANG DIPERBARUI) --}}
+                                        <td class="text-center">
+                                            @php
+                                                $formatJawaban = '';
+                                                switch ($question->type) {
+                                                    case 'likert':
+                                                        $count = count($question->options);
+                                                        $formatJawaban = "Skala Likert (1-{$count})";
+                                                        break;
+                                                    case 'binary_choice':
+                                                        $formatJawaban = 'Pilihan Ya / Tidak';
+                                                        break;
+                                                    case 'multiple_choice':
+                                                        $formatJawaban = 'Pilihan Ganda (A/B)';
+                                                        break;
+                                                    case 'ordering':
+                                                        $count = count($question->options['variants']['male'] ?? []);
+                                                        $formatJawaban = "Mengurutkan {$count} Pilihan";
+                                                        break;
+                                                    default:
+                                                        $formatJawaban = 'Jawaban Teks';
+                                                        break;
+                                                }
+                                            @endphp
+                                            <span class="text-gray-600">{{ $formatJawaban }}</span>
+                                        </td>
+
+                                        {{-- Kolom Aksi --}}
                                         <td class="whitespace-no-wrap px-6 py-4 text-center">
                                             <a href="javascript:void(0)"
-                                               class="btnEdit inline-flex items-start justify-start rounded p-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                                               style="background-color: #3B82F6"
-                                               data-id="{{ $question->id }}"
-                                               data-option1="{{ $option1 }}"
-                                               data-option2="{{ $option2 }}">
-                                                <i class="bx bx-show text-white"></i>
+                                                class="btnViewDetail inline-flex items-center justify-center rounded p-2 text-white bg-blue-500 hover:bg-blue-700"
+                                                data-question="{{ json_encode($question) }}">
+                                                <i class="bx bx-show"></i>
                                             </a>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="text-center py-10">
+                                            <p class="text-lg font-semibold text-gray-500">Belum ada soal untuk bagian ini.
+                                            </p>
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -75,66 +113,87 @@
         </div>
     </section>
 
-    <div id="modalTambahData" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 hidden">
-        <div
-            class="bg-white rounded-lg shadow-lg w-[50%] p-8 relative flex flex-col justify-center"
-        >
-            <button id="btnCloseModal" class="absolute top-4 right-4 text-gray-500 hover:text-red-500 text-2xl font-bold">&times;</button>
-            <div class="flex items-center justify-start mb-8">
-                <div id="stepNumber" class="w-8 h-8 rounded-full bg-[#75BADB] flex items-center justify-center text-white font-bold text-lg">
-                    {{ $section->questions->count() + 1 }}
-                </div>
-                <input type="hidden" id="questionId">
-                <p class="ml-2">Detail Soal</p>
+    {{-- Modal untuk menampilkan detail --}}
+    <div id="modalDetail" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 hidden">
+        <div class="bg-white rounded-lg shadow-lg w-1/2 max-w-2xl p-8 relative max-h-[90vh] overflow-y-auto">
+            <button id="btnCloseModal"
+                class="absolute top-4 right-4 text-gray-500 hover:text-red-500 text-2xl font-bold">&times;</button>
+            <h2 class="text-2xl font-bold mb-4">Detail Soal</h2>
+            <div id="modalContent" class="prose max-w-none">
+                {{-- Konten akan diisi oleh JavaScript --}}
             </div>
-            <form id="questionForm">
-                <div class="mt-2">
-                    <label class="block font-semibold mb-2">A</label>
-                    <input type="text" id="option1Input" class="w-full rounded border border-gray-300 px-4 py-2 mb-4" placeholder="Ketik Disini..." />
-                </div>
-                <div>
-                    <label class="block font-semibold mb-2">B</label>
-                    <input type="text" id="option2Input" class="w-full rounded border border-gray-300 px-4 py-2 mb-8" placeholder="Ketik Disini..." />
-                </div>
-            </form>
         </div>
     </div>
 @endsection
 
-@push("script")
+@push('script')
     <script>
-        $(document).ready(function () {
-            $('#table').DataTable();
-
-            // Modal
-            $('#btnTambahData').on('click', function() {
-                $('#questionForm')[0].reset();
-                $('#questionId').val('');
-                $('#stepNumber').text({{ $section->questions->count() + 1 }});
-                $('#modalTambahData').removeClass('hidden');
+        $(document).ready(function() {
+            $('#table').DataTable({
+                "scrollX": true
             });
 
-            $('#table').on('click', '.btnEdit', function() {
-                const id = $(this).data('id');
-                const option1 = $(this).data('option1');
-                const option2 = $(this).data('option2');
-                const rowIndex = $(this).closest('tr').find('td:first').text();
+            $('#table').on('click', '.btnViewDetail', function() {
+                const question = $(this).data('question');
+                let modalHtml = '';
 
-                $('#questionId').val(id);
-                $('#option1Input').val(option1);
-                $('#option2Input').val(option2);
-                $('#stepNumber').text(rowIndex);
+                // Tampilkan Teks Pertanyaan/Instruksi Utama
+                if (question.type === 'multiple_choice' && !question.text) {
+                    modalHtml += `<h4 class="font-bold">Pernyataan:</h4>`;
+                    modalHtml +=
+                        `<ul class="list-disc pl-5"><li><strong>A:</strong> ${question.options[0].text}</li><li><strong>B:</strong> ${question.options[1].text}</li></ul><hr class="my-4">`;
+                } else if (question.text) {
+                    modalHtml +=
+                        `<h4 class="font-bold">Pertanyaan/Instruksi:</h4><div>${question.text}</div><hr class="my-4">`;
+                }
 
-                $('#modalTambahData').removeClass('hidden');
+                // Tampilkan Pilihan Jawaban berdasarkan Tipe
+                if (question.options) {
+                    modalHtml += `<h4 class="font-bold">Pilihan Jawaban:</h4>`;
+                    switch (question.type) {
+                        case 'likert':
+                        case 'binary_choice':
+                        case 'multiple_choice':
+                            if (question.text) { // Hanya tampilkan jika ada pertanyaan utama
+                                modalHtml += '<ul class="list-disc pl-5">';
+                                question.options.forEach(opt => {
+                                    modalHtml +=
+                                        `<li><strong>${opt.value ?? opt.key}:</strong> ${opt.text}</li>`;
+                                });
+                                modalHtml += '</ul>';
+                            }
+                            break;
+
+                        case 'ordering':
+                            if (question.options.variants) {
+                                modalHtml += '<div class="font-semibold mt-2">Pilihan Pria:</div>';
+                                modalHtml += '<ul class="list-decimal pl-5">';
+                                question.options.variants.male.forEach(opt => {
+                                    modalHtml += `<li>${opt.text}</li>`;
+                                });
+                                modalHtml += '</ul>';
+
+                                modalHtml += '<div class="font-semibold mt-4">Pilihan Wanita:</div>';
+                                modalHtml += '<ul class="list-decimal pl-5">';
+                                question.options.variants.female.forEach(opt => {
+                                    modalHtml += `<li>${opt.text}</li>`;
+                                });
+                                modalHtml += '</ul>';
+                            }
+                            break;
+                    }
+                } else {
+                    modalHtml +=
+                        '<p class="text-gray-500 italic">Tidak ada pilihan jawaban untuk tipe soal ini.</p>';
+                }
+
+                $('#modalContent').html(modalHtml);
+                $('#modalDetail').removeClass('hidden');
             });
 
-            $('#btnCloseModal').on('click', function() {
-                $('#modalTambahData').addClass('hidden');
-            });
-
-            $('#modalTambahData').on('click', function(e) {
-                if (e.target === this) {
-                    $(this).addClass('hidden');
+            $('#btnCloseModal, #modalDetail').on('click', function(e) {
+                if (e.target === this || $(e.target).closest('#btnCloseModal').length) {
+                    $('#modalDetail').addClass('hidden');
                 }
             });
         });
