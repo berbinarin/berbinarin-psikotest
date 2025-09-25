@@ -29,7 +29,7 @@
                     <thead>
                         <tr>
                             <th style="text-align: center">No</th>
-                            <th style="text-align: center">Nama Pengguna</th>
+                            <th style="text-align: start">Nama Pengguna</th>
                             <th style="text-align: center">Nama Lengkap</th>
                             <th style="text-align: center">Nama Tes</th>
                             <th style="text-align: center">Aksi</th>
@@ -39,7 +39,7 @@
                         @foreach ($responses as $attemptId => $attemptData)
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                <td class="text-center">{{ $attemptData['user']->username }}</td>
+                                <td class="text-start">{{ $attemptData['user']->username }}</td>
                                 <td class="text-center">{{ $attemptData['user']->name }}</td>
                                 <td class="text-center">{{ $attemptData['tool']->name }}</td>
                                 <td class="flex items-center justify-center gap-2">
@@ -110,8 +110,8 @@
                     data.forEach((row, index) => {
                         tbody.innerHTML += `
                             <tr class="border-b border-gray-300">
-                                <td class="py-4 pr-6">${index + 1}</td>
-                                <td>${row.question ?? '-'}</td>
+                                <td class="py-4 text-center">${index + 1}</td>
+                                <td class="text-start">${row.question ?? '-'}</td>
                                 <td>${row.answer ?? '-'}</td>
                                 <td>${row.correct_answer ?? '-'}</td>
                             </tr>
