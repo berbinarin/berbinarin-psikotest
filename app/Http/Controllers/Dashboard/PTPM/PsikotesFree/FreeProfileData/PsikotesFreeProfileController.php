@@ -13,6 +13,7 @@ class PsikotesFreeProfileController extends Controller
 {
     public function __construct(private ResultService $resultService) {}
 
+    // Show Profiles Data
     public function index()
     {
         // $freeProfiles = PsikotesFreeProfile::with(['feedback', 'attempt'])->get();
@@ -21,6 +22,7 @@ class PsikotesFreeProfileController extends Controller
         return view('dashboard.ptpm_psikotes-free.free-profiles.index', compact('attempts'));
     }
 
+    // Show Profile's Detail
     public function show($id)
     {
         $attempt = PsikotesFreeAttempt::with('responses')->find($id);
@@ -55,6 +57,7 @@ class PsikotesFreeProfileController extends Controller
         ]);
     }
 
+    // Detele Profile
     public function destroy($id)
     {
         $freeProfile = PsikotesFreeProfile::findOrFail($id);
@@ -77,21 +80,21 @@ class PsikotesFreeProfileController extends Controller
             });
 
             return redirect()->route('dashboard.free-profiles.data.show')->with([
-            'alert'   => true,
-            'type'    => 'success',
-            'title'   => 'Berhasil!',
-            'message' => 'Yeeee!! Data berhasil dihapus',
-            'icon'    => asset('assets/dashboard/images/success.png'),
-        ]);
+                'alert'   => true,
+                'type'    => 'success',
+                'title'   => 'Berhasil!',
+                'message' => 'Yeeee!! Data berhasil dihapus',
+                'icon'    => asset('assets/dashboard/images/success.png'),
+            ]);
         } catch (\Exception $e) {
             dd($e);
             return back()->with([
-            'alert'   => true,
-            'type'    => 'error',
-            'title'   => 'Gagal!',
-            'message' => 'Terjadi kesalahan saat menghapus data... Sorry 😺',
-            'icon'    => asset('assets/dashboard/images/success.png'),
-        ]);
+                'alert'   => true,
+                'type'    => 'error',
+                'title'   => 'Gagal!',
+                'message' => 'Terjadi kesalahan saat menghapus data... Sorry 😺',
+                'icon'    => asset('assets/dashboard/images/success.png'),
+            ]);
         }
     }
 }

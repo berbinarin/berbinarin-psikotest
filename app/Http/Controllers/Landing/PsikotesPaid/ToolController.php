@@ -12,6 +12,7 @@ class ToolController extends Controller
 {
     public function __construct(private AttemptService $attemptService) {}
 
+    // View Test Page
     public function index()
     {
         $agent = new Agent();
@@ -25,6 +26,7 @@ class ToolController extends Controller
         return view('landing.psikotes-paid.tools.index', compact('user', 'tools'));
     }
 
+    // Verify Token
     public function verifyToken(VerifyTokenRequest $request)
     {
         $request->validated();
@@ -44,6 +46,7 @@ class ToolController extends Controller
         ]);
     }
 
+    // View Testimonial Page
     public function testimoni()
     {
         return view('landing.psikotes-paid.tools.testimoni');

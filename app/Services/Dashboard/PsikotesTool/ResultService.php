@@ -306,7 +306,27 @@ class ResultService
 
     private function baum(Attempt $attempt)
     {
-        return $attempt->responses->first();
+        $attempt->load('responses.question', 'user');
+
+        $results = collect();
+
+        foreach ($attempt->responses as $response) {
+            if (!isset($response->question)) {
+                continue;
+            }
+
+            $imagePath = $response->answer['file_path'] ?? null;
+            $userName = $attempt->user->name ?? '-';
+
+            $results->push([
+                'question_id' => $response->question->id,
+                'image' => $imagePath,
+                'order' => $response->question->order,
+                'user_name' => $userName,
+            ]);
+        }
+
+        return $results->sortBy('order')->values();
     }
 
     private function ocean(Attempt $attempt)
