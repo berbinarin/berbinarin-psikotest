@@ -329,6 +329,85 @@ class ResultService
         return $results->sortBy('order')->values();
     }
 
+    private function dap(Attempt $attempt)
+    {
+        $attempt->load('responses.question', 'user');
+
+        $dapImages = collect();
+
+        foreach ($attempt->responses as $response) {
+            if ($response->question && $response->question->type === 'image_upload') {
+                if (isset($response->answer['image_path'])) {
+                    $dapImages->push([
+                        'question_id' => $response->question->id,
+                        'question_text' => $response->question->text,
+                        'image_url' => asset('storage/' . $response->answer['image_path']),
+                        'response_id' => $response->id,
+                        'submitted_at' => $response->created_at,
+                    ]);
+                }
+            }
+        }
+
+        return $dapImages;
+    }
+
+    private function htp(Attempt $attempt)
+    {
+        $attempt->load('responses.question', 'user');
+
+        $results = collect();
+
+        foreach ($attempt->responses as $response) {
+            if (!isset($response->question)) {
+                continue;
+            }
+
+            $imagePath = $response->answer['file_path'] ?? null;
+            $userName = $attempt->user->name ?? '-';
+
+            $results->push([
+                'question_id' => $response->question->id,
+                'image' => $imagePath,
+                'order' => $response->question->order,
+                'user_name' => $userName,
+            ]);
+        }
+
+        return $results->sortBy('order')->values();
+    }
+
+    private function ssct(Attempt $attempt)
+    {
+        $attempt->load('responses.question');
+
+        $results = collect();
+
+        foreach ($attempt->responses as $response) {
+            if (!isset($response->question)) {
+                continue;
+            }
+
+            $questionText = $response->question->text;
+
+            $answerContent = $response->answer['value'];
+
+            $results->push([
+                'question_id' => $response->question->id,
+                'question' => $questionText,
+                'answer' => $answerContent,
+                'order' => $response->question->order,
+            ]);
+        }
+
+        return $results->sortBy('order')->values();
+    }
+
+    private function hexaco(Attempt $attempt)
+    {
+
+    }
+
     private function ocean(Attempt $attempt)
     {
         $attempt->load('responses.question');
@@ -374,29 +453,6 @@ class ResultService
         }
 
         return $results;
-    }
-
-    private function dap(Attempt $attempt)
-    {
-        $attempt->load('responses.question', 'user');
-
-        $dapImages = collect();
-
-        foreach ($attempt->responses as $response) {
-            if ($response->question && $response->question->type === 'image_upload') {
-                if (isset($response->answer['image_path'])) {
-                    $dapImages->push([
-                        'question_id' => $response->question->id,
-                        'question_text' => $response->question->text,
-                        'image_url' => asset('storage/' . $response->answer['image_path']),
-                        'response_id' => $response->id,
-                        'submitted_at' => $response->created_at,
-                    ]);
-                }
-            }
-        }
-
-        return $dapImages;
     }
 
     private function dass42(Attempt $attempt)
@@ -469,6 +525,59 @@ class ResultService
             'description' => 'Normal', // Default to Normal if no other threshold is met
             'name' => ucfirst($category),
             'category' => $category,
+        ];
+    }
+
+    private function vak(Attempt $attempt)
+    {
+        $attempt->load('responses.question');
+
+        $scores = [
+            'visual' => 0,
+            'auditori' => 0,
+            'kinestetik' => 0,
+        ];
+
+        foreach ($attempt->responses as $response) {
+            if (!isset($response->question) || !isset($response->question->scoring['scale'])) continue;
+            $scale = $response->question->scoring['scale'];
+            $value = (int) $response->answer['value'];
+            if (isset($scores[$scale])) {
+                $scores[$scale] += $value;
+            }
+        }
+
+        $first = ($scores['visual'] >= $scores['auditori']) ? 'visual' : 'auditori';
+
+        $winner = ($scores[$first] >= $scores['kinestetik']) ? $first : 'kinestetik';
+
+        $descriptions = [
+            'visual' => 'Kecenderungan siswa untuk menerima informasi dalam belajar dengan menggunakan indera penglihatan. Gaya belajar ini mengakses citra visual seperti warna, gambar dan video.',
+            'auditori' => 'Kecenderungan siswa untuk menerima informasi dalam belajar dengan melibatkan indera pendengaran.',
+            'kinestetik' => 'Kecenderungan siswa untuk menerima informasi dalam belajar dengan melibatkan gerakan /psikomotorik.',
+        ];
+
+        $responsesByCategory = [
+            'visual' => [],
+            'auditori' => [],
+            'kinestetik' => [],
+        ];
+
+        foreach ($attempt->responses as $response) {
+            if (isset($response->question->scoring['scale'])) {
+                $scale = $response->question->scoring['scale'];
+                if (isset($responsesByCategory[$scale])) {
+                    $responsesByCategory[$scale][] = $response;
+                }
+            }
+        }
+
+        return [
+            'scores' => $scores,
+            'selected_category' => $winner,
+            'description' => $descriptions[$winner],
+            'responses_by_category' => $responsesByCategory,
+            'all_descriptions' => $descriptions,
         ];
     }
 
@@ -673,107 +782,7 @@ class ResultService
         return (object) ['responses' => (object) ['form' => $formResponses, 'essay' => $essayResponses], 'questions' => $questions];
     }
 
-    private function ssct(Attempt $attempt)
-    {
-        $attempt->load('responses.question');
 
-        $results = collect();
 
-        foreach ($attempt->responses as $response) {
-            if (!isset($response->question)) {
-                continue;
-            }
 
-            $questionText = $response->question->text;
-
-            $answerContent = $response->answer['value'];
-
-            $results->push([
-                'question_id' => $response->question->id,
-                'question' => $questionText,
-                'answer' => $answerContent,
-                'order' => $response->question->order,
-            ]);
-        }
-
-        return $results->sortBy('order')->values();
-    }
-
-    private function vak(Attempt $attempt)
-    {
-        $attempt->load('responses.question');
-
-        $scores = [
-            'visual' => 0,
-            'auditori' => 0,
-            'kinestetik' => 0,
-        ];
-
-        foreach ($attempt->responses as $response) {
-            if (!isset($response->question) || !isset($response->question->scoring['scale'])) continue;
-            $scale = $response->question->scoring['scale'];
-            $value = (int) $response->answer['value'];
-            if (isset($scores[$scale])) {
-                $scores[$scale] += $value;
-            }
-        }
-
-        $first = ($scores['visual'] >= $scores['auditori']) ? 'visual' : 'auditori';
-
-        $winner = ($scores[$first] >= $scores['kinestetik']) ? $first : 'kinestetik';
-
-        $descriptions = [
-            'visual' => 'Kecenderungan siswa untuk menerima informasi dalam belajar dengan menggunakan indera penglihatan. Gaya belajar ini mengakses citra visual seperti warna, gambar dan video.',
-            'auditori' => 'Kecenderungan siswa untuk menerima informasi dalam belajar dengan melibatkan indera pendengaran.',
-            'kinestetik' => 'Kecenderungan siswa untuk menerima informasi dalam belajar dengan melibatkan gerakan /psikomotorik.',
-        ];
-
-        $responsesByCategory = [
-            'visual' => [],
-            'auditori' => [],
-            'kinestetik' => [],
-        ];
-
-        foreach ($attempt->responses as $response) {
-            if (isset($response->question->scoring['scale'])) {
-                $scale = $response->question->scoring['scale'];
-                if (isset($responsesByCategory[$scale])) {
-                    $responsesByCategory[$scale][] = $response;
-                }
-            }
-        }
-
-        return [
-            'scores' => $scores,
-            'selected_category' => $winner,
-            'description' => $descriptions[$winner],
-            'responses_by_category' => $responsesByCategory,
-            'all_descriptions' => $descriptions,
-        ];
-    }
-
-    private function htp(Attempt $attempt)
-    {
-        $attempt->load('responses.question', 'user');
-
-        $results = collect();
-
-        foreach ($attempt->responses as $response) {
-            if (!isset($response->question)) {
-                continue;
-            }
-
-            $imagePath = $response->answer['file_path'] ?? null;
-            $userName = $attempt->user->name ?? '-';
-
-            $results->push([
-                'question_id' => $response->question->id,
-                'image' => $imagePath,
-                'order' => $response->question->order,
-                'user_name' => $userName,
-            ]);
-        }
-
-        return $results->sortBy('order')->values();
-    }
 }
