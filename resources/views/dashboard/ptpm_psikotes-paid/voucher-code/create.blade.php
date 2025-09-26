@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="w-1/2 text-left">
                                     <label class="mb-1 block font-medium text-gray-600">Nama Voucher</label>
-                                    <input type="text" name="nama_voucher" class="w-full rounded-lg border border-gray-300 px-3 py-2" placeholder="Nama Voucher" required />
+                                    <input type="text" name="name" class="w-full rounded-lg border border-gray-300 px-3 py-2" placeholder="Nama Voucher" required />
                                 </div>
                             </div>
                             <div class="mb-6 flex flex-row justify-between gap-2">
@@ -53,7 +53,7 @@
                             <div class="mb-6 flex flex-row justify-between gap-2">
                                 <div class="w-1/2 text-left">
                                     <label class="mb-1 block font-medium text-gray-600">Tipe Voucher</label>
-                                    <select name="tipe[]" class="voucherType w-full rounded-lg border border-gray-300 px-3 py-2" required>
+                                    <select name="voucher_type[]" class="voucherType w-full rounded-lg border border-gray-300 px-3 py-2" required>
                                         <option value="">Pilih Tipe</option>
                                         <option value="metode">Metode</option>
                                         <option value="hari">Hari</option>
@@ -99,7 +99,7 @@
             <div class="mb-6 flex flex-row justify-between gap-2">
                 <div class="w-1/2 text-left">
                     <label class="mb-1 block font-medium text-gray-600">Tipe Voucher</label>
-                    <select name="tipe[]" class="voucherType w-full rounded-lg border border-gray-300 px-3 py-2" required>
+                    <select name="voucher_type[]" class="voucherType w-full rounded-lg border border-gray-300 px-3 py-2" required>
                         <option value="">Pilih Tipe</option>
                         <option value="metode">Metode</option>
                         <option value="hari">Hari</option>

@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('registrant_profiles', function (Blueprint $table) {
-            $table->string('kategori_voucher')->nullable();
-            $table->string('code_voucher')->nullable();
-            $table->integer('presentase_diskon')->nullable();
-            $table->string('bukti_kartu_pelajar')->nullable();
+            $table->string('voucher_category')->nullable();
+            $table->string('voucher_code')->nullable();
+            $table->integer('discount_percentage')->nullable();
+            $table->string('student_card')->nullable();
         });
     }
 
@@ -25,10 +25,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('registrant_profiles', function (Blueprint $table) {
-            $table->dropColumn('kategori_voucher');
-            $table->dropColumn('code_voucher');
-            $table->dropColumn('presentase_diskon');
-            $table->dropColumn('bukti_kartu_pelajar');
+            $table->dropColumn('voucher_category');
+            $table->dropColumn('voucher_code');
+            $table->dropColumn('discount_percentage');
+            $table->dropColumn('student_card');
         });
     }
 };

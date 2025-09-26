@@ -292,15 +292,15 @@
                             <button type="button" onclick="redeemVoucher()" class="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer flex bg-[#106681] text-white justify-between gap-2 py-[4px] px-2  rounded-md items-center">Redeem Code</button>
                         </div>
                     </div>
-                    <input type="hidden" name="kategori_voucher" id="kategori_voucher">
-                    <input type="hidden" name="code_voucher" id="code_voucher">
-                    <input type="hidden" name="presentase_diskon" id="presentase_diskon">
+                    <input type="hidden" name="voucher_category" id="voucher_category">
+                    <input type="hidden" name="voucher_code" id="voucher_code">
+                    <input type="hidden" name="discount_percentage" id="discount_percentage">
 
                     {{-- Bukti Kartu Pelajar --}}
                     <div class="mb-4 rounded-lg" id="bukti-kartu-pelajar-container" style="background-color: white;display:none;">
-                        <label for="bukti_kartu_pelajar">Bukti Kartu Pelajar</label>
+                        <label for="student_card">Bukti Kartu Pelajar</label>
                         <div class="relative w-full flex items-center">
-                            <input type="file" id="bukti_kartu_pelajar" name="bukti_kartu_pelajar" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+                            <input type="file" id="student_card" name="student_card" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
                             <div class="mt-1 block w-full h-12 pl-2 bg-gray-100 border border-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary pointer-events-none cursor-pointer content-center flex items-center">
                                 <button type="button" class="pointer-events-none border flex justify-between gap-2 py-[4px] px-2 border-[#B3B3B3] rounded-md cursor-pointer items-center">
                                     <img src="{{ asset('assets/landing/images/psikotes-paid/upload-line-icon.png') }}" alt="" class="w-4 h-4">
@@ -522,7 +522,7 @@
 
             // Jika kategori pelajar, cek bukti kartu pelajar
             if (kategoriVoucher === 'pelajar') {
-                const buktiKartu = document.getElementById('bukti_kartu_pelajar');
+                const buktiKartu = document.getElementById('student_card');
                 if (!buktiKartu.files || buktiKartu.files.length === 0) {
                     return 'Bukti Kartu Pelajar wajib diupload untuk kategori pelajar.';
                 }
@@ -535,22 +535,22 @@
         const vouchers = @json($vouchers);
 
         function isVoucherEligible(voucher, psikotesDate, service, testCategoryName) {
-            const tipeArr = Array.isArray(voucher.tipe) ? voucher.tipe : JSON.parse(voucher.tipe || '[]');
+            const voucherTypeArr = Array.isArray(voucher.voucher_type) ? voucher.voucher_type : JSON.parse(voucher.voucher_type || '[]');
             const detailArr = Array.isArray(voucher.detail) ? voucher.detail : JSON.parse(voucher.detail || '[]');
 
-            for (let i = 0; i < tipeArr.length; i++) {
-                const tipe = tipeArr[i];
+            for (let i = 0; i < voucherTypeArr.length; i++) {
+                const voucherType = voucherTypeArr[i];
                 const detail = detailArr[i];
 
-                if (tipe === 'hari') {
+                if (voucherType === 'hari') {
                     const tanggal = new Date(psikotesDate);
                     const day = tanggal.getDay(); // 0: Minggu, 6: Sabtu
                     const isWeekend = (day === 0 || day === 6);
                     if (detail === 'weekdays' && isWeekend) return false;
                     if (detail === 'weekend' && !isWeekend) return false;
                 }
-                if (tipe === 'metode' && service.toLowerCase() !== detail.toLowerCase()) return false;
-                if (tipe === 'kategori_psikotes' && testCategoryName !== detail.toLowerCase()) return false;
+                if (voucherType === 'metode' && service.toLowerCase() !== detail.toLowerCase()) return false;
+                if (voucherType === 'kategori_psikotes' && testCategoryName !== detail.toLowerCase()) return false;
             }
 
             return true;
@@ -582,15 +582,15 @@
                     // Jika kategori pelajar, tampilkan upload kartu pelajar
                     if (voucher.category && voucher.category.toLowerCase() === 'pelajar') {
                         document.getElementById('bukti-kartu-pelajar-container').style.display = 'block';
-                        document.getElementById('bukti_kartu_pelajar').setAttribute('required', 'required');
+                        document.getElementById('student_card').setAttribute('required', 'required');
                     } else {
                         document.getElementById('bukti-kartu-pelajar-container').style.display = 'none';
-                        document.getElementById('bukti_kartu_pelajar').removeAttribute('required');
+                        document.getElementById('student_card').removeAttribute('required');
                     }
 
-                    document.getElementById('kategori_voucher').value = voucher.category || '';
-                    document.getElementById('code_voucher').value = voucher.code || '';
-                    document.getElementById('presentase_diskon').value = voucher.percentage || '';
+                    document.getElementById('voucher_category').value = voucher.category || '';
+                    document.getElementById('voucher_code').value = voucher.code || '';
+                    document.getElementById('discount_percentage').value = voucher.percentage || '';
 
                     Swal.fire({
                         toast: true,
@@ -616,12 +616,12 @@
                 });
                 updateHargaDisplay(parseInt(document.getElementById('price').dataset.hargaAsli) || 0, null);
                 document.getElementById('bukti-kartu-pelajar-container').style.display = 'none';
-                document.getElementById('bukti_kartu_pelajar').removeAttribute('required');
+                document.getElementById('student_card').removeAttribute('required');
             }
         }
 
         // Validasi upload bukti kartu pelajar
-        document.getElementById('bukti_kartu_pelajar').addEventListener('change', function() {
+        document.getElementById('student_card').addEventListener('change', function() {
             const fileNameSpan = document.getElementById('fileName');
             if (this.files && this.files.length > 0) {
                 const file = this.files[0];

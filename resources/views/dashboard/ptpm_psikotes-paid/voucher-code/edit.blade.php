@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="text-left w-1/2">
                                     <label class="block mb-1 font-medium text-gray-600">Nama Voucher</label>
-                                    <input type="text" name="nama_voucher" value="{{ old('nama_voucher', $voucher->nama_voucher) }}" class="w-full rounded-lg border border-gray-300 px-3 py-2" placeholder="Nama Voucher" required>
+                                    <input type="text" name="name" value="{{ old('name', $voucher->name) }}" class="w-full rounded-lg border border-gray-300 px-3 py-2" placeholder="Nama Voucher" required>
                                 </div>
                             </div>
                             <div class="flex flex-row justify-between gap-2 mb-6">
@@ -55,17 +55,17 @@
                             </div>
 
                             @php
-                                $tipeArr = is_array($voucher->tipe) ? $voucher->tipe : json_decode($voucher->tipe, true);
+                                $voucherTypeArr = is_array($voucher->voucher_type) ? $voucher->voucher_type : json_decode($voucher->voucher_type, true);
                                 $detailArr = is_array($voucher->detail) ? $voucher->detail : json_decode($voucher->detail, true);
                             @endphp
-                            @foreach($tipeArr as $i => $t)
+                            @foreach($voucherTypeArr as $i => $t)
                             <div class="flex flex-col voucher-row">
 
 
                             <div class="flex flex-row justify-between gap-2 mb-6 ">
                                 <div class="text-left w-1/2">
                                     <label class="block mb-1 font-medium text-gray-600">Tipe Voucher</label>
-                                    <select name="tipe[]" class="voucher-type w-full rounded-lg border border-gray-300 px-3 py-2" required>
+                                    <select name="voucher_type[]" class="voucher-type w-full rounded-lg border border-gray-300 px-3 py-2" required>
                                         <option value="">Pilih Tipe</option>
                                         <option value="metode" {{ $t == 'metode' ? 'selected' : '' }}>Metode</option>
                                         <option value="hari" {{ $t == 'hari' ? 'selected' : '' }}>Hari</option>
@@ -104,7 +104,7 @@
                             <div class="flex justify-end">
                                 <button type="button"
                                     class="btn-delete-voucher flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm font-semibold text-red-600 transition hover:bg-red-600 hover:text-white hover:border-red-600 shadow-sm"
-                                    @if(count($tipeArr) == 1) disabled style="opacity:0.5;cursor:not-allowed;" @endif>
+                                    @if(count($voucherTypeArr) == 1) disabled style="opacity:0.5;cursor:not-allowed;" @endif>
                                     <i class="bx bx-trash text-lg"></i>
                                     <span>Hapus</span>
                                 </button>
@@ -121,7 +121,7 @@
                             <div class="flex flex-row justify-between gap-2 mb-6">
                                 <div class="text-left w-1/2">
                                     <label class="block mb-1 font-medium text-gray-600">Tipe Voucher</label>
-                                    <select name="tipe[]" class="voucher-type w-full rounded-lg border border-gray-300 px-3 py-2" required onchange="updateDetailOptions(this)">
+                                    <select name="voucher_type[]" class="voucher-type w-full rounded-lg border border-gray-300 px-3 py-2" required onchange="updateDetailOptions(this)">
                                         <option value="">Pilih Tipe</option>
                                         <option value="metode">Metode</option>
                                         <option value="hari">Hari</option>

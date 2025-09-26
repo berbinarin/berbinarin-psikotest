@@ -103,12 +103,12 @@
                     <div class="flex w-full flex-col">
                         <label class="mb-2 font-bold text-[#9b9b9b]">Code Voucher</label>
                         <input type="text" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0"
-                            value="{{ $registrant->code_voucher ? $registrant->code_voucher : '-' }}" readonly disabled />                    </div>
+                            value="{{ $registrant->voucher_code ? $registrant->voucher_code : '-' }}" readonly disabled />                    </div>
                     <div class="flex w-full flex-col">
                         <label class="mb-2 font-bold text-[#9b9b9b]">Bukti Kartu Pelajar</label>
-                            @if($registrant->bukti_kartu_pelajar)
-                                <a href="{{ asset('storage/' . $registrant->bukti_kartu_pelajar) }}" target="_blank">
-                                    <img src="{{ asset('storage/' . $registrant->bukti_kartu_pelajar) }}"
+                            @if($registrant->student_card)
+                                <a href="{{ asset('storage/' . $registrant->student_card) }}" target="_blank">
+                                    <img src="{{ asset('storage/' . $registrant->student_card) }}"
                                         alt="Bukti Kartu Pelajar"
                                         style="max-width:120px;max-height:120px;border-radius:8px;border:1px solid #ccc;">
                                 </a>

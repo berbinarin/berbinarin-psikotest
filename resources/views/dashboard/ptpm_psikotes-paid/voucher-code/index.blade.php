@@ -7,7 +7,7 @@
 
 @section("content")
     @include("components.confirm", ["type" => "delete"])
-    
+
     <section class="flex w-full">
         <div class="flex flex-col">
             <div class="w-full">
@@ -40,15 +40,15 @@
                                     <tr>
                                         <td class="text-center">{{ $i + 1 }}</td>
                                         <td class="text-center">{{ $voucher->category }}</td>
-                                        <td class="text-center">{{ $voucher->nama_voucher }}</td>
+                                        <td class="text-center">{{ $voucher->name }}</td>
                                         <td class="text-center">{{ $voucher->code }}</td>
                                         <td class="text-center">{{ $voucher->percentage }}%</td>
                                         <td class="text-center">
                                             @php
-                                                $tipe = json_decode($voucher->tipe, true);
+                                                $voucherType = json_decode($voucher->voucher_type, true);
                                             @endphp
 
-                                            {{ $tipe ? implode(", ", $tipe) : "-" }}
+                                            {{ $voucherType ? implode(", ", $voucherType) : "-" }}
                                         </td>
                                         <td class="text-center">
                                             @php
