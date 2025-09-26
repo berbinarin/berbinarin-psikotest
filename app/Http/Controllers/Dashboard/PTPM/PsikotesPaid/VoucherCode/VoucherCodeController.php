@@ -47,6 +47,7 @@ class VoucherCodeController extends Controller
         $data['voucher_type'] = json_encode($request->voucher_type);
         $data['detail'] = json_encode($request->detail);
 
+        VoucherCode::create($data);
         return redirect()->route('dashboard.voucher-code.index')->with([
             'alert'   => true,
             'voucher_type'    => 'success',

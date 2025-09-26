@@ -63,9 +63,13 @@
                                                 <a href="{{ route("dashboard.voucher-code.edit", $voucher->id) }}" class="inline-flex items-start justify-start rounded bg-yellow-500 p-3 hover:bg-yellow-600">
                                                     <i class="bx bx-edit text-white"></i>
                                                 </a>
-                                                <button type="button" class="delete-alert inline-flex items-start justify-start rounded bg-red-500 p-3 hover:bg-red-600">
-                                                    <i class="bx bx-trash-alt text-white"></i>
-                                                </button>
+                                                <form id="deleteForm-{{ $voucher->id }}" action="{{ route("dashboard.voucher-code.destroy", $voucher->id) }}" method="POST">
+                                                    @csrf
+                                                    @method("DELETE")
+                                                    <button type="button" class="delete-alert inline-flex items-start justify-start rounded p-3 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #ef4444" data-id="{{ $voucher->id }}">
+                                                        <i class="bx bx-trash-alt text-white"></i>
+                                                    </button>
+                                                </form>
                                             </div>
                                         </td>
                                         {{--
