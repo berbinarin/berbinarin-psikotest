@@ -27,7 +27,6 @@ class ResultService
         // 2. Inisialisasi papan skor untuk 20 kategori
         $categories = ['F', 'W', 'N', 'G', 'A', 'L', 'P', 'I', 'T', 'V', 'O', 'B', 'S', 'X', 'C', 'D', 'R', 'Z', 'E', 'K',];
 
-
         $scores = collect($categories)->mapWithKeys(fn($key) => [$key => 0]);
 
         // 3. Lakukan iterasi pada setiap jawaban user untuk menghitung skor mentah
@@ -403,9 +402,378 @@ class ResultService
         return $results->sortBy('order')->values();
     }
 
+    private function hexacoDescriptionMapping()
+    {
+        return [
+            "honesty_humility" => [
+                "label" => "Honesty-Humility",
+                "description" => [
+                    "low" => "Individu dengan skor yang sangat rendah lebih suka menyanjung atau memanipulasi orang lain demi mendapatkan apa yang diinginkan, cenderung melanggar aturan demi keuntungan pribadi, sangat termotivasi oleh kepentingan materi, serta memiliki rasa penting diri yang berlebihan.",
+                    "high" => "Orang dengan skor yang sangat tinggi pada dimensi Honesty–Humility cenderung menghindari manipulasi untuk keuntungan pribadi, tidak mudah tergoda untuk melanggar aturan, tidak tertarik pada kekayaan berlebih maupun kemewahan, serta tidak merasa berhak atas status sosial yang lebih tinggi dari orang lain."
+                ],
+                "sub_categories" => [
+                    "sincerity" => [
+                        "label" => "Sincerity",
+                        "description" => [
+                            "low" => "Ini menilai kecenderungan seseorang untuk bersikap tulus dalam hubungan interpersonal. Individu dengan skor rendah biasanya akan memuji secara berlebihan atau berpura-pura menyukai orang lain demi memperoleh keuntungan tertentu.",
+                            "high" => "Ini menilai kecenderungan seseorang untuk bersikap tulus dalam hubungan interpersonal. Individu skor tinggi cenderung enggan memanipulasi orang lain."
+                        ]
+                    ],
+                    "fairness" => [
+                        "label" => "Fairness",
+                        "description" => [
+                            "low" => "Ini menilai kecenderungan untuk menghindari kecurangan dan korupsi. Individu dengan skor rendah bersedia mendapatkan keuntungan dengan cara curang atau bahkan mencuri.",
+                            "high" => "Ini menilai kecenderungan untuk menghindari kecurangan dan korupsi. Individu dengan skor tinggi menolak untuk mengambil keuntungan dengan merugikan orang lain maupun masyarakat secara keseluruhan."
+                        ]
+                    ],
+                    "greed_avoidance" => [
+                        "label" => "Greed Avoidance",
+                        "description" => [
+                            "low" => "Ini menilai kecenderungan untuk tidak terlalu tertarik pada kekayaan berlimpah, barang mewah, atau simbol status sosial. Individu dengan skor rendah cenderung ingin menikmati serta memamerkan kekayaan dan hak istimewa.",
+                            "high" => "Ini menilai kecenderungan untuk tidak terlalu tertarik pada kekayaan berlimpah, barang mewah, atau simbol status sosial. Individu dengan skor tinggi tidak terlalu termotivasi oleh faktor finansial maupun status sosial."
+                        ]
+                    ],
+                    "modesty" => [
+                        "label" => "Modesty",
+                        "description" => [
+                            "low" => "Ini menilai kecenderungan untuk bersikap rendah hati dan tidak berlebihan dalam menampilkan diri. Individu dengan skor rendah biasanya memandang diri mereka lebih unggul dan merasa berhak atas perlakuan khusus yang tidak dimiliki orang lain.",
+                            "high" => "Ini menilai kecenderungan untuk bersikap rendah hati dan tidak berlebihan dalam menampilkan diri. Individu dengan skor tinggi melihat dirinya sebagai orang biasa tanpa klaim atas perlakuan istimewa."
+                        ]
+                    ],
+                ]
+            ],
+            "emotionality" => [
+                "label" => "Emotionality",
+                "description" => [
+                    "low" => "Orang dengan skor sangat rendah tidak mudah terhalang oleh ancaman fisik, jarang merasa cemas meskipun berada dalam situasi yang penuh tekanan, tidak merasa perlu berbagi masalah dengan orang lain, dan cenderung bersikap dingin atau terlepas secara emosional dari orang lain.",
+                    "high" => "Individu dengan skor sangat tinggi pada dimensi Emotionality biasanya mudah merasakan ketakutan terhadap bahaya fisik, mengalami kecemasan ketika menghadapi tekanan hidup, membutuhkan dukungan emosional dari orang lain, serta menunjukkan empati dan ikatan sentimental yang kuat terhadap sesama."
+                ],
+                "sub_categories" => [
+                    "fearfulness" => [
+                        "label" => "Fearfulness",
+                        "description" => [
+                            "low" => "Ini menggambarkan kecenderungan seseorang dalam merasakan rasa takut. Individu dengan skor rendah cenderung tidak banyak merasa takut terhadap bahaya atau cedera, mereka relatif tangguh, berani, serta kurang peka terhadap rasa sakit fisik.",
+                            "high" => "Ini menggambarkan kecenderungan seseorang dalam merasakan rasa takut. Individu dengan skor tinggi sangat cenderung untuk menghindari bahaya fisik dan lebih rentan terhadap rasa takut."
+                        ]
+                    ],
+                    "anxiety" => [
+                        "label" => "Anxiety",
+                        "description" => [
+                            "low" => "Ini menilai kecenderungan untuk merasa khawatir dalam berbagai situasi. Individu dengan skor rendah biasanya tidak mudah merasa tertekan ketika menghadapi kesulitan.",
+                            "high" => "Ini menilai kecenderungan untuk merasa khawatir dalam berbagai situasi. Individu dengan skor tinggi cenderung larut dalam kekhawatiran bahkan terhadap masalah yang relatif kecil."
+                        ]
+                    ],
+                    "dependence" => [
+                        "label" => "Dependence",
+                        "description" => [
+                            "low" => "Ini menggambarkan kebutuhan seseorang akan dukungan emosional dari orang lain. Individu dengan skor rendah merasa cukup percaya diri dan mampu menghadapi masalah tanpa bantuan atau nasihat orang lain.",
+                            "high" => "Ini menggambarkan kebutuhan seseorang akan dukungan emosional dari orang lain. Individu dengan skor tinggi lebih suka berbagi kesulitan mereka dengan orang-orang yang dapat memberikan dorongan dan kenyamanan."
+                        ]
+                    ],
+                    "sentimentality" => [
+                        "label" => "Sentimentality",
+                        "description" => [
+                            "low" => "Ini menilai kecenderungan untuk merasakan ikatan emosional yang kuat dengan orang lain. Individu dengan skor rendah biasanya kurang terpengaruh secara emosional ketika berpisah atau menghadapi masalah orang lain.",
+                            "high" => "Ini menilai kecenderungan untuk merasakan ikatan emosional yang kuat dengan orang lain. Individu dengan skor tinggi menunjukkan keterikatan emosional yang mendalam serta memiliki kepekaan empatik terhadap perasaan orang lain."
+                        ]
+                    ],
+                ]
+            ],
+            "extraversion" => [
+                "label" => "Extraversion",
+                "description" => [
+                    "low" => "Individu dengan skor sangat rendah cenderung merasa dirinya tidak populer, merasa canggung ketika menjadi pusat perhatian, kurang tertarik pada kegiatan sosial, serta lebih jarang mengalami semangat atau optimisme dibandingkan orang lain.",
+                    "high" => "Mereka yang memiliki skor sangat tinggi pada dimensi Extraversion umumnya memiliki pandangan positif terhadap diri sendiri, percaya diri ketika memimpin atau berbicara di depan umum, menikmati interaksi sosial, serta merasakan antusiasme dan energi positif dalam kehidupan sehari-hari."
+                ],
+                "sub_categories" => [
+                    "social_self_esteem" => [
+                        "label" => "Social Self-Esteem",
+                        "description" => [
+                            "low" => "Ini menilai kecenderungan seseorang untuk memiliki pandangan positif terhadap diri sendiri, khususnya dalam konteks sosial. Individu dengan skor rendah cenderung merasa tidak berharga, memiliki pandangan negatif terhadap diri, dan melihat dirinya sebagai sosok yang kurang disukai.",
+                            "high" => "Ini menilai kecenderungan seseorang untuk memiliki pandangan positif terhadap diri sendiri, khususnya dalam konteks sosial. Individu dengan skor tinggi umumnya merasa puas dengan dirinya sendiri, memiliki rasa percaya diri, serta menganggap diri mereka memiliki kualitas yang menyenangkan di mata orang lain."
+                        ]
+                    ],
+                    "social_boldness" => [
+                        "label" => "Social Boldness",
+                        "description" => [
+                            "low" => "Ini menggambarkan kenyamanan dan rasa percaya diri dalam berbagai situasi sosial. Individu dengan skor rendah biasanya merasa pemalu, canggung, atau kurang nyaman ketika harus memimpin maupun berbicara di depan umum.",
+                            "high" => "Ini menggambarkan kenyamanan dan rasa percaya diri dalam berbagai situasi sosial. Individu dengan skor tinggi cenderung percaya diri, berani mendekati orang asing, serta tidak ragu untuk berbicara di dalam kelompok."
+                        ]
+                    ],
+                    "sociability" => [
+                        "label" => "Sociability",
+                        "description" => [
+                            "low" => "Ini mengukur kecenderungan untuk menikmati percakapan, interaksi sosial, dan kegiatan bersama. Individu dengan skor rendah lebih menyukai aktivitas soliter dan jarang mencari interaksi sosial.",
+                            "high" => "Ini mengukur kecenderungan untuk menikmati percakapan, interaksi sosial, dan kegiatan bersama. Individu dengan skor tinggi sangat menikmati berbincang, berkunjung, maupun menghadiri acara sosial, serta merasa lebih bersemangat saat bersama orang lain."
+                        ]
+                    ],
+                    "liveliness" => [
+                        "label" => "Liveliness",
+                        "description" => [
+                            "low" => "Ini menilai tingkat antusiasme dan energi yang dimiliki seseorang dalam kehidupan sehari-hari. Individu dengan skor rendah biasanya tidak terlalu ceria atau dinamis, serta cenderung lebih datar dalam suasana hati.",
+                            "high" => "Ini menilai tingkat antusiasme dan energi yang dimiliki seseorang dalam kehidupan sehari-hari. Individu dengan skor tinggi cenderung penuh optimisme, semangat, dan mudah merasakan kegembiraan dalam berbagai situasi."
+                        ]
+                    ],
+                ]
+            ],
+            "agreeableness" => [
+                "label" => "Agreeableness",
+                "description" => [
+                    "low" => "Mereka yang memiliki skor sangat rendah cenderung menyimpan dendam terhadap orang yang pernah menyakiti, kritis terhadap kelemahan orang lain, keras kepala mempertahankan sudut pandangnya, dan lebih mudah marah ketika merasa diperlakukan tidak adil.",
+                    "high" => "Orang dengan skor yang sangat tinggi pada dimensi Agreeableness mudah memaafkan kesalahan orang lain, cenderung lunak dalam menilai, bersedia berkompromi dan bekerja sama, serta mampu mengendalikan emosi terutama amarah."
+                ],
+                "sub_categories" => [
+                    "forgiveness" => [
+                        "label" => "Forgivingness",
+                        "description" => [
+                            "low" => "Ini menilai kesediaan seseorang untuk kembali mempercayai dan menyukai orang lain, meskipun pernah disakiti. Individu dengan skor rendah cenderung menyimpan dendam terhadap mereka yang telah menyinggung atau merugikan dirinya.",
+                            "high" => "Ini menilai kesediaan seseorang untuk kembali mempercayai dan menyukai orang lain, meskipun pernah disakiti. Individu dengan skor tinggi biasanya lebih mudah memaafkan, siap untuk kembali membangun kepercayaan, serta berusaha menjalin hubungan baik setelah diperlakukan tidak adil."
+                        ]
+                    ],
+                    "gentleness" => [
+                        "label" => "Gentleness",
+                        "description" => [
+                            "low" => "Ini menggambarkan kecenderungan untuk bersikap lembut, ramah, dan penuh toleransi dalam memperlakukan orang lain. Individu dengan skor rendah cenderung lebih kritis, sering menilai kekurangan orang lain, dan tidak segan mengungkapkan ketidaksetujuan.",
+                            "high" => "Ini menggambarkan kecenderungan untuk bersikap lembut, ramah, dan penuh toleransi dalam memperlakukan orang lain. Individu dengan skor tinggi lebih lunak dalam menilai, enggan menghakimi secara keras, serta lebih bersikap toleran."
+                        ]
+                    ],
+                    "flexibility" => [
+                        "label" => "Flexibility",
+                        "description" => [
+                            "low" => "Ini menilai kesediaan seseorang untuk berkompromi dan bekerja sama dengan orang lain. Individu dengan skor rendah biasanya keras kepala, sulit mengalah, dan cenderung suka berdebat untuk mempertahankan pendapatnya.",
+                            "high" => "Ini menilai kesediaan seseorang untuk berkompromi dan bekerja sama dengan orang lain. Individu dengan skor tinggi lebih mudah berkompromi, berusaha menghindari konflik, dan bersedia menyesuaikan diri bahkan terhadap pendapat yang dianggap tidak sepenuhnya masuk akal."
+                        ]
+                    ],
+                    "patience" => [
+                        "label" => "Patience",
+                        "description" => [
+                            "low" => "Ini menggambarkan sejauh mana seseorang mampu tetap tenang tanpa mudah marah. Individu dengan skor rendah cenderung cepat tersulut emosi dan mudah kehilangan kendali atas amarahnya.",
+                            "high" => "Ini menggambarkan sejauh mana seseorang mampu tetap tenang tanpa mudah marah. Individu dengan skor tinggi memiliki ambang kesabaran yang tinggi, lebih mampu mengendalikan diri, dan jarang mengekspresikan kemarahan secara terbuka."
+                        ]
+                    ],
+                ]
+            ],
+            "conscientiousness" => [
+                "label" => "Conscientiousness",
+                "description" => [
+                    "low" => "Orang dengan skor yang sangat rendah cenderung tidak peduli pada keteraturan atau jadwal, menghindari tugas yang menantang, merasa cukup meskipun pekerjaannya mengandung kesalahan, serta sering membuat keputusan secara impulsif tanpa banyak pertimbangan.",
+                    "high" => "Individu dengan skor sangat tinggi pada dimensi Conscientiousness umumnya teratur dalam mengelola waktu dan lingkungan, bekerja dengan disiplin untuk mencapai tujuan, berusaha teliti dan sempurna dalam menyelesaikan tugas, serta berhati-hati dalam membuat keputusan."
+                ],
+                "sub_categories" => [
+                    "organization" => [
+                        "label" => "Organization",
+                        "description" => [
+                            "low" => "Ini menilai kecenderungan seseorang untuk mencari dan menjaga keteraturan, khususnya dalam lingkungan fisik maupun cara bekerja. Individu dengan skor rendah cenderung berantakan, tidak teratur, dan menjalani aktivitas dengan cara yang sembarangan.",
+                            "high" => "Ini menilai kecenderungan seseorang untuk mencari dan menjaga keteraturan, khususnya dalam lingkungan fisik maupun cara bekerja. Individu dengan skor tinggi lebih suka menjaga kebersihan, kerapihan, serta mengutamakan pendekatan yang terstruktur dalam menyelesaikan tugas."
+                        ]
+                    ],
+                    "diligence" => [
+                        "label" => "Diligence",
+                        "description" => [
+                            "low" => "Ini menggambarkan dorongan seseorang untuk bekerja keras dan berkomitmen pada pekerjaannya. Individu dengan skor rendah biasanya kurang memiliki disiplin diri, mudah menunda pekerjaan, dan tidak begitu termotivasi untuk mencapai tujuan.",
+                            "high" => "Ini menggambarkan dorongan seseorang untuk bekerja keras dan berkomitmen pada pekerjaannya. Individu dengan skor tinggi memiliki etos kerja yang kuat, rajin, dan bersedia mengerahkan usaha lebih demi mencapai hasil yang diinginkan."
+                        ]
+                    ],
+                    "perfectionism" => [
+                        "label" => "Perfectionism",
+                        "description" => [
+                            "low" => "Ini menilai kecenderungan seseorang untuk teliti, cermat, dan memperhatikan detail. Individu dengan skor rendah cenderung mengabaikan kesalahan kecil, kurang memperhatikan detail, dan cepat merasa puas meskipun pekerjaannya tidak sempurna.",
+                            "high" => "Ini menilai kecenderungan seseorang untuk teliti, cermat, dan memperhatikan detail. Individu dengan skor tinggi lebih hati-hati, memeriksa kembali pekerjaannya secara menyeluruh, dan berusaha mencari perbaikan sekecil apapun."
+                        ]
+                    ],
+                    "prudence" => [
+                        "label" => "Prudence",
+                        "description" => [
+                            "low" => "Ini menilai sejauh mana seseorang mempertimbangkan dengan matang sebelum bertindak serta mampu menahan dorongan impulsif. Individu dengan skor rendah biasanya bertindak secara spontan, mengikuti dorongan hati tanpa mempertimbangkan konsekuensinya.",
+                            "high" => "Ini menilai sejauh mana seseorang mempertimbangkan dengan matang sebelum bertindak serta mampu menahan dorongan impulsif. Individu dengan skor tinggi lebih cermat dalam menimbang pilihan, berhati-hati, dan mampu mengendalikan diri agar tidak mengambil keputusan secara gegabah."
+                        ]
+                    ],
+                ]
+            ],
+            "opennes_to_experience" => [
+                "label" => "Openness to Experience",
+                "description" => [
+                    "low" => "Individu dengan skor sangat rendah cenderung kurang terkesan oleh karya seni, memiliki rasa ingin tahu intelektual yang rendah, menghindari aktivitas kreatif, serta tidak tertarik pada gagasan yang dianggap aneh atau tidak konvensional.",
+                    "high" => "Mereka yang memiliki skor sangat tinggi pada dimensi Openness to Experience biasanya mudah terhanyut dalam keindahan seni maupun alam, memiliki rasa ingin tahu yang besar terhadap berbagai bidang pengetahuan, bebas menggunakan imajinasi dalam kehidupan sehari-hari, dan tertarik pada ide atau orang yang tidak biasa."
+                ],
+                "sub_categories" => [
+                    "aesthetic_appreciation" => [
+                        "label" => "Aesthetic Appreciation",
+                        "description" => [
+                            "low" => "Ini menilai sejauh mana seseorang mampu menikmati keindahan seni maupun alam. Individu dengan skor rendah cenderung tidak mudah terpesona oleh karya seni atau keindahan alam, dan kurang memiliki ketertarikan pada pengalaman estetis.",
+                            "high" => "Ini menilai sejauh mana seseorang mampu menikmati keindahan seni maupun alam. Individu  dengan skor tinggi memiliki kepekaan yang besar terhadap keindahan, menikmati beragam bentuk seni, serta mudah terhanyut oleh pesona alam maupun karya artistik."
+                        ]
+                    ],
+                    "inquisitiveness" => [
+                        "label" => "Inquisitiveness",
+                        "description" => [
+                            "low" => "Ini menggambarkan dorongan untuk mencari informasi dan pengalaman baru mengenai dunia alam maupun sosial. Individu dengan skor rendah biasanya kurang memiliki rasa ingin tahu terhadap ilmu pengetahuan atau fenomena sosial, serta tidak begitu tertarik menjelajahi hal-hal baru.",
+                            "high" => "Ini menggambarkan dorongan untuk mencari informasi dan pengalaman baru mengenai dunia alam maupun sosial. Individu dengan skor tinggi gemar membaca, terbuka pada wawasan baru, serta memiliki ketertarikan untuk bepergian dan mengeksplorasi berbagai pengetahuan maupun budaya."
+                        ]
+                    ],
+                    "creativity " => [
+                        "label" => "Creativity ",
+                        "description" => [
+                            "low" => "Ini menilai kecenderungan seseorang untuk berpikir inovatif, bereksperimen, dan menghasilkan ide-ide baru. Individu dengan skor rendah biasanya kurang memiliki dorongan untuk berkreasi atau berpikir orisinal, lebih suka mengikuti pola yang sudah ada.",
+                            "high" => "Ini menilai kecenderungan seseorang untuk berpikir inovatif, bereksperimen, dan menghasilkan ide-ide baru. Individu dengan skor tinggi gemar mencari solusi alternatif, mengekspresikan dirinya melalui seni atau karya kreatif, serta berani bereksperimen dengan gagasan baru."
+                        ]
+                    ],
+                    "unconventionality " => [
+                        "label" => "Unconventionality ",
+                        "description" => [
+                            "low" => "Ini menggambarkan penerimaan seseorang terhadap hal-hal yang tidak biasa atau berbeda dari norma. Individu dengan skor rendah biasanya menghindari orang-orang atau ide-ide yang dianggap eksentrik dan lebih nyaman dengan sesuatu yang umum atau sesuai aturan.",
+                            "high" => "Ini menggambarkan penerimaan seseorang terhadap hal-hal yang tidak biasa atau berbeda dari norma. Individu dengan skor tinggi lebih terbuka pada pemikiran yang unik, berani menerima ide-ide yang tidak biasa, bahkan yang dianggap aneh atau radikal."
+                        ]
+                    ],
+                ]
+            ],
+            "altruism" => [
+                "label" => "Altruism",
+                "is_independent" => true,
+                "description" => [
+                    "low" => "Skala ini mengukur kecenderungan seseorang untuk bersikap simpatik dan berhati lembut terhadap orang lain. Orang dengan skor rendah biasanya tidak terlalu terganggu dengan kemungkinan menyakiti orang lain dan dapat dipandang sebagai pribadi yang keras hati.",
+                    "high" => "Skala ini mengukur kecenderungan seseorang untuk bersikap simpatik dan berhati lembut terhadap orang lain. Orang dengan skor tinggi berusaha menghindari tindakan yang dapat merugikan atau melukai, serta menunjukkan kemurahan hati dan kepedulian, terutama kepada mereka yang lemah atau membutuhkan bantuan."
+                ]
+            ],
+        ];
+    }
+
+    private function getHexacoDescription(string $category, float $average, string $subCategory = null): ?string
+    {
+        $map = $this->hexacoDescriptionMapping()[$category] ?? null;
+        if (!$map) return null;
+
+        if ($subCategory && isset($map['sub_categories'][$subCategory])) {
+            $subMap = $map['sub_categories'][$subCategory];
+            return $average < 3.5 ? $subMap['description']['low'] : $subMap['description']['high'];
+        }
+
+        // fallback ke kategori utama
+        return $average < 3.5 ? $map['description']['low'] : $map['description']['high'];
+    }
+
     private function hexaco(Attempt $attempt)
     {
+        $attempt->load('responses.question');
 
+        $categories = [
+            "honesty_humility",
+            "emotionality",
+            "extraversion",
+            "agreeableness",
+            "conscientiousness",
+            "openness_to_experience",
+            "altruism"
+        ];
+
+        // inisialisasi hasil (kategori + sub-kategori)
+        $results = collect($categories)->mapWithKeys(function ($category) {
+            return [$category => [
+                'total_score' => 0,
+                'question_count' => 0,
+                'answer_distribution' => [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0],
+                'average' => 0,
+                'sub_categories' => []
+            ]];
+        });
+
+        // Loop setiap response
+        foreach ($attempt->responses as $response) {
+            if (!isset($response->question) || !isset($response->question->scoring['scale'])) {
+                continue;
+            }
+
+            // normalisasi nama biar aman (kalau di DB ada tanda "-")
+            $scale = str_replace('-', '_', $response->question->scoring['scale']);
+            $subScale = isset($response->question->scoring['sub_scale'])
+                ? str_replace('-', '_', $response->question->scoring['sub_scale'])
+                : null;
+
+            $value = (int) $response->answer['value'];
+            $isReversed = (bool) ($response->question->scoring['reverse_scored'] ?? false);
+
+            if (!$results->has($scale)) {
+                continue; // skip kalau kategori tidak dikenal
+            }
+
+            $scoredValue = $isReversed ? (6 - $value) : $value;
+
+            // Ambil kategori
+            $categoryData = $results->get($scale);
+
+            // Update
+            $categoryData['total_score'] += $scoredValue;
+            $categoryData['question_count']++;
+
+            if (isset($categoryData['answer_distribution'][$value])) {
+                $categoryData['answer_distribution'][$value]++;
+            }
+
+            // Simpan kembali ke collection
+            $results->put($scale, $categoryData);
+
+            $subCategories = $categoryData['sub_categories'];
+
+            if ($subScale) {
+                if (!isset($subCategories[$subScale])) {
+                    $subCategories[$subScale] = [
+                        'total_score' => 0,
+                        'question_count' => 0,
+                        'average' => 0,
+                        'answer_distribution' => [1=>0,2=>0,3=>0,4=>0,5=>0],
+                    ];
+                }
+
+                $subCategories[$subScale]['total_score'] += $scoredValue;
+                $subCategories[$subScale]['question_count']++;
+                if (isset($subCategories[$subScale]['answer_distribution'][$value])) {
+                    $subCategories[$subScale]['answer_distribution'][$value]++;
+                }
+
+                // Simpan kembali ke categoryData
+                $categoryData['sub_categories'] = $subCategories;
+            }
+
+            // Simpan categoryData ke results
+            $results->put($scale, $categoryData);
+
+        }
+
+        // Hitung rata-rata per sub-kategori & kategori
+        $results = $results->map(function ($data) {
+            if ($data['question_count'] > 0) {
+                $data['average'] = round($data['total_score'] / $data['question_count'], 2);
+            }
+
+            $data['sub_categories'] = collect($data['sub_categories'])->map(function ($subData) {
+                if ($subData['question_count'] > 0) {
+                    $subData['average'] = round($subData['total_score'] / $subData['question_count'], 2);
+                }
+                return $subData;
+            })->toArray();
+
+            return $data;
+        });
+
+        // Tambahkan deskripsi berdasarkan rata-rata
+        $results = $results->map(function ($data, $category) {
+            if ($data['question_count'] > 0) {
+                $data['average'] = round($data['total_score'] / $data['question_count'], 2);
+                $data['description'] = $this->getHexacoDescription($category, $data['average']);
+            }
+
+            $data['sub_categories'] = collect($data['sub_categories'])->map(function ($subData, $subScale) use ($category) {
+                if ($subData['question_count'] > 0) {
+                    $subData['average'] = round($subData['total_score'] / $subData['question_count'], 2);
+                    $subData['description'] = $this->getHexacoDescription($category, $subData['average'], $subScale);
+                }
+                return $subData;
+            })->toArray();
+
+            return $data;
+        });
+
+        return $results;
     }
 
     private function ocean(Attempt $attempt)

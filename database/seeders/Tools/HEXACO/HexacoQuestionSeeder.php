@@ -30,8 +30,8 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "opennes to experience",
-                    "sub_scale" => "aesthetic appreciation",
+                    "scale" => "openness_to_experience",
+                    "sub_scale" => "aesthetic_appreciation",
                     "reverse_scored" => true,
                 ],
             ],
@@ -85,7 +85,7 @@ class HexacoQuestionSeeder extends Seeder
                 ],
                 'scoring' => [
                     "scale" => "extraversion",
-                    "sub_scale" => "social self-esteem",
+                    "sub_scale" => "social_self_esteem",
                     "reverse_scored" => false,
                 ],
             ],
@@ -120,7 +120,7 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "honesty-humility",
+                    "scale" => "honesty_humility",
                     "sub_scale" => "sincerity",
                     "reverse_scored" => true,
                 ],
@@ -139,7 +139,7 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "opennes to experience",
+                    "scale" => "openness_to_experience",
                     "sub_scale" => "insquitiveness",
                     "reverse_scored" => false,
                 ],
@@ -194,7 +194,7 @@ class HexacoQuestionSeeder extends Seeder
                 ],
                 'scoring' => [
                     "scale" => "extraversion",
-                    "sub_scale" => "social boldness",
+                    "sub_scale" => "social_boldness",
                     "reverse_scored" => true,
                 ],
             ],
@@ -229,7 +229,7 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "honesty-humility",
+                    "scale" => "honesty_humility",
                     "sub_scale" => "fairness",
                     "reverse_scored" => true,
                 ],
@@ -247,7 +247,7 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "opennes to experience",
+                    "scale" => "openness_to_experience",
                     "sub_scale" => "creativity",
                     "reverse_scored" => true,
                 ],
@@ -337,8 +337,8 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "honesty-humility",
-                    "sub_scale" => "greed-avoidance",
+                    "scale" => "honesty_humility",
+                    "sub_scale" => "greed_avoidance",
                     "reverse_scored" => false,
                 ],
             ],
@@ -355,7 +355,7 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "opennes to experience",
+                    "scale" => "openness_to_experience",
                     "sub_scale" => "unconventionality",
                     "reverse_scored" => true,
                 ],
@@ -445,7 +445,7 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "honesty-humility",
+                    "scale" => "honesty_humility",
                     "sub_scale" => "modesty",
                     "reverse_scored" => false,
                 ],
@@ -463,8 +463,8 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "opennes to experience",
-                    "sub_scale" => "aesthetic appreciation",
+                    "scale" => "openness_to_experience",
+                    "sub_scale" => "aesthetic_appreciation",
                     "reverse_scored" => true,
                 ],
             ],
@@ -508,7 +508,7 @@ class HexacoQuestionSeeder extends Seeder
                 'section_id' => $hexaco->sections[0]->id,
                 'order' => 28,
                 'type' => 'likert',
-                'text' => 'Saya pikir banyang orang menyukasi salah satu sifat saya',
+                'text' => 'Saya pikir banyak orang menyukai salah satu sifat saya',
                 'options' => [
                     ['value' => 1, 'text' => 'Sangat Tidak Setuju'],
                     ['value' => 2, 'text' => 'Tidak Setuju'],
@@ -518,7 +518,7 @@ class HexacoQuestionSeeder extends Seeder
                 ],
                 'scoring' => [
                     "scale" => "extraversion",
-                    "sub_scale" => "social self-esteem",
+                    "sub_scale" => "social_self_esteem",
                     "reverse_scored" => false,
                 ],
             ],
@@ -553,7 +553,7 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "honesty-humility",
+                    "scale" => "honesty_humility",
                     "sub_scale" => "sincerity",
                     "reverse_scored" => false,
                 ],
@@ -571,7 +571,7 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "opennes to experience",
+                    "scale" => "openness_to_experience",
                     "sub_scale" => "insquitiveness",
                     "reverse_scored" => false,
                 ],
@@ -590,7 +590,7 @@ class HexacoQuestionSeeder extends Seeder
                 ],
                 'scoring' => [
                     "scale" => "conscientiousness",
-                    "sub_scale" => "deligence",
+                    "sub_scale" => "diligence",
                     "reverse_scored" => false,
                 ],
             ],
@@ -626,7 +626,7 @@ class HexacoQuestionSeeder extends Seeder
                 ],
                 'scoring' => [
                     "scale" => "extraversion",
-                    "sub_scale" => "social boldness",
+                    "sub_scale" => "social_boldness",
                     "reverse_scored" => false,
                 ],
             ],
@@ -661,7 +661,7 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "honesty-humility",
+                    "scale" => "honesty_humility",
                     "sub_scale" => "fairness",
                     "reverse_scored" => true,
                 ],
@@ -679,7 +679,7 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "opennes to experience",
+                    "scale" => "openness_to_experience",
                     "sub_scale" => "creativity",
                     "reverse_scored" => false,
                 ],
@@ -769,8 +769,8 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "honesty-humility",
-                    "sub_scale" => "greed-avoidance",
+                    "scale" => "honesty_humility",
+                    "sub_scale" => "greed_avoidance",
                     "reverse_scored" => true,
                 ],
             ],
@@ -787,7 +787,7 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "opennes to experience",
+                    "scale" => "openness_to_experience",
                     "sub_scale" => "unconventionality",
                     "reverse_scored" => false,
                 ],
@@ -877,7 +877,7 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "honesty-humility",
+                    "scale" => "honesty_humility",
                     "sub_scale" => "modesty",
                     "reverse_scored" => false,
                 ],
@@ -895,8 +895,8 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "opennes to experience",
-                    "sub_scale" => "aesthetic appreciation",
+                    "scale" => "openness_to_experience",
+                    "sub_scale" => "aesthetic_appreciation",
                     "reverse_scored" => false,
                 ],
             ],
@@ -950,7 +950,7 @@ class HexacoQuestionSeeder extends Seeder
                 ],
                 'scoring' => [
                     "scale" => "extraversion",
-                    "sub_scale" => "social self-esteem",
+                    "sub_scale" => "social_self_esteem",
                     "reverse_scored" => true,
                 ],
             ],
@@ -985,7 +985,7 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "honesty-humility",
+                    "scale" => "honesty_humility",
                     "sub_scale" => "sincerity",
                     "reverse_scored" => true,
                 ],
@@ -1003,7 +1003,7 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "opennes to experience",
+                    "scale" => "openness_to_experience",
                     "sub_scale" => "insquitiveness",
                     "reverse_scored" => true,
                 ],
@@ -1022,7 +1022,7 @@ class HexacoQuestionSeeder extends Seeder
                 ],
                 'scoring' => [
                     "scale" => "conscientiousness",
-                    "sub_scale" => "deligence",
+                    "sub_scale" => "diligence",
                     "reverse_scored" => true,
                 ],
             ],
@@ -1058,7 +1058,7 @@ class HexacoQuestionSeeder extends Seeder
                 ],
                 'scoring' => [
                     "scale" => "extraversion",
-                    "sub_scale" => "social boldness",
+                    "sub_scale" => "social_boldness",
                     "reverse_scored" => false,
                 ],
             ],
@@ -1093,7 +1093,7 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "honesty-humility",
+                    "scale" => "honesty_humility",
                     "sub_scale" => "fairness",
                     "reverse_scored" => false,
                 ],
@@ -1111,7 +1111,7 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "opennes to experience",
+                    "scale" => "openness_to_experience",
                     "sub_scale" => "creativity",
                     "reverse_scored" => false,
                 ],
@@ -1156,7 +1156,7 @@ class HexacoQuestionSeeder extends Seeder
                 'section_id' => $hexaco->sections[0]->id,
                 'order' => 64,
                 'type' => 'likert',
-                'text' => 'Saya lebih menyukai pekerjaan yang menuntut interaaksi sosial daripada bekerja sendiri',
+                'text' => 'Saya lebih menyukai pekerjaan yang menuntut interaksi sosial daripada bekerja sendiri',
                 'options' => [
                     ['value' => 1, 'text' => 'Sangat Tidak Setuju'],
                     ['value' => 2, 'text' => 'Tidak Setuju'],
@@ -1201,8 +1201,8 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "honesty-humility",
-                    "sub_scale" => "greed-avoidance",
+                    "scale" => "honesty_humility",
+                    "sub_scale" => "greed_avoidance",
                     "reverse_scored" => true,
                 ],
             ],
@@ -1219,7 +1219,7 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "opennes to experience",
+                    "scale" => "openness_to_experience",
                     "sub_scale" => "unconventionality",
                     "reverse_scored" => false,
                 ],
@@ -1309,7 +1309,7 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "honesty-humility",
+                    "scale" => "honesty_humility",
                     "sub_scale" => "modesty",
                     "reverse_scored" => true,
                 ],
@@ -1327,8 +1327,8 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "opennes to experience",
-                    "sub_scale" => "aesthetic appreciation",
+                    "scale" => "openness_to_experience",
+                    "sub_scale" => "aesthetic_appreciation",
                     "reverse_scored" => false,
                 ],
             ],
@@ -1336,7 +1336,7 @@ class HexacoQuestionSeeder extends Seeder
                 'section_id' => $hexaco->sections[0]->id,
                 'order' => 74,
                 'type' => 'likert',
-                'text' => 'Ketiak bekerja, saya terkadang merasa kesulitan karena sulit mengorganisir tugas',
+                'text' => 'Ketika bekerja, saya terkadang merasa kesulitan karena sulit mengorganisir tugas',
                 'options' => [
                     ['value' => 1, 'text' => 'Sangat Tidak Setuju'],
                     ['value' => 2, 'text' => 'Tidak Setuju'],
@@ -1382,7 +1382,7 @@ class HexacoQuestionSeeder extends Seeder
                 ],
                 'scoring' => [
                     "scale" => "extraversion",
-                    "sub_scale" => "social self-esteem",
+                    "sub_scale" => "social_self_esteem",
                     "reverse_scored" => true,
                 ],
             ],
@@ -1390,7 +1390,7 @@ class HexacoQuestionSeeder extends Seeder
                 'section_id' => $hexaco->sections[0]->id,
                 'order' => 77,
                 'type' => 'likert',
-                'text' => 'Walaupund alam keadaan darurat, saya tidak akan merasa panik',
+                'text' => 'Walaupun dalam keadaan darurat, saya tidak akan merasa panik',
                 'options' => [
                     ['value' => 1, 'text' => 'Sangat Tidak Setuju'],
                     ['value' => 2, 'text' => 'Tidak Setuju'],
@@ -1408,7 +1408,7 @@ class HexacoQuestionSeeder extends Seeder
                 'section_id' => $hexaco->sections[0]->id,
                 'order' => 78,
                 'type' => 'likert',
-                'text' => 'Saya akan berpura-pura menyukai seseorang agar mendapatkan abntuan darinya',
+                'text' => 'Saya akan berpura-pura menyukai seseorang agar mendapatkan bantuan darinya',
                 'options' => [
                     ['value' => 1, 'text' => 'Sangat Tidak Setuju'],
                     ['value' => 2, 'text' => 'Tidak Setuju'],
@@ -1417,7 +1417,7 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "honesty-humility",
+                    "scale" => "honesty_humility",
                     "sub_scale" => "sincerity",
                     "reverse_scored" => false,
                 ],
@@ -1435,7 +1435,7 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "opennes to experience",
+                    "scale" => "openness_to_experience",
                     "sub_scale" => "insquitiveness",
                     "reverse_scored" => true,
                 ],
@@ -1454,7 +1454,7 @@ class HexacoQuestionSeeder extends Seeder
                 ],
                 'scoring' => [
                     "scale" => "conscientiousness",
-                    "sub_scale" => "deligence",
+                    "sub_scale" => "diligence",
                     "reverse_scored" => true,
                 ],
             ],
@@ -1480,7 +1480,7 @@ class HexacoQuestionSeeder extends Seeder
                 'section_id' => $hexaco->sections[0]->id,
                 'order' => 82,
                 'type' => 'likert',
-                'text' => 'Saya cenderug memeiliki kesadaran diri saat berbicara di dalam kelompok',
+                'text' => 'Saya cenderung memiliki kesadaran diri saat berbicara di dalam kelompok',
                 'options' => [
                     ['value' => 1, 'text' => 'Sangat Tidak Setuju'],
                     ['value' => 2, 'text' => 'Tidak Setuju'],
@@ -1490,7 +1490,7 @@ class HexacoQuestionSeeder extends Seeder
                 ],
                 'scoring' => [
                     "scale" => "extraversion",
-                    "sub_scale" => "social boldness",
+                    "sub_scale" => "social_boldness",
                     "reverse_scored" => true,
                 ],
             ],
@@ -1525,7 +1525,7 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "honesty-humility",
+                    "scale" => "honesty_humility",
                     "sub_scale" => "fairness",
                     "reverse_scored" => true,
                 ],
@@ -1543,7 +1543,7 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "opennes to experience",
+                    "scale" => "openness_to_experience",
                     "sub_scale" => "creativity",
                     "reverse_scored" => true,
                 ],
@@ -1633,8 +1633,8 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "honesty-humility",
-                    "sub_scale" => "greed-avoidance",
+                    "scale" => "honesty_humility",
+                    "sub_scale" => "greed_avoidance",
                     "reverse_scored" => true,
                 ],
             ],
@@ -1651,7 +1651,7 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "opennes to experience",
+                    "scale" => "openness_to_experience",
                     "sub_scale" => "unconventionality",
                     "reverse_scored" => true,
                 ],
@@ -1741,7 +1741,7 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "honesty-humility",
+                    "scale" => "honesty_humility",
                     "sub_scale" => "modesty",
                     "reverse_scored" => true,
                 ],
@@ -1759,8 +1759,8 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "alturism",
-                    "sub_scale" => "alturism",
+                    "scale" => "altruism",
+                    "sub_scale" => "altruism",
                     "reverse_scored" => false,
                 ],
             ],
@@ -1777,8 +1777,8 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "alturism",
-                    "sub_scale" => "alturism",
+                    "scale" => "altruism",
+                    "sub_scale" => "altruism",
                     "reverse_scored" => false,
                 ],
             ],
@@ -1795,8 +1795,8 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "alturism",
-                    "sub_scale" => "alturism",
+                    "scale" => "altruism",
+                    "sub_scale" => "altruism",
                     "reverse_scored" => true,
                 ],
             ],
@@ -1813,8 +1813,8 @@ class HexacoQuestionSeeder extends Seeder
                     ['value' => 5, 'text' => 'Sangat Setuju'],
                 ],
                 'scoring' => [
-                    "scale" => "alturism",
-                    "sub_scale" => "alturism",
+                    "scale" => "altruism",
+                    "sub_scale" => "altruism",
                     "reverse_scored" => true,
                 ],
             ],
