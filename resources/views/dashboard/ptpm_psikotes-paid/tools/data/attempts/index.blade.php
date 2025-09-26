@@ -90,7 +90,6 @@
         });
     </script>
 
-
     <script type="text/javascript">
         function toggleModal(modalID) {
             document.getElementById(modalID).classList.toggle('hidden');

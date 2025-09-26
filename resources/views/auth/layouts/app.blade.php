@@ -23,14 +23,12 @@
 
     {{-- Script --}}
     @include('landing.partials.script')
-    <script src="{{ asset('js/swal.js') }}"></script>
-    @stack('script')
 
     {{-- Additional Script --}}
     @stack('script')
 
+    {{-- Alert --}}
     @include('components.alert')
-
 </body>
 
 </html>

@@ -29,7 +29,7 @@ Route::middleware(['auth', 'session.verified'])->prefix('psikotes-paid')->name('
         Route::get('/selesai', [SubmittedResponseController::class, 'complete'])->name('complete');
         Route::post('/times-up', [SubmittedResponseController::class, 'timesUp'])->name('times-up');
 
-        Route::get('/checkpoint-question', [SubmittedResponseController::class, 'getCheckpointQuestion'])->name('get-checkpoint-question')->withoutMiddleware(['session.verified']);
+        Route::get('/pertanyaan-singkat', [SubmittedResponseController::class, 'getCheckpointQuestion'])->name('get-checkpoint-question')->withoutMiddleware(['session.verified']);
         Route::put('/set-checkpoint', [SubmittedResponseController::class, 'setCheckpoint'])->name('set-checkpoint')->withoutMiddleware(['session.verified']);
     });
 

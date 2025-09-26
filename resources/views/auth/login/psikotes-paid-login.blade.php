@@ -19,17 +19,7 @@
                     </div>
                 </div>
 
-                {{-- Cek apakah ada error dengan key 'message' --}}
-                {{-- @if ($errors->has('message'))
-                    {{-- Jika ada, tampilkan dalam sebuah kotak alert --}}
-                {{-- <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
-                        role="alert">
-                        <span class="block sm:inline">{{ $errors->first('message') }}</span>
-                    </div> --}}
-                @endif --}}
-
-
-                <!-- div Form Login -->
+                <!-- Form Login -->
                 <form action="{{ route('auth.authenticate') }}" method="POST">
                     @csrf
                     <input type="hidden" name="login_type" value="user" />
@@ -44,7 +34,7 @@
                                 <h5 class="text-sm font-normal text-[#757575] md:text-[11]">Selamat Datang di Psikotest
                                     Berbinar</h5>
                             </div>
-                            <!-- Form pengisian -->
+                            <!-- Form -->
                             <div class="mt-[21.92px] flex items-center justify-center md:mt-[26.67px]">
                                 <div
                                     class="flex flex-col items-center justify-center gap-[10.96px] font-plusJakartaSans font-normal md:gap-[13.33px]">
@@ -76,7 +66,7 @@
                     </div>
                 </form>
             </div>
-            <!-- Footer hanya di mobile -->
+            <!-- Footer (hanya di mobile) -->
             <div class="mt-auto w-full md:hidden">
                 <img src="{{ asset('assets/auth/images/Footer - Section.png') }}" alt="footer"
                     class="w-full object-cover" />

@@ -23,6 +23,8 @@
                     </a>
                 </div>
             </div>
+
+            {{-- Test Types Data Table --}}
             <div class="mb-7 rounded-[24px] bg-white px-10 py-7 shadow">
                 <div class="mt-4 overflow-x-auto">
                     <table id="table" class="display gap-3" style="overflow-x: scroll">

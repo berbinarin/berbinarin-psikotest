@@ -5,7 +5,7 @@
     ]
 )
 
-@section("content")
+@push('style')
     <style>
         .text-gradient {
             background: linear-gradient(to right, #f7b23b, #916823);
@@ -21,7 +21,9 @@
             color: transparent;
         }
     </style>
+@endpush
 
+@section("content")
     <div class="bg-cover bg-center bg-no-repeat">
         <!-- Hero Section Start -->
         <section class="flex mt-8 h-screen w-full flex-col items-center justify-center gap-10 text-center">
@@ -81,7 +83,9 @@
             </div>
         </div>
     </div>
+@endsection
 
+@push('script')
     <!-- Modal Script -->
     <script>
         function openModal() {
@@ -96,4 +100,4 @@
             document.body.classList.remove('overflow-hidden');
         }
     </script>
-@endsection
+@endpush

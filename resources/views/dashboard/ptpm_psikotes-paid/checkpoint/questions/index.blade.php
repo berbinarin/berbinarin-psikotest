@@ -22,6 +22,8 @@
                     </a>
                 </div>
             </div>
+
+            {{-- Questions Data Table --}}
             <div class="rounded-[24px] bg-white shadow px-10 py-7 mb-7">
                 <div class="mt-4 overflow-x-auto">
                     <table id="table" class="display gap-3" style="overflow-x: scroll">
@@ -70,12 +72,10 @@
                     </table>
                 </div>
             </div>
-
-
         </div>
     </section>
 
-    <!-- Modal Tambah Data Soal -->
+    <!-- Question's Create Modal -->
     <div id="createQuestionModal" class="fixed inset-0 z-10 hidden items-center justify-center bg-black bg-opacity-50 flex">
         <div class="w-full max-w-xl rounded-xl bg-white p-6 text-center relative">
             <h3 class="mb-4 text-xl leading-6 text-black font-bold" id="modal-title">Tambah Soal <span class="italic">Checkpoint</span></h3>
@@ -117,7 +117,7 @@
         </div>
     </div>
 
-    <!-- Modal Edit Data Soal -->
+    <!-- Question's Edit Modal -->
     <div id="editQuestionModal" class="fixed inset-0 z-10 hidden items-center justify-center bg-black bg-opacity-50 flex">
         <div class="w-full max-w-xl rounded-xl bg-white p-6 text-center relative">
             <h3 class="mb-4 text-xl leading-6 text-black font-bold" id="modal-title">Edit Soal <span class="italic">Checkpoint</span></h3>
@@ -160,7 +160,7 @@
         </div>
     </div>
 
-    <!-- Modal Detail Data Soal -->
+    <!-- Question's Detail Modal -->
     <div id="detailQuestionModal" class="fixed inset-0 z-10 hidden items-center justify-center bg-black bg-opacity-50 flex">
         <div class="w-full max-w-xl rounded-xl bg-white p-6 text-center relative">
             <h3 class="mb-4 text-xl leading-6 text-black font-bold">Detail Soal <span class="italic">Checkpoint</span></h3>

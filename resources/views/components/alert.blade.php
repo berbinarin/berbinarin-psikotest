@@ -9,17 +9,22 @@
                     white;
                 border-radius: 20px;
                 background-clip: padding-box, border-box;
-             ">
+            ">
+
+            {{-- Alert Icon --}}
             <img src="{{ session('icon') }}" alt="icon" class="mx-auto h-[83px] w-[83px]" />
 
+            {{-- Alert Title --}}
             <h2 class="mt-4 text-center text-2xl font-bold text-stone-900">
                 {{ session('title') }}
             </h2>
 
+            {{-- Alert Message --}}
             <p class="mt-2 text-center text-base font-medium text-black">
                 {{ session('message') }}
             </p>
 
+            {{-- Alert Button --}}
             <div class="mt-6 flex justify-center gap-4">
                 @if (session('type') === 'confirm')
                     <button @click="open = false" class="rounded-lg border border-stone-300 px-6 py-2 text-stone-700">

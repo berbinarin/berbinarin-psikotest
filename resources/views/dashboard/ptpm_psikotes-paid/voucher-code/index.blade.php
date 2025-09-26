@@ -7,6 +7,7 @@
 
 @section("content")
     @include("components.confirm", ["type" => "delete"])
+    
     <section class="flex w-full">
         <div class="flex flex-col">
             <div class="w-full">
@@ -14,7 +15,7 @@
                     <div class="">
                         <p tabindex="0" class="mb-2 text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-4xl">Kode Voucher</p>
                         <p class="text-disabled">Halaman yang menampilkan dan mengelola Kode Voucher.</p>
-                        <a href="{{ route("dashboard.kode-voucher.create") }}" class="mt-8 inline-flex items-start justify-start rounded bg-primary px-6 py-3 text-white hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-3">
+                        <a href="{{ route("dashboard.voucher-code.create") }}" class="mt-8 inline-flex items-start justify-start rounded bg-primary px-6 py-3 text-white hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-3">
                             <p class="text-dark font-medium leading-none">Tambah Data</p>
                         </a>
                     </div>
@@ -59,7 +60,7 @@
                                         <td class="text-center">
                                             <div class="flex flex-row justify-center gap-2">
                                                 <!-- tombol edit dan hapus -->
-                                                <a href="{{ route("dashboard.kode-voucher.edit", $voucher->id) }}" class="inline-flex items-start justify-start rounded bg-yellow-500 p-3 hover:bg-yellow-600">
+                                                <a href="{{ route("dashboard.voucher-code.edit", $voucher->id) }}" class="inline-flex items-start justify-start rounded bg-yellow-500 p-3 hover:bg-yellow-600">
                                                     <i class="bx bx-edit text-white"></i>
                                                 </a>
                                                 <button type="button" class="delete-alert inline-flex items-start justify-start rounded bg-red-500 p-3 hover:bg-red-600">

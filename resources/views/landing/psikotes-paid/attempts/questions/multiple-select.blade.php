@@ -2,7 +2,7 @@
     $colors = ["#3fa2f6", "#fbb03b", "#406c9b", "#6a3d00"];
 @endphp
 
-<p class="text-center text-lg font-medium">oaiwjejoewaf</p>
+<p class="text-center text-lg font-medium"></p>
 
 <div class="mx-auto mt-12 flex w-[700px] flex-wrap items-center justify-center gap-x-5 gap-y-6">
     @foreach ($tool->sections[0]->questions[0]->options as $option)

@@ -21,6 +21,7 @@
             </div>
         </div>
 
+        {{-- Test Type Create Form --}}
         <div class="flex flex-col gap-10 rounded-[24px] bg-white shadow px-10 py-7">
             <form action="{{ route('dashboard.price-list.test-types.store', $category->id) }}" method="POST" class="flex flex-col gap-10">
                 @csrf
@@ -59,7 +60,7 @@
         </div>
     </section>
 
-    <!-- Modal Konfirmasi -->
+    <!-- Confirmation Modal -->
     <div id="confirmModal" class="fixed inset-0 z-50 flex hidden items-center justify-center bg-black bg-opacity-50">
         <div class="w-full max-w-md rounded-lg bg-white p-6 text-center">
             <div class="mb-4 flex justify-center">

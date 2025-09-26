@@ -16,7 +16,7 @@
 @endpush
 
 @section("content")
-@include('components.alert')
+    @include('components.alert')
     <!-- Pindahkan x-data ke div utama -->
     <div x-data="{ open: false, toolId: null }" class="relative bg-none md:min-h-screen md:bg-cover md:bg-center" style="background-image: url('{{ asset("assets/auth/images/Login.png") }}')">
         <!-- Header & Sambutan -->

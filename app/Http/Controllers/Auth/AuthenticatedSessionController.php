@@ -43,95 +43,92 @@ class AuthenticatedSessionController extends Controller
      * Handle an incoming authentication request.
      */
     public function authenticate(LoginRequest $request): RedirectResponse
-{
-    try {
-        $request->authenticate();
-    } catch (\Exception $e) {
-        return redirect()->back()->with([
-            'alert'   => true,
-            'type'    => 'error',
-            'title'   => 'Login Gagal!',
-            'message' => 'Username atau Password salah',
-            'icon'    => asset('assets/dashboard/images/error.png'),
-        ]);
-    }
+    {
+        try {
+            $request->authenticate();
+        } catch (\Exception $e) {
+            return redirect()->back()->with([
+                'alert'   => true,
+                'type'    => 'error',
+                'title'   => 'Login Gagal!',
+                'message' => 'Username atau Password salah',
+                'icon'    => asset('assets/dashboard/images/error.png'),
+            ]);
+        }
 
-    $loginType = $request->input('login_type');
+        $loginType = $request->input('login_type');
 
-    if ($loginType === 'admin') {
-        if (! Auth::user()->hasRole(['ptpm_psikotes-paid', 'ptpm_psikotes-free'])) {
+        if ($loginType === 'admin') {
+            if (! Auth::user()->hasRole(['ptpm_psikotes-paid', 'ptpm_psikotes-free'])) {
+                Auth::guard('web')->logout();
+                return redirect()->back()->with([
+                    'alert'   => true,
+                    'type'    => 'error',
+                    'title'   => 'Login Gagal!',
+                    'message' => 'Akun tidak memiliki akses admin',
+                    'icon'    => asset('assets/dashboard/images/error.png'),
+                ]);
+            }
+            $redirectPath = RouteServiceProvider::HOME;
+        } elseif ($loginType === 'user') {
+            if (! Auth::user()->hasRole('user_psikotes-paid')) {
+                Auth::guard('web')->logout();
+                return redirect()->back()->with([
+                    'alert'   => true,
+                    'type'    => 'error',
+                    'title'   => 'Login Gagal!',
+                    'message' => 'Akun tidak memiliki akses user',
+                    'icon'    => asset('assets/dashboard/images/error.png'),
+                ]);
+            }
+            $redirectPath = '/psikotes-paid/tools';
+        } else {
             Auth::guard('web')->logout();
             return redirect()->back()->with([
                 'alert'   => true,
                 'type'    => 'error',
                 'title'   => 'Login Gagal!',
-                'message' => 'Akun tidak memiliki akses admin',
+                'message' => 'Tipe login tidak dikenali',
                 'icon'    => asset('assets/dashboard/images/error.png'),
             ]);
         }
-        $redirectPath = RouteServiceProvider::HOME;
-    } elseif ($loginType === 'user') {
-        if (! Auth::user()->hasRole('user_psikotes-paid')) {
-            Auth::guard('web')->logout();
-            return redirect()->back()->with([
-                'alert'   => true,
-                'type'    => 'error',
-                'title'   => 'Login Gagal!',
-                'message' => 'Akun tidak memiliki akses user',
-                'icon'    => asset('assets/dashboard/images/error.png'),
-            ]);
-        }
-        $redirectPath = '/psikotes-paid/tools';
-    } else {
-        Auth::guard('web')->logout();
-        return redirect()->back()->with([
+
+        // kalau sukses login
+        $request->session()->regenerate();
+
+        return redirect()->intended($redirectPath)->with([
             'alert'   => true,
-            'type'    => 'error',
-            'title'   => 'Login Gagal!',
-            'message' => 'Tipe login tidak dikenali',
-            'icon'    => asset('assets/dashboard/images/error.png'),
+            'type'    => 'success',
+            'title'   => 'Berhasil!',
+            'message' => 'Selamat Bekerja, Sobat',
+            'icon'    => asset('assets/dashboard/images/success.png'),
         ]);
     }
-
-    // kalau sukses login
-    $request->session()->regenerate();
-
-    return redirect()->intended($redirectPath)->with([
-        'alert'   => true,
-        'type'    => 'success',
-        'title'   => 'Berhasil!',
-        'message' => 'Selamat Bekerja, Sobat',
-        'icon'    => asset('assets/dashboard/images/success.png'),
-    ]);
-}
-
-
 
     /**
      * Destroy an authenticated session.
      */
     public function destroy(Request $request): RedirectResponse
-{
-    $user = $request->user();
+    {
+        $user = $request->user();
 
-    Auth::guard('web')->logout();
-    $request->session()->invalidate();
-    $request->session()->regenerateToken();
+        Auth::guard('web')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-    // Bikin flash message untuk logout
-    $message = [
-        'alert'   => true,
-        'type'    => 'success',
-        'title'   => 'Logout Berhasil!',
-        'message' => 'Sampai jumpa lagi, Sobat!',
-        'icon'    => asset('assets/dashboard/images/success.png'),
-    ];
+        // Bikin flash message untuk logout
+        $message = [
+            'alert'   => true,
+            'type'    => 'success',
+            'title'   => 'Logout Berhasil!',
+            'message' => 'Sampai jumpa lagi, Sobat!',
+            'icon'    => asset('assets/dashboard/images/success.png'),
+        ];
 
-    if ($user && $user->hasRole(['ptpm_psikotes-paid', 'ptpm_psikotes-free'])) {
-        return redirect()->route('auth.login')->with($message);
+        if ($user && $user->hasRole(['ptpm_psikotes-paid', 'ptpm_psikotes-free'])) {
+            return redirect()->route('auth.login')->with($message);
+        }
+
+        return redirect()->route('home.index')->with($message);
     }
-
-    return redirect()->route('home.index')->with($message);
-}
-
 }

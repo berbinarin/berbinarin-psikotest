@@ -9,7 +9,7 @@
     }
 @endphp
 
-<!-- sidebar keluarga berbinar  -->
+<!-- Registrant Profiles  -->
 <li class="{{ isRouteNameStartWith("dashboard.registrants") }} my-5 rounded-lg p-2">
     <a href="{{ route("dashboard.registrants.index") }}" class="{{ Str::startsWith(Route::currentRouteName(), "dashboard.registrants") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
         <i class="fi fi-br-ballot {{ Str::startsWith(Route::currentRouteName(), "dashboard.registrants") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
@@ -17,7 +17,7 @@
     </a>
 </li>
 
-<!-- sidebar manage division  -->
+<!-- Tools  -->
 <li class="{{ isRouteNameStartWith("dashboard.tools") }} my-5 rounded-lg p-2">
     <a href="{{ route("dashboard.tools.index") }}" class="{{ Str::startsWith(Route::currentRouteName(), "dashboard.tools") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
         <i class="fi fi-br-database {{ Str::startsWith(Route::currentRouteName(), "dashboard.tools") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
@@ -25,7 +25,7 @@
     </a>
 </li>
 
-<!-- sidebar manage division  -->
+<!-- Price Lists  -->
 <li class="{{ isRouteNameStartWith("dashboard.price-list.") }} my-5 rounded-lg p-2">
     <a href="{{ route("dashboard.price-list.test-category.index") }}" class="{{ Str::startsWith(Route::currentRouteName(), "dashboard.price-list") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
         <i class="bx bxs-purchase-tag {{ Str::startsWith(Route::currentRouteName(), "dashboard.price-list") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
@@ -33,7 +33,7 @@
     </a>
 </li>
 
-<!-- sidebar manage division  -->
+<!-- Testimonials  -->
 <li class="{{ isRouteNameStartWith("dashboard.testimonial") }} my-5 rounded-lg p-2">
     <a href="{{ route("dashboard.testimonial.index") }}" class="{{ Str::startsWith(Route::currentRouteName(), "dashboard.testimoni") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
         <i class="fi fi-bs-feedback-alt {{ Str::startsWith(Route::currentRouteName(), "dashboard.testimoni") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
@@ -41,13 +41,15 @@
     </a>
 </li>
 
-<li class="{{ isRouteNameStartWith("dashboard.kode-voucher") }} my-5 rounded-lg p-2">
-    <a href="{{ route("dashboard.kode-voucher.index") }}" class="{{ Str::startsWith(Route::currentRouteName(), "dashboard.kode-voucher") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
-        <i class="bx bxs-purchase-tag {{ Str::startsWith(Route::currentRouteName(), "dashboard.kode-voucher") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
+{{-- Voucher Codes --}}
+<li class="{{ isRouteNameStartWith("dashboard.voucher-code") }} my-5 rounded-lg p-2">
+    <a href="{{ route("dashboard.voucher-code.index") }}" class="{{ Str::startsWith(Route::currentRouteName(), "dashboard.voucher-code") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
+        <i class="bx bxs-purchase-tag {{ Str::startsWith(Route::currentRouteName(), "dashboard.voucher-code") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
         <span class="ml-4 text-base font-bold leading-5">Kode Voucher</span>
     </a>
 </li>
 
+{{-- Checkpoints --}}
 <li class="{{ isRouteNameStartWith("dashboard.checkpoint") }} my-5 rounded-lg p-2">
     <a href="{{ route("dashboard.checkpoint.index") }}" class="{{ Str::startsWith(Route::currentRouteName(), "dashboard.checkpoint") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
         <i class="bx bx-book {{ Str::startsWith(Route::currentRouteName(), "dashboard.checkpoint") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>

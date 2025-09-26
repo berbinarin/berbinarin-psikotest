@@ -6,7 +6,7 @@
 )
 
 @section("content")
-@include('components.confirm', ['type' => 'delete'])
+    @include('components.confirm', ['type' => 'delete'])
     <section class="flex w-full">
         <div class="w-full">
             <div class="py-4 md:pb-7 md:pt-5">

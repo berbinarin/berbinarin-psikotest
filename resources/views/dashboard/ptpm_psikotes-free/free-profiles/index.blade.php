@@ -74,12 +74,13 @@
     </section>
 @endsection
 
-@section("script")
+@push("script")
     <script>
         $(document).ready(function () {
             $('#table').DataTable();
         });
     </script>
+    
     <script>
         function toggleModal(modalId) {
             var modal = document.getElementById(modalId);
@@ -121,4 +122,4 @@
             }
         });
     </script>
-@endsection
+@endpush

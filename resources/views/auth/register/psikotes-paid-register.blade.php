@@ -151,7 +151,6 @@
             </div>
 
             {{-- Modal untuk kode voucher --}}
-
             <div id="voucher" class="fixed bg-gray-900 bg-opacity-50 backdrop-blur-md hidden inset-0 flex items-center justify-center z-30">
                 <div class="h-auto max-sm:max-h-[90%] max-h-screen w-[70%] overflow-y-auto rounded-2xl bg-white p-6 max-sm:px-2 shadow-md max-lg:h-[90%] max-sm:w-[86%]">
                     <h1 class="bg-gradient-to-r from-[#3986A3] to-[#15323D] bg-clip-text text-transparent pb-6 text-center text-3xl font-bold max-sm:text-lg">Promo KTM dan Kartu Pelajar <br class=""> Produk Konseling Bersama Psikolog</h1>
@@ -206,9 +205,7 @@
                             </li>
                         </ul>
                         </div>
-
                     </div>
-
 
                     <div class="mt-4 justify-center flex lg:gap-x-3">
                         <button id="closeVoucher" class="w-[90%] lg:w-1/4 rounded-xl border-[1.5px] bg-gradient-to-r from-[#3986A3] to-[#15323D] border-[#225062] bg-transparent px-4 py-1.5 font-medium text-white max-sm:text-[15px]">Saya Mengerti</button>
@@ -298,6 +295,7 @@
                     <input type="hidden" name="kategori_voucher" id="kategori_voucher">
                     <input type="hidden" name="code_voucher" id="code_voucher">
                     <input type="hidden" name="presentase_diskon" id="presentase_diskon">
+
                     {{-- Bukti Kartu Pelajar --}}
                     <div class="mb-4 rounded-lg" id="bukti-kartu-pelajar-container" style="background-color: white;display:none;">
                         <label for="bukti_kartu_pelajar">Bukti Kartu Pelajar</label>
@@ -419,7 +417,6 @@
         const typeSelect = document.getElementById('test_type_id');
         const priceInput = document.getElementById('price');
 
-
         categorySelect.addEventListener('change', function () {
             const selectedCategoryId = this.value;
             const filteredTypes = testTypes.filter((type) => type.test_category_id == selectedCategoryId);
@@ -475,7 +472,6 @@
             }
         });
 
-
         document.querySelectorAll('.dropdown-select').forEach((select, index) => {
             const icon = document.querySelectorAll('.dropdown-icon')[index];
 
@@ -502,148 +498,150 @@
 
             if (metode === 'offline') {
                 requiredFields.push('daerah');
-        }
-
-        // Cek kategori voucher dari hasil redeem
-        const kategoriVoucher = document.getElementById('bukti-kartu-pelajar-container').style.display === 'block' ? 'pelajar' : '';
-
-        for (let fieldName of requiredFields) {
-            let field;
-            if (fieldName === 'metode') {
-                field = document.getElementById('metode-select');
-            } else if (fieldName === 'sesi') {
-                field = document.getElementById('sesi-select');
-            } else if (fieldName === 'daerah') {
-                field = document.getElementById('daerah-select');
-            } else {
-                field = document.querySelector(`[name="${fieldName}"]`);
             }
 
-            if (!field || field.value.trim() === '' || field.value === 'Pilih metode konseling') {
-                return 'Data "' + getFieldLabel(fieldName) + '" belum diisi.';
-            }
-        }
+            // Cek kategori voucher dari hasil redeem
+            const kategoriVoucher = document.getElementById('bukti-kartu-pelajar-container').style.display === 'block' ? 'pelajar' : '';
 
-        // Jika kategori pelajar, cek bukti kartu pelajar
-        if (kategoriVoucher === 'pelajar') {
-            const buktiKartu = document.getElementById('bukti_kartu_pelajar');
-            if (!buktiKartu.files || buktiKartu.files.length === 0) {
-                return 'Bukti Kartu Pelajar wajib diupload untuk kategori pelajar.';
-            }
-        }
+            for (let fieldName of requiredFields) {
+                let field;
+                if (fieldName === 'metode') {
+                    field = document.getElementById('metode-select');
+                } else if (fieldName === 'sesi') {
+                    field = document.getElementById('sesi-select');
+                } else if (fieldName === 'daerah') {
+                    field = document.getElementById('daerah-select');
+                } else {
+                    field = document.querySelector(`[name="${fieldName}"]`);
+                }
 
-        return null;
+                if (!field || field.value.trim() === '' || field.value === 'Pilih metode konseling') {
+                    return 'Data "' + getFieldLabel(fieldName) + '" belum diisi.';
+                }
+            }
+
+            // Jika kategori pelajar, cek bukti kartu pelajar
+            if (kategoriVoucher === 'pelajar') {
+                const buktiKartu = document.getElementById('bukti_kartu_pelajar');
+                if (!buktiKartu.files || buktiKartu.files.length === 0) {
+                    return 'Bukti Kartu Pelajar wajib diupload untuk kategori pelajar.';
+                }
+            }
+
+            return null;
         }
 
         // Data Voucher
         const vouchers = @json($vouchers);
 
         function isVoucherEligible(voucher, psikotesDate, service, testCategoryName) {
+            const tipeArr = Array.isArray(voucher.tipe) ? voucher.tipe : JSON.parse(voucher.tipe || '[]');
+            const detailArr = Array.isArray(voucher.detail) ? voucher.detail : JSON.parse(voucher.detail || '[]');
 
-        const tipeArr = Array.isArray(voucher.tipe) ? voucher.tipe : JSON.parse(voucher.tipe || '[]');
-        const detailArr = Array.isArray(voucher.detail) ? voucher.detail : JSON.parse(voucher.detail || '[]');
-        for (let i = 0; i < tipeArr.length; i++) {
-            const tipe = tipeArr[i];
-            const detail = detailArr[i];
+            for (let i = 0; i < tipeArr.length; i++) {
+                const tipe = tipeArr[i];
+                const detail = detailArr[i];
 
-            if (tipe === 'hari') {
-                const tanggal = new Date(psikotesDate);
-                const day = tanggal.getDay(); // 0: Minggu, 6: Sabtu
-                const isWeekend = (day === 0 || day === 6);
-                if (detail === 'weekdays' && isWeekend) return false;
-                if (detail === 'weekend' && !isWeekend) return false;
-            }
-            if (tipe === 'metode' && service.toLowerCase() !== detail.toLowerCase()) return false;
-            if (tipe === 'kategori_psikotes' && testCategoryName !== detail.toLowerCase()) return false;
-
-        }
-        return true;
-    }
-
-    function redeemVoucher() {
-        const kode = document.getElementById('kode_promo').value.trim().toLowerCase();
-        const service = document.getElementById('service').value;
-        const categorySelect = document.getElementById('test_category_id');
-        const testCategoryName = categorySelect.options[categorySelect.selectedIndex]?.text?.toLowerCase() || '';
-        const psikotesDate = document.getElementById('psikotes_date').value;
-        let found = false;
-
-        vouchers.forEach(function(voucher) {
-            if (voucher.code.toLowerCase() === kode) {
-                // Validasi semua kondisi voucher
-                if (!isVoucherEligible(voucher, psikotesDate, service, testCategoryName)) return;
-
-                found = true;
-                // Hitung diskon
-                const hargaAsliRaw = document.getElementById('price').dataset.hargaAsli || document.getElementById('price').value.replace(/[^\d]/g, '');
-                const hargaAsli = parseInt(hargaAsliRaw) || 0;
-                const diskon = voucher.percentage;
-                const hargaDiskon = hargaAsli - (hargaAsli * diskon / 100);
-
-                updateHargaDisplay(hargaAsli, hargaDiskon);
-
-                // Jika kategori pelajar, tampilkan upload kartu pelajar
-                if (voucher.category && voucher.category.toLowerCase() === 'pelajar') {
-                    document.getElementById('bukti-kartu-pelajar-container').style.display = 'block';
-                    document.getElementById('bukti_kartu_pelajar').setAttribute('required', 'required');
-                } else {
-                    document.getElementById('bukti-kartu-pelajar-container').style.display = 'none';
-                    document.getElementById('bukti_kartu_pelajar').removeAttribute('required');
+                if (tipe === 'hari') {
+                    const tanggal = new Date(psikotesDate);
+                    const day = tanggal.getDay(); // 0: Minggu, 6: Sabtu
+                    const isWeekend = (day === 0 || day === 6);
+                    if (detail === 'weekdays' && isWeekend) return false;
+                    if (detail === 'weekend' && !isWeekend) return false;
                 }
+                if (tipe === 'metode' && service.toLowerCase() !== detail.toLowerCase()) return false;
+                if (tipe === 'kategori_psikotes' && testCategoryName !== detail.toLowerCase()) return false;
+            }
 
-                document.getElementById('kategori_voucher').value = voucher.category || '';
-                document.getElementById('code_voucher').value = voucher.code || '';
-                document.getElementById('presentase_diskon').value = voucher.percentage || '';
+            return true;
+        }
 
+        // Fungsi redeem voucher
+        function redeemVoucher() {
+            const kode = document.getElementById('kode_promo').value.trim().toLowerCase();
+            const service = document.getElementById('service').value;
+            const categorySelect = document.getElementById('test_category_id');
+            const testCategoryName = categorySelect.options[categorySelect.selectedIndex]?.text?.toLowerCase() || '';
+            const psikotesDate = document.getElementById('psikotes_date').value;
+            let found = false;
+
+            vouchers.forEach(function(voucher) {
+                if (voucher.code.toLowerCase() === kode) {
+                    // Validasi semua kondisi voucher
+                    if (!isVoucherEligible(voucher, psikotesDate, service, testCategoryName)) return;
+
+                    found = true;
+                    // Hitung diskon
+                    const hargaAsliRaw = document.getElementById('price').dataset.hargaAsli || document.getElementById('price').value.replace(/[^\d]/g, '');
+                    const hargaAsli = parseInt(hargaAsliRaw) || 0;
+                    const diskon = voucher.percentage;
+                    const hargaDiskon = hargaAsli - (hargaAsli * diskon / 100);
+
+                    updateHargaDisplay(hargaAsli, hargaDiskon);
+
+                    // Jika kategori pelajar, tampilkan upload kartu pelajar
+                    if (voucher.category && voucher.category.toLowerCase() === 'pelajar') {
+                        document.getElementById('bukti-kartu-pelajar-container').style.display = 'block';
+                        document.getElementById('bukti_kartu_pelajar').setAttribute('required', 'required');
+                    } else {
+                        document.getElementById('bukti-kartu-pelajar-container').style.display = 'none';
+                        document.getElementById('bukti_kartu_pelajar').removeAttribute('required');
+                    }
+
+                    document.getElementById('kategori_voucher').value = voucher.category || '';
+                    document.getElementById('code_voucher').value = voucher.code || '';
+                    document.getElementById('presentase_diskon').value = voucher.percentage || '';
+
+                    Swal.fire({
+                        toast: true,
+                        position: "top-end",
+                        icon: "success",
+                        title: "Kode voucher berhasil digunakan!",
+                        showConfirmButton: false,
+                        showCloseButton: true,
+                        timer: 4000
+                    });
+                }
+            });
+
+            if (!found) {
                 Swal.fire({
                     toast: true,
                     position: "top-end",
-                    icon: "success",
-                    title: "Kode voucher berhasil digunakan!",
+                    icon: "error",
+                    title: "Masukkan kode promo terlebih dahulu.",
                     showConfirmButton: false,
                     showCloseButton: true,
                     timer: 4000
                 });
+                updateHargaDisplay(parseInt(document.getElementById('price').dataset.hargaAsli) || 0, null);
+                document.getElementById('bukti-kartu-pelajar-container').style.display = 'none';
+                document.getElementById('bukti_kartu_pelajar').removeAttribute('required');
             }
-        });
-
-        if (!found) {
-            Swal.fire({
-                toast: true,
-                position: "top-end",
-                icon: "error",
-                title: "Masukkan kode promo terlebih dahulu.",
-                showConfirmButton: false,
-                showCloseButton: true,
-                timer: 4000
-            });
-            updateHargaDisplay(parseInt(document.getElementById('price').dataset.hargaAsli) || 0, null);
-            document.getElementById('bukti-kartu-pelajar-container').style.display = 'none';
-            document.getElementById('bukti_kartu_pelajar').removeAttribute('required');
         }
-    }
-    document.getElementById('bukti_kartu_pelajar').addEventListener('change', function() {
-        const fileNameSpan = document.getElementById('fileName');
-        if (this.files && this.files.length > 0) {
-            const file = this.files[0];
-            fileNameSpan.textContent = file.name;
 
-            // Cek ukuran file (maks 1MB = 1048576 bytes)
-            if (file.size > 1048576) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Ukuran file terlalu besar',
-                    text: 'Ukuran maksimal bukti kartu pelajar adalah 1MB.',
-                    confirmButtonColor: '#3986A3',
-                });
-                this.value = ''; // reset input file
+        // Validasi upload bukti kartu pelajar
+        document.getElementById('bukti_kartu_pelajar').addEventListener('change', function() {
+            const fileNameSpan = document.getElementById('fileName');
+            if (this.files && this.files.length > 0) {
+                const file = this.files[0];
+                fileNameSpan.textContent = file.name;
+
+                // Cek ukuran file (maks 1MB = 1048576 bytes)
+                if (file.size > 1048576) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ukuran file terlalu besar',
+                        text: 'Ukuran maksimal bukti kartu pelajar adalah 1MB.',
+                        confirmButtonColor: '#3986A3',
+                    });
+                    this.value = ''; // reset input file
+                    fileNameSpan.textContent = '';
+                }
+            } else {
                 fileNameSpan.textContent = '';
             }
-        } else {
-            fileNameSpan.textContent = '';
-        }
-    });
-
+        });
 
         // Cek validasi data
         document.querySelector('form[action="{{ route("auth.psikotes-paid.register") }}"]').addEventListener('submit', async function (e) {

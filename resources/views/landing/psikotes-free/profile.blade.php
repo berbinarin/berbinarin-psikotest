@@ -69,7 +69,9 @@
             </div>
         </div>
     </sections>
+@endsection
 
+@push('script')
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <script>
@@ -134,4 +136,4 @@
         // Jalankan saat halaman pertama kali load
         updateGenderColor();
     </script>
-@endsection
+@endpush

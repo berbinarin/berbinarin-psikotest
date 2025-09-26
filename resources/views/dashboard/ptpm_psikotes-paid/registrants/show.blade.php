@@ -106,7 +106,7 @@
                             value="{{ $registrant->code_voucher ? $registrant->code_voucher : '-' }}" readonly disabled />                    </div>
                     <div class="flex w-full flex-col">
                         <label class="mb-2 font-bold text-[#9b9b9b]">Bukti Kartu Pelajar</label>
-                             @if($registrant->bukti_kartu_pelajar)
+                            @if($registrant->bukti_kartu_pelajar)
                                 <a href="{{ asset('storage/' . $registrant->bukti_kartu_pelajar) }}" target="_blank">
                                     <img src="{{ asset('storage/' . $registrant->bukti_kartu_pelajar) }}"
                                         alt="Bukti Kartu Pelajar"

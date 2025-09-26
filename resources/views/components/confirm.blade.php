@@ -33,8 +33,6 @@
     </div>
 </div>
 
-
-
 <script>
     function showLogoutConfirm() {
         document.getElementById("logoutModal").classList.remove("hidden");

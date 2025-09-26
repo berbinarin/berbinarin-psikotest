@@ -10,7 +10,7 @@
         <div class="flex w-full flex-col">
             <div class="py-4 md:pb-7 md:pt-12">
                 <div class="mb-2 flex items-center gap-2">
-                    <a href="{{ route("dashboard.kode-voucher.index") }}">
+                    <a href="{{ route("dashboard.voucher-code.index") }}">
                         <img src="{{ asset("assets/dashboard/images/back-btn.png") }}" alt="Back Btn" />
                     </a>
                     <p class="text-base font-bold leading-normal text-gray-800 sm:text-lg md:text-2xl lg:text-4xl">Tambah Kode Voucher</p>
@@ -18,7 +18,7 @@
                 <p class="w-3/4 text-disabled">Halaman yang digunakan untuk menambahkan, mengelola, dan melengkapi kode voucher.</p>
             </div>
             <div class="rounded-md bg-white px-4 py-4 shadow-lg shadow-gray-400 md:px-8 md:py-7 xl:px-10">
-                <form id="createForm" method="POST" action="{{ route("dashboard.kode-voucher.store") }}">
+                <form id="createForm" method="POST" action="{{ route("dashboard.voucher-code.store") }}">
                     @csrf
 
                     <div id="voucherContainer">
@@ -131,8 +131,8 @@
     </div>
 @endsection
 
-@section('script')
-<script>
+@push('script')
+    <script>
         const voucherTypeOptions = {
             metode: [
                 { value: 'offline', text: 'Offline' },
@@ -251,17 +251,18 @@
                 }
             });
         });
+
         function closeCreateModal() {
             // Your existing close modal function
             document.getElementById('confirmModal').classList.remove('hidden');
-            
+
             document.getElementById('confirmCancel').addEventListener('click', function() {
-                window.location.href = "{{ route('dashboard.kode-voucher.index') }}";
+                window.location.href = "{{ route('dashboard.voucher-code.index') }}";
             });
-            
+
             document.getElementById('cancelCancel').addEventListener('click', function() {
                 document.getElementById('confirmModal').classList.add('hidden');
             });
         }
     </script>
-@endsection
+@endpush

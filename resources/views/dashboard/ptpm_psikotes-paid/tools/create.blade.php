@@ -49,7 +49,7 @@
         </div>
     </section>
 
-    <!-- Modal Konfirmasi -->
+    <!-- Confirmation Modal -->
     <div id="confirmModal" class="fixed inset-0 z-50 flex hidden items-center justify-center bg-black bg-opacity-50">
         <div class="w-full max-w-md rounded-lg bg-white p-6 text-center">
             <div class="mb-4 flex justify-center">

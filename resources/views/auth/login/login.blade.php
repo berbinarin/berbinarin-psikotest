@@ -5,7 +5,7 @@
 @section('content')
     <section class="fixed inset-0 flex h-full w-full flex-col bg-cover bg-center bg-no-repeat"
         style="background-image: url('{{ asset('assets/auth/images/loginbg.png') }}')">
-        <!-- icon -->
+        <!-- Icon -->
         <div class="ml-[36px] mt-[35px] flex flex-row items-center justify-start gap-4">
             <img src="{{ asset('assets/auth/images/logo-berbinar.png') }}" alt="Logo Berbinar" class="h-[67px] w-[67px]" />
             <h1 class="font-plusJakartaSans text-[13px] font-bold text-[#3986A3]">PT Berbinar Insightful Indonesia</h1>
