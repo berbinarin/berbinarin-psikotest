@@ -14,7 +14,7 @@ class ToolController extends Controller
      */
     public function index()
     {
-        $tools = Tool::all();
+        $tools = Tool::orderBy('order', 'asc')->get();
         return view('dashboard.ptpm_psikotes-paid.tools.index', compact('tools'));
     }
 
