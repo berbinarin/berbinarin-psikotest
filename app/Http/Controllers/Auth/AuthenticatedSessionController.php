@@ -96,13 +96,26 @@ class AuthenticatedSessionController extends Controller
         // kalau sukses login
         $request->session()->regenerate();
 
-        return redirect()->intended($redirectPath)->with([
-            'alert'   => true,
-            'type'    => 'success',
-            'title'   => 'Berhasil!',
-            'message' => 'Selamat Bekerja, Sobat',
-            'icon'    => asset('assets/dashboard/images/success.png'),
-        ]);
+        // Alert berbeda untuk admin dan user
+        if ($loginType === 'admin') {
+            $alert = [
+                'alert'   => true,
+                'type'    => 'success',
+                'title'   => 'Berhasil!',
+                'message' => 'Selamat bekerja Sobat!',
+                'icon'    => asset('assets/dashboard/images/success.png'),
+            ];
+        } else {
+            $alert = [
+                'alert'   => true,
+                'type'    => 'success',
+                'title'   => 'Berhasil!',
+                'message' => 'Anda berhasil masuk.',
+                'icon'    => asset('assets/dashboard/images/success.png'),
+            ];
+        }
+
+        return redirect()->intended($redirectPath)->with($alert);
     }
 
     /**
