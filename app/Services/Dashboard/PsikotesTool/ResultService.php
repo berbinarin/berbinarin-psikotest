@@ -590,7 +590,7 @@ class ResultService
                     ],
                 ]
             ],
-            "opennes_to_experience" => [
+            "openness_to_experience" => [
                 "label" => "Openness to Experience",
                 "description" => [
                     "low" => "Individu dengan skor sangat rendah cenderung kurang terkesan oleh karya seni, memiliki rasa ingin tahu intelektual yang rendah, menghindari aktivitas kreatif, serta tidak tertarik pada gagasan yang dianggap aneh atau tidak konvensional.",
