@@ -11,7 +11,7 @@
 @endpush
 
 <div x-data="{ category: '{{ $categories[0] }}' }" class="w-full">
-    <div style="padding-left: 80px; padding-right: 80px">
+    {{-- <div style="padding-left: 80px; padding-right: 80px">
         <div class="mx-auto mb-4 flex flex-wrap gap-2 rounded-[20px] bg-white p-2 shadow-md">
             @foreach ($categories as $cat)
                 <button
@@ -25,7 +25,7 @@
                 </button>
             @endforeach
         </div>
-    </div>
+    </div> --}}
 
     {{-- Container Graph + Table --}}
     <div class="mb-1 flex w-full gap-8">
@@ -96,47 +96,30 @@
             @endforeach
         </div>
 
-        {{-- Table Section --}}
-        <div x-data="{ tab: '{{ $categories[0] }}' }" class="w-1/3 rounded-xl bg-white p-6 shadow-lg" style="max-height: 500px">
+        <!-- Kanan: Detail Jawaban -->
+        <div class="select-text flex w-full flex-col self-start rounded-lg bg-white p-6 shadow-md md:w-1/3" style="max-height: 510px; height: 510px">
             <h2 class="mb-4 text-xl font-semibold">Detail Jawaban</h2>
-            <div class="mb-4 flex flex-wrap gap-2">
-                @foreach ($categories as $category)
-                    <button class="rounded-full border-2 px-3 py-1 text-sm font-semibold transition"
-                        @click="tab = '{{ $category }}'"
-                        :class="tab === '{{ $category }}' ? 'bg-[#75BADB] text-white' : 'text-[#75BADB] hover:bg-[#A0D3E9] hover:text-white'">
-                        {{ Str::title(str_replace('_',' ',$category)) }}
-                    </button>
-                @endforeach
+            <div class="flex-1 overflow-y-auto">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="border-b border-gray-200 text-left">
+                            <th class="pb-2 pr-3 font-semibold text-gray-700">No</th>
+                            <th class="pb-2 font-semibold text-gray-700">Choice</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        @foreach ($attempt->responses as $response)
+                            @if (isset($response->question) && $response->question->scoring["scale"])
+                                <tr class="border-b">
+                                    <td class="p-2 text-center">{{ $response->question->order }}</td>
+                                    <td class="p-2 text-center">{{ $response->answer["value"] }}</td>
+                                    <td class="p-2">{{ collect($response->question->options)->firstWhere("value", $response->answer["value"])["text"] ?? "N/A" }}</td>
+                                </tr>
+                            @endif
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
-            @foreach ($categories as $category)
-                @php $catData = $data[$category]; @endphp
-                <div x-show="tab === '{{ $category }}'" x-cloak>
-                    <div class="overflow-hidden">
-                        <div class="overflow-y-auto" style="max-height: 280px">
-                            <table class="w-full text-sm">
-                                <thead>
-                                    <tr class="sticky top-0 border-b bg-white">
-                                        <th class="p-2 text-center text-gray-500">No.</th>
-                                        <th class="p-2 text-center text-gray-500">Poin</th>
-                                        <th class="p-2 text-gray-500">Jawaban</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($catData['answer_distribution'] as $score => $count)
-                                        @if($count > 0)
-                                            <tr class="border-b">
-                                                <td class="p-2 text-center">{{ $score }}</td>
-                                                <td class="p-2 text-center">{{ $count }}</td>
-                                                <td class="p-2">{{ ['1'=>'Sangat Tidak Sesuai','2'=>'Tidak Sesuai','3'=>'Ragu-ragu','4'=>'Sesuai','5'=>'Sangat Sesuai'][$score] }}</td>
-                                            </tr>
-                                        @endif
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
         </div>
     </div>
 </div>
