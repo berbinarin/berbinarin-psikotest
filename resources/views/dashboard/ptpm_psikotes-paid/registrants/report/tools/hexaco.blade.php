@@ -168,11 +168,21 @@
                 padding-bottom: 5px;
                 margin-bottom: 15px;
             }
+
+            .title-chart {
+                font-weight: bold;
+                color: #75badb;
+                display: inline-block;
+                border-bottom: 3px solid #75badb;
+                padding-bottom: 5px;
+                margin-bottom: 15px;
+            }
         </style>
     </head>
     <body>
         <h2 class="section-title">Hasil Tes Psikologi</h2>
 
+        <h4 class="title-chart">Nanti lu loop aja citt chart yang lainnya</h4>
         <div class="chart-container">
             <div class="chart-left">
                 <div class="chart">
@@ -239,218 +249,43 @@
             </div>
         </div>
 
-        <div class="detail">
-            <h3>Detail Jawaban HEXACO:</h3>
-
-            <div class="subtest-container">
-                <div class="subtest">
-                    <h4>Extraversion</h4>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Pertanyaan</th>
-                                <th>Poin</th>
-                                <th>Jawaban</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Menyetir mobil antar-jemput dari satu tempat ke tempat lain bagi para anggota yang sibuk dengan urusan, dari satu tempat ke tempat lain.</td>
-                                <td>1</td>
-                                <td>Outdoor</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Mempelajari cara memperbaiki kerusakan-kerusakan ringan pada mesin mobil yang siap dipakai tim.</td>
-                                <td>2</td>
-                                <td>Mechanical</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Merencanakan anggaran belanja proyek perjalanan yang akan diajukan kepada sponsor.</td>
-                                <td>3</td>
-                                <td>Computational</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Membaca laporan-laporan penelitian KLH untuk memilih proyek KLH yang tepat.</td>
-                                <td>4</td>
-                                <td>Scientific</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Menghadapi sponsor untuk tawar-menawar dana di perusahaan "Supra Motor".</td>
-                                <td>5</td>
-                                <td>Personal Contact</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Memilih berbagai khazanah lagu–lagu yang tepat bagi kampanye Kelestarian Lingkungan Hidup.</td>
-                                <td>6</td>
-                                <td>Aesthetic</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="subtest">
-                    <h4>Agreeableness</h4>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Pertanyaan</th>
-                                <th>Poin</th>
-                                <th>Jawaban</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Menyetir mobil antar-jemput dari satu tempat ke tempat lain bagi para anggota yang sibuk dengan urusan, dari satu tempat ke tempat lain.</td>
-                                <td>1</td>
-                                <td>Outdoor</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Mempelajari cara memperbaiki kerusakan-kerusakan ringan pada mesin mobil yang siap dipakai tim.</td>
-                                <td>2</td>
-                                <td>Mechanical</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Merencanakan anggaran belanja proyek perjalanan yang akan diajukan kepada sponsor.</td>
-                                <td>3</td>
-                                <td>Computational</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Membaca laporan-laporan penelitian KLH untuk memilih proyek KLH yang tepat.</td>
-                                <td>4</td>
-                                <td>Scientific</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Menghadapi sponsor untuk tawar-menawar dana di perusahaan "Supra Motor".</td>
-                                <td>5</td>
-                                <td>Personal Contact</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Memilih berbagai khazanah lagu–lagu yang tepat bagi kampanye Kelestarian Lingkungan Hidup.</td>
-                                <td>6</td>
-                                <td>Aesthetic</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="subtest">
-                    <h4>Neuroticism</h4>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Pertanyaan</th>
-                                <th>Poin</th>
-                                <th>Jawaban</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Menyetir mobil antar-jemput dari satu tempat ke tempat lain bagi para anggota yang sibuk dengan urusan, dari satu tempat ke tempat lain.</td>
-                                <td>1</td>
-                                <td>Outdoor</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Mempelajari cara memperbaiki kerusakan-kerusakan ringan pada mesin mobil yang siap dipakai tim.</td>
-                                <td>2</td>
-                                <td>Mechanical</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Merencanakan anggaran belanja proyek perjalanan yang akan diajukan kepada sponsor.</td>
-                                <td>3</td>
-                                <td>Computational</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Membaca laporan-laporan penelitian KLH untuk memilih proyek KLH yang tepat.</td>
-                                <td>4</td>
-                                <td>Scientific</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Menghadapi sponsor untuk tawar-menawar dana di perusahaan "Supra Motor".</td>
-                                <td>5</td>
-                                <td>Personal Contact</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Memilih berbagai khazanah lagu–lagu yang tepat bagi kampanye Kelestarian Lingkungan Hidup.</td>
-                                <td>6</td>
-                                <td>Aesthetic</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="subtest">
-                    <h4>Conscientiousness</h4>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Pertanyaan</th>
-                                <th>Poin</th>
-                                <th>Jawaban</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Menyetir mobil antar-jemput dari satu tempat ke tempat lain bagi para anggota yang sibuk dengan urusan, dari satu tempat ke tempat lain.</td>
-                                <td>1</td>
-                                <td>Outdoor</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Mempelajari cara memperbaiki kerusakan-kerusakan ringan pada mesin mobil yang siap dipakai tim.</td>
-                                <td>2</td>
-                                <td>Mechanical</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Merencanakan anggaran belanja proyek perjalanan yang akan diajukan kepada sponsor.</td>
-                                <td>3</td>
-                                <td>Computational</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Membaca laporan-laporan penelitian KLH untuk memilih proyek KLH yang tepat.</td>
-                                <td>4</td>
-                                <td>Scientific</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Menghadapi sponsor untuk tawar-menawar dana di perusahaan "Supra Motor".</td>
-                                <td>5</td>
-                                <td>Personal Contact</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Memilih berbagai khazanah lagu–lagu yang tepat bagi kampanye Kelestarian Lingkungan Hidup.</td>
-                                <td>6</td>
-                                <td>Aesthetic</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Pernyataan</th>
+                        <th>Poin</th>
+                        <th>Jawaban</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="td-kedua">1.</td>
+                        <td>Kebutuhan untuk menyelesaikan tugas yang dimulai, menunjukkan ketekunan.</td>
+                        <td class="td-pertama">X (Expedieency)</td>
+                        <td>sesuai</td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td>Kebutuhan untuk mencapai prestasi tinggi dan sukses dalam tugas.</td>
+                        <td>O (Openness)</td>
+                        <td>sangat sesuai</td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td>Kebutuhan untuk memimpin dan mengarahkan orang lain (kepemimpinan).</td>
+                        <td>B (Balance)</td>
+                        <td>tidak sesuai</td>
+                    </tr>
+                    <tr>
+                        <td>4.</td>
+                        <td>Kebutuhan untuk mematuhi aturan, norma, dan harapan sosial.</td>
+                        <td>S (Stability)</td>
+                        <td>sesuai banget</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </body>
 </html>
