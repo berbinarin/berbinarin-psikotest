@@ -12,6 +12,8 @@ class PsikotesFreeProfile extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'psikotes_free_profiles';
+
     protected $fillable = [
         'name',
         'gender',
@@ -25,7 +27,7 @@ class PsikotesFreeProfile extends Model
         return $this->hasOne(Feedback::class, 'psikotes_free_profile_id');
     }
 
-    public function attempt(): HasMany
+    public function attempts(): HasMany
     {
         return $this->hasMany(PsikotesFreeAttempt::class, 'psikotes_free_profile_id');
     }

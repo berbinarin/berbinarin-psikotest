@@ -76,7 +76,7 @@ class RegistrantController extends Controller
             'alert'   => true,
             'type'    => 'success',
             'title'   => 'Berhasil!',
-            'message' => 'Yeeee!! Data berhasil ditambahkan.',
+            'message' => 'Data berhasil ditambahkan.',
             'icon'    => asset('assets/dashboard/images/success.png'),
         ]);
     }
@@ -163,7 +163,7 @@ class RegistrantController extends Controller
             'alert'   => true,
             'type'    => 'success',
             'title'   => 'Berhasil!',
-            'message' => 'Yeeee!! Data berhasil diupdate',
+            'message' => 'Data berhasil diupdate',
             'icon'    => asset('assets/dashboard/images/success.png'),
         ]);
         } catch (\Exception $e) {
@@ -222,7 +222,7 @@ class RegistrantController extends Controller
             'alert'   => true,
             'type'    => 'success',
             'title'   => 'Berhasil!',
-            'message' => 'Yeeee!! Data berhasil dihapus',
+            'message' => 'Data berhasil dihapus',
             'icon'    => asset('assets/dashboard/images/success.png'),
         ]);
         } catch (\Exception $e) {
@@ -231,7 +231,7 @@ class RegistrantController extends Controller
             'alert'   => true,
             'type'    => 'error',
             'title'   => 'Gagal',
-            'message' => 'Terjadi kesalahan saat menghapus data... Sorry 😺',
+            'message' => 'Terjadi kesalahan saat menghapus data',
             'icon'    => asset('assets/dashboard/images/error.png'),
         ]);
         }

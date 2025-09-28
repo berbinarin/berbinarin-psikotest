@@ -40,7 +40,7 @@ class AttemptController extends Controller
             'alert'   => true,
             'type'    => 'success',
             'title'   => 'Berhasil!',
-            'message' => 'Yeeee!! Data berhasil dihapus',
+            'message' => 'Data berhasil dihapus',
             'icon'    => asset('assets/dashboard/images/success.png'),
         ]);
         } catch (\Exception $e) {

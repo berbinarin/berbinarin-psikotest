@@ -16,10 +16,13 @@ class PsikotesFreeProfileController extends Controller
     // Show Profiles Data
     public function index()
     {
-        // $freeProfiles = PsikotesFreeProfile::with(['feedback', 'attempt'])->get();
-        $attempts = PsikotesFreeAttempt::with('profile')->get();
+        // $profiles = PsikotesFreeProfile::whereHas('attempts')
+        // ->with(['attempts' => fn($q) => $q->latest()])
+        // ->get();
+        $profiles = PsikotesFreeProfile::with(['attempts' => fn($q) => $q->latest()])
+        ->get();
 
-        return view('dashboard.ptpm_psikotes-free.free-profiles.index', compact('attempts'));
+        return view('dashboard.ptpm_psikotes-free.free-profiles.index', compact('profiles'));
     }
 
     // Show Profile's Detail
@@ -68,7 +71,7 @@ class PsikotesFreeProfileController extends Controller
                     $freeProfile->feedback->delete();
                 }
 
-                foreach ($freeProfile->attempt as $attempt) {
+                foreach ($freeProfile->attempts as $attempt) {
                     // Hapus semua responses dari attempt
                     $attempt->responses()->delete();
 
@@ -83,7 +86,7 @@ class PsikotesFreeProfileController extends Controller
                 'alert'   => true,
                 'type'    => 'success',
                 'title'   => 'Berhasil!',
-                'message' => 'Yeeee!! Data berhasil dihapus',
+                'message' => 'Data berhasil dihapus',
                 'icon'    => asset('assets/dashboard/images/success.png'),
             ]);
         } catch (\Exception $e) {
@@ -92,7 +95,7 @@ class PsikotesFreeProfileController extends Controller
                 'alert'   => true,
                 'type'    => 'error',
                 'title'   => 'Gagal!',
-                'message' => 'Terjadi kesalahan saat menghapus data... Sorry 😺',
+                'message' => 'Terjadi kesalahan saat menghapus data',
                 'icon'    => asset('assets/dashboard/images/success.png'),
             ]);
         }
