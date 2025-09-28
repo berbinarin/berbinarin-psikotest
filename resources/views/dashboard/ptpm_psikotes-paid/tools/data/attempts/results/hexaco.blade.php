@@ -72,7 +72,10 @@
                             {{-- Ringkasan Skor --}}
                             <div class="w-full">
                                 <p class="mb-2 text-base text-gray-700">Total Poin: <b>{{ $totalScore }} poin</b></p>
-                                <p class="mb-2 text-base text-gray-700">Rata-rata Poin per Soal: <b>{{ round($totalScore/$totalQuestions,2) }}</b></p>
+                                <p class="mb-2 text-base text-gray-700">
+                                    Rata-rata Poin per Soal:
+                                    <b>{{ round($totalScore / max($totalQuestions, 1), 2) }}</b>
+                                </p>
                                 <p class="mb-2 text-base text-gray-700">Average: <b>{{ $average }}</b></p>
                                 <p class="mb-2 text-base text-gray-700">Description: <b>{{ $description }}</b></p>
                             </div>
