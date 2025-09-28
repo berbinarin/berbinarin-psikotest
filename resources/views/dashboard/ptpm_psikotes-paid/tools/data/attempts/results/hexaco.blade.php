@@ -61,11 +61,11 @@
                         <div class="flex w-full flex-col items-center">
                             <canvas id="horizontalBarChart-{{ $category }}" class="mb-1" style="max-height: 220px; max-width: 700px"></canvas>
                             <div class="mb-4 flex gap-4 text-xs">
-                                <div class="flex items-center gap-1"><span class="inline-block h-3 w-3 rounded bg-[#75BADB]"></span>1 = sangat tdk sesuai</div>
-                                <div class="flex items-center gap-1"><span class="inline-block h-3 w-3 rounded bg-[#FFE066]"></span>2 = tdk sesuai</div>
+                                <div class="flex items-center gap-1"><span class="inline-block h-3 w-3 rounded bg-[#75BADB]"></span>1 = sangat tdk setuju</div>
+                                <div class="flex items-center gap-1"><span class="inline-block h-3 w-3 rounded bg-[#FFE066]"></span>2 = tdk setuju</div>
                                 <div class="flex items-center gap-1"><span class="inline-block h-3 w-3 rounded bg-[#A685E2]"></span>3 = ragu-ragu</div>
-                                <div class="flex items-center gap-1"><span class="inline-block h-3 w-3 rounded bg-[#6DD3CE]"></span>4 = sesuai</div>
-                                <div class="flex items-center gap-1"><span class="inline-block h-3 w-3 rounded bg-[#FF6B6B]"></span>5 = sangat sesuai</div>
+                                <div class="flex items-center gap-1"><span class="inline-block h-3 w-3 rounded bg-[#6DD3CE]"></span>4 = setuju</div>
+                                <div class="flex items-center gap-1"><span class="inline-block h-3 w-3 rounded bg-[#FF6B6B]"></span>5 = sangat setuju</div>
                             </div>
                         </div>
                         <div class="flex items-start">
@@ -76,15 +76,15 @@
                                     Rata-rata Poin per Soal:
                                     <b>{{ round($totalScore / max($totalQuestions, 1), 2) }}</b>
                                 </p>
-                                <p class="mb-2 text-base text-gray-700">Average: <b>{{ $average }}</b></p>
-                                <p class="mb-2 text-base text-gray-700">Description: <b>{{ $description }}</b></p>
+                                <p class="mb-2 text-base text-gray-700">Rata-rata: <b>{{ $average }}</b></p>
+                                <p class="mb-2 text-base text-gray-700">Deskripsi: <b>{{ $description }}</b></p>
                             </div>
                         </div>
 
                         {{-- Sub Categories --}}
                         @if(!empty($catData['sub_categories']))
                             <div class="mt-3">
-                                <h4 class="font-semibold text-gray-700">Sub Categories:</h4>
+                                <h4 class="font-semibold text-gray-700">Sub Kategori:</h4>
                                 <ul class="pl-5 list-disc">
                                     @foreach ($catData['sub_categories'] as $subKey => $sub)
                                         <li>
@@ -105,9 +105,10 @@
             <div class="flex-1 overflow-y-auto">
                 <table class="w-full text-sm">
                     <thead>
-                        <tr class="border-b border-gray-200 text-left">
-                            <th class="pb-2 pr-3 font-semibold text-gray-700">No</th>
-                            <th class="pb-2 font-semibold text-gray-700">Choice</th>
+                        <tr class="sticky top-0 border-b bg-white">
+                            <th class="p-2 text-center text-gray-500">No.</th>
+                            <th class="p-2 text-center text-gray-500">Poin</th>
+                            <th class="p-2 text-gray-500">Jawaban</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
