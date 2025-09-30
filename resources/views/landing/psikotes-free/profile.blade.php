@@ -81,7 +81,9 @@
             </div>
         </div>
     </sections>
+@endsection
 
+@push('script')
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <script>
@@ -149,6 +151,7 @@
     </script>
 
 
+
     @if ($errors->has('message'))
         <script>
             document.addEventListener('DOMContentLoaded', function() {
@@ -162,3 +165,6 @@
         </script>
     @endif
 @endsection
+
+@endpush
+

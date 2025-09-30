@@ -18,26 +18,6 @@ class TestController extends Controller
 
     }
 
-    // public function attempt(Request $request) {
-    //     $userId = $request->input('user_id');
-    //     $user = PsikotesFreeProfile::findOrFail($userId);
-
-    //     $tool = Tool::where('name', 'OCEAN')->firstOrFail();
-
-    //     $attempt = PsikotesFreeAttempt::create([
-    //         'psikotes_free_profile_id' => $user->id,
-    //         'tool_id' => $tool->id,
-    //         'status' => 'in_progress',
-    //     ]);
-
-    //     session()->put('attempt_id', $attempt->id);
-    //     session()->put('user_id', $user->id);
-
-    //     return redirect()->route('psikotes-free.test', [
-    //         'attempt_id' => $attempt->id,
-    //     ]);
-    // }
-
     public function attempt(Request $request) {
         $userId = $request->input('user_id');
         $user = PsikotesFreeProfile::findOrFail($userId);
@@ -48,42 +28,6 @@ class TestController extends Controller
 
         return redirect()->route('psikotes-free.test');
     }
-
-    // public function test(Request $request, $attempt_id) {
-    //     $attempt = PsikotesFreeAttempt::with(['tool.sections.questions'])->findOrFail($attempt_id);
-    //     $userId = session('user_id');
-
-    //     // Cek apakah user yang berhak
-    //     if ($attempt->psikotes_free_profile_id != $userId) {
-    //         abort(403, 'Unauthorized access');
-    //     }
-
-    //     $section = $attempt->tool->sections->first();
-
-    //     if (!$section) {
-    //         return redirect()->route('psikotes-free.profile')->withErrors(['message' => 'Soal tidak ditemukan.']);
-    //     }
-
-    //     // Ambil urutan soal saat ini dari session
-    //     $questionOrder = session("question_order_$attempt_id", 1);
-
-    //     $question = $section->questions->sortBy('order')->values()->get($questionOrder - 1);
-
-    //     if (!$question) {
-    //         $attempt->update(['status' => 'finished']);
-    //         session()->forget(["question_order_$attempt_id"]);
-    //         return redirect()->route('psikotes-free.attempt.feedback', $attempt_id);
-    //     }
-
-    //     $progress = ($questionOrder / $section->questions->count()) * 100;
-
-    //     return view('landing.psikotes-free.test', [
-    //         'attempt' => $attempt,
-    //         'section' => $section,
-    //         'question' => $question,
-    //         'progress' => $progress,
-    //     ]);
-    // }
 
     public function test() {
         // Eager load sections dan questions

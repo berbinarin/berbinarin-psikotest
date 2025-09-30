@@ -43,13 +43,6 @@ class ExportPDFController extends Controller
             ];
         }
 
-        // $tool = $attempt->tool;
-
-        // $tool->load('sections.questions');
-        // $attempt->load('responses.question');
-
-        // $data = $this->resultService->resultData($tool, $attempt);
-
         $testimonial = $registrant->user->testimonials;
 
         return view('dashboard.ptpm_psikotes-paid.registrants.report.index', compact('registrant', 'testResults', 'testimonial'));

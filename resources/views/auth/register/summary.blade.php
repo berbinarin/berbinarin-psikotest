@@ -107,7 +107,7 @@
                 <img src="{{ asset("assets\landing\logo\logo-berbinar.png") }}" alt="Berbinar" class="h-[120px] w-[120px] object-contain" />
             </div>
             <p class="text-gradient text-center text-xl font-medium max-sm:mx-2 max-sm:text-xl">
-                Untuk SobatBinar yang ingin mengetahui kepribadian lebih dalam atau ingin mengetahui aspek-aspek psikologis lain seperti, minat bakat, tes kecocokan pasangan, tes penjurusan, dan lainnya bisa ditemukan di Berbinar Insightfull Indonesia.
+                Untuk SobatBinar yang ingin mengetahui kepribadian lebih dalam atau ingin mengetahui aspek-aspek psikologis lain seperti, minat bakat, tes kecocokan pasangan, tes penjurusan, dan lainnya bisa ditemukan di Berbinar Insightful Indonesia.
                 <br />
                 <br />
                 Jika ada hal yang ingin disampaikan atau mengalami kendala selama pengerjaan psikotes berlangsung, silahkan hubungi narahubung di

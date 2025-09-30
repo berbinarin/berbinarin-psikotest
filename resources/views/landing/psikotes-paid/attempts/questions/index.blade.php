@@ -86,6 +86,7 @@
 
 @push('script')
     <script type="module">
+        const tool = @json($tool);
         const question = @json($question->load('section'));
         const Toast = Swal.mixin({
             toast: true,
@@ -140,7 +141,7 @@
             if (timer.getTimeValues().minutes === 1 && timer.getTimeValues().seconds === 0) {
                 Toast.fire({
                     icon: 'warning',
-                    title: 'Waktu tersisa 1 menit untuk section ini!',
+                    title: 'Waktu tersisa 1 menit untuk bagian ini!',
                     timer: 5000,
                 });
             }
@@ -148,8 +149,32 @@
 
         timer.addEventListener('targetAchieved', async function(e) {
             try {
+                const extendableTests = ["BAUM", "HTP", "DAP"];
+
+                if (extendableTests.includes(tool.name)) {
+                    const result = await Swal.fire({
+                        title: 'Waktu Habis!',
+                        text: 'Apakah Anda ingin melanjutkan tes?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Lanjutkan',
+                        cancelButtonText: 'Selesai',
+                        reverseButtons: true
+                    });
+
+                    if (result.isConfirmed) {
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Waktu pengerjaan tes telah ditambahkan!',
+                            timer: 4000,
+                        });
+
+                        return; // jangan lanjut ke complete
+                    }
+                }
+
                 // Kirim request untuk menghapus session dan TUNGGU (await) hingga selesai
-                const response = await fetch('{{ route('psikotes-paid.attempt.times-up') }}', {
+                await fetch('{{ route('psikotes-paid.attempt.times-up') }}', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

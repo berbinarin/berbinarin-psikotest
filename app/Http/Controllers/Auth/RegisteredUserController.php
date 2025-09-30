@@ -15,27 +15,29 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Illuminate\Support\Str;
-use App\Models\KodeVoucher;
+use App\Models\VoucherCode;
 
 class RegisteredUserController extends Controller
 {
+    // Show the registration form
     public function psikotesPaidRegister(): View
     {
         $testCategories = TestCategory::all();
         $testTypes = TestType::all();
-        $vouchers = KodeVoucher::all();
+        $vouchers = VoucherCode::all();
         return view('auth.register.psikotes-paid-register', compact('testCategories', 'testTypes', 'vouchers'));
     }
 
-    public function checkEmail(Request $request)
-    {
-        $email = $request->query('email');
+    // public function checkEmail(Request $request)
+    // {
+    //     $email = $request->query('email');
 
-        $exists = User::where('email', $email)->exists();
+    //     $exists = User::where('email', $email)->exists();
 
-        return response()->json(['exists' => $exists]);
-    }
+    //     return response()->json(['exists' => $exists]);
+    // }
 
+    // Handle an incoming registration request
     public function psikotesPaidRegisterStore(StoreRegistrationRequest $request): RedirectResponse
     {
         $validateData = $request->validated();
@@ -52,8 +54,8 @@ class RegisteredUserController extends Controller
                 ])->assignRole('user_psikotes-paid');
 
                 $buktiKartuPath = null;
-                if ($request->hasFile('bukti_kartu_pelajar')) {
-                    $buktiKartuPath = $request->file('bukti_kartu_pelajar')->store('bukti_kartu_pelajar', 'public');
+                if ($request->hasFile('student_card')) {
+                    $buktiKartuPath = $request->file('student_card')->store('student_card', 'public');
                 }
 
                 RegistrantProfile::create([
@@ -66,12 +68,12 @@ class RegisteredUserController extends Controller
                     'psikotes_service' => $validateData['service'],
                     'reason' => $validateData['reason'],
                     'schedule' => Carbon::createFromFormat('Y-m-d H:i', $validateData['psikotes_date'] . ' ' . $validateData['psikotes_time']),
-                    'kategori_voucher' => $request->input('kategori_voucher'),
-                    'code_voucher' => $request->input('code_voucher'),
-                    'presentase_diskon' => $request->input('presentase_diskon'),
-                    'bukti_kartu_pelajar' => $buktiKartuPath,
+                    'voucher_category' => $request->input('voucher_category'),
+                    'voucher_code' => $request->input('voucher_code'),
+                    'discount_percentage' => $request->input('discount_percentage'),
+                    'student_card' => $buktiKartuPath,
                 ]);
-                
+
             });
         } catch (\Exception $e) {
             return back()->withInput()->with('error', 'Terjadi kesalahan saat pendaftaran. Silakan coba lagi.');

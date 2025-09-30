@@ -6,6 +6,7 @@
 )
 
 @section("content")
+    @include("components.confirm", ["type" => "delete"])
     <section class="flex w-full">
         <div class="w-full">
             <div class="py-4 md:pb-7 md:pt-5">
@@ -35,30 +36,33 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($attempts as $attempt)
+                            @foreach ($profiles as $profile)
                                 <tr id="" class="data-consume">
                                     <td class="text-center">{{ $loop->iteration }}</td>
-                                    <td class="text-left">{{ $attempt->profile->name }}</td>
-                                    <td class="text-left">{{ $attempt->profile->email }}</td>
-                                    <td class="text-center">{{ $attempt->profile->gender === 'female' ? 'Perempuan' : 'Laki-Laki' }}</td>
+                                    <td class="text-left">{{ $profile->name }}</td>
+                                    <td class="text-left">{{ $profile->email }}</td>
+                                    <td class="text-center">{{ $profile->gender === 'female' ? 'Perempuan' : 'Laki-Laki' }}</td>
                                     <td class="text-center">
-                                        {{ \Carbon\Carbon::parse($attempt->profile->date_of_birth)->format("d-m-Y") }}
+                                        {{ \Carbon\Carbon::parse($profile->date_of_birth)->format("d-m-Y") }}
                                     </td>
                                     <td class="text-center">
-                                        {{ \Carbon\Carbon::parse($attempt->profile->date_of_test)->format("d-m-Y") }}
+                                        {{ \Carbon\Carbon::parse($profile->date_of_test)->format("d-m-Y") }}
                                     </td>
                                     <td class="flex items-center justify-center gap-2">
-                                        <a href="{{ route("dashboard.free-profiles.data.detail", $attempt->id) }}" class="inline-flex items-start justify-start rounded p-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #3b82f6">
-                                            <i class="bx bx-show text-white"></i>
-                                        </a>
-                                        {{--
-                                            <a href="{{ route("dashboard.attempts.edit", $attempt->id) }}" class="inline-flex items-start justify-start rounded p-2 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #e9b306">
-                                            <i class="bx bx-edit-alt text-white"></i>
-                                        </a> --}}
-                                        <form id="deleteForm-{{ $attempt->id }}" action="{{ route("dashboard.free-profiles.destroy", $attempt->id) }}" method="POST">
+                                        @if ($profile->attempts->isNotEmpty())
+                                            <a href="{{ route('dashboard.free-profiles.data.detail', $profile->attempts->first()->id) }}"
+                                            class="inline-flex items-center justify-center rounded p-2 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2">
+                                                <i class="bx bx-show text-white"></i>
+                                            </a>
+                                        @else
+                                            <button class="inline-flex items-center justify-center rounded p-2 bg-gray-400 cursor-not-allowed" disabled>
+                                                <i class="bx bx-show text-white"></i>
+                                            </button>
+                                        @endif
+                                        <form id="deleteForm-{{ $profile->id }}" action="{{ route("dashboard.free-profiles.destroy", $profile->id) }}" method="POST">
                                             @csrf
                                             @method("DELETE")
-                                            <button type="button" class="delete-button inline-flex items-start justify-start rounded p-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #ef4444" data-id="{{ $attempt->id }}">
+                                            <button type="button" class="delete-alert inline-flex items-start justify-start rounded p-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #ef4444" data-id="{{ $profile->id }}">
                                                 <i class="bx bx-trash-alt text-white"></i>
                                             </button>
                                         </form>
@@ -73,12 +77,13 @@
     </section>
 @endsection
 
-@section("script")
+@push("script")
     <script>
         $(document).ready(function () {
             $('#table').DataTable();
         });
     </script>
+
     <script>
         function toggleModal(modalId) {
             var modal = document.getElementById(modalId);
@@ -100,24 +105,24 @@
     </script>
 
     <script>
-        document.querySelectorAll('.delete-button').forEach((button) => {
-            button.addEventListener('click', function (e) {
-                e.preventDefault();
-                const formId = this.getAttribute('data-id');
-                Swal.fire({
-                    title: 'Hapus Responden',
-                    text: 'Apakah anda yakin menghapusnya?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Hapus',
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        document.getElementById('deleteForm-' + formId).submit();
-                    }
-                });
+        let deleteFormId = null;
+
+        document.querySelectorAll('.delete-alert').forEach((btn) => {
+            btn.addEventListener('click', function () {
+                deleteFormId = this.dataset.id;
+                document.getElementById('deleteModal').classList.remove('hidden');
             });
         });
+
+        document.getElementById('cancelDelete').addEventListener('click', function () {
+            document.getElementById('deleteModal').classList.add('hidden');
+            deleteFormId = null;
+        });
+
+        document.getElementById('confirmDelete').addEventListener('click', function () {
+            if (deleteFormId) {
+                document.getElementById('deleteForm-' + deleteFormId).submit();
+            }
+        });
     </script>
-@endsection
+@endpush

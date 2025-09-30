@@ -13,14 +13,19 @@ class PsikotesFreeProfileController extends Controller
 {
     public function __construct(private ResultService $resultService) {}
 
+    // Show Profiles Data
     public function index()
     {
-        // $freeProfiles = PsikotesFreeProfile::with(['feedback', 'attempt'])->get();
-        $attempts = PsikotesFreeAttempt::with('profile')->get();
+        // $profiles = PsikotesFreeProfile::whereHas('attempts')
+        // ->with(['attempts' => fn($q) => $q->latest()])
+        // ->get();
+        $profiles = PsikotesFreeProfile::with(['attempts' => fn($q) => $q->latest()])
+        ->get();
 
-        return view('dashboard.ptpm_psikotes-free.free-profiles.index', compact('attempts'));
+        return view('dashboard.ptpm_psikotes-free.free-profiles.index', compact('profiles'));
     }
 
+    // Show Profile's Detail
     public function show($id)
     {
         $attempt = PsikotesFreeAttempt::with('responses')->find($id);
@@ -55,6 +60,7 @@ class PsikotesFreeProfileController extends Controller
         ]);
     }
 
+    // Detele Profile
     public function destroy($id)
     {
         $freeProfile = PsikotesFreeProfile::findOrFail($id);
@@ -65,7 +71,7 @@ class PsikotesFreeProfileController extends Controller
                     $freeProfile->feedback->delete();
                 }
 
-                foreach ($freeProfile->attempt as $attempt) {
+                foreach ($freeProfile->attempts as $attempt) {
                     // Hapus semua responses dari attempt
                     $attempt->responses()->delete();
 
@@ -76,10 +82,22 @@ class PsikotesFreeProfileController extends Controller
                 $freeProfile->delete();
             });
 
-            return redirect()->route('dashboard.free-profiles.data.show')->with('success', 'Data berhasil dihapus.');
+            return redirect()->route('dashboard.free-profiles.data.show')->with([
+                'alert'   => true,
+                'type'    => 'success',
+                'title'   => 'Berhasil!',
+                'message' => 'Data berhasil dihapus',
+                'icon'    => asset('assets/dashboard/images/success.png'),
+            ]);
         } catch (\Exception $e) {
             dd($e);
-            return back()->with('error', 'Terjadi kesalahan saat menghapus data.');
+            return back()->with([
+                'alert'   => true,
+                'type'    => 'error',
+                'title'   => 'Gagal!',
+                'message' => 'Terjadi kesalahan saat menghapus data',
+                'icon'    => asset('assets/dashboard/images/success.png'),
+            ]);
         }
     }
 }

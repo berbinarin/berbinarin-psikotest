@@ -44,37 +44,79 @@ class AuthenticatedSessionController extends Controller
      */
     public function authenticate(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        try {
+            $request->authenticate();
+        } catch (\Exception $e) {
+            return redirect()->back()->with([
+                'alert'   => true,
+                'type'    => 'error',
+                'title'   => 'Login Gagal!',
+                'message' => 'Username atau Password salah',
+                'icon'    => asset('assets/dashboard/images/error.png'),
+            ]);
+        }
 
         $loginType = $request->input('login_type');
 
         if ($loginType === 'admin') {
             if (! Auth::user()->hasRole(['ptpm_psikotes-paid', 'ptpm_psikotes-free'])) {
                 Auth::guard('web')->logout();
-                throw ValidationException::withMessages([
-                    'username' => __('auth.failed'),
+                return redirect()->back()->with([
+                    'alert'   => true,
+                    'type'    => 'error',
+                    'title'   => 'Login Gagal!',
+                    'message' => 'Akun tidak memiliki akses admin',
+                    'icon'    => asset('assets/dashboard/images/error.png'),
                 ]);
             }
             $redirectPath = RouteServiceProvider::HOME;
         } elseif ($loginType === 'user') {
             if (! Auth::user()->hasRole('user_psikotes-paid')) {
                 Auth::guard('web')->logout();
-                throw ValidationException::withMessages([
-                    'username' => __('auth.failed'),
+                return redirect()->back()->with([
+                    'alert'   => true,
+                    'type'    => 'error',
+                    'title'   => 'Login Gagal!',
+                    'message' => 'Akun tidak memiliki akses user',
+                    'icon'    => asset('assets/dashboard/images/error.png'),
                 ]);
             }
             $redirectPath = '/psikotes-paid/tools';
         } else {
             Auth::guard('web')->logout();
-            throw ValidationException::withMessages([
-                'email' => __('auth.failed'),
+            return redirect()->back()->with([
+                'alert'   => true,
+                'type'    => 'error',
+                'title'   => 'Login Gagal!',
+                'message' => 'Tipe login tidak dikenali',
+                'icon'    => asset('assets/dashboard/images/error.png'),
             ]);
         }
 
+        // kalau sukses login
         $request->session()->regenerate();
-        return redirect()->intended($redirectPath);
-    }
 
+        // Alert berbeda untuk admin dan user
+        if ($loginType === 'admin') {
+            $alert = [
+                'alert'   => true,
+                'type'    => 'success',
+                'title'   => 'Berhasil!',
+                'message' => 'Selamat bekerja Sobat!',
+                'icon'    => asset('assets/dashboard/images/success.png'),
+            ];
+        } else {
+            $alert = [
+                'alert'   => true,
+                'type'    => 'success',
+                'title'   => 'Berhasil!',
+                'message' => 'Anda berhasil masuk.',
+                'icon'    => asset('assets/dashboard/images/success.png'),
+            ];
+        }
+
+        return redirect()->intended($redirectPath)->with($alert);
+    }
 
     /**
      * Destroy an authenticated session.
@@ -87,10 +129,19 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
+        // Bikin flash message untuk logout
+        $message = [
+            'alert'   => true,
+            'type'    => 'success',
+            'title'   => 'Logout Berhasil!',
+            'message' => 'Sampai jumpa lagi, Sobat!',
+            'icon'    => asset('assets/dashboard/images/success.png'),
+        ];
 
         if ($user && $user->hasRole(['ptpm_psikotes-paid', 'ptpm_psikotes-free'])) {
-            return redirect()->route('auth.login');
+            return redirect()->route('auth.login')->with($message);
         }
-        return redirect()->route('home.index');
+
+        return redirect()->route('home.index')->with($message);
     }
 }

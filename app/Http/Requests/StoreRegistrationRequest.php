@@ -37,16 +37,17 @@ class StoreRegistrationRequest extends FormRequest
                 })
             ],
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
+            // 'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
             'age' => ['required', 'integer', 'min:1'],
             'domicile' => ['required', 'string'],
             'gender' => ['required', 'string', Rule::in(['male', 'female'])],
             'phone_number' => ['required', 'string', 'min:8', 'max:15'],
             'reason' => ['required', 'string'],
-            'kategori_voucher' => ['nullable'],
-            'code_voucher' => ['nullable'],
-            'presentase_diskon' => ['nullable'],
-            'bukti_kartu_pelajar' => ['nullable', 'file', 'mimes:jpg,jpeg,png', 'max:1024'],        ];
+            'voucher_category' => ['nullable'],
+            'voucher_code' => ['nullable'],
+            'discount_percentage' => ['nullable'],
+            'student_card' => ['nullable', 'file', 'mimes:jpg,jpeg,png', 'max:1024'],        ];
     }
 
     protected function failedValidation(Validator $validator)

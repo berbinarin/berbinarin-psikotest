@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class KodeVoucher extends Model
+class VoucherCode extends Model
 {
     use HasFactory;
 
-    protected $table = 'kode_voucher';
+    protected $table = 'voucher_codes';
 
     protected $fillable = [
         'category',
-        'nama_voucher',
+        'name',
         'code',
         'percentage',
-        'tipe',
+        'voucher_type',
         'detail',
     ];
 }

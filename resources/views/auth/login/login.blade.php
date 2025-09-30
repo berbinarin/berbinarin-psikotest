@@ -1,25 +1,24 @@
-@extends(
-    "auth.layouts.app",
-    [
-        "title" => "Login Dashboard",
-    ]
-)
+@extends('auth.layouts.app', [
+    'title' => 'Login Dashboard',
+])
 
-@section("content")
-    <section class="fixed inset-0 flex h-full w-full flex-col bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset("assets/auth/images/loginbg.png") }}')">
-        <!-- icon -->
+@section('content')
+    <section class="fixed inset-0 flex h-full w-full flex-col bg-cover bg-center bg-no-repeat"
+        style="background-image: url('{{ asset('assets/auth/images/loginbg.png') }}')">
+        <!-- Icon -->
         <div class="ml-[36px] mt-[35px] flex flex-row items-center justify-start gap-4">
-            <img src="{{ asset("assets/auth/images/logo-berbinar.png") }}" alt="Logo Berbinar" class="h-[67px] w-[67px]" />
+            <img src="{{ asset('assets/auth/images/logo-berbinar.png') }}" alt="Logo Berbinar" class="h-[67px] w-[67px]" />
             <h1 class="font-plusJakartaSans text-[13px] font-bold text-[#3986A3]">PT Berbinar Insightful Indonesia</h1>
         </div>
 
         <!-- Form Login -->
-        <form action="{{ route('auth.authenticate') }}" method  ="post">
+        <form action="{{ route('auth.authenticate') }}" method="post">
             @csrf
-            <input type="hidden" name="login_type" value="admin">
+            <input type="hidden" name="login_type" value="admin" />
             <!-- Login Form -->
             <div class="-mt-16 flex min-h-screen items-center justify-center bg-none">
-                <div class="flex w-[467.33px] flex-col items-center justify-center gap-5 rounded-2xl bg-white p-9 font-plusJakartaSans shadow-[0px_1px_4px_0px_rgba(12,12,13,0.05)]">
+                <div
+                    class="flex w-[467.33px] flex-col items-center justify-center gap-5 rounded-2xl bg-white p-9 font-plusJakartaSans shadow-[0px_1px_4px_0px_rgba(12,12,13,0.05)]">
                     <!-- Title -->
                     <div class="flex w-full flex-col items-center justify-start gap-5">
                         <div class="flex w-full flex-col items-start justify-start gap-2">
@@ -29,7 +28,9 @@
                                     <br />
                                     Dashboard Admin Berbinarin
                                 </div>
-                                <div class="w-full text-center text-sm font-normal text-stone-500">Masuk ke dashboard dan lakukan manajemen data secara menyeluruh untuk keperluan admin, konten, dan informasi di website Berbinarin.</div>
+                                <div class="w-full text-center text-sm font-normal text-stone-500">Masuk ke dashboard dan
+                                    lakukan manajemen data secara menyeluruh untuk keperluan admin, konten, dan informasi di
+                                    website Berbinarin.</div>
                             </div>
                             <div class="w-full border-t border-[#CCCCCC]"></div>
                         </div>
@@ -40,25 +41,31 @@
                         <!-- Username -->
                         <div class="flex w-full flex-col items-start justify-start gap-2">
                             <label>Username</label>
-                            <div class="flex h-[47px] w-full items-center justify-start gap-3 rounded-lg bg-white outline outline-[0.67px] outline-offset-[-0.67px] outline-stone-300/80">
+                            <div
+                                class="flex h-[47px] w-full items-center justify-start gap-3 rounded-lg bg-white outline outline-[0.67px] outline-offset-[-0.67px] outline-stone-300/80">
                                 <img src="assets/auth/images/Circled Envelope.png" alt="Username" class="mx-3 size-8" />
-                                <input type="text" name="username" placeholder="Username" class="flex-1 border-none bg-transparent text-[13px] text-[#A9A7A7] outline-none placeholder:translate-y-[1px] placeholder:text-[13px] focus:border-none focus:outline-none focus:ring-0" />
+                                <input type="text" name="username" placeholder="Username"
+                                    class="flex-1 border-none bg-transparent text-[13px] text-[#A9A7A7] outline-none placeholder:translate-y-[1px] placeholder:text-[13px] focus:border-none focus:outline-none focus:ring-0" />
                             </div>
                         </div>
 
                         <!-- Password -->
                         <div class="flex w-full flex-col items-start justify-start gap-2">
                             <label>Password</label>
-                            <div class="flex h-[47px] w-full items-center justify-start gap-3 rounded-lg bg-white outline outline-[0.67px] outline-offset-[-0.67px] outline-stone-300/80">
+                            <div
+                                class="flex h-[47px] w-full items-center justify-start gap-3 rounded-lg bg-white outline outline-[0.67px] outline-offset-[-0.67px] outline-stone-300/80">
                                 <img src="assets/auth/images/Circled Envelope.png" alt="Username" class="mx-3 size-8" />
-                                <input type="password" name="password" placeholder="Password" class="flex-1 border-none bg-transparent text-[13px] text-[#A9A7A7] outline-none placeholder:translate-y-[1px] placeholder:text-[13px] focus:border-none focus:outline-none focus:ring-0" />
+                                <input type="password" name="password" placeholder="Password"
+                                    class="flex-1 border-none bg-transparent text-[13px] text-[#A9A7A7] outline-none placeholder:translate-y-[1px] placeholder:text-[13px] focus:border-none focus:outline-none focus:ring-0" />
                             </div>
                         </div>
                     </div>
 
                     <!-- Button -->
-                    <button type="submit" class="relative h-12 w-full cursor-pointer overflow-hidden rounded-lg bg-cyan-700 hover:bg-cyan-800">
-                        <div class="absolute left-[176.67px] top-[14.67px] text-center text-sm font-bold text-white">Sign in</div>
+                    <button type="submit"
+                        class="relative h-12 w-full cursor-pointer overflow-hidden rounded-lg bg-cyan-700 hover:bg-cyan-800">
+                        <div class="absolute left-[176.67px] top-[14.67px] text-center text-sm font-bold text-white">Sign in
+                        </div>
                     </button>
                 </div>
             </div>
@@ -72,15 +79,17 @@
 @endsection
 
 @push('script')
-@if ($errors->any())
-<script>
-    Swal.fire({
-        icon: 'error',
-        title: 'Login Gagal',
-        text: 'Username atau Password Salah',
-        confirmButtonColor: '#3085d6',
-        confirmButtonText: 'OK'
-    });
-</script>
-@endif
+    {{-- Error --}}
+    @if ($errors->any())
+        <script>
+            showError('Username atau Password salah', 'Login Gagal');
+        </script>
+    @endif
+
+    {{-- Success --}}
+    @if (session('success'))
+        <script>
+            showSuccess('{{ session('success') }}', 'Berhasil Login');
+        </script>
+    @endif
 @endpush

@@ -58,7 +58,7 @@
     </section>
 @endsection
 
-@section("script")
+@push("script")
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         const chartData = @json($chartData);
@@ -67,7 +67,7 @@
         if (Object.keys(chartData).length > 0) {
             const labels = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
-            // 4. Fungsi untuk membuat dataset berdasarkan tahun dan kategori yang ada
+            // Fungsi untuk membuat dataset berdasarkan tahun dan kategori yang ada
             function createDatasets(year) {
                 const dataForYear = chartData[year] || {}; // Ambil data untuk tahun terpilih, atau objek kosong jika tidak ada
 
@@ -85,7 +85,7 @@
                 ];
             }
 
-            // 5. Inisialisasi Grafik
+            // Inisialisasi Grafik
             const ctx = document.getElementById('myChart').getContext('2d');
             const yearSelector = document.getElementById('yearSelector');
             const initialYear = yearSelector.value; // Ambil tahun pertama yang terpilih di dropdown
@@ -111,7 +111,7 @@
                 },
             });
 
-            // 6. Event Listener untuk Dropdown
+            // Event Listener untuk Dropdown
             yearSelector.addEventListener('change', function () {
                 const selectedYear = this.value;
                 myChart.data.datasets = createDatasets(selectedYear);
@@ -119,4 +119,4 @@
             });
         }
     </script>
-@endsection
+@endpush

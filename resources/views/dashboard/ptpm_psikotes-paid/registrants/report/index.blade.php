@@ -160,7 +160,7 @@
                     </div>
                     <div class="info-item">
                         <p class="label">Diskon</p>
-                        <p class="value">{{ $registrant->presentase_diskon ? $registrant->presentase_diskon . "%" : "-" }}</p>
+                        <p class="value">{{ $registrant->discount_percentage ? $registrant->discount_percentage . "%" : "-" }}</p>
                     </div>
                     <div class="info-item">
                         <p class="label">Alasan Pendaftaran</p>
@@ -192,15 +192,15 @@
 
                     <div class="info-item">
                         <p class="label">Kode Voucher</p>
-                        <p class="value">{{ $registrant->code_voucher ? $registrant->code_voucher : "-" }}</p>
+                        <p class="value">{{ $registrant->voucher_code ? $registrant->voucher_code : "-" }}</p>
                     </div>
 
                     <div class="info-item">
                         <p class="label">Bukti Kartu Pelajar</p>
                         <p class="value">
-                            @if ($registrant->bukti_kartu_pelajar)
-                                <!-- <a href="{{ asset("storage/" . $registrant->bukti_kartu_pelajar) }}" target="_blank">Lihat Bukti</a> -->
-                                <img src="{{ asset("storage/" . $registrant->bukti_kartu_pelajar) }}" alt="" />
+                            @if ($registrant->student_card)
+                                <!-- <a href="{{ asset("storage/" . $registrant->student_card) }}" target="_blank">Lihat Bukti</a> -->
+                                <img src="{{ asset("storage/" . $registrant->student_card) }}" alt="" />
                             @else
                                 -
                             @endif
@@ -227,7 +227,7 @@
                     </div>
                     <div class="info-item">
                         <p class="label">Harga Setelah Diskon</p>
-                        <p class="value">{{ $registrant->presentase_diskon ? "Rp" . number_format($registrant->testType->price - ($registrant->testType->price * $registrant->presentase_diskon) / 100, 0, ",", ".") : "-" }}</p>
+                        <p class="value">{{ $registrant->discount_percentage ? "Rp" . number_format($registrant->testType->price - ($registrant->testType->price * $registrant->discount_percentage) / 100, 0, ",", ".") : "-" }}</p>
                     </div>
                 </div>
             </div>

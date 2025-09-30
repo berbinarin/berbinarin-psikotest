@@ -32,8 +32,18 @@
 
 @push("script")
     <script>
-        localStorage.removeItem('target-time');
-        localStorage.removeItem('section-order');
-        localStorage.removeItem('checkpoint_deadline');
+        window.addEventListener("load", function () {
+            const attemptId = @json($attemptId ?? null);
+            if (attemptId) {
+                localStorage.removeItem(`target-time_${attemptId}`);
+                localStorage.removeItem(`section-order_${attemptId}`);
+                localStorage.removeItem(`checkpoint_deadline_${attemptId}`);
+                console.log("Local storage cleared for attempt:", attemptId);
+            } else {
+                // fallback: clear semua kalau ID nggak ada
+                localStorage.clear();
+                console.log("Local storage cleared (no attemptId found).");
+            }
+        });
     </script>
 @endpush

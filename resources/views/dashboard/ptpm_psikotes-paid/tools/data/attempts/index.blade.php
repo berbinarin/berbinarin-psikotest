@@ -6,6 +6,7 @@
 )
 
 @section("content")
+    @include("components.confirm", ["type" => "delete"])
     <section class="flex w-full select-text">
         <div class="flex w-full flex-col">
             <div class="w-full">
@@ -49,6 +50,10 @@
                                                     <span class="inline-flex items-center rounded-[5px] bg-[#75BADB] px-2.5 py-0.5 text-[15px] font-medium text-white">
                                                         Progress
                                                     </span>
+                                                @elseif ($attempt->status === 'unfinished')
+                                                    <span class="inline-flex items-center rounded-[5px] bg-[#EAB308] px-2.5 py-0.5 text-[15px] font-medium text-white">
+                                                        Unfinished
+                                                    </span>
                                                 @endif
                                             </div>
                                         </td>
@@ -66,7 +71,7 @@
                                             <form id="deleteForm-{{ $attempt->id }}" action="{{ route("dashboard.tools.data.attempts.destroy", [$tool->id, $attempt->id]) }}" method="POST">
                                                 @csrf
                                                 @method("DELETE")
-                                                <button type="button" class="delete-button inline-flex items-start justify-start rounded p-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #ef4444" data-id="{{ $attempt->id }}">
+                                                <button type="button" class="delete-alert inline-flex items-start justify-start rounded p-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #ef4444" data-id="{{ $attempt->id }}">
                                                     <i class="bx bx-trash-alt text-white"></i>
                                                 </button>
                                             </form>
@@ -86,6 +91,37 @@
     <script>
         $(document).ready(function () {
             $('#table').DataTable();
+        });
+    </script>
+
+    <script type="text/javascript">
+        function toggleModal(modalID) {
+            document.getElementById(modalID).classList.toggle('hidden');
+            document.getElementById(modalID + '-backdrop').classList.toggle('hidden');
+            document.getElementById(modalID).classList.toggle('flex');
+            document.getElementById(modalID + '-backdrop').classList.toggle('flex');
+        }
+    </script>
+
+    <script>
+        let deleteFormId = null;
+
+        document.querySelectorAll('.delete-alert').forEach((btn) => {
+            btn.addEventListener('click', function () {
+                deleteFormId = this.dataset.id;
+                document.getElementById('deleteModal').classList.remove('hidden');
+            });
+        });
+
+        document.getElementById('cancelDelete').addEventListener('click', function () {
+            document.getElementById('deleteModal').classList.add('hidden');
+            deleteFormId = null;
+        });
+
+        document.getElementById('confirmDelete').addEventListener('click', function () {
+            if (deleteFormId) {
+                document.getElementById('deleteForm-' + deleteFormId).submit();
+            }
         });
     </script>
 @endpush

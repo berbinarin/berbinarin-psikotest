@@ -15,11 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//menambahkan Semua route auth
+// Menambahkan semua route auth
 require __DIR__ . '/auth.php';
 
-// menambahkan Semua route landing
+// Menambahkan semua route landing
 require __DIR__ . '/landing.php';
 
-// menambahkan Semua route dashboard
+// Menambahkan semua route dashboard
 require __DIR__ . '/dashboard.php';

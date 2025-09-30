@@ -154,6 +154,19 @@ class ToolSeeder extends Seeder
                 'introduce' => null,
                 'is_active' => true,
             ],
+            [
+                'name' => 'HEXACO',
+                'order' => 6,
+                'token' => '6',
+                'introduce' => '<p>Di bawah Anda akan menemukan beberapa pernyataan tentang diri Anda. Bacalah setiap pernyataan dengan seksama dan tentukan seberapa setujukah Anda terhadap pernyataan tersebut. Setelah itu, pilihlah jawaban Anda dengan skala sebagai berikut:</p>
+                                <p>Keterangan pilihan jawaban:</p>
+                                <div><strong>1: Sangat Tidak Setuju</strong></div>
+                                <div><strong>2: Tidak Setuju</strong></div>
+                                <div><strong>3: Netral</strong></div>
+                                <div><strong>4: Setuju</strong></div>
+                                <div><strong>5: Sangat Setuju</strong></div>',
+                'is_active' => true,
+            ],
         ];
 
         foreach ($tools as $tool) {

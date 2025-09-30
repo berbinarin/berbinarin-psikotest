@@ -14,7 +14,7 @@ class ToolController extends Controller
      */
     public function index()
     {
-        $tools = Tool::all();
+        $tools = Tool::orderBy('order', 'asc')->get();
         return view('dashboard.ptpm_psikotes-paid.tools.index', compact('tools'));
     }
 
@@ -27,6 +27,12 @@ class ToolController extends Controller
         $tool->token = Str::random(8);
         $tool->save();
 
-        return redirect()->back()->with('success', 'Token Berhasil Diperbarui!');
+        return redirect()->back()->with([
+            'alert'   => true,
+            'type'    => 'Success',
+            'title'   => 'Berhasil!',
+            'message' => 'Yeeee!! Token berhasil diperbarui',
+            'icon'    => asset('assets/dashboard/images/error.png'),
+        ]);
     }
 }

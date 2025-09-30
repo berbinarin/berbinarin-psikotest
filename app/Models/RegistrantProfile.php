@@ -21,10 +21,10 @@ class RegistrantProfile extends Model
         'psikotes_service',
         'reason',
         'schedule',
-        'kategori_voucher',
-        'code_voucher',
-        'presentase_diskon',
-        'bukti_kartu_pelajar'
+        'voucher_category',
+        'vouche_code',
+        'discount_percentage',
+        'student_card',
     ];
 
     public function user(): BelongsTo

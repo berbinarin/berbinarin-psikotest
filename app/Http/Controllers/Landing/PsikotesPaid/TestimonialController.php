@@ -14,16 +14,9 @@ class TestimonialController extends Controller
         return view('landing.psikotes-paid.tools.testimoni', compact('testimonials'));
     }
 
+    // Store Testimonial Data
     public function store(Request $request)
     {
-        // // Validasi untuk memastikan 'answer' adalah array dan tidak kosong
-        // $request->validate([
-        //     'answer' => 'required|array',
-        //     'answer.*.question' => 'required|string',
-        //     'answer.*.type' => 'required|string',
-        //     'answer.*.value' => 'required',
-        // ]);
-
         foreach ($request->answer as $data) {
             Testimonial::create([
                 // --- PERUBAHAN DI SINI ---

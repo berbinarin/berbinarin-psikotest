@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        {{-- Header --}}
-        @include("landing.partials.header")
 
-        {{-- Additional Style --}}
-        @stack("style")
-    </head>
-    <body class="relative w-full overflow-x-hidden">
-        {{-- Navbar --}}
-        {{-- @include("landing.partials.navbar") --}}
+<head>
+    {{-- Header --}}
+    @include('landing.partials.header')
 
-        <main class="relative flex w-full flex-col bg-[#F7F9FA] font-plusJakartaSans">
-            {{-- Main Content --}}
-            @yield("content")
-        </main>
+    {{-- Additional Style --}}
+    @stack('style')
+</head>
 
-        {{-- Footer --}}
-        {{-- @include('landing.partials.footer') --}}
+<body class="relative w-full overflow-x-hidden">
+    {{-- Navbar --}}
+    {{-- @include("landing.partials.navbar") --}}
 
-        {{-- Script --}}
-        @include("landing.partials.script")
+    <main class="relative flex w-full flex-col bg-[#F7F9FA] font-plusJakartaSans">
+        {{-- Main Content --}}
+        @yield('content')
+    </main>
 
-        {{-- Additional Script --}}
-        @stack("script")
-    </body>
+    {{-- Footer --}}
+    {{-- @include('landing.partials.footer') --}}
+
+    {{-- Script --}}
+    @include('landing.partials.script')
+
+    {{-- Additional Script --}}
+    @stack('script')
+
+    {{-- Alert --}}
+    @include('components.alert')
+</body>
+
 </html>

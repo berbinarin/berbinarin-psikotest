@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\PTPM\PsikotesFree\FreeProfileData\PsikotesFreeProfileController;
-use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\KodeVoucher\KodeVoucherController;
 use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\PriceList\TestCategoryController;
 use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\PriceList\TestTypeController;
 use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Registrant\RegistrantController;
@@ -14,6 +13,7 @@ use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Tool\ToolController;
 use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Testimonial\TestimonialController;
 use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\Checkpoint\CheckpointController;
 use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\ExportPDFController;
+use App\Http\Controllers\Dashboard\PTPM\PsikotesPaid\VoucherCode\VoucherCodeController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(function () {
@@ -79,12 +79,8 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
         });
 
         // Voucher Codes
-        Route::prefix('kode_voucher')->name('kode_voucher.')->group(function (){
-            Route::get('/', [KodeVoucherController::class, 'index'])->name('index');
-            Route::post('/', [KodeVoucherController::class, 'store'])->name('store');
-            Route::get('/{id}/edit', [KodeVoucherController::class, 'edit'])->name('edit');
-            Route::put('/{id}', [KodeVoucherController::class, 'update'])->name('update');
-            Route::delete('/{id}', [KodeVoucherController::class, 'destroy'])->name('destroy');
+        Route::prefix('voucher-code')->name('voucher-code.')->group(function (){
+            Route::resource('/', VoucherCodeController::class)->parameters(['' => 'voucher-code']);
         });
 
         // Checkpoints

@@ -6,6 +6,7 @@
 )
 
 @section("content")
+    @include('components.confirm', ['type' => 'delete'])
     <section class="flex w-full">
         <div class="w-full">
             <div class="py-4 md:pb-7 md:pt-5">
@@ -69,7 +70,10 @@
                                         <form id="deleteForm-{{ $registrant->id }}" action="{{ route("dashboard.registrants.destroy", $registrant->id) }}" method="POST">
                                             @csrf
                                             @method("DELETE")
-                                            <button type="button" class="delete-button inline-flex items-start justify-start rounded p-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2" style="background-color: #ef4444" data-id="{{ $registrant->id }}">
+                                            <button type="button"
+                                                class="delete-alert inline-flex items-start justify-start rounded p-2 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                                                style="background-color: #ef4444"
+                                                data-id="{{ $registrant->id }}">
                                                 <i class="bx bx-trash-alt text-white"></i>
                                             </button>
                                         </form>
@@ -80,158 +84,6 @@
                     </table>
                 </div>
             </div>
-
-            {{-- <!-- Modal Edit -->
-            <div id="editModal" class="fixed inset-0 z-50 flex hidden items-center justify-center bg-black bg-opacity-50">
-                <div class="w-[90%] rounded-lg bg-white p-6">
-                    <div class="mb-4 flex items-start gap-3">
-                        <button id="closeEditModal" class="text-gray-500 hover:text-gray-700 text-3xl text-center justify-center items-center"><img src="{{ asset("assets/dashboard/images/back-btn.png") }}" alt="Back Button" /></button>
-                        <h2 class="text-3xl font-bold">Edit Data Pendaftar</h2>
-                    </div>
-                    <form id="editForm" method="POST" action="{{ route("dashboard.registrants.update", $registrant->id) }}">
-                        @csrf
-                        @method("PUT")
-                        <div class="flex gap-4 mb-4">
-                            <div class="flex w-full flex-col">
-                                <label for="edit_name" class="mb-2 font-bold text-[#9b9b9b]">Nama</label>
-                                <input type="text" id="edit_name" name="name" class="rounded-md border border-gray-300 bg-gray-50 px-4 py-2" />
-                            </div>
-                            <div class="flex w-full flex-col">
-                                <label for="edit_gender" class="mb-2 font-bold text-[#9b9b9b]">Jenis Kelamin</label>
-                                <select id="edit_gender" name="gender" class="rounded-md border border-gray-300 bg-gray-50 px-4 py-2">
-                                    <option value="Laki-Laki">Laki-Laki</option>
-                                    <option value="Perempuan">Perempuan</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 mb-4">
-                            <div class="flex w-full flex-col">
-                                <label for="edit_age" class="mb-2 font-bold text-[#9b9b9b]">Umur</label>
-                                <input type="number" id="edit_age" name="age" class="rounded-md border border-gray-300 bg-gray-50 px-4 py-2" />
-                            </div>
-                            <div class="flex w-full flex-col">
-                                <label for="edit_phone_number" class="mb-2 font-bold text-[#9b9b9b]">Telepon</label>
-                                <input type="tel" id="edit_phone_number" name="phone_number" class="rounded-md border border-gray-300 bg-gray-50 px-4 py-2" />
-                            </div>
-                        </div>
-                        <div class="flex gap-4 mb-4">
-                            <div class="flex w-full flex-col">
-                                <label for="edit_email" class="mb-2 font-bold text-[#9b9b9b]">Email</label>
-                                <input type="email" id="edit_email" name="email" class="rounded-md border border-gray-300 bg-gray-50 px-4 py-2" />
-                            </div>
-                            <div class="flex w-full flex-col">
-                                <label for="edit_test_category" class="mb-2 font-bold text-[#9b9b9b]">Kategori Psikotes</label>
-                                <input type="text" id="edit_test_category" class="rounded-md border border-gray-300 bg-gray-50 px-4 py-2" readonly />
-                            </div>
-                        </div>
-                        <div class="flex gap-4 mb-4">
-                            <div class="flex w-full flex-col">
-                                <label for="edit_psikotes_date" class="mb-2 font-bold text-[#9b9b9b]">Tanggal</label>
-                                <input type="date" id="edit_psikotes_date" name="psikotes_date" class="rounded-md border border-gray-300 bg-gray-50 px-4 py-2" />
-                            </div>
-                            <div class="flex w-full flex-col">
-                                <label for="edit_psikotes_time" class="mb-2 font-bold text-[#9b9b9b]">Waktu</label>
-                                <input type="time" id="edit_psikotes_time" name="psikotes_type" class="rounded-md border border-gray-300 bg-gray-50 px-4 py-2" readonly />
-                            </div>
-                        </div>
-                        <div class="flex gap-4 mb-4">
-                            <div class="flex w-full flex-col">
-                                <label for="edit_psikotes_service" class="mb-2 font-bold text-[#9b9b9b]">Layanan Psikotes</label>
-                                <select id="edit_psikotes_service" name="service" class="rounded-md border border-gray-300 bg-gray-50 px-4 py-2">
-                                    <option value="Online">Online</option>
-                                    <option value="Offline">Offline</option>
-                                </select>
-                            </div>
-                            <div class="flex w-full flex-col">
-                                <label for="edit_test_type_id" class="mb-2 font-bold text-[#9b9b9b]">Jenis Psikotes</label>
-                                <input type="text" id="edit_test_type_id" name="test_type_id" class="rounded-md border border-gray-300 bg-gray-50 px-4 py-2" readonly />
-                            </div>
-                        </div>
-                        <div class="mb-4 flex flex-col">
-                            <label for="edit_reason" class="mb-2 font-bold text-[#9b9b9b]">Alasan</label>
-                            <textarea id="edit_reason" name="reason" rows="3" class="rounded-md border border-gray-300 bg-gray-50 px-4 py-2"></textarea>
-                        </div>
-                        <div class="flex gap-4 mt-6">
-                            <button type="button" id="cancelEditModal" class="flex-1 rounded-lg border border-[#3986a3] px-6 py-2 text-[#3986a3]">Batal</button>
-                            <button type="submit" class="flex-1 rounded-lg bg-[#3986a3] px-6 py-2 text-white">Simpan</button>
-                        </div>
-                    </form>
-                </div> --}}
-            </div>
-            <!-- End Modal Edit -->
-
-            {{-- <!-- Modal Detail -->
-            <div id="detailModal" class="fixed inset-0 z-50 flex hidden items-center justify-center bg-black bg-opacity-50">
-                <div class="w-[90%] rounded-lg bg-white p-6">
-                    <div class="mb-4 flex flex-col justify-between items-center">
-                        <div class="w-full flex flex-row justify-start gap-3 mb-4">
-                            <button id="closeDetailModal" class="text-gray-500 hover:text-gray-700 text-3xl text-start justify-start items-start"><img src="{{ asset("assets/dashboard/images/back-btn.png") }}" alt="Back Button" /></button>
-                            <h2 class="text-3xl font-bold">Detail Data Pendaftar</h2>
-                        </div>
-                        <form class="flex flex-col w-full">
-                            <div class="flex gap-5">
-                                <div class="flex w-full flex-col">
-                                    <label class="mb-2 font-bold text-[#9b9b9b]">Nama</label>
-                                    <input type="text" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->user->name }}" readonly disabled />
-                                </div>
-                                <div class="flex w-full flex-col">
-                                    <label class="mb-2 font-bold text-[#9b9b9b]">Jenis Kelamin</label>
-                                    <input type="text" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->gender == 'male' ? 'Laki-laki' : 'Perempuan' }}" readonly disabled />
-                                </div>
-                            </div>
-                            <div class="flex gap-5">
-                                <div class="flex w-full flex-col">
-                                    <label class="mb-2 font-bold text-[#9b9b9b]">Umur</label>
-                                    <input type="number" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->age }}" readonly disabled />
-                                </div>
-                                <div class="flex w-full flex-col">
-                                    <label class="mb-2 font-bold text-[#9b9b9b]">Telepon</label>
-                                    <input type="tel" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->phone_number }}" readonly disabled />
-                                </div>
-                            </div>
-                            <div class="flex gap-5">
-                                <div class="flex w-full flex-col">
-                                    <label class="mb-2 font-bold text-[#9b9b9b]">Email</label>
-                                    <input type="email" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->user->email }}" readonly disabled />
-                                </div>
-                                <div class="flex w-full flex-col">
-                                    <label class="mb-2 font-bold text-[#9b9b9b]">Kategori Psikotes</label>
-                                    <input type="text" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->testType->testCategory->name }}" readonly disabled />
-                                </div>
-                            </div>
-                            <div class="flex gap-5">
-                                <div class="flex w-full flex-col">
-                                    <label class="mb-2 font-bold text-[#9b9b9b]">Username</label>
-                                    <input type="text" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->user->username }}" readonly disabled />
-                                </div>
-                                <div class="flex w-full flex-col">
-                                    <label class="mb-2 font-bold text-[#9b9b9b]">Password</label>
-                                    <input type="text" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ \Illuminate\Support\Str::before($registrant->user->email, '@') }}" readonly disabled />
-                                </div>
-                            </div>
-                            <div class="flex gap-5">
-                                <div class="flex w-full flex-col">
-                                    <label class="mb-2 font-bold text-[#9b9b9b]">Layanan Psikotes</label>
-                                    <input type="text" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->psikotes_service }}" readonly disabled />
-                                </div>
-                                <div class="flex w-full flex-col">
-                                    <label class="mb-2 font-bold text-[#9b9b9b]">Jenis Psikotes</label>
-                                    <input type="text" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->testType->name }}" readonly disabled />
-                                </div>
-                            </div>
-                            <div class="flex gap-5">
-                                <div class="flex w-full flex-col">
-                                    <label class="mb-2 font-bold text-[#9b9b9b]">Alasan</label>
-                                    <textarea rows="5" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0 max-h-48" readonly disabled>{{ $registrant->reason }}</textarea>
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-
-                </div>
-            </div>
-            <!-- End Modal Detail --> --}}
         </div>
     </section>
 @endsection
@@ -263,36 +115,28 @@
     </script>
 
     <script>
-        // Modal Edit
-        // document.querySelectorAll('.edit-button').forEach((button) => {
-        //     button.addEventListener('click', function () {
-        //         // Isi form modal dengan data dari button
-        //         document.getElementById('edit_name').value = this.dataset.name;
-        //         document.getElementById('edit_gender').value = this.dataset.gender;
-        //         document.getElementById('edit_age').value = this.dataset.age;
-        //         document.getElementById('edit_phone_number').value = this.dataset.phone_number;
-        //         document.getElementById('edit_email').value = this.dataset.email;
-        //         document.getElementById('edit_test_category').value = this.dataset.test_category;
-        //         document.getElementById('edit_psikotes_service').value = this.dataset.psikotes_service;
-        //         document.getElementById('edit_test_type_id').value = this.dataset.test_type;
-        //         document.getElementById('edit_psikotes_date').value = this.dataset.psikotes_date;
-        //         document.getElementById('edit_psikotes_time').value = this.dataset.psikotes_time;
-        //         // document.getElementById('edit_domicile').value = this.dataset.domicile;
-        //         document.getElementById('edit_reason').value = this.dataset.reason;
-        //         // Set action form
-        //         document.getElementById('editForm').action = this.dataset.action;
-        //         // Tampilkan modal
-        //         document.getElementById('editModal').classList.remove('hidden');
-        //     });
-        // });
+        let deleteFormId = null;
 
-        // Tutup modal
-        document.getElementById('closeEditModal').onclick = function() {
-            document.getElementById('editModal').classList.add('hidden');
-        };
-        document.getElementById('cancelEditModal').onclick = function() {
-            document.getElementById('editModal').classList.add('hidden');
-        };
+        // ketika tombol delete diklik
+        document.querySelectorAll('.delete-alert').forEach((btn) => {
+            btn.addEventListener('click', function () {
+                deleteFormId = this.dataset.id; // simpan id form yang mau dihapus
+                document.getElementById('deleteModal').classList.remove('hidden');
+            });
+        });
+
+        // tombol batal
+        document.getElementById('cancelDelete').addEventListener('click', function () {
+            document.getElementById('deleteModal').classList.add('hidden');
+            deleteFormId = null;
+        });
+
+        // tombol konfirmasi hapus
+        document.getElementById('confirmDelete').addEventListener('click', function () {
+            if (deleteFormId) {
+                document.getElementById('deleteForm-' + deleteFormId).submit();
+            }
+        });
     </script>
 
     <script>

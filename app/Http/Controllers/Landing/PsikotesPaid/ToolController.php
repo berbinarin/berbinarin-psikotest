@@ -12,6 +12,7 @@ class ToolController extends Controller
 {
     public function __construct(private AttemptService $attemptService) {}
 
+    // View Test Page
     public function index()
     {
         $agent = new Agent();
@@ -31,13 +32,22 @@ class ToolController extends Controller
 
         $tool = Tool::find($request->tool_id);
 
-        if ($tool->token === $request->token) {
+        if ($tool && $tool->token === $request->token) {
             $this->attemptService->startOrResume($tool);
-        }
 
-        return redirect()->route('psikotes-paid.attempt.introduce');
+            return redirect()->route('psikotes-paid.attempt.introduce');
+        } else {
+            return redirect()->back()->withInput()->with([
+                'alert' => true,
+                'icon' => asset('assets/dashboard/images/error.png'),
+                'type' => 'error',
+                'title' => 'Token Salah',
+                'message' => 'Token yang kamu masukkan tidak valid. Silakan coba lagi.',
+            ]);
+        }
     }
 
+    // View Testimonial Page
     public function testimoni()
     {
         return view('landing.psikotes-paid.tools.testimoni');
