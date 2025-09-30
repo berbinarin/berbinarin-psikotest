@@ -5,18 +5,22 @@
 @section('content')
     <sections>
         <div class="min-h-screen flex justify-center items-center bg-gray-100">
-            <div class="flex flex-col w-full md:max-w-[90%] mb-10 mt-16 md:mt-36 justify-center lg:shadow-xl lg:bg-white rounded-3xl p-7 sm:p-10 relative">
+            <div
+                class="flex flex-col w-full md:max-w-[90%] mb-10 mt-16 md:mt-36 justify-center lg:shadow-xl lg:bg-white rounded-3xl p-7 sm:p-10 relative">
                 <div>
                     <div class="flex flex-row justify-between max-sm:mb-4 mb-8">
                         <!-- Tombol Kembali -->
                         <a href="{{ route('home.index') }}">
                             <div class="flex cursor-pointer items-center space-x-2 lg:order-1">
-                                <img src="{{ asset("assets/landing/images/vector/left-arrow.svg") }}" alt="Left Arrow" class="h-3 w-auto lg:h-5" />
+                                <img src="{{ asset('assets/landing/images/vector/left-arrow.svg') }}" alt="Left Arrow"
+                                    class="h-3 w-auto lg:h-5" />
                                 <p class="text-[15px] font-semibold text-[#3986A3] xl:text-lg">Kembali</p>
                             </div>
                         </a>
                     </div>
-                <h2 class="text-center mb-8 bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text text-transparent text-4xl font-bold">Isi Biodata</h2>
+                    <h2
+                        class="text-center mb-8 bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text text-transparent text-4xl font-bold">
+                        Isi Biodata</h2>
                 </div>
                 <form action="{{ route('psikotes-free.profile.store') }}" method="POST"
                     class="w-full justify-center content-center">
@@ -24,20 +28,29 @@
                     <div class="border-gray-900/10 pb-2 flex flex-col justify-center items-center">
                         <div class="w-full flex flex-col gap-5 justify-center">
                             <div class="mb-3">
-                                <label for="name" class="block text-sm xl:text-base font-medium text-gray-700">Nama</label>
-                                <input type="text" id="name" name="name" placeholder="Budi Berbinar" class="mt-1 max-sm:shadow-lg block w-full md:w-full px-2.5 py-1.5 lg:py-3 bg-gray-100 border border-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-sm lg:text-lg" required>
+                                <label for="name"
+                                    class="block text-sm xl:text-base font-medium text-gray-700">Nama</label>
+                                <input type="text" id="name" name="name" placeholder="Budi Berbinar"
+                                    class="mt-1 max-sm:shadow-lg block w-full md:w-full px-2.5 py-1.5 lg:py-3 bg-gray-100 border border-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-sm lg:text-lg"
+                                    required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="email" class="block text-sm xl:text-base font-medium text-gray-700">Email</label>
-                                <input type="email" id="email" name="email" autocomplete="email" placeholder="berbinar@gmail.com" class="mt-1  max-sm:shadow-lg block w-full md:w-full px-2.5 py-1.5 lg:py-3 bg-gray-100 border border-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-sm lg:text-lg" required>
+                                <label for="email"
+                                    class="block text-sm xl:text-base font-medium text-gray-700">Email</label>
+                                <input type="email" id="email" name="email" autocomplete="email"
+                                    placeholder="berbinar@gmail.com"
+                                    class="mt-1  max-sm:shadow-lg block w-full md:w-full px-2.5 py-1.5 lg:py-3 bg-gray-100 border border-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-sm lg:text-lg"
+                                    required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="gender" class="block text-sm xl:text-base font-medium text-gray-700">Jenis Kelamin</label>
+                                <label for="gender" class="block text-sm xl:text-base font-medium text-gray-700">Jenis
+                                    Kelamin</label>
                                 <div class="mt-2">
                                     <select required id="gender" name="gender" autocomplete="gender"
-                                        class="mt-1  max-sm:shadow-lg block w-full md:w-full px-2.5 py-1.5 lg:py-3 bg-gray-100 border border-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-sm lg:text-lg" required>
+                                        class="mt-1  max-sm:shadow-lg block w-full md:w-full px-2.5 py-1.5 lg:py-3 bg-gray-100 border border-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-sm lg:text-lg"
+                                        required>
                                         <option class="text-gray-400" value="default" selected disabled>Jenis Kelamin
                                         </option>
                                         <option class="text-black" value="Male">Laki-laki</option>
@@ -51,11 +64,9 @@
                                     class="block text-sm xl:text-base font-medium text-gray-700">Tanggal Lahir</label>
                                 <div class="relative mt-2">
                                     <input required type="text" name="date_of_birth" id="date_of_birth"
-                                        autocomplete="bday"
-                                        placeholder="dd/mm/yyyy"
+                                        autocomplete="bday" placeholder="dd/mm/yyyy"
                                         class="mt-1  max-sm:shadow-lg block w-full md:w-full px-2.5 py-1.5 lg:py-3 bg-gray-100 border border-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-sm lg:text-lg placeholder:text-gray-700" />
-                                    <img src="{{ asset('assets/landing/images/vector/date.png') }}"
-                                        id="date_of_birth_icon"
+                                    <img src="{{ asset('assets/landing/images/vector/date.png') }}" id="date_of_birth_icon"
                                         class="absolute max-sm:hidden right-3 top-1/2 -translate-y-1/2 h-5 w-5 object-contain cursor-pointer" />
                                 </div>
                             </div>
@@ -63,7 +74,8 @@
                         </div>
                     </div>
                     <div class="flex flex-col w-full md:flex-row gap-5 justify-center items-center pt-8">
-                        <button type="submit" class="rounded-lg bg-gradient-to-r mb-5 lg:mx-2 from-[#3986A3] to-[#225062] lg:px-10 w-full lg:w-1/3 py-1.5 font-medium text-white text-lg max-sm:text-[15px]">Selanjutnya</button>
+                        <button type="submit"
+                            class="rounded-lg bg-gradient-to-r mb-5 lg:mx-2 from-[#3986A3] to-[#225062] lg:px-10 w-full lg:w-1/3 py-1.5 font-medium text-white text-lg max-sm:text-[15px]">Selanjutnya</button>
                     </div>
                 </form>
             </div>
@@ -123,6 +135,7 @@
         });
 
         const genderSelect = document.getElementById('gender');
+
         function updateGenderColor() {
             if (genderSelect.value === 'default') {
                 genderSelect.classList.add('text-gray-700');
@@ -134,4 +147,18 @@
         // Jalankan saat halaman pertama kali load
         updateGenderColor();
     </script>
+
+
+    @if ($errors->has('message'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Sesi Habis',
+                    text: "{{ $errors->first('message') }}",
+                    confirmButtonColor: '#3986A3'
+                });
+            });
+        </script>
+    @endif
 @endsection

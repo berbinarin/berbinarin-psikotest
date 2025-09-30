@@ -19,15 +19,14 @@
                     </div>
                 </div>
 
-                {{-- Cek apakah ada error dengan key 'message' --}}
+
+
                 {{-- @if ($errors->has('message'))
-                    {{-- Jika ada, tampilkan dalam sebuah kotak alert --}}
-                {{-- <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
                         role="alert">
                         <span class="block sm:inline">{{ $errors->first('message') }}</span>
-                    </div> --}}
+                    </div>
                 @endif --}}
-
 
                 <!-- div Form Login -->
                 <form action="{{ route('auth.authenticate') }}" method="POST">
@@ -86,12 +85,27 @@
 @endsection
 
 @push('script')
+    {{-- Cek apakah ada error apapun --}}
     @if ($errors->any())
         <script>
+            let errorTitle = '';
+            let errorText = '';
+
+            // {{-- Cek apakah errornya adalah 'message' (dari sesi habis) --}}
+            @if ($errors->has('message'))
+                errorTitle = 'Sesi Habis';
+                errorText = "{{ $errors->first('message') }}";
+            @else
+                {{-- Jika bukan, berarti error validasi login biasa --}}
+                errorTitle = 'Login Gagal';
+                errorText = 'Username atau Password yang Anda masukkan salah.';
+            @endif
+
+            // Tampilkan SweetAlert dengan pesan yang sudah dinamis
             Swal.fire({
                 icon: 'error',
-                title: 'Login Gagal',
-                text: 'Username atau Password Salah',
+                title: errorTitle,
+                text: errorText,
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: 'OK',
             });
