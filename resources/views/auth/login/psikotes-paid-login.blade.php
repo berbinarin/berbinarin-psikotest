@@ -20,6 +20,7 @@
                 </div>
 
                 <!-- Form Login -->
+
                 <form action="{{ route('auth.authenticate') }}" method="POST">
                     @csrf
                     <input type="hidden" name="login_type" value="user" />
@@ -74,3 +75,34 @@
         </div>
     </section>
 @endsection
+
+
+@push('script')
+    {{-- Cek apakah ada error apapun --}}
+    @if ($errors->any())
+        <script>
+            let errorTitle = '';
+            let errorText = '';
+
+            // {{-- Cek apakah errornya adalah 'message' (dari sesi habis) --}}
+            @if ($errors->has('message'))
+                errorTitle = 'Sesi Habis';
+                errorText = "{{ $errors->first('message') }}";
+            @else
+                {{-- Jika bukan, berarti error validasi login biasa --}}
+                errorTitle = 'Login Gagal';
+                errorText = 'Username atau Password yang Anda masukkan salah.';
+            @endif
+
+            // Tampilkan SweetAlert dengan pesan yang sudah dinamis
+            Swal.fire({
+                icon: 'error',
+                title: errorTitle,
+                text: errorText,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK',
+            });
+        </script>
+    @endif
+@endpush
+
