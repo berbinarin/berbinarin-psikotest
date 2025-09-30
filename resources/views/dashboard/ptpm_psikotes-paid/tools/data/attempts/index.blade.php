@@ -50,6 +50,10 @@
                                                     <span class="inline-flex items-center rounded-[5px] bg-[#75BADB] px-2.5 py-0.5 text-[15px] font-medium text-white">
                                                         Progress
                                                     </span>
+                                                @elseif ($attempt->status === 'unfinished')
+                                                    <span class="inline-flex items-center rounded-[5px] bg-[#EAB308] px-2.5 py-0.5 text-[15px] font-medium text-white">
+                                                        Unfinished
+                                                    </span>
                                                 @endif
                                             </div>
                                         </td>

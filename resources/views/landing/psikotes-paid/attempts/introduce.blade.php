@@ -1,7 +1,7 @@
 @extends(
     "landing.layouts.test",
     [
-        "title" => "Tes 1",
+        'title' => 'Tes ' . str_pad($tool->order, 2, '0', STR_PAD_LEFT),
     ]
 )
 

@@ -26,24 +26,25 @@ class ToolController extends Controller
         return view('landing.psikotes-paid.tools.index', compact('user', 'tools'));
     }
 
-    // Verify Token
     public function verifyToken(VerifyTokenRequest $request)
     {
         $request->validated();
 
         $tool = Tool::find($request->tool_id);
 
-        if ($tool->token === $request->token) {
+        if ($tool && $tool->token === $request->token) {
             $this->attemptService->startOrResume($tool);
-        }
 
-        return redirect()->back()->withInput()->with([
-            'alert' => true,
-            'icon' => asset('assets/dashboard/images/error.png'),
-            'type' => 'error',
-            'title' => 'Token Salah',
-            'message' => 'Token yang kamu masukkan tidak valid. Silakan coba lagi.',
-        ]);
+            return redirect()->route('psikotes-paid.attempt.introduce');
+        } else {
+            return redirect()->back()->withInput()->with([
+                'alert' => true,
+                'icon' => asset('assets/dashboard/images/error.png'),
+                'type' => 'error',
+                'title' => 'Token Salah',
+                'message' => 'Token yang kamu masukkan tidak valid. Silakan coba lagi.',
+            ]);
+        }
     }
 
     // View Testimonial Page
