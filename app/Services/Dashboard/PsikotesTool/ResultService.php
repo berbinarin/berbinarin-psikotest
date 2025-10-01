@@ -823,6 +823,69 @@ class ResultService
         return $results;
     }
 
+    private function bdi(Attempt $attempt)
+    {
+        // 1. Load semua response + pertanyaan
+        $attempt->load('responses.question', 'user');
+
+        $totalScore = 0;
+
+        $answerDistribution = [
+            'A' => 0,
+            'B' => 0,
+            'C' => 0,
+            'D' => 0,
+        ];
+
+        // 2. Iterasi setiap jawaban
+        foreach ($attempt->responses as $response) {
+            if (!isset($response->question) || !isset($response->question->scoring)) {
+                continue;
+            }
+
+            $userChoice = $response->answer['choice'] ?? null;
+
+            if ($userChoice && isset($response->question->scoring[$userChoice])) {
+                $score = (int) $response->question->scoring[$userChoice];
+                $totalScore += $score;
+
+                // Tambahkan ke distribusi jawaban
+                if (isset($answerDistribution[$userChoice])) {
+                    $answerDistribution[$userChoice]++;
+                }
+            }
+        }
+
+        // 3. Tentukan deskripsi berdasarkan total skor
+        $description = $this->getBdiDescription($totalScore);
+
+        return [
+            'total_score' => $totalScore,
+            'description' => $description,
+            'answer_distribution' => $answerDistribution,
+        ];
+    }
+
+    private function getBdiDescription(int $score): string
+    {
+        // Range skor BDI (contoh, bisa disesuaikan dengan teori aslinya)
+        if ($score >= 0 && $score <= 10) {
+            return "Naik turunnya kondisi subjek masih dianggap normal/Sehat secara psikologis";
+        } elseif ($score >= 11 && $score <= 16) {
+            return "Gangguan mood ringan/Perlu meluangkan waktu untuk bertemu dengan psikolog";
+        } elseif ($score >= 17 && $score <= 20) {
+            return "Depresi klinis borderline/Perlu meluangkan waktu untuk bertemu dengan psikolog";
+        } elseif ($score >= 21 && $score <= 30) {
+            return "Depresi sedang/Perlu meluangkan waktu untuk bertemu dengan psikolog";
+        } elseif ($score >= 31 && $score <= 40) {
+            return "Depresi berat/Perlu meluangkan waktu untuk bertemu dengan psikolog";
+        } elseif ($score > 40) {
+            return "Depresi ekstrim/Perlu meluangkan waktu untuk bertemu dengan psikolog";
+        }
+
+        return "Deskripsi tidak ditemukan.";
+    }
+
     private function dass42(Attempt $attempt)
     {
         $attempt->load('responses.question', 'user');

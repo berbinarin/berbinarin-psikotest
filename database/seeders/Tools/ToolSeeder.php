@@ -167,6 +167,14 @@ class ToolSeeder extends Seeder
                                 <div><strong>5: Sangat Setuju</strong></div>',
                 'is_active' => true,
             ],
+            [
+                'name' => 'BDI',
+                'order' => 8,
+                'token' => '8',
+                'introduce' => '<p>Akan terdapat 4 pernyataan dalam setiap soal. Bacalah setiap pernyataan dan pilih salah satu pernyataan yang paling mencerminkan apa yang Anda rasakan selama beberapa hari ini. Pastikan Anda menjawab pernyataan tanpa ada yang terlewat.</p>
+                                <p>Tidak ada benar atau salah dalam pengerjaan soal ini, jadi silakan Anda menjawab sejujur-jujurnya.</p>',
+                'is_active' => true,
+            ],
         ];
 
         foreach ($tools as $tool) {

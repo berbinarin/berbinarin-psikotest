@@ -42,13 +42,12 @@
                                         {{-- Kolom Pertanyaan Utama --}}
                                         <td>
                                             @if ($question->type === 'multiple_choice' && empty($question->text))
-                                                {{-- Khusus Papi Kostick, gabungkan pilihan jadi satu --}}
-                                                <span class="font-semibold">A:</span>
-                                                {{ $question->options[0]['text'] ?? 'N/A' }} <br>
-                                                <span class="font-semibold">B:</span>
-                                                {{ $question->options[1]['text'] ?? 'N/A' }}
+                                                {{-- Render semua opsi --}}
+                                                @foreach ($question->options as $opt)
+                                                    <span class="font-semibold">{{ $opt['key'] }}:</span>
+                                                    {{ $opt['text'] ?? 'N/A' }} <br>
+                                                @endforeach
                                             @else
-                                                {{-- Untuk tipe lain, render teksnya (mendukung HTML) --}}
                                                 {!! $question->text ?? '<span class="text-red-500">Teks pertanyaan tidak ada.</span>' !!}
                                             @endif
                                         </td>
@@ -74,7 +73,8 @@
                                                         $formatJawaban = 'Pilihan Ya / Tidak';
                                                         break;
                                                     case 'multiple_choice':
-                                                        $formatJawaban = 'Pilihan Ganda (A/B)';
+                                                        $count = count($question->options ?? []);
+                                                        $formatJawaban = "Pilihan Ganda ({$count} Opsi)";
                                                         break;
                                                     case 'ordering':
                                                         $count = count($question->options['variants']['male'] ?? []);
@@ -140,11 +140,11 @@
                 // Tampilkan Teks Pertanyaan/Instruksi Utama
                 if (question.type === 'multiple_choice' && !question.text) {
                     modalHtml += `<h4 class="font-bold">Pernyataan:</h4>`;
-                    modalHtml +=
-                        `<ul class="list-disc pl-5"><li><strong>A:</strong> ${question.options[0].text}</li><li><strong>B:</strong> ${question.options[1].text}</li></ul><hr class="my-4">`;
-                } else if (question.text) {
-                    modalHtml +=
-                        `<h4 class="font-bold">Pertanyaan/Instruksi:</h4><div>${question.text}</div><hr class="my-4">`;
+                    modalHtml += `<ul class="list-disc pl-5">`;
+                    question.options.forEach(opt => {
+                        modalHtml += `<li><strong>${opt.key}:</strong> ${opt.text}</li>`;
+                    });
+                    modalHtml += `</ul><hr class="my-4">`;
                 }
 
                 // Tampilkan Pilihan Jawaban berdasarkan Tipe
