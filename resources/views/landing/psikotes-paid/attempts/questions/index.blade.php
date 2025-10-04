@@ -11,6 +11,7 @@
     </style>
 @endpush
 
+<!-- @include('components.alert') -->
 @section('content')
     <section>
         <div class="relative flex h-screen w-screen items-center justify-center overflow-hidden bg-cover bg-center md:bg-cover md:bg-center"
@@ -88,21 +89,11 @@
     <script type="module">
         const tool = @json($tool);
         const question = @json($question->load('section'));
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            showCloseButton: true,
-            width: '500px',
-            customClass: {
-                popup: 'toast',
-            },
-        });
-        const attemptId = {{ $attemptId }};
-        const targetTimeKey = `target-time_${attemptId}`;
-        const sectionOrderKey = `section-order_${attemptId}`;
-        const checkpointDeadlineKey = `checkpoint_deadline_${attemptId}`;
-        const duration = question.section.duration * 60000;
+         const attemptId = {{ $attemptId }};
+         const targetTimeKey = `target-time_${attemptId}`;
+         const sectionOrderKey = `section-order_${attemptId}`;
+         const checkpointDeadlineKey = `checkpoint_deadline_${attemptId}`;
+         const duration = question.section.duration * 60000;
 
         // Tambah target-time ke local storage jika belum dibuat
         // Hindari mengganti nilai target-time jika sudah ada di local storage
@@ -139,11 +130,14 @@
         timer.addEventListener('secondsUpdated', function(e) {
             $('#countdownExample .values').html(timer.getTimeValues().toString());
             if (timer.getTimeValues().minutes === 1 && timer.getTimeValues().seconds === 0) {
-                Toast.fire({
-                    icon: 'warning',
-                    title: 'Waktu tersisa 1 menit untuk bagian ini!',
-                    timer: 5000,
-                });
+                window.dispatchEvent(new CustomEvent('show-alert', {
+                    detail: {
+                        icon: @json(asset('assets/dashboard/images/warning.png')),
+                        title: 'Waktu tersisa 1 menit untuk bagian ini!',
+                        message: '',
+                        type: 'info'
+                    }
+                }));
             }
         });
 
@@ -163,11 +157,14 @@
                     });
 
                     if (result.isConfirmed) {
-                        Toast.fire({
-                            icon: 'success',
-                            title: 'Waktu pengerjaan tes telah ditambahkan!',
-                            timer: 4000,
-                        });
+                        window.dispatchEvent(new CustomEvent('show-alert', {
+                            detail: {
+                                icon: @json(asset('assets/dashboard/images/success.png')),
+                                title: 'Waktu pengerjaan tes telah ditambahkan!',
+                                message: '',
+                                type: 'info'
+                            }
+                        }));
 
                         return; // jangan lanjut ke complete
                     }
@@ -283,7 +280,7 @@
         });
 
         // Listener untuk tombol "Selanjutnya" DI DALAM MODAL (DENGAN PERBAIKAN)
-        document.getElementById('checkpoint-submit-button').addEventListener('click', () => {
+         document.getElementById('checkpoint-submit-button').addEventListener('click', () => {
             // Ambil form utama
             const mainForm = document.getElementById('question-form');
 
