@@ -16,6 +16,18 @@
 @endpush
 
 @section("content")
+    @if(request()->query('tes') === 'selesai')
+        <?php
+            session([
+                'alert' => true,
+                'icon' => asset('assets/dashboard/images/success.png'),
+                'type' => 'success',
+                'title' => 'Anda telah menyelesaikan tes!',
+                'message' => '',
+            ]);
+        ?>
+    @endif
+
     @include('components.alert')
     @include('components.confirm', ['type' => 'logout'])
     <!-- Pindahkan x-data ke div utama -->
@@ -108,25 +120,14 @@
 @endsection
 
 @push("script")
-    {{-- Sweet Alert --}}
+    {{-- Sweet Alert diganti: hapus Swal, hanya bersihkan query param 'tes' agar tidak men-trigger lagi --}}
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const tesStatus = urlParams.get('tes');
         if (tesStatus === 'selesai') {
-            Swal.fire({
-                title: 'Anda telah menyelesaikan tes!',
-                icon: 'success',
-                confirmButtonText: 'Oke',
-                customClass: {
-                    popup: 'rounded-xl px-6 pt-6 pb-6',
-                    confirmButton: 'mt-6 rounded-md bg-[#3986A3] px-[112px] py-[10px] text-[15px] font-extrabold text-white',
-                },
-                backdrop: 'rgba(0,0,0,0.5)',
-            }).then(() => {
-                const url = new URL(window.location.href);
-                url.searchParams.delete('tes');
-                window.history.replaceState({}, document.title, url.toString());
-            });
+            const url = new URL(window.location.href);
+            url.searchParams.delete('tes');
+            window.history.replaceState({}, document.title, url.toString());
         }
 
         document.getElementById("logout-button").addEventListener("click", function () {

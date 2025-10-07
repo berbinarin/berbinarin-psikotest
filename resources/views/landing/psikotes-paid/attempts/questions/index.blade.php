@@ -11,7 +11,7 @@
     </style>
 @endpush
 
-<!-- @include('components.alert') -->
+@include('components.alert')
 @section('content')
     <section>
         <div class="relative flex h-screen w-screen items-center justify-center overflow-hidden bg-cover bg-center md:bg-cover md:bg-center"
