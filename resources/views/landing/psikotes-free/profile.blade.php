@@ -164,7 +164,5 @@
             });
         </script>
     @endif
-@endsection
-
 @endpush
 

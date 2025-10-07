@@ -200,3 +200,10 @@
         </div>
     </sections>
 @endsection
+
+@push('script')
+    <script>
+        localStorage.removeItem('target-time');
+        localStorage.removeItem('section-order');
+    </script>
+@endpush
