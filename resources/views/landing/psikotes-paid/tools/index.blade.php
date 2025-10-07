@@ -16,7 +16,20 @@
 @endpush
 
 @section("content")
+    @if(request()->query('tes') === 'selesai')
+        <?php
+            session([
+                'alert' => true,
+                'icon' => asset('assets/dashboard/images/success.png'),
+                'type' => 'success',
+                'title' => 'Anda telah menyelesaikan tes!',
+                'message' => '',
+            ]);
+        ?>
+    @endif
+
     @include('components.alert')
+    @include('components.confirm', ['type' => 'logout'])
     <!-- Pindahkan x-data ke div utama -->
     <div x-data="{ open: false, toolId: null }" class="relative bg-none md:min-h-screen md:bg-cover md:bg-center" style="background-image: url('{{ asset("assets/auth/images/Login.png") }}')">
         <!-- Header & Sambutan -->
@@ -107,68 +120,25 @@
 @endsection
 
 @push("script")
-    {{-- Sweet Alert --}}
+    {{-- Sweet Alert diganti: hapus Swal, hanya bersihkan query param 'tes' agar tidak men-trigger lagi --}}
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const tesStatus = urlParams.get('tes');
-        const testimoniStatus = urlParams.get('testimoni');
-
         if (tesStatus === 'selesai') {
-            Swal.fire({
-                title: 'Anda telah menyelesaikan tes!',
-                icon: 'success',
-                confirmButtonText: 'Oke',
-                customClass: {
-                    popup: 'rounded-xl px-6 pt-6 pb-6',
-                    confirmButton: 'mt-6 rounded-md bg-[#3986A3] px-[112px] py-[10px] text-[15px] font-extrabold text-white',
-                },
-                backdrop: 'rgba(0,0,0,0.5)',
-            }).then(() => {
-                // Hapus query param biar tidak muncul lagi saat reload
-                const url = new URL(window.location.href);
-                url.searchParams.delete('tes');
-                window.history.replaceState({}, document.title, url.toString());
-            });
-        }
-
-        if (testimoniStatus === 'selesai') {
-            Swal.fire({
-                title: 'Anda telah mengisi testimoni!',
-                icon: 'success',
-                confirmButtonText: 'Oke',
-                customClass: {
-                    popup: 'rounded-xl px-6 pt-6 pb-6',
-                    confirmButton: 'mt-6 rounded-md bg-[#3986A3] px-[112px] py-[10px] text-[15px] font-extrabold text-white',
-                },
-                backdrop: 'rgba(0,0,0,0.5)',
-            }).then(() => {
-                // Hapus query param biar tidak muncul lagi saat reload
-                const url = new URL(window.location.href);
-                url.searchParams.delete('testimoni');
-                window.history.replaceState({}, document.title, url.toString());
-            });
+            const url = new URL(window.location.href);
+            url.searchParams.delete('tes');
+            window.history.replaceState({}, document.title, url.toString());
         }
 
         document.getElementById("logout-button").addEventListener("click", function () {
-        Swal.fire({
-            title: 'Apakah Anda yakin ingin keluar?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Ya, Keluar',
-            cancelButtonText: 'Batal',
-            customClass: {
-                popup: 'rounded-xl px-6 pt-6 pb-6',
-                confirmButton: 'mt-4 rounded-md bg-[#3986A3] px-6 py-2 text-[15px] font-extrabold text-white',
-                cancelButton: 'mt-4 rounded-md bg-gray-400 px-6 py-2 text-[15px] font-semibold text-white'
-            },
-            reverseButtons: true,
-            backdrop: 'rgba(0,0,0,0.5)',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById("logout-form").submit();
+            if (typeof showLogoutConfirm === 'function') {
+                showLogoutConfirm();
+            } else {
+                if (confirm('Apakah Anda yakin ingin keluar?')) {
+                    document.getElementById("logout-form").submit();
+                }
             }
         });
-    });
     </script>
 
     <!-- Swiper JS -->

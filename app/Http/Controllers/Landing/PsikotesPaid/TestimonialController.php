@@ -19,14 +19,23 @@ class TestimonialController extends Controller
     {
         foreach ($request->answer as $data) {
             Testimonial::create([
-                // --- PERUBAHAN DI SINI ---
-                'user_id' => auth()->id(), // Cara yang benar dan aman
+                'user_id' => auth()->id(),
                 'question' => $data['question'],
                 'type' => $data['type'],
                 'answer' => $data['value']
             ]);
         }
 
-        return response()->json(['message' => 'Testimoni berhasil disimpan.'], 201);
+
+        session()->flash('alert', true);
+        session()->flash('icon', asset('assets/dashboard/images/success.png'));
+        session()->flash('type', 'success');
+        session()->flash('title', 'Terima kasih!');
+        session()->flash('message', 'Testimoni berhasil disimpan.');
+
+        return response()->json([
+            'message' => 'Testimoni berhasil disimpan.',
+            'redirect' => route('psikotes-paid.tools.index')
+        ], 201);
     }
 }
