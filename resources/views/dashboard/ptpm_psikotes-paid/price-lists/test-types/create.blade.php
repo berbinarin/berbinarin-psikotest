@@ -6,6 +6,7 @@
 )
 
 @section("content")
+    @include('components.alert')
     <section class="flex w-full flex-col">
         <div class="py-4 md:pb-7 md:pt-5">
             <div>
