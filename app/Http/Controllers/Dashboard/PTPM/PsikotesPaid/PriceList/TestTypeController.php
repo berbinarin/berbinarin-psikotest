@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\TestType;
 use App\Models\TestCategory;
 use App\Models\RegistrantProfile;
+use Illuminate\Support\Facades\Validator;
 
 class TestTypeController extends Controller
 {
@@ -33,17 +34,30 @@ class TestTypeController extends Controller
      */
     public function store(Request $request, $categoryId)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'price' => 'required|numeric',
-            'description' => 'nullable|string',
+            'description' => 'required|string',
         ]);
+
+        if ($validator->fails()) {
+            $messages = $validator->errors()->all();
+            return redirect()->back()->withInput()->with([
+                'alert'   => true,
+                'type'    => 'error',
+                'title'   => 'Form belum lengkap',
+                'message' => implode(' ', $messages),
+                'icon'    => asset('assets/dashboard/images/error.png'),
+            ]);
+        }
+
         TestType::create([
             'test_category_id' => $categoryId,
             'name' => $request->name,
             'price' => $request->price,
             'description' => $request->description,
         ]);
+
         return redirect()->route('dashboard.price-list.test-types.by-category', $categoryId)->with([
             'alert'   => true,
             'type'    => 'success',
@@ -76,17 +90,30 @@ class TestTypeController extends Controller
      */
     public function update(Request $request, $categoryId, $id)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'price' => 'required|numeric',
-            'description' => 'nullable|string',
+            'description' => 'required|string',
         ]);
+
+        if ($validator->fails()) {
+            $messages = $validator->errors()->all();
+            return redirect()->back()->withInput()->with([
+                'alert'   => true,
+                'type'    => 'error',
+                'title'   => 'Form belum lengkap',
+                'message' => implode(' ', $messages),
+                'icon'    => asset('assets/dashboard/images/error.png'),
+            ]);
+        }
+
         $testType = TestType::findOrFail($id);
         $testType->update([
             'name' => $request->name,
             'price' => $request->price,
             'description' => $request->description,
         ]);
+
         return redirect()->route('dashboard.price-list.test-types.by-category', $categoryId)->with([
             'alert'   => true,
             'type'    => 'success',
