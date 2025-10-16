@@ -138,7 +138,13 @@ class CheckpointController extends Controller
         }
 
         return redirect()->route('dashboard.checkpoint.questions.index')
-            ->with('success', 'Soal berhasil ditambahkan.');
+            ->with([
+            'alert'   => true,
+            'type'    => 'success',
+            'title'   => 'Berhasil',
+            'message' => 'Data soal berhasil ditambahkan.',
+            'icon'    => asset('assets/dashboard/images/success.png'),
+        ]);
     }
 
     public function editQuestion($id)
@@ -183,7 +189,13 @@ class CheckpointController extends Controller
         ]);
 
         return redirect()->route('dashboard.checkpoint.questions.index')
-            ->with('success', 'Soal berhasil diperbarui.');
+            ->with([
+            'alert'   => true,
+            'type'    => 'success',
+            'title'   => 'Berhasil',
+            'message' => 'Data soal berhasil diperbarui.',
+            'icon'    => asset('assets/dashboard/images/success.png'),
+        ]);
     }
 
     public function destroyQuestion($id)
@@ -191,6 +203,12 @@ class CheckpointController extends Controller
         $question = CheckpointQuestion::find($id);
         $question->delete();
 
-        return redirect()->route('dashboard.checkpoint.questions.index')->with('success', 'Data berhasil dihapus.');
+        return redirect()->route('dashboard.checkpoint.questions.index')->with([
+            'alert'   => true,
+            'type'    => 'success',
+            'title'   => 'Berhasil',
+            'message' => 'Data soal berhasil dihapus.',
+            'icon'    => asset('assets/dashboard/images/success.png'),
+        ]);
     }
 }

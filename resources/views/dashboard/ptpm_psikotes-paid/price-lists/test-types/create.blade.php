@@ -23,7 +23,7 @@
 
         {{-- Test Type Create Form --}}
         <div class="flex flex-col gap-10 rounded-[24px] bg-white shadow px-10 py-7">
-            <form action="{{ route('dashboard.price-list.test-types.store', $category->id) }}" method="POST" class="flex flex-col gap-10">
+            <form id="testTypeForm" action="{{ route('dashboard.price-list.test-types.store', $category->id) }}" method="POST" class="flex flex-col gap-10">
                 @csrf
                 <div class="flex gap-10">
                     <div class="flex w-full flex-col">
@@ -54,7 +54,7 @@
                 <hr class="border-t-2 border-t-gray-400">
                 <div class="flex gap-4">
                     <button type="button" id="cancelButton" class="flex h-12 flex-1 items-center justify-center rounded-xl text-lg" style="width: 50%; border: 2px solid #3986a3; color: #3986a3">Batal</button>
-                    <button type="submit" class="flex h-12 flex-1 items-center justify-center rounded-xl text-lg" style="width: 50%; background: #3986a3; color: #fff">Simpan</button>
+                    <button type="submit" id="submitButton" class="flex h-12 flex-1 items-center justify-center rounded-xl text-lg" style="width: 50%; background: #3986a3; color: #fff">Simpan</button>
                 </div>
             </form>
         </div>
@@ -76,7 +76,7 @@
 @endsection
 
 @push("script")
-    <script>
+    <!-- <script>
         document.addEventListener('DOMContentLoaded', function () {
             const cancelButton = document.getElementById('cancelButton');
             const confirmModal = document.getElementById('confirmModal');
@@ -95,6 +95,41 @@
             cancelCancel.addEventListener('click', function () {
                 confirmModal.classList.add('hidden');
             });
+
+            const form = document.getElementById('testTypeForm');
+            const validationModal = document.getElementById('validationModal');
+            const validationMessage = document.getElementById('validationMessage');
+            const closeValidation = document.getElementById('closeValidation');
+
+            form.addEventListener('submit', function (e) {
+                const name = document.getElementById('name').value.trim();
+                const priceValue = document.getElementById('price').value;
+                const missing = [];
+
+                if (!name) {
+                    missing.push('Nama Jenis Tes');
+                }
+
+                if (priceValue === '' || priceValue === null) {
+                    missing.push('Harga');
+                } else {
+                    const price = parseFloat(priceValue);
+                    if (isNaN(price) || price < 0) {
+                        missing.push('Harga tidak valid (harus angka >= 0)');
+                    }
+                }
+
+                if (missing.length > 0) {
+                    e.preventDefault();
+                    validationMessage.innerHTML = '<strong>Field yang bermasalah:</strong><br>' + missing.map(m => '• ' + m).join('<br>');
+                    validationModal.classList.remove('hidden');
+                    return false;
+                }
+            });
+
+            closeValidation.addEventListener('click', function () {
+                validationModal.classList.add('hidden');
+            });
         });
-    </script>
+    </script> -->
 @endpush
