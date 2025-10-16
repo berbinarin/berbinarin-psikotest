@@ -136,7 +136,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
                 'scoring' => [
                     "scale" => "agreeableness",
-                    "reverse_scored" => true,
+                    "reverse_scored" => false,
                 ],
             ],
             [
@@ -748,7 +748,7 @@ class OceanQuestionSeeder extends Seeder
                 ],
                 'scoring' => [
                     "scale" => "conscientiousness",
-                    "reverse_scored" => false,
+                    "reverse_scored" => true,
                 ],
             ],
             [
