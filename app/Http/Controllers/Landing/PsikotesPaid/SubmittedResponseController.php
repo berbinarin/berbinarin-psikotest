@@ -91,7 +91,7 @@ class SubmittedResponseController extends Controller
             return redirect()->route('psikotes-paid.attempt.question');
         }
 
-        return redirect()->route('psikotes-paid.attempt.complete', ['attemptId']);
+        return redirect()->route('psikotes-paid.attempt.complete', ['attemptId' => $attemptId]);
     }
 
     public function complete()

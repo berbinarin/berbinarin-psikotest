@@ -17,15 +17,13 @@
 
 @section("content")
     @if(request()->query('tes') === 'selesai')
-        <?php
-            session([
-                'alert' => true,
-                'icon' => asset('assets/dashboard/images/success.png'),
-                'type' => 'success',
-                'title' => 'Anda telah menyelesaikan tes!',
-                'message' => '',
-            ]);
-        ?>
+        @php
+            session()->now('alert', true);
+            session()->now('icon', asset('assets/dashboard/images/success.png'));
+            session()->now('type', 'success');
+            session()->now('title', 'Anda telah menyelesaikan tes!');
+            session()->now('message', '');
+        @endphp
     @endif
 
     @include('components.alert')
