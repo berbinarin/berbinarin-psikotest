@@ -206,7 +206,6 @@ class BiodataPerusahaanQuestionSeeder extends Seeder
                     ],
                     [
                         'title' => 'SD',
-                        'group' => 'primary_school',
                         'repeatable' => false,
                         'group' => 'primary_school',
                         'inputs' => [
@@ -238,7 +237,6 @@ class BiodataPerusahaanQuestionSeeder extends Seeder
                 'options' => [
                     [
                         'title' => 'SMP',
-                        'group' => 'junior_high_school',
                         'repeatable' => false,
                         'group' => 'junior_high_school',
                         'inputs' => [
@@ -262,7 +260,6 @@ class BiodataPerusahaanQuestionSeeder extends Seeder
                     ],
                     [
                         'title' => 'SMA',
-                        'group' => 'senior_high_school',
                         'repeatable' => false,
                         'group' => 'senior_high_school',
                         'inputs' => [
@@ -438,31 +435,31 @@ class BiodataPerusahaanQuestionSeeder extends Seeder
                 'section_id' => $biodataPerusahaan->sections[0]->id,
                 'order' => 7,
                 'type' => 'essay',
-                'text' => 'Sebutkan Kelebihan/Kekuatan dari Pribadi Anda yang Mendukung Tugas Anda Saat Ini (Minimal 3)',
+                'text' => 'Sebutkan kelebihan/kekuatan dari pribadi Anda yang mendukung tugas Anda saat ini (minimal 3)',
             ],
             [
                 'section_id' => $biodataPerusahaan->sections[0]->id,
                 'order' => 8,
                 'type' => 'essay',
-                'text' => 'Sebutkan Faktor yang sering menghambat keberhasilan/kelancaran pelaksanaan tugas anda saat ini',
+                'text' => 'Sebutkan faktor yang sering menghambat keberhasilan/kelancaran pelaksanaan tugas Anda saat ini',
             ],
             [
                 'section_id' => $biodataPerusahaan->sections[0]->id,
                 'order' => 9,
                 'type' => 'essay',
-                'text' => 'Target capaian anda untuk 5 tahun ke depan ',
+                'text' => 'Target capaian Anda untuk 5 tahun ke depan ',
             ],
             [
                 'section_id' => $biodataPerusahaan->sections[0]->id,
                 'order' => 10,
                 'type' => 'essay',
-                'text' => 'Tuliskan satu pengalaman keberhasilan anda dalam menjalankan tugas, yang menurut anda merupakan tugas yang sangat sulit. Jelaskan tugas tersebut dan faktor -faktor yang membantu anda menemukan penyelesaian atas tugas yang sulit tersebut',
+                'text' => 'Tuliskan satu pengalaman keberhasilan Anda dalam menjalankan tugas, yang menurut Anda merupakan tugas yang sangat sulit. Jelaskan tugas tersebut dan faktor-faktor yang membantu Anda menemukan penyelesaian atas tugas yang sulit tersebut',
             ],
             [
                 'section_id' => $biodataPerusahaan->sections[0]->id,
                 'order' => 11,
                 'type' => 'essay',
-                'text' => 'Apakah anda sudah pernah melakukan tes psiåkologis sebelumnya? Jika Ya, untuk keperluan apa?',
+                'text' => 'Apakah Anda sudah pernah melakukan tes psiåkologis sebelumnya? Jika Ya, untuk keperluan apa?',
             ],
         ];
 

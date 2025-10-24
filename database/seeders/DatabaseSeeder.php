@@ -58,10 +58,14 @@ class DatabaseSeeder extends Seeder
             // OCEAN
             Tools\OCEAN\OceanSectionSeeder::class,
             Tools\OCEAN\OceanQuestionSeeder::class,
-            
+
             // HEXACO
             Tools\HEXACO\HexacoSectionSeeder::class,
             Tools\HEXACO\HexacoQuestionSeeder::class,
+
+            // BDI
+            Tools\BDI\BdiSectionSeeder::class,
+            Tools\BDI\BdiQuestionSeeder::class,
 
             // DASS-42
             Tools\DASS42\Dass42SectionSeeder::class,
@@ -106,7 +110,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             // Checkpoint
-           Checkpoint\CheckpointQuestionSeeder::class,
+            Checkpoint\CheckpointQuestionSeeder::class,
         ]);
     }
 }

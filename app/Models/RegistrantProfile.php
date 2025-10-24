@@ -22,7 +22,7 @@ class RegistrantProfile extends Model
         'reason',
         'schedule',
         'voucher_category',
-        'vouche_code',
+        'voucher_code',
         'discount_percentage',
         'student_card',
     ];

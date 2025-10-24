@@ -480,37 +480,37 @@ class BiodataKomunitasQuestionSeeder extends Seeder
             [
                 'section_id' => $biodataKomunitas->sections[0]->id,
                 'order' => 8,
-                'text' => 'Sebutkan Kelebihan/Kekuatan dari Pribadi Anda yang Mendukung Tugas Anda Saat Ini (Minimal 3)',
+                'text' => 'Sebutkan kelebihan/kekuatan dari pribadi Anda yang mendukung tugas Anda saat ini (minimal 3)',
                 'type' => 'essay',
             ],
             [
                 'section_id' => $biodataKomunitas->sections[0]->id,
                 'order' => 9,
-                'text' => 'Sebutkan Faktor yang Sering Menghambat Keberhasilan/Kelancaran Pelaksanaan Tugas Anda Saat Ini (Minimal 3)',
+                'text' => 'Sebutkan faktor yang sering menghambat keberhasilan/kelancaran pelaksanaan tugas Anda saat ini (minimal 3)',
                 'type' => 'essay',
             ],
             [
                 'section_id' => $biodataKomunitas->sections[0]->id,
                 'order' => 10,
-                'text' => 'Target capaian anda untuk lima (5) tahun ke depan ',
+                'text' => 'Target capaian Anda untuk 5 tahun ke depan ',
                 'type' => 'essay',
             ],
             [
                 'section_id' => $biodataKomunitas->sections[0]->id,
                 'order' => 11,
-                'text' => 'Tuliskan satu pengalaman keberhasilan anda dalam menjalankan tugas, yang menurut anda merupakan tugas yang sangat sulit. Jelaskan tugas tersebut dan faktor -faktor yang membantu anda menemukan penyelesaian atas tugas yang sulit tersebut',
+                'text' => 'Tuliskan satu pengalaman keberhasilan Anda dalam menjalankan tugas, yang menurut Anda merupakan tugas yang sangat sulit. Jelaskan tugas tersebut dan faktor-faktor yang membantu Anda menemukan penyelesaian atas tugas yang sulit tersebut',
                 'type' => 'essay',
             ],
             [
                 'section_id' => $biodataKomunitas->sections[0]->id,
                 'order' => 12,
-                'text' => 'Sudah Pernah Melakukan Pemeriksaan Psikologis Sebelumnya? Jika Iya, Untuk Keperluan Apa?',
+                'text' => 'Sudah pernah melakukan pemeriksaan psikologis sebelumnya? Jika iya, untuk keperluan apa?',
                 'type' => 'essay',
             ],
             [
                 'section_id' => $biodataKomunitas->sections[0]->id,
                 'order' => 13,
-                'text' => 'Mengetahui Informasi Ini Dari Mana?',
+                'text' => 'Mengetahui informasi ini dari mana?',
                 'type' => 'essay',
             ],
             [
