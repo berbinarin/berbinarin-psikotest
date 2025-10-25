@@ -21,6 +21,16 @@
                     </div>
                 </div>
                 <div class="rounded-md bg-white shadow mb-7 px-4 py-4 md:px-8 md:py-7 xl:px-10">
+
+                    <style>
+                        table.dataTable th,
+                        table.dataTable td {
+                            vertical-align: top;
+                            white-space: normal !important;
+                            word-break: break-word;
+                        }
+                    </style>
+
                     <div class="mt-4 overflow-x-auto">
                         <table id="table" class="display w-full whitespace-normal" style="overflow-x: scroll">
                             {{-- Header tabel yang bersih dan informatif --}}
@@ -130,14 +140,25 @@
     <script>
         $(document).ready(function() {
             $('#table').DataTable({
-                "scrollX": true
+                scrollX: true,
+                autoWidth: false, 
+                deferRender: true,
+                columns: [
+                    { width: '60px' },
+                    null, 
+                    { width: '150px' }, 
+                    { width: '200px' }, 
+                    { width: '80px' } 
+                ],
+                columnDefs: [
+                    { targets: [0,2,3,4], className: 'dt-center' }
+                ],
             });
 
             $('#table').on('click', '.btnViewDetail', function() {
                 const question = $(this).data('question');
                 let modalHtml = '';
 
-                // Tampilkan Teks Pertanyaan/Instruksi Utama
                 if (question.type === 'multiple_choice' && !question.text) {
                     modalHtml += `<h4 class="font-bold">Pernyataan:</h4>`;
                     modalHtml += `<ul class="list-disc pl-5">`;
@@ -147,14 +168,13 @@
                     modalHtml += `</ul><hr class="my-4">`;
                 }
 
-                // Tampilkan Pilihan Jawaban berdasarkan Tipe
                 if (question.options) {
                     modalHtml += `<h4 class="font-bold">Pilihan Jawaban:</h4>`;
                     switch (question.type) {
                         case 'likert':
                         case 'binary_choice':
                         case 'multiple_choice':
-                            if (question.text) { // Hanya tampilkan jika ada pertanyaan utama
+                            if (question.text) { 
                                 modalHtml += '<ul class="list-disc pl-5">';
                                 question.options.forEach(opt => {
                                     modalHtml +=

@@ -25,7 +25,7 @@
                     @if (View::exists("dashboard.ptpm_psikotes-paid.tools.data.attempts.results." . \Illuminate\Support\Str::slug($tool->name)))
                         @include("dashboard.ptpm_psikotes-paid.tools.data.attempts.results." . \Illuminate\Support\Str::slug($tool->name))
                     @else
-                        <p>Dashboard untuk alat psikotes {{ $tool->name }} belum ada</p>
+                        <p>Dash board untuk alat psikotes {{ $tool->name }} belum ada</p>
                     @endif
                 </div>
             </div>
