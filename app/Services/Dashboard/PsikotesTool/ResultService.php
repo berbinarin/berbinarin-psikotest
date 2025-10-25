@@ -1214,10 +1214,208 @@ class ResultService
     }
 
     private function d4Bagian1(Attempt $attempt){
+        // 1. Load semua response + question
+        $attempt->load('responses.question', 'user');
 
+        // 2. Filter hanya pertanyaan multiple choice
+        $multipleChoiceResponses = $attempt->responses
+            ->filter(fn($r) => $r->question && $r->question->type === 'multiple_choice')
+            ->values();
+
+        // 3. Lewati dua soal pertama (contoh latihan)
+        $responsesToScore = $multipleChoiceResponses->slice(2);
+
+        $totalQuestions = $responsesToScore->count();
+        $correctCount = 0;
+        $wrongCount = 0;
+
+        // 4. Hitung benar/salah
+        foreach ($responsesToScore as $response) {
+            $question = $response->question;
+            $userChoice = $response->answer['choice'] ?? null;
+            $correctAnswer = $question->scoring['correct_answer'] ?? null;
+
+            if ($userChoice && $correctAnswer) {
+                if ($userChoice === $correctAnswer) {
+                    $correctCount++;
+                } else {
+                    $wrongCount++;
+                }
+            }
+        }
+
+        // 5. Hitung persentase benar
+        $percentage = $totalQuestions > 0
+            ? round(($correctCount / $totalQuestions) * 100, 2)
+            : 0;
+
+        // 6. Ambil jenis kelamin user
+        $gender = strtolower($attempt->user->gender ?? 'unknown');
+
+        // 7. Dapatkan kategori + deskripsi hasil
+        $result = $this->getD4Description($percentage, $gender);
+
+        // 8. Kembalikan hasil lengkap
+        return [
+            'total_questions' => $totalQuestions,
+            'correct' => $correctCount,
+            'wrong' => $wrongCount,
+            'percentage' => $percentage,
+            'gender' => $gender,
+            'category' => $result['category'],
+            'description' => $result['description'],
+        ];
     }
 
     private function d4Bagian2(Attempt $attempt){
+        // 1. Load semua response + question
+        $attempt->load('responses.question', 'user');
 
+        // 2. Filter hanya pertanyaan multiple choice
+        $multipleChoiceResponses = $attempt->responses
+            ->filter(fn($r) => $r->question && $r->question->type === 'multiple_choice')
+            ->values();
+
+        // 3. Inisialisasi responses to score (semua soal)
+        $responsesToScore = $multipleChoiceResponses;
+
+        $totalQuestions = $responsesToScore->count();
+        $correctCount = 0;
+        $wrongCount = 0;
+
+        // 4. Hitung benar/salah
+        foreach ($responsesToScore as $response) {
+            $question = $response->question;
+            $userChoice = $response->answer['choice'] ?? null;
+            $correctAnswer = $question->scoring['correct_answer'] ?? null;
+
+            if ($userChoice && $correctAnswer) {
+                if ($userChoice === $correctAnswer) {
+                    $correctCount++;
+                } else {
+                    $wrongCount++;
+                }
+            }
+        }
+
+        // 5. Hitung persentase benar
+        $percentage = $totalQuestions > 0
+            ? round(($correctCount / $totalQuestions) * 100, 2)
+            : 0;
+
+        // 6. Ambil jenis kelamin user
+        $gender = strtolower($attempt->user->gender ?? 'unknown');
+
+        // 7. Dapatkan kategori + deskripsi hasil
+        $result = $this->getD4Description($correctCount, $gender);
+
+        // 8. Kembalikan hasil lengkap
+        return [
+            'total_questions' => $totalQuestions,
+            'correct' => $correctCount,
+            'wrong' => $wrongCount,
+            'percentage' => $percentage,
+            'gender' => $gender,
+            'percentile' => $result['percentile'],
+            'category' => $result['category'],
+        ];
+    }
+
+    private function getD4Description($correctCount, $gender)
+    {
+        $gender = strtolower($gender ?? 'male');
+
+        $norms = [
+            'male' => [
+                ['min' => 0,  'max' => 34, 'percentile' => 'P1'],
+                ['min' => 35, 'max' => 38, 'percentile' => 'P3'],
+                ['min' => 39, 'max' => 42, 'percentile' => 'P5'],
+                ['min' => 43, 'max' => 45, 'percentile' => 'P10'],
+                ['min' => 46, 'max' => 47, 'percentile' => 'P15'],
+                ['min' => 48, 'max' => 49, 'percentile' => 'P20'],
+                ['min' => 50, 'max' => 50, 'percentile' => 'P25'],
+                ['min' => 51, 'max' => 52, 'percentile' => 'P30'],
+                ['min' => 53, 'max' => 53, 'percentile' => 'P35'],
+                ['min' => 54, 'max' => 54, 'percentile' => 'P40'],
+                ['min' => 55, 'max' => 56, 'percentile' => 'P45'],
+                ['min' => 57, 'max' => 57, 'percentile' => 'P50'],
+                ['min' => 58, 'max' => 59, 'percentile' => 'P55'],
+                ['min' => 60, 'max' => 60, 'percentile' => 'P60'],
+                ['min' => 61, 'max' => 61, 'percentile' => 'P65'],
+                ['min' => 62, 'max' => 63, 'percentile' => 'P70'],
+                ['min' => 64, 'max' => 65, 'percentile' => 'P75'],
+                ['min' => 66, 'max' => 67, 'percentile' => 'P80'],
+                ['min' => 68, 'max' => 70, 'percentile' => 'P85'],
+                ['min' => 71, 'max' => 74, 'percentile' => 'P90'],
+                ['min' => 75, 'max' => 80, 'percentile' => 'P95'],
+                ['min' => 81, 'max' => 91, 'percentile' => 'P97'],
+                ['min' => 92, 'max' => 100, 'percentile' => 'P99'],
+            ],
+            'female' => [
+                ['min' => 0,  'max' => 42, 'percentile' => 'P1'],
+                ['min' => 43, 'max' => 46, 'percentile' => 'P3'],
+                ['min' => 47, 'max' => 49, 'percentile' => 'P5'],
+                ['min' => 50, 'max' => 52, 'percentile' => 'P10'],
+                ['min' => 53, 'max' => 54, 'percentile' => 'P15'],
+                ['min' => 55, 'max' => 56, 'percentile' => 'P20'],
+                ['min' => 57, 'max' => 57, 'percentile' => 'P25'],
+                ['min' => 58, 'max' => 59, 'percentile' => 'P30'],
+                ['min' => 60, 'max' => 60, 'percentile' => 'P35'],
+                ['min' => 61, 'max' => 61, 'percentile' => 'P40'],
+                ['min' => 62, 'max' => 63, 'percentile' => 'P45'],
+                ['min' => 64, 'max' => 64, 'percentile' => 'P50'],
+                ['min' => 65, 'max' => 65, 'percentile' => 'P55'],
+                ['min' => 66, 'max' => 67, 'percentile' => 'P60'],
+                ['min' => 68, 'max' => 69, 'percentile' => 'P65'],
+                ['min' => 70, 'max' => 70, 'percentile' => 'P70'],
+                ['min' => 71, 'max' => 72, 'percentile' => 'P75'],
+                ['min' => 73, 'max' => 74, 'percentile' => 'P80'],
+                ['min' => 75, 'max' => 76, 'percentile' => 'P85'],
+                ['min' => 77, 'max' => 80, 'percentile' => 'P90'],
+                ['min' => 81, 'max' => 84, 'percentile' => 'P95'],
+                ['min' => 85, 'max' => 92, 'percentile' => 'P97'],
+                ['min' => 93, 'max' => 100, 'percentile' => 'P99'],
+            ],
+        ];
+
+        $rules = $norms[$gender] ?? $norms['male'];
+
+        $percentile = collect($rules)->first(function ($rule) use ($correctCount) {
+            return $correctCount >= $rule['min'] && $correctCount <= $rule['max'];
+        })['percentile'] ?? 'Tidak Diketahui';
+
+        $categoryGroups = [
+            'P1' => 'Sangat Rendah',
+            'P3' => 'Rendah',
+            'P5' => 'Rendah',
+            'P10' => 'Rendah',
+            'P15' => 'Rendah',
+            'P20' => 'Rendah',
+            'P25' => 'Cukup Rendah',
+            'P30' => 'Cukup Rendah',
+            'P35' => 'Cukup Rendah',
+            'P40' => 'Cukup Rendah',
+            'P45' => 'Sedang',
+            'P50' => 'Sedang',
+            'P55' => 'Sedang',
+            'P60' => 'Sedang',
+            'P65' => 'Cukup Tinggi',
+            'P70' => 'Cukup Tinggi',
+            'P75' => 'Cukup Tinggi',
+            'P80' => 'Cukup Tinggi',
+            'P85' => 'Sangat Tinggi',
+            'P90' => 'Sangat Tinggi',
+            'P95' => 'Sangat Tinggi',
+            'P97' => 'Sangat Tinggi',
+            'P99' => 'Sangat Tinggi',
+        ];
+
+        $category = $categoryGroups[$percentile] ?? 'Tidak Diketahui';
+
+        return [
+            'correct_count' => $correctCount,
+            'category' => $category,     // Rendah, Sedang, Baik, Sangat Baik
+            'percentile' => $percentile, // P1, P2, ..., P10
+        ];
     }
 }
