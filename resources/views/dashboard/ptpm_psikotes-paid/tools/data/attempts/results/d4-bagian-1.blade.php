@@ -102,7 +102,7 @@
                     </thead>
                     <tbody class="divide-y divide-gray-200">
                         {{-- Add static data for demonstration --}}
-                        @foreach ($attempt->responses as $response)
+                        @foreach ($attempt->responses->slice(2) as $response)
                             <tr class="border-b">
                                 <td class="p-2 text-center">{{ $loop->iteration }}.</td>
                                 <td class="p-2">
