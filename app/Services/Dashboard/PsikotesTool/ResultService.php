@@ -1307,7 +1307,7 @@ class ResultService
         $gender = strtolower($attempt->user->gender ?? 'unknown');
 
         // 7. Dapatkan kategori + deskripsi hasil
-        $result = $this->getD4Description($correctCount, $gender);
+        $result = $this->getD4Description($percentage, $gender);
 
         // 8. Kembalikan hasil lengkap
         return [
@@ -1321,7 +1321,7 @@ class ResultService
         ];
     }
 
-    private function getD4Description($correctCount, $gender)
+    private function getD4Description($percentage, $gender)
     {
         $gender = strtolower($gender ?? 'male');
 
@@ -1380,8 +1380,8 @@ class ResultService
 
         $rules = $norms[$gender] ?? $norms['male'];
 
-        $percentile = collect($rules)->first(function ($rule) use ($correctCount) {
-            return $correctCount >= $rule['min'] && $correctCount <= $rule['max'];
+        $percentile = collect($rules)->first(function ($rule) use ($percentage) {
+            return $percentage >= $rule['min'] && $percentage <= $rule['max'];
         })['percentile'] ?? 'Tidak Diketahui';
 
         $categoryGroups = [
@@ -1413,7 +1413,7 @@ class ResultService
         $category = $categoryGroups[$percentile] ?? 'Tidak Diketahui';
 
         return [
-            'correct_count' => $correctCount,
+            'percentage' => $percentage,
             'category' => $category,     // Rendah, Sedang, Baik, Sangat Baik
             'percentile' => $percentile, // P1, P2, ..., P10
         ];
