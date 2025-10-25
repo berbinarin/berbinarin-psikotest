@@ -1250,7 +1250,7 @@ class ResultService
             : 0;
 
         // 6. Ambil jenis kelamin user
-        $gender = strtolower($attempt->user->gender ?? 'unknown');
+        $gender = strtolower($attempt->user->profile->gender ?? 'unknown');
 
         // 7. Dapatkan kategori + deskripsi hasil
         $result = $this->getD4Description($percentage, $gender);
@@ -1262,8 +1262,8 @@ class ResultService
             'wrong' => $wrongCount,
             'percentage' => $percentage,
             'gender' => $gender,
+            'percentile' => $result['percentile'],
             'category' => $result['category'],
-            'description' => $result['description'],
         ];
     }
 
