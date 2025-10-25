@@ -16,7 +16,7 @@
             <hr class="my-4 border-t-2 border-[#75BADB]" />
 
                 <div class="overflow-y-auto">
-                    <div class="flex w-full items-start">
+                    <div class="flex w-full items-start justify-evenly">
                         <div class="flex flex-col items-center" style="width: 200px; flex: 0 0 200px">
                             <div style="width: 200px; height: 200px">
                                 <canvas id="chart-d4"></canvas>
@@ -34,27 +34,33 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="ml-8 mt-5 flex flex-col">
-                            <div class="mb-2">
-                                <span class="text-md">
-                                    Benar:
-                                    <span class="font-semibold">{{ $data['correct'] }} Poin</span>
-                                </span>
+                            <div class="text-base  mt-4 ">
+                                <table>
+                                    <tr>
+                                        <td>Total Pertanyaan Terjawab</td>
+                                        <td class="font-semibold">: {{ $data['total_questions'] }} Pertanyaan</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Benar</td>
+                                        <td class="font-semibold">: {{ $data['correct'] }} Pertanyaan</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Salah</td>
+                                        <td class="font-semibold">: {{ $data['wrong'] }} Pertanyaan</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>Persentil</td>
+                                        <td class="font-semibold">: {{ $data['percentile'] }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kategori</td>
+                                        <td class="font-semibold">: {{ $data['category'] }}</td>
+                                    </tr>
+                                    
+                                </table>
                             </div>
-                            <div class="mb-2">
-                                <span class="text-md">
-                                    Salah:
-                                    <span class="font-semibold">{{ $data['wrong'] }} Poin</span>
-                                </span>
-                            </div>
-                            <div class="mb-2">
-                                <span class="text-md">
-                                    Kategori:
-                                    <span class="font-semibold">{{ $data['category'] }}</span>
-                                </span>
-                            </div>
-                        </div>
+                        {{-- </div> --}}
                     </div>
                 </div>
 
@@ -63,28 +69,7 @@
             {{-- Kesimpulan --}}
             <div class="mt-4 rounded-md bg-white/50">
                 <h3 class="mb-1 text-[18px] font-bold text-[#75BADB]">Kesimpulan</h3>
-                <div class="space-y-2 text-sm text-gray-700">
-                    <div>
-                        Total Pertanyaan Terjawab:
-                        <span class="font-semibold">{{ $data['total_questions'] }} Pertanyaan</span>
-                    </div>
-                    <div>
-                        Total Benar:
-                        <span class="font-semibold">{{ $data['correct'] }} Pertanyaan</span>
-                    </div>
-                    <div>
-                        Total Salah:
-                        <span class="font-semibold">{{ $data['wrong'] }} Pertanyaan</span>
-                    </div>
-                    <div>
-                        Persentil:
-                        <span class="font-semibold">{{ $data['percentile'] }}</span>
-                    </div>
-                    <div>
-                        Kategori:
-                        <span class="font-semibold">{{ $data['category'] }}</span>
-                    </div>
-                </div>
+                <p><span class="capitalize">{{ $attempt->user->name ?? "User Name" }}</span> berada pada persentil {{ substr($data['percentile'],1)}} ({{ $data['percentile'] }}), yang berarti menempati posisi di atas sekitar  {{ substr($data['percentile'],1)}}% dari kelompok norma. Dengan kata lain, {{ 100-(int) substr($data['percentile'],1)}}% peserta lain memiliki skor lebih tinggi pada aspek D4, yaitu penalaran abstrak dan logika kombinasi simbolik. Dengan demikian, <span class="capitalize">{{ $attempt->user->name ?? "User Name" }}</span> termasuk dalam kategori <span class="lowercase">{{ $data['category'] }}</span> untuk kemampuan tersebut.</p>
             </div>
         </div>
 
