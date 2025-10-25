@@ -23,8 +23,8 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_1->sections[0]->id,
                 'order' => 1,
-                'text' => '<p>1.AB  AC  AD  AE  AF</p>
-                            <p>2.  aA  aB  BA  Ba Bb</p>',
+                'text' => '<p>1. <strong>AB</strong>  AC  AD  AE  AF</p>
+                            <p>2. aA  aB  BA  Ba <strong>Bb</strong></p>',
                 'type' => 'instruction',
             ],
             [
@@ -58,11 +58,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_1->sections[0]->id,
                 'order' => 4,
-                'text' => '<p>1. nv  nx  xn  vx  xv</p>
-                            <p>2. bl  dl  ld  lb    bd</p>
-                            <p>3. ar     au   ur   ra   ru</p>
-                            <p>4. wu   vu   vw wv   uw</p>
-                            <p>5. wm  um  mu  wu mw</p>',
+                'text' => '<p>1. <strong>nv</strong>  nx  xn  vx  xv</p>
+                            <p>2. bl  dl  ld  <strong>lb</strong>  bd</p>
+                            <p>3. ar  au  ur  ra  <strong>ru</strong></p>
+                            <p>4. <strong>wu</strong>  vu  vw  wv  uw</p>
+                            <p>5. wm  um  mu  wu  <strong>mw</strong></p>',
                 'type' => 'instruction',
             ],
             [
@@ -135,11 +135,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_1->sections[0]->id,
                 'order' => 10,
-                'text' => '<p>6.  79  76     67  69    97</p>
-                            <p>7.  ra na    nr    rn     ar</p>
-                            <p>8.  za  mz   zm  az    ma</p>
-                            <p>9.  AV  VN   NV  NA  VA</p>
-                            <p>10. OQ  CQ  QC  QO OC</p>',
+                'text' => '<p>6. <strong>79</strong>  76  67  69  97</p>
+                            <p>7. ra  <strong>na</strong>  nr  rn  ar</p>
+                            <p>8. za  mz  <strong>zm</strong>  az  ma</p>
+                            <p>9. AV  VN  NV  <strong>NA</strong>  VA</p>
+                            <p>10. OQ  <strong>CQ</strong>  QC  QO  OC</p>',
                 'type' => 'instruction',
             ],
             [
@@ -212,11 +212,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_1->sections[0]->id,
                 'order' => 16,
-                'text' => '<p>11.CU  UU  UC  US  CC</p>
-                            <p>12. 4H  4N   NH  N4 HN</p>
-                            <p>13. Rr   RP  pR   PP rr</p>
-                            <p>14. AA   A8  8a   8A  aA</p>
-                            <p>15. LT   Tt    tT    Tl   tt</p>',
+                'text' => '<p>11. <strong>CU</strong>  UU  UC  US  CC</p>
+                            <p>12. 4H  4N  NH  N4  <strong>HN</strong></p>
+                            <p>13. Rr  RP  <strong>pR</strong>  PP  rr</p>
+                            <p>14. AA  A8  8a  <strong>8A</strong>  aA</p>
+                            <p>15. LT  Tt  <strong>tT</strong>  Tl  tt</p>',
                 'type' => 'instruction',
             ],
             [
@@ -289,11 +289,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_1->sections[0]->id,
                 'order' => 22,
-                'text' => '<p>16. Av  Vv  av  VV AA</p>
-                            <p>17. 4d  3c 4a  4c   3a</p>
-                            <p>18. X7  V9 V5  X9 V7</p>
-                            <p>19. A9 7b  79  9b   b7</p>
-                            <p>20. 20  25 02  05   52</p>',
+                'text' => '<p>16. Av  <strong>Vv</strong>  av  VV  AA</p>
+                            <p>17. 4d  3c  <strong>4a</strong>  4c  3a</p>
+                            <p>18. X7  V9  V5  X9  <strong>V7</strong></p>
+                            <p>19. <strong>A9</strong>  7b  79  9b  b7</p>
+                            <p>20. <strong>20</strong>  25  02  05  52</p>',
                 'type' => 'instruction',
             ],
             [
@@ -366,11 +366,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_1->sections[0]->id,
                 'order' => 28,
-                'text' => '<p>21. ar     ra ro     or   oa</p>
-                            <p>22. lc     lo    ol    oc   co</p>
-                            <p>23. ls     l3    3l     3s   sl</p>
-                            <p>24. ma  cm  ca   mc  am</p>
-                            <p>25. xv    vx vw   wx   wv</p>',
+                'text' => '<p>21. ar  ra  <strong>ro</strong>  or  oa</p>
+                            <p>22. lc  lo  ol  <strong>oc</strong>  co</p>
+                            <p>23. ls  l3  3l  3s  <strong>sl</strong></p>
+                            <p>24. ma  cm  ca  <strong>mc</strong>  am</p>
+                            <p>25. xv  vx  <strong>vw</strong>  wx  wv</p>',
                 'type' => 'instruction',
             ],
             [
@@ -443,11 +443,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_1->sections[0]->id,
                 'order' => 34,
-                'text' => '<p>26.  ud un  nd  nu  du</p>
-                            <p>27.  fk    lk   kf  lf    kl</p>
-                            <p>28.  pq  qg  gp  gq qp</p>
-                            <p>29.  2u 2q  qu  q2  u2</p>
-                            <p>30.  41  44 14  11  40</p>',
+                'text' => '<p>26. <strong>ud</strong>  un  nd  nu  du</p>
+                            <p>27. fk  <strong>lk</strong>  kf  lf  kl</p>
+                            <p>28. pq  <strong>qg</strong>  gp  gq  qp</p>
+                            <p>29. 2u  2q  <strong>qu</strong>  q2  u2</p>
+                            <p>30. 41  44  <strong>14</strong>  11  40</p>',
                 'type' => 'instruction',
             ],
             [
@@ -520,11 +520,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_1->sections[0]->id,
                 'order' => 40,
-                'text' => '<p>31.  nr     ne   en     rn   re</p>
-                            <p>32.  bb     dd  ld      db  bd</p>
-                            <p>33.  RB   RD  DR   BR BD</p>
-                            <p>34.  MW  MV  VW VM  WM</p>
-                            <p>35.  OD   OB  BD  DO  BO</p>',
+                'text' => '<p>31. nr  ne  en  rn  <strong>re</strong></p>
+                            <p>32. bb  <strong>dd</strong>  ld  db  bd</p>
+                            <p>33. RB  <strong>RD</strong>  DR  BR  BD</p>
+                            <p>34. MW  MV  VW  <strong>VM</strong>  WM</p>
+                            <p>35. OD  OB  BD  <strong>DO</strong>  BO</p>',
                 'type' => 'instruction',
             ],
             [
@@ -597,11 +597,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_1->sections[0]->id,
                 'order' => 46,
-                'text' => '<p>36. PR  PB RB  RP  BP</p>
-                            <p>37.  Dd  Db  dB bB  DD</p>
-                            <p>38.  EE  Ef   eF  Fe FF</p>
-                            <p>39.  Ze   Zz  ZE  zZ eZ</p>
-                            <p>40.  Zz   Nz  zZ  zn ZN</p>',
+                'text' => '<p>36. PR  <strong>PB</strong>  RB  RP  BP</p>
+                            <p>37. Dd  Db  <strong>dB</strong>  bB  DD</p>
+                            <p>38. EE  Ef  eF  Fe  <strong>FF</strong></p>
+                            <p>39. Ze  Zz  <strong>ZE</strong>  zZ  eZ</p>
+                            <p>40. <strong>Zz</strong>  Nz  zZ  zn  ZN</p>',
                 'type' => 'instruction',
             ],
             [
@@ -674,11 +674,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_1->sections[0]->id,
                 'order' => 52,
-                'text' => '<p>41.  7c  9b  9c 9e  7b</p>
-                            <p>42.  7c 2b  7b  2d  7d</p>
-                            <p>43.  n3  Sn  3s ns  3n</p>
-                            <p>44.  20  25  02  05 52</p>
-                            <p>45.  ec  ac  ca  ce  ae</p>',
+                'text' => '<p>41. 7c  9b  <strong>9c</strong>  9e  7b</p>
+                            <p>42. 7c  <strong>2b</strong>  7b  2d  7d</p>
+                            <p>43. <strong>n3</strong>  Sn  3s  ns  3n</p>
+                            <p>44. 20  <strong>25</strong>  02  05  52</p>
+                            <p>45. ec  ac  <strong>ca</strong>  ce  ae</p>',
                 'type' => 'instruction',
             ],
             [
@@ -751,11 +751,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_1->sections[0]->id,
                 'order' => 58,
-                'text' => '<p>46.  2h    h4  42 4h   24</p>
-                            <p>47.  av    va vo  ao   ov</p>
-                            <p>48.  fa     fr    ra rf    ar</p>
-                            <p>49.  ma  cm  ca  mc am</p>
-                            <p>50.  rc    cr    co  oc  or</p>',
+                'text' => '<p>46. 2h  h4  42  <strong>4h</strong>  24</p>
+                            <p>47. <strong>av</strong>  va  vo  ao  ov</p>
+                            <p>48. fa  <strong>fr</strong>  ra  rf  ar</p>
+                            <p>49. <strong>ma</strong>  cm  ca  mc  am</p>
+                            <p>50. rc  cr  <strong>co</strong>  oc  or</p>',
                 'type' => 'instruction',
             ],
             [
@@ -828,11 +828,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_1->sections[0]->id,
                 'order' => 64,
-                'text' => '<p>51.  ch   ho  hc    oc  oh</p>
-                            <p>52.  sc    rs   rc    cs cr</p>
-                            <p>53.  ar    au  ur    ra   ru</p>
-                            <p>54.  pq   qg  gp   gq qp</p>
-                            <p>55.  am  na  nm  mn an</p>',
+                'text' => '<p>51. <strong>ch</strong>  ho  hc  oc  oh</p>
+                            <p>52. sc  <strong>rs</strong>  rc  cs  cr</p>
+                            <p>53. <strong>ar</strong>  au  ur  ra  ru</p>
+                            <p>54. pq  qg  <strong>gp</strong>  gq  qp</p>
+                            <p>55. am  na  nm  <strong>mn</strong>  an</p>',
                 'type' => 'instruction',
             ],
             [
@@ -905,11 +905,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_1->sections[0]->id,
                 'order' => 70,
-                'text' => '<p>56.  gj    jg  pg  jp   gp</p>
-                            <p>57.  tp   et   ep  pe pt</p>
-                            <p>58.  ra   na  nr rn   ar</p>
-                            <p>59.  bb  dd  ld   db bd</p>
-                            <p>60.  l8    8l   la 8a  a8</p>',
+                'text' => '<p>56. gj  <strong>jg</strong>  pg  jp  gp</p>
+                            <p>57. <strong>tp</strong>  et  ep  pe  pt</p>
+                            <p>58. ra  na  nr  rn  <strong>ar</strong></p>
+                            <p>59. bb  dd  ld  <strong>db</strong>  bd</p>
+                            <p>60. l8  <strong>8l</strong>  la  8a  a8</p>',
                 'type' => 'instruction',
             ],
             [
@@ -982,11 +982,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_1->sections[0]->id,
                 'order' => 76,
-                'text' => '<p>61. HN  HZ  ZH   ZN NH</p>
-                            <p>62. RR  BR  RB   BB RP</p>
-                            <p>63. CU  UU  UC  US CC</p>
-                            <p>64. PR  PB   RB  RP BP</p>
-                            <p>65. CK  KJ   JC   KC JK</p>',
+                'text' => '<p>61. HN  HZ  ZH  ZN  <strong>NH</strong></p>
+                            <p>62. RR  BR  RB  <strong>BB</strong>  RP</p>
+                            <p>63. CU  <strong>UU</strong>  UC  US  CC</p>
+                            <p>64. PR  PB  RB  <strong>RP</strong>  BP</p>
+                            <p>65. CK  KJ  JC  KC  <strong>JK</strong></p>',
                 'type' => 'instruction',
             ],
             [
@@ -1059,11 +1059,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_1->sections[0]->id,
                 'order' => 82,
-                'text' => '<p>66. T1    1T  11  Tt   TT</p>
-                            <p>67. SX   sX   sx  Xs XS</p>
-                            <p>68. LT    Tt    tT   Tl   tt</p>
-                            <p>69. Zz    NZ  zZ  zn ZN</p>
-                            <p>70. GQ  Qg  qq  qg QG</p>',
+                'text' => '<p>66. T1  1T  <strong>11</strong>  Tt  TT</p>
+                            <p>67. SX  sX  sx  <strong>Xs</strong>  XS</p>
+                            <p>68. LT  Tt  <strong>tT</strong>  Tl  tt</p>
+                            <p>69. Zz  NZ  zZ  zn  <strong>ZN</strong></p>
+                            <p>70. GQ  Qg  <strong>qq</strong>  qg  QG</p>',
                 'type' => 'instruction',
             ],
             [
@@ -1136,11 +1136,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_1->sections[0]->id,
                 'order' => 88,
-                'text' => '<p>71. 4c   1a 1c   4d  2d</p>
-                            <p>72. S8  C3  S3  C8C5</p>
-                            <p>73. A9  7b   79 9b  b7</p>
-                            <p>74. 18  81  71  78  17</p>
-                            <p>75. b4  4d   db d4  bd</p>',
+                'text' => '<p>71. 4c  <strong>1a</strong>  1c  4d  2d</p>
+                            <p>72. <strong>S8</strong>  C3  S3  C8  C5</p>
+                            <p>73. A9  <strong>7b</strong>  79  9b  b7</p>
+                            <p>74. 18  81  <strong>71</strong>  78  17</p>
+                            <p>75. b4  4d  db  d4  <strong>bd</strong></p>',
                 'type' => 'instruction',
             ],
             [
@@ -1213,11 +1213,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_1->sections[0]->id,
                 'order' => 94,
-                'text' => '<p>76. u6  u4  4u  6u 46</p>
-                            <p>77. 3x  7x  73  37 x7</p>
-                            <p>78. ls   l3    3l   3s sl</p>
-                            <p>79. en  dn  de  ed nd</p>
-                            <p>80. ni   fi    fn    in  nf</p>',
+                'text' => '<p>76. <strong>u6</strong>  u4  4u  6u  46</p>
+                            <p>77. 3x  7x  <strong>73</strong>  37  x7</p>
+                            <p>78. ls  l3  3l  3s  <strong>sl</strong></p>
+                            <p>79. <strong>en</strong>  dn  de  ed  nd</p>
+                            <p>80. ni  fi  <strong>fn</strong>  in  nf</p>',
                 'type' => 'instruction',
             ],
             [
@@ -1290,11 +1290,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_1->sections[0]->id,
                 'order' => 100,
-                'text' => '<p>81. 35   53   h3 3h   5h</p>
-                            <p>82. bl     dl   ld    lb   bd</p>
-                            <p>83. fk     lk   kf    lf    kl</p>
-                            <p>84. 69   6d 9d   d6   d9</p>
-                            <p>85. XX  VX  VZ  ZV XV</p>',
+                'text' => '<p>81. 35  53  h3  <strong>3h</strong>  5h</p>
+                            <p>82. bl  <strong>dl</strong>  ld  lb  bd</p>
+                            <p>83. fk  <strong>lk</strong>  kf  lf  kl</p>
+                            <p>84. 69  6d  9d  d6  <strong>d9</strong></p>
+                            <p>85. XX  VX  <strong>VZ</strong>  ZV  XV</p>',
                 'type' => 'instruction',
             ],
             [
@@ -1367,11 +1367,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_1->sections[0]->id,
                 'order' => 106,
-                'text' => '<p>86. j8   a8  8a  8j   ja</p>
-                            <p>87. 79  76  67 69  97</p>
-                            <p>88. nr   ne  en  rn  re</p>
-                            <p>89. 4X  4V  Vx V4 X4</p>
-                            <p>90. vn   vz  zv  nv zn</p>',
+                'text' => '<p>86. <strong>j8</strong>  a8  8a  8j  ja</p>
+                            <p>87. 79  76  <strong>67</strong>  69  97</p>
+                            <p>88. nr  <strong>ne</strong>  en  rn  re</p>
+                            <p>89. 4X  4V  <strong>Vx</strong>  V4  X4</p>
+                            <p>90. vn  vz  zv  nv  <strong>zn</strong></p>',
                 'type' => 'instruction',
             ],
             [
@@ -1444,11 +1444,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_1->sections[0]->id,
                 'order' => 112,
-                'text' => '<p>91. B8   R8   8B  RB  8R</p>
-                            <p>92. OQ  CQ  QC QO OC</p>
-                            <p>93. OD  OB  BD  DO BO</p>
-                            <p>94. ZY   ZX   XY  YZ  YX</p>
-                            <p>95. OU  OC  UC  UO CO</p>',
+                'text' => '<p>91. B8  R8  <strong>8B</strong>  RB  8R</p>
+                            <p>92. <strong>OQ</strong>  CQ  QC  QO  OC</p>
+                            <p>93. OD  OB  <strong>BD</strong>  DO  BO</p>
+                            <p>94. ZY  ZX  XY  <strong>YZ</strong>  YX</p>
+                            <p>95. OU  OC  <strong>UC</strong>  UO  CO</p>',
                 'type' => 'instruction',
             ],
             [
@@ -1521,11 +1521,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_1->sections[0]->id,
                 'order' => 118,
-                'text' => '<p>96.   Cc  Oc  OO  cO cc</p>
-                            <p>97.   Aa   A8  8a  8A  aA</p>
-                            <p>98.   Ze   Zz  ZE  zE  eZ</p>
-                            <p>99.   BP  Pb  bP  pp  bB</p>
-                            <p>100. Cz  CZ  Zc  zC  cz</p>',
+                'text' => '<p>96. Cc  Oc  OO  cO  <strong>cc</strong></p>
+                            <p>97. Aa  <strong>A8</strong>  8a  8A  aA</p>
+                            <p>98. Ze  Zz  <strong>ZE</strong>  zE  eZ</p>
+                            <p>99. BP  Pb  bP  <strong>pp</strong>  bB</p>
+                            <p>100. <strong>Cz</strong>  CZ  Zc  zC  cz</p>',
                 'type' => 'instruction',
             ],
             [
@@ -1605,11 +1605,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_2->sections[0]->id,
                 'order' => 1,
-                'text' => '<p>1. YZ VY  VX  XY  ZY</p>
-                            <p>2. b9  c6   69  96   6c</p>
-                            <p>3. ou  oa   ua   uo  ao</p>
-                            <p>4. lc    lo    ol    oc  co</p>
-                            <p>5. X7  V9  V5   X9 V7</p>',
+                'text' => '<p>1. YZ  VY  <strong>VX</strong>  XY  ZY</p>
+                            <p>2. b9  c6  69  96  <strong>6c</strong></p>
+                            <p>3. ou  <strong>oa</strong>  ua  uo  ao</p>
+                            <p>4. lc  lo  ol  oc  <strong>co</strong></p>
+                            <p>5. X7  <strong>V9</strong>  V5  X9  V7</p>',
                 'type' => 'instruction',
             ],
             [
@@ -1682,11 +1682,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_2->sections[0]->id,
                 'order' => 7,
-                'text' => '<p>6. Sc  8c  8s  cS  c8</p>
-                            <p>7. ob  bt    ot   tb  bo</p>
-                            <p>8. 5e 3d   4d  2e  2d</p>
-                            <p>9. rc   dc   dr   rd cr</p>
-                            <p>10. ws  sw  st   tw ts</p>',
+                'text' => '<p>6. <strong>Sc</strong>  8c  8s  cS  c8</p>
+                            <p>7. ob  bt  ot  tb  <strong>bo</strong></p>
+                            <p>8. 5e  3d  <strong>4d</strong>  2e  2d</p>
+                            <p>9. rc  dc  <strong>dr</strong>  rd  cr</p>
+                            <p>10. ws  sw  <strong>st</strong>  tw  ts</p>',
                 'type' => 'instruction',
             ],
             [
@@ -1759,11 +1759,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_2->sections[0]->id,
                 'order' => 13,
-                'text' => '<p>11. wm  um  mu  wu mw</p>
-                            <p>12. pp   qq   pq   pg  qp</p>
-                            <p>13. nv   nx   xn    vx  xv</p>
-                            <p>14. nu   un  um   mn mu</p>
-                            <p>15. zn   zz   nz    nn  mn</p>',
+                'text' => '<p>11. wm  um  mu  wu  <strong>mw</strong></p>
+                            <p>12. pp  qq  <strong>pq</strong>  pg  qp</p>
+                            <p>13. nv  nx  xn  vx  <strong>xv</strong></p>
+                            <p>14. nu  un  <strong>um</strong>  mn  mu</p>
+                            <p>15. zn  zz  <strong>nz</strong>  nn  mn</p>',
                 'type' => 'instruction',
             ],
             [
@@ -1836,11 +1836,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_2->sections[0]->id,
                 'order' => 19,
-                'text' => '<p>16.pg  gy  py   yp   yg</p>
-                            <p>17. 59  9Y  5Y  Y9 95</p>
-                            <p>18. nu  on  ou un   uo</p>
-                            <p>19. ud  un nd  nu   du</p>
-                            <p>20. 41  44  14  11  40</p>',
+                'text' => '<p>16. <strong>pg</strong>  gy  py  yp  yg</p>
+                            <p>17. <strong>59</strong>  9Y  5Y  Y9  95</p>
+                            <p>18. nu  <strong>on</strong>  ou  un  uo</p>
+                            <p>19. ud  un  nd  <strong>nu</strong>  du</p>
+                            <p>20. 41  <strong>44</strong>  14  11  40</p>',
                 'type' => 'instruction',
             ],
             [
@@ -1913,11 +1913,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_2->sections[0]->id,
                 'order' => 25,
-                'text' => '<p>21. Rr     RP  pR  PP   rr</p>
-                            <p>22.LT     IT    IL    TL    TI</p>
-                            <p>23.MW  MV  VW  VM  WM</p>
-                            <p>24. Uu    Wu  uW  WW uU</p>
-                            <p>25. 3x     xc    c3    cx   3c</p>',
+                'text' => '<p>21. Rr  RP  <strong>pR</strong>  PP  rr</p>
+                            <p>22. LT  IT  IL  <strong>TL</strong>  TI</p>
+                            <p>23. MW  <strong>MV</strong>  VW  VM  WM</p>
+                            <p>24. Uu  Wu  uW  <strong>WW</strong>  uU</p>
+                            <p>25. 3x  xc  c3  cx  <strong>3c</strong></p>',
                 'type' => 'instruction',
             ],
             [
@@ -1990,11 +1990,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_2->sections[0]->id,
                 'order' => 31,
-                'text' => '<p>26. AV   VN  NV  NA  VA</p>
-                            <p>27. YX   XX   Yy Xy    xX</p>
-                            <p>28. EL    FL   FE  LF   LE</p>
-                            <p>29. MN  NM  VN  MV NV</p>
-                            <p>30. EE   Ef     eF  Fe  FF</p>',
+                'text' => '<p>26. AV  VN  NV  <strong>NA</strong>  VA</p>
+                            <p>27. YX  XX  Yy  Xy  <strong>xX</strong></p>
+                            <p>28. EL  <strong>FL</strong>  FE  LF  LE</p>
+                            <p>29. MN  NM  VN  MV  <strong>NV</strong></p>
+                            <p>30. EE  Ef  eF  <strong>Fe</strong>  FF</p>',
                 'type' => 'instruction',
             ],
             [
@@ -2067,11 +2067,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_2->sections[0]->id,
                 'order' => 37,
-                'text' => '<p>31. S8  C8  8C  8S   S5</p>
-                            <p>32. h6   h8   86   8h  6h</p>
-                            <p>33.4d   3c   4a   4c   3a</p>
-                            <p>34. Z4   Z1  14   1Z  4Z</p>
-                            <p>35. Qo  Qq  QO  oq QQ</p>',
+                'text' => '<p>31. S8  <strong>C8</strong>  8C  8S  S5</p>
+                            <p>32. h6  h8  <strong>86</strong>  8h  6h</p>
+                            <p>33. <strong>4d</strong>  3c  4a  4c  3a</p>
+                            <p>34. Z4  Z1  14  <strong>1Z</strong>  4Z</p>
+                            <p>35. <strong>Qo</strong>  Qq  QO  oq  QQ</p>',
                 'type' => 'instruction',
             ],
             [
@@ -2144,11 +2144,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_2->sections[0]->id,
                 'order' => 43,
-                'text' => '<p>36. xc  ex   ec ce  xe</p>
-                            <p>37. ar   ra   ro   or oa</p>
-                            <p>38. 8c  8a  7a  6c  7c</p>
-                            <p>39. us  uc  sc  su  cu</p>
-                            <p>40.wo  ro  rw  ow  wr</p>',
+                'text' => '<p>36. xc  ex  <strong>ec</strong>  ce  xe</p>
+                            <p>37. <strong>ar</strong>  ra  ro  or  oa</p>
+                            <p>38. 8c  8a  7a  6c  <strong>7c</strong></p>
+                            <p>39. us  uc  sc  <strong>su</strong>  cu</p>
+                            <p>40. <strong>wo</strong>  ro  rw  ow  wr</p>',
                 'type' => 'instruction',
             ],
             [
@@ -2221,11 +2221,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_2->sections[0]->id,
                 'order' => 49,
-                'text' => '<p>41. wu  vu vw     wv  uw</p>
-                            <p>42.er    ri    ir       ie    re</p>
-                            <p>43. 31   23  32     13  21</p>
-                            <p>44. 2u   2q  qu     q2 u2</p>
-                            <p>45. XV  VX VW  WX  WV</p>',
+                'text' => '<p>41. wu  vu  <strong>vw</strong>  wv  uw</p>
+                            <p>42. <strong>er</strong>  ri  ir  ie  re</p>
+                            <p>43. <strong>31</strong>  23  32  13  21</p>
+                            <p>44. 2u  <strong>2q</strong>  qu  q2  u2</p>
+                            <p>45. XV  <strong>VX</strong>  VW  WX  WV</p>',
                 'type' => 'instruction',
             ],
             [
@@ -2298,11 +2298,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_2->sections[0]->id,
                 'order' => 55,
-                'text' => '<p>46. ae  et    ea   ta    te</p>
-                            <p>47. VI  SI    SV   VS IV</p>
-                            <p>48. th   he et    eh    ht</p>
-                            <p>49. za  mz  zm  az   ma</p>
-                            <p>50. sx  sa ax    xs    xa</p>',
+                'text' => '<p>46. ae  et  <strong>ea</strong>  ta  te</p>
+                            <p>47. <strong>VI</strong>  SI  SV  VS  IV</p>
+                            <p>48. th  <strong>he</strong>  et  eh  ht</p>
+                            <p>49. za  mz  zm  <strong>az</strong>  ma</p>
+                            <p>50. sx  sa  ax  xs  <strong>xa</strong></p>',
                 'type' => 'instruction',
             ],
             [
@@ -2375,11 +2375,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_2->sections[0]->id,
                 'order' => 61,
-                'text' => '<p>51.  Av   Vv      aV   VV  AA</p>
-                            <p>52.  Mw  wW WM  MM  mW</p>
-                            <p>53.  4H  4N     NH   N4  HN</p>
-                            <p>54.  Dd  Db     dB   bB   DD</p>
-                            <p>55.  S8  83      S3    38  3S</p>',
+                'text' => '<p>51. Av  <strong>Vv</strong>  aV  VV  AA</p>
+                            <p>52. Mw  wW  <strong>WM</strong>  MM  mW</p>
+                            <p>53. 4H  <strong>4N</strong>  NH  N4  HN</p>
+                            <p>54. <strong>Dd</strong>  Db  dB  bB  DD</p>
+                            <p>55. S8  83  S3  38  <strong>3S</strong></p>',
                 'type' => 'instruction',
             ],
             [
@@ -2452,11 +2452,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_2->sections[0]->id,
                 'order' => 67,
-                'text' => '<p>56.  XO  OO OX  OV  XX</p>
-                            <p>57.  S8   C8   8C  8S SS</p>
-                            <p>58.  X7   V9   V5   X9 V7</p>
-                            <p>59. L7    LI    I7    IL    7L</p>
-                            <p>60.  RB  RD  DR  BR BD</p>',
+                'text' => '<p>56. XO  OO  OX  OV  <strong>XX</strong></p>
+                            <p>57. S8  C8  <strong>8C</strong>  8S  SS</p>
+                            <p>58. X7  <strong>V9</strong>  V5  X9  V7</p>
+                            <p>59. L7  <strong>LI</strong>  I7  IL  7L</p>
+                            <p>60. RB  RD  <strong>DR</strong>  BR  BD</p>',
                 'type' => 'instruction',
             ],
             [
@@ -2529,11 +2529,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_2->sections[0]->id,
                 'order' => 73,
-                'text' => '<p>61. 18    81    71    78  17</p>
-                            <p>62. Vv    Ww  Wv   wV vv</p>
-                            <p>63. Mm  MN   NN  nn   mM</p>
-                            <p>64. b9    c6     69  96    6c</p>
-                            <p>65. 4c    1a     1c  4d    2d</p>',
+                'text' => '<p>61. <strong>18</strong>  81  71  78  17</p>
+                            <p>62. Vv  Ww  <strong>Wv</strong>  wV  vv</p>
+                            <p>63. Mm  <strong>MN</strong>  NN  nn  mM</p>
+                            <p>64. b9  c6  69  96  <strong>6c</strong></p>
+                            <p>65. <strong>4c</strong>  1a  1c  4d  2d</p>',
                 'type' => 'instruction',
             ],
             [
@@ -2606,11 +2606,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_2->sections[0]->id,
                 'order' => 79,
-                'text' => '<p>66. 2h  h4   42   4h  24</p>
-                            <p>67. YZ  VY  VX  XY ZX</p>
-                            <p>68. n3  Sn   3s ns   3n</p>
-                            <p>69. wo  ro    rw  ow wr</p>
-                            <p>70. ar   ra    ro   or oa</p>',
+                'text' => '<p>66. 2h  h4  <strong>42</strong>  4h  24</p>
+                            <p>67. <strong>YZ</strong>  VY  VX  XY  ZX</p>
+                            <p>68. n3  Sn  3s  <strong>ns</strong>  3n</p>
+                            <p>69. wo  ro  <strong>rw</strong>  ow  wr</p>
+                            <p>70. ar  <strong>ra</strong>  ro  or  oa</p>',
                 'type' => 'instruction',
             ],
             [
@@ -2683,11 +2683,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_2->sections[0]->id,
                 'order' => 85,
-                'text' => '<p>71. ni    fi     fn in    nf</p>
-                            <p>72. wu  vu   vw  wv uw</p>
-                            <p>73. th    he  et    eh ht</p>
-                            <p>74. am  na nm  mn  an</p>
-                            <p>75. 3x   7x  73  37  x7</p>',
+                'text' => '<p>71. ni  fi  fn  <strong>in</strong>  nf</p>
+                            <p>72. wu  vu  vw  wv  <strong>uw</strong></p>
+                            <p>73. th  he  <strong>et</strong>  eh  ht</p>
+                            <p>74. am  na  <strong>nm</strong>  mn  an</p>
+                            <p>75. 3x  <strong>7x</strong>  73  37  x7</p>',
                 'type' => 'instruction',
             ],
             [
@@ -2760,11 +2760,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_2->sections[0]->id,
                 'order' => 91,
-                'text' => '<p>76. j8    a8   8a   8j    ja</p>
-                            <p>77. 59   9Y   5Y  Y9  95</p>
-                            <p>78. fk     lk   kf    lf    kl</p>
-                            <p>79. ma  cm  ca   mc am</p>
-                            <p>80. nv   nx    xn  vx   xv</p>',
+                'text' => '<p>76. <strong>j8</strong>  a8  8a  8j  ja</p>
+                            <p>77. 59  <strong>9Y</strong>  5Y  Y9  95</p>
+                            <p>78. fk  lk  <strong>kf</strong>  lf  kl</p>
+                            <p>79. <strong>ma</strong>  cm  ca  mc  am</p>
+                            <p>80. nv  nx  xn  vx  <strong>xv</strong></p>',
                 'type' => 'instruction',
             ],
             [
@@ -2837,11 +2837,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_2->sections[0]->id,
                 'order' => 97,
-                'text' => '<p>81. se   rs   re    es er</p>
-                            <p>82. 4X  4V  VX  V4 X4</p>
-                            <p>83. zn   zz  nz   nn mn</p>
-                            <p>84. LT   IT   IL   TL TI</p>
-                            <p>85. 41  44  14   11 40</p>',
+                'text' => '<p>81. <strong>se</strong>  rs  re  es  er</p>
+                            <p>82. <strong>4X</strong>  4V  VX  V4  X4</p>
+                            <p>83. zn  zz  nz  nn  <strong>mn</strong></p>
+                            <p>84. LT  IT  <strong>IL</strong>  TL  TI</p>
+                            <p>85. 41  44  14  <strong>11</strong>  40</p>',
                 'type' => 'instruction',
             ],
             [
@@ -2914,11 +2914,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_2->sections[0]->id,
                 'order' => 103,
-                'text' => '<p>86. us   ue   se   su eu</p>
-                            <p>87. PR  PB  RB  RPBP</p>
-                            <p>88.Rr   RP  pR  PP  rr</p>
-                            <p>89. SX  sX   sx   Xs XS</p>
-                            <p>90. ra na    nr   rn   ar</p>',
+                'text' => '<p>86. us  ue  se  su  <strong>eu</strong></p>
+                            <p>87. PR  <strong>PB</strong>  RB  RP  BP</p>
+                            <p>88. <strong>Rr</strong>  RP  pR  PP  rr</p>
+                            <p>89. SX  <strong>sX</strong>  sx  Xs  XS</p>
+                            <p>90. ra  <strong>na</strong>  nr  rn  ar</p>',
                 'type' => 'instruction',
             ],
             [
@@ -2991,11 +2991,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_2->sections[0]->id,
                 'order' => 109,
-                'text' => '<p>91. OU  OC  UC  UO CO</p>
-                            <p>92. RB  RD  DR   BR BD</p>
-                            <p>93. XX  XO  OO  OX OV</p>
-                            <p>94.HN  HZ  ZH   ZN   NH</p>
-                            <p>95. Av   Vv   aV   VV  AA</p>',
+                'text' => '<p>91. OU  OC  UC  UO  <strong>CO</strong></p>
+                            <p>92. RB  RD  DR  <strong>BR</strong>  BD</p>
+                            <p>93. XX  XO  OO  <strong>OX</strong>  OV</p>
+                            <p>94. HN  <strong>HZ</strong>  ZH  ZN  NH</p>
+                            <p>95. Av  <strong>Vv</strong>  aV  VV  AA</p>',
                 'type' => 'instruction',
             ],
             [
@@ -3068,11 +3068,11 @@ class D4QuestionSeeder extends Seeder
             [
                 'section_id' => $d4_2->sections[0]->id,
                 'order' => 115,
-                'text' => '<p>96.   OQ  CQ  QC   QO OC</p>
-                            <p>97.   Ze    Zz   ZE    zE  eZ</p>
-                            <p>98.   GQ Qg   qq    qg   QG</p>
-                            <p>99.   Mm  MN  NN  nn   mM</p>
-                            <p>100. Qo   Qq   OQ  oq   QQ</p>',
+                'text' => '<p>96. <strong>OQ</strong>  CQ  QC  QO  OC</p>
+                            <p>97. Ze  Zz  <strong>ZE</strong>  zE  eZ</p>
+                            <p>98. <strong>GQ</strong>  Qg  qq  qg  QG</p>
+                            <p>99. Mm  <strong>MN</strong>  NN  nn  mM</p>
+                            <p>100. Qo  Qq  <strong>OQ</strong>  oq  QQ</p>',
                 'type' => 'instruction',
             ],
             [
