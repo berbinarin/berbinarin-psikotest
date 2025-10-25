@@ -1213,7 +1213,11 @@ class ResultService
         return (object) ['responses' => (object) ['form' => $formResponses, 'essay' => $essayResponses], 'questions' => $questions];
     }
 
+    private function d4Bagian1(Attempt $attempt){
 
+    }
 
+    private function d4Bagian2(Attempt $attempt){
 
+    }
 }

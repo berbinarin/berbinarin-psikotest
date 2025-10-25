@@ -53,7 +53,14 @@
                             @endif
                         </div>
 
-                        @if ($question->type !== 'ordering')
+                        @if ($question->tool->name == 'D4 Bagian 1' || $question->tool->name == 'D4 Bagian 2')
+                            <div class="mb-6 mt-2 flex justify-center gap-4">
+                                <button id="submit-button"
+                                    class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selesai</button>
+                                <button id="next-button"
+                                    class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selanjutnya</button>
+                            </div>
+                        @elseif ($question->type !== 'ordering')
                             <button id="next-button"
                                 class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selanjutnya</button>
                         @endif
@@ -203,6 +210,51 @@
                 });
             }
         });
+
+        // ---===[ LOGIKA UNTUK TOMBOL "SELESAI" ]===---
+        const submitButton = document.getElementById('submit-button');
+
+        if (submitButton) {
+            submitButton.addEventListener('click', async (e) => {
+                e.preventDefault();
+
+                try {
+                    // Konfirmasi ke user (opsional)
+                    const result = await Swal.fire({
+                        title: 'Selesaikan Tes?',
+                        text: 'Apakah Anda yakin ingin mengakhiri tes ini sekarang?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ya, Selesai',
+                        cancelButtonText: 'Batal',
+                        reverseButtons: true
+                    });
+
+                    if (!result.isConfirmed) return;
+
+                    // Kirim request ke route yang sama seperti waktu habis
+                    await fetch('{{ route('psikotes-paid.attempt.times-up') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Accept: 'application/json',
+                            'X-CSRF-TOKEN': @json(csrf_token()),
+                        },
+                    });
+
+                } catch (error) {
+                    console.error('Error finishing test:', error);
+                } finally {
+                    // Bersihkan localStorage
+                    localStorage.removeItem(targetTimeKey);
+                    localStorage.removeItem(sectionOrderKey);
+                    localStorage.removeItem(checkpointDeadlineKey);
+
+                    // Arahkan ke halaman selesai
+                    window.location.href = @json(route('psikotes-paid.attempt.complete'));
+                }
+            });
+        }
 
         // ---===[ LOGIKA CHECKPOINT BARU (CLIENT-SIDE) ]===---
         const CHECKPOINT_INTERVAL_MS = 5 * 60 * 1000; // 5 menit

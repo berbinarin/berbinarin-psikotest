@@ -75,6 +75,10 @@ class DatabaseSeeder extends Seeder
             Tools\VAK\VakSectionSeeder::class,
             Tools\VAK\VakQuestionSeeder::class,
 
+            // D4
+            Tools\D4\D4SectionSeeder::class,
+            Tools\D4\D4QuestionSeeder::class,
+
             // Tes Esai
             Tools\TesEsai\TesEsaiSectionSeeder::class,
             Tools\TesEsai\TesEsaiQuestionSeeder::class,

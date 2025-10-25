@@ -110,8 +110,8 @@ class ToolSeeder extends Seeder
             ],
             [
                 'name' => 'EPI',
-                'order' => 27,
-                'token' => '27',
+                'order' => 17,
+                'token' => '17',
                 'introduce' => '<p>Berikut ini, terdapat pertanyaan-pertanyaan yang menyangkut tingkah laku, perasaan dan perbuatan Anda. Di bawah setiap pertanyaan disediakan tempat untuk menjawab:</p>
                                 <p style="text-align: center;"><strong><span style="color: #4caf50;">YA </span>atau <span style="color: #ef5350;">TIDAK</span></strong></p>
                                 <p style="text-align: justify;">Hendaknya Anda mencoba menentukan jawaban manakah yang paling tepat dengan yang Anda rasakan atau Anda lakukan, pilihlah opsi "<strong><span style="color: #4caf50;">YA</span></strong>", jika jawaban Anda adalah YA, dan&nbsp; pilihlah opsi "<strong><span style="color: #ef5350;">TIDAK</span></strong>" jika jawaban Anda adalah TIDAK.</p>
@@ -173,6 +173,22 @@ class ToolSeeder extends Seeder
                 'token' => '8',
                 'introduce' => '<p>Akan terdapat 4 pernyataan dalam setiap soal. Bacalah setiap pernyataan dan pilih salah satu pernyataan yang paling mencerminkan apa yang Anda rasakan selama beberapa hari ini. Pastikan Anda menjawab pernyataan tanpa ada yang terlewat.</p>
                                 <p>Tidak ada benar atau salah dalam pengerjaan soal ini, jadi silakan Anda menjawab sejujur-jujurnya.</p>',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'D4 Bagian 1',
+                'order' => 27,
+                'token' => '27',
+                'introduce' => '<p>Pada tes ini terdapat kombinasi-kombinasi huruf dan angka. Tugas Anda adalah membandingkan kombinasi-kombinasi tersebut dengan cepat dan teliti. Masing-masing soal berisi lima macam kombinasi. Kombinasi-kombinasi yang serupa juga terdapat pada pilihan jawaban yang tersedia, namun dengan susunan yang berbeda. Anda nantinya akan melihat bahwa dalam tiap-tiap soal ada salah satu kombinasi yang dicetak tebal.</p>
+                                <p>Tugas Anda dalah untuk melihat kombinasi yang dicetak tebal itu, kemudian melihat kombinasi yang serupa di pilihan jawaban yang tersedia dan memilih kombinasi tersebut sebagai jawaban</p>',
+                'is_active' => true,
+            ],
+            [
+                'name' => 'D4 Bagian 2',
+                'order' => 28,
+                'token' => '28',
+                'introduce' => '<p>Pada tes ini terdapat kombinasi-kombinasi huruf dan angka. Tugas Anda adalah membandingkan kombinasi-kombinasi tersebut dengan cepat dan teliti. Masing-masing soal berisi lima macam kombinasi. Kombinasi-kombinasi yang serupa juga terdapat pada pilihan jawaban yang tersedia, namun dengan susunan yang berbeda. Anda nantinya akan melihat bahwa dalam tiap-tiap soal ada salah satu kombinasi yang dicetak tebal.</p>
+                                <p>Tugas Anda dalah untuk melihat kombinasi yang dicetak tebal itu, kemudian melihat kombinasi yang serupa di pilihan jawaban yang tersedia dan memilih kombinasi tersebut sebagai jawaban</p>',
                 'is_active' => true,
             ],
         ];
