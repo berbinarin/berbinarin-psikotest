@@ -1,8 +1,11 @@
-@extends('landing.layouts.test', [
-    'title' => 'Tes ' . str_pad($question->tool->order, 2, '0', STR_PAD_LEFT),
-])
+@extends(
+    "landing.layouts.test",
+    [
+        "title" => "Tes " . str_pad($question->tool->order, 2, "0", STR_PAD_LEFT),
+    ]
+)
 
-@push('style')
+@push("style")
     <style>
         ul {
             padding-left: 1rem;
@@ -11,37 +14,29 @@
     </style>
 @endpush
 
-@include('components.alert')
-@section('content')
+@include("components.alert")
+@section("content")
     <section>
-        <div class="relative flex h-screen w-screen items-center justify-center overflow-hidden bg-cover bg-center md:bg-cover md:bg-center"
-            style="background-image: url('{{ asset('assets/auth/images/Login.png') }}')">
-            <div
-                class="flex h-[550px] w-[1227.33px] flex-col rounded-[20px] border-[1.33px] border-sky-100 bg-white/40 backdrop-blur-[6.67px]">
+        <div class="relative flex h-screen w-screen items-center justify-center overflow-hidden bg-cover bg-center md:bg-cover md:bg-center" style="background-image: url('{{ asset("assets/auth/images/Login.png") }}')">
+            <div class="flex h-[550px] w-[1227.33px] flex-col rounded-[20px] border-[1.33px] border-sky-100 bg-white/40 backdrop-blur-[6.67px]">
                 <div class="relative flex flex-row items-center px-[55.33px] pt-[23.33px]">
                     <div class="flex flex-row gap-4 rounded-[50px] bg-gradient-to-b from-[#F7B23B] to-[#916823] p-[1px]">
-                        <div
-                            class="flex flex-row items-center justify-center gap-4 rounded-[50px] bg-white px-[19.92px] py-[7.47px]">
-                            <img src="{{ asset('assets/auth/images/logo-berbinar.png') }}" class="h-[34.36px] w-[33.36px]" />
-                            <img src="{{ asset('assets/auth/images/psikotest.png') }}" class="h-[34.36px] w-[33.36px]" />
+                        <div class="flex flex-row items-center justify-center gap-4 rounded-[50px] bg-white px-[19.92px] py-[7.47px]">
+                            <img src="{{ asset("assets/auth/images/logo-berbinar.png") }}" class="h-[34.36px] w-[33.36px]" />
+                            <img src="{{ asset("assets/auth/images/psikotest.png") }}" class="h-[34.36px] w-[33.36px]" />
                         </div>
                     </div>
 
-                    <h1
-                        class="absolute left-1/2 top-[65%] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text font-plusJakartaSans text-[26.67px] font-bold text-transparent">
-                        Tes {{ str_pad($question->tool->order, 2, '0', STR_PAD_LEFT) }}</h1>
+                    <h1 class="absolute left-1/2 top-[65%] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text font-plusJakartaSans text-[26.67px] font-bold text-transparent">Tes {{ str_pad($question->tool->order, 2, "0", STR_PAD_LEFT) }}</h1>
                 </div>
 
-                <form id="question-form" class="flex-1" action="{{ route('psikotes-paid.attempt.submit') }}" method="post"
-                    enctype="multipart/form-data">
+                <form id="question-form" class="flex-1" action="{{ route("psikotes-paid.attempt.submit") }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mx-auto flex h-full w-[565.33px] flex-col items-center gap-8 px-6 pt-7">
                         <div class="relative flex w-full flex-col items-center justify-center">
                             <div class="relative h-[6.67px] w-full rounded-md bg-[#D3D3D3]">
-                                <div class="relative h-[6.67px] rounded-md bg-[#E9B306]"
-                                    style="width: {{ $progress }}%">
-                                    <span
-                                        class="absolute right-0 top-1/2 block h-[14.46px] w-[14.46px] -translate-y-1/2 translate-x-1/2 rounded-full bg-[#E9B306]"></span>
+                                <div class="relative h-[6.67px] rounded-md bg-[#E9B306]" style="width: {{ $progress }}%">
+                                    <span class="absolute right-0 top-1/2 block h-[14.46px] w-[14.46px] -translate-y-1/2 translate-x-1/2 rounded-full bg-[#E9B306]"></span>
                                 </div>
                             </div>
                             <span class="absolute -top-6 right-0 text-xs font-bold text-black">{{ $progress }}%</span>
@@ -49,20 +44,17 @@
 
                         <div class="mx-auto flex w-full flex-1 flex-col gap-4">
                             @if ($question->type)
-                                @include('landing.psikotes-paid.attempts.questions.' . Str::slug($question->type))
+                                @include("landing.psikotes-paid.attempts.questions." . Str::slug($question->type))
                             @endif
                         </div>
 
-                        @if ($question->tool->name == 'D4 Bagian 1' || $question->tool->name == 'D4 Bagian 2')
+                        @if ($question->tool->name == "D4 Bagian 1" || $question->tool->name == "D4 Bagian 2")
                             <div class="mb-6 mt-2 flex justify-center gap-4">
-                                <button id="submit-button"
-                                    class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selesai</button>
-                                <button id="next-button"
-                                    class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selanjutnya</button>
+                                <button id="submit-button" class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selesai</button>
+                                <button id="next-button" class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selanjutnya</button>
                             </div>
-                        @elseif ($question->type !== 'ordering')
-                            <button id="next-button"
-                                class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selanjutnya</button>
+                        @elseif ($question->type !== "ordering")
+                            <button id="next-button" class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selanjutnya</button>
                         @endif
                     </div>
                 </form>
@@ -81,26 +73,56 @@
             <div id="checkpoint-answers" class="mb-6 flex justify-center gap-4"></div>
 
             <div class="flex justify-center">
-                <button id="checkpoint-submit-button" type="button"
-                    class="rounded-lg bg-[#106681] px-6 py-2 font-bold text-white">Selanjutnya</button>
+                <button id="checkpoint-submit-button" type="button" class="rounded-lg bg-[#106681] px-6 py-2 font-bold text-white">Selanjutnya</button>
             </div>
         </div>
     </div>
 
-    {{-- <div id="countdownExample" class="absolute right-0 top-0">
+    {{--
+        <div id="countdownExample" class="absolute right-0 top-0">
         <span class="values"></span>
-    </div> --}}
+        </div>
+    --}}
+
+    <!-- Modal Konfirmasi Selesai -->
+    <div id="confirm-finish-modal" class="fixed inset-0 z-50 flex hidden items-center justify-center bg-black/40">
+        <div
+            class="relative w-[560px] rounded-[20px] bg-white p-6 font-plusJakartaSans shadow-lg"
+            style="
+                background:
+                    linear-gradient(to right, #74aabf, #3986a3) top/100% 6px no-repeat,
+                    white;
+                border-radius: 20px;
+                background-clip: padding-box, border-box;
+            "
+        >
+            <!-- Warning Icon -->
+            <img src="{{ asset("/assets/dashboard/images/warning.png") }}" alt="Warning Icon" class="mx-auto h-[83px] w-[83px]" />
+
+            <!-- Title -->
+            <h2 class="mt-4 text-center font-plusJakartaSans text-2xl font-bold text-stone-900">Selesaikan Tes?</h2>
+
+            <!-- Message -->
+            <p class="mt-2 text-center text-base font-medium text-black">Apakah Anda yakin ingin mengakhiri tes ini sekarang?</p>
+
+            <!-- Actions -->
+            <div class="mt-6 flex justify-center gap-3">
+                <button type="button" id="cancel-finish-btn" class="rounded-lg border border-stone-300 px-[62px] py-[6px] text-stone-700">Tidak</button>
+                <button type="button" id="confirm-finish-btn" class="rounded-[5px] bg-gradient-to-r from-[#74AABF] to-[#3986A3] px-[62px] py-[6px] font-medium text-white">Ya</button>
+            </div>
+        </div>
+    </div>
 @endsection
 
-@push('script')
+@push("script")
     <script type="module">
         const tool = @json($tool);
-        const question = @json($question->load('section'));
-         const attemptId = {{ $attemptId }};
-         const targetTimeKey = `target-time_${attemptId}`;
-         const sectionOrderKey = `section-order_${attemptId}`;
-         const checkpointDeadlineKey = `checkpoint_deadline_${attemptId}`;
-         const duration = question.section.duration * 60000;
+        const question = @json($question->load("section"));
+        const attemptId = {{ $attemptId }};
+        const targetTimeKey = `target-time_${attemptId}`;
+        const sectionOrderKey = `section-order_${attemptId}`;
+        const checkpointDeadlineKey = `checkpoint_deadline_${attemptId}`;
+        const duration = question.section.duration * 60000;
 
         // Tambah target-time ke local storage jika belum dibuat
         // Hindari mengganti nilai target-time jika sudah ada di local storage
@@ -128,29 +150,31 @@
             countdown: true,
             startValues: {
                 minutes: diff.getMinutes(),
-                seconds: diff.getSeconds()
-            }
+                seconds: diff.getSeconds(),
+            },
         });
 
         $('#countdownExample .values').html(timer.getTimeValues().toString());
 
-        timer.addEventListener('secondsUpdated', function(e) {
+        timer.addEventListener('secondsUpdated', function (e) {
             $('#countdownExample .values').html(timer.getTimeValues().toString());
             if (timer.getTimeValues().minutes === 1 && timer.getTimeValues().seconds === 0) {
-                window.dispatchEvent(new CustomEvent('show-alert', {
-                    detail: {
-                        icon: @json(asset('assets/dashboard/images/warning.png')),
-                        title: 'Waktu tersisa 1 menit untuk bagian ini!',
-                        message: '',
-                        type: 'info'
-                    }
-                }));
+                window.dispatchEvent(
+                    new CustomEvent('show-alert', {
+                        detail: {
+                            icon: @json(asset("assets/dashboard/images/warning.png")),
+                            title: 'Waktu tersisa 1 menit untuk bagian ini!',
+                            message: '',
+                            type: 'info',
+                        },
+                    }),
+                );
             }
         });
 
-        timer.addEventListener('targetAchieved', async function(e) {
+        timer.addEventListener('targetAchieved', async function (e) {
             try {
-                const extendableTests = ["BAUM", "HTP", "DAP"];
+                const extendableTests = ['BAUM', 'HTP', 'DAP'];
 
                 if (extendableTests.includes(tool.name)) {
                     const result = await Swal.fire({
@@ -160,25 +184,27 @@
                         showCancelButton: true,
                         confirmButtonText: 'Lanjutkan',
                         cancelButtonText: 'Selesai',
-                        reverseButtons: true
+                        reverseButtons: true,
                     });
 
                     if (result.isConfirmed) {
-                        window.dispatchEvent(new CustomEvent('show-alert', {
-                            detail: {
-                                icon: @json(asset('assets/dashboard/images/success.png')),
-                                title: 'Waktu pengerjaan tes telah ditambahkan!',
-                                message: '',
-                                type: 'info'
-                            }
-                        }));
+                        window.dispatchEvent(
+                            new CustomEvent('show-alert', {
+                                detail: {
+                                    icon: @json(asset("assets/dashboard/images/success.png")),
+                                    title: 'Waktu pengerjaan tes telah ditambahkan!',
+                                    message: '',
+                                    type: 'info',
+                                },
+                            }),
+                        );
 
                         return; // jangan lanjut ke complete
                     }
                 }
 
                 // Kirim request untuk menghapus session dan TUNGGU (await) hingga selesai
-                await fetch('{{ route('psikotes-paid.attempt.times-up') }}', {
+                await fetch('{{ route("psikotes-paid.attempt.times-up") }}', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -192,12 +218,12 @@
                 localStorage.removeItem(targetTimeKey);
                 localStorage.removeItem(sectionOrderKey);
                 localStorage.removeItem(checkpointDeadlineKey);
-                window.location.href = @json(route('psikotes-paid.attempt.complete'));
+                window.location.href = @json(route("psikotes-paid.attempt.complete"));
             }
         });
 
         // Mereset input  ketika back menggunakan browser
-        window.addEventListener('pageshow', function(event) {
+        window.addEventListener('pageshow', function (event) {
             if (event.persisted || performance.getEntriesByType('navigation')[0].type === 'back_forward') {
                 document.querySelectorAll('input, textarea, select').forEach((el) => {
                     if (el.type === 'radio' || el.type === 'checkbox') {
@@ -213,27 +239,27 @@
 
         // ---===[ LOGIKA UNTUK TOMBOL "SELESAI" ]===---
         const submitButton = document.getElementById('submit-button');
+        const confirmFinishModal = document.getElementById('confirm-finish-modal');
+        const confirmFinishBtn = document.getElementById('confirm-finish-btn');
+        const cancelFinishBtn = document.getElementById('cancel-finish-btn');
 
         if (submitButton) {
-            submitButton.addEventListener('click', async (e) => {
+            submitButton.addEventListener('click', (e) => {
                 e.preventDefault();
+                confirmFinishModal.classList.remove('hidden');
+            });
+        }
 
+        if (cancelFinishBtn) {
+            cancelFinishBtn.addEventListener('click', () => {
+                confirmFinishModal.classList.add('hidden');
+            });
+        }
+
+        if (confirmFinishBtn) {
+            confirmFinishBtn.addEventListener('click', async () => {
                 try {
-                    // Konfirmasi ke user (opsional)
-                    const result = await Swal.fire({
-                        title: 'Selesaikan Tes?',
-                        text: 'Apakah Anda yakin ingin mengakhiri tes ini sekarang?',
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonText: 'Ya, Selesai',
-                        cancelButtonText: 'Batal',
-                        reverseButtons: true
-                    });
-
-                    if (!result.isConfirmed) return;
-
-                    // Kirim request ke route yang sama seperti waktu habis
-                    await fetch('{{ route('psikotes-paid.attempt.times-up') }}', {
+                    await fetch('{{ route("psikotes-paid.attempt.times-up") }}', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -241,17 +267,13 @@
                             'X-CSRF-TOKEN': @json(csrf_token()),
                         },
                     });
-
                 } catch (error) {
                     console.error('Error finishing test:', error);
                 } finally {
-                    // Bersihkan localStorage
                     localStorage.removeItem(targetTimeKey);
                     localStorage.removeItem(sectionOrderKey);
                     localStorage.removeItem(checkpointDeadlineKey);
-
-                    // Arahkan ke halaman selesai
-                    window.location.href = @json(route('psikotes-paid.attempt.complete'));
+                    window.location.href = @json(route("psikotes-paid.attempt.complete"));
                 }
             });
         }
@@ -274,7 +296,7 @@
         async function showCheckpointModal() {
             try {
                 // 1. Ambil soal dari server
-                const response = await fetch('{{ route('psikotes-paid.attempt.get-checkpoint-question') }}');
+                const response = await fetch('{{ route("psikotes-paid.attempt.get-checkpoint-question") }}');
                 if (!response.ok) throw new Error('Failed to fetch question');
                 const checkpointQuestion = await response.json();
 
@@ -303,8 +325,7 @@
                     });
                     answersContainer.appendChild(ul);
                 } else {
-                    answersContainer.innerHTML +=
-                        `<input type="text" class="w-full rounded-lg border-primary" name="checkpoint_answer" placeholder="Ketik jawaban Anda..." required />`;
+                    answersContainer.innerHTML += `<input type="text" class="w-full rounded-lg border-primary" name="checkpoint_answer" placeholder="Ketik jawaban Anda..." required />`;
                 }
 
                 // 3. Tampilkan modal
@@ -332,13 +353,12 @@
         });
 
         // Listener untuk tombol "Selanjutnya" DI DALAM MODAL (DENGAN PERBAIKAN)
-         document.getElementById('checkpoint-submit-button').addEventListener('click', () => {
+        document.getElementById('checkpoint-submit-button').addEventListener('click', () => {
             // Ambil form utama
             const mainForm = document.getElementById('question-form');
 
             // 1. Ambil input jawaban dari modal
-            const answer = document.querySelector(
-                '[name="checkpoint_answer"]:checked, [name="checkpoint_answer"][type="text"]');
+            const answer = document.querySelector('[name="checkpoint_answer"]:checked, [name="checkpoint_answer"][type="text"]');
 
             // ---===[ PERBAIKAN 1: Tambahkan baris ini untuk mencari input ID ]===---
             // 2. Ambil input ID pertanyaan yang tersembunyi dari modal
