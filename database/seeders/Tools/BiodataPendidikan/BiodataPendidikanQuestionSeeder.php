@@ -445,7 +445,7 @@ class BiodataPendidikanQuestionSeeder extends Seeder
                 'section_id' => $biodataPendidikan->sections[0]->id,
                 'order' => 10,
                 'type' => 'essay',
-                'text' => 'Target capaian anda untuk 5 tahun ke depan ',
+                'text' => 'Target capaian Anda untuk 5 tahun ke depan ',
             ],
             [
                 'section_id' => $biodataPendidikan->sections[0]->id,

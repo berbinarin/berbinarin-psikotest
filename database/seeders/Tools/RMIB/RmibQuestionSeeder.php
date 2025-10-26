@@ -248,7 +248,7 @@ class RmibQuestionSeeder extends Seeder
                 'type' => 'ordering',
                 'text' => 'Bagi para remaja dan anak-anak, KLH diperkenalkan dengan mengadakan berbagai lomba.
 
-                Urutkan pilihan tugas anda. ',
+                Urutkan pilihan tugas Anda. ',
                 'options' => [
                     'variants' => [
 

@@ -735,7 +735,7 @@ class BiodataKlinisQuestionSeeder extends Seeder
                 'section_id' => $biodataKlinis->sections[0]->id,
                 'order' => 9,
                 'type' => 'essay',
-                'text' => 'Apakah saudara pernah melakukan pemeriksaan psikologi sebelumnya?',
+                'text' => 'Apakah Saudara pernah melakukan pemeriksaan psikologi sebelumnya?',
             ],
             [
                 'section_id' => $biodataKlinis->sections[0]->id,
@@ -753,7 +753,7 @@ class BiodataKlinisQuestionSeeder extends Seeder
                 'section_id' => $biodataKlinis->sections[0]->id,
                 'order' => 12,
                 'type' => 'essay',
-                'text' => 'Jika pernah melakukan pemeriksaan psikologis, silakan saudara jelaskan mengenai hasil pemeriksaan psikologis yang pernah dilakukan. Apabila belum pernah, silakan berikamn tanda (-)',
+                'text' => 'Jika pernah melakukan pemeriksaan psikologis, silakan Saudara jelaskan mengenai hasil pemeriksaan psikologis yang pernah dilakukan. Apabila belum pernah, silakan berikan tanda (-)',
             ],
         ];
 

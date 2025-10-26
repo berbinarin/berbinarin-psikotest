@@ -32,7 +32,7 @@ class HtpQuestionSeeder extends Seeder
             [
                 'section_id' => $htp->sections[0]->id,
                 'order' => 3,
-                'text' => 'Apabila sudah selesai, silahkan pada lembaran kertas yang ada identitasnya atau di halaman kertas sebaliknya, tuliskan atau ceritakan gambar yang baru Anda gambar dengan satu kalimat. Satu kalimat yang menggambarkan gambar yang telah anda buat.',
+                'text' => 'Apabila sudah selesai, silahkan pada lembaran kertas yang ada identitasnya atau di halaman kertas sebaliknya, tuliskan atau ceritakan gambar yang baru Anda gambar dengan satu kalimat. Satu kalimat yang menggambarkan gambar yang telah Anda buat.',
                 'type' => 'instruction',
             ],
             [
