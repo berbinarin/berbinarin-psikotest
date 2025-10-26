@@ -32,6 +32,10 @@
                                     <div class="h-3 w-3 bg-[#EF4444]"></div>
                                     <span class="text-sm text-gray-700">Salah</span>
                                 </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="h-3 w-3 bg-[#808080]"></div>
+                                    <span class="text-sm text-gray-700">Tak Terjawab</span>
+                                </div>
                             </div>
                         </div>
                             <div class="text-base  mt-4 ">
@@ -39,6 +43,10 @@
                                     <tr>
                                         <td>Total Pertanyaan Terjawab</td>
                                         <td class="font-semibold">: {{ $data['total_questions'] }} Pertanyaan</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Pertanyaan Tak Terjawab</td>
+                                        <td class="font-semibold">: {{ 100-(int) $data['total_questions'] }} Pertanyaan</td>
                                     </tr>
                                     <tr>
                                         <td>Total Benar</td>
@@ -149,11 +157,11 @@
             new Chart(canvas, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Benar', 'Salah'],
+                    labels: ['Benar', 'Salah', 'Tak Terjawab'],
                     datasets: [
                         {
-                            data: [{{ $data['correct'] }}, {{ $data['wrong'] }}],
-                            backgroundColor: ['#3B82F6', '#EF4444'],
+                            data: [{{ $data['correct'] }}, {{ $data['wrong'] }}, {{ 100-(int) $data['total_questions'] }} ],
+                            backgroundColor: ['#3B82F6', '#EF4444', '#808080'],
                             borderWidth: 0,
                             cutout: DOUGHNUT_CUTOUT,
                         },
