@@ -168,7 +168,7 @@ class BiodataKlinisQuestionSeeder extends Seeder
             [
                 'section_id' => $biodataKlinis->sections[0]->id,
                 'order' => 3,
-                'text' => 'Riwaya Pendidikan',
+                'text' => 'Riwayat Pendidikan',
                 'type' => 'form',
                 'options' => [
                     [
