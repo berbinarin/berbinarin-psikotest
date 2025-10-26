@@ -1,4 +1,8 @@
-<div class="flex justify-center gap-4 flex-wrap">
+<div class="flex flex-wrap justify-center">
+    {{ $question["text"] }}
+</div>
+
+<div class="flex flex-wrap justify-center gap-4">
     @foreach ($question->options as $option)
         <label class="relative h-[107.33px] w-[197.33px] cursor-pointer">
             <input type="radio" name="answer" value="{{ $option["value"] }}" class="peer absolute h-full w-full opacity-0" required />
