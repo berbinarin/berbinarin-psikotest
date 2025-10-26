@@ -74,7 +74,7 @@
 
                 <!-- Isi Modal -->
                 <img src="{{ asset("assets/landing/images/psikotes/singa-pensil.png") }}" alt="" class="mx-auto mb-4 h-[185px] w-[185px]" />
-                <h2 class="mb-2 font-plusJakartaSans text-[21px] font-bold text-[#333333]">Akses Psikotes anda</h2>
+                <h2 class="mb-2 font-plusJakartaSans text-[21px] font-bold text-[#333333]">Akses Psikotes Anda</h2>
                 <h4 class="font-plusJakartaSans text-base font-medium text-[#333333]">Silakan masuk jika sudah memiliki akun, atau lakukan pendaftaran</h4>
                 <div class="mt-6 flex justify-center gap-4">
                     <a href="{{ route("auth.psikotes-paid.login") }}" class="flex h-[45px] w-[145px] items-center justify-center rounded-xl border-2 border-[#106681] bg-white font-plusJakartaSans text-lg font-semibold text-[#106681]">Masuk</a>

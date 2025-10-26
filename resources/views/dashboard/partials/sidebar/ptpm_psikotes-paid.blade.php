@@ -53,6 +53,6 @@
 <li class="{{ isRouteNameStartWith("dashboard.checkpoint") }} my-5 rounded-lg p-2">
     <a href="{{ route("dashboard.checkpoint.index") }}" class="{{ Str::startsWith(Route::currentRouteName(), "dashboard.checkpoint") ? "text-white" : "text-gray-700 hover:text-primary" }} flex flex-row items-center duration-700">
         <i class="bx bx-book {{ Str::startsWith(Route::currentRouteName(), "dashboard.checkpoint") ? "text-white" : "text-gray-700" }} mr-2 text-lg"></i>
-        <span class="ml-4 text-base font-bold leading-5">Respon</span>
+        <span class="ml-4 text-base font-bold leading-5">Checkpoint</span>
     </a>
 </li>
