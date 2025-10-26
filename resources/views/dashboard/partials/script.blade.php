@@ -41,7 +41,7 @@
             const formId = this.getAttribute('data-id');
             Swal.fire({
                 title: 'Hapus Data',
-                text: 'Apakah anda yakin menghapusnya?',
+                text: 'Apakah Anda yakin menghapusnya?',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
