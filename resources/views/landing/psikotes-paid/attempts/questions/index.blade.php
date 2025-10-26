@@ -126,8 +126,22 @@
 
         // Tambah target-time ke local storage jika belum dibuat
         // Hindari mengganti nilai target-time jika sudah ada di local storage
-        if (!localStorage.getItem(targetTimeKey)) {
-            localStorage.setItem(targetTimeKey, new Date().getTime() + duration);
+        const startAtOrder = 4;
+        const targetToolName = "D4 Bagian 1";
+
+        if (tool.name === targetToolName) {
+            if (question.order >= startAtOrder) {
+                if (!localStorage.getItem(targetTimeKey)) {
+                    localStorage.setItem(targetTimeKey, new Date().getTime() + duration);
+                }
+            } else {
+                localStorage.removeItem(targetTimeKey);
+            }
+        } else {
+            // Alat lain tetap pakai logika default
+            if (!localStorage.getItem(targetTimeKey)) {
+                localStorage.setItem(targetTimeKey, new Date().getTime() + duration);
+            }
         }
 
         // Tambah section-order ke local storage jika belum dibuat
