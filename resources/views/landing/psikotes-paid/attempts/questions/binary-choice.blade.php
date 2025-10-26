@@ -5,7 +5,7 @@
 <div class="flex flex-wrap justify-center gap-4">
     @foreach ($question->options as $option)
         <label class="relative h-[107.33px] w-[197.33px] cursor-pointer">
-            <input type="radio" name="answer" value="{{ $option["value"] }}" class="peer absolute h-full w-full opacity-0" required />
+            <input type="radio" name="answer" value="{{ $option["value"] ? 1 : 0}}" class="peer absolute h-full w-full opacity-0" required />
             <div class="flex h-full w-full items-center justify-center rounded-[6.67px] border-[1.33px] border-[#555555] bg-white font-plusJakartaSans text-[13.33px] font-semibold text-black transition-colors duration-200 peer-checked:border-blue-700 peer-checked:bg-[#106681]/20">
                 {{ $option["text"] }}
             </div>
