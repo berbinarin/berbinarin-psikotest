@@ -22,7 +22,7 @@
                     <li><a href="https://berbinar.in/produk/class" class="text-[16px] font-normal text-[#6F6C90] hover:text-gray-800">Berbinar Class</a></li>
                     <li><a href="https://berbinar.in/produk/consulting" class="text-[16px] font-normal text-[#6F6C90] hover:text-gray-800">Berbinar Consulting</a></li>
                     <li><a href="https://tokopedia.link/gwgtSs9oUOb" target="_blank" class="text-[16px] font-normal text-[#6F6C90] hover:text-gray-800">MoodScan Tees</a></li>
-                    <li><a href="#" class="text-[16px] font-normal text-[#6F6C90] hover:text-gray-800">EmoShuffle</a></li>
+                    <li><a href="https://berbinar.in/produk/emo-shuffle" class="text-[16px] font-normal text-[#6F6C90] hover:text-gray-800">EmoShuffle</a></li>
                 </ul>
             </div>
 
