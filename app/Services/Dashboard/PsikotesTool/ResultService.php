@@ -1012,6 +1012,92 @@ class ResultService
         ];
     }
 
+    private function epi(Attempt $attempt)
+    {
+        $attempt->load('responses.question');
+
+        $categories = [
+            "extroversion",
+            "neuroticism",
+            "lie",
+        ];
+
+        $results = collect($categories)->mapWithKeys(function ($category) {
+            return [$category => [
+                'total_score' => 0,
+                'question_count' => 0,
+                'correct_count' => 0,
+                'answer_distribution' => [
+                    'true' => 0,
+                    'false' => 0,
+                ],
+                'result' => null,
+            ]];
+        });
+
+        foreach ($attempt->responses as $response) {
+            // Pastikan pertanyaan dan kunci tersedia
+            if (!isset($response->question) || !isset($response->question->scoring['scale'])) {
+                continue;
+            }
+
+            $scale = strtolower($response->question->scoring['scale']);
+            $correctAnswer = $response->question->scoring['correct_answer'];
+            $userAnswer = $response->answer['value']; // biasanya true / false
+
+            if ($results->has($scale)) {
+                $categoryData = $results[$scale];
+
+                // Hitung jumlah pertanyaan kategori ini
+                $categoryData['question_count']++;
+
+                // Catat distribusi jawaban
+                if ($userAnswer === true) {
+                    $categoryData['answer_distribution']['true']++;
+                } elseif ($userAnswer === false) {
+                    $categoryData['answer_distribution']['false']++;
+                }
+
+                if ($userAnswer === $correctAnswer) {
+                    $categoryData['total_score']++;
+                    $categoryData['correct_count']++;
+                }
+
+                $results->put($scale, $categoryData);
+            }
+        }
+
+        $results = $results->map(function ($data, $category) {
+            $score = $data['total_score'];
+            $result = null;
+
+            switch ($category) {
+                case 'lie':
+                    if ($score >= 5) $result = 'Taking';
+                    elseif ($score == 4) $result = 'Mean';
+                    else $result = 'Saint';
+                    break;
+
+                case 'extroversion':
+                    if ($score >= 14) $result = 'Extraversi';
+                    elseif ($score == 13) $result = 'Mean';
+                    else $result = 'Introversi';
+                    break;
+
+                case 'neuroticism':
+                    if ($score >= 14) $result = 'Neurotisisme';
+                    elseif ($score >= 10 && $score <= 13) $result = 'Mean';
+                    else $result = 'Stabilitas';
+                    break;
+            }
+
+            $data['result'] = $result;
+            return $data;
+        });
+
+        return $results;
+    }
+
     private function tesEsai(Attempt $attempt)
     {
         $attempt->load('responses.question', 'user');

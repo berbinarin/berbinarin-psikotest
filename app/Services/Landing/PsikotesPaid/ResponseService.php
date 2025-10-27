@@ -31,10 +31,10 @@ class ResponseService
     {
         $checkpointQuestion = CheckpointQuestion::find($request->checkpoint_question_id);
         $methodName = Str::camel($checkpointQuestion->type);
-        $answer = $checkpointQuestion->type === 'multiple_choice' 
+        $answer = $checkpointQuestion->type === 'multiple_choice'
                     ? ['choice' => $request->checkpoint_answer]
                     : ['value' => $request->checkpoint_answer];
-                    
+
         if ($answer !== null) {
             CheckpointResponse::create([
                 'attempt_id' => $this->attemptService->getSession('attempt_id'),
@@ -120,10 +120,12 @@ class ResponseService
     private function binaryChoice(Request $request)
     {
         $validateData = $request->validate([
-            'answer' => 'required|boolean',
+            'answer' => 'required',
         ]);
 
-        return ['value' => $validateData['answer']];
+        $value = filter_var($validateData['answer'], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
+
+        return ['value' => $value];
     }
 
     private function shortAnswer(Request $request)
