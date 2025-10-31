@@ -1,3 +1,9 @@
+@php
+    use Illuminate\Support\Str;
+
+    $categories = ["extroversion", "neuroticism", "lie"];
+@endphp
+
 @push("style")
     <style>
         [x-cloak] {
@@ -10,14 +16,14 @@
     <!-- chart section -->
     <div x-data="{ graph: 'extraversion' }" class="max-h-[500px] flex-1 rounded-xl bg-white p-8 shadow-lg">
         <div class="mb-4">
-            <h2 class="text-[28px] font-semibold text-[#75BADB]">Nama Pengguna</h2>
+            <h2 class="text-[28px] font-semibold text-[#75BADB]">{{ $attempt->user->name }}</h2>
         </div>
 
         <!-- legend -->
-        <div x-show="graph === 'extraversion'" x-cloak>
+        <div>
             <div class="overflow-y-auto">
                 <div class="flex w-full flex-col items-center">
-                    <canvas id="horizontalBarChart-extraversion" class="mb-1" style="max-height: 220px; max-width: 700px"></canvas>
+                    <canvas id="horizontalBarChart-epi" class="mb-1" style="max-height: 220px; max-width: 700px"></canvas>
                     <div class="mb-4 flex gap-4 text-xs">
                         <div class="flex items-center gap-1">
                             <span class="inline-block h-3 w-3 rounded bg-[#75BADB]"></span>
@@ -35,18 +41,14 @@
                 </div>
                 <div class="flex items-start">
                     <div class="w-full">
-                        <p class="mb-2 text-base text-gray-700">
-                            Total Poin pada Extraversion:
-                            <b>32 poin</b>
-                        </p>
-                        <p class="mb-2 text-base text-gray-700">
-                            Rata-rata Poin pada Extraversion:
-                            <b>3.2</b>
-                        </p>
-                        <p class="mb-2 text-base text-gray-700">
-                            Persentase Skor:
-                            <b>64%</b>
-                        </p>
+                        @foreach ($categories as $category)
+                            @php
+                                $categoryData = $data[$category];
+                            @endphp
+                            <p class="mb-2 text-base text-gray-700">
+                                Total Poin pada {{ Str::title(str_replace("_", " ", $category)) }}:
+                                <b>{{ $categoryData['total_score'] }} poin</b>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -56,66 +58,32 @@
     <!-- Detail Jawaban -->
     <div class="flex max-h-[500px] flex-col overflow-hidden rounded-lg bg-white p-8 shadow-lg" style="width: 40%">
         <h2 class="mb-4 text-xl font-semibold">Detail Jawaban</h2>
-        <div class="scroll-container mb-4 overflow-x-hidden whitespace-nowrap pb-2" id="subtestTabs">
-            <div class="inline-flex gap-2 border-b">
-                <button class="rounded-none border-b-2 border-[#75BADB] bg-none px-3 pb-2 text-base font-medium text-[#75BADB] outline-none transition" type="button" onclick="changeTab('content-subtest-Minat_Karir')" id="tab-subtest-Minat_Karir">Subtes A</button>
-                <button class="rounded-none border-b-2 border-transparent bg-none px-3 pb-2 text-base font-medium text-gray-500 outline-none transition hover:text-[#75BADB]" type="button" onclick="changeTab('content-subtest-Gaya_Kerja')" id="">Subtes B</button>
-                <button class="rounded-none border-b-2 border-transparent bg-none px-3 pb-2 text-base font-medium text-gray-500 outline-none transition hover:text-[#75BADB]" type="button" onclick="changeTab('content-subtest-Gaya_Kerja')" id="">Subtes C</button>
-                <button class="rounded-none border-b-2 border-transparent bg-none px-3 pb-2 text-base font-medium text-gray-500 outline-none transition hover:text-[#75BADB]" type="button" onclick="" id="">Subtes D</button>
-            </div>
-        </div>
 
         <div class="flex min-h-0 flex-1 flex-col">
             <div class="flex-1 overflow-y-auto">
-                <div id="content-subtest-Minat_Karir" style="display: block">
+                <div style="display: block">
                     <table class="w-full table-fixed border-collapse text-sm">
                         <thead class="sticky top-0 bg-white">
                             <tr class="border-b">
                                 <th class="p-2 text-center text-gray-500" style="width: 50%">Pernyataan</th>
-                                <th class="p-2 text-center text-gray-500" style="width: 25%">Kategori</th>
-                                <th class="p-2 text-center text-gray-500" style="width: 25%">Nilai</th>
+                                <th class="p-2 text-center text-gray-500" style="width: 25%">Jawaban</th>
+                                <th class="p-2 text-center text-gray-500" style="width: 25%">Poin</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="border-b">
-                                <td class="p-2 align-top" style="width: 50%">Saya senang bekerja di lapangan dan melakukan kegiatan fisik.</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">Realistik</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">5</td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="p-2 align-top" style="width: 50%">Saya tertarik untuk menemukan dan memecahkan masalah kompleks.</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">Investigatif</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">4</td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="p-2 align-top" style="width: 50%">Saya lebih memilih ekspresi diri melalui seni dan desain.</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">Artistik</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">3</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                            @foreach ($attempt->responses as $response)
+                                @php
+                                    $userAnswer = $response->answer['value'];
+                                    $correctAnswer = $response->question->scoring['correct_answer'];
 
-                <div id="content-subtest-Gaya_Kerja" style="display: none">
-                    <table class="w-full table-fixed border-collapse text-sm">
-                        <thead class="sticky top-0 bg-white">
-                            <tr>
-                                <th class="p-2 text-center text-gray-500" style="width: 50%">Pernyataan</th>
-                                <th class="p-2 text-center text-gray-500" style="width: 25%">Kategori</th>
-                                <th class="p-2 text-center text-gray-500" style="width: 25%">Nilai</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-b">
-                                <td class="p-2 align-top" style="width: 50%">Saya selalu berusaha untuk akurat dalam pekerjaan saya.</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">**Ketelitian**</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">**5**</td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="p-2 align-top" style="width: 50%">Saya suka berinteraksi dan bekerja sama dengan orang lain.</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">**Orientasi_Sosial**</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">**4**</td>
-                            </tr>
+                                    $score = ($userAnswer == $correctAnswer) ? 1 : 0;
+                                @endphp
+                                <tr class="border-b">
+                                    <td class="p-2 align-top" style="width: 50%">{{ $response->question->text }}</td>
+                                    <td class="p-2 text-center align-top" style="width: 25%">{{ $response->answer['value'] ? 'Ya' : 'Tidak'}}</td>
+                                    <td class="p-2 text-center align-top" style="width: 25%">{{ $score }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -152,16 +120,21 @@
         };
 
         // chart
-        const ctxExtraversion = document.getElementById('horizontalBarChart-extraversion').getContext('2d');
-        new Chart(ctxExtraversion, {
+        const chartEpi = document.getElementById('horizontalBarChart-epi').getContext('2d');
+        const epiData = @json([
+            $data['extroversion']['total_score'],
+            $data['neuroticism']['total_score'],
+            $data['lie']['total_score']
+        ]);
+        new Chart(chartEpi, {
             type: 'bar',
             data: {
                 labels: ['1', '2', '3'],
                 datasets: [
                     {
-                        label: 'Jumlah Jawaban',
-                        data: [2, 1, 3, 4, 0],
-                        backgroundColor: ['rgba(117, 186, 219, 0.6)', 'rgba(255, 224, 102, 0.6)', 'rgba(166, 133, 226, 0.6)', 'rgba(109, 211, 206, 0.6)', 'rgba(255, 107, 107, 0.6)'],
+                        label: 'Jumlah Poin',
+                        data: epiData,
+                        backgroundColor: ['rgba(117, 186, 219, 0.6)', 'rgba(255, 224, 102, 0.6)', 'rgba(166, 133, 226, 0.6)'],
                         borderRadius: 0,
                     },
                 ],
@@ -171,9 +144,9 @@
                 scales: {
                     x: {
                         beginAtZero: true,
-                        max: 5,
+                        max: 25,
                         grid: { color: '#eee' },
-                        ticks: { stepSize: 1 },
+                        ticks: { stepSize: 5 },
                         position: 'top',
                     },
                     y: {
