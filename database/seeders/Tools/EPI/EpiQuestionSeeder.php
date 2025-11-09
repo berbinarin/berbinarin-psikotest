@@ -73,7 +73,7 @@ class EpiQuestionSeeder extends Seeder
                     ],
                 ],
                 'scoring' => [
-                    'scale' => 'ectroversion',
+                    'scale' => 'extroversion',
                     'correct_answer' => true
                 ],
             ],
