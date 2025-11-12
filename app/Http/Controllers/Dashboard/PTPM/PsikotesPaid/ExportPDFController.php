@@ -43,31 +43,54 @@ class ExportPDFController extends Controller
             ];
         }
 
+        $checkpoints = $registrant->user->attempts()
+        ->with(['tool', 'checkpointResponses'])
+        ->get()
+        ->pluck('checkpointResponses')
+        ->flatten();
+
         $testimonial = $registrant->user->testimonials;
 
-        return view('dashboard.ptpm_psikotes-paid.registrants.report.index', compact('registrant', 'testResults', 'testimonial'));
+        return view('dashboard.ptpm_psikotes-paid.registrants.report.index', compact('registrant', 'testResults', 'checkpoints','testimonial'));
     }
 
     public function export($id)
     {
         $registrant = RegistrantProfile::with(['user.attempts.tool', 'user.testimonials', 'testType.testCategory'])->findOrFail($id);
 
-        $attempt = $registrant->user->attempts->first();
+        $attempts = $registrant->user->attempts;
 
-        if (!$attempt) {
+        if (!$attempts) {
             return redirect()->back()->with('error', 'Tidak ada data attempt untuk pendaftar ini.');
         }
 
-        $tool = $attempt->tool;
+        $testResults = [];
 
-        $tool->load('sections.questions');
-        $attempt->load('responses.question');
+        foreach ($attempts as $attempt) {
+            // Load relasi responses.question untuk setiap attempt
+            $attempt->load('responses.question');
 
-        $data = $this->resultService->resultData($tool, $attempt);
+            // Panggil service untuk mendapatkan data hasil untuk attempt ini
+            $data = $this->resultService->resultData($attempt->tool, $attempt);
+
+            // Tambahkan data ke dalam array $testResults
+            $testResults[] = [
+                'tool' => $attempt->tool,
+                'attempt' => $attempt,
+                'data' => $data
+            ];
+        }
+
+        $checkpoints = $registrant->user->attempts()
+        ->with(['tool', 'checkpointResponses'])
+        ->get()
+        ->pluck('checkpointResponses')
+        ->flatten();
 
         $testimonial = $registrant->user->testimonials;
 
-        $pdf = Pdf::loadView('dashboard.ptpm_psikotes-paid.registrants.report.export', compact('registrant', 'attempt', 'tool', 'data', 'testimonial'));
-        return $pdf->download('Laporan_Pendaftar_' . $registrant->user->name . '.pdf');
+        $pdf = Pdf::loadView('dashboard.ptpm_psikotes-paid.registrants.report.export', compact('registrant', 'testResults', 'checkpoints','testimonial'));
+        $filename = 'Hasil Laporan Pendaftar ' . $registrant->user->name . ' ' . now()->format('d-m-Y') . '.pdf';
+        return $pdf->download($filename);
     }
 }

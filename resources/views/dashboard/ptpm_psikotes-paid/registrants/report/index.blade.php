@@ -1,3 +1,23 @@
+@php
+    usort($testResults, function ($a, $b) {
+        $aIsBiodata = stripos($a['tool']->name, 'biodata') !== false;
+        $bIsBiodata = stripos($b['tool']->name, 'biodata') !== false;
+
+        if ($aIsBiodata && !$bIsBiodata) return -1;
+
+        if ($bIsBiodata && !$aIsBiodata) return 1;
+
+        return 0;
+    });
+@endphp
+
+@php
+    $path = storage_path('app/public/' . $registrant->student_card);
+    $type = pathinfo($path, PATHINFO_EXTENSION);
+    $data = file_get_contents($path);
+    $studentCardImage = 'data:image/' . $type . ';base64,' . base64_encode($data);
+@endphp
+
 <!DOCTYPE html>
 <html lang="id">
     <head>
@@ -198,12 +218,7 @@
                     <div class="info-item">
                         <p class="label">Bukti Kartu Pelajar</p>
                         <p class="value">
-                            @if ($registrant->student_card)
-                                <!-- <a href="{{ asset("storage/" . $registrant->student_card) }}" target="_blank">Lihat Bukti</a> -->
-                                <img src="{{ asset("storage/" . $registrant->student_card) }}" alt="" />
-                            @else
-                                -
-                            @endif
+                            <img src="{{ $studentCardImage }}" alt="Bukti Kartu Pelajar" style="max-width: 40%;" />
                         </p>
                     </div>
                 </div>
@@ -256,65 +271,13 @@
                 </div>
             </div>
 
-
-
-            <!-- Hasil Tes buat debuging -->
-            <!-- <div class="section">
-                <h2 class="section-title">Hasil Tes Psikologi</h2>
-                <div>
-                    @php
-                        $debugTool = request()->get('debug_tool', null); // nama file blade tanpa .blade.php
-                        $debugAttemptIndex = (int) request()->get('debug_attempt', 0);
-                        $firstResult = (!empty($testResults) && count($testResults)) ? $testResults[0] : null;
-                    @endphp
-
-                    @if ($debugTool)
-                        @php
-                            $toolViewDebug = "dashboard.ptpm_psikotes-paid.registrants.report.tools." . $debugTool;
-                            // pilih attempt sesuai index kalau ada
-                            $chosen = null;
-                            if (!empty($testResults) && count($testResults)) {
-                                $all = $testResults;
-                                $chosen = $all[$debugAttemptIndex] ?? $all[0];
-                            }
-                            $attemptForDebug = $chosen['attempt'] ?? null;
-                            $dataForDebug = $chosen['data'] ?? null;
-                            $responseForDebug = ($dataForDebug && $dataForDebug instanceof \Illuminate\Support\Collection && $dataForDebug->count()) ? $dataForDebug->first() : ($dataForDebug ?? null);
-                        @endphp
-
-                        @if (\View::exists($toolViewDebug))
-                            @include($toolViewDebug, [
-                                'tool' => $chosen['tool'] ?? null,
-                                'attempt' => $attemptForDebug,
-                                'data' => $dataForDebug,
-                                'responses' => $dataForDebug,
-                                'response' => $responseForDebug,
-                            ])
-                        @else
-                            <p style="text-align:center; color:#7f8c8d">Debug view "{{ $debugTool }}" tidak ditemukan.</p>
-                        @endif
-                    @else
-                        {{-- kode normal (tetap ada) --}}
-                        @if(!empty($testResults) && count($testResults))
-                            @foreach ($testResults as $result)
-                                @php
-                                    $toolView = "dashboard.ptpm_psikotes-paid.registrants.report.tools." . \Illuminate\Support\Str::slug($result['tool']->name);
-                                @endphp
-
-                                @if (View::exists($toolView))
-                                    @include($toolView, ["tool" => $result["tool"], "attempt" => $result["attempt"], "data" => $result["data"]])
-                                @else
-                                    <p style="text-align: center; color: #7f8c8d">Hasil tes untuk alat psikotes {{ $result["tool"]->name }} belum tersedia.</p>
-                                @endif
-
-                                <br />
-                            @endforeach
-                        @else
-                            <p style="text-align: center; color: #7f8c8d">Belum ada hasil tes untuk pendaftar ini.</p>
-                        @endif
-                    @endif
+            <!-- Checkpoint -->
+            <div class="section">
+                <h2 class="section-title">Checkpoint Pendaftar</h2>
+                <div class="testimoni-grid">
+                    @include('dashboard.ptpm_psikotes-paid.registrants.report.tools.checkpoint')
                 </div>
-            </div> -->
+            </div>
 
             <!-- Testimoni -->
             <div class="section">

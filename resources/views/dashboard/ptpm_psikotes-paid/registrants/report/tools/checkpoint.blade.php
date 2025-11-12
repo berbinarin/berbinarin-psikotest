@@ -105,30 +105,44 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="td-kedua">1.</td>
-                        <td>Tes Covid</td>
-                        <td class="td-pertama">Siapa nama kepala sekolah SMKN 1 Cibinong?</td>
-                        <td>Donianto</td>
-                    </tr>
-                    <tr>
-                        <td>2.</td>
-                        <td>Tes Kejiwaan</td>
-                        <td>Kenapa kamu gila?</td>
-                        <td>Karena saya SIJA</td>
-                    </tr>
-                    <tr>
-                        <td>3.</td>
-                        <td>Tes narkoba</td>
-                        <td>apa nama tembakau yang ada hewannya?</td>
-                        <td>tembakau gorila</td>
-                    </tr>
-                    <tr>
-                        <td>4.</td>
-                        <td>Tes</td>
-                        <td>saya tidak tahu?</td>
-                        <td>sesuai banget</td>
-                    </tr>
+                    @forelse ($checkpoints as $index => $checkpoint)
+                        <tr>
+                            <td>{{ $index + 1 }}.</td>
+                            <td>{{ $checkpoint->attempt->tool->name ?? 'Tidak diketahui' }}</td>
+                            <td>{{ $checkpoint->question['text'] ?? '-' }}</td>
+                            @php
+                                $answerData = json_decode($checkpoint->answer, true);
+                                $answerText = '-';
+
+                                if (isset($answerData['value'])) {
+                                    // Jawaban tipe isian bebas (value)
+                                    $answerText = $answerData['value'];
+                                } elseif (isset($answerData['choice'])) {
+                                    // Jawaban tipe pilihan ganda
+                                    $choiceKey = $answerData['choice'];
+                                    $answerText = $choiceKey; // tampilkan key (misal "B")
+
+                                    // Jika ingin tampilkan teks opsinya juga
+                                    $question = $checkpoint->question;
+                                    if ($question && isset($question->options)) {
+                                        $options = is_array($question->options) ? $question->options : json_decode($question->options, true);
+                                        foreach ($options as $opt) {
+                                            if ($opt['key'] === $choiceKey) {
+                                                $answerText = "{$opt['text']}";
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            @endphp
+
+                            <td>{{ $answerText }}</td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4" style="text-align:center; color:#999;">Belum ada data checkpoint untuk user ini.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
