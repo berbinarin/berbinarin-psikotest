@@ -18,23 +18,30 @@
                 margin-bottom: 20px;
             }
 
-            .question {
-                font-size: 16px;
+            .question-item{
+                display: block;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                padding: 5px 16px;
+                margin-bottom: 7px;
+                page-break-inside: avoid;
+            }
 
-                color: #7f8c8d;
-                margin-top: 20px;
+            .question {
+                color: #555;
+                font-size: 16px;
+                font-weight: bold;
                 margin-bottom: 6px;
             }
 
             .answer {
-                font-size: 16px;
-                color: black;
-                margin-bottom: 10px;
-                font-weight: bold;
+                color: #333;
+                font-size: 14px;
+                line-height: 1.5;
             }
 
             .section-title {
-                font-size: 28px;
+                font-size: 20px;
                 font-weight: bold;
                 color: #75badb;
                 padding-bottom: 5px;
@@ -47,7 +54,7 @@
 
         <?php $i = 1 ?>
         @foreach($attempt->responses as $answer)
-            <div class="qa-item">
+            <div class="question-item">
                 <p class="question">{{ $answer->question->text }}</p>
                 <p class="answer">{{ $answer->answer['text'] }}</p>
             </div>

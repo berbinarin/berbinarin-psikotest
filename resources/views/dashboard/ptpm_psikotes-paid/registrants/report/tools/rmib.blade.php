@@ -153,7 +153,7 @@
             }
 
             .section-title {
-                font-size: 28px;
+                font-size: 20px;
                 font-weight: bold;
                 color: #75badb;
                 padding-bottom: 5px;
@@ -167,8 +167,7 @@
             Berikut merupakan 3 peringkat kategori dengan nilai terendah, yaitu
             <b>Outdoor, Mechanical, Scientific</b>
             dan
-            <b>Computational</b>
-            .
+            <b>Computational</b>.
         </p>
         <div class="chart-container">
             <div class="chart-left">

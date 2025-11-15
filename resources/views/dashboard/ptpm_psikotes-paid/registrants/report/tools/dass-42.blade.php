@@ -13,7 +13,7 @@
         }
 
         h2.section-title {
-            font-size: 28px;
+            font-size: 20px;
             font-weight: bold;
             color: #75BADB;
             margin-bottom: 25px;

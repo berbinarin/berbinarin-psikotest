@@ -7,7 +7,15 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <style>
         .section-title {
-            font-size: 28px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #75badb;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            margin-top: 40px;
+        }
+        .section-subtitle {
+            font-size: 18px;
             font-weight: bold;
             color: #75badb;
             padding-bottom: 5px;
@@ -48,7 +56,7 @@
     <div id="chart"></div>
 
     <!-- Rincian Jawaban -->
-    <h2 class="section-title">Rincian Jawaban</h2>
+    <h2 class="section-subtitle">Rincian Jawaban</h2>
     <div>
         <table>
             <thead>
@@ -90,7 +98,7 @@
             </tbody>
         </table>
 
-        <h2 class="section-title">Rincian Jawaban</h2>
+        <h2 class="section-subtitle">Rincian Jawaban</h2>
         <table>
             <thead>
                 <tr>

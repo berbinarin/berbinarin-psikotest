@@ -14,7 +14,7 @@
                 color: #333;
             }
             h2 {
-                font-size: 28px;
+                font-size: 20px;
                 font-weight: bold;
                 color: #75badb;
                 margin-bottom: 10px;

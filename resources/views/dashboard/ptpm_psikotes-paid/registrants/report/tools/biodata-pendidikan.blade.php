@@ -17,7 +17,7 @@
         }
 
         .section-title {
-            font-size: 28px;
+            font-size: 20px;
             font-weight: bold;
             color: #75badb;
             border-bottom: 3px solid #75badb;

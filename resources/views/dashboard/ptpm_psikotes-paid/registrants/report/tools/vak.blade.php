@@ -18,7 +18,7 @@
         }
 
         .section-title {
-            font-size: 28px;
+            font-size: 20px;
             font-weight: bold;
             color: #75badb;
             padding-bottom: 5px;
@@ -216,7 +216,11 @@
                         @forelse($data['responses_by_category'][$category] ?? [] as $i => $response)
                         <tr>
                             <td>{{ $i+1 }}.</td>
-                            <td>{{ $response->answer['text'] ?? $response->answer['value'] ?? '-' }}</td>
+                            @php
+                                $answerValue = $response->answer['value'];
+                                $optionLabel = collect($response->question->options ?? [])->firstWhere('value', (string)$answerValue)['text'] ?? $answerValue;
+                            @endphp
+                            <td>{{ $response->answer['text'] ?? $response->answer['value'] ?? '-' }} - {{ $optionLabel }}</td>
                         </tr>
                         @empty
                         <tr>

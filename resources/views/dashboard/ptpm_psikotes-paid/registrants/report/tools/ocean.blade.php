@@ -147,7 +147,7 @@
             }
 
             .section-title {
-                font-size: 28px;
+                font-size: 20px;
                 font-weight: bold;
                 color: #75badb;
                 padding-bottom: 5px;

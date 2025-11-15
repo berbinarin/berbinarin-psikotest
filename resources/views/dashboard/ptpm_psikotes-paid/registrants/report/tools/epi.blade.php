@@ -28,7 +28,7 @@
         table { border-collapse: collapse; width: 100%; margin-top: 20px; }
         th, td { border-bottom: 1px solid #ddd; text-align: left; padding: 6px 10px; font-size: 14px; }
         th { color: #555; }
-        .section-title { font-size: 28px; font-weight: bold; color: #75badb; padding-bottom: 5px; margin-bottom: -5px; }
+        .section-title { font-size: 20px; font-weight: bold; color: #75badb; padding-bottom: 5px; margin-bottom: -5px; }
     </style>
 </head>
 <body>

@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <style>
             .section-title {
-                font-size: 28px;
+                font-size: 20px;
                 font-weight: bold;
                 color: #75badb;
                 padding-bottom: 5px;
@@ -22,6 +22,8 @@
             .image-box {
                 width: 410px;
                 height: 276px;
+                margin: auto;
+                margin-top: 10px;
                 border: 2px solid #333;
                 border-radius: 8px;
                 overflow: hidden;
