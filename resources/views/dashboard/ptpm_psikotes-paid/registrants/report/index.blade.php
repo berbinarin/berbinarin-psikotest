@@ -1,3 +1,23 @@
+@php
+    usort($testResults, function ($a, $b) {
+        $aIsBiodata = stripos($a['tool']->name, 'biodata') !== false;
+        $bIsBiodata = stripos($b['tool']->name, 'biodata') !== false;
+
+        if ($aIsBiodata && !$bIsBiodata) return -1;
+
+        if ($bIsBiodata && !$aIsBiodata) return 1;
+
+        return 0;
+    });
+@endphp
+
+@php
+    $path = storage_path('app/public/' . $registrant->student_card);
+    $type = pathinfo($path, PATHINFO_EXTENSION);
+    $data = file_get_contents($path);
+    $studentCardImage = 'data:image/' . $type . ';base64,' . base64_encode($data);
+@endphp
+
 <!DOCTYPE html>
 <html lang="id">
     <head>
@@ -5,17 +25,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Laporan Pendaftar</title>
         <style>
+            @page {
+                margin: 0;
+                background-color: #FFFFFF;
+            }
             body {
                 font-family: Arial, sans-serif;
                 margin: 0;
-                padding: 20px;
+                /* padding: 20px; */
                 color: #333;
                 line-height: 1.6;
             }
             .container {
                 max-width: 800px;
                 margin: 0 auto;
-                background-color: #FAFAFA;
+                background-color: #FFFFFF;
                 padding: 20px;
                 border-radius: 8px;
             }
@@ -37,11 +61,28 @@
                 margin-bottom: 30px;
             }
             .section-title {
-                font-size: 28px;
+                font-size: 20px;
                 font-weight: bold;
                 color: #75badb;
                 padding-bottom: 5px;
                 margin-bottom: -5px;
+            }
+
+            .info-table{
+                width: 100%;
+                margin-bottom: 20px;
+                border: none !important;
+                outline: none !important;
+                box-shadow: none !important;
+            }
+
+            .info-table td {
+                border: none !important;
+                outline: none !important;
+                box-shadow: none !important;
+            }
+            .info-table td:first-child {
+                width: 50%;
             }
 
             .info-grid {
@@ -85,34 +126,26 @@
                 }
             }
 
-            .testimoni-grid {
-                display: grid;
-                grid-template-columns: 1fr 1fr; /* bagi jadi 2 kolom */
-                gap: 20px 40px; /* jarak antar item */
-            }
-
             .testimoni-item {
-                margin-bottom: -25px;
-                break-inside: avoid;
+                display: block;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                padding: 5px 16px;
+                margin-bottom: 7px;
+                page-break-inside: avoid; /* lebih kompatibel di dompdf daripada break-inside */
             }
 
             .testimoni-question {
+                color: #555;
                 font-size: 16px;
-                color: #9E9E9E;
-                margin-bottom: -15px;
+                font-weight: bold;
+                margin-bottom: 6px;
             }
 
             .testimoni-answer {
-                font-size: 16px;
                 color: #333;
-                font-weight: bold;
-            }
-
-            /* responsif biar di HP jadi 1 kolom */
-            @media (max-width: 768px) {
-                .testimoni-grid {
-                    grid-template-columns: 1fr;
-                }
+                font-size: 14px;
+                line-height: 1.5;
             }
         </style>
     </head>
@@ -132,104 +165,151 @@
             <!-- Data Diri -->
             <div class="section">
                 <h2 class="section-title">Data Diri Pendaftar</h2>
-                <div class="info-grid">
-                    <!-- bagian kanan -->
-                    <div class="info-item">
-                        <p class="label">Nama Lengkap</p>
-                        <p class="value">{{ $registrant->user->name }}</p>
-                    </div>
-                    <div class="info-item">
-                        <p class="label">Umur</p>
-                        <p class="value">{{ $registrant->age }} tahun</p>
-                    </div>
-                    <div class="info-item">
-                        <p class="label">Email</p>
-                        <p class="value">{{ $registrant->user->email }}</p>
-                    </div>
-                    <div class="info-item">
-                        <p class="label">Layanan Psikotes</p>
-                        <p class="value">{{ $registrant->psikotes_service }}</p>
-                    </div>
-                    <div class="info-item">
-                        <p class="label">Waktu Tes</p>
-                        <p class="value">{{ \Carbon\Carbon::parse($registrant->schedule)->format("H:i") }}</p>
-                    </div>
-                    <div class="info-item">
-                        <p class="label">Kata Sandi</p>
-                        <p class="value">berbinar</p>
-                    </div>
-                    <div class="info-item">
-                        <p class="label">Diskon</p>
-                        <p class="value">{{ $registrant->discount_percentage ? $registrant->discount_percentage . "%" : "-" }}</p>
-                    </div>
-                    <div class="info-item">
-                        <p class="label">Alasan Pendaftaran</p>
-                        <p class="value">{{ $registrant->reason }}</p>
-                    </div>
-                    <!-- bagian kanan -->
-                    <div class="info-item">
-                        <p class="label">Jenis Kelamin</p>
-                        <p class="value">{{ $registrant->gender == "male" ? "Laki-laki" : "Perempuan" }}</p>
-                    </div>
-                    <div class="info-item">
-                        <p class="label">No. Telepon</p>
-                        <p class="value">{{ $registrant->phone_number }}</p>
-                    </div>
-                    <div class="info-item">
-                        <p class="label">Domisili</p>
-                        <p class="value">{{ $registrant->domicile }}</p>
-                    </div>
-
-                    <div class="info-item">
-                        <p class="label">Tanggal Tes</p>
-                        <p class="value">{{ \Carbon\Carbon::parse($registrant->schedule)->format("d F Y") }}</p>
-                    </div>
-
-                    <div class="info-item">
-                        <p class="label">Nama Pengguna</p>
-                        <p class="value">{{ $registrant->user->username }}</p>
-                    </div>
-
-                    <div class="info-item">
-                        <p class="label">Kode Voucher</p>
-                        <p class="value">{{ $registrant->voucher_code ? $registrant->voucher_code : "-" }}</p>
-                    </div>
-
-                    <div class="info-item">
-                        <p class="label">Bukti Kartu Pelajar</p>
-                        <p class="value">
-                            @if ($registrant->student_card)
-                                <!-- <a href="{{ asset("storage/" . $registrant->student_card) }}" target="_blank">Lihat Bukti</a> -->
-                                <img src="{{ asset("storage/" . $registrant->student_card) }}" alt="" />
-                            @else
-                                -
-                            @endif
-                        </p>
-                    </div>
-                </div>
+                <table class="info-table">
+                    <tr>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">Nama Lengkap</p>
+                                <p class="value">{{ $registrant->user->name }}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">Umur</p>
+                                <p class="value">{{ $registrant->age }} tahun</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">Email</p>
+                                <p class="value">{{ $registrant->user->email }}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">Layanan Psikotes</p>
+                                <p class="value">{{ $registrant->psikotes_service }}</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">Waktu Tes</p>
+                                <p class="value">{{ \Carbon\Carbon::parse($registrant->schedule)->format("H:i") }}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">Kata Sandi</p>
+                                <p class="value">berbinar</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">Diskon</p>
+                                <p class="value">{{ $registrant->discount_percentage ? $registrant->discount_percentage . "%" : "-" }}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">Alasan Pendaftaran</p>
+                                <p class="value">{{ $registrant->reason }}</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">Jenis Kelamin</p>
+                                <p class="value">{{ $registrant->gender == "male" ? "Laki-laki" : "Perempuan" }}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">No. Telepon</p>
+                                <p class="value">{{ $registrant->phone_number }}</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">Domisili</p>
+                                <p class="value">{{ $registrant->domicile }}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">Tanggal Tes</p>
+                                <p class="value">{{ \Carbon\Carbon::parse($registrant->schedule)->format("d F Y") }}</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">Nama Pengguna</p>
+                                <p class="value">{{ $registrant->user->username }}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">Kode Voucher</p>
+                                <p class="value">{{ $registrant->voucher_code ? $registrant->voucher_code : "-" }}</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="info-item">
+                                <p class="label">Bukti Kartu Pelajar</p>
+                                <p class="value">
+                                    <img src="{{ $studentCardImage }}" alt="Bukti Kartu Pelajar" style="max-width: 50%;" />
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
 
             <!-- Detail Tes -->
             <div class="section">
                 <h2 class="section-title">Detail Tes dan Pembayaran</h2>
-                <div class="info-grid">
-                    <div class="info-item">
-                        <p class="label">Kategori Psikotes</p>
-                        <p class="value">{{ $registrant->testType->testCategory->name }}</p>
-                    </div>
-                    <div class="info-item">
-                        <p class="label">Harga Asli</p>
-                        <p class="value">{{ "Rp" . number_format($registrant->testType->price, 0, ",", ".") }}</p>
-                    </div>
-                    <div class="info-item">
-                        <p class="label">Jenis Psikotes</p>
-                        <p class="value">{{ $registrant->testType->name }}</p>
-                    </div>
-                    <div class="info-item">
-                        <p class="label">Harga Setelah Diskon</p>
-                        <p class="value">{{ $registrant->discount_percentage ? "Rp" . number_format($registrant->testType->price - ($registrant->testType->price * $registrant->discount_percentage) / 100, 0, ",", ".") : "-" }}</p>
-                    </div>
-                </div>
+                <table class="info-table">
+                    <tr>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">Kategori Psikotes</p>
+                                <p class="value">{{ $registrant->testType->testCategory->name }}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">Harga Asli</p>
+                                <p class="value">{{ "Rp" . number_format($registrant->testType->price, 0, ",", ".") }}</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">Jenis Psikotes</p>
+                                <p class="value">{{ $registrant->testType->name }}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">Harga Setelah Diskon</p>
+                                <p class="value">{{ $registrant->discount_percentage ? "Rp" . number_format($registrant->testType->price - ($registrant->testType->price * $registrant->discount_percentage) / 100, 0, ",", ".") : "-" }}</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
 
             <!-- Hasil Tes -->
@@ -256,70 +336,18 @@
                 </div>
             </div>
 
-
-
-            <!-- Hasil Tes buat debuging -->
-            <!-- <div class="section">
-                <h2 class="section-title">Hasil Tes Psikologi</h2>
-                <div>
-                    @php
-                        $debugTool = request()->get('debug_tool', null); // nama file blade tanpa .blade.php
-                        $debugAttemptIndex = (int) request()->get('debug_attempt', 0);
-                        $firstResult = (!empty($testResults) && count($testResults)) ? $testResults[0] : null;
-                    @endphp
-
-                    @if ($debugTool)
-                        @php
-                            $toolViewDebug = "dashboard.ptpm_psikotes-paid.registrants.report.tools." . $debugTool;
-                            // pilih attempt sesuai index kalau ada
-                            $chosen = null;
-                            if (!empty($testResults) && count($testResults)) {
-                                $all = $testResults;
-                                $chosen = $all[$debugAttemptIndex] ?? $all[0];
-                            }
-                            $attemptForDebug = $chosen['attempt'] ?? null;
-                            $dataForDebug = $chosen['data'] ?? null;
-                            $responseForDebug = ($dataForDebug && $dataForDebug instanceof \Illuminate\Support\Collection && $dataForDebug->count()) ? $dataForDebug->first() : ($dataForDebug ?? null);
-                        @endphp
-
-                        @if (\View::exists($toolViewDebug))
-                            @include($toolViewDebug, [
-                                'tool' => $chosen['tool'] ?? null,
-                                'attempt' => $attemptForDebug,
-                                'data' => $dataForDebug,
-                                'responses' => $dataForDebug,
-                                'response' => $responseForDebug,
-                            ])
-                        @else
-                            <p style="text-align:center; color:#7f8c8d">Debug view "{{ $debugTool }}" tidak ditemukan.</p>
-                        @endif
-                    @else
-                        {{-- kode normal (tetap ada) --}}
-                        @if(!empty($testResults) && count($testResults))
-                            @foreach ($testResults as $result)
-                                @php
-                                    $toolView = "dashboard.ptpm_psikotes-paid.registrants.report.tools." . \Illuminate\Support\Str::slug($result['tool']->name);
-                                @endphp
-
-                                @if (View::exists($toolView))
-                                    @include($toolView, ["tool" => $result["tool"], "attempt" => $result["attempt"], "data" => $result["data"]])
-                                @else
-                                    <p style="text-align: center; color: #7f8c8d">Hasil tes untuk alat psikotes {{ $result["tool"]->name }} belum tersedia.</p>
-                                @endif
-
-                                <br />
-                            @endforeach
-                        @else
-                            <p style="text-align: center; color: #7f8c8d">Belum ada hasil tes untuk pendaftar ini.</p>
-                        @endif
-                    @endif
+            <!-- Checkpoint -->
+            <div class="section">
+                <h2 class="section-title">Checkpoint Pendaftar</h2>
+                <div class="testimoni-container">
+                    @include('dashboard.ptpm_psikotes-paid.registrants.report.tools.checkpoint')
                 </div>
-            </div> -->
+            </div>
 
             <!-- Testimoni -->
             <div class="section">
                 <h2 class="section-title">Testimoni Pendaftar</h2>
-                <div class="testimoni-grid">
+                <div class="testimoni-container">
                     @foreach ($registrant->user->testimonials as $testimoni)
                         <div class="testimoni-item">
                             <p class="testimoni-question">{{ $testimoni->question }}</p>

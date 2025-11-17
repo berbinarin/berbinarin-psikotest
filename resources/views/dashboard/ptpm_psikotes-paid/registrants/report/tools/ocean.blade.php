@@ -1,3 +1,9 @@
+@php
+    use Illuminate\Support\Str;
+
+    $categories = ["extraversion", "agreeableness", "neuroticism", "conscientiousness", "openness"];
+@endphp
+
 <!DOCTYPE html>
 <html lang="id">
     <head>
@@ -141,7 +147,7 @@
             }
 
             .section-title {
-                font-size: 28px;
+                font-size: 20px;
                 font-weight: bold;
                 color: #75badb;
                 padding-bottom: 5px;
@@ -150,285 +156,80 @@
         </style>
     </head>
     <body>
-        <h2 class="section-title">Hasil Tes Psikologi</h2>
+        <h2 class="section-title">Hasil Tes Psikologi OCEAN</h2>
 
-        <div class="chart-container">
-            <div class="chart-left">
-                <div class="chart">
-                    <div class="bar">
-                        <div class="bar1"></div>
-                        <span>20</span>
+        @foreach ($categories as $category)
+            @php
+                $categoryData = $data[$category];
+                $totalQuestions = $categoryData['question_count'] ?: 1;
+                $maxScore = $totalQuestions * 5;
+                $percentage = $maxScore > 0 ? round(($categoryData['total_score'] / $maxScore) * 100, 2) : 0;
+            @endphp
+
+            <div class="chart-container">
+                <div class="chart-left">
+                    <div class="chart">
+                        @for ($i = 1; $i <= 5; $i++)
+                            @php
+                                $value = $categoryData['answer_distribution'][$i] ?? 0;
+                                $width = $value * 40; // ubah multiplier sesuai skala tampilan
+                                $colorClass = "bar$i";
+                            @endphp
+                            <div class="bar">
+                                <div class="{{ $colorClass }}" style="width: {{ $width }}px;"></div>
+                                <span>{{ $value }}</span>
+                            </div>
+                        @endfor
                     </div>
-                    <div class="bar">
-                        <div class="bar2"></div>
-                        <span>40</span>
-                    </div>
-                    <div class="bar">
-                        <div class="bar3"></div>
-                        <span>10</span>
-                    </div>
-                    <div class="bar">
-                        <div class="bar4"></div>
-                        <span>10</span>
-                    </div>
-                    <div class="bar">
-                        <div class="bar5"></div>
-                        <span>10</span>
-                    </div>
+
+                    <p>Total poin pada {{ Str::title($category) }}: <b>{{ $categoryData['total_score'] }} poin</b></p>
+                    <p>Rata-rata poin per soal: <b>{{ round($categoryData['total_score'] / $totalQuestions, 2) }}</b></p>
+                    <p>Persentase: <b>{{ $percentage }}%</b></p>
                 </div>
-                <span>
-                    Total poin pada Extraversion:
-                    <b>32 poin</b>
-                </span>
-                <br />
-                <span>
-                    Rata-rata pada Extraversion:
-                    <b>8 poin</b>
-                </span>
-                <br />
-                <span>
-                    Persentase:
-                    <b>11 poin</b>
-                </span>
-            </div>
 
-            <div class="chart-right">
-                <div class="legend">
-                    <div class="legend-item">
-                        <div class="legend-swatch bar1"></div>
-                        <div>1=Sangat tidak sesuai</div>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-swatch bar2"></div>
-                        <div>2=Tidak sesuai</div>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-swatch bar3"></div>
-                        <div>3=Ragu-ragu</div>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-swatch bar4"></div>
-                        <div>4=Sesuai</div>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-swatch bar5"></div>
-                        <div>5=Sangat sesuai</div>
+                <div class="chart-right">
+                    <div class="legend">
+                        <div class="legend-item"><div class="legend-swatch bar1"></div>1 = Sangat Tidak Sesuai</div>
+                        <div class="legend-item"><div class="legend-swatch bar2"></div>2 = Tidak Sesuai</div>
+                        <div class="legend-item"><div class="legend-swatch bar3"></div>3 = Ragu-ragu</div>
+                        <div class="legend-item"><div class="legend-swatch bar4"></div>4 = Sesuai</div>
+                        <div class="legend-item"><div class="legend-swatch bar5"></div>5 = Sangat Sesuai</div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endforeach
 
         <div class="detail">
             <h3>Detail Jawaban OCEAN:</h3>
 
             <div class="subtest-container">
-                <div class="subtest">
-                    <h4>Extraversion</h4>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Pertanyaan</th>
-                                <th>Poin</th>
-                                <th>Jawaban</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Menyetir mobil antar-jemput dari satu tempat ke tempat lain bagi para anggota yang sibuk dengan urusan, dari satu tempat ke tempat lain.</td>
-                                <td>1</td>
-                                <td>Outdoor</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Mempelajari cara memperbaiki kerusakan-kerusakan ringan pada mesin mobil yang siap dipakai tim.</td>
-                                <td>2</td>
-                                <td>Mechanical</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Merencanakan anggaran belanja proyek perjalanan yang akan diajukan kepada sponsor.</td>
-                                <td>3</td>
-                                <td>Computational</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Membaca laporan-laporan penelitian KLH untuk memilih proyek KLH yang tepat.</td>
-                                <td>4</td>
-                                <td>Scientific</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Menghadapi sponsor untuk tawar-menawar dana di perusahaan "Supra Motor".</td>
-                                <td>5</td>
-                                <td>Personal Contact</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Memilih berbagai khazanah lagu–lagu yang tepat bagi kampanye Kelestarian Lingkungan Hidup.</td>
-                                <td>6</td>
-                                <td>Aesthetic</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="subtest">
-                    <h4>Agreeableness</h4>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Pertanyaan</th>
-                                <th>Poin</th>
-                                <th>Jawaban</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Menyetir mobil antar-jemput dari satu tempat ke tempat lain bagi para anggota yang sibuk dengan urusan, dari satu tempat ke tempat lain.</td>
-                                <td>1</td>
-                                <td>Outdoor</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Mempelajari cara memperbaiki kerusakan-kerusakan ringan pada mesin mobil yang siap dipakai tim.</td>
-                                <td>2</td>
-                                <td>Mechanical</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Merencanakan anggaran belanja proyek perjalanan yang akan diajukan kepada sponsor.</td>
-                                <td>3</td>
-                                <td>Computational</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Membaca laporan-laporan penelitian KLH untuk memilih proyek KLH yang tepat.</td>
-                                <td>4</td>
-                                <td>Scientific</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Menghadapi sponsor untuk tawar-menawar dana di perusahaan "Supra Motor".</td>
-                                <td>5</td>
-                                <td>Personal Contact</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Memilih berbagai khazanah lagu–lagu yang tepat bagi kampanye Kelestarian Lingkungan Hidup.</td>
-                                <td>6</td>
-                                <td>Aesthetic</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="subtest">
-                    <h4>Neuroticism</h4>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Pertanyaan</th>
-                                <th>Poin</th>
-                                <th>Jawaban</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Menyetir mobil antar-jemput dari satu tempat ke tempat lain bagi para anggota yang sibuk dengan urusan, dari satu tempat ke tempat lain.</td>
-                                <td>1</td>
-                                <td>Outdoor</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Mempelajari cara memperbaiki kerusakan-kerusakan ringan pada mesin mobil yang siap dipakai tim.</td>
-                                <td>2</td>
-                                <td>Mechanical</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Merencanakan anggaran belanja proyek perjalanan yang akan diajukan kepada sponsor.</td>
-                                <td>3</td>
-                                <td>Computational</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Membaca laporan-laporan penelitian KLH untuk memilih proyek KLH yang tepat.</td>
-                                <td>4</td>
-                                <td>Scientific</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Menghadapi sponsor untuk tawar-menawar dana di perusahaan "Supra Motor".</td>
-                                <td>5</td>
-                                <td>Personal Contact</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Memilih berbagai khazanah lagu–lagu yang tepat bagi kampanye Kelestarian Lingkungan Hidup.</td>
-                                <td>6</td>
-                                <td>Aesthetic</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="subtest">
-                    <h4>Conscientiousness</h4>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Pertanyaan</th>
-                                <th>Poin</th>
-                                <th>Jawaban</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Menyetir mobil antar-jemput dari satu tempat ke tempat lain bagi para anggota yang sibuk dengan urusan, dari satu tempat ke tempat lain.</td>
-                                <td>1</td>
-                                <td>Outdoor</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Mempelajari cara memperbaiki kerusakan-kerusakan ringan pada mesin mobil yang siap dipakai tim.</td>
-                                <td>2</td>
-                                <td>Mechanical</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Merencanakan anggaran belanja proyek perjalanan yang akan diajukan kepada sponsor.</td>
-                                <td>3</td>
-                                <td>Computational</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Membaca laporan-laporan penelitian KLH untuk memilih proyek KLH yang tepat.</td>
-                                <td>4</td>
-                                <td>Scientific</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Menghadapi sponsor untuk tawar-menawar dana di perusahaan "Supra Motor".</td>
-                                <td>5</td>
-                                <td>Personal Contact</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Memilih berbagai khazanah lagu–lagu yang tepat bagi kampanye Kelestarian Lingkungan Hidup.</td>
-                                <td>6</td>
-                                <td>Aesthetic</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                @foreach ($categories as $category)
+                    <div class="subtest">
+                        <h4>{{ Str::title($category) }}</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Pertanyaan</th>
+                                    <th>Poin</th>
+                                    <th>Jawaban</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($attempt->responses as $response)
+                                    @if (isset($response->question) && $response->question->scoring["scale"] === $category)
+                                        <tr>
+                                            <td>{{ $response->question->order }}</td>
+                                            <td>{{ $response->question->text }}</td>
+                                            <td>{{ $response->answer["value"] }}</td>
+                                            <td>{{ collect($response->question->options)->firstWhere("value", $response->answer["value"])["text"] ?? "N/A" }}</td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @endforeach
             </div>
         </div>
     </body>

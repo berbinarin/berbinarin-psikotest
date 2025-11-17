@@ -13,27 +13,22 @@
                 font-size: 20px;
                 margin-bottom: 10px;
             }
-
             .chart-container {
                 display: flex;
                 align-items: flex-start;
                 margin: 20px 0;
             }
-
             .chart-left p {
                 max-width: 500px;
             }
-
             .chart-right {
                 width: 220px;
                 min-width: 160px;
             }
-
             .chart {
                 margin: 0;
                 max-width: 80%;
             }
-
             .bar {
                 display: flex;
                 align-items: center;
@@ -43,20 +38,18 @@
                 margin-left: 10px;
                 font-weight: bold;
             }
-
             .bar1 {
-                background: #549FF0;
+                background: #549ff0;
                 width: 200px;
                 height: 45px;
                 border-radius: 4px;
             }
             .bar2 {
-                background: #EF4444;
+                background: #ef4444;
                 width: 400px;
                 height: 45px;
                 border-radius: 4px;
             }
-
             .legend {
                 margin-top: 6px;
             }
@@ -74,7 +67,6 @@
                 flex-shrink: 0;
                 border: 1px solid rgba(0, 0, 0, 0.08);
             }
-
             .desc {
                 margin: 20px 0 0 0;
                 line-height: 1.6;
@@ -92,20 +84,17 @@
                 gap: 20px;
                 margin-right: -40px;
             }
-
             .subtest {
                 flex: 0 0 calc(50% - 30px);
                 max-width: calc(50% - 30px);
                 box-sizing: border-box;
             }
-
             @media (max-width: 900px) {
                 .subtest {
                     flex: 0 0 100%;
                     max-width: 100%;
                 }
             }
-
             .subtest h4 {
                 color: #3993d2;
                 margin-bottom: 10px;
@@ -125,7 +114,6 @@
             th {
                 color: #555;
             }
-
             @media (max-width: 700px) {
                 .chart-container {
                     flex-direction: column;
@@ -134,15 +122,13 @@
                     width: 100%;
                 }
             }
-
             .section-title {
-                font-size: 28px;
+                font-size: 20px;
                 font-weight: bold;
                 color: #75badb;
                 padding-bottom: 5px;
                 margin-bottom: -5px;
             }
-
             .subtest h4 {
                 font-weight: bold;
                 color: #75badb;
@@ -151,7 +137,6 @@
                 padding-bottom: 5px;
                 margin-bottom: 15px;
             }
-
             .title-chart {
                 font-weight: bold;
                 color: #75badb;
@@ -163,34 +148,38 @@
         </style>
     </head>
     <body>
-        <h2 class="section-title">Hasil Tes Psikologi</h2>
+        <h2 class="section-title">Hasil Tes Psikologi D4-Bagian 2</h2>
 
-        <h4 class="title-chart">Nanti lu loop aja citt chart yang lainnya</h4>
         <div class="chart-container">
             <div class="chart-left">
                 <div class="chart">
                     <div class="bar">
                         <div class="bar1"></div>
-                        <span>20</span>
+                        <span>{{ $data["correct"] ?? 0 }}</span>
                     </div>
                     <div class="bar">
                         <div class="bar2"></div>
-                        <span>40</span>
+                        <span>{{ $data["wrong"] ?? 0 }}</span>
                     </div>
                 </div>
                 <span>
                     Total poin benar:
-                    <b>32 poin</b>
+                    <b>{{ $data["correct"] ?? 0 }} poin</b>
                 </span>
                 <br />
                 <span>
-                    Total poin salah benar:
-                    <b>8 poin</b>
+                    Total poin salah:
+                    <b>{{ $data["wrong"] ?? 0 }} poin</b>
                 </span>
                 <br />
                 <span>
                     Kategori:
-                    <b>Tinggi</b>
+                    <b>{{ $data["category"] ?? "-" }}</b>
+                </span>
+                <br />
+                <span>
+                    Persentil:
+                    <b>{{ $data["percentile"] ?? "-" }}</b>
                 </span>
             </div>
 
@@ -198,11 +187,15 @@
                 <div class="legend">
                     <div class="legend-item">
                         <div class="legend-swatch bar1"></div>
-                        <div>1=Sangat tidak sesuai</div>
+                        <div>Benar</div>
                     </div>
                     <div class="legend-item">
                         <div class="legend-swatch bar2"></div>
-                        <div>2=Tidak sesuai</div>
+                        <div>Salah</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-swatch" style="background: #808080"></div>
+                        <div>Tak Terjawab</div>
                     </div>
                 </div>
             </div>
@@ -213,36 +206,38 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Pernyataan</th>
-                        <th>Poin</th>
-                        <th>Jawaban</th>
+                        <th>Kunci Jawaban</th>
+                        <th>Jawaban Pengguna</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="td-kedua">1.</td>
-                        <td>Kebutuhan untuk menyelesaikan tugas yang dimulai, menunjukkan ketekunan.</td>
-                        <td class="td-pertama">3</td>
-                        <td>sesuai</td>
-                    </tr>
-                    <tr>
-                        <td>2.</td>
-                        <td>Kebutuhan untuk mencapai prestasi tinggi dan sukses dalam tugas.</td>
-                        <td>1</td>
-                        <td>sangat sesuai</td>
-                    </tr>
-                    <tr>
-                        <td>3.</td>
-                        <td>Kebutuhan untuk memimpin dan mengarahkan orang lain (kepemimpinan).</td>
-                        <td>2</td>
-                        <td>tidak sesuai</td>
-                    </tr>
-                    <tr>
-                        <td>4.</td>
-                        <td>Kebutuhan untuk mematuhi aturan, norma, dan harapan sosial.</td>
-                        <td>3</td>
-                        <td>sesuai banget</td>
-                    </tr>
+                    @foreach ($attempt->responses as $i => $response)
+                        @php
+                            $answerKey = $response->question->scoring["correct_answer"] ?? null;
+                            $optionTextKey = "";
+                            foreach ($response->question->options as $option) {
+                                if ($option["key"] == $answerKey) {
+                                    $optionTextKey = $option["text"];
+                                    break;
+                                }
+                            }
+
+                            $userChoice = $response->answer["choice"] ?? null;
+                            $optionText = "";
+                            foreach ($response->question->options as $option) {
+                                if ($option["key"] == $userChoice) {
+                                    $optionText = $option["text"];
+                                    break;
+                                }
+                            }
+                        @endphp
+
+                        <tr>
+                            <td>{{ $i + 1 }}.</td>
+                            <td>{{ $answerKey }}. {{ $optionTextKey }}</td>
+                            <td>{{ $userChoice }}. {{ $optionText }}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

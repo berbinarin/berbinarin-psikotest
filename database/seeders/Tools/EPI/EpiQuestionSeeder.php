@@ -53,7 +53,7 @@ class EpiQuestionSeeder extends Seeder
                     ],
                 ],
                 'scoring' => [
-                    'scale' => 'extroversion',
+                    'scale' => 'neuroticism',
                     'correct_answer' => true
                 ],
             ],
@@ -73,7 +73,7 @@ class EpiQuestionSeeder extends Seeder
                     ],
                 ],
                 'scoring' => [
-                    'scale' => 'neuroticism',
+                    'scale' => 'extroversion',
                     'correct_answer' => true
                 ],
             ],
@@ -453,8 +453,8 @@ class EpiQuestionSeeder extends Seeder
                     ],
                 ],
                 'scoring' => [
-                    'scale' => 'lie',
-                    'correct_answer' => false
+                    'scale' => 'extroversion',
+                    'correct_answer' => true
                 ],
             ],
             [
@@ -494,7 +494,7 @@ class EpiQuestionSeeder extends Seeder
                 ],
                 'scoring' => [
                     'scale' => 'lie',
-                    'correct_answer' => false
+                    'correct_answer' => true
                 ],
             ],
             [
@@ -734,7 +734,7 @@ class EpiQuestionSeeder extends Seeder
                 ],
                 'scoring' => [
                     'scale' => 'lie',
-                    'correct_answer' => false
+                    'correct_answer' => true
                 ],
             ],
             [

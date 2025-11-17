@@ -11,21 +11,6 @@
 @endpush
 
 <div x-data="{ category: '{{ $categories[0] }}' }" class="w-full">
-    {{-- <div style="padding-left: 80px; padding-right: 80px">
-        <div class="mx-auto mb-4 flex flex-wrap gap-2 rounded-[20px] bg-white p-2 shadow-md">
-            @foreach ($categories as $cat)
-                <button
-                    @click="category = '{{ $cat }}'"
-                    class="rounded-full px-4 py-2 text-sm font-semibold transition"
-                    :class="category === '{{ $cat }}'
-                        ? 'bg-[#3986A3] text-white shadow-md'
-                        : 'text-[#000] hover:bg-[#3986A3] hover:text-white'"
-                >
-                    {{ Str::title(str_replace('_',' ',$cat)) }}
-                </button>
-            @endforeach
-        </div>
-    </div> --}}
 
     {{-- Container Graph + Table --}}
     <div class="mb-1 flex w-full gap-8">
