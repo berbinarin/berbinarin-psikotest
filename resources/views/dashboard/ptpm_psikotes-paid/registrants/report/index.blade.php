@@ -12,11 +12,16 @@
 @endphp
 
 @php
+    $studentCardImage = null;
     $path = storage_path('app/public/' . $registrant->student_card);
-    $type = pathinfo($path, PATHINFO_EXTENSION);
-    $data = file_get_contents($path);
-    $studentCardImage = 'data:image/' . $type . ';base64,' . base64_encode($data);
+
+    if (file_exists($path) && is_file($path)) {
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $studentCardImage = 'data:image/' . $type . ';base64,' . base64_encode($data);
+    }
 @endphp
+
 
 <!DOCTYPE html>
 <html lang="id">
@@ -269,7 +274,11 @@
                             <div class="info-item">
                                 <p class="label">Bukti Kartu Pelajar</p>
                                 <p class="value">
-                                    <img src="{{ $studentCardImage }}" alt="Bukti Kartu Pelajar" style="max-width: 50%;" />
+                                    @if ($studentCardImage)
+                                        <img src="{{ $studentCardImage }}" alt="Bukti Kartu Pelajar" style="max-width: 50%;" />
+                                    @else
+                                        <span style="color: #888;">Tidak ada gambar</span>
+                                    @endif
                                 </p>
                             </div>
                         </td>
