@@ -68,7 +68,7 @@ class RegistrantController extends Controller
             'type'    => 'error',
             'title'   => 'Gagal',
             'message' => 'Terjdi kesalahan saat mendaftarkan... Sorry 😺',
-            'icon'    => asset('assets/dashboard/images/error.png'),
+            'icon'    => asset('assets/dashboard/images/error.webp'),
         ]);
         }
 
@@ -77,7 +77,7 @@ class RegistrantController extends Controller
             'type'    => 'success',
             'title'   => 'Berhasil!',
             'message' => 'Data berhasil ditambahkan.',
-            'icon'    => asset('assets/dashboard/images/success.png'),
+            'icon'    => asset('assets/dashboard/images/success.webp'),
         ]);
     }
 
@@ -164,7 +164,7 @@ class RegistrantController extends Controller
             'type'    => 'success',
             'title'   => 'Berhasil!',
             'message' => 'Data berhasil diupdate',
-            'icon'    => asset('assets/dashboard/images/success.png'),
+            'icon'    => asset('assets/dashboard/images/success.webp'),
         ]);
         } catch (\Exception $e) {
             dd($e);
@@ -173,7 +173,7 @@ class RegistrantController extends Controller
             'type'    => 'error',
             'title'   => 'Gagal',
             'message' => 'Terjdi kesalahan saat mengupdate data... Sorry 😺',
-            'icon'    => asset('assets/dashboard/images/error.png'),
+            'icon'    => asset('assets/dashboard/images/error.webp'),
         ]);
         }
     }
@@ -223,7 +223,7 @@ class RegistrantController extends Controller
             'type'    => 'success',
             'title'   => 'Berhasil!',
             'message' => 'Data berhasil dihapus',
-            'icon'    => asset('assets/dashboard/images/success.png'),
+            'icon'    => asset('assets/dashboard/images/success.webp'),
         ]);
         } catch (\Exception $e) {
             dd($e);
@@ -232,7 +232,7 @@ class RegistrantController extends Controller
             'type'    => 'error',
             'title'   => 'Gagal',
             'message' => 'Terjadi kesalahan saat menghapus data',
-            'icon'    => asset('assets/dashboard/images/error.png'),
+            'icon'    => asset('assets/dashboard/images/error.webp'),
         ]);
         }
     }

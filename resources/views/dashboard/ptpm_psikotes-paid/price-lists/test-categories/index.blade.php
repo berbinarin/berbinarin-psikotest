@@ -19,7 +19,7 @@
             @foreach($testCategories as $category)
                 <a href="{{ route('dashboard.price-list.test-types.by-category', $category->id) }}" class="flex h-[145px] w-[523px] flex-row items-center rounded-xl bg-white p-6 shadow hover:bg-gray-100 transition">
                     <div class="flex h-[104px] w-[119px] items-center justify-center rounded-lg bg-gray-100">
-                        <img src="{{ asset('assets/dashboard/images/' . $category->name . '.png') }}" alt="arrow down" class="w-16 h-16">
+                        <img src="{{ asset('assets/dashboard/images/' . $category->name . '.webp') }}" alt="arrow down" class="w-16 h-16">
                     </div>
                     <div class="ml-6">
                         <span class="text-[28px] font-semibold text-gray-800">{{ $category->name }}</span>

@@ -30,7 +30,7 @@ class TestimonialController extends Controller
             'type'    => 'success',
             'title'   => 'Berhasil!',
             'message' => 'Yeeee!! Testimoni berhasil dihapus',
-            'icon'    => asset('assets/dashboard/images/success.png'),
+            'icon'    => asset('assets/dashboard/images/success.webp'),
         ]);
     }
 }

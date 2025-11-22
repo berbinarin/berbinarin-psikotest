@@ -72,7 +72,7 @@
                         {{-- Tombol Tambah Input --}}
                         <div>
                             <button type="button" @click="items.push({})" class="mt-2 flex w-full items-center justify-center gap-2 rounded-lg border-2 border-dashed border-[#6083F2] bg-transparent px-4 py-4 text-sm font-semibold text-[#6083F2] hover:bg-primary/5">
-                                <img src="{{ asset("assets/landing/icons/add.svg") }}" alt="Tambah" class="h-5 w-5" />
+                                <img src="{{ asset("assets/landing/icons/add.webp") }}" alt="Tambah" class="h-5 w-5" />
                                 <span>Tambah {{ $option["title"] ?? "Input" }}</span>
                             </button>
                         </div>

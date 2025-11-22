@@ -71,7 +71,7 @@
         <div class="flex items-center justify-between p-3 border-b">
             <div class="text-sm text-gray-600">Detail Gambar</div>
             <div class="flex items-center gap-2">
-                <a id="downloadBtn" href="#" download="image.jpg" class="inline-flex items-center gap-2 px-3 py-1.5 bg-primary text-white rounded-md text-sm hover:bg-primary">
+                <a id="downloadBtn" href="#" download="image.webp" class="inline-flex items-center gap-2 px-3 py-1.5 bg-primary text-white rounded-md text-sm hover:bg-primary">
                     <i class="fas fa-download"></i>
                     <span>Download</span>
                 </a>
@@ -106,7 +106,7 @@
             if (!src) return;
             modalImage.src = src;
             downloadBtn.href = src;
-            try { downloadBtn.setAttribute('download', filename || 'image.jpg'); } catch(e){}
+            try { downloadBtn.setAttribute('download', filename || 'image.webp'); } catch(e){}
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
             closeBtn?.focus();

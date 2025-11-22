@@ -41,7 +41,7 @@ class AttemptController extends Controller
             'type'    => 'success',
             'title'   => 'Berhasil!',
             'message' => 'Data berhasil dihapus',
-            'icon'    => asset('assets/dashboard/images/success.png'),
+            'icon'    => asset('assets/dashboard/images/success.webp'),
         ]);
         } catch (\Exception $e) {
             dd($e);
@@ -50,7 +50,7 @@ class AttemptController extends Controller
             'type'    => 'error',
             'title'   => 'Gagal',
             'message' => 'Terjdi kesalahan saat menghapus data... Sorry 😺',
-            'icon'    => asset('assets/dashboard/images/error.png'),
+            'icon'    => asset('assets/dashboard/images/error.webp'),
         ]);
         }
     }

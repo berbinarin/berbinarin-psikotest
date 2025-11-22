@@ -28,7 +28,7 @@ class TestimonialController extends Controller
 
 
         session()->flash('alert', true);
-        session()->flash('icon', asset('assets/dashboard/images/success.png'));
+        session()->flash('icon', asset('assets/dashboard/images/success.webp'));
         session()->flash('type', 'success');
         session()->flash('title', 'Terima kasih!');
         session()->flash('message', 'Testimoni berhasil disimpan.');

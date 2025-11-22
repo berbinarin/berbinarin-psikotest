@@ -16,7 +16,7 @@
 
     {{-- LOGO BERBINAR --}}
     <div>
-        <img src="{{ asset('/assets/dashboard/images/logo/logo-berbinar.png') }}"
+        <img src="{{ asset('/assets/dashboard/images/logo/logo-berbinar.webp') }}"
             alt="Logo Berbinar Insightful Indonesia" title="Logo Berbinar Insightful Indonesia" class="w-14" />
     </div>
 

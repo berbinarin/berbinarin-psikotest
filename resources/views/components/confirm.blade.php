@@ -11,7 +11,7 @@
         "
     >
         <!-- Warning Icon -->
-        <img src="{{ asset("/assets/dashboard/images/warning.png") }}" alt="Warning Icon" class="mx-auto h-[83px] w-[83px]" />
+        <img src="{{ asset("/assets/dashboard/images/warning.webp") }}" alt="Warning Icon" class="mx-auto h-[83px] w-[83px]" />
 
         <!-- Title -->
         <h2 class="mt-4 text-center font-plusJakartaSans text-2xl font-bold text-stone-900">

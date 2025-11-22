@@ -17,13 +17,13 @@
 @include("components.alert")
 @section("content")
     <section>
-        <div class="relative flex h-screen w-screen items-center justify-center overflow-hidden bg-cover bg-center md:bg-cover md:bg-center" style="background-image: url('{{ asset("assets/auth/images/Login.png") }}')">
+        <div class="relative flex h-screen w-screen items-center justify-center overflow-hidden bg-cover bg-center md:bg-cover md:bg-center" style="background-image: url('{{ asset("assets/auth/images/Login.webp") }}')">
             <div class="flex h-[550px] w-[1227.33px] flex-col rounded-[20px] border-[1.33px] border-sky-100 bg-white/40 backdrop-blur-[6.67px]">
                 <div class="relative flex flex-row items-center px-[55.33px] pt-[23.33px]">
                     <div class="flex flex-row gap-4 rounded-[50px] bg-gradient-to-b from-[#F7B23B] to-[#916823] p-[1px]">
                         <div class="flex flex-row items-center justify-center gap-4 rounded-[50px] bg-white px-[19.92px] py-[7.47px]">
-                            <img src="{{ asset("assets/auth/images/logo-berbinar.png") }}" class="h-[34.36px] w-[33.36px]" />
-                            <img src="{{ asset("assets/auth/images/psikotest.png") }}" class="h-[34.36px] w-[33.36px]" />
+                            <img src="{{ asset("assets/auth/images/logo-berbinar.webp") }}" class="h-[34.36px] w-[33.36px]" />
+                            <img src="{{ asset("assets/auth/images/psikotest.webp") }}" class="h-[34.36px] w-[33.36px]" />
                         </div>
                     </div>
 
@@ -97,7 +97,7 @@
             "
         >
             <!-- Warning Icon -->
-            <img src="{{ asset("/assets/dashboard/images/warning.png") }}" alt="Warning Icon" class="mx-auto h-[83px] w-[83px]" />
+            <img src="{{ asset("/assets/dashboard/images/warning.webp") }}" alt="Warning Icon" class="mx-auto h-[83px] w-[83px]" />
 
             <!-- Title -->
             <h2 class="mt-4 text-center font-plusJakartaSans text-2xl font-bold text-stone-900">Selesaikan Tes?</h2>
@@ -176,7 +176,7 @@
                 window.dispatchEvent(
                     new CustomEvent('show-alert', {
                         detail: {
-                            icon: @json(asset("assets/dashboard/images/warning.png")),
+                            icon: @json(asset("assets/dashboard/images/warning.webp")),
                             title: 'Waktu tersisa 1 menit untuk bagian ini!',
                             message: '',
                             type: 'info',
@@ -205,7 +205,7 @@
                         window.dispatchEvent(
                             new CustomEvent('show-alert', {
                                 detail: {
-                                    icon: @json(asset("assets/dashboard/images/success.png")),
+                                    icon: @json(asset("assets/dashboard/images/success.webp")),
                                     title: 'Waktu pengerjaan tes telah ditambahkan!',
                                     message: '',
                                     type: 'info',

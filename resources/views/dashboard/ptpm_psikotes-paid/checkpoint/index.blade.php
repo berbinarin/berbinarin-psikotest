@@ -19,7 +19,7 @@
 
             <a href="{{ route('dashboard.checkpoint.questions.index') }}" class="flex h-[145px] w-[90%] flex-row items-center rounded-xl bg-white p-6 shadow hover:bg-gray-100 transition">
                 <div class="flex h-[104px] w-[119px] items-center justify-center rounded-lg bg-gray-100">
-                    <img src="{{ asset("assets/dashboard/images/checkpoint-question.png") }}" alt="" class="w-16 h-16">
+                    <img src="{{ asset("assets/dashboard/images/checkpoint-question.webp") }}" alt="" class="w-16 h-16">
                 </div>
                 <div class="ml-6">
                     <p class="text-[28px] font-semibold text-gray-800">{{ $questions->count() }}</p>
@@ -29,7 +29,7 @@
 
             <a href="{{ route('dashboard.checkpoint.responses.index') }}" class="flex h-[145px] w-[90%] flex-row items-center rounded-xl bg-white p-6 shadow hover:bg-gray-100 transition">
                 <div class="flex h-[104px] w-[119px] items-center justify-center rounded-lg bg-gray-100">
-                    <img src="{{ asset("assets/dashboard/images/checkpoint-answer.png") }}" alt="" class="w-16 h-16">
+                    <img src="{{ asset("assets/dashboard/images/checkpoint-answer.webp") }}" alt="" class="w-16 h-16">
                 </div>
                 <div class="ml-6">
                     <p class="text-[28px] font-semibold text-gray-800">{{ $responses->count() }}</p>

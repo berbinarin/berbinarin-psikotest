@@ -21,7 +21,7 @@
                     <div class="mt-auto flex items-center justify-between">
                         <span class="text-[44px] font-bold text-gray-900">{{ $tool->attempts->count() }}</span>
                         <div class="flex h-[80px] w-[80px] items-center justify-center rounded-2xl bg-gray-100">
-                            <img src="{{ asset("assets/dashboard/images/people.png") }}" alt="arrow down" class="h-12 w-12" />
+                            <img src="{{ asset("assets/dashboard/images/people.webp") }}" alt="arrow down" class="h-12 w-12" />
                         </div>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                     <div class="mt-auto flex items-center justify-between">
                         <span class="text-[44px] font-bold text-gray-900">{{ $tool->questions->count() }}</span>
                         <div class="flex h-[80px] w-[80px] items-center justify-center rounded-2xl bg-gray-100">
-                            <img src="{{ asset("assets/dashboard/images/notes.png") }}" alt="arrow down" class="h-12 w-12" />
+                            <img src="{{ asset("assets/dashboard/images/notes.webp") }}" alt="arrow down" class="h-12 w-12" />
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                     <div class="mt-auto flex items-center justify-between">
                         <span class="text-[44px] font-bold text-gray-900">{{ $tool->sections->count() }}</span>
                         <div class="flex h-[80px] w-[80px] items-center justify-center rounded-2xl bg-gray-100">
-                            <img src="{{ asset("assets/dashboard/images/papers.png") }}" alt="arrow down" class="h-12 w-12" />
+                            <img src="{{ asset("assets/dashboard/images/papers.webp") }}" alt="arrow down" class="h-12 w-12" />
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     <div class="mt-auto flex items-center justify-between">
                         <span class="text-[44px] font-bold text-gray-900">{{ $averageDurationMinutes }}</span>
                         <div class="flex h-[80px] w-[80px] items-center justify-center rounded-2xl bg-gray-100">
-                            <img src="{{ asset("assets/dashboard/images/time.png") }}" alt="arrow down" class="h-12 w-12" />
+                            <img src="{{ asset("assets/dashboard/images/time.webp") }}" alt="arrow down" class="h-12 w-12" />
                         </div>
                     </div>
                 </div>

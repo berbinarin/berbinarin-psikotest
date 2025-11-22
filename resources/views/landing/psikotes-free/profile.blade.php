@@ -12,7 +12,7 @@
                         <!-- Tombol Kembali -->
                         <a href="{{ route('home.index') }}">
                             <div class="flex cursor-pointer items-center space-x-2 lg:order-1">
-                                <img src="{{ asset('assets/landing/images/vector/left-arrow.svg') }}" alt="Left Arrow"
+                                <img src="{{ asset('assets/landing/images/vector/left-arrow.webp') }}" alt="Left Arrow"
                                     class="h-3 w-auto lg:h-5" />
                                 <p class="text-[15px] font-semibold text-[#3986A3] xl:text-lg">Kembali</p>
                             </div>
@@ -66,7 +66,7 @@
                                     <input required type="text" name="date_of_birth" id="date_of_birth"
                                         autocomplete="bday" placeholder="dd/mm/yyyy"
                                         class="mt-1  max-sm:shadow-lg block w-full md:w-full px-2.5 py-1.5 lg:py-3 bg-gray-100 border border-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-sm lg:text-lg placeholder:text-gray-700" />
-                                    <img src="{{ asset('assets/landing/images/vector/date.png') }}" id="date_of_birth_icon"
+                                    <img src="{{ asset('assets/landing/images/vector/date.webp') }}" id="date_of_birth_icon"
                                         class="absolute max-sm:hidden right-3 top-1/2 -translate-y-1/2 h-5 w-5 object-contain cursor-pointer" />
                                 </div>
                             </div>

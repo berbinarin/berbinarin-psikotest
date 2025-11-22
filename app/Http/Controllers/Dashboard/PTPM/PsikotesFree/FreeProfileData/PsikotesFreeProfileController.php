@@ -87,7 +87,7 @@ class PsikotesFreeProfileController extends Controller
                 'type'    => 'success',
                 'title'   => 'Berhasil!',
                 'message' => 'Data berhasil dihapus',
-                'icon'    => asset('assets/dashboard/images/success.png'),
+                'icon'    => asset('assets/dashboard/images/success.webp'),
             ]);
         } catch (\Exception $e) {
             dd($e);
@@ -96,7 +96,7 @@ class PsikotesFreeProfileController extends Controller
                 'type'    => 'error',
                 'title'   => 'Gagal!',
                 'message' => 'Terjadi kesalahan saat menghapus data',
-                'icon'    => asset('assets/dashboard/images/success.png'),
+                'icon'    => asset('assets/dashboard/images/success.webp'),
             ]);
         }
     }

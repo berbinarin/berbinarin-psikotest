@@ -5,16 +5,16 @@
 @section('content')
     <section>
         <div class="relative h-screen w-screen bg-none md:bg-cover md:bg-center"
-            style="background-image: url('{{ asset('assets/auth/images/Login.png') }}')">
+            style="background-image: url('{{ asset('assets/auth/images/Login.webp') }}')">
             <div class="flex flex-col items-center justify-center">
                 <!-- Logo -->
                 <div
                     class="mt-[15px] flex flex-row items-center justify-center gap-4 rounded-[50px] bg-gradient-to-b from-[#F7B23B] to-[#916823] p-[1px] px-[2px] py-[2px] md:mt-[48px]">
                     <div
                         class="flex flex-row items-center justify-center gap-4 rounded-[50px] bg-white px-[19.92px] py-[7.47px] md:gap-6 md:px-8 md:py-[10px]">
-                        <img src="{{ asset('assets/auth/images/logo-berbinar.png') }}" alt="logo berbinar"
+                        <img src="{{ asset('assets/auth/images/logo-berbinar.webp') }}" alt="logo berbinar"
                             class="h-[34.36px] w-[33.36px] md:h-[42px] md:w-[40px]" />
-                        <img src="{{ asset('assets/auth/images/psikotest.png') }}" alt="psikotest"
+                        <img src="{{ asset('assets/auth/images/psikotest.webp') }}" alt="psikotest"
                             class="h-[34.36px] w-[33.36px] md:h-[46px] md:w-[44px]" />
                     </div>
                 </div>
@@ -69,7 +69,7 @@
             </div>
             <!-- Footer (hanya di mobile) -->
             <div class="mt-auto w-full md:hidden">
-                <img src="{{ asset('assets/auth/images/Footer - Section.png') }}" alt="footer"
+                <img src="{{ asset('assets/auth/images/Footer - Section.webp') }}" alt="footer"
                     class="w-full object-cover" />
             </div>
         </div>

@@ -54,17 +54,17 @@
                             <div class="absolute right-[14%] top-[45%] -translate-y-1/2 max-sm:hidden" style="width: 300px; height: 300px; border-radius: 50%; background: #a2d7f0cc; filter: blur(60px); opacity: 1; z-index: 0"></div>
 
                             @if ($progress < 16.66)
-                                <img src="{{ asset("assets/landing/images/psikotes-free/progress1.png") }}" alt="Ilustrasi-Tes" class="mt-10 hidden h-[600px] w-[600px] scale-75 lg:block" data-aos="fade-left" data-aos-duration="1500" />
+                                <img src="{{ asset("assets/landing/images/psikotes-free/progress1.webp") }}" alt="Ilustrasi-Tes" class="mt-10 hidden h-[600px] w-[600px] scale-75 lg:block" data-aos="fade-left" data-aos-duration="1500" />
                             @elseif ($progress < 33.33)
-                                <img src="{{ asset("assets/landing/images/psikotes-free/progress2.png") }}" alt="Ilustrasi-Tes" class="mt-10 hidden h-[600px] w-[600px] scale-75 lg:block" data-aos="fade-left" data-aos-duration="1500" />
+                                <img src="{{ asset("assets/landing/images/psikotes-free/progress2.webp") }}" alt="Ilustrasi-Tes" class="mt-10 hidden h-[600px] w-[600px] scale-75 lg:block" data-aos="fade-left" data-aos-duration="1500" />
                             @elseif ($progress < 50)
-                                <img src="{{ asset("assets/landing/images/psikotes-free/progress3.png") }}" alt="Ilustrasi-Tes" class="mt-10 hidden h-[600px] w-[600px] scale-75 lg:block" data-aos="fade-left" data-aos-duration="1500" />
+                                <img src="{{ asset("assets/landing/images/psikotes-free/progress3.webp") }}" alt="Ilustrasi-Tes" class="mt-10 hidden h-[600px] w-[600px] scale-75 lg:block" data-aos="fade-left" data-aos-duration="1500" />
                             @elseif ($progress < 66.66)
-                                <img src="{{ asset("assets/landing/images/psikotes-free/progress4.png") }}" alt="Ilustrasi-Tes" class="mt-10 hidden h-[600px] w-[600px] scale-75 lg:block" data-aos="fade-left" data-aos-duration="1500" />
+                                <img src="{{ asset("assets/landing/images/psikotes-free/progress4.webp") }}" alt="Ilustrasi-Tes" class="mt-10 hidden h-[600px] w-[600px] scale-75 lg:block" data-aos="fade-left" data-aos-duration="1500" />
                             @elseif ($progress < 83.33)
-                                <img src="{{ asset("assets/landing/images/psikotes-free/progress5.png") }}" alt="Ilustrasi-Tes" class="mt-10 hidden h-[600px] w-[600px] scale-75 lg:block" data-aos="fade-left" data-aos-duration="1500" />
+                                <img src="{{ asset("assets/landing/images/psikotes-free/progress5.webp") }}" alt="Ilustrasi-Tes" class="mt-10 hidden h-[600px] w-[600px] scale-75 lg:block" data-aos="fade-left" data-aos-duration="1500" />
                             @elseif ($progress < 100)
-                                <img src="{{ asset("assets/landing/images/psikotes-free/progress6.png") }}" alt="Ilustrasi-Tes" class="mt-10 hidden h-[600px] w-[600px] scale-75 lg:block" data-aos="fade-left" data-aos-duration="1500" />
+                                <img src="{{ asset("assets/landing/images/psikotes-free/progress6.webp") }}" alt="Ilustrasi-Tes" class="mt-10 hidden h-[600px] w-[600px] scale-75 lg:block" data-aos="fade-left" data-aos-duration="1500" />
                             @endif
                         </div>
                     </div>

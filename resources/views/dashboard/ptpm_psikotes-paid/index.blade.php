@@ -31,7 +31,7 @@
                             {{ $category->registrant_profiles_count }}
                         </span>
                         <div class="flex h-[64px] w-[64px] items-center justify-center rounded-xl bg-gray-100">
-                            <img src="{{ asset("assets/dashboard/images/" . $category->name . ".png") }}" alt="{{ $category->name }}" class="h-10 w-10" />
+                            <img src="{{ asset("assets/dashboard/images/" . $category->name . ".webp") }}" alt="{{ $category->name }}" class="h-10 w-10" />
                         </div>
                     </div>
                 </div>

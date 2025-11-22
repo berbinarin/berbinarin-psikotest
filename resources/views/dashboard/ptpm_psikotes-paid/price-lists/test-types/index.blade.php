@@ -13,7 +13,7 @@
                 <div>
                     <div class="flex items-center gap-2">
                         <a href="{{ route("dashboard.price-list.test-category.index") }}">
-                            <img src="{{ asset("assets/dashboard/images/back-btn.png") }}" alt="Back Button" />
+                            <img src="{{ asset("assets/dashboard/images/back-btn.webp") }}" alt="Back Button" />
                         </a>
                         <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">{{ $category->name }}</p>
                     </div>
