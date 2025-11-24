@@ -53,7 +53,7 @@ class VoucherCodeController extends Controller
             'voucher_type'    => 'success',
             'title'   => 'Berhasil!',
             'message' => 'Kode voucher berhasil ditambahkan.',
-            'icon'    => asset('assets/dashboard/images/success.png'),
+            'icon'    => asset('assets/dashboard/images/success.webp'),
         ]);
     }
 
@@ -106,7 +106,7 @@ class VoucherCodeController extends Controller
             'voucher_type'    => 'success',
             'title'   => 'Berhasil!',
             'message' => 'Kode voucher berhasil diupdate.',
-            'icon'    => asset('assets/dashboard/images/success.png'),
+            'icon'    => asset('assets/dashboard/images/success.webp'),
         ]);
     }
 
@@ -123,7 +123,7 @@ class VoucherCodeController extends Controller
             'voucher_type'    => 'success',
             'title'   => 'Berhasil!',
             'message' => 'Kode voucher berhasil dihapus',
-            'icon'    => asset('assets/dashboard/images/success.png'),
+            'icon'    => asset('assets/dashboard/images/success.webp'),
         ]);
     }
 }

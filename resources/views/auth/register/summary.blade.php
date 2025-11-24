@@ -24,7 +24,7 @@
     <div class="mx-4 mb-8 mt-24 flex flex-col justify-center rounded-3xl bg-none px-12 py-6 shadow-none max-md:px-1 sm:mx-24 sm:mb-20 sm:mt-36 md:bg-white md:shadow-lg">
         <div class="flex justify-end">
             <div class="flex cursor-pointer items-center space-x-1" id="openModal">
-                <img src="{{ asset("assets\landing\images\sk-vector.png") }}" alt="Syarat & Ketentuan" class="h-3 w-auto" />
+                <img src="{{ asset("assets\landing\images\sk-vector.webp") }}" alt="Syarat & Ketentuan" class="h-3 w-auto" />
                 <p class="text-[15px] font-semibold text-[#3986A3]">
                     <span class="hidden sm:block">Syarat & Ketentuan</span>
                     <span class="block sm:hidden">S&K</span>
@@ -104,7 +104,7 @@
         <div class="flex flex-col space-y-4">
             <h1 class="text-gradient text-bold text-center text-3xl font-semibold max-sm:mx-2 max-sm:text-[29px]">Terima Kasih</h1>
             <div class="flex items-center justify-center">
-                <img src="{{ asset("assets\landing\logo\logo-berbinar.png") }}" alt="Berbinar" class="h-[120px] w-[120px] object-contain" />
+                <img src="{{ asset("assets\landing\logo\logo-berbinar.webp") }}" alt="Berbinar" class="h-[120px] w-[120px] object-contain" />
             </div>
             <p class="text-gradient text-center text-xl font-medium max-sm:mx-2 max-sm:text-xl">
                 Untuk SobatBinar yang ingin mengetahui kepribadian lebih dalam atau ingin mengetahui aspek-aspek psikologis lain seperti, minat bakat, tes kecocokan pasangan, tes penjurusan, dan lainnya bisa ditemukan di Berbinar Insightful Indonesia.

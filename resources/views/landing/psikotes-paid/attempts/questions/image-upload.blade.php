@@ -5,7 +5,7 @@
     <!-- Container upload -->
     <label for="file-upload" class="flex h-[180px] w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-blue-500 bg-blue-50 p-8 transition-colors duration-200 hover:bg-blue-100 mb-0">
         <!-- Icon -->
-        <img src="{{ asset("assets/landing/icons/upload.svg") }}" alt="Upload Icon" class="mb-4 h-12 w-12 text-blue-500" />
+        <img src="{{ asset("assets/landing/icons/upload.webp") }}" alt="Upload Icon" class="mb-4 h-12 w-12 text-blue-500" />
 
         <!-- Teks upload -->
         <p class="text-center">

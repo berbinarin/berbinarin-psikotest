@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <title>{{ $title }} - Berbinar Insightful Indonesia</title>
-<link rel="shortcut icon" href="{{ asset("assets/landing/images/psikotes-paid/logo-berbinar-psikotes.png") }}" type="image/x-icon" />
+<link rel="shortcut icon" href="{{ asset("assets/landing/images/psikotes-paid/logo-berbinar-psikotes.webp") }}" type="image/x-icon" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
 <!--Replace with your tailwind.css once created-->
 <!--Regular Datatables CSS-->

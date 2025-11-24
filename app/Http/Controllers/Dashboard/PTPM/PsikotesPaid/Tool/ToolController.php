@@ -32,7 +32,7 @@ class ToolController extends Controller
             'type'    => 'Success',
             'title'   => 'Berhasil!',
             'message' => 'Yeeee!! Token berhasil diperbarui',
-            'icon'    => asset('assets/dashboard/images/error.png'),
+            'icon'    => asset('assets/dashboard/images/error.webp'),
         ]);
     }
 }

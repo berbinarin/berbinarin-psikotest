@@ -43,9 +43,9 @@
                 </div>
 
             </div>
-            <img src="{{ asset('assets/landing/images/psikotes-free/singa1.png') }}" alt="Ilustrasi Singa" title="Ilustrasi Singa" class="w-48 h-48 absolute hidden lg:block -top-12 -left-12 z-20 -translate-y-6" data-aos="fade-up" data-aos-duration="1500">
-            <img src="{{ asset('assets/landing/images/psikotes-free/singa2.png') }}" alt="Ilustrasi Singa" title="Ilustrasi Singa" class="w-48 h-48 absolute hidden lg:block -bottom-12 left-12 z-30 translate-y-6" data-aos="fade-up" data-aos-duration="1500">
-            <img src="{{ asset('assets/landing/images/psikotes-free/singa3.png') }}" alt="Ilustrasi Singa" title="Ilustrasi Singa" class="w-56 h-56 absolute hidden lg:block -bottom-12 -right-12 z-50 -mr-5" data-aos="fade-up" data-aos-duration="1500">
+            <img src="{{ asset('assets/landing/images/psikotes-free/singa1.webp') }}" alt="Ilustrasi Singa" title="Ilustrasi Singa" class="w-48 h-48 absolute hidden lg:block -top-12 -left-12 z-20 -translate-y-6" data-aos="fade-up" data-aos-duration="1500">
+            <img src="{{ asset('assets/landing/images/psikotes-free/singa2.webp') }}" alt="Ilustrasi Singa" title="Ilustrasi Singa" class="w-48 h-48 absolute hidden lg:block -bottom-12 left-12 z-30 translate-y-6" data-aos="fade-up" data-aos-duration="1500">
+            <img src="{{ asset('assets/landing/images/psikotes-free/singa3.webp') }}" alt="Ilustrasi Singa" title="Ilustrasi Singa" class="w-56 h-56 absolute hidden lg:block -bottom-12 -right-12 z-50 -mr-5" data-aos="fade-up" data-aos-duration="1500">
         </div>
     </section>
 

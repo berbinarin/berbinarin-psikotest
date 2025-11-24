@@ -47,7 +47,7 @@ class TestTypeController extends Controller
                 'type'    => 'error',
                 'title'   => 'Form belum lengkap',
                 'message' => implode(' ', $messages),
-                'icon'    => asset('assets/dashboard/images/error.png'),
+                'icon'    => asset('assets/dashboard/images/error.webp'),
             ]);
         }
 
@@ -63,7 +63,7 @@ class TestTypeController extends Controller
             'type'    => 'success',
             'title'   => 'Berhasil!',
             'message' => 'Jenis Tes berhasil ditambahkan.',
-            'icon'    => asset('assets/dashboard/images/success.png'),
+            'icon'    => asset('assets/dashboard/images/success.webp'),
         ]);
     }
 
@@ -103,7 +103,7 @@ class TestTypeController extends Controller
                 'type'    => 'error',
                 'title'   => 'Form belum lengkap',
                 'message' => implode(' ', $messages),
-                'icon'    => asset('assets/dashboard/images/error.png'),
+                'icon'    => asset('assets/dashboard/images/error.webp'),
             ]);
         }
 
@@ -119,7 +119,7 @@ class TestTypeController extends Controller
             'type'    => 'success',
             'title'   => 'Berhasil!',
             'message' => 'Jenis Tes berhasil diupdate.',
-            'icon'    => asset('assets/dashboard/images/success.png'),
+            'icon'    => asset('assets/dashboard/images/success.webp'),
         ]);
     }
 
@@ -142,7 +142,7 @@ class TestTypeController extends Controller
             'type'    => 'error',
             'title'   => 'Gagal!',
             'message' => 'Data ini tidak bisa dihapus karena masih digunakan di registrant profile.',
-            'icon'    => asset('assets/dashboard/images/error.png'),
+            'icon'    => asset('assets/dashboard/images/error.webp'),
         ]);
         }
 
@@ -155,7 +155,7 @@ class TestTypeController extends Controller
             'type'    => 'success',
             'title'   => 'Berhasil!',
             'message' => 'Jenis Tes berhasil dihapus.',
-            'icon'    => asset('assets/dashboard/images/success.png'),
+            'icon'    => asset('assets/dashboard/images/success.webp'),
         ]);
     }
 

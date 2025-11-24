@@ -17,7 +17,7 @@
                 <div class="quest-container z-20 mb-6 w-full justify-center rounded-3xl bg-white p-5 shadow-xl lg:mb-12 lg:w-[95%] lg:px-16" style="box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.075)">
                     <div class="flex flex-row items-center justify-center">
                         {{-- HERO IMG DESKTOP --}}
-                        <!-- <img src="{{ asset("assets/images/psikotes/result.png") }}" alt="Ilustrasi-Tes" class="w-[335px] h-[335px] hidden lg:block -
+                        <!-- <img src="{{ asset("assets/images/psikotes/result.webp") }}" alt="Ilustrasi-Tes" class="w-[335px] h-[335px] hidden lg:block -
                     mt-5" data-aos="fade-left" data-aos-duration="1500"> -->
 
                         <div class="mx-5 rounded-3xl bg-white p-5">

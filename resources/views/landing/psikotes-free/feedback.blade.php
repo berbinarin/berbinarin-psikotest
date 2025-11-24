@@ -39,7 +39,7 @@
                                 <label for="rating-1-1" class="cursor-pointer transition-all duration-300 ease-in-out peer-checked:bg-gradient-to-b from-[#FF004F] to-[#F7B23B] rounded-full group hover:bg-gradient-to-b relative w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 flex items-center justify-center">
                                     <span class="block w-full h-full relative">
                                         <!-- Default image -->
-                                        <img src="{{ asset('assets/landing/images/psikotes-free/feedback/5-pissed.png') }}"
+                                        <img src="{{ asset('assets/landing/images/psikotes-free/feedback/5-pissed.webp') }}"
                                             alt="Tidak Suka"
                                             class="absolute inset-0 w-full h-full object-contain transition duration-200 scale-150" />
                                         <!-- Text -->
@@ -57,7 +57,7 @@
                                 <label for="rating-2-1" class="cursor-pointer transition-all duration-300 ease-in-out peer-checked:bg-gradient-to-b from-[#FF543E] to-[#F7B23B] rounded-full group hover:bg-gradient-to-b relative w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 flex items-center justify-center">
                                     <span class="block w-full h-full relative">
                                         <!-- Default image -->
-                                        <img src="{{ asset('assets/landing/images/psikotes-free/feedback/4-bummed.png') }}"
+                                        <img src="{{ asset('assets/landing/images/psikotes-free/feedback/4-bummed.webp') }}"
                                             alt="Bosan"
                                             class="absolute inset-0 w-full h-full object-contain transition duration-200 scale-150" />
                                         <!-- Text -->
@@ -75,7 +75,7 @@
                                 <label for="rating-3-1" class="cursor-pointer transition-all duration-300 ease-in-out peer-checked:bg-gradient-to-b from-[#FFE500] to-[#F7B23B] rounded-full group hover:bg-gradient-to-b relative w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 flex items-center justify-center">
                                     <span class="block w-full h-full relative">
                                         <!-- Default image -->
-                                        <img src="{{ asset('assets/landing/images/psikotes-free/feedback/3-neutral.png') }}"
+                                        <img src="{{ asset('assets/landing/images/psikotes-free/feedback/3-neutral.webp') }}"
                                             alt="Biasa Saja"
                                             class="absolute inset-0 w-full h-full object-contain transition duration-200 scale-150" />
                                         <!-- Text -->
@@ -93,7 +93,7 @@
                                 <label for="rating-4-1" class="cursor-pointer transition-all duration-300 ease-in-out peer-checked:bg-gradient-to-b from-[#4CAF50] to-[#F7B23B] rounded-full group hover:bg-gradient-to-b relative w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 flex items-center justify-center">
                                     <span class="block w-full h-full relative">
                                         <!-- Default image -->
-                                        <img src="{{ asset('assets/landing/images/psikotes-free/feedback/2-happy.png') }}"
+                                        <img src="{{ asset('assets/landing/images/psikotes-free/feedback/2-happy.webp') }}"
                                             alt="Senang"
                                             class="absolute inset-0 w-full h-full object-contain transition duration-200 scale-150" />
                                         <!-- Text -->
@@ -111,7 +111,7 @@
                                 <label for="rating-5-1" class="cursor-pointer transition-all duration-300 ease-in-out peer-checked:bg-gradient-to-b from-[#75BADB] to-[#F7B23B] rounded-full group hover:bg-gradient-to-b relative w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 flex items-center justify-center">
                                     <span class="block w-full h-full relative">
                                         <!-- Default image -->
-                                        <img src="{{ asset('assets/landing/images/psikotes-free/feedback/1-wahoo.png') }}"
+                                        <img src="{{ asset('assets/landing/images/psikotes-free/feedback/1-wahoo.webp') }}"
                                             alt="Sangat Senang"
                                             class="absolute inset-0 w-full h-full object-contain transition duration-200 scale-150" />
                                         <!-- Text -->

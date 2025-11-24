@@ -48,7 +48,7 @@
 
                 @foreach ($items as $item)
                     <div class="flex flex-col items-center gap-1 md:gap-2">
-                        <img src="{{ asset("assets/landing/images/psikotes/{$item["img"]}.png") }}" alt="{{ $item["label"] }}" class="h-[110px] w-[110px] md:h-[150px] md:w-[150px]" />
+                        <img src="{{ asset("assets/landing/images/psikotes/{$item["img"]}.webp") }}" alt="{{ $item["label"] }}" class="h-[110px] w-[110px] md:h-[150px] md:w-[150px]" />
                         <p class="text-gradient font-plusJakartaSans text-base font-semibold leading-normal md:text-[28px]">{{ $item["label"] }}</p>
                     </div>
                 @endforeach
@@ -68,12 +68,12 @@
                 <!-- Tombol Tutup -->
                 <button onclick="closeModal()" class="absolute right-4 top-4" aria-label="Tutup pop-up">
                     <div class="flex size-6 items-center justify-center overflow-hidden rounded-sm bg-white outline outline-1 outline-offset-[-1px] outline-zinc-400">
-                        <img src="{{ asset("assets/landing/images/psikotes/Icon.png") }}" alt="Tutup" class="h-3 w-3" />
+                        <img src="{{ asset("assets/landing/images/psikotes/Icon.webp") }}" alt="Tutup" class="h-3 w-3" />
                     </div>
                 </button>
 
                 <!-- Isi Modal -->
-                <img src="{{ asset("assets/landing/images/psikotes/singa-pensil.png") }}" alt="" class="mx-auto mb-4 h-[185px] w-[185px]" />
+                <img src="{{ asset("assets/landing/images/psikotes/singa-pensil.webp") }}" alt="" class="mx-auto mb-4 h-[185px] w-[185px]" />
                 <h2 class="mb-2 font-plusJakartaSans text-[21px] font-bold text-[#333333]">Akses Psikotes Anda</h2>
                 <h4 class="font-plusJakartaSans text-base font-medium text-[#333333]">Silakan masuk jika sudah memiliki akun, atau lakukan pendaftaran</h4>
                 <div class="mt-6 flex justify-center gap-4">

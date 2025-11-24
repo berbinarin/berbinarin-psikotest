@@ -143,7 +143,7 @@ class CheckpointController extends Controller
             'type'    => 'success',
             'title'   => 'Berhasil',
             'message' => 'Data soal berhasil ditambahkan.',
-            'icon'    => asset('assets/dashboard/images/success.png'),
+            'icon'    => asset('assets/dashboard/images/success.webp'),
         ]);
     }
 
@@ -194,7 +194,7 @@ class CheckpointController extends Controller
             'type'    => 'success',
             'title'   => 'Berhasil',
             'message' => 'Data soal berhasil diperbarui.',
-            'icon'    => asset('assets/dashboard/images/success.png'),
+            'icon'    => asset('assets/dashboard/images/success.webp'),
         ]);
     }
 
@@ -208,7 +208,7 @@ class CheckpointController extends Controller
             'type'    => 'success',
             'title'   => 'Berhasil',
             'message' => 'Data soal berhasil dihapus.',
-            'icon'    => asset('assets/dashboard/images/success.png'),
+            'icon'    => asset('assets/dashboard/images/success.webp'),
         ]);
     }
 }

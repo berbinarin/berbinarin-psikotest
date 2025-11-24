@@ -3,7 +3,7 @@ function showSuccess(message = "Berhasil!", title = "Sukses") {
     Swal.fire({
         title: title,
         text: message,
-        imageUrl: "/assets/dashboard/images/success.png",
+        imageUrl: "/assets/dashboard/images/success.webp",
         imageWidth: 83,
         imageHeight: 83,
         confirmButtonText: "OK",
@@ -21,7 +21,7 @@ function showError(message = "Terjadi kesalahan!", title = "Error") {
     Swal.fire({
         title: title,
         text: message,
-        imageUrl: "/assets/dashboard/images/error.png",
+        imageUrl: "/assets/dashboard/images/error.webp",
         imageWidth: 83,
         imageHeight: 83,
         confirmButtonText: "OK",
@@ -39,7 +39,7 @@ function showConfirm(message = "Apakah kamu yakin?", title = "Konfirmasi", callb
     Swal.fire({
         title: title,
         text: message,
-        imageUrl: "/assets/dashboard/images/warning.png",
+        imageUrl: "/assets/dashboard/images/warning.webp",
         imageWidth: 83,
         imageHeight: 83,
         showCancelButton: true,

@@ -53,7 +53,7 @@
                 <template x-if="page === 1">
                     <a href="{{ route("home.index") }}">
                         <div class="flex cursor-pointer items-center space-x-2">
-                            <img src="{{ asset("/assets/landing/icons/left-arrow.svg") }}" alt="Left Arrow" class="h-3 w-auto" />
+                            <img src="{{ asset("/assets/landing/icons/left-arrow.webp") }}" alt="Left Arrow" class="h-3 w-auto" />
                             <p class="flex text-[15px] font-semibold text-[#3986A3]">Kembali</p>
                         </div>
                     </a>
@@ -62,7 +62,7 @@
                 <template x-if="page === 2">
                     <button @click="page = 1; window.scrollTo({top: 0, behavior: 'smooth'})" type="button">
                         <div class="flex cursor-pointer items-center space-x-2">
-                            <img src="{{ asset("/assets/landing/icons/left-arrow.svg") }}" alt="Left Arrow" class="h-3 w-auto" />
+                            <img src="{{ asset("/assets/landing/icons/left-arrow.webp") }}" alt="Left Arrow" class="h-3 w-auto" />
                             <p class="flex text-[15px] font-semibold text-[#3986A3]">
                                 Kembali
                                 <span class="ml-0.5 hidden sm:block">ke jadwal</span>
@@ -74,7 +74,7 @@
 
             {{-- Syarat dan Ketentuan --}}
             <div class="flex cursor-pointer items-center space-x-1" id="openModal">
-                <img src="{{ asset("/assets/landing/icons/sk-vector.png") }}" alt="Syarat & Ketentuan" class="h-3 w-auto" />
+                <img src="{{ asset("/assets/landing/icons/sk-vector.webp") }}" alt="Syarat & Ketentuan" class="h-3 w-auto" />
                 <p class="text-[15px] font-semibold text-[#3986A3]">
                     <span class="hidden sm:block">Syarat & Ketentuan</span>
                     <span class="block sm:hidden">S&K</span>
@@ -226,7 +226,7 @@
                         <p class="text-sm text-[#333333] sm:text-[17px]">Tanggal Psikotes</p>
                         <div class="relative">
                             <input type="date" id="psikotes_date" name="psikotes_date" class="w-full cursor-pointer rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none" placeholder="dd/mm/yy" value="{{ old("psikotes_date") }}" readonly />
-                            <img src="{{ asset("assets/landing/icons/date.png") }}" class="absolute right-5 top-1/2 h-4 w-auto -translate-y-1/2 object-contain" onclick="document.getElementById('datepicker').focus()" />
+                            <img src="{{ asset("assets/landing/icons/date.webp") }}" class="absolute right-5 top-1/2 h-4 w-auto -translate-y-1/2 object-contain" onclick="document.getElementById('datepicker').focus()" />
                         </div>
                     </div>
 
@@ -235,7 +235,7 @@
                         <div class="relative">
                             <input type="time" id="psikotes_time" name="psikotes_time" class="w-full cursor-pointer rounded-lg border-none bg-[#F1F3F6] px-3 py-3 pr-16 shadow-md focus:ring-[#3986A3] md:shadow-none" placeholder="--:--" value="{{ old("psikotes_time") }}" readonly />
                             <span class="pointer-events-none absolute left-[64px] top-1/2 -translate-y-1/2 text-base text-[#333]">WIB</span>
-                            <img src="{{ asset("assets/landing/icons/clock.png") }}" class="absolute right-5 top-1/2 h-4 w-auto -translate-y-1/2 object-contain" onclick="document.getElementById('timepicker').focus()" />
+                            <img src="{{ asset("assets/landing/icons/clock.webp") }}" class="absolute right-5 top-1/2 h-4 w-auto -translate-y-1/2 object-contain" onclick="document.getElementById('timepicker').focus()" />
                         </div>
                     </div>
 
@@ -246,7 +246,7 @@
                                 <option value="offline" {{ old("service") === "offline" ? "selected" : "" }}>Offline</option>
                                 <option value="online" {{ old("service") === "online" ? "selected" : "" }}>Online</option>
                             </select>
-                            <img src="{{ asset("assets/landing/icons/dropdown.png") }}" class="dropdown-icon pointer-events-none absolute right-5 top-1/2 h-2 w-auto -translate-y-1/2 object-contain transition-transform duration-300" />
+                            <img src="{{ asset("assets/landing/icons/dropdown.webp") }}" class="dropdown-icon pointer-events-none absolute right-5 top-1/2 h-2 w-auto -translate-y-1/2 object-contain transition-transform duration-300" />
                         </div>
                     </div>
 
@@ -259,7 +259,7 @@
                                     <option value="{{ $category->id }}" {{ old("test_category_id") == $category->id ? "selected" : "" }}>{{ $category->name }}</option>
                                 @endforeach
                             </select>
-                            <img src="{{ asset("assets/landing/icons/dropdown.png") }}" class="dropdown-icon pointer-events-none absolute right-5 top-1/2 h-2 w-auto -translate-y-1/2 object-contain transition-transform duration-300" />
+                            <img src="{{ asset("assets/landing/icons/dropdown.webp") }}" class="dropdown-icon pointer-events-none absolute right-5 top-1/2 h-2 w-auto -translate-y-1/2 object-contain transition-transform duration-300" />
                         </div>
                     </div>
 
@@ -269,7 +269,7 @@
                             <select id="test_type_id" name="test_type_id" class="dropdown-select w-full cursor-pointer appearance-none rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none bg-[length:0] bg-no-repeat bg-right">
                                 <option value=""></option>
                             </select>
-                            <img src="{{ asset("assets/landing/icons/dropdown.png") }}" class="dropdown-icon pointer-events-none absolute right-5 top-1/2 h-2 w-auto -translate-y-1/2 object-contain transition-transform duration-300" />
+                            <img src="{{ asset("assets/landing/icons/dropdown.webp") }}" class="dropdown-icon pointer-events-none absolute right-5 top-1/2 h-2 w-auto -translate-y-1/2 object-contain transition-transform duration-300" />
                         </div>
                     </div>
 
@@ -303,7 +303,7 @@
                             <input type="file" id="student_card" name="student_card" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
                             <div class="mt-1 block w-full h-12 pl-2 bg-gray-100 border border-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary pointer-events-none cursor-pointer content-center flex items-center">
                                 <button type="button" class="pointer-events-none border flex justify-between gap-2 py-[4px] px-2 border-[#B3B3B3] rounded-md cursor-pointer items-center">
-                                    <img src="{{ asset('assets/landing/images/psikotes-paid/upload-line-icon.png') }}" alt="" class="w-4 h-4">
+                                    <img src="{{ asset('assets/landing/images/psikotes-paid/upload-line-icon.webp') }}" alt="" class="w-4 h-4">
                                     Upload
                                 </button>
                                 <span id="fileName" class="ml-3 text-base text-gray-600 truncate"></span>

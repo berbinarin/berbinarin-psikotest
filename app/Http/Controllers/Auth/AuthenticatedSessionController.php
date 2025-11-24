@@ -52,7 +52,7 @@ class AuthenticatedSessionController extends Controller
                 'type'    => 'error',
                 'title'   => 'Login Gagal!',
                 'message' => 'Username atau Password salah',
-                'icon'    => asset('assets/dashboard/images/error.png'),
+                'icon'    => asset('assets/dashboard/images/error.webp'),
             ]);
         }
 
@@ -66,7 +66,7 @@ class AuthenticatedSessionController extends Controller
                     'type'    => 'error',
                     'title'   => 'Login Gagal!',
                     'message' => 'Akun tidak memiliki akses admin',
-                    'icon'    => asset('assets/dashboard/images/error.png'),
+                    'icon'    => asset('assets/dashboard/images/error.webp'),
                 ]);
             }
             $redirectPath = RouteServiceProvider::HOME;
@@ -78,7 +78,7 @@ class AuthenticatedSessionController extends Controller
                     'type'    => 'error',
                     'title'   => 'Login Gagal!',
                     'message' => 'Akun tidak memiliki akses user',
-                    'icon'    => asset('assets/dashboard/images/error.png'),
+                    'icon'    => asset('assets/dashboard/images/error.webp'),
                 ]);
             }
             $redirectPath = '/psikotes-paid/tools';
@@ -89,7 +89,7 @@ class AuthenticatedSessionController extends Controller
                 'type'    => 'error',
                 'title'   => 'Login Gagal!',
                 'message' => 'Tipe login tidak dikenali',
-                'icon'    => asset('assets/dashboard/images/error.png'),
+                'icon'    => asset('assets/dashboard/images/error.webp'),
             ]);
         }
 
@@ -103,7 +103,7 @@ class AuthenticatedSessionController extends Controller
                 'type'    => 'success',
                 'title'   => 'Berhasil!',
                 'message' => 'Selamat bekerja Sobat!',
-                'icon'    => asset('assets/dashboard/images/success.png'),
+                'icon'    => asset('assets/dashboard/images/success.webp'),
             ];
         } else {
             $alert = [
@@ -111,7 +111,7 @@ class AuthenticatedSessionController extends Controller
                 'type'    => 'success',
                 'title'   => 'Berhasil!',
                 'message' => 'Anda berhasil masuk.',
-                'icon'    => asset('assets/dashboard/images/success.png'),
+                'icon'    => asset('assets/dashboard/images/success.webp'),
             ];
         }
 
@@ -135,7 +135,7 @@ class AuthenticatedSessionController extends Controller
             'type'    => 'success',
             'title'   => 'Logout Berhasil!',
             'message' => 'Sampai jumpa lagi, Sobat!',
-            'icon'    => asset('assets/dashboard/images/success.png'),
+            'icon'    => asset('assets/dashboard/images/success.webp'),
         ];
 
         if ($user && $user->hasRole(['ptpm_psikotes-paid', 'ptpm_psikotes-free'])) {

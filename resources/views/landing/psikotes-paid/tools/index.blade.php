@@ -19,7 +19,7 @@
     @if(request()->query('tes') === 'selesai')
         @php
             session()->now('alert', true);
-            session()->now('icon', asset('assets/dashboard/images/success.png'));
+            session()->now('icon', asset('assets/dashboard/images/success.webp'));
             session()->now('type', 'success');
             session()->now('title', 'Anda telah menyelesaikan tes!');
             session()->now('message', '');
@@ -29,7 +29,7 @@
     @include('components.alert')
     @include('components.confirm', ['type' => 'logout'])
     <!-- Pindahkan x-data ke div utama -->
-    <div x-data="{ open: false, toolId: null }" class="relative bg-none md:min-h-screen md:bg-cover md:bg-center" style="background-image: url('{{ asset("assets/auth/images/Login.png") }}')">
+    <div x-data="{ open: false, toolId: null }" class="relative bg-none md:min-h-screen md:bg-cover md:bg-center" style="background-image: url('{{ asset("assets/auth/images/Login.webp") }}')">
         <!-- Header & Sambutan -->
         <div class="flex justify-between">
             <div class="mx-8 mt-5">
@@ -44,8 +44,8 @@
                 <!-- Logo -->
                 <div class="flex flex-row items-center justify-center gap-4 rounded-[50px] bg-gradient-to-b from-[#F7B23B] to-[#916823] p-[1px]">
                     <div class="flex flex-row items-center justify-center gap-4 rounded-[50px] bg-white px-[19.92px] py-[7.47px]">
-                        <img src="{{ asset("assets/auth/images/logo-berbinar.png") }}" class="h-[34.36px] w-[33.36px]" />
-                        <img src="{{ asset("assets/auth/images/psikotest.png") }}" class="h-[34.36px] w-[33.36px]" />
+                        <img src="{{ asset("assets/auth/images/logo-berbinar.webp") }}" class="h-[34.36px] w-[33.36px]" />
+                        <img src="{{ asset("assets/auth/images/psikotest.webp") }}" class="h-[34.36px] w-[33.36px]" />
                     </div>
                 </div>
 
@@ -111,7 +111,7 @@
         <footer>
             <!-- Footer hanya di mobile -->
             <div class="mt-auto w-full md:hidden">
-                <img src="{{ asset("assets/auth/images/Footer - Section.png") }}" alt="footer" class="w-full object-cover" />
+                <img src="{{ asset("assets/auth/images/Footer - Section.webp") }}" alt="footer" class="w-full object-cover" />
             </div>
         </footer>
     </div>

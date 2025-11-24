@@ -10,7 +10,7 @@
                     <div>
                         <div class="mb-2 flex items-center gap-2">
                             <a href="{{ url()->previous() }}">
-                                <img src="{{ asset('assets/dashboard/images/back-btn.png') }}" alt="Back Button" />
+                                <img src="{{ asset('assets/dashboard/images/back-btn.webp') }}" alt="Back Button" />
                             </a>
                             <p tabindex="0"
                                 class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-2xl lg:text-3xl">
@@ -141,14 +141,14 @@
         $(document).ready(function() {
             $('#table').DataTable({
                 scrollX: true,
-                autoWidth: false, 
+                autoWidth: false,
                 deferRender: true,
                 columns: [
                     { width: '60px' },
-                    null, 
-                    { width: '150px' }, 
-                    { width: '200px' }, 
-                    { width: '80px' } 
+                    null,
+                    { width: '150px' },
+                    { width: '200px' },
+                    { width: '80px' }
                 ],
                 columnDefs: [
                     { targets: [0,2,3,4], className: 'dt-center' }
@@ -174,7 +174,7 @@
                         case 'likert':
                         case 'binary_choice':
                         case 'multiple_choice':
-                            if (question.text) { 
+                            if (question.text) {
                                 modalHtml += '<ul class="list-disc pl-5">';
                                 question.options.forEach(opt => {
                                     modalHtml +=

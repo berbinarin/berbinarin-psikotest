@@ -39,7 +39,7 @@ class ToolController extends Controller
         } else {
             return redirect()->back()->withInput()->with([
                 'alert' => true,
-                'icon' => asset('assets/dashboard/images/error.png'),
+                'icon' => asset('assets/dashboard/images/error.webp'),
                 'type' => 'error',
                 'title' => 'Token Salah',
                 'message' => 'Token yang kamu masukkan tidak valid. Silakan coba lagi.',

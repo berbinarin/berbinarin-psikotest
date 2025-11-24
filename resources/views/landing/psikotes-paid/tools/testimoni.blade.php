@@ -7,13 +7,13 @@
 
 @section("content")
     <section>
-        <div class="relative flex h-screen w-screen items-center justify-center overflow-hidden bg-cover bg-center md:bg-cover md:bg-center" style="background-image: url('{{ asset("assets/auth/images/Login.png") }}')">
+        <div class="relative flex h-screen w-screen items-center justify-center overflow-hidden bg-cover bg-center md:bg-cover md:bg-center" style="background-image: url('{{ asset("assets/auth/images/Login.webp") }}')">
             <div class="flex h-[550px] w-[1227.33px] flex-col rounded-[20px] border-[1.33px] border-sky-100 bg-white/40 backdrop-blur-[6.67px]">
                 <div class="relative flex flex-row items-center px-[55.33px] pt-[23.33px]">
                     <div class="flex flex-row gap-4 rounded-[50px] bg-gradient-to-b from-[#F7B23B] to-[#916823] p-[1px]">
                         <div class="flex flex-row items-center justify-center gap-4 rounded-[50px] bg-white px-[19.92px] py-[7.47px]">
-                            <img src="{{ asset("assets/auth/images/logo-berbinar.png") }}" class="h-[34.36px] w-[33.36px]" />
-                            <img src="{{ asset("assets/auth/images/psikotest.png") }}" class="h-[34.36px] w-[33.36px]" />
+                            <img src="{{ asset("assets/auth/images/logo-berbinar.webp") }}" class="h-[34.36px] w-[33.36px]" />
+                            <img src="{{ asset("assets/auth/images/psikotest.webp") }}" class="h-[34.36px] w-[33.36px]" />
                         </div>
                     </div>
                     <h1 class="absolute left-1/2 top-[65%] -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-[#F7B23B] to-[#916823] bg-clip-text font-plusJakartaSans text-[26.67px] font-bold text-transparent">Testimoni</h1>
@@ -41,12 +41,12 @@
                                                 <label class="relative h-[107.33px] w-[197.33px] cursor-pointer">
                                                     <input type="radio" name="binary_choice" value="Ya" class="peer absolute h-full w-full opacity-0" />
                                                     <div class="flex h-full w-full items-center justify-center rounded-[6.67px] border-[1.33px] border-[#555555] bg-white font-plusJakartaSans text-[13.33px] font-semibold text-black transition-colors duration-200 peer-checked:border-blue-700 peer-checked:bg-[#106681]/20">Ya</div>
-                                                    <img src="{{ asset("assets/landing/icons/centang.png") }}" class="absolute right-2 top-2 h-5 w-5 opacity-0 transition-opacity duration-200 peer-checked:opacity-100" alt="Checkmark" />
+                                                    <img src="{{ asset("assets/landing/icons/centang.webp") }}" class="absolute right-2 top-2 h-5 w-5 opacity-0 transition-opacity duration-200 peer-checked:opacity-100" alt="Checkmark" />
                                                 </label>
                                                 <label class="relative h-[107.33px] w-[197.33px] cursor-pointer">
                                                     <input type="radio" name="binary_choice" value="Tidak" class="peer absolute h-full w-full opacity-0" />
                                                     <div class="flex h-full w-full items-center justify-center rounded-[6.67px] border-[1.33px] border-[#555555] bg-white font-plusJakartaSans text-[13.33px] font-semibold text-black transition-colors duration-200 peer-checked:border-blue-700 peer-checked:bg-[#106681]/20">Tidak</div>
-                                                    <img src="{{ asset("assets/landing/icons/centang.png") }}" class="absolute right-2 top-2 h-5 w-5 opacity-0 transition-opacity duration-200 peer-checked:opacity-100" alt="Checkmark" />
+                                                    <img src="{{ asset("assets/landing/icons/centang.webp") }}" class="absolute right-2 top-2 h-5 w-5 opacity-0 transition-opacity duration-200 peer-checked:opacity-100" alt="Checkmark" />
                                                 </label>
                                             </div>
 
@@ -55,17 +55,17 @@
                                                 {{-- <label class="relative h-[107.33px] w-[197.33px] cursor-pointer">
                                                     <input type="radio" name="multiple_choice" value="Ya" class="peer absolute h-full w-full opacity-0 cursor-pointer" />
                                                     <div class="flex h-full w-full items-center justify-center rounded-[6.67px] border-[1.33px] border-[#555555] bg-white font-plusJakartaSans text-[13.33px] font-semibold text-black transition-colors duration-200 peer-checked:border-blue-700 peer-checked:bg-[#106681]/20">Ya</div>
-                                                    <img src="{{ asset("assets/landing/icons/centang.png") }}" class="absolute right-2 top-2 h-5 w-5 opacity-0 transition-opacity duration-200 peer-checked:opacity-100" alt="Checkmark" />
+                                                    <img src="{{ asset("assets/landing/icons/centang.webp") }}" class="absolute right-2 top-2 h-5 w-5 opacity-0 transition-opacity duration-200 peer-checked:opacity-100" alt="Checkmark" />
                                                 </label>
                                                 <label class="relative h-[107.33px] w-[197.33px] cursor-pointer">
                                                     <input type="radio" name="multiple_choice" value="Mungkin" class="peer absolute h-full w-full opacity-0 cursor-pointer" />
                                                     <div class="flex h-full w-full items-center justify-center rounded-[6.67px] border-[1.33px] border-[#555555] bg-white font-plusJakartaSans text-[13.33px] font-semibold text-black transition-colors duration-200 peer-checked:border-blue-700 peer-checked:bg-[#106681]/20">Mungkin</div>
-                                                    <img src="{{ asset("assets/landing/icons/centang.png") }}" class="absolute right-2 top-2 h-5 w-5 opacity-0 transition-opacity duration-200 peer-checked:opacity-100" alt="Checkmark" />
+                                                    <img src="{{ asset("assets/landing/icons/centang.webp") }}" class="absolute right-2 top-2 h-5 w-5 opacity-0 transition-opacity duration-200 peer-checked:opacity-100" alt="Checkmark" />
                                                 </label>
                                                 <label class="relative h-[107.33px] w-[197.33px] cursor-pointer">
                                                     <input type="radio" name="multiple_choice" value="Tidak" class="peer absolute h-full w-full opacity-0 cursor-pointer" />
                                                     <div class="flex h-full w-full items-center justify-center rounded-[6.67px] border-[1.33px] border-[#555555] bg-white font-plusJakartaSans text-[13.33px] font-semibold text-black transition-colors duration-200 peer-checked:border-blue-700 peer-checked:bg-[#106681]/20">Tidak</div>
-                                                    <img src="{{ asset("assets/landing/icons/centang.png") }}" class="absolute right-2 top-2 h-5 w-5 opacity-0 transition-opacity duration-200 peer-checked:opacity-100" alt="Checkmark" />
+                                                    <img src="{{ asset("assets/landing/icons/centang.webp") }}" class="absolute right-2 top-2 h-5 w-5 opacity-0 transition-opacity duration-200 peer-checked:opacity-100" alt="Checkmark" />
                                                 </label> --}}
                                                 <label class="relative flex h-[62.67px] w-[520.33px] cursor-pointer items-center">
                                                     <input type="radio" name="multiple_choice" value="Ya" class="peer absolute h-full w-full opacity-0" />
@@ -116,7 +116,7 @@
                             </div>
 
                             <div id="thanks-section" class="hidden flex gap-4 flex-col items-center justify-center px-6 text-center">
-                                <img src="{{ asset("assets/landing/images/psikotes-paid/congrats.png") }}" alt="Congrats" class="h-auto w-[638px] -mt-" />
+                                <img src="{{ asset("assets/landing/images/psikotes-paid/congrats.webp") }}" alt="Congrats" class="h-auto w-[638px] -mt-" />
                                 <h1 class="mb-6 text-m font-semibold text-black">
                                     Terima kasih atas testimoni yang Anda diberikan!
                                 </h1>

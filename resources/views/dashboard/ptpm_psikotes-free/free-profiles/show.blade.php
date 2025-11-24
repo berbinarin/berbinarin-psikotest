@@ -55,7 +55,7 @@
                                     <span class="">
                                         @php
                                             $rating = optional(value: optional($attempt->profile)->feedback)->rating;
-                                            $feedbackData = [5 => ["image" => "1-wahoo2.png", "alt" => "Sangat Puas"], 4 => ["image" => "2-happy2.png", "alt" => "Puas"], 3 => ["image" => "3-neutral2.png", "alt" => "Cukup"], 2 => ["image" => "4-bummed2.png", "alt" => "Kurang Puas"], 1 => ["image" => "4-pissed2.png", "alt" => "Sangat Tidak Puas"]];
+                                            $feedbackData = [5 => ["image" => "1-wahoo2.webp", "alt" => "Sangat Puas"], 4 => ["image" => "2-happy2.webp", "alt" => "Puas"], 3 => ["image" => "3-neutral2.webp", "alt" => "Cukup"], 2 => ["image" => "4-bummed2.webp", "alt" => "Kurang Puas"], 1 => ["image" => "4-pissed2.webp", "alt" => "Sangat Tidak Puas"]];
                                         @endphp
 
                                         @if (isset($feedbackData[$rating]))
