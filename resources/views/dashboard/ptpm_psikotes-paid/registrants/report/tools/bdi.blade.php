@@ -9,38 +9,19 @@
                 margin: 40px;
                 color: #333;
             }
-            h2 {
+
+            .section-title {
                 font-size: 20px;
-                margin-bottom: 10px;
-            }
-            .chart-container {
-                display: flex;
-                align-items: flex-start;
-                margin: 20px 0;
-            }
-            .chart-left p {
-                max-width: 500px;
-            }
-            .score-summary b {
-                color: #444;
-            }
-            .chart-right {
-                width: 220px;
-                min-width: 160px;
-            }
-            .chart {
-                margin: 0;
-                max-width: 80%;
-            }
-            .bar {
-                display: flex;
-                align-items: center;
-                margin-bottom: 10px;
-            }
-            .bar span {
-                margin-left: 10px;
                 font-weight: bold;
+                color: #75badb;
+                margin-bottom: 10px;
             }
+
+            .bar-box {
+                height: 30px;
+                border-radius: 4px;
+            }
+
             .bar-0 {
                 background: #549ff0;
             }
@@ -53,23 +34,28 @@
             .bar-3 {
                 background: #ff6b6b;
             }
-            .legend {
-                margin-top: 6px;
-            }
-            .legend-item {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                margin-bottom: 10px;
-                font-size: 14px;
-            }
+
             .legend-swatch {
                 width: 14px;
                 height: 14px;
                 border-radius: 50%;
-                flex-shrink: 0;
                 border: 1px solid rgba(0, 0, 0, 0.08);
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 8px;
             }
+
+            .legend-table {
+                border-collapse: collapse;
+                margin-top: 0;
+            }
+            .legend-table td {
+                padding: 4px 6px;
+                font-size: 14px;
+                vertical-align: middle;
+                white-space: nowrap;
+            }
+
             table {
                 border-collapse: collapse;
                 width: 100%;
@@ -78,28 +64,28 @@
             th,
             td {
                 border-bottom: 1px solid #ddd;
-                text-align: left;
                 padding: 6px 10px;
                 font-size: 14px;
+                text-align: left;
             }
             th {
                 color: #555;
             }
-            .section-title {
-                font-size: 20px;
-                font-weight: bold;
-                color: #75badb;
-                padding-bottom: 5px;
-                margin-bottom: -5px;
+
+
+            .table-no-border td,
+            .table-no-border th {
+                border-bottom: none;
             }
         </style>
     </head>
     <body>
         <h2 class="section-title">Hasil Tes Psikologi BDI</h2>
 
-        <div class="chart-container">
-            <div class="chart-left">
-                <div class="chart">
+        <table class="table-no-border" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 20px">
+            <tr>
+                <!-- CHART KIRI -->
+                <td width="70%" valign="top">
                     @php
                         $categories = [
                             "0" => $data["answer_distribution"]["A"] ?? 0,
@@ -107,50 +93,52 @@
                             "2" => $data["answer_distribution"]["C"] ?? 0,
                             "3" => $data["answer_distribution"]["D"] ?? 0,
                         ];
-                        $maxScore = max($categories); // untuk proporsional bar
+                        $maxScore = max($categories) ?: 1;
                     @endphp
 
-                    @foreach ($categories as $name => $score)
-                        <div class="bar">
-                            <div class="bar-{{ strtolower($name) }}" style="width: {{ ($score / $maxScore) * 100 }}%; height: 30px; border-radius: 4px"></div>
-                            <span>{{ $score }}</span>
-                        </div>
-                    @endforeach
-                </div>
+                    <table cellpadding="4" cellspacing="0" width="100%">
+                        @foreach ($categories as $name => $score)
+                            <tr>
+                                <td width="80%">
+                                    <div class="bar-box bar-{{ $name }}" style="width: {{ ($score / $maxScore) * 100 }}%"></div>
+                                </td>
+                                <td width="20%" style="font-weight: bold">
+                                    {{ $score }}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
 
-                <div class="score-summary">
-                    <p>
+                    <p style="margin-top: 10px">
                         Total skor yang didapatkan adalah
                         <b>{{ $data["total_score"] }} poin</b>
                     </p>
+
                     <p>
                         Kesimpulan:
                         <b>{{ $data["description"] }}</b>
                     </p>
-                </div>
-            </div>
+                </td>
 
-            <div class="chart-right">
-                <div class="legend">
-                    <div class="legend-item">
-                        <div class="legend-swatch bar-0" style="background: #549ff0"></div>
-                        <div>0</div>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-swatch bar-1" style="background: #ffe066"></div>
-                        <div>1</div>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-swatch bar-2" style="background: #a685e2"></div>
-                        <div>2</div>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-swatch bar-3" style="background: #ff6b6b"></div>
-                        <div>3</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                <!-- LEGEND KANAN -->
+                <td width="30%" valign="top" style="padding-left: 20px; padding-top: 50px">
+                    <table class="legend-table" cellspacing="0">
+                        <tr>
+                            <td><div class="legend-swatch bar-0"></div>0</td>
+                        </tr>
+                        <tr>
+                            <td><div class="legend-swatch bar-1"></div>1</td>
+                        </tr>
+                        <tr>
+                            <td><div class="legend-swatch bar-2"></div>2</td>
+                        </tr>
+                        <tr>
+                            <td><div class="legend-swatch bar-3"></div>3</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
 
         <table>
             <thead>

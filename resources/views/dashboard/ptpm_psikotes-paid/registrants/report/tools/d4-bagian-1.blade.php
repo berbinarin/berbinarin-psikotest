@@ -9,197 +9,120 @@
                 margin: 40px;
                 color: #333;
             }
-            h2 {
+
+            .section-title {
                 font-size: 20px;
-                margin-bottom: 10px;
-            }
-            .chart-container {
-                display: flex;
-                align-items: flex-start;
-                margin: 20px 0;
-            }
-            .chart-left p {
-                max-width: 500px;
-            }
-            .chart-right {
-                width: 220px;
-                min-width: 160px;
-            }
-            .chart {
-                margin: 0;
-                max-width: 80%;
-            }
-            .bar {
-                display: flex;
-                align-items: center;
-                margin-bottom: 10px;
-            }
-            .bar span {
-                margin-left: 10px;
                 font-weight: bold;
+                color: #75badb;
+                margin-bottom: 15px;
             }
+
+            .bar-box {
+                height: 45px;
+                border-radius: 4px;
+            }
+
             .bar1 {
                 background: #549ff0;
                 width: 200px;
-                height: 45px;
-                border-radius: 4px;
             }
             .bar2 {
                 background: #ef4444;
                 width: 400px;
-                height: 45px;
-                border-radius: 4px;
             }
-            .legend {
-                margin-top: 6px;
-            }
-            .legend-item {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                margin-bottom: 10px;
-                font-size: 14px;
-            }
+
             .legend-swatch {
                 width: 14px;
                 height: 14px;
                 border-radius: 50%;
-                flex-shrink: 0;
-                border: 1px solid rgba(0, 0, 0, 0.08);
+                border: 1px solid rgba(0, 0, 0, 0.1);
             }
-            .desc {
-                margin: 20px 0 0 0;
-                line-height: 1.6;
-            }
-            .detail {
-                margin-top: 20px;
-            }
-            .detail h3 {
-                margin-bottom: -10px;
-                font-size: 18px;
-            }
-            .subtest-container {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 20px;
-                margin-right: -40px;
-            }
-            .subtest {
-                flex: 0 0 calc(50% - 30px);
-                max-width: calc(50% - 30px);
-                box-sizing: border-box;
-            }
-            @media (max-width: 900px) {
-                .subtest {
-                    flex: 0 0 100%;
-                    max-width: 100%;
-                }
-            }
-            .subtest h4 {
-                color: #3993d2;
-                margin-bottom: 10px;
-                font-size: 16px;
-            }
+
             table {
                 border-collapse: collapse;
                 width: 100%;
+                margin-top: 20px;
             }
             th,
             td {
                 border-bottom: 1px solid #ddd;
-                text-align: left;
                 padding: 6px 10px;
                 font-size: 14px;
             }
             th {
                 color: #555;
             }
-            @media (max-width: 700px) {
-                .chart-container {
-                    flex-direction: column;
-                }
-                .chart-right {
-                    width: 100%;
-                }
-            }
-            .section-title {
-                font-size: 20px;
-                font-weight: bold;
-                color: #75badb;
-                padding-bottom: 5px;
-                margin-bottom: -5px;
-            }
-            .subtest h4 {
-                font-weight: bold;
-                color: #75badb;
-                display: inline-block;
-                border-bottom: 3px solid #75badb;
-                padding-bottom: 5px;
-                margin-bottom: 15px;
-            }
-            .title-chart {
-                font-weight: bold;
-                color: #75badb;
-                display: inline-block;
-                border-bottom: 3px solid #75badb;
-                padding-bottom: 5px;
-                margin-bottom: 15px;
+
+            .table-no-border td,
+            .table-no-border th {
+                border-bottom: none;
             }
         </style>
     </head>
     <body>
         <h2 class="section-title">Hasil Tes Psikologi D4-Bagian 1</h2>
 
-        <div class="chart-container">
-            <div class="chart-left">
-                <div class="chart">
-                    <div class="bar">
-                        <div class="bar1"></div>
-                        <span>{{ $data["correct"] ?? 0 }}</span>
-                    </div>
-                    <div class="bar">
-                        <div class="bar2"></div>
-                        <span>{{ $data["wrong"] ?? 0 }}</span>
-                    </div>
-                </div>
-                <span>
-                    Total poin benar:
-                    <b>{{ $data["correct"] ?? 0 }} poin</b>
-                </span>
-                <br />
-                <span>
-                    Total poin salah:
-                    <b>{{ $data["wrong"] ?? 0 }} poin</b>
-                </span>
-                <br />
-                <span>
-                    Kategori:
-                    <b>{{ $data["category"] ?? "-" }}</b>
-                </span>
-                <br />
-                <span>
-                    Persentil:
-                    <b>{{ $data["percentile"] ?? "-" }}</b>
-                </span>
-            </div>
+        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 20px" class="table-no-border">
+            <tr>
+                <!-- CHART KIRI -->
+                <td width="70%" valign="top">
+                    <table cellpadding="6" cellspacing="0">
+                        <tr>
+                            <td width="65%">
+                                <div class="bar-box bar1"></div>
+                            </td>
+                            <td width="35%" style="font-weight: bold">
+                                {{ $data["correct"] ?? 0 }}
+                            </td>
+                        </tr>
 
-            <div class="chart-right">
-                <div class="legend">
-                    <div class="legend-item">
-                        <div class="legend-swatch bar1"></div>
-                        <div>Benar</div>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-swatch bar2"></div>
-                        <div>Salah</div>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-swatch" style="background: #808080"></div>
-                        <div>Tak Terjawab</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        <tr>
+                            <td width="65%">
+                                <div class="bar-box bar2"></div>
+                            </td>
+                            <td width="35%" style="font-weight: bold">
+                                {{ $data["wrong"] ?? 0 }}
+                            </td>
+                        </tr>
+                    </table>
+
+                    <p style="margin-top: 10px">
+                        Total poin benar:
+                        <b>{{ $data["correct"] }}</b>
+                    </p>
+                    <p>
+                        Total poin salah:
+                        <b>{{ $data["wrong"] }}</b>
+                    </p>
+                    <p>
+                        Kategori:
+                        <b>{{ $data["category"] }}</b>
+                    </p>
+                    <p>
+                        Persentil:
+                        <b>{{ $data["percentile"] }}</b>
+                    </p>
+                </td>
+
+                <!-- LEGEND KANAN -->
+                <td width="30%" valign="top" style="padding-left: 20px">
+                    <table cellpadding="6" cellspacing="0">
+                        <tr>
+                            <td><div class="legend-swatch bar1"></div></td>
+                            <td>Benar</td>
+                        </tr>
+                        <tr>
+                            <td><div class="legend-swatch bar2"></div></td>
+                            <td>Salah</td>
+                        </tr>
+                        <tr>
+                            <td><div class="legend-swatch" style="background: #808080"></div></td>
+                            <td>Tidak Terjawab</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
 
         <div>
             <table>

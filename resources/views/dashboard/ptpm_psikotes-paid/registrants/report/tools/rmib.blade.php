@@ -14,82 +14,76 @@
                 margin-bottom: 10px;
             }
 
-            .chart-container {
-                display: flex;
-                align-items: flex-start;
+
+            .chart-table {
+                width: 100%;
+                border-collapse: collapse;
                 margin: 20px 0;
             }
-
-            .chart-left p {
-                max-width: 500px;
+            .chart-table td {
+                vertical-align: top;
+                padding: 0;
             }
 
-            .chart-right {
-                width: 220px;
-                min-width: 160px;
+            .bars-table {
+                border-collapse: collapse;
+                width: 100%;
             }
-
-            .chart {
-                margin: 0;
-                max-width: 80%;
+            .bars-table td {
+                padding: 6px 0;
+                font-size: 14px;
+                vertical-align: middle;
             }
 
             .bar {
-                display: flex;
-                align-items: center;
-                margin-bottom: 10px;
-            }
-            .bar span {
-                margin-left: 10px;
-                font-weight: bold;
-            }
-            .bar1 {
-                background: #3986a3;
-                width: 200px;
+                display: inline-block;
                 height: 45px;
                 border-radius: 4px;
+                vertical-align: middle;
+            }
+            .bar + .bar-value {
+                padding-left: 10px;
+                font-weight: bold;
+                vertical-align: middle;
+                display: inline-block;
+            }
+
+            .bar1 {
+                background: #3986a3;
             }
             .bar2 {
                 background: #e9b306;
-                width: 400px;
-                height: 45px;
-                border-radius: 4px;
             }
             .bar3 {
                 background: #c893fd;
-                width: 100px;
-                height: 45px;
-                border-radius: 4px;
             }
             .bar4 {
                 background: #549ff0;
-                width: 100px;
-                height: 45px;
-                border-radius: 4px;
             }
             .bar5 {
                 background: #ef4444;
-                width: 100px;
-                height: 45px;
-                border-radius: 4px;
             }
 
             .legend {
                 margin-top: 6px;
+             }
+            .legend-table {
+                border-collapse: collapse;
+                width: 100%;
             }
-            .legend-item {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                margin-bottom: 10px;
+            .legend-table td {
+                padding: 6px 6px;
                 font-size: 14px;
+                vertical-align: middle;
+                white-space: nowrap;
             }
             .legend-swatch {
                 width: 14px;
                 height: 14px;
                 border-radius: 50%;
-                flex-shrink: 0;
+                display: inline-block;
                 border: 1px solid rgba(0, 0, 0, 0.08);
+                margin-right: 8px;
             }
 
             .desc {
@@ -144,12 +138,7 @@
             }
 
             @media (max-width: 700px) {
-                .chart-container {
-                    flex-direction: column;
-                }
-                .chart-right {
-                    width: 100%;
-                }
+                .chart-table td { display: block; width: 100% !important; }
             }
 
             .section-title {
@@ -169,57 +158,71 @@
             dan
             <b>Computational</b>.
         </p>
-        <div class="chart-container">
-            <div class="chart-left">
-                <div class="chart">
-                    <div class="bar">
-                        <div class="bar1"></div>
-                        <span>20</span>
-                    </div>
-                    <div class="bar">
-                        <div class="bar2"></div>
-                        <span>40</span>
-                    </div>
-                    <div class="bar">
-                        <div class="bar3"></div>
-                        <span>10</span>
-                    </div>
-                    <div class="bar">
-                        <div class="bar4"></div>
-                        <span>10</span>
-                    </div>
-                    <div class="bar">
-                        <div class="bar5"></div>
-                        <span>10</span>
-                    </div>
-                </div>
-            </div>
+        <table class="chart-table table-no-border" cellpadding="0" cellspacing="0">
+            <tr>
+                <!-- Left: bars -->
+                <td style="vertical-align: top; width: 65%; padding-right: 10px;">
+                    <table class="bars-table" cellpadding="0" cellspacing="6">
+                        <tr>
+                            <td>
+                                <div class="bar bar1" style="width:200px;"></div>
+                            </td>
+                            <td class="bar-value">20</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="bar bar2" style="width:400px;"></div>
+                            </td>
+                            <td class="bar-value">40</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="bar bar3" style="width:100px;"></div>
+                            </td>
+                            <td class="bar-value">10</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="bar bar4" style="width:100px;"></div>
+                            </td>
+                            <td class="bar-value">10</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="bar bar5" style="width:100px;"></div>
+                            </td>
+                            <td class="bar-value">10</td>
+                        </tr>
+                    </table>
+                </td>
 
-            <div class="chart-right">
-                <div class="legend">
-                    <div class="legend-item">
-                        <div class="legend-swatch bar1"></div>
-                        <div>1=sangat tidak sesuai</div>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-swatch bar2"></div>
-                        <div>2=tidak sesuai</div>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-swatch bar3"></div>
-                        <div>3=ragu-ragu</div>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-swatch bar4"></div>
-                        <div>4=sesuai</div>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-swatch bar5"></div>
-                        <div>5=sangat sesuai</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                <!-- Right: legend -->
+                <td style="vertical-align: top; width: 35%; padding-left: 20px;">
+                    <table class="legend-table" cellpadding="0" cellspacing="6">
+                        <tr>
+                            <td><div class="legend-swatch bar1"></div></td>
+                            <td>1 = sangat tidak sesuai</td>
+                        </tr>
+                        <tr>
+                            <td><div class="legend-swatch bar2"></div></td>
+                            <td>2 = tidak sesuai</td>
+                        </tr>
+                        <tr>
+                            <td><div class="legend-swatch bar3"></div></td>
+                            <td>3 = ragu-ragu</td>
+                        </tr>
+                        <tr>
+                            <td><div class="legend-swatch bar4"></div></td>
+                            <td>4 = sesuai</td>
+                        </tr>
+                        <tr>
+                            <td><div class="legend-swatch bar5"></div></td>
+                            <td>5 = sangat sesuai</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
 
         <div class="detail">
             <h3>Detail Jawaban:</h3>

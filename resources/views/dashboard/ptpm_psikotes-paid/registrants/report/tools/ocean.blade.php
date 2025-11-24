@@ -153,6 +153,11 @@
                 padding-bottom: 5px;
                 margin-bottom: -5px;
             }
+
+            .table-no-border td,
+            .table-no-border th {
+                border-bottom: none;
+            }
         </style>
     </head>
     <body>
@@ -161,42 +166,73 @@
         @foreach ($categories as $category)
             @php
                 $categoryData = $data[$category];
-                $totalQuestions = $categoryData['question_count'] ?: 1;
+                $totalQuestions = $categoryData["question_count"] ?: 1;
                 $maxScore = $totalQuestions * 5;
-                $percentage = $maxScore > 0 ? round(($categoryData['total_score'] / $maxScore) * 100, 2) : 0;
+                $percentage = $maxScore > 0 ? round(($categoryData["total_score"] / $maxScore) * 100, 2) : 0;
             @endphp
 
-            <div class="chart-container">
-                <div class="chart-left">
-                    <div class="chart">
-                        @for ($i = 1; $i <= 5; $i++)
-                            @php
-                                $value = $categoryData['answer_distribution'][$i] ?? 0;
-                                $width = $value * 40; // ubah multiplier sesuai skala tampilan
-                                $colorClass = "bar$i";
-                            @endphp
-                            <div class="bar">
-                                <div class="{{ $colorClass }}" style="width: {{ $width }}px;"></div>
-                                <span>{{ $value }}</span>
-                            </div>
-                        @endfor
-                    </div>
+            <table width="100%" cellpadding="0" cellspacing="0" style="margin: 20px 0" class="table-no-border">
+                <tr>
+                    <!-- Bagian Kiri Bar -->
+                    <td style="vertical-align: top; width: 30%">
+                        <table cellpadding="0" cellspacing="6">
+                            @for ($i = 1; $i <= 5; $i++)
+                                @php
+                                    $value = $categoryData["answer_distribution"][$i] ?? 0;
+                                    $width = $value * 40;
+                                    $colorClass = "bar$i";
+                                @endphp
 
-                    <p>Total poin pada {{ Str::title($category) }}: <b>{{ $categoryData['total_score'] }} poin</b></p>
-                    <p>Rata-rata poin per soal: <b>{{ round($categoryData['total_score'] / $totalQuestions, 2) }}</b></p>
-                    <p>Persentase: <b>{{ $percentage }}%</b></p>
-                </div>
+                                <tr>
+                                    <td>
+                                        <div class="{{ $colorClass }}" style="width: {{ $width }}px; height: 45px"></div>
+                                    </td>
+                                    <td style="font-weight: bold">{{ $value }}</td>
+                                </tr>
+                            @endfor
+                        </table>
 
-                <div class="chart-right">
-                    <div class="legend">
-                        <div class="legend-item"><div class="legend-swatch bar1"></div>1 = Sangat Tidak Sesuai</div>
-                        <div class="legend-item"><div class="legend-swatch bar2"></div>2 = Tidak Sesuai</div>
-                        <div class="legend-item"><div class="legend-swatch bar3"></div>3 = Ragu-ragu</div>
-                        <div class="legend-item"><div class="legend-swatch bar4"></div>4 = Sesuai</div>
-                        <div class="legend-item"><div class="legend-swatch bar5"></div>5 = Sangat Sesuai</div>
-                    </div>
-                </div>
-            </div>
+                        <p>
+                            Total poin pada {{ Str::title($category) }}:
+                            <b>{{ $categoryData["total_score"] }} poin</b>
+                        </p>
+                        <p>
+                            Rata-rata poin per soal:
+                            <b>{{ round($categoryData["total_score"] / $totalQuestions, 2) }}</b>
+                        </p>
+                        <p>
+                            Persentase:
+                            <b>{{ $percentage }}%</b>
+                        </p>
+                    </td>
+
+                    <!-- Bagian Kanan Legend -->
+                    <td style="vertical-align: top; width: 30%; padding-left: 20px">
+                        <table cellpadding="4" cellspacing="0">
+                            <tr>
+                                <td><div class="legend-swatch bar1"></div></td>
+                                <td>1 = Sangat Tidak Sesuai</td>
+                            </tr>
+                            <tr>
+                                <td><div class="legend-swatch bar2"></div></td>
+                                <td>2 = Tidak Sesuai</td>
+                            </tr>
+                            <tr>
+                                <td><div class="legend-swatch bar3"></div></td>
+                                <td>3 = Ragu-ragu</td>
+                            </tr>
+                            <tr>
+                                <td><div class="legend-swatch bar4"></div></td>
+                                <td>4 = Sesuai</td>
+                            </tr>
+                            <tr>
+                                <td><div class="legend-swatch bar5"></div></td>
+                                <td>5 = Sangat Sesuai</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
         @endforeach
 
         <div class="detail">
