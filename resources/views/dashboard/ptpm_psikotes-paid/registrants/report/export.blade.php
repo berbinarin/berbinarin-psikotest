@@ -1,11 +1,15 @@
 @php
     usort($testResults, function ($a, $b) {
-        $aIsBiodata = stripos($a['tool']->name, 'biodata') !== false;
-        $bIsBiodata = stripos($b['tool']->name, 'biodata') !== false;
+        $aIsBiodata = stripos($a["tool"]->name, "biodata") !== false;
+        $bIsBiodata = stripos($b["tool"]->name, "biodata") !== false;
 
-        if ($aIsBiodata && !$bIsBiodata) return -1;
+        if ($aIsBiodata && ! $bIsBiodata) {
+            return -1;
+        }
 
-        if ($bIsBiodata && !$aIsBiodata) return 1;
+        if ($bIsBiodata && ! $aIsBiodata) {
+            return 1;
+        }
 
         return 0;
     });
@@ -13,15 +17,14 @@
 
 @php
     $studentCardImage = null;
-    $path = storage_path('app/public/' . $registrant->student_card);
+    $path = storage_path("app/public/" . $registrant->student_card);
 
     if (file_exists($path) && is_file($path)) {
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
-        $studentCardImage = 'data:image/' . $type . ';base64,' . base64_encode($data);
+        $studentCardImage = "data:image/" . $type . ";base64," . base64_encode($data);
     }
 @endphp
-
 
 <!DOCTYPE html>
 <html lang="id">
@@ -32,19 +35,24 @@
         <style>
             @page {
                 margin: 0;
-                background-color: #FFFFFF;
             }
+            html,
+            body {
+                background: #ffffff !important;
+                background-color: #ffffff !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
             body {
                 font-family: Arial, sans-serif;
                 margin: 0;
-                /* padding: 20px; */
                 color: #333;
                 line-height: 1.6;
             }
             .container {
                 max-width: 800px;
                 margin: 0 auto;
-                background-color: #FFFFFF;
                 padding: 20px;
                 border-radius: 8px;
             }
@@ -73,7 +81,7 @@
                 margin-bottom: -5px;
             }
 
-            .info-table{
+            .info-table {
                 width: 100%;
                 margin-bottom: 20px;
                 border: none !important;
@@ -281,10 +289,11 @@
                                 <p class="label">Bukti Kartu Pelajar</p>
                                 <p class="value">
                                     @if ($studentCardImage)
-                                        <img src="{{ $studentCardImage }}" alt="Bukti Kartu Pelajar" style="max-width: 50%;" />
+                                        <img src="{{ $studentCardImage }}" alt="Bukti Kartu Pelajar" style="max-width: 50%" />
                                     @else
-                                        <span style="color: #888;">Tidak ada gambar</span>
+                                        <span style="color: #888">Tidak ada gambar</span>
                                     @endif
+                                </p>
                             </div>
                         </td>
                     </tr>
@@ -329,11 +338,11 @@
             <!-- Hasil Tes -->
             <div class="section">
                 <div>
-                    @if(!empty($testResults) && count($testResults))
+                    @if (! empty($testResults) && count($testResults))
                         @foreach ($testResults as $result)
                             @php
                                 // buat slug dari nama tool untuk mencocokkan nama file blade di folder tools
-                                $toolView = "dashboard.ptpm_psikotes-paid.registrants.report.tools." . \Illuminate\Support\Str::slug($result['tool']->name);
+                                $toolView = "dashboard.ptpm_psikotes-paid.registrants.report.tools." . \Illuminate\Support\Str::slug($result["tool"]->name);
                             @endphp
 
                             @if (View::exists($toolView))
@@ -354,7 +363,7 @@
             <div class="section">
                 <h2 class="section-title">Checkpoint Pendaftar</h2>
                 <div class="testimoni-container">
-                    @include('dashboard.ptpm_psikotes-paid.registrants.report.tools.checkpoint')
+                    @include("dashboard.ptpm_psikotes-paid.registrants.report.tools.checkpoint")
                 </div>
             </div>
 

@@ -25,15 +25,15 @@
             margin-bottom: 20px;
         }
 
-        .info-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
         }
 
-        .info-item {
-            flex: 0 0 calc(50% - 20px);
-            max-width: calc(50% - 20px);
+        .info-table td {
+            vertical-align: top;
+            padding: 8px 12px;
+            width: 50%;
         }
 
         .label {
@@ -46,14 +46,7 @@
         .value {
             font-size: 15px;
             color: #222;
-            padding-bottom: 10px;
-        }
-
-        @media (max-width: 768px) {
-            .info-item {
-                flex: 0 0 100%;
-                max-width: 100%;
-            }
+            padding-bottom: 8px;
         }
 
         .essay-item {
@@ -76,41 +69,66 @@
     </style>
 </head>
 <body>
+
     {{-- ====================== DATA FORM ====================== --}}
     @foreach ($data->questions->where('type', 'form') as $section)
         <div class="section">
             <h2 class="section-title">Biodata Klinis: {{ $section->text }}</h2>
-            <div class="info-grid">
+
+            <table class="info-table">
+                @php $counter = 0; @endphp
+                <tr>
+
                 @foreach ($section['options'] as $option)
-                    {{-- Cek apakah repeatable (punya banyak grup) --}}
+                    {{-- Jika REPEATABLE (repeat group data) --}}
                     @if ($option['repeatable'] && $data->responses->form->has($option['group']))
+
                         @foreach ($data->responses->form->get($option['group']) as $group)
                             @foreach ($option['inputs'] as $input)
-                                <div class="info-item">
+
+                                @if ($counter % 2 == 0 && $counter != 0)
+                                    </tr><tr>
+                                @endif
+
+                                <td>
                                     <p class="label">{{ $input['label'] }}</p>
                                     <p class="value">{{ $group[$input['name']] ?? '-' }}</p>
-                                </div>
+                                </td>
+
+                                @php $counter++; @endphp
                             @endforeach
                         @endforeach
+
                     @else
+                        {{-- Jika BUKAN repeatable --}}
                         @foreach ($option['inputs'] as $input)
-                            <div class="info-item">
+
+                            @if ($counter % 2 == 0 && $counter != 0)
+                                </tr><tr>
+                            @endif
+
+                            <td>
                                 <p class="label">{{ $input['label'] }}</p>
+
+                                {{-- Jika tipe SELECT --}}
                                 @if ($input['type'] === 'select')
                                     @php
                                         $selectedValue = $data->responses->form->get($input['name']);
-                                        $selectedText = collect($input['items'])
-                                            ->firstWhere('value', $selectedValue)['text'] ?? '-';
+                                        $selectedText = collect($input['items'])->firstWhere('value', $selectedValue)['text'] ?? '-';
                                     @endphp
                                     <p class="value">{{ $selectedText }}</p>
                                 @else
                                     <p class="value">{{ $data->responses->form->get($input['name']) ?? '-' }}</p>
                                 @endif
-                            </div>
+                            </td>
+
+                            @php $counter++; @endphp
                         @endforeach
                     @endif
                 @endforeach
-            </div>
+
+                </tr>
+            </table>
         </div>
     @endforeach
 

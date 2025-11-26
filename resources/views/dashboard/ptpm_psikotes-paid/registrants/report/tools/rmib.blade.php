@@ -54,9 +54,10 @@
             .bar2 {
                 background: #e9b306;
             }
-            .bar3 {
+            .bar-solo3 {
                 background: #c893fd;
             }
+
             .bar4 {
                 background: #549ff0;
             }
@@ -177,7 +178,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <div class="bar bar3" style="width:100px;"></div>
+                                <div class="bar bar-solo3" style="width:100px;"></div>
                             </td>
                             <td class="bar-value">10</td>
                         </tr>
@@ -208,7 +209,7 @@
                             <td>2 = tidak sesuai</td>
                         </tr>
                         <tr>
-                            <td><div class="legend-swatch bar3"></div></td>
+                            <td><div class="legend-swatch bar-solo3"></div></td>
                             <td>3 = ragu-ragu</td>
                         </tr>
                         <tr>

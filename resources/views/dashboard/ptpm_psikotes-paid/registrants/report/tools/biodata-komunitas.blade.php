@@ -25,35 +25,28 @@
             margin-bottom: 20px;
         }
 
-        .info-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
         }
 
-        .info-item {
-            flex: 0 0 calc(50% - 20px);
-            max-width: calc(50% - 20px);
+        .info-table td {
+            padding: 8px 4px;
+            vertical-align: top;
         }
 
-        .label {
+        .info-table td:first-child {
+            width: 35%;
             font-weight: bold;
             color: #555;
             font-size: 15px;
-            margin-bottom: 3px;
         }
 
-        .value {
+        .info-table td:last-child {
             font-size: 15px;
             color: #222;
-            padding-bottom: 10px;
-        }
-
-        @media (max-width: 768px) {
-            .info-item {
-                flex: 0 0 100%;
-                max-width: 100%;
-            }
         }
 
         .essay-item {
@@ -81,37 +74,45 @@
     @foreach ($data->questions->where('type', 'form') as $section)
         <div class="section">
             <h2 class="section-title">Biodata Komunitas: {{ $section->text }}</h2>
-            <div class="info-grid">
+
+            <table class="info-table">
                 @foreach ($section['options'] as $option)
-                    {{-- Cek apakah repeatable (punya banyak grup) --}}
+
+                    {{-- Jika repeatable --}}
                     @if ($option['repeatable'] && $data->responses->form->has($option['group']))
+                        
                         @foreach ($data->responses->form->get($option['group']) as $group)
                             @foreach ($option['inputs'] as $input)
-                                <div class="info-item">
-                                    <p class="label">{{ $input['label'] }}</p>
-                                    <p class="value">{{ $group[$input['name']] ?? '-' }}</p>
-                                </div>
+                                <tr>
+                                    <td>{{ $input['label'] }}</td>
+                                    <td>{{ $group[$input['name']] ?? '-' }}</td>
+                                </tr>
                             @endforeach
                         @endforeach
+
                     @else
+                        {{-- Non-repeat --}}
                         @foreach ($option['inputs'] as $input)
-                            <div class="info-item">
-                                <p class="label">{{ $input['label'] }}</p>
-                                @if ($input['type'] === 'select')
-                                    @php
-                                        $selectedValue = $data->responses->form->get($input['name']);
-                                        $selectedText = collect($input['items'])
-                                            ->firstWhere('value', $selectedValue)['text'] ?? '-';
-                                    @endphp
-                                    <p class="value">{{ $selectedText }}</p>
-                                @else
-                                    <p class="value">{{ $data->responses->form->get($input['name']) ?? '-' }}</p>
-                                @endif
-                            </div>
+                            <tr>
+                                <td>{{ $input['label'] }}</td>
+
+                                <td>
+                                    @if ($input['type'] === 'select')
+                                        @php
+                                            $selectedValue = $data->responses->form->get($input['name']);
+                                            $selectedText = collect($input['items'])
+                                                ->firstWhere('value', $selectedValue)['text'] ?? '-';
+                                        @endphp
+                                        {{ $selectedText }}
+                                    @else
+                                        {{ $data->responses->form->get($input['name']) ?? '-' }}
+                                    @endif
+                                </td>
+                            </tr>
                         @endforeach
                     @endif
                 @endforeach
-            </div>
+            </table>
         </div>
     @endforeach
 
