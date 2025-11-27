@@ -44,6 +44,15 @@ class ResponseService
         return ['choice' => $validateData['answer']];
     }
 
+    private function imageMultipleChoice(Request $request)
+    {
+        $validateData = $request->validate([
+            'answer' => 'required|string',
+        ]);
+
+        return ['choice' => $validateData['answer']];
+    }
+
     private function multipleSelect(Request $request)
     {
         $validateData = $request->validate([
