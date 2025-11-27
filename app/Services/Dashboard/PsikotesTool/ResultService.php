@@ -1012,6 +1012,11 @@ class ResultService
         ];
     }
 
+    // blm ada rumusnya
+    private function ist(Attempt $attempt){
+        return;
+    }
+
     private function epi(Attempt $attempt)
     {
         $attempt->load('responses.question');
