@@ -71,6 +71,10 @@ class DatabaseSeeder extends Seeder
             Tools\DASS42\Dass42SectionSeeder::class,
             Tools\DASS42\Dass42QuestionSeeder::class,
 
+            // IST
+            Tools\IST\IstSectionSeeder::class,
+            Tools\IST\IstQuestionSeeder::class,
+
             // VAK
             Tools\VAK\VakSectionSeeder::class,
             Tools\VAK\VakQuestionSeeder::class,

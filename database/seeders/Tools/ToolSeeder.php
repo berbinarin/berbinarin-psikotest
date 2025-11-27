@@ -191,6 +191,15 @@ class ToolSeeder extends Seeder
                                 <p>Tugas Anda dalah untuk melihat kombinasi yang dicetak tebal itu, kemudian melihat kombinasi yang serupa di pilihan jawaban yang tersedia dan memilih kombinasi tersebut sebagai jawaban</p>',
                 'is_active' => true,
             ],
+            [
+                'name' => 'IST',
+                'order' => 12,
+                'token' => '12',
+                'introduce' => '<p>Tes ini terdiri dari beberapa bagian, dimana masing-masing bagian memiliki cara pengerjaan yang berbeda dan waktu penyelesaian yang berbeda pula.</p>
+                                <p>Pada awal setiap bagian, akan dibacakan instruksi dan contoh soal, harap diperhatikan dengan baik. Jika belum jelas diperkenankan mengajukan pertanyaan karena apabila tes sudah dimulai Anda tidak diperkenankan untuk bertanya lagi.</p>
+                                <p>Untuk menjawab soal hitungan, Anda diperbolehkan menggunakan kertas untuk menghitung dalam menjawab soal.</p>',
+                'is_active' => true,
+            ],
         ];
 
         foreach ($tools as $tool) {
