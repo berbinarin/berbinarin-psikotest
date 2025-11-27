@@ -1,3 +1,5 @@
+{{-- tolong config disini buat nampilin soal yg pake image --}}
+
 @if (count($question->options) >= 5)
 
 <!-- KALO UDAH SELESAI TOLONG DI NYALAKAN LAGI YA!! -->

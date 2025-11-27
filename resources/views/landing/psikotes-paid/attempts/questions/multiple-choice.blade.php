@@ -1,4 +1,6 @@
-<!-- @if(count($question->options) >= 5)
+{{-- yos di bagian sini tolong tambahin kalau $question->text nya ga null nanti muncul soal nya, manggil nya tinggal {{ $question->text }}, kalau mau liat contoh ada di short answer --}}
+
+@if(count($question->options) >= 5)
     <div class="grid grid-cols-3 gap-4 mt-16 mb-4">
         @foreach ($question->options->slice(0, 3) as $option)
             <label class="relative flex h-[62.67px] w-full cursor-pointer items-center">
@@ -10,7 +12,7 @@
             </label>
         @endforeach
     </div>
-    
+
     <div class="grid grid-cols-2 gap-4">
         @foreach ($question->options->slice(3, 2) as $option)
             <label class="relative flex h-[62.67px] w-full cursor-pointer items-center">
@@ -32,4 +34,4 @@
             </div>
         </label>
     @endforeach
-@endif -->
+@endif
