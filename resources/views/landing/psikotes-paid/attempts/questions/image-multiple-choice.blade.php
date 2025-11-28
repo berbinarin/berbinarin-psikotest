@@ -1,65 +1,33 @@
 {{-- tolong config disini buat nampilin soal yg pake image --}}
 
+<label for="answer" class="justify-center">
+    <img src="{{ asset($question["text"]) }}" alt="" srcset="" class="w-[150px] h-[100px] justify-center" />
+</label>
+
 @if (count($question->options) >= 5)
-
-<!-- KALO UDAH SELESAI TOLONG DI NYALAKAN LAGI YA!! -->
-
-    <!-- <div class="grid grid-cols-3 gap-4 mt-16 mb-4">
+    <div class="mb-1 mt-2 grid grid-cols-3 gap-4">
         @foreach ($question->options->slice(0, 3) as $option)
-
-            <label class="relative flex h-[62.67px] w-full cursor-pointer items-center">
-                <input type="radio" name="answer" value="{{ $option["key"] }}" class="peer absolute h-full w-full opacity-0" required />
-                <div class="flex h-full w-full items-center justify-start rounded-[13px] border-[1.33px] border-[#9E9E9E] font-plusJakartaSans text-[13.33px] font-semibold text-black transition-colors duration-200 peer-checked:bg-[#3986A3] peer-checked:text-white">
-                    <div class="ml-4 mr-4 h-5 w-5 rounded-full border-2 border-[#9E9E9E] bg-white peer-checked:border-4 peer-checked:border-white peer-checked:bg-[#3986A3]"></div>
-                    {{ $option["text"] }}
-                </div>
+            <label class="flex cursor-pointer flex-col items-center">
+                <input type="radio" name="answer" value="{{ $option["key"] }}" class="peer hidden" required />
+                <img src="{{ asset($option["text"]) }}" alt="Option {{ $option["key"] }}" class="h-20 w-20 rounded-lg border-2 border-gray-300 object-contain transition peer-checked:border-[#3986A3] peer-checked:ring-2 peer-checked:ring-[#3986A3]" />
             </label>
         @endforeach
-
     </div>
-
     <div class="grid grid-cols-2 gap-4">
         @foreach ($question->options->slice(3, 2) as $option)
-
-            <label class="relative flex h-[62.67px] w-full cursor-pointer items-center">
-                <input type="radio" name="answer" value="{{ $option["key"] }}" class="peer absolute h-full w-full opacity-0" required />
-                <div class="flex h-full w-full items-center justify-start rounded-[13px] border-[1.33px] border-[#9E9E9E] font-plusJakartaSans text-[13.33px] font-semibold text-black transition-colors duration-200 peer-checked:bg-[#3986A3] peer-checked:text-white">
-                    <div class="ml-4 mr-4 h-5 w-5 rounded-full border-2 border-[#9E9E9E] bg-white peer-checked:border-4 peer-checked:border-white peer-checked:bg-[#3986A3]"></div>
-                    {{ $option["text"] }}
-                </div>
+            <label class="flex cursor-pointer flex-col items-center">
+                <input type="radio" name="answer" value="{{ $option["key"] }}" class="peer hidden" required />
+                <img src="{{ asset($option["text"]) }}" alt="Option {{ $option["key"] }}" class="h-20 w-20 rounded-lg border-2 border-gray-300 object-contain transition peer-checked:border-[#3986A3] peer-checked:ring-2 peer-checked:ring-[#3986A3]" />
             </label>
         @endforeach
-
-    </div> -->
-
-    <!-- DEBUG DOANGG, TOLONG DIUBAH LAGI!! -->
-    @php
-        $imgKeys = ["A", "B", "C", "D", "E"];
-    @endphp
-
-    <div class="mb-4 mt-12 grid grid-cols-3">
-        @foreach (array_slice($imgKeys, 0, 3) as $key)
-            <div class="flex flex-col items-center">
-                <img src="{{ asset("assets/landing/images/psikotes-paid/multiple-choice-img/" . $key . ".webp") }}" alt="Option {{ $key }}" class="h-24 w-24 object-contain" />
-            </div>
-        @endforeach
     </div>
-    <div class="grid grid-cols-2 gap-4">
-        @foreach (array_slice($imgKeys, 3, 2) as $key)
-            <div class="flex flex-col items-center">
-                <img src="{{ asset("assets/landing/images/psikotes-paid/multiple-choice-img/" . $key . ".webp") }}" alt="Option {{ $key }}" class="mb-2 h-24 w-24 object-contain" />
-            </div>
-        @endforeach
-    </div>
-    <!--================================END OF DEBUG================================ -->
 @else
-    @foreach ($question->options as $option)
-        <label class="relative flex h-[62.67px] w-[520.33px] cursor-pointer items-center">
-            <input type="radio" name="answer" value="{{ $option["key"] }}" class="peer absolute h-full w-full opacity-0" required />
-            <div class="flex h-full w-full items-center justify-start rounded-[13px] border-[1.33px] border-[#9E9E9E] font-plusJakartaSans text-[13.33px] font-semibold text-black transition-colors duration-200 peer-checked:bg-[#3986A3] peer-checked:text-white">
-                <div class="ml-4 mr-4 h-5 w-5 rounded-full border-2 border-[#9E9E9E] bg-white peer-checked:border-4 peer-checked:border-white peer-checked:bg-[#3986A3]"></div>
-                {{ $option["text"] }}
-            </div>
-        </label>
-    @endforeach
+    <div class="flex gap-4">
+        @foreach ($question->options as $option)
+            <label class="flex cursor-pointer flex-col items-center">
+                <input type="radio" name="answer" value="{{ $option["key"] }}" class="peer hidden" required />
+                <img src="{{ asset($option["text"]) }}" alt="Option {{ $option["key"] }}" class="h-24 w-24 rounded-lg border-2 border-gray-300 object-contain transition peer-checked:border-[#3986A3] peer-checked:ring-2 peer-checked:ring-[#3986A3]" />
+            </label>
+        @endforeach
+    </div>
 @endif
