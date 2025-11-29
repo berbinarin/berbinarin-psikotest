@@ -1960,7 +1960,9 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[16]->id,
                 'order' => 2,
-                'text' => '<source src="/assets/landing/videos/psikotes-paid/questions/ist/subtes-9/SlideShow Subtes ME Versi 1.mp4" type="video/mp4" class="border border-gray-300 rounded-lg" >',
+                'text' => '<video controls class="border border-gray-300 rounded-lg">
+                            <source src="/assets/landing/videos/psikotes-paid/questions/ist/subtes-9/SlideShow Subtes ME Versi 1.mp4" type="video/mp4">
+                            </video>',
                 'type' => 'instruction',
             ],
 
