@@ -23,9 +23,9 @@ class IstQuestionSeeder extends Seeder
                 'order' => 1,
                 'text' => '<p>Pada bagian ini, setiap kalimat atau satu kata yang hilang, disediakan lima kata atau lima opsi pilihan sebagai penggantinya. Tugas Anda yaitu memilih kata yang tepat yang dapat menyempurnakan kalimat tersebut. </p>
                             <p>1. Seekor kuda mempunyai kesamaan terbanyak dengan seekor? </p>
-                            <p>&nbsp;&nbsp;&nbsp;&nbsp;A. Kucing&nbsp;&nbsp;B. Bajing&nbsp;&nbsp;<strong>C. Keledai</strong>&nbsp;&nbsp;D. Lembu  E. Anjing </p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;A. Kucing&nbsp;&nbsp;B. Bajing&nbsp;&nbsp;C. Keledai&nbsp;&nbsp;D. Lembu  E. Anjing </p>
                             <p>2. Lawannya harapan ialah? </p>
-                            <p>&nbsp;&nbsp;&nbsp;&nbsp;A. Duka&nbsp;&nbsp;<strong>B. Putus asa</strong>&nbsp;&nbsp;C. Sengsara&nbsp;&nbsp;D. Cinta&nbsp;&nbsp;E. Benci</p>',
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;A. Duka&nbsp;&nbsp;B. Putus asa&nbsp;&nbsp;C. Sengsara&nbsp;&nbsp;D. Cinta&nbsp;&nbsp;E. Benci</p>',
                 'type' => 'instruction',
             ],
 
@@ -316,8 +316,8 @@ class IstQuestionSeeder extends Seeder
                 'section_id' => $ist->sections[2]->id,
                 'order' => 1,
                 'text' => '<p>Pada bagian ini, terdapat lima pilihan kata. Empat dari lima kata tersebut terdapat satu kesamaan. Tugas Anda adalah mencari kata kelima yang tidak memiliki kesamaan dengan keempat kata tersebut.</p>
-                            <p>1. A. Meja&nbsp;&nbsp;B. Kursi&nbsp;&nbsp;<strong>C. Burung</strong>&nbsp;&nbsp;D. Lemari&nbsp;&nbsp;E. Tempat tidur</p>
-                            <p>2. A. Duduk&nbsp;&nbsp;B. Berbaring&nbsp;&nbsp;C. Berdiri&nbsp;&nbsp;<strong>D. Berjalan</strong>&nbsp;&nbsp;E. Berjongkok</p>',
+                            <p>1. A. Meja&nbsp;&nbsp;B. Kursi&nbsp;&nbsp;C. Burung&nbsp;&nbsp;D. Lemari&nbsp;&nbsp;E. Tempat tidur</p>
+                            <p>2. A. Duduk&nbsp;&nbsp;B. Berbaring&nbsp;&nbsp;C. Berdiri&nbsp;&nbsp;D. Berjalan&nbsp;&nbsp;E. Berjongkok</p>',
                 'type' => 'instruction',
             ],
 
@@ -369,7 +369,7 @@ class IstQuestionSeeder extends Seeder
                     ['key' => 'A', 'text' => 'Mengikat'],
                     ['key' => 'B', 'text' => 'Menyatukan'],
                     ['key' => 'C', 'text' => 'Melepaskan'],
-                    ['key' => 'D', 'text' => '105Mengaitkan'],
+                    ['key' => 'D', 'text' => 'Mengaitkan'],
                     ['key' => 'E', 'text' => 'Melekatkan'],
                 ],
                 'scoring' => ['correct_answer' => 'C'],
@@ -589,9 +589,9 @@ class IstQuestionSeeder extends Seeder
                 'order' => 1,
                 'text' => '<p>Pada bagian ini, terdapat tiga kata yang diberikan. Kata pertama dan kata kedua terdapat suatu hubungan tertentu. Kata ketiga dan salah satu kata di antara lima pilihan kata a, b, c, d, dan e juga harus memiliki hubungan yang sama dengan hubungan antara kata pertama dan kata kedua.</p>
                             <p>1. Hutan : pohon = tembok : ...</p>
-                            <p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>A. Batu bata</strong>&nbsp;&nbsp;B. Rumah&nbsp;&nbsp;C. Semen&nbsp;&nbsp;D. Putih&nbsp;&nbsp;E. Dinding</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;A. Batu bata&nbsp;&nbsp;B. Rumah&nbsp;&nbsp;C. Semen&nbsp;&nbsp;D. Putih&nbsp;&nbsp;E. Dinding</p>
                             <p>2. Gelap : terang =  basah?</p>
-                            <p>&nbsp;&nbsp;&nbsp;&nbsp;A. Hujan&nbsp;&nbsp;B. Hari&nbsp;&nbsp;C. Lembab&nbsp;&nbsp;D. Angin&nbsp;&nbsp;<strong>E. Kering</strong></p>',
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;A. Hujan&nbsp;&nbsp;B. Hari&nbsp;&nbsp;C. Lembab&nbsp;&nbsp;D. Angin&nbsp;&nbsp;E. Kering</p>',
                 'type' => 'instruction',
             ],
 
@@ -883,9 +883,9 @@ class IstQuestionSeeder extends Seeder
                 'order' => 1,
                 'text' => '<p>Pada bagian ini, ditentukan dua kata. Carilah satu kata yang meliputi pengertian kedua kata tadi. Tulislah perkataan yang benar pada kolom jawaban yang telah disediakan.</p>
                             <p>1. Ayam  - itik</p>
-                            <p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>bebek</strong></p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;bebek</p>
                             <p>2. Gaun  -  celana?</p>
-                            <p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>pakaian</strong></p>',
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;pakaian</p>',
                 'type' => 'instruction',
             ],
 
@@ -1058,9 +1058,9 @@ class IstQuestionSeeder extends Seeder
                 'order' => 1,
                 'text' => '<p>Persoalan berikutnya ialah soal-soal hitungan. Gunakan kertas dan pulpen yang telah disiapkan tadi untuk mencari jawaban. Jawaban hanya berupa angka tanpa simbol atau keterangan tambahan.</p>
                             <p>1. Sebatang pensil harganya 25 rupiah. Berapakah harga 3 batang?</p>
-                            <p>   <strong>75</strong></p>
+                            <p>&nbsp;&nbsp;&nbsp;75</p>
                             <p>2. Dengan sepeda, Husin dapat mencapai 15 km dalam waktu 1 jam. Berapa km-kah yang dapat ia capai dalam waktu 4 jam?</p>
-                            <p>   <strong>60</strong></p>',
+                            <p>&nbsp;&nbsp;&nbsp;60</p>',
                 'type' => 'instruction',
             ],
 
@@ -1082,7 +1082,7 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[9]->id,
                 'order' => 3,
-                'text' => '15 peti buah-buahan beratnya 250 kg dan setiap peti kosong beratnya 3 kg, berapakah beratbuah-buahan itu ?',
+                'text' => '15 peti buah-buahan beratnya 250 kg dan setiap peti kosong beratnya 3 kg, berapakah berat buah-buahan itu ?',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '250'],
             ],
@@ -1124,7 +1124,7 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[9]->id,
                 'order' => 9,
-                'text' => '7 orang dapat menyelesaikan suatu pekerjaan dalam 6 hari. Berapa orangkah yang diperlukanuntuk menyelesaikan pekerjaan itu dalam setengah hari ?',
+                'text' => '7 orang dapat menyelesaikan suatu pekerjaan dalam 6 hari. Berapa orangkah yang diperlukan untuk menyelesaikan pekerjaan itu dalam setengah hari ?',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '48'],
             ],
@@ -1211,10 +1211,10 @@ class IstQuestionSeeder extends Seeder
                 'section_id' => $ist->sections[10]->id,
                 'order' => 1,
                 'text' => '<p>Pada kelompok soal berikutnya akan diberikan deret angka. Setiap deret angka tersusun menurut suatu aturan tertentu, dan deret angka tersebut dapat dilanjutkan menurut aturan itu.Tugas Anda adalah untuk mencari angka berikutnya pada setiap deret bilangan di soal. Silahkan gunakan kertas dan pulpen yang telah Anda persiapkan, gunakan untuk mencari jawaban.</p>
-                            <p>1. 2&nbsp;&nbsp;4&nbsp;&nbsp;6&nbsp;&nbsp;8&nbsp;&nbsp;10&nbsp;&nbsp;12&nbsp;&nbsp;14&nbsp;&nbsp;...</p>
-                            <p>&nbsp;&nbsp;&nbsp;<strong>16</strong></p>
-                            <p>2. 9&nbsp;&nbsp;7&nbsp;&nbsp;10&nbsp;&nbsp;8&nbsp;&nbsp;11&nbsp;&nbsp;9&nbsp;&nbsp;12&nbsp;&nbsp;...</p>
-                            <p>&nbsp;&nbsp;&nbsp;<strong>10</strong></p>',
+                            <p>1. 2&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;12&nbsp;&nbsp;&nbsp;14&nbsp;&nbsp;&nbsp;...</p>
+                            <p>&nbsp;&nbsp;&nbsp;16</p>
+                            <p>2. 9&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;12&nbsp;&nbsp;&nbsp;...</p>
+                            <p>&nbsp;&nbsp;&nbsp;10</p>',
                 'type' => 'instruction',
             ],
 
@@ -1222,140 +1222,140 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[11]->id,
                 'order' => 1,
-                'text' => '6&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;12&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;21&nbsp;&nbsp;&nbsp;24&nbsp;&nbsp;&nbsp;...',
+                'text' => '6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;21&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;24&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '27'],
             ],
             [
                 'section_id' => $ist->sections[11]->id,
                 'order' => 2,
-                'text' => '15&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;19&nbsp;&nbsp;&nbsp;21&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;&nbsp;24&nbsp;&nbsp;&nbsp;...',
+                'text' => '15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;21&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;24&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '25'],
             ],
             [
                 'section_id' => $ist->sections[11]->id,
                 'order' => 3,
-                'text' => '19&nbsp;&nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;&nbsp;21&nbsp;&nbsp;&nbsp;25&nbsp;&nbsp;&nbsp;24&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;&nbsp;...',
+                'text' => '19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;21&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;24&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '27'],
             ],
             [
                 'section_id' => $ist->sections[11]->id,
                 'order' => 4,
-                'text' => '16&nbsp;&nbsp;&nbsp;12&nbsp;&nbsp;&nbsp;17&nbsp;&nbsp;&nbsp;13&nbsp;&nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;14&nbsp;&nbsp;&nbsp;19&nbsp;&nbsp;&nbsp;...',
+                'text' => '16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '15'],
             ],
             [
                 'section_id' => $ist->sections[11]->id,
                 'order' => 5,
-                'text' => '2&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;&nbsp;44&nbsp;&nbsp;&nbsp;...',
+                'text' => '2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;44&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '46'],
             ],
             [
                 'section_id' => $ist->sections[11]->id,
                 'order' => 6,
-                'text' => '15&nbsp;&nbsp;&nbsp;13&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;12&nbsp;&nbsp;&nbsp;17&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;...',
+                'text' => '15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '10'],
             ],
             [
                 'section_id' => $ist->sections[11]->id,
                 'order' => 7,
-                'text' => '25&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;33&nbsp;&nbsp;&nbsp;30&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;45&nbsp;&nbsp;&nbsp;...',
+                'text' => '25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;33&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;45&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '24'],
             ],
             [
                 'section_id' => $ist->sections[11]->id,
                 'order' => 8,
-                'text' => '49&nbsp;&nbsp;&nbsp;51&nbsp;&nbsp;&nbsp;54&nbsp;&nbsp;&nbsp;27&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;14&nbsp;&nbsp;&nbsp;...',
+                'text' => '49&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;51&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;54&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '7'],
             ],
             [
                 'section_id' => $ist->sections[11]->id,
                 'order' => 9,
-                'text' => '2&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;...',
+                'text' => '2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '5'],
             ],
             [
                 'section_id' => $ist->sections[11]->id,
                 'order' => 10,
-                'text' => '19&nbsp;&nbsp;&nbsp;17&nbsp;&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;21&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;&nbsp;...',
+                'text' => '19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;21&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '14'],
             ],
             [
                 'section_id' => $ist->sections[11]->id,
                 'order' => 11,
-                'text' => '94&nbsp;&nbsp;&nbsp;92&nbsp;&nbsp;&nbsp;46&nbsp;&nbsp;&nbsp;44&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;...',
+                'text' => '94&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;92&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;46&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;44&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '8'],
             ],
             [
                 'section_id' => $ist->sections[11]->id,
                 'order' => 12,
-                'text' => '5&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;12&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;...',
+                'text' => '5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '14'],
             ],
             [
                 'section_id' => $ist->sections[11]->id,
                 'order' => 13,
-                'text' => '12&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;19&nbsp;&nbsp;&nbsp;23&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;&nbsp;33&nbsp;&nbsp;&nbsp;39&nbsp;&nbsp;&nbsp;...',
+                'text' => '12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;33&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;39&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '45'],
             ],
             [
                 'section_id' => $ist->sections[11]->id,
                 'order' => 14,
-                'text' => '7&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;21&nbsp;&nbsp;&nbsp;17&nbsp;&nbsp;&nbsp;68&nbsp;&nbsp;&nbsp;...',
+                'text' => '7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;21&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;68&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '36'],
             ],
             [
                 'section_id' => $ist->sections[11]->id,
                 'order' => 15,
-                'text' => '11&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;13&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;...',
+                'text' => '11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '12'],
             ],
             [
                 'section_id' => $ist->sections[11]->id,
                 'order' => 16,
-                'text' => '3&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;24&nbsp;&nbsp;&nbsp;35&nbsp;&nbsp;&nbsp;48&nbsp;&nbsp;&nbsp;63&nbsp;&nbsp;&nbsp;...',
+                'text' => '3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;24&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;48&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;63&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '80'],
             ],
             [
                 'section_id' => $ist->sections[11]->id,
                 'order' => 17,
-                'text' => '4&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;13&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;...',
+                'text' => '4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '14'],
             ],
             [
                 'section_id' => $ist->sections[11]->id,
                 'order' => 18,
-                'text' => '8&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;...',
+                'text' => '8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '12'],
             ],
             [
                 'section_id' => $ist->sections[11]->id,
                 'order' => 19,
-                'text' => '15&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;30&nbsp;&nbsp;&nbsp;23&nbsp;&nbsp;&nbsp;69&nbsp;&nbsp;&nbsp;...',
+                'text' => '15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;23&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;69&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '36'],
             ],
             [
                 'section_id' => $ist->sections[11]->id,
                 'order' => 20,
-                'text' => '5&nbsp;&nbsp;&nbsp;35&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;77&nbsp;&nbsp;&nbsp;70&nbsp;&nbsp;&nbsp;...',
+                'text' => '5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;77&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;70&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '11'],
             ],
@@ -1952,9 +1952,9 @@ class IstQuestionSeeder extends Seeder
                 'order' => 1,
                 'text' => '<p>Pada tampilan layar yang saya bagikan, terdapat kata-kata dan kategori kata. Tugas Anda adalah untuk menghafal setiap kata-kata dan kategorinya dengan waktu terbatas.Terdapat sejumlah pertanyaan mengenai kata-kata yang telah Anda hafalkan sebelumnya.</p>
                             <p>1. Kata yang mempunyai huruf permulaan -- Q –  adalah suatu......</p>
-                            <p>&nbsp;&nbsp;&nbsp;A. Bunga&nbsp;&nbsp;B. Perkakas&nbsp;&nbsp;C. Burung&nbsp;&nbsp;<strong>D. Kesenian</strong>&nbsp;&nbsp;E. Binatang</p>
+                            <p>&nbsp;&nbsp;&nbsp;A. Bunga&nbsp;&nbsp;B. Perkakas&nbsp;&nbsp;C. Burung&nbsp;&nbsp;D. Kesenian&nbsp;&nbsp;E. Binatang</p>
                             <p>2. Kata yang mempunyai huruf permulaan -- Z -- adalah suatu......</p>
-                            <p>&nbsp;&nbsp;&nbsp;A. Bunga&nbsp;&nbsp;B. Perkakas&nbsp;&nbsp;C. Burung&nbsp;&nbsp;D. Kesenian&nbsp;&nbsp;<strong>E. Binatang</strong></p>',
+                            <p>&nbsp;&nbsp;&nbsp;A. Bunga&nbsp;&nbsp;B. Perkakas&nbsp;&nbsp;C. Burung&nbsp;&nbsp;D. Kesenian&nbsp;&nbsp;E. Binatang</p>',
                 'type' => 'instruction',
             ],
             [

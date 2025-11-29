@@ -1,6 +1,6 @@
 <div>
     <label for="answer" class="text-left">
-        <p class="font-medium">{{ $question->text }}</p>
+        <p class="font-medium">{!! $question->text !!}</p>
     </label>
 
     <div class="mt-8 flex justify-center">
