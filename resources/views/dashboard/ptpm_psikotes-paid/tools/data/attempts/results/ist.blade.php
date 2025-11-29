@@ -22,7 +22,7 @@
         <div class="pb-5">
             <h2 class="text-[28px] font-semibold text-[#75BADB]">Citra Halizah</h2>
             <p class="text-base text-gray-700">
-                Berdasarkan hasil tes IST yang telah Anda selesaikan, berikut adalah ringkasan dari skor dan interpretasi yang diperoleh:
+                ini adlaah hasil dari tes IST yang diambil pada tanggal 12 Juni 2024. Berikut adalah ringkasan hasil tes yang telah dicapai:
             </p>
         </div>
 
@@ -160,8 +160,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const chartLabels = ['1', '2', '3', '4', '5', '6']
-            const chartDataValues = [12, 24, 8, 40, 16, 32]; kategori
+            // Data Statis
+            const chartLabels = ['1', '2', '3', '4', '5', '6'];
+            const chartDataValues = [12, 24, 8, 40, 16, 32]
             const chartColors = ['rgba(117, 186, 219, 0.6)', 'rgba(255, 224, 102, 0.6)', 'rgba(166, 133, 226, 0.6)', 'rgba(84, 159, 240, 0.6)', 'rgba(239, 68, 68, 0.6)', 'rgba(76, 175, 80, 0.6)'];
 
             const ctx = document.getElementById('horizontalBarChart').getContext('2d');
