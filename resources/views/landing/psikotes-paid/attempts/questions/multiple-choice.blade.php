@@ -1,5 +1,3 @@
-
-
 @if (! is_null($question->text))
     <label for="answer" class="text-left">
         <p class="font-medium">{{ $question->text }}</p>

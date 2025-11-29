@@ -1,5 +1,3 @@
-{{-- tolong config disini buat nampilin soal yg pake image --}}
-
 <label for="answer" class="justify-center">
     <img src="{{ asset($question["text"]) }}" alt="" srcset="" class="w-[150px] h-[100px] justify-center" />
 </label>

@@ -150,7 +150,7 @@ class IstQuestionSeeder extends Seeder
                     ['key' => 'B', 'text' => 'Tergesa-gesa'],
                     ['key' => 'C', 'text' => 'Mempunyai arti rangkap'],
                     ['key' => 'D', 'text' => 'Menyesatkan'],
-                    ['key' => 'E', 'text' => 'KewibawHipotesisaan'],
+                    ['key' => 'E', 'text' => 'Hipotesis'],
                 ],
                 'scoring' => ['correct_answer' => 'E'],
             ],
@@ -321,7 +321,6 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[1]->id,
                 'order' => 2,
-                'text' => '21',
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Lingkaran'],
@@ -335,7 +334,6 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[1]->id,
                 'order' => 3,
-                'text' => '22',
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Mengetuk'],
@@ -349,7 +347,6 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[1]->id,
                 'order' => 4,
-                'text' => '23',
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Lebar'],
@@ -363,7 +360,6 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[1]->id,
                 'order' => 5,
-                'text' => '24',
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Mengikat'],
@@ -377,7 +373,6 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[1]->id,
                 'order' => 6,
-                'text' => '25',
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Arah'],
@@ -391,7 +386,6 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[1]->id,
                 'order' => 7,
-                'text' => '26',
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Jarak'],
@@ -405,7 +399,6 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[1]->id,
                 'order' => 8,
-                'text' => '27',
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Saringan'],
@@ -419,7 +412,6 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[1]->id,
                 'order' => 9,
-                'text' => '28',
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Putih'],
@@ -433,7 +425,6 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[1]->id,
                 'order' => 10,
-                'text' => '29',
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Otobis'],
@@ -447,7 +438,6 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[1]->id,
                 'order' => 11,
-                'text' => '30',
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Biola'],
@@ -461,7 +451,6 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[1]->id,
                 'order' => 12,
-                'text' => '31',
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Bergelombang'],
@@ -475,7 +464,6 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[1]->id,
                 'order' => 13,
-                'text' => '32',
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Jam'],
@@ -489,7 +477,6 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[1]->id,
                 'order' => 14,
-                'text' => '33',
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Kebijaksanaan'],
@@ -503,7 +490,6 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[1]->id,
                 'order' => 15,
-                'text' => '34',
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Bermotor'],
@@ -517,7 +503,6 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[1]->id,
                 'order' => 16,
-                'text' => '35',
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Gambar'],
@@ -531,7 +516,6 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[1]->id,
                 'order' => 17,
-                'text' => '36',
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Panjang'],
@@ -545,7 +529,6 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[1]->id,
                 'order' => 18,
-                'text' => '37',
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Kunci'],
@@ -559,7 +542,6 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[1]->id,
                 'order' => 19,
-                'text' => '38',
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Jembatan'],
@@ -573,7 +555,6 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[1]->id,
                 'order' => 20,
-                'text' => '39',
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Mengetam'],
@@ -587,7 +568,6 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[1]->id,
                 'order' => 21,
-                'text' => '40',
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Batu'],
@@ -990,7 +970,7 @@ class IstQuestionSeeder extends Seeder
             [
                 'section_id' => $ist->sections[3]->id,
                 'order' => 14,
-                'text' => 'Wal - Akhir',
+                'text' => 'Awal - Akhir',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => 'Oksigen'],
             ],
@@ -1326,8 +1306,8 @@ class IstQuestionSeeder extends Seeder
                 'order' => 1,
                 'text' => '<p>Pada bagian ini, setiap soal memperlihatkan suatu bentuk tertentu yang telah  terpotong menjadi beberapa bagian. Carilah di antara bentuk-bentuk pada pilihan jawaban, bentuk yang dapat dibangun, dengan cara menyusun potongan-potongan bentuk, sehingga tidak ada kelebihan sudut atau ruang di antaranya. Tugas Anda adalah untuk menyusun dan menggabungkan potongan bentuk di soal dan mencari di opsi pilihan jawaban.</p>
                             <p>Pada contoh soal berikut, jawaban yang benar adalah A untuk bentuk soal kiri dan E untuk bentuk soal kanan.</p>
-                            <img src="{{ asset(\'assets/landing/images/psikotes-paid/questions/ist/subtes-7/instructions/Soal.webp\') }}" alt="Contoh Soal"/>
-                            <img src="{{ asset(\'assets/landing/images/psikotes-paid/questions/ist/subtes-7/instructions/Jawaban.webp\') }}" alt="Contoh Jawaban"/>',
+                            <img src="/assets/landing/images/psikotes-paid/questions/ist/subtes-7/instructions/Soal.webp" alt="Contoh Soal" class="border border-gray-300 rounded-lg"/>
+                            <img src="/assets/landing/images/psikotes-paid/questions/ist/subtes-7/instructions/Jawaban.webp" alt="Contoh Jawaban" class="border border-gray-300 rounded-lg"/>',
                 'type' => 'instruction',
             ],
             [
@@ -1617,8 +1597,8 @@ class IstQuestionSeeder extends Seeder
                 'order' => 1,
                 'text' => '<p>Pada bagian ini, setiap soal memperlihatkan suatu bentuk tertentu yang telah  terpotong menjadi beberapa bagian. Carilah di antara bentuk-bentuk pada pilihan jawaban, bentuk yang dapat dibangun, dengan cara menyusun potongan-potongan bentuk, sehingga tidak ada kelebihan sudut atau ruang di antaranya. Tugas Anda adalah untuk menyusun dan menggabungkan potongan bentuk di soal dan mencari di opsi pilihan jawaban.</p>
                             <p>Pada contoh soal berikut, jawaban yang benar adalah A untuk bentuk soal kiri dan E untuk bentuk soal kanan.</p>
-                            <img src="{{ asset(\'assets/landing/images/psikotes-paid/questions/ist/subtes-8/instructions/Soal.webp\') }}" alt="Contoh Soal"/>
-                            <img src="{{ asset(\'assets/landing/images/psikotes-paid/questions/ist/subtes-8/instructions/Jawaban.webp\') }}" alt="Contoh Jawaban"/>',
+                            <img src="/assets/landing/images/psikotes-paid/questions/ist/subtes-8/instructions/Soal.webp" alt="Contoh Soal" class="border border-gray-300 rounded-lg"/>
+                            <img src="/assets/landing/images/psikotes-paid/questions/ist/subtes-8/instructions/Jawaban.webp" alt="Contoh Jawaban" class="border border-gray-300 rounded-lg"/>',
                 'type' => 'instruction',
             ],
             [
