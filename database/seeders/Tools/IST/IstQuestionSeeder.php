@@ -17,7 +17,7 @@ class IstQuestionSeeder extends Seeder
         $ist = Tool::where('name', 'IST')->with('sections')->first();
 
         $questions = [
-            // Subtes 1
+            // Instruksi Subtes 1
             [
                 'section_id' => $ist->sections[0]->id,
                 'order' => 1,
@@ -28,9 +28,11 @@ class IstQuestionSeeder extends Seeder
                             <p>    A. Duka  <strong>B. Putus asa</strong>  C. Sengsara  D. Cinta  E. Benci</p>',
                 'type' => 'instruction',
             ],
+
+            // Subtes 1
             [
-                'section_id' => $ist->sections[0]->id,
-                'order' => 2,
+                'section_id' => $ist->sections[1]->id,
+                'order' => 1,
                 'text' => 'Pengaruh seseorang terhadap orang lain seharusnya bergantung pada ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -43,8 +45,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'E'],
             ],
             [
-                'section_id' => $ist->sections[0]->id,
-                'order' => 3,
+                'section_id' => $ist->sections[1]->id,
+                'order' => 2,
                 'text' => 'Lawannya "hemat" ialah ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -57,8 +59,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[0]->id,
-                'order' => 4,
+                'section_id' => $ist->sections[1]->id,
+                'order' => 3,
                 'text' => '... tidak termasuk cuaca',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -71,8 +73,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[0]->id,
-                'order' => 5,
+                'section_id' => $ist->sections[1]->id,
+                'order' => 4,
                 'text' => 'Lawannya "setia" ialah ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -85,8 +87,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[0]->id,
-                'order' => 6,
+                'section_id' => $ist->sections[1]->id,
+                'order' => 5,
                 'text' => 'Seekor kuda selalu mempunyai ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -99,8 +101,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[0]->id,
-                'order' => 7,
+                'section_id' => $ist->sections[1]->id,
+                'order' => 6,
                 'text' => 'Seorang paman ... lebih tua dari kemenakannya',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -113,8 +115,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'B'],
             ],
             [
-                'section_id' => $ist->sections[0]->id,
-                'order' => 8,
+                'section_id' => $ist->sections[1]->id,
+                'order' => 7,
                 'text' => 'Pada jumlah yang sama, nilai kalori yang tertinggi terdapat pada ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -127,8 +129,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[0]->id,
-                'order' => 9,
+                'section_id' => $ist->sections[1]->id,
+                'order' => 8,
                 'text' => 'Pada suatu pertandingan selalu terdapat ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -141,8 +143,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'A'],
             ],
             [
-                'section_id' => $ist->sections[0]->id,
-                'order' => 10,
+                'section_id' => $ist->sections[1]->id,
+                'order' => 9,
                 'text' => 'Suatu pernyataan yang belum dipastikan dikatakan sebagai pernyataan yang ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -155,8 +157,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'E'],
             ],
             [
-                'section_id' => $ist->sections[0]->id,
-                'order' => 11,
+                'section_id' => $ist->sections[1]->id,
+                'order' => 10,
                 'text' => 'Pada sepatu selalu terdapat ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -169,8 +171,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'B'],
             ],
             [
-                'section_id' => $ist->sections[0]->id,
-                'order' => 12,
+                'section_id' => $ist->sections[1]->id,
+                'order' => 11,
                 'text' => 'Suatu ... tidak menyangkut persoalan pencegahan kecelakaan',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -183,8 +185,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[0]->id,
-                'order' => 13,
+                'section_id' => $ist->sections[1]->id,
+                'order' => 12,
                 'text' => 'Mata uang dari Rp. 50,- garis tengahnnya ialah ... mm',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -197,8 +199,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[0]->id,
-                'order' => 14,
+                'section_id' => $ist->sections[1]->id,
+                'order' => 13,
                 'text' => 'Seseorang yang bersikap menyangsikan setiap kemajuan ialah seorang yang ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -211,8 +213,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[0]->id,
-                'order' => 15,
+                'section_id' => $ist->sections[1]->id,
+                'order' => 14,
                 'text' => 'Lawannya "tidak pernah" ialah ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -225,8 +227,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'E'],
             ],
             [
-                'section_id' => $ist->sections[0]->id,
-                'order' => 16,
+                'section_id' => $ist->sections[1]->id,
+                'order' => 15,
                 'text' => 'Jarak antara Jakarta - Surabaya ialah kira-kira ... km',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -239,8 +241,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[0]->id,
-                'order' => 17,
+                'section_id' => $ist->sections[1]->id,
+                'order' => 16,
                 'text' => 'Untuk dapat membuat nada yang rendah dan mendalam, kita memerlukan banyak ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -253,8 +255,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'A'],
             ],
             [
-                'section_id' => $ist->sections[0]->id,
-                'order' => 18,
+                'section_id' => $ist->sections[1]->id,
+                'order' => 17,
                 'text' => 'Ayah ... lebih berpengalaman daripada anaknya',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -267,8 +269,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'B'],
             ],
             [
-                'section_id' => $ist->sections[0]->id,
-                'order' => 19,
+                'section_id' => $ist->sections[1]->id,
+                'order' => 18,
                 'text' => 'Di antara kota-kota yang berikut ini, maka kota ... letaknya paling selatan',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -281,8 +283,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'B'],
             ],
             [
-                'section_id' => $ist->sections[0]->id,
-                'order' => 20,
+                'section_id' => $ist->sections[1]->id,
+                'order' => 19,
                 'text' => 'Jika kita mengetahui jumlah presesntase nomor-nomor lotere yang tidak menang, maka kita dapat menghitung ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -295,8 +297,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[0]->id,
-                'order' => 21,
+                'section_id' => $ist->sections[1]->id,
+                'order' => 20,
                 'text' => 'Seorang anak yang berumur 10 tahun tingginya rata-rata ... cm',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -309,18 +311,20 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'B'],
             ],
 
-            // Subtes 2
+            // Instruksi Subtes 2
             [
-                'section_id' => $ist->sections[1]->id,
+                'section_id' => $ist->sections[2]->id,
                 'order' => 1,
                 'text' => '<p>Pada bagian ini, terdapat lima pilihan kata. Empat dari lima kata tersebut terdapat satu kesamaan. Tugas Anda adalah mencari kata kelima yang tidak memiliki kesamaan dengan keempat kata tersebut.</p>
                             <p>1. A. Meja  B. Kursi  <strong>C. Burung</strong>  D. Lemari  E. Tempat tidur</p>
                             <p>2. A. Duduk  B. Berbaring  C. Berdiri  <strong>D. Berjalan</strong>  E. Berjongkok</p>',
                 'type' => 'instruction',
             ],
+
+            // Subtes 2
             [
-                'section_id' => $ist->sections[1]->id,
-                'order' => 2,
+                'section_id' => $ist->sections[3]->id,
+                'order' => 1,
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Lingkaran'],
@@ -332,8 +336,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'B'],
             ],
             [
-                'section_id' => $ist->sections[1]->id,
-                'order' => 3,
+                'section_id' => $ist->sections[3]->id,
+                'order' => 2,
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Mengetuk'],
@@ -345,8 +349,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'B'],
             ],
             [
-                'section_id' => $ist->sections[1]->id,
-                'order' => 4,
+                'section_id' => $ist->sections[3]->id,
+                'order' => 3,
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Lebar'],
@@ -358,8 +362,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[1]->id,
-                'order' => 5,
+                'section_id' => $ist->sections[3]->id,
+                'order' => 4,
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Mengikat'],
@@ -371,8 +375,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[1]->id,
-                'order' => 6,
+                'section_id' => $ist->sections[3]->id,
+                'order' => 5,
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Arah'],
@@ -384,8 +388,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[1]->id,
-                'order' => 7,
+                'section_id' => $ist->sections[3]->id,
+                'order' => 6,
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Jarak'],
@@ -397,8 +401,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[1]->id,
-                'order' => 8,
+                'section_id' => $ist->sections[3]->id,
+                'order' => 7,
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Saringan'],
@@ -410,8 +414,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[1]->id,
-                'order' => 9,
+                'section_id' => $ist->sections[3]->id,
+                'order' => 8,
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Putih'],
@@ -423,8 +427,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[1]->id,
-                'order' => 10,
+                'section_id' => $ist->sections[3]->id,
+                'order' => 9,
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Otobis'],
@@ -436,8 +440,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[1]->id,
-                'order' => 11,
+                'section_id' => $ist->sections[3]->id,
+                'order' => 10,
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Biola'],
@@ -449,8 +453,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'A'],
             ],
             [
-                'section_id' => $ist->sections[1]->id,
-                'order' => 12,
+                'section_id' => $ist->sections[3]->id,
+                'order' => 11,
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Bergelombang'],
@@ -462,8 +466,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'E'],
             ],
             [
-                'section_id' => $ist->sections[1]->id,
-                'order' => 13,
+                'section_id' => $ist->sections[3]->id,
+                'order' => 12,
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Jam'],
@@ -475,8 +479,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'A'],
             ],
             [
-                'section_id' => $ist->sections[1]->id,
-                'order' => 14,
+                'section_id' => $ist->sections[3]->id,
+                'order' => 13,
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Kebijaksanaan'],
@@ -488,8 +492,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'A'],
             ],
             [
-                'section_id' => $ist->sections[1]->id,
-                'order' => 15,
+                'section_id' => $ist->sections[3]->id,
+                'order' => 14,
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Bermotor'],
@@ -501,8 +505,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'B'],
             ],
             [
-                'section_id' => $ist->sections[1]->id,
-                'order' => 16,
+                'section_id' => $ist->sections[3]->id,
+                'order' => 15,
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Gambar'],
@@ -514,8 +518,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[1]->id,
-                'order' => 17,
+                'section_id' => $ist->sections[3]->id,
+                'order' => 16,
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Panjang'],
@@ -527,8 +531,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'A'],
             ],
             [
-                'section_id' => $ist->sections[1]->id,
-                'order' => 18,
+                'section_id' => $ist->sections[3]->id,
+                'order' => 17,
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Kunci'],
@@ -540,8 +544,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[1]->id,
-                'order' => 19,
+                'section_id' => $ist->sections[3]->id,
+                'order' => 18,
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Jembatan'],
@@ -553,8 +557,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'E'],
             ],
             [
-                'section_id' => $ist->sections[1]->id,
-                'order' => 20,
+                'section_id' => $ist->sections[3]->id,
+                'order' => 19,
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Mengetam'],
@@ -566,8 +570,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'B'],
             ],
             [
-                'section_id' => $ist->sections[1]->id,
-                'order' => 21,
+                'section_id' => $ist->sections[3]->id,
+                'order' => 20,
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Batu'],
@@ -579,9 +583,9 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
 
-            // Subtes 3
+            // Instruksi Subtes 3
             [
-                'section_id' => $ist->sections[2]->id,
+                'section_id' => $ist->sections[4]->id,
                 'order' => 1,
                 'text' => '<p>Pada bagian ini, terdapat tiga kata yang diberikan. Kata pertama dan kata kedua terdapat suatu hubungan tertentu. Kata ketiga dan salah satu kata di antara lima pilihan kata a, b, c, d, dan e juga harus memiliki hubungan yang sama dengan hubungan antara kata pertama dan kata kedua.</p>
                             <p>1. Hutan : pohon = tembok : ...</p>
@@ -590,9 +594,11 @@ class IstQuestionSeeder extends Seeder
                             <p>   A. Hujan  B. Hari  C. Lembab  D. Angin  <strong>E. Kering</strong></p>',
                 'type' => 'instruction',
             ],
+
+            // Subtes 3
             [
-                'section_id' => $ist->sections[2]->id,
-                'order' => 2,
+                'section_id' => $ist->sections[5]->id,
+                'order' => 1,
                 'text' => 'Menemukan : menghilangkan = mengingat : ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -605,8 +611,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[2]->id,
-                'order' => 3,
+                'section_id' => $ist->sections[5]->id,
+                'order' => 2,
                 'text' => 'Bunga : jambangan = burung : ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -619,8 +625,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'E'],
             ],
             [
-                'section_id' => $ist->sections[2]->id,
-                'order' => 4,
+                'section_id' => $ist->sections[5]->id,
+                'order' => 3,
                 'text' => 'Kereta api : rel = otobis : ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -633,8 +639,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[2]->id,
-                'order' => 5,
+                'section_id' => $ist->sections[5]->id,
+                'order' => 4,
                 'text' => 'Perak : emas = cincin : ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -647,8 +653,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[2]->id,
-                'order' => 6,
+                'section_id' => $ist->sections[5]->id,
+                'order' => 5,
                 'text' => 'Lingkaran : bola = bujur sangkar : ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -661,8 +667,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[2]->id,
-                'order' => 7,
+                'section_id' => $ist->sections[5]->id,
+                'order' => 6,
                 'text' => 'Saran : keputusan = merundingkan : ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -675,8 +681,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'B'],
             ],
             [
-                'section_id' => $ist->sections[2]->id,
-                'order' => 8,
+                'section_id' => $ist->sections[5]->id,
+                'order' => 7,
                 'text' => 'Lidah : asam = hidung : ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -689,8 +695,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[2]->id,
-                'order' => 9,
+                'section_id' => $ist->sections[5]->id,
+                'order' => 8,
                 'text' => 'Darah : pembuluh = air : ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -703,8 +709,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'B'],
             ],
             [
-                'section_id' => $ist->sections[2]->id,
-                'order' => 10,
+                'section_id' => $ist->sections[5]->id,
+                'order' => 9,
                 'text' => 'Saraf : penyalur = pupil : ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -717,8 +723,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'E'],
             ],
             [
-                'section_id' => $ist->sections[2]->id,
-                'order' => 11,
+                'section_id' => $ist->sections[5]->id,
+                'order' => 10,
                 'text' => 'Pengantar surat : pengantar telegram = pandai besi : ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -731,8 +737,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[2]->id,
-                'order' => 12,
+                'section_id' => $ist->sections[5]->id,
+                'order' => 11,
                 'text' => 'Buta : warna = tuli : ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -745,8 +751,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[2]->id,
-                'order' => 13,
+                'section_id' => $ist->sections[5]->id,
+                'order' => 12,
                 'text' => 'Makan : bumbu = ceramah : ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -759,8 +765,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[2]->id,
-                'order' => 14,
+                'section_id' => $ist->sections[5]->id,
+                'order' => 13,
                 'text' => 'Marah : emosi = duka cita : ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -773,8 +779,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[2]->id,
-                'order' => 15,
+                'section_id' => $ist->sections[5]->id,
+                'order' => 14,
                 'text' => 'Mantel : jubah = wool : ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -787,8 +793,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[2]->id,
-                'order' => 16,
+                'section_id' => $ist->sections[5]->id,
+                'order' => 15,
                 'text' => 'Ketinggian puncak : tekanan udara = ketinggian nada : ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -801,8 +807,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[2]->id,
-                'order' => 17,
+                'section_id' => $ist->sections[5]->id,
+                'order' => 16,
                 'text' => 'Negara : revolusi = hidup : ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -815,8 +821,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[2]->id,
-                'order' => 18,
+                'section_id' => $ist->sections[5]->id,
+                'order' => 17,
                 'text' => 'Kekurangan : penemuan = panas : ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -829,8 +835,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[2]->id,
-                'order' => 19,
+                'section_id' => $ist->sections[5]->id,
+                'order' => 18,
                 'text' => 'Kayu : diketam = besi : ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -843,8 +849,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'E'],
             ],
             [
-                'section_id' => $ist->sections[2]->id,
-                'order' => 20,
+                'section_id' => $ist->sections[5]->id,
+                'order' => 19,
                 'text' => 'Olahragawan : lembing = cendikiawan : ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -857,8 +863,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'E'],
             ],
             [
-                'section_id' => $ist->sections[2]->id,
-                'order' => 21,
+                'section_id' => $ist->sections[5]->id,
+                'order' => 20,
                 'text' => 'Keledai : kuda pacuan = pembakaran : ...',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -871,9 +877,9 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'E'],
             ],
 
-            // Subtes 4
+            // Instruksi Subtes 4
             [
-                'section_id' => $ist->sections[3]->id,
+                'section_id' => $ist->sections[6]->id,
                 'order' => 1,
                 'text' => '<p>Pada bagian ini, ditentukan dua kata. Carilah satu kata yang meliputi pengertian kedua kata tadi. Tulislah perkataan yang benar pada kolom jawaban yang telah disediakan.</p>
                             <p>1. Ayam  - itik</p>
@@ -882,123 +888,173 @@ class IstQuestionSeeder extends Seeder
                             <p>   <strong>pakaian</strong></p>',
                 'type' => 'instruction',
             ],
+
+            // Subtes 4
             [
-                'section_id' => $ist->sections[3]->id,
-                'order' => 2,
+                'section_id' => $ist->sections[7]->id,
+                'order' => 1,
                 'text' => 'Mawar - Melati',
                 'type' => 'short_answer',
-                'scoring' => ['correct_answer' => 'Oksigen'],
+                'scoring' => [
+                    'poin_1' => ['Tumbuh-tumbuhan', 'Tangkal', 'Harum', 'Taman', 'Tumbuhan'],
+                    'poin_2' => ['Bunga', 'Kembang', 'Perdu'],
+                ],
             ],
 
             [
-                'section_id' => $ist->sections[3]->id,
-                'order' => 3,
+                'section_id' => $ist->sections[7]->id,
+                'order' => 2,
                 'text' => 'Mata - Telinga',
                 'type' => 'short_answer',
-                'scoring' => ['correct_answer' => 'Oksigen'],
+                'scoring' => [
+                    'poin_1' => ['Organ', 'Anggota Badan', 'Anggota Tubuh', 'Alat tubuh'],
+                    'poin_2' => ['Alat indera', 'Organ indera', 'Penca indera', 'Panca indera', 'Indera', 'Alat indra', 'Organ indra', 'Penca indra', 'Panca indra', 'Indra'],
+                ],
             ],
             [
-                'section_id' => $ist->sections[3]->id,
-                'order' => 4,
+                'section_id' => $ist->sections[7]->id,
+                'order' => 3,
                 'text' => 'Gula - Intan',
                 'type' => 'short_answer',
-                'scoring' => ['correct_answer' => 'Oksigen'],
+                'scoring' => [
+                    'poin_1' => ['Bening', 'Mengkilat', 'Berkilauan'],
+                    'poin_2' => ['Zat arang', 'Kristal', 'Hablur', 'Butiran', 'Butir'],
+                ],
             ],
             [
-                'section_id' => $ist->sections[3]->id,
-                'order' => 5,
+                'section_id' => $ist->sections[7]->id,
+                'order' => 4,
                 'text' => 'Hujan - Salju',
                 'type' => 'short_answer',
-                'scoring' => ['correct_answer' => 'Oksigen'],
+                'scoring' => [
+                    'poin_1' => ['Air', 'Basah', 'Gejala alam'],
+                    'poin_2' => ['Cuaca'],
+                ],
             ],
             [
-                'section_id' => $ist->sections[3]->id,
-                'order' => 6,
+                'section_id' => $ist->sections[7]->id,
+                'order' => 5,
                 'text' => 'Pengantar Surat - Telepon',
                 'type' => 'short_answer',
-                'scoring' => ['correct_answer' => 'Oksigen'],
+                'scoring' => [
+                    'poin_1' => ['Jaringan', 'Kantor', 'Pos', 'Post', 'Tukang', 'Transmisi', 'Penghubung', 'Komunikasi', 'Perhubungan', 'Telekomunikasi', 'PTT'],
+                    'poin_2' => ['Alat komunikasi', 'Penyalur', 'Alat perhubungan', 'Pemba wa berita'],
+                ],
             ],
             [
-                'section_id' => $ist->sections[3]->id,
-                'order' => 7,
+                'section_id' => $ist->sections[7]->id,
+                'order' => 6,
                 'text' => 'Kamera - Kacamata',
                 'type' => 'short_answer',
-                'scoring' => ['correct_answer' => 'Oksigen'],
+                'scoring' => [
+                    'poin_1' => ['Lensa', 'Lup'],
+                    'poin_2' => ['optik', 'optic', 'alat optik', 'Alat optic'],
+                ],
             ],
             [
-                'section_id' => $ist->sections[3]->id,
-                'order' => 8,
+                'section_id' => $ist->sections[7]->id,
+                'order' => 7,
                 'text' => 'Lambung - Usus',
                 'type' => 'short_answer',
-                'scoring' => ['correct_answer' => 'Oksigen'],
+                'scoring' => [
+                    'poin_1' => ['Perut', 'Ekskresi', 'Organ dalam', 'Pencernaan makanan', 'Isi perut', 'Perut', 'Jalan makanan'],
+                    'poin_2' => ['Pencernaan Organ', 'Pencernaan', 'Alat pencernaan'],
+                ],
             ],
             [
-                'section_id' => $ist->sections[3]->id,
-                'order' => 9,
+                'section_id' => $ist->sections[7]->id,
+                'order' => 8,
                 'text' => 'Banyak - Sedikit',
                 'type' => 'short_answer',
-                'scoring' => ['correct_answer' => 'Oksigen'],
+                'scoring' => [
+                    'poin_1' => ['Kapasitas', 'Takaran', 'Porsi', 'Ukuran', 'Mengukur'],
+                    'poin_2' => ['Konsentrasi', 'Volume', 'Bobot', 'Berat', 'Kuantitas', 'Jumlah', 'Pengertian jumlah', 'Penyebut jumlah'],
+                ],
             ],
             [
-                'section_id' => $ist->sections[3]->id,
-                'order' => 10,
+                'section_id' => $ist->sections[7]->id,
+                'order' => 9,
                 'text' => 'Telur - Benih',
                 'type' => 'short_answer',
-                'scoring' => ['correct_answer' => 'Oksigen'],
+                'scoring' => [
+                    'poin_1' => ['Kawin', 'Regenerasi', 'Perkembangbiakan', 'Janin', 'Calon Anak', 'Reproduksi', 'Pembiakan', 'Sel'],
+                    'poin_2' => ['Permulaan', 'Awal', 'Zigot', 'Embrio', 'Penghidupan', 'Permulaan', 'Alat pembiak', 'Bakal', 'Bibit'],
+                ],
             ],
             [
-                'section_id' => $ist->sections[3]->id,
-                'order' => 11,
+                'section_id' => $ist->sections[7]->id,
+                'order' => 10,
                 'text' => 'Bendera - Lencana',
                 'type' => 'short_answer',
-                'scoring' => ['correct_answer' => 'Oksigen'],
+                'scoring' => [
+                    'poin_1' => ['Pengenal', 'Identitas', 'Atribut', 'Tanda pengenal', 'Nama'],
+                    'poin_2' => ['Logo', 'Tanda', 'Lambang', 'Simbol', 'Symbol'],
+                ],
             ],
             [
-                'section_id' => $ist->sections[3]->id,
-                'order' => 12,
+                'section_id' => $ist->sections[7]->id,
+                'order' => 11,
                 'text' => 'Rumput - Gajah',
                 'type' => 'short_answer',
-                'scoring' => ['correct_answer' => 'Oksigen'],
+                'scoring' => [
+                    'poin_1' => ['Ilmu hayat', 'Biologi', 'Tumbuh'],
+                    'poin_2' => ['Spesies', 'Organisme', 'Makhluk hidup', 'Makhluk'],
+                ],
             ],
             [
-                'section_id' => $ist->sections[3]->id,
-                'order' => 13,
+                'section_id' => $ist->sections[7]->id,
+                'order' => 12,
                 'text' => 'Ember - Kantong',
                 'type' => 'short_answer',
-                'scoring' => ['correct_answer' => 'Oksigen'],
+                'scoring' => [
+                    'poin_1' => ['Benda', 'Kapasitor', 'Perabotan', 'Benda', 'Tempat', 'Tempat sesuatu', 'Alat'],
+                    'poin_2' => ['Wadah', 'Ruang', 'Menampung', 'Penyimpanan', 'Menyimpan', 'Penadah', 'Tempat penyimpan', 'Tempat pengisi', 'Wadah'],
+                ],
             ],
             [
-                'section_id' => $ist->sections[3]->id,
-                'order' => 14,
+                'section_id' => $ist->sections[7]->id,
+                'order' => 13,
                 'text' => 'Awal - Akhir',
                 'type' => 'short_answer',
-                'scoring' => ['correct_answer' => 'Oksigen'],
+                'scoring' => [
+                    'poin_1' => ['Episode', 'Sesi', 'Tahap', 'Fase', 'Periode', 'Durasi', 'Lamanya', 'Saat', 'Masa', 'Waktu'],
+                    'poin_2' => ['Batas', 'Pengertian waktu'],
+                ],
             ],
             [
-                'section_id' => $ist->sections[3]->id,
-                'order' => 15,
+                'section_id' => $ist->sections[7]->id,
+                'order' => 14,
                 'text' => 'Kikir - Boros',
                 'type' => 'short_answer',
-                'scoring' => ['correct_answer' => 'Oksigen'],
+                'scoring' => [
+                    'poin_1' => ['Sifat'],
+                    'poin_2' => ['Watak', 'Karakter'],
+                ],
             ],
             [
-                'section_id' => $ist->sections[3]->id,
-                'order' => 16,
+                'section_id' => $ist->sections[7]->id,
+                'order' => 15,
                 'text' => 'Penawaran - Permintaan',
                 'type' => 'short_answer',
-                'scoring' => ['correct_answer' => 'Oksigen'],
+                'scoring' => [
+                    'poin_1' => ['Trading', 'Transaksi', 'Pasar', 'Beli', 'Jual', 'Jual Beli', 'Pembelian', 'Penjualan', 'Niaga', 'Dagang'],
+                    'poin_2' => ['Perdagangan', 'Perekonomian', 'Ekonomi', 'Pengertian Ekonomi', 'Harga', 'Regulator Harga'],
+                ],
             ],
             [
-                'section_id' => $ist->sections[3]->id,
-                'order' => 17,
+                'section_id' => $ist->sections[7]->id,
+                'order' => 16,
                 'text' => 'Atas - Bawah',
                 'type' => 'short_answer',
-                'scoring' => ['correct_answer' => 'Oksigen'],
+                'scoring' => [
+                    'poin_1' => ['Lokasi', 'Petunjuk', 'Penempatan', 'Posisi', 'Penunjuk tempat', 'Ruang', 'Tempat', 'Penentuan Daerah', 'Letak', 'Arah'],
+                    'poin_2' => ['Ruang', 'Penyebut ruang', 'Pengertian ruang'],
+                ],
             ],
 
-            // Subtes 5
+            // Instruksi Subtes 5
             [
-                'section_id' => $ist->sections[4]->id,
+                'section_id' => $ist->sections[8]->id,
                 'order' => 1,
                 'text' => '<p>Persoalan berikutnya ialah soal-soal hitungan. Gunakan kertas dan pulpen yang telah disiapkan tadi untuk mencari jawaban. Jawaban hanya berupa angka tanpa simbol atau keterangan tambahan.</p>
                             <p>1. Sebatang pensil harganya 25 rupiah. Berapakah harga 3 batang?</p>
@@ -1007,150 +1063,152 @@ class IstQuestionSeeder extends Seeder
                             <p>   <strong>60</strong></p>',
                 'type' => 'instruction',
             ],
+
+            // Subtes 5
             [
-                'section_id' => $ist->sections[4]->id,
-                'order' => 2,
+                'section_id' => $ist->sections[9]->id,
+                'order' => 1,
                 'text' => 'Jika seorang anak memiliki Rp. 50,- dan memberikan Rp. 15,-. Berapa rupiah kah yang masih tinggal padanya?',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '35'],
             ],
             [
-                'section_id' => $ist->sections[4]->id,
-                'order' => 3,
+                'section_id' => $ist->sections[9]->id,
+                'order' => 2,
                 'text' => 'Berpa km- kah yang dapat ditempuh oleh kereta api dalam waktu 7 jam. Jika kecepatannya 40km/jam?',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '280'],
             ],
             [
-                'section_id' => $ist->sections[4]->id,
-                'order' => 4,
+                'section_id' => $ist->sections[9]->id,
+                'order' => 3,
                 'text' => '15 peti buah-buahan beratnya 250 kg dan setiap peti kosong beratnya 3 kg, berapakah beratbuah-buahan itu ?',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '250'],
             ],
             [
-                'section_id' => $ist->sections[4]->id,
-                'order' => 5,
+                'section_id' => $ist->sections[9]->id,
+                'order' => 4,
                 'text' => 'Seseorang mempunyai persediaan rumput yang cukup untuk 7 ekor kuda selama 78 hari. Berapa harikah persediaan itu cukup untuk 21 ekor kuda ?',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '26'],
             ],
             [
-                'section_id' => $ist->sections[4]->id,
-                'order' => 6,
+                'section_id' => $ist->sections[9]->id,
+                'order' => 5,
                 'text' => '3 batang coklat harganya Rp. 5,-. Berapa batangkah yang dapat kita beli dengan Rp. 50,- ?',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '30'],
             ],
             [
-                'section_id' => $ist->sections[4]->id,
-                'order' => 7,
+                'section_id' => $ist->sections[9]->id,
+                'order' => 6,
                 'text' => 'Seseorang dapat berjalan 1,75 m dalam waktu ¼ detik. Berapa meterkah yang dapat ditempuh dalam waktu 10 detik ?',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '70'],
             ],
             [
-                'section_id' => $ist->sections[4]->id,
-                'order' => 8,
+                'section_id' => $ist->sections[9]->id,
+                'order' => 7,
                 'text' => 'Jika sebuah batu terletak 15 m di sebelah selatan dari sebatang pohon dan pohon itu berada 30 m di sebelah selatan dari sebuah rumah. Berapa meterkah jarak antara batu dan rumah itu ?',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '45'],
             ],
             [
-                'section_id' => $ist->sections[4]->id,
-                'order' => 9,
+                'section_id' => $ist->sections[9]->id,
+                'order' => 8,
                 'text' => 'Jika 4 1/5 bahan sandang harganya Rp. 90,-. Berapa rupiahkah harga 2 ½ m ?',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '50'],
             ],
             [
-                'section_id' => $ist->sections[4]->id,
-                'order' => 10,
+                'section_id' => $ist->sections[9]->id,
+                'order' => 9,
                 'text' => '7 orang dapat menyelesaikan suatu pekerjaan dalam 6 hari. Berapa orangkah yang diperlukanuntuk menyelesaikan pekerjaan itu dalam setengah hari ?',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '48'],
             ],
             [
-                'section_id' => $ist->sections[4]->id,
-                'order' => 11,
+                'section_id' => $ist->sections[9]->id,
+                'order' => 10,
                 'text' => 'Karena dipanaskan, kawat yang panjangnya 48 cm akan mengembang menjadi 52 cm. Setelahpemanasan, berapakah panjangnya kawat yang berukuran 72 cm ?',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '78'],
             ],
             [
-                'section_id' => $ist->sections[4]->id,
-                'order' => 12,
+                'section_id' => $ist->sections[9]->id,
+                'order' => 11,
                 'text' => 'Suatu pabrik dapat menghasilkan 304 batang pensil dalam waktu 8 jam. Berapa batangkah yang dihasilkan dalam waktu setengah jam ?',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '19'],
             ],
             [
-                'section_id' => $ist->sections[4]->id,
-                'order' => 13,
+                'section_id' => $ist->sections[9]->id,
+                'order' => 12,
                 'text' => 'Untuk suatu campuran diperlukan 2 bagian perak dan 3 bagian timah. Berapa gramkah perak yang diperlukan untuk mendapatkan campuran itu yang  beratnya 15 gram?',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '6'],
             ],
             [
-                'section_id' => $ist->sections[4]->id,
-                'order' => 14,
+                'section_id' => $ist->sections[9]->id,
+                'order' => 13,
                 'text' => 'Untuk setiap Rp. 3,- yang dimiliki Sidin, Hamid memiliki Rp. 5,- . Jika mereka bersama mempunyaiRp. 120,- berapa rupiahkah yang dimiliki Hamid ?',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '57'],
             ],
             [
-                'section_id' => $ist->sections[4]->id,
-                'order' => 15,
+                'section_id' => $ist->sections[9]->id,
+                'order' => 14,
                 'text' => 'Mesin A menenun 60 m kain, sedangkan mesin B menenun 40 m kain. Berapa meterkah yang ditenun mesin A, Jika mesin B menenun 60 m ?',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '90'],
             ],
             [
-                'section_id' => $ist->sections[4]->id,
-                'order' => 16,
+                'section_id' => $ist->sections[9]->id,
+                'order' => 15,
                 'text' => 'Seseorang memberikan 1/10 dari uangnya untuk perangko dan 4 kali jumlah itu untuk alat tulis. Sisa uangnya masih Rp. 60,-. Berapa rupiahkah uangnya semula ? ',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '120'],
             ],
             [
-                'section_id' => $ist->sections[4]->id,
-                'order' => 17,
+                'section_id' => $ist->sections[9]->id,
+                'order' => 16,
                 'text' => 'Di dalam 2 peti terdapat 43 piring. Didalam peti yang satu terdapat 9 buah piring lebih banyak daripada di dalam peti yang lain. Berapa buah piring terdapat di dalam peti yang lebih kecil? ',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '17'],
             ],
             [
-                'section_id' => $ist->sections[4]->id,
-                'order' => 18,
+                'section_id' => $ist->sections[9]->id,
+                'order' => 17,
                 'text' => 'Suatu lembaran kain yang panjangnya 60 cm harus dibagi sedemikian rupa sehingga panjangnya satu bagian adalah 2/3 dari bagian yang lain. Berapakah bagian panjangnya yang terpendek ?',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '24'],
             ],
             [
-                'section_id' => $ist->sections[4]->id,
-                'order' => 19,
+                'section_id' => $ist->sections[9]->id,
+                'order' => 18,
                 'text' => 'Suatu perusahaan mengekspor 3/4 dari hasil produksinya dan menjual  4/5  dari sisa itu di dalamnegeri. Berapa % kah hasil produksi yang masih tinggal ?',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '5'],
             ],
             [
-                'section_id' => $ist->sections[4]->id,
-                'order' => 20,
+                'section_id' => $ist->sections[9]->id,
+                'order' => 19,
                 'text' => 'Jika suatu botol berisi anggur hanya 7/8 bagian dan harganya ialah Rp. 84,-. Berapakah harga anggur itu jika botol itu hanya terisi ½ penuh ?',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '48'],
             ],
             [
-                'section_id' => $ist->sections[4]->id,
-                'order' => 21,
+                'section_id' => $ist->sections[9]->id,
+                'order' => 20,
                 'text' => 'Didalam suatu keluarga setiap anak perempuan mempunyai jumlah saudara laki-laki yang sama dengan jumlah saudara perempuan dan setiap anak laki-laki mempunyai dua kali lebih banyak saudara perempuan daripada saudara laki-laki. Berapa anak laki-lakikah yang terdapat dalam keluarga itu ?',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '3'],
             ],
 
-            // Subtes 6
+            // Instruksi Subtes 6
             [
-                'section_id' => $ist->sections[5]->id,
+                'section_id' => $ist->sections[10]->id,
                 'order' => 1,
                 'text' => '<p>Pada kelompok soal berikutnya akan diberikan deret angka. Setiap deret angka tersusun menurut suatu aturan tertentu, dan deret angka tersebut dapat dilanjutkan menurut aturan itu.Tugas Anda adalah untuk mencari angka berikutnya pada setiap deret bilangan di soal. Silahkan gunakan kertas dan pulpen yang telah Anda persiapkan, gunakan untuk mencari jawaban.</p>
                             <p>1. 2 4 6 8 10 12 14 ...</p>
@@ -1159,150 +1217,152 @@ class IstQuestionSeeder extends Seeder
                             <p>   <strong>10</strong></p>',
                 'type' => 'instruction',
             ],
+
+            // Subtes 6
             [
-                'section_id' => $ist->sections[5]->id,
-                'order' => 2,
+                'section_id' => $ist->sections[11]->id,
+                'order' => 1,
                 'text' => '6   9   12   15   18   21   24   ...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '27'],
             ],
             [
-                'section_id' => $ist->sections[5]->id,
-                'order' => 3,
+                'section_id' => $ist->sections[11]->id,
+                'order' => 2,
                 'text' => '15   16   18   19   21   22   24   ...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '25'],
             ],
             [
-                'section_id' => $ist->sections[5]->id,
-                'order' => 4,
+                'section_id' => $ist->sections[11]->id,
+                'order' => 3,
                 'text' => '19   18   22   21   25   24   28   ...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '27'],
             ],
             [
-                'section_id' => $ist->sections[5]->id,
-                'order' => 5,
+                'section_id' => $ist->sections[11]->id,
+                'order' => 4,
                 'text' => '16   12   17   13   18   14   19   ...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '15'],
             ],
             [
-                'section_id' => $ist->sections[5]->id,
-                'order' => 6,
+                'section_id' => $ist->sections[11]->id,
+                'order' => 5,
                 'text' => '2   4   8   10   20   22   44   ...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '46'],
             ],
             [
-                'section_id' => $ist->sections[5]->id,
-                'order' => 7,
+                'section_id' => $ist->sections[11]->id,
+                'order' => 6,
                 'text' => '15   13   16   12   17   11   18   ...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '10'],
             ],
             [
-                'section_id' => $ist->sections[5]->id,
-                'order' => 8,
+                'section_id' => $ist->sections[11]->id,
+                'order' => 7,
                 'text' => '25   22   11   33   30   15   45   ...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '24'],
             ],
             [
-                'section_id' => $ist->sections[5]->id,
-                'order' => 9,
+                'section_id' => $ist->sections[11]->id,
+                'order' => 8,
                 'text' => '49   51   54   27   9   11   14   ...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '7'],
             ],
             [
-                'section_id' => $ist->sections[5]->id,
-                'order' => 10,
+                'section_id' => $ist->sections[11]->id,
+                'order' => 9,
                 'text' => '2   3   1   3   4   2   4   ...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '5'],
             ],
             [
-                'section_id' => $ist->sections[5]->id,
-                'order' => 11,
+                'section_id' => $ist->sections[11]->id,
+                'order' => 10,
                 'text' => '19   17   20   16   21   15   22   ...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '14'],
             ],
             [
-                'section_id' => $ist->sections[5]->id,
-                'order' => 12,
+                'section_id' => $ist->sections[11]->id,
+                'order' => 11,
                 'text' => '94   92   46   44   22   20   10   ...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '8'],
             ],
             [
-                'section_id' => $ist->sections[5]->id,
-                'order' => 13,
+                'section_id' => $ist->sections[11]->id,
+                'order' => 12,
                 'text' => '5   8   9   8   11   12   11   ...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '14'],
             ],
             [
-                'section_id' => $ist->sections[5]->id,
-                'order' => 14,
+                'section_id' => $ist->sections[11]->id,
+                'order' => 13,
                 'text' => '12   15   19   23   28   33   39   ...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '45'],
             ],
             [
-                'section_id' => $ist->sections[5]->id,
-                'order' => 15,
+                'section_id' => $ist->sections[11]->id,
+                'order' => 14,
                 'text' => '7   5   10   7   21   17   68   ...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '36'],
             ],
             [
-                'section_id' => $ist->sections[5]->id,
-                'order' => 16,
+                'section_id' => $ist->sections[11]->id,
+                'order' => 15,
                 'text' => '11   15   18   9   13   16   8   ...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '12'],
             ],
             [
-                'section_id' => $ist->sections[5]->id,
-                'order' => 17,
+                'section_id' => $ist->sections[11]->id,
+                'order' => 16,
                 'text' => '3   8   15   24   35   48   63   ...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '80'],
             ],
             [
-                'section_id' => $ist->sections[5]->id,
-                'order' => 18,
+                'section_id' => $ist->sections[11]->id,
+                'order' => 17,
                 'text' => '4   5   7   4   8   13   7   ...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '14'],
             ],
             [
-                'section_id' => $ist->sections[5]->id,
-                'order' => 19,
+                'section_id' => $ist->sections[11]->id,
+                'order' => 18,
                 'text' => '8   5   15   18   6   3   9   ...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '12'],
             ],
             [
-                'section_id' => $ist->sections[5]->id,
-                'order' => 20,
+                'section_id' => $ist->sections[11]->id,
+                'order' => 19,
                 'text' => '15   6   18   10   30   23   69   ...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '36'],
             ],
             [
-                'section_id' => $ist->sections[5]->id,
-                'order' => 21,
+                'section_id' => $ist->sections[11]->id,
+                'order' => 20,
                 'text' => '5   35   28   4   11   77   70   ...',
                 'type' => 'short_answer',
                 'scoring' => ['correct_answer' => '11'],
             ],
 
-            // Subtes 7
+            // Instruksi Subtes 7
             [
-                'section_id' => $ist->sections[6]->id,
+                'section_id' => $ist->sections[12]->id,
                 'order' => 1,
                 'text' => '<p>Pada bagian ini, setiap soal memperlihatkan suatu bentuk tertentu yang telah  terpotong menjadi beberapa bagian. Carilah di antara bentuk-bentuk pada pilihan jawaban, bentuk yang dapat dibangun, dengan cara menyusun potongan-potongan bentuk, sehingga tidak ada kelebihan sudut atau ruang di antaranya. Tugas Anda adalah untuk menyusun dan menggabungkan potongan bentuk di soal dan mencari di opsi pilihan jawaban.</p>
                             <p>Pada contoh soal berikut, jawaban yang benar adalah A untuk bentuk soal kiri dan E untuk bentuk soal kanan.</p>
@@ -1310,9 +1370,11 @@ class IstQuestionSeeder extends Seeder
                             <img src="/assets/landing/images/psikotes-paid/questions/ist/subtes-7/instructions/Jawaban.webp" alt="Contoh Jawaban" class="border border-gray-300 rounded-lg"/>',
                 'type' => 'instruction',
             ],
+
+            // Subtes 7
             [
-                'section_id' => $ist->sections[6]->id,
-                'order' => 2,
+                'section_id' => $ist->sections[13]->id,
+                'order' => 1,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-7/117_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1325,8 +1387,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'A'],
             ],
             [
-                'section_id' => $ist->sections[6]->id,
-                'order' => 3,
+                'section_id' => $ist->sections[13]->id,
+                'order' => 2,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-7/118_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1339,8 +1401,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[6]->id,
-                'order' => 4,
+                'section_id' => $ist->sections[13]->id,
+                'order' => 3,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-7/119_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1353,8 +1415,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'B'],
             ],
             [
-                'section_id' => $ist->sections[6]->id,
-                'order' => 5,
+                'section_id' => $ist->sections[13]->id,
+                'order' => 4,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-7/120_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1367,8 +1429,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'A'],
             ],
             [
-                'section_id' => $ist->sections[6]->id,
-                'order' => 6,
+                'section_id' => $ist->sections[13]->id,
+                'order' => 5,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-7/121_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1381,8 +1443,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[6]->id,
-                'order' => 7,
+                'section_id' => $ist->sections[13]->id,
+                'order' => 6,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-7/122_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1395,8 +1457,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'B'],
             ],
             [
-                'section_id' => $ist->sections[6]->id,
-                'order' => 8,
+                'section_id' => $ist->sections[13]->id,
+                'order' => 7,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-7/123_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1409,8 +1471,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[6]->id,
-                'order' => 9,
+                'section_id' => $ist->sections[13]->id,
+                'order' => 8,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-7/124_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1423,8 +1485,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'E'],
             ],
             [
-                'section_id' => $ist->sections[6]->id,
-                'order' => 10,
+                'section_id' => $ist->sections[13]->id,
+                'order' => 9,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-7/125_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1437,8 +1499,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'E'],
             ],
             [
-                'section_id' => $ist->sections[6]->id,
-                'order' => 11,
+                'section_id' => $ist->sections[13]->id,
+                'order' => 10,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-7/126_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1451,8 +1513,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[6]->id,
-                'order' => 12,
+                'section_id' => $ist->sections[13]->id,
+                'order' => 11,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-7/127_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1465,8 +1527,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'E'],
             ],
             [
-                'section_id' => $ist->sections[6]->id,
-                'order' => 13,
+                'section_id' => $ist->sections[13]->id,
+                'order' => 12,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-7/128_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1479,8 +1541,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'B'],
             ],
             [
-                'section_id' => $ist->sections[6]->id,
-                'order' => 14,
+                'section_id' => $ist->sections[13]->id,
+                'order' => 13,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-7/129_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1493,8 +1555,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[6]->id,
-                'order' => 15,
+                'section_id' => $ist->sections[13]->id,
+                'order' => 14,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-7/130_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1507,8 +1569,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[6]->id,
-                'order' => 16,
+                'section_id' => $ist->sections[13]->id,
+                'order' => 15,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-7/131_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1521,8 +1583,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'B'],
             ],
             [
-                'section_id' => $ist->sections[6]->id,
-                'order' => 17,
+                'section_id' => $ist->sections[13]->id,
+                'order' => 16,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-7/132_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1535,8 +1597,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'A'],
             ],
             [
-                'section_id' => $ist->sections[6]->id,
-                'order' => 18,
+                'section_id' => $ist->sections[13]->id,
+                'order' => 17,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-7/133_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1549,8 +1611,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'B'],
             ],
             [
-                'section_id' => $ist->sections[6]->id,
-                'order' => 19,
+                'section_id' => $ist->sections[13]->id,
+                'order' => 18,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-7/134_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1563,8 +1625,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[6]->id,
-                'order' => 20,
+                'section_id' => $ist->sections[13]->id,
+                'order' => 19,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-7/135_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1577,8 +1639,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[6]->id,
-                'order' => 21,
+                'section_id' => $ist->sections[13]->id,
+                'order' => 20,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-7/136_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1591,9 +1653,9 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
 
-            // Subtes 8
+            // Instruksi Subtes 8
             [
-                'section_id' => $ist->sections[7]->id,
+                'section_id' => $ist->sections[14]->id,
                 'order' => 1,
                 'text' => '<p>Pada bagian ini, setiap soal memperlihatkan suatu bentuk tertentu yang telah  terpotong menjadi beberapa bagian. Carilah di antara bentuk-bentuk pada pilihan jawaban, bentuk yang dapat dibangun, dengan cara menyusun potongan-potongan bentuk, sehingga tidak ada kelebihan sudut atau ruang di antaranya. Tugas Anda adalah untuk menyusun dan menggabungkan potongan bentuk di soal dan mencari di opsi pilihan jawaban.</p>
                             <p>Pada contoh soal berikut, jawaban yang benar adalah A untuk bentuk soal kiri dan E untuk bentuk soal kanan.</p>
@@ -1601,9 +1663,11 @@ class IstQuestionSeeder extends Seeder
                             <img src="/assets/landing/images/psikotes-paid/questions/ist/subtes-8/instructions/Jawaban.webp" alt="Contoh Jawaban" class="border border-gray-300 rounded-lg"/>',
                 'type' => 'instruction',
             ],
+
+            // Subtes 8
             [
-                'section_id' => $ist->sections[7]->id,
-                'order' => 2,
+                'section_id' => $ist->sections[15]->id,
+                'order' => 1,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-8/137_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1616,8 +1680,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'A'],
             ],
             [
-                'section_id' => $ist->sections[7]->id,
-                'order' => 3,
+                'section_id' => $ist->sections[15]->id,
+                'order' => 2,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-8/138_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1630,8 +1694,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[7]->id,
-                'order' => 4,
+                'section_id' => $ist->sections[15]->id,
+                'order' => 3,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-8/139_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1644,8 +1708,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[7]->id,
-                'order' => 5,
+                'section_id' => $ist->sections[15]->id,
+                'order' => 4,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-8/140_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1658,8 +1722,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'E'],
             ],
             [
-                'section_id' => $ist->sections[7]->id,
-                'order' => 6,
+                'section_id' => $ist->sections[15]->id,
+                'order' => 5,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-8/141_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1672,8 +1736,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'A'],
             ],
             [
-                'section_id' => $ist->sections[7]->id,
-                'order' => 7,
+                'section_id' => $ist->sections[15]->id,
+                'order' => 6,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-8/142_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1686,8 +1750,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[7]->id,
-                'order' => 8,
+                'section_id' => $ist->sections[15]->id,
+                'order' => 7,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-8/143_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1700,8 +1764,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[7]->id,
-                'order' => 9,
+                'section_id' => $ist->sections[15]->id,
+                'order' => 8,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-8/144_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1714,8 +1778,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[7]->id,
-                'order' => 10,
+                'section_id' => $ist->sections[15]->id,
+                'order' => 9,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-8/145_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1728,8 +1792,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'E'],
             ],
             [
-                'section_id' => $ist->sections[7]->id,
-                'order' => 11,
+                'section_id' => $ist->sections[15]->id,
+                'order' => 10,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-8/146_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1742,8 +1806,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'A'],
             ],
             [
-                'section_id' => $ist->sections[7]->id,
-                'order' => 12,
+                'section_id' => $ist->sections[15]->id,
+                'order' => 11,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-8/147_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1756,8 +1820,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'B'],
             ],
             [
-                'section_id' => $ist->sections[7]->id,
-                'order' => 13,
+                'section_id' => $ist->sections[15]->id,
+                'order' => 12,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-8/148_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1770,8 +1834,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[7]->id,
-                'order' => 14,
+                'section_id' => $ist->sections[15]->id,
+                'order' => 13,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-8/149_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1784,8 +1848,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'E'],
             ],
             [
-                'section_id' => $ist->sections[7]->id,
-                'order' => 15,
+                'section_id' => $ist->sections[15]->id,
+                'order' => 14,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-8/150_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1798,8 +1862,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'B'],
             ],
             [
-                'section_id' => $ist->sections[7]->id,
-                'order' => 16,
+                'section_id' => $ist->sections[15]->id,
+                'order' => 15,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-8/151_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1812,8 +1876,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[7]->id,
-                'order' => 17,
+                'section_id' => $ist->sections[15]->id,
+                'order' => 16,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-8/152_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1826,8 +1890,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'B'],
             ],
             [
-                'section_id' => $ist->sections[7]->id,
-                'order' => 18,
+                'section_id' => $ist->sections[15]->id,
+                'order' => 17,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-8/153_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1840,8 +1904,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'A'],
             ],
             [
-                'section_id' => $ist->sections[7]->id,
-                'order' => 19,
+                'section_id' => $ist->sections[15]->id,
+                'order' => 18,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-8/154_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1854,8 +1918,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'E'],
             ],
             [
-                'section_id' => $ist->sections[7]->id,
-                'order' => 20,
+                'section_id' => $ist->sections[15]->id,
+                'order' => 19,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-8/155_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1868,8 +1932,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'B'],
             ],
             [
-                'section_id' => $ist->sections[7]->id,
-                'order' => 21,
+                'section_id' => $ist->sections[15]->id,
+                'order' => 20,
                 'text' => 'assets/landing/images/psikotes-paid/questions/ist/subtes-8/156_Soal.webp',
                 'type' => 'image_multiple_choice',
                 'options' => [
@@ -1882,9 +1946,9 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
 
-            // Subtes 9
+            // Instruksi Subtes 9
             [
-                'section_id' => $ist->sections[8]->id,
+                'section_id' => $ist->sections[16]->id,
                 'order' => 1,
                 'text' => '<p>Pada tampilan layar yang saya bagikan, terdapat kata-kata dan kategori kata. Tugas Anda adalah untuk menghafal setiap kata-kata dan kategorinya dengan waktu terbatas.Terdapat sejumlah pertanyaan mengenai kata-kata yang telah Anda hafalkan sebelumnya.</p>
                             <p>1. Kata yang mempunyai huruf permulaan -- Q –  adalah suatu......</p>
@@ -1894,8 +1958,16 @@ class IstQuestionSeeder extends Seeder
                 'type' => 'instruction',
             ],
             [
-                'section_id' => $ist->sections[8]->id,
+                'section_id' => $ist->sections[16]->id,
                 'order' => 2,
+                'text' => '<source src="/assets/landing/videos/psikotes-paid/questions/ist/subtes-9/SlideShow Subtes ME Versi 1.mp4" type="video/mp4" class="border border-gray-300 rounded-lg" >',
+                'type' => 'instruction',
+            ],
+
+            // Subtes 9
+            [
+                'section_id' => $ist->sections[17]->id,
+                'order' => 1,
                 'text' => 'Kata yang mempunyai huruf permulaan -- A -- adalah suatu......',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -1908,8 +1980,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[8]->id,
-                'order' => 3,
+                'section_id' => $ist->sections[17]->id,
+                'order' => 2,
                 'text' => 'Kata yang mempunyai huruf permulaan -- B -- adalah suatu......',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -1922,8 +1994,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'E'],
             ],
             [
-                'section_id' => $ist->sections[8]->id,
-                'order' => 4,
+                'section_id' => $ist->sections[17]->id,
+                'order' => 3,
                 'text' => 'Kata yang mempunyai huruf permulaan -- C -- adalah suatu......',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -1936,8 +2008,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'B'],
             ],
             [
-                'section_id' => $ist->sections[8]->id,
-                'order' => 5,
+                'section_id' => $ist->sections[17]->id,
+                'order' => 4,
                 'text' => 'Kata yang mempunyai huruf permulaan -- D -- adalah suatu......',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -1950,8 +2022,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'A'],
             ],
             [
-                'section_id' => $ist->sections[8]->id,
-                'order' => 6,
+                'section_id' => $ist->sections[17]->id,
+                'order' => 5,
                 'text' => 'Kata yang mempunyai huruf permulaan -- E -- adalah suatu......',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -1964,8 +2036,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[8]->id,
-                'order' => 7,
+                'section_id' => $ist->sections[17]->id,
+                'order' => 6,
                 'text' => 'Kata yang mempunyai huruf permulaan -- F -- adalah suatu......',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -1978,8 +2050,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'A'],
             ],
             [
-                'section_id' => $ist->sections[8]->id,
-                'order' => 8,
+                'section_id' => $ist->sections[17]->id,
+                'order' => 7,
                 'text' => 'Kata yang mempunyai huruf permulaan -- G -- adalah suatu......',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -1992,8 +2064,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[8]->id,
-                'order' => 9,
+                'section_id' => $ist->sections[17]->id,
+                'order' => 8,
                 'text' => 'Kata yang mempunyai huruf permulaan -- H -- adalah suatu......',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -2006,8 +2078,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'E'],
             ],
             [
-                'section_id' => $ist->sections[8]->id,
-                'order' => 10,
+                'section_id' => $ist->sections[17]->id,
+                'order' => 9,
                 'text' => 'Kata yang mempunyai huruf permulaan -- I -- adalah suatu......',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -2020,8 +2092,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[8]->id,
-                'order' => 11,
+                'section_id' => $ist->sections[17]->id,
+                'order' => 10,
                 'text' => 'Kata yang mempunyai huruf permulaan -- J -- adalah suatu......',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -2034,8 +2106,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'B'],
             ],
             [
-                'section_id' => $ist->sections[8]->id,
-                'order' => 12,
+                'section_id' => $ist->sections[17]->id,
+                'order' => 11,
                 'text' => 'Kata yang mempunyai huruf permulaan -- K -- adalah suatu......',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -2048,8 +2120,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'B'],
             ],
             [
-                'section_id' => $ist->sections[8]->id,
-                'order' => 13,
+                'section_id' => $ist->sections[17]->id,
+                'order' => 12,
                 'text' => 'Kata yang mempunyai huruf permulaan -- L -- adalah suatu......',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -2062,8 +2134,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'A'],
             ],
             [
-                'section_id' => $ist->sections[8]->id,
-                'order' => 14,
+                'section_id' => $ist->sections[17]->id,
+                'order' => 13,
                 'text' => 'Kata yang mempunyai huruf permulaan -- M -- adalah suatu......',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -2076,8 +2148,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'E'],
             ],
             [
-                'section_id' => $ist->sections[8]->id,
-                'order' => 15,
+                'section_id' => $ist->sections[17]->id,
+                'order' => 14,
                 'text' => 'Kata yang mempunyai huruf permulaan -- N -- adalah suatu......',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -2090,8 +2162,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[8]->id,
-                'order' => 16,
+                'section_id' => $ist->sections[17]->id,
+                'order' => 15,
                 'text' => 'Kata yang mempunyai huruf permulaan -- O -- adalah suatu......',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -2104,8 +2176,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'D'],
             ],
             [
-                'section_id' => $ist->sections[8]->id,
-                'order' => 17,
+                'section_id' => $ist->sections[17]->id,
+                'order' => 16,
                 'text' => 'Kata yang mempunyai huruf permulaan -- P -- adalah suatu......',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -2118,8 +2190,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'B'],
             ],
             [
-                'section_id' => $ist->sections[8]->id,
-                'order' => 18,
+                'section_id' => $ist->sections[17]->id,
+                'order' => 17,
                 'text' => 'Kata yang mempunyai huruf permulaan -- R -- adalah suatu......',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -2132,8 +2204,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'E'],
             ],
             [
-                'section_id' => $ist->sections[8]->id,
-                'order' => 19,
+                'section_id' => $ist->sections[17]->id,
+                'order' => 18,
                 'text' => 'Kata yang mempunyai huruf permulaan -- S -- adalah suatu......',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -2146,8 +2218,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'A'],
             ],
             [
-                'section_id' => $ist->sections[8]->id,
-                'order' => 20,
+                'section_id' => $ist->sections[17]->id,
+                'order' => 19,
                 'text' => 'Kata yang mempunyai huruf permulaan -- T -- adalah suatu......',
                 'type' => 'multiple_choice',
                 'options' => [
@@ -2160,8 +2232,8 @@ class IstQuestionSeeder extends Seeder
                 'scoring' => ['correct_answer' => 'C'],
             ],
             [
-                'section_id' => $ist->sections[8]->id,
-                'order' => 21,
+                'section_id' => $ist->sections[17]->id,
+                'order' => 20,
                 'text' => 'Kata yang mempunyai huruf permulaan -- U -- adalah suatu......',
                 'type' => 'multiple_choice',
                 'options' => [

@@ -1,4 +1,4 @@
-<label for="answer" class="justify-center">
+<label for="answer" class="flex justify-center">
     <img src="{{ asset($question["text"]) }}" alt="" srcset="" class="w-[150px] h-[100px] justify-center" />
 </label>
 
