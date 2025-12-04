@@ -32,7 +32,7 @@
                 Tingkatkan Potensi dengan
                 <br />
                 Psikotes
-                <span class="text-gradient-blue">Berbinar</span>
+                <span class="text-gradient-blue">Citra</span>
             </h1>
 
             <!-- Gambar-gambar -->
