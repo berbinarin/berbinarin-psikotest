@@ -720,7 +720,7 @@ class ResultService
                         'total_score' => 0,
                         'question_count' => 0,
                         'average' => 0,
-                        'answer_distribution' => [1=>0,2=>0,3=>0,4=>0,5=>0],
+                        'answer_distribution' => [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0],
                     ];
                 }
 
@@ -736,7 +736,6 @@ class ResultService
 
             // Simpan categoryData ke results
             $results->put($scale, $categoryData);
-
         }
 
         // Hitung rata-rata per sub-kategori & kategori
@@ -1012,10 +1011,7 @@ class ResultService
         ];
     }
 
-    // blm ada rumusnya
-    private function ist(Attempt $attempt){
-        return;
-    }
+
 
     private function epi(Attempt $attempt)
     {
@@ -1304,7 +1300,8 @@ class ResultService
         return (object) ['responses' => (object) ['form' => $formResponses, 'essay' => $essayResponses], 'questions' => $questions];
     }
 
-    private function d4Bagian1(Attempt $attempt){
+    private function d4Bagian1(Attempt $attempt)
+    {
         // 1. Load semua response + question
         $attempt->load('responses.question', 'user');
 
@@ -1358,7 +1355,8 @@ class ResultService
         ];
     }
 
-    private function d4Bagian2(Attempt $attempt){
+    private function d4Bagian2(Attempt $attempt)
+    {
         // 1. Load semua response + question
         $attempt->load('responses.question', 'user');
 
@@ -1508,5 +1506,56 @@ class ResultService
             'category' => $category,     // Rendah, Sedang, Baik, Sangat Baik
             'percentile' => $percentile, // P1, P2, ..., P10
         ];
+    }
+
+    private function ist(Attempt $attempt)
+    {
+        $attempt->load('responses.question', 'tool.sections.questions');
+
+        // Ambil 9 subtes IST (section dengan judul mengandung "Subtes")
+        $sections = $attempt->tool->sections()
+            ->where('title', 'like', 'Subtes%')
+            ->orderBy('order')
+            ->take(9)
+            ->get();
+
+        $result = [];
+
+        foreach ($sections as $section) {
+            $questions = [];
+            foreach ($section->questions as $question) {
+                // Jawaban user
+                $response = $attempt->responses
+                    ->where('question_id', $question->id)
+                    ->first();
+                $userAnswer = $response->answer['choice'] ?? null;
+
+                // Untuk Subtes 4 (GA), ambil poin_1 dan poin_2 langsung
+                if (str_contains($section->title, 'Subtes 4')) {
+                    $poin1 = $question->scoring['poin_1'] ?? null;
+                    $poin2 = $question->scoring['poin_2'] ?? null;
+                    $questions[] = [
+                        'question' => $question->text,
+                        'poin_1' => $poin1,
+                        'poin_2' => $poin2,
+                        'user_answer' => $userAnswer,
+                    ];
+                } else {
+                    // Subtes lain 
+                    $correct = $question->scoring['correct_answer'] ?? null;
+                    $questions[] = [
+                        'question' => $question->text,
+                        'correct_answer' => $correct,
+                        'user_answer' => $userAnswer,
+                    ];
+                }
+            }
+            $result[] = [
+                'subtest' => $section->title,
+                'questions' => $questions,
+            ];
+        }
+
+        return $result;
     }
 }

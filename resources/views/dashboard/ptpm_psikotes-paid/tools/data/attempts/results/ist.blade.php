@@ -11,146 +11,97 @@
             overflow-x: auto;
         }
         .scroll-container::-webkit-scrollbar {
-            height: 0;
+            height: 8px;
             background: transparent;
+        }
+        .scroll-container::-webkit-scrollbar-thumb {
+            background: #cbd5e0;
+            border-radius: 4px;
         }
     </style>
 @endpush
 
-<div class="mb-1 flex w-full gap-8">
-    <div class="flex-1 rounded-xl bg-white p-8 shadow-lg max-h-[500px]">
+<div class="mb-4 flex w-full gap-8 max-lg:flex-col">
+    <div class="flex-1 rounded-xl bg-white p-8 shadow-lg">
         <div class="pb-5">
-            <h2 class="text-[28px] font-semibold text-[#75BADB]">Citra Halizah</h2>
+            <h2 class="text-[28px] font-semibold text-[#75BADB]">{{ $attempt->user->name }}</h2>
             <p class="text-base text-gray-700">
-                ini adlaah hasil dari tes IST yang diambil pada tanggal 12 Juni 2024. Berikut adalah ringkasan hasil tes yang telah dicapai:
+                Ini adalah hasil dari tes IST yang diambil pada tanggal {{ $attempt->created_at->format('d F Y') }}. Berikut adalah ringkasan hasil tes yang telah dicapai:
             </p>
         </div>
 
         <div class="flex w-full flex-col items-center">
             <canvas id="horizontalBarChart" class="mb-1" style="max-height: 450px; max-width: 700px"></canvas>
-            <div class="mb-4 flex gap-4 text-xs">
-                <div class="flex items-center gap-1">
-                    <span class="inline-block h-3 w-3 rounded" style="background: #FFD6E0"></span>
-                    1 = Sangat Tidak Sesuai
-                </div>
-                <div class="flex items-center gap-1">
-                    <span class="inline-block h-3 w-3 rounded" style="background: #ACD6E9"></span>
-                    2 = Tidak Sesuai
-                </div>
-                <div class="flex items-center gap-1">
-                    <span class="inline-block h-3 w-3 rounded" style="background: #FFECA3"></span>
-                    3 = Cukup Sesuai
-                </div>
-                <div class="flex items-center gap-1">
-                    <span class="inline-block h-3 w-3 rounded" style="background: #CAB6EE"></span>
-                    4 = Sesuai
-                </div>
-                <div class="flex items-center gap-1">
-                    <span class="inline-block h-3 w-3 rounded" style="background: #98C5F6"></span>
-                    5 = Sangat Sesuai
-                </div>
-            </div>
         </div>
     </div>
 
-    <div class="flex max-h-[500px] flex-col overflow-hidden rounded-lg bg-white p-8 shadow-lg" style="width: 40%">
-        <h2 class="mb-4 text-xl font-semibold">Detail Jawaban</h2>
-        <div class="scroll-container mb-4 overflow-x-hidden whitespace-nowrap pb-2" id="subtestTabs">
+    <div class="flex flex-col overflow-hidden rounded-lg bg-white p-8 shadow-lg" style="width: 100%; max-width: 40%">
+        <h2 class="mb-4 text-xl font-semibold">Detail Jawaban per Subtes</h2>
+        
+        <!-- Tab Navigation with Scroll -->
+        <div class="scroll-container mb-4 overflow-x-auto whitespace-nowrap pb-2" id="subtestTabs">
             <div class="inline-flex gap-2 border-b">
-                <button class="border-[#75BADB] text-[#75BADB] rounded-none border-b-2 bg-none px-3 pb-2 text-base font-medium outline-none transition" type="button" onclick="changeTab('subtest-A')" id="tab-subtest-A">Subtes A</button>
-                <button class="border-transparent text-gray-500 hover:text-[#75BADB] rounded-none border-b-2 bg-none px-3 pb-2 text-base font-medium outline-none transition" type="button" onclick="changeTab('subtest-B')" id="tab-subtest-B">Subtes B</button>
-                <button class="border-transparent text-gray-500 hover:text-[#75BADB] rounded-none border-b-2 bg-none px-3 pb-2 text-base font-medium outline-none transition" type="button" onclick="changeTab('subtest-C')" id="tab-subtest-C">Subtes C</button>
+                @foreach($data as $index => $subtest)
+                    <button 
+                        class="{{ $index === 0 ? 'border-[#75BADB] text-[#75BADB]' : 'border-transparent text-gray-500 hover:text-[#75BADB]' }} rounded-none border-b-2 bg-none px-4 py-2 text-sm font-medium outline-none transition whitespace-nowrap" 
+                        type="button" 
+                        onclick="changeTab('subtest-{{ $index }}')" 
+                        id="tab-subtest-{{ $index }}">
+                        {{ $subtest['subtest'] }}
+                    </button>
+                @endforeach
             </div>
         </div>
 
+        <!-- Tab Content -->
         <div class="flex min-h-0 flex-1 flex-col">
             <div class="flex-1 overflow-y-auto">
-                <div id="content-subtest-A" style="display: block">
-                    <table class="w-full table-fixed border-collapse text-sm">
-                        <thead class="sticky top-0 bg-white">
-                            <tr>
-                                <th class="p-2 text-center text-gray-500" style="width: 50%">Pernyataan</th>
-                                <th class="p-2 text-center text-gray-500" style="width: 25%">Kategori</th>
-                                <th class="p-2 text-center text-gray-500" style="width: 25%">Nilai</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-b">
-                                <td class="p-2 align-top" style="width: 50%">Bekerja di luar ruangan, seperti menjadi surveyor atau penjaga hutan.</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">Outdoor</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">1</td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="p-2 align-top" style="width: 50%">Mengoperasikan alat berat atau mesin, seperti derek atau bulldozer.</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">Mechanical</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">2</td>
-                            </tr>
-                             <tr class="border-b">
-                                <td class="p-2 align-top" style="width: 50%">Mempelajari teori fisika kuantum atau materi pelajaran eksak lainnya.</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">Scientific</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">3</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div id="content-subtest-B" style="display: none">
-                    <table class="w-full table-fixed border-collapse text-sm">
-                        <thead class="sticky top-0 bg-white">
-                            <tr>
-                                <th class="p-2 text-center text-gray-500" style="width: 50%">Pernyataan</th>
-                                <th class="p-2 text-center text-gray-500" style="width: 25%">Kategori</th>
-                                <th class="p-2 text-center text-gray-500" style="width: 25%">Nilai</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-b">
-                                <td class="p-2 align-top" style="width: 50%">Membuat program komputer untuk analisis data.</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">Computational</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">4</td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="p-2 align-top" style="width: 50%">Mengelola laporan keuangan atau anggaran perusahaan.</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">Clerical</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">5</td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="p-2 align-top" style="width: 50%">Menulis cerita, puisi, atau artikel jurnalistik.</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">Literary</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">2</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div id="content-subtest-C" style="display: none">
-                    <table class="w-full table-fixed border-collapse text-sm">
-                        <thead class="sticky top-0 bg-white">
-                            <tr>
-                                <th class="p-2 text-center text-gray-500" style="width: 50%">Pernyataan</th>
-                                <th class="p-2 text-center text-gray-500" style="width: 25%">Kategori</th>
-                                <th class="p-2 text-center text-gray-500" style="width: 25%">Nilai</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-b">
-                                <td class="p-2 align-top" style="width: 50%">Menghibur orang dengan bernyanyi atau bermain musik.</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">Musical</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">5</td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="p-2 align-top" style="width: 50%">Menggambar atau melukis pemandangan dan objek.</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">Artistic</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">4</td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="p-2 align-top" style="width: 50%">Mengajar atau melatih sekelompok orang.</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">Social Service</td>
-                                <td class="p-2 text-center align-top" style="width: 25%">3</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                @foreach($data as $index => $subtest)
+                    <div id="content-subtest-{{ $index }}" style="display: {{ $index === 0 ? 'block' : 'none' }}">
+                        <table class="w-full table-fixed border-collapse text-sm">
+                            <thead class="sticky top-0 bg-white z-10 shadow-sm">
+                                <tr class="border-b-2 border-gray-200">
+                                    <th class="p-3 text-center text-gray-600 font-semibold" style="width: 20%">Kunci</th>
+                                    <th class="p-3 text-center text-gray-600 font-semibold" style="width: 20%">Jawaban</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($subtest['questions'] as $qIndex => $q)
+                                    <tr class="border-b hover:bg-gray-50 transition">
+                                        <td class="p-3 text-center align-top font-medium" style="width: 20%">
+                                            <span class="inline-block px-2 py-1 bg-blue-100 text-blue-700 rounded">
+                                                @if(isset($q['poin_1']) || isset($q['poin_2']))
+                                                    {{-- Untuk Subtes 4, tampilkan poin_1 dan poin_2 --}}
+                                                    <div>
+                                                        @if(isset($q['poin_1']))
+                                                            <div>Poin 1: {{ is_array($q['poin_1']) ? implode(', ', $q['poin_1']) : $q['poin_1'] }}</div>
+                                                        @endif
+                                                        @if(isset($q['poin_2']))
+                                                            <div>Poin 2: {{ is_array($q['poin_2']) ? implode(', ', $q['poin_2']) : $q['poin_2'] }}</div>
+                                                        @endif
+                                                    </div>
+                                                @else
+                                                    {{ $q['correct_answer'] ?? '-' }}
+                                                @endif
+                                            </span>
+                                        </td>
+                                        <td class="p-3 text-center align-top font-medium" style="width: 20%">
+                                            @if(isset($q['correct_answer']))
+                                                <span class="inline-block px-2 py-1 {{ $q['user_answer'] === $q['correct_answer'] ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }} rounded">
+                                                    {{ $q['user_answer'] ?? '-' }}
+                                                </span>
+                                            @else
+                                                <span class="inline-block px-2 py-1 bg-gray-100 text-gray-700 rounded">
+                                                    {{ $q['user_answer'] ?? '-' }}
+                                                </span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -160,100 +111,90 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Data Statis
-            const chartLabels = ['1', '2', '3', '4', '5', '6'];
-            const chartDataValues = [12, 24, 8, 40, 16, 32]
-            const chartColors = ['rgba(117, 186, 219, 0.6)', 'rgba(255, 224, 102, 0.6)', 'rgba(166, 133, 226, 0.6)', 'rgba(84, 159, 240, 0.6)', 'rgba(239, 68, 68, 0.6)', 'rgba(76, 175, 80, 0.6)'];
+            // Data dari Backend - otomatis dari database
+            const chartLabels = @json(array_column($data, 'subtest'));
+            
+            // Hitung jawaban benar per subtes dari data
+            const chartDataValues = @json(
+                collect($data)->map(function($subtest) {
+                    return collect($subtest['questions'])->filter(function($q) {
+                        return isset($q['user_answer']) && $q['user_answer'] === $q['correct_answer'];
+                    })->count();
+                })->values()
+            );
+            
+            const chartColors = [
+                'rgba(117, 186, 219, 0.6)', 
+                'rgba(255, 224, 102, 0.6)', 
+                'rgba(166, 133, 226, 0.6)', 
+                'rgba(84, 159, 240, 0.6)', 
+                'rgba(239, 68, 68, 0.6)', 
+                'rgba(76, 175, 80, 0.6)', 
+                'rgba(255, 159, 64, 0.6)', 
+                'rgba(153, 102, 255, 0.6)', 
+                'rgba(255, 99, 132, 0.6)'
+            ];
 
             const ctx = document.getElementById('horizontalBarChart').getContext('2d');
             const chartData = {
                 labels: chartLabels,
                 datasets: [
                     {
-                        label: 'Total Poin',
+                        label: 'Jawaban Benar',
                         data: chartDataValues,
                         backgroundColor: chartColors,
-                        borderRadius: 0,
-                        barThickness: 30,
+                        borderRadius: 5,
+                        barThickness: 25,
                     },
                 ],
             };
+
+            // Cari nilai maksimal untuk set skala chart
+            const maxValue = Math.max(...chartDataValues);
+            const maxScale = Math.ceil((maxValue + 5) / 10) * 10; // Round up ke kelipatan 10
 
             new Chart(ctx, {
                 type: 'bar',
                 data: chartData,
                 options: {
                     indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: true,
                     scales: {
                         x: {
                             beginAtZero: true,
-                            max: 40,
+                            max: maxScale,
                             grid: { color: '#eee' },
                             ticks: {
-                                stepSize: 8,
-                                callback: function (value) {
-                                    return [0, 8, 16, 24, 32, 40].includes(value) ? value : '';
-                                },
+                                stepSize: Math.ceil(maxScale / 5),
                             },
                             position: 'top',
                         },
                         y: {
-                            grid: { color: '#eee' },
+                            grid: { display: false },
                         },
                     },
                     plugins: {
                         legend: { display: false },
+                        tooltip: {
+                            enabled: true,
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Benar: ' + context.parsed.x + ' soal';
+                                }
+                            }
+                        }
                     },
-                    animation: false,
                 },
-                plugins: [
-                    {
-                        afterDatasetsDraw: function (chart) {
-                            const ctx = chart.ctx;
-                            chart.data.datasets.forEach(function (dataset, i) {
-                                const meta = chart.getDatasetMeta(i);
-                                meta.data.forEach(function (bar, index) {
-                                    const value = dataset.data[index];
-                                    ctx.save();
-                                    ctx.font = 'bold 14px sans-serif';
-                                    if (value >= 40) {
-                                        ctx.fillStyle = '#fff';
-                                        ctx.textAlign = 'right';
-                                        ctx.textBaseline = 'middle';
-                                        ctx.fillText(value, bar.x - 10, bar.y);
-                                    } else {
-                                        ctx.fillStyle = '#444';
-                                        ctx.textAlign = 'left';
-                                        ctx.textBaseline = 'middle';
-                                        ctx.fillText(value, bar.x + 10, bar.y);
-                                    }
-                                    if (value > 0) {
-                                        const solidColor = chartColors[index % chartColors.length].replace('0.6', '1');
-                                        const barHeight = bar.height || (bar.base - bar.y) * 2;
-                                        ctx.fillStyle = solidColor;
-                                        ctx.fillRect(bar.x - 6, bar.y - barHeight / 2, 12, barHeight);
-                                    }
-                                    ctx.restore();
-                                });
-                            });
-                        },
-                    },
-                ],
             });
         });
 
+        // Tab Scroll Functionality
         document.addEventListener('DOMContentLoaded', function () {
             const tabsContainer = document.getElementById('subtestTabs');
             let isDown = false;
             let startX;
             let scrollLeft;
-
-            tabsContainer.addEventListener('wheel', (e) => {
-                if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-                    e.preventDefault();
-                    tabsContainer.scrollLeft += e.deltaY;
-                }
-            });
 
             tabsContainer.addEventListener('mousedown', (e) => {
                 isDown = true;
@@ -282,17 +223,21 @@
         });
 
         function changeTab(tabName) {
+            // Hide all content
             document.querySelectorAll('[id^="content-subtest-"]').forEach((content) => {
                 content.style.display = 'none';
             });
 
+            // Reset all tabs
             document.querySelectorAll('[id^="tab-subtest-"]').forEach((tab) => {
                 tab.classList.remove('border-[#75BADB]', 'text-[#75BADB]');
                 tab.classList.add('border-transparent', 'text-gray-500', 'hover:text-[#75BADB]');
             });
 
+            // Show selected content
             document.getElementById(`content-${tabName}`).style.display = 'block';
 
+            // Highlight selected tab
             document.getElementById(`tab-${tabName}`).classList.remove('border-transparent', 'text-gray-500', 'hover:text-[#75BADB]');
             document.getElementById(`tab-${tabName}`).classList.add('border-[#75BADB]', 'text-[#75BADB]');
         }
