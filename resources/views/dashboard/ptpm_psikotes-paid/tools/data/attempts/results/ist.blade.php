@@ -111,17 +111,11 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Data dari Backend - otomatis dari database
+            // Data dari database 
             const chartLabels = @json(array_column($data, 'subtest'));
             
-            // Hitung jawaban benar per subtes dari data
-            const chartDataValues = @json(
-                collect($data)->map(function($subtest) {
-                    return collect($subtest['questions'])->filter(function($q) {
-                        return isset($q['user_answer']) && $q['user_answer'] === $q['correct_answer'];
-                    })->count();
-                })->values()
-            );
+            // Ambil jumlah benar 
+            const chartDataValues = @json(array_column($data, 'benar_count'));
             
             const chartColors = [
                 'rgba(117, 186, 219, 0.6)', 

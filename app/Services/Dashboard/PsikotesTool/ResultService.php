@@ -1512,7 +1512,6 @@ class ResultService
     {
         $attempt->load('responses.question', 'tool.sections.questions');
 
-        // Ambil 9 subtes IST (section dengan judul mengandung "Subtes")
         $sections = $attempt->tool->sections()
             ->where('title', 'like', 'Subtes%')
             ->orderBy('order')
@@ -1523,29 +1522,52 @@ class ResultService
 
         foreach ($sections as $section) {
             $questions = [];
-            foreach ($section->questions as $question) {
-                // Jawaban user
-                $response = $attempt->responses
-                    ->where('question_id', $question->id)
-                    ->first();
-                $userAnswer = $response->answer['choice'] ?? null;
+            $benarCount = 0;
 
-                // Untuk Subtes 4 (GA), ambil poin_1 dan poin_2 langsung
+            foreach ($section->questions as $question) {
+                $response = $attempt->responses->firstWhere('question_id', $question->id);
+
+                $userAnswer = null;
+                if ($response) {
+                    if (isset($response->answer['value'])) {
+                        $userAnswer = $response->answer['value'];
+                    } elseif (isset($response->answer['choice'])) {
+                        $userAnswer = $response->answer['choice'];
+                    }
+                }
+
+                $scoring = $question->scoring ?? [];
+
+                // Subtes 4: cocokkan jawaban dengan semua poin_1 dan poin_2 (case-insensitive, trim)
                 if (str_contains($section->title, 'Subtes 4')) {
-                    $poin1 = $question->scoring['poin_1'] ?? null;
-                    $poin2 = $question->scoring['poin_2'] ?? null;
+                    $poin1 = isset($scoring['poin_1']) ? (is_array($scoring['poin_1']) ? $scoring['poin_1'] : [$scoring['poin_1']]) : [];
+                    $poin2 = isset($scoring['poin_2']) ? (is_array($scoring['poin_2']) ? $scoring['poin_2'] : [$scoring['poin_2']]) : [];
+                    $allKeys = array_merge($poin1, $poin2);
+
+                    // Normalisasi jawaban user
+                    $jawabanUser = trim(mb_strtolower($userAnswer ?? ''));
+
+                    // Cocokkan dengan semua kunci (case-insensitive, trim)
+                    $isBenar = false;
+                    foreach ($allKeys as $kunci) {
+                        if (trim(mb_strtolower($kunci)) === $jawabanUser && $jawabanUser !== '') {
+                            $isBenar = true;
+                            break;
+                        }
+                    }
+                    if ($isBenar) $benarCount++;
+
                     $questions[] = [
-                        'question' => $question->text,
                         'poin_1' => $poin1,
                         'poin_2' => $poin2,
                         'user_answer' => $userAnswer,
                     ];
                 } else {
-                    // Subtes lain 
-                    $correct = $question->scoring['correct_answer'] ?? null;
+                    $isBenar = isset($scoring['correct_answer']) && $userAnswer === $scoring['correct_answer'];
+                    if ($isBenar) $benarCount++;
+
                     $questions[] = [
-                        'question' => $question->text,
-                        'correct_answer' => $correct,
+                        'correct_answer' => $scoring['correct_answer'] ?? null,
                         'user_answer' => $userAnswer,
                     ];
                 }
@@ -1553,6 +1575,7 @@ class ResultService
             $result[] = [
                 'subtest' => $section->title,
                 'questions' => $questions,
+                'benar_count' => $benarCount,
             ];
         }
 
