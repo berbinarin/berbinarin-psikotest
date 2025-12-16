@@ -883,9 +883,7 @@ class IstQuestionSeeder extends Seeder
                 'order' => 1,
                 'text' => '<p>Pada bagian ini, ditentukan dua kata. Carilah satu kata yang meliputi pengertian kedua kata tadi. Tulislah perkataan yang benar pada kolom jawaban yang telah disediakan.</p>
                             <p>1. Ayam  - itik</p>
-                            <p>&nbsp;&nbsp;&nbsp;&nbsp;bebek</p>
-                            <p>2. Gaun  -  celana?</p>
-                            <p>&nbsp;&nbsp;&nbsp;&nbsp;pakaian</p>',
+                            <p>2. Gaun  -  celana?</p>',
                 'type' => 'instruction',
             ],
 
@@ -1058,9 +1056,7 @@ class IstQuestionSeeder extends Seeder
                 'order' => 1,
                 'text' => '<p>Persoalan berikutnya ialah soal-soal hitungan. Gunakan kertas dan pulpen yang telah disiapkan tadi untuk mencari jawaban. Jawaban hanya berupa angka tanpa simbol atau keterangan tambahan.</p>
                             <p>1. Sebatang pensil harganya 25 rupiah. Berapakah harga 3 batang?</p>
-                            <p>&nbsp;&nbsp;&nbsp;75</p>
-                            <p>2. Dengan sepeda, Husin dapat mencapai 15 km dalam waktu 1 jam. Berapa km-kah yang dapat ia capai dalam waktu 4 jam?</p>
-                            <p>&nbsp;&nbsp;&nbsp;60</p>',
+                            <p>2. Dengan sepeda, Husin dapat mencapai 15 km dalam waktu 1 jam. Berapa km-kah yang dapat ia capai dalam waktu 4 jam?</p>',
                 'type' => 'instruction',
             ],
 
@@ -1212,9 +1208,7 @@ class IstQuestionSeeder extends Seeder
                 'order' => 1,
                 'text' => '<p>Pada kelompok soal berikutnya akan diberikan deret angka. Setiap deret angka tersusun menurut suatu aturan tertentu, dan deret angka tersebut dapat dilanjutkan menurut aturan itu.Tugas Anda adalah untuk mencari angka berikutnya pada setiap deret bilangan di soal. Silahkan gunakan kertas dan pulpen yang telah Anda persiapkan, gunakan untuk mencari jawaban.</p>
                             <p>1. 2&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;12&nbsp;&nbsp;&nbsp;14&nbsp;&nbsp;&nbsp;...</p>
-                            <p>&nbsp;&nbsp;&nbsp;16</p>
-                            <p>2. 9&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;12&nbsp;&nbsp;&nbsp;...</p>
-                            <p>&nbsp;&nbsp;&nbsp;10</p>',
+                            <p>2. 9&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;12&nbsp;&nbsp;&nbsp;...</p>',
                 'type' => 'instruction',
             ],
 
@@ -1365,7 +1359,6 @@ class IstQuestionSeeder extends Seeder
                 'section_id' => $ist->sections[12]->id,
                 'order' => 1,
                 'text' => '<p>Pada bagian ini, setiap soal memperlihatkan suatu bentuk tertentu yang telah  terpotong menjadi beberapa bagian. Carilah di antara bentuk-bentuk pada pilihan jawaban, bentuk yang dapat dibangun, dengan cara menyusun potongan-potongan bentuk, sehingga tidak ada kelebihan sudut atau ruang di antaranya. Tugas Anda adalah untuk menyusun dan menggabungkan potongan bentuk di soal dan mencari di opsi pilihan jawaban.</p>
-                            <p>Pada contoh soal berikut, jawaban yang benar adalah A untuk bentuk soal kiri dan E untuk bentuk soal kanan.</p>
                             <img src="/assets/landing/images/psikotes-paid/questions/ist/subtes-7/instructions/Soal.webp" alt="Contoh Soal" class="border border-gray-300 rounded-lg"/>
                             <img src="/assets/landing/images/psikotes-paid/questions/ist/subtes-7/instructions/Jawaban.webp" alt="Contoh Jawaban" class="border border-gray-300 rounded-lg"/>',
                 'type' => 'instruction',
@@ -1658,7 +1651,6 @@ class IstQuestionSeeder extends Seeder
                 'section_id' => $ist->sections[14]->id,
                 'order' => 1,
                 'text' => '<p>Pada bagian ini, setiap soal memperlihatkan suatu bentuk tertentu yang telah  terpotong menjadi beberapa bagian. Carilah di antara bentuk-bentuk pada pilihan jawaban, bentuk yang dapat dibangun, dengan cara menyusun potongan-potongan bentuk, sehingga tidak ada kelebihan sudut atau ruang di antaranya. Tugas Anda adalah untuk menyusun dan menggabungkan potongan bentuk di soal dan mencari di opsi pilihan jawaban.</p>
-                            <p>Pada contoh soal berikut, jawaban yang benar adalah A untuk bentuk soal kiri dan E untuk bentuk soal kanan.</p>
                             <img src="/assets/landing/images/psikotes-paid/questions/ist/subtes-8/instructions/Soal.webp" alt="Contoh Soal" class="border border-gray-300 rounded-lg"/>
                             <img src="/assets/landing/images/psikotes-paid/questions/ist/subtes-8/instructions/Jawaban.webp" alt="Contoh Jawaban" class="border border-gray-300 rounded-lg"/>',
                 'type' => 'instruction',
