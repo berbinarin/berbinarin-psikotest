@@ -27,7 +27,7 @@ class StoreRegistrationRequest extends FormRequest
         return [
             'psikotes_date' => ['required', 'date'],
             'psikotes_time' => ['required', 'date_format:H:i'],
-            'service' => ['required', 'string', Rule::in(['online', 'offline'])],
+            'psikotes_service' => ['required', 'string', Rule::in(['online', 'offline'])],
             'test_category_id' => ['required', 'integer', Rule::exists('test_categories', 'id')],
             'test_type_id' => [
                 'required',
@@ -40,6 +40,7 @@ class StoreRegistrationRequest extends FormRequest
             // 'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
             'age' => ['required', 'integer', 'min:1'],
+            'date_of_birth' => ['required', 'date'],
             'domicile' => ['required', 'string'],
             'gender' => ['required', 'string', Rule::in(['male', 'female'])],
             'phone_number' => ['required', 'string', 'min:8', 'max:15'],

@@ -79,15 +79,21 @@
                         <input type="number" id="age" name="age" class="rounded-md border-1 border-gray-300 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Umur Sekarang" value="{{ old("age") }}" />
                     </div>
                     <div class="flex w-full flex-col">
-                        <label for="phone_number" class="mb-2 font-bold text-[#9b9b9b]">Telepon</label>
-                        <input type="tel" id="phone_number" name="phone_number" class="rounded-md border-1 border-gray-300 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Nomor Telepon Aktif" value="{{ old("phone_number") }}" />
+                        <label for="date" class="mb-2 font-bold text-[#9b9b9b]">Tanggal Lahir</label>
+                        <input type="date" name="date_of_birth" id="birthdate" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" onclick="document.getElementById('datepicker').focus()" />
                     </div>
                 </div>
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
+                        <label for="phone_number" class="mb-2 font-bold text-[#9b9b9b]">Telepon</label>
+                        <input type="tel" id="phone_number" name="phone_number" class="rounded-md border-1 border-gray-300 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Nomor Telepon Aktif" value="{{ old("phone_number") }}" />
+                    </div>
+                    <div class="flex w-full flex-col">
                         <label for="email" class="mb-2 font-bold text-[#9b9b9b]">Email</label>
                         <input type="email" id="email" name="email" class="rounded-md border-1 border-gray-300 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Berbinar@gmail.com" value="{{ old("email") }}" />
                     </div>
+                </div>
+                <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="test_category_id" class="mb-2 font-bold text-[#9b9b9b]">Kategori Psikotes</label>
                         <select name="test_category_id" id="test_category_id" x-model="selectedCategory" @change="filterTypes()" class="rounded-md border-1 border-gray-300 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0">
@@ -98,16 +104,16 @@
                             @endforeach
                         </select>
                     </div>
-                </div>
-                <div class="flex gap-20">
                     <div class="flex w-full flex-col">
-                        <label for="service" class="mb-2 font-bold text-[#9b9b9b]">Layanan Psikotes</label>
-                        <select name="service" id="service" class="rounded-md border-1 border-gray-300 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0">
+                        <label for="psikotes_service" class="mb-2 font-bold text-[#9b9b9b]">Layanan Psikotes</label>
+                        <select name="psikotes_service" id="psikotes_service" class="rounded-md border-1 border-gray-300 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0">
                             <option value="" selected disabled>Pilih Layanan Psikotes</option>
-                            <option value="online" @selected(old("service") === "online")>Online</option>
-                            <option value="offline" @selected(old("service") === "offline")>Offline</option>
+                            <option value="online" @selected(old("psikotes_service") === "online")>Online</option>
+                            <option value="offline" @selected(old("psikotes_service") === "offline")>Offline</option>
                         </select>
                     </div>
+                </div>
+                <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="test_type_id" class="mb-2 font-bold text-[#9b9b9b]">Jenis Psikotes</label>
                         <select name="test_type_id" id="test_type_id" x-model="selectedTestType" :disabled="!selectedCategory || filteredTestTypes.length === 0" class="rounded-md border-1 border-gray-300 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0">
@@ -117,18 +123,16 @@
                             </template>
                         </select>
                     </div>
-                </div>
-                <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="date" class="mb-2 font-bold text-[#9b9b9b]">Tanggal Psikotes</label>
                         <input type="date" name="psikotes_date" id="date" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" onclick="document.getElementById('datepicker').focus()" />
                     </div>
+                </div>
+                <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="time" class="mb-2 font-bold text-[#9b9b9b]">Waktu Psikotes</label>
                         <input type="time" name="psikotes_time" id="time" class="rounded-md border-0 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" onclick="document.getElementById('timepicker').focus()" />
                     </div>
-                </div>
-                <div class="flex gap-20">
                     <div class="flex w-full flex-col">
                         <label for="domicile" class="mb-2 font-bold text-[#9b9b9b]">Domisili</label>
                         <input type="text" id="domicile" name="domicile" class="rounded-md border-1 border-gray-300 px-6 py-3 text-sm font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.16)] focus:ring-0" placeholder="Domisili" value="{{ old("domicile") }}" />
@@ -207,6 +211,15 @@
                     allowInput: true, // Memungkinkan input manual (optional)
                     // Jika Anda menggunakan old() sebagai nilai awal datepicker, tambahkan ini:
                     defaultDate: '{{ old("psikotes_date") ? old("psikotes_date") : "" }}',
+                });
+
+                flatpickr('#birthdate', {
+                    dateFormat: 'Y-m-d', // Ini adalah format yang AKAN DIKIRIM ke Laravel (untuk validasi & DB)
+                    altInput: true, // Aktifkan alternate input
+                    altFormat: 'd/m/Y', // Ini adalah format yang AKAN DITAMPILKAN kepada pengguna
+                    allowInput: true, // Memungkinkan input manual (optional)
+                    // Jika Anda menggunakan old() sebagai nilai awal datepicker, tambahkan ini:
+                    defaultDate: '{{ old("date_of_birth") ? old("date_of_birth") : "" }}',
                 });
 
                 flatpickr('#time', {

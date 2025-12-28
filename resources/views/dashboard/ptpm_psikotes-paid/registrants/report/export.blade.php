@@ -194,8 +194,22 @@
                         </td>
                         <td>
                             <div class="info-item">
-                                <p class="label">Umur</p>
+                                <p class="label">Jenis Kelamin</p>
+                                <p class="value">{{ $registrant->gender == "male" ? "Laki-laki" : "Perempuan" }}</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">Usia</p>
                                 <p class="value">{{ $registrant->age }} tahun</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">Tanggal Lahir</p>
+                                <p class="value">{{ \Carbon\Carbon::parse($registrant->date_of_birth)->format("d/mY") }}</p>
                             </div>
                         </td>
                     </tr>
@@ -208,64 +222,8 @@
                         </td>
                         <td>
                             <div class="info-item">
-                                <p class="label">Layanan Psikotes</p>
-                                <p class="value">{{ $registrant->psikotes_service }}</p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="info-item">
-                                <p class="label">Waktu Tes</p>
-                                <p class="value">{{ \Carbon\Carbon::parse($registrant->schedule)->format("H:i") }}</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="info-item">
-                                <p class="label">Kata Sandi</p>
-                                <p class="value">berbinar</p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="info-item">
-                                <p class="label">Diskon</p>
-                                <p class="value">{{ $registrant->discount_percentage ? $registrant->discount_percentage . "%" : "-" }}</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="info-item">
-                                <p class="label">Alasan Pendaftaran</p>
-                                <p class="value">{{ $registrant->reason }}</p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="info-item">
-                                <p class="label">Jenis Kelamin</p>
-                                <p class="value">{{ $registrant->gender == "male" ? "Laki-laki" : "Perempuan" }}</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="info-item">
                                 <p class="label">No. Telepon</p>
                                 <p class="value">{{ $registrant->phone_number }}</p>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="info-item">
-                                <p class="label">Domisili</p>
-                                <p class="value">{{ $registrant->domicile }}</p>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="info-item">
-                                <p class="label">Tanggal Tes</p>
-                                <p class="value">{{ \Carbon\Carbon::parse($registrant->schedule)->format("d F Y") }}</p>
                             </div>
                         </td>
                     </tr>
@@ -278,8 +236,59 @@
                         </td>
                         <td>
                             <div class="info-item">
+                                <p class="label">Kata Sandi</p>
+                                <p class="value">berbinar</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">Layanan Psikotes</p>
+                                <p class="value">{{ $registrant->psikotes_service }}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">Domisili</p>
+                                <p class="value">{{ $registrant->domicile }}</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">Tanggal Tes</p>
+                                <p class="value">{{ \Carbon\Carbon::parse($registrant->schedule)->format("d/m/Y") }}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">Waktu Tes</p>
+                                <p class="value">{{ \Carbon\Carbon::parse($registrant->schedule)->format("H:i") }}</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td>
+                            <div class="info-item">
                                 <p class="label">Kode Voucher</p>
                                 <p class="value">{{ $registrant->voucher_code ? $registrant->voucher_code : "-" }}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="info-item">
+                                <p class="label">Diskon</p>
+                                <p class="value">{{ $registrant->discount_percentage ? $registrant->discount_percentage . "%" : "-" }}</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="info-item">
+                                <p class="label">Alasan Pendaftaran</p>
+                                <p class="value">{{ $registrant->reason }}</p>
                             </div>
                         </td>
                     </tr>
@@ -289,9 +298,9 @@
                                 <p class="label">Bukti Kartu Pelajar</p>
                                 <p class="value">
                                     @if ($studentCardImage)
-                                        <img src="{{ $studentCardImage }}" alt="Bukti Kartu Pelajar" style="max-width: 50%" />
+                                        <img src="{{ $studentCardImage }}" alt="Bukti Kartu Pelajar" style="max-width: 50%;" />
                                     @else
-                                        <span style="color: #888">Tidak ada gambar</span>
+                                        <span style="color: #888;">Tidak ada gambar</span>
                                     @endif
                                 </p>
                             </div>
