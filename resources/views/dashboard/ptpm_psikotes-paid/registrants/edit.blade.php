@@ -57,30 +57,30 @@
                 @endphp
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
-                        <label for="age" class="mb-2 font-bold text-[#9b9b9b]">Umur</label>
-                        <input type="number" id="age" name="age"
-                            class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0"
-                            value="{{ $registrant->age }}" />
-                    </div>
-                    <div class="flex w-full flex-col">
                         <label for="date_of_birth" class="mb-2 font-bold text-[#9b9b9b]">Tanggal Lahir</label>
                         <input type="date" id="date_of_birth" name="date_of_birth"
                             class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0"
                             value="{{ $date_of_birth ? $date_of_birth->format('Y-m-d') : '' }}" />
                     </div>
+                    <div class="flex w-full flex-col">
+                        <label for="age" class="mb-2 font-bold text-[#9b9b9b]">Umur</label>
+                        <input type="number" id="age" name="age"
+                            class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0"
+                            value="{{ $registrant->age }}" />
+                    </div>
                 </div>
                 <div class="flex gap-20">
-                    <div class="flex w-full flex-col">
-                        <label for="phone_number" class="mb-2 font-bold text-[#9b9b9b]">Telepon</label>
-                        <input type="tel" id="phone_number" name="phone_number"
-                            class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0"
-                            value="{{ $registrant->phone_number }}" />
-                    </div>
                     <div class="flex w-full flex-col">
                         <label for="email" class="mb-2 font-bold text-[#9b9b9b]">Email</label>
                         <input type="email" id="email" name="email"
                             class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0"
                             value="{{ $registrant->user->email }}" />
+                    </div>
+                    <div class="flex w-full flex-col">
+                        <label for="phone_number" class="mb-2 font-bold text-[#9b9b9b]">Telepon</label>
+                        <input type="tel" id="phone_number" name="phone_number"
+                            class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0"
+                            value="{{ $registrant->phone_number }}" />
                     </div>
                 </div>
                 @php
@@ -88,13 +88,13 @@
                 @endphp
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
-                        <label for="psikotes_date" class="mb-2 font-bold text-[#9b9b9b]">Jadwal</label>
+                        <label for="psikotes_date" class="mb-2 font-bold text-[#9b9b9b]">Tanggal Psikotes</label>
                         <input type="date" id="psikotes_date" name="psikotes_date"
                             class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0"
                             value="{{ $schedule ? $schedule->format('Y-m-d') : '' }}" />
                     </div>
                     <div class="flex w-full flex-col">
-                        <label for="psikotes_type" class="mb-2 font-bold text-[#9b9b9b]">Waktu</label>
+                        <label for="psikotes_type" class="mb-2 font-bold text-[#9b9b9b]">Waktu Psikotes</label>
                         <input type="time" id="psikotes_type" name="psikotes_time"
                             class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0"
                             value="{{ $schedule ? $schedule->format('H:i') : '' }}" />

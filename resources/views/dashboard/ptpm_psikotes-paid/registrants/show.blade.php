@@ -35,10 +35,6 @@
                 </div>
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
-                        <label class="mb-2 font-bold text-[#9b9b9b]">Umur</label>
-                        <input type="number" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->age }}" readonly disabled />
-                    </div>
-                    <div class="flex w-full flex-col">
                         <label class="mb-2 font-bold text-[#9b9b9b]">Tanggal Lahir</label>
                         {{-- <input type="date" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ \Carbon\Carbon::parse($registrant->date_of_birth)->format("Y-m-d") }}" readonly disabled /> --}}
                         @if ($registrant->date_of_birth)
@@ -55,15 +51,19 @@
                             />
                         @endif
                     </div>
+                    <div class="flex w-full flex-col">
+                        <label class="mb-2 font-bold text-[#9b9b9b]">Umur</label>
+                        <input type="number" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->age }}" readonly disabled />
+                    </div>
                 </div>
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
-                        <label class="mb-2 font-bold text-[#9b9b9b]">Telepon</label>
-                        <input type="tel" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->phone_number }}" readonly disabled />
-                    </div>
-                    <div class="flex w-full flex-col">
                         <label class="mb-2 font-bold text-[#9b9b9b]">Email</label>
                         <input type="email" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->user->email }}" readonly disabled />
+                    </div>
+                    <div class="flex w-full flex-col">
+                        <label class="mb-2 font-bold text-[#9b9b9b]">Telepon</label>
+                        <input type="tel" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->phone_number }}" readonly disabled />
                     </div>
                 </div>
                 <div class="flex gap-20">
@@ -98,12 +98,12 @@
                 </div>
                 <div class="flex gap-20">
                     <div class="flex w-full flex-col">
-                        <label class="mb-2 font-bold text-[#9b9b9b]">Domisili</label>
-                        <input type="text" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->domicile }}" readonly disabled />
-                    </div>
-                    <div class="flex w-full flex-col">
                         <label class="mb-2 font-bold text-[#9b9b9b]">Layanan Psikotes</label>
                         <input type="text" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->psikotes_service }}" readonly disabled />
+                    </div>
+                    <div class="flex w-full flex-col">
+                        <label class="mb-2 font-bold text-[#9b9b9b]">Domisili</label>
+                        <input type="text" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ $registrant->domicile }}" readonly disabled />
                     </div>
                 </div>
                 <div class="flex gap-20">

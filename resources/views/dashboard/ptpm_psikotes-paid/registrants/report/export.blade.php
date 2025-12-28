@@ -209,7 +209,7 @@
                         <td>
                             <div class="info-item">
                                 <p class="label">Tanggal Lahir</p>
-                                <p class="value">{{ \Carbon\Carbon::parse($registrant->date_of_birth)->format("d/mY") }}</p>
+                                <p class="value">{{ \Carbon\Carbon::parse($registrant->date_of_birth)->format("d/m/Y") }}</p>
                             </div>
                         </td>
                     </tr>
