@@ -40,7 +40,20 @@
                     </div>
                     <div class="flex w-full flex-col">
                         <label class="mb-2 font-bold text-[#9b9b9b]">Tanggal Lahir</label>
-                        <input type="date" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ \Carbon\Carbon::parse($registrant->date_of_birth)->format("Y-m-d") }}" readonly disabled />
+                        {{-- <input type="date" class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0" value="{{ \Carbon\Carbon::parse($registrant->date_of_birth)->format("Y-m-d") }}" readonly disabled /> --}}
+                        @if ($registrant->date_of_birth)
+                            <input type="date"
+                                class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0"
+                                value="{{ \Carbon\Carbon::parse($registrant->date_of_birth)->format('Y-m-d') }}"
+                                readonly disabled
+                            />
+                        @else
+                            <input type="text"
+                                class="rounded-md border-1 border-gray-300 bg-gray-50 px-6 py-3 text-sm font-semibold drop-shadow focus:ring-0"
+                                value="-"
+                                readonly disabled
+                            />
+                        @endif
                     </div>
                 </div>
                 <div class="flex gap-20">
