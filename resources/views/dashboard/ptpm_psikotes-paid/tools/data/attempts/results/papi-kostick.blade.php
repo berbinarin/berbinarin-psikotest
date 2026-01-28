@@ -111,21 +111,25 @@
                         <tr>
                             <td class="py-3 pr-3 text-gray-700">{{ $loop->iteration }}.</td>
                             <td class="py-3 pr-3 font-medium text-[#236A7B]">
-                                {{ strtoupper($response->answer["choice"]) }}
+                                @php
+                                    $userChoice = data_get($response->answer, "choice");
+                                @endphp
+                                {{ $userChoice ? strtoupper($userChoice) : "-" }}
                             </td>
                             <td class="py-3 text-gray-600">
                                 @php
-                                    $userChoice = $response->answer["choice"];
                                     $optionText = "";
-                                    foreach ($response->question->options as $option) {
-                                        if ($option["key"] == $userChoice) {
-                                            $optionText = $option["text"];
-                                            break;
+                                    if ($userChoice && isset($response->question) && ! empty($response->question->options)) {
+                                        foreach ($response->question->options as $option) {
+                                            if (($option["key"] ?? null) == $userChoice) {
+                                                $optionText = $option["text"] ?? "";
+                                                break;
+                                            }
                                         }
                                     }
                                 @endphp
 
-                                {{ $optionText }}
+                                {{ $optionText !== "" ? $optionText : "-" }}
                             </td>
                         </tr>
                     @endforeach
