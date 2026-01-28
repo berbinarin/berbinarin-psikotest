@@ -31,8 +31,13 @@ class SubmittedResponseController extends Controller
     {
         // Eager load sections dan questions
         $tool = Tool::with('sections.questions')->find($this->attemptService->getSession('tool_id'));
-        $currentSection = $tool->sections->firstWhere('order', $this->attemptService->getSession('section_order'));
-        $question = $currentSection->questions->firstWhere('order', $this->attemptService->getSession('question_order'));
+        $currentSection = $tool?->sections?->firstWhere('order', $this->attemptService->getSession('section_order'));
+        $question = $currentSection?->questions?->firstWhere('order', $this->attemptService->getSession('question_order'));
+
+        if (!$tool || !$currentSection || !$question) {
+            $this->attemptService->destroySession();
+            return redirect()->route('psikotes-paid.attempt.complete');
+        }
 
         // Progress
         $progress = $this->attemptService->calculateProgress($tool);
@@ -54,8 +59,12 @@ class SubmittedResponseController extends Controller
             'question_order' => $this->attemptService->getSession('question_order')
         ]);
 
-        $currentSection = $tool->sections->firstWhere('order', $this->attemptService->getSession('section_order'));
-        $question = $currentSection->questions->firstWhere('order', $this->attemptService->getSession('question_order'));
+        $currentSection = $tool?->sections?->firstWhere('order', $this->attemptService->getSession('section_order'));
+        $question = $currentSection?->questions?->firstWhere('order', $this->attemptService->getSession('question_order'));
+        if (!$tool || !$currentSection || !$question) {
+            $this->attemptService->destroySession();
+            return redirect()->route('psikotes-paid.attempt.complete');
+        }
 
         // Simpan Attempt User
         $attemptId = $this->attemptService->getSession('attempt_id');
@@ -123,7 +132,7 @@ class SubmittedResponseController extends Controller
             return;
         }
 
-        $attempt = Attempt::with('tool.sections')->find($attemptId);
+        $attempt = Attempt::with('tool.sections.questions')->find($attemptId);
 
         if (!$attempt || $attempt->status !== 'in_progress') {
             return;
