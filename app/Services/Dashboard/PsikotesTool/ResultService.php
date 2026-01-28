@@ -36,6 +36,10 @@ class ResultService
                 continue;
             }
 
+            if (!isset($response->answer['choice'])) {
+                continue;
+            }
+
             $userChoice = $response->answer['choice']; // 'A' atau 'B'
             $category = $response->question->scoring[$userChoice] ?? null;
 
