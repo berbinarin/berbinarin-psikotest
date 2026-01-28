@@ -200,6 +200,13 @@ class ToolSeeder extends Seeder
                                 <p>Untuk menjawab soal hitungan, Anda diperbolehkan menggunakan kertas untuk menghitung dalam menjawab soal.</p>',
                 'is_active' => true,
             ],
+            [
+                'name' => 'CFIT',
+                'order' => 16,
+                'token' => '16',
+                'introduce' => '<p>Pada tes kali ini terdapat 4 bagian tes dengan persoalan yang berbeda. Di setiap bagian tes terdapat instruksi pengerjaan yang berbeda. Di bawah setiap soal tersebut terdapat 5-6 pilihan jawaban. Kerjakan soal yang tersedia secepat mungkin karena waktunya terbatas.</p>',
+                'is_active' => true
+            ],
         ];
 
         foreach ($tools as $tool) {
