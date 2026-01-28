@@ -54,9 +54,10 @@ class RegistrantController extends Controller
                     'test_type_id' => $validateData['test_type_id'],
                     'gender' => $validateData['gender'],
                     'age' => $validateData['age'],
+                    'date_of_birth' => $validateData['date_of_birth'],
                     'domicile' => $validateData['domicile'],
                     'phone_number' => $validateData['phone_number'],
-                    'psikotes_service' => $validateData['service'],
+                    'psikotes_service' => $validateData['psikotes_service'],
                     'reason' => $validateData['reason'],
                     'schedule' => \Carbon\Carbon::createFromFormat('Y-m-d H:i', $validateData['psikotes_date'] . ' ' . $validateData['psikotes_time'])
                 ]);
@@ -126,12 +127,14 @@ class RegistrantController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $registrant->user->id,
+            // 'email' => 'required|email|unique:users,email,' . $registrant->user->id,
+            'email' => 'required|email',
             'gender' => 'required|in:male,female',
             'age' => 'required|numeric|min:1|max:100',
+            'date_of_birth' => 'required|date',
             'domicile' => 'required|string|max:255',
             'phone_number' => 'required|string|max:20',
-            'psikotes_service' => 'required|string', // yang gw ubah ya, sebelumnya service doang
+            'psikotes_service' => 'required|in:online,offline',
             'reason' => 'required|string',
             'test_type_id' => 'required|exists:test_types,id',
             'psikotes_date' => 'required|date',
@@ -151,6 +154,7 @@ class RegistrantController extends Controller
                     'test_type_id' => $request->test_type_id,
                     'gender' => $request->gender,
                     'age' => $request->age,
+                    'date_of_birth' => \Carbon\Carbon::createFromFormat('Y-m-d', $request->date_of_birth),
                     'domicile' => $request->domicile,
                     'phone_number' => $request->phone_number,
                     'psikotes_service' => $request->psikotes_service,

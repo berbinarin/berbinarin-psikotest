@@ -9,6 +9,7 @@ use App\Models\Response;
 use App\Services\File\FileUploadService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class ResponseService
 {
@@ -19,11 +20,20 @@ class ResponseService
         $methodName = Str::camel($question->type);
         $answer = $this->{$methodName}($request);
         if ($answer !== null) {
-            Response::create([
-                'attempt_id' => $this->attemptService->getSession('attempt_id'),
-                'question_id' => $question->id,
-                'answer' => $answer,
-            ]);
+            $attemptId = $this->attemptService->getSession('attempt_id');
+            if (!$attemptId) {
+                return;
+            }
+
+            Response::updateOrCreate(
+                [
+                    'attempt_id' => $attemptId,
+                    'question_id' => $question->id,
+                ],
+                [
+                    'answer' => $answer,
+                ]
+            );
         }
     }
 
@@ -36,11 +46,20 @@ class ResponseService
                     : ['value' => $request->checkpoint_answer];
 
         if ($answer !== null) {
-            CheckpointResponse::create([
-                'attempt_id' => $this->attemptService->getSession('attempt_id'),
-                'checkpoint_question_id' => $checkpointQuestion->id,
-                'answer' => $answer,
-            ]);
+            $attemptId = $this->attemptService->getSession('attempt_id');
+            if (!$attemptId) {
+                return;
+            }
+
+            CheckpointResponse::updateOrCreate(
+                [
+                    'attempt_id' => $attemptId,
+                    'checkpoint_question_id' => $checkpointQuestion->id,
+                ],
+                [
+                    'answer' => $answer,
+                ]
+            );
         }
     }
 
@@ -57,22 +76,54 @@ class ResponseService
     private function multipleChoice(Request $request)
     {
         $validateData = $request->validate([
-            'answer' => 'required|string',
+            'answer' => 'required',
         ]);
 
-        return ['choice' => $validateData['answer']];
+        $answer = $validateData['answer'];
+        if (is_array($answer)) {
+            $answer = $answer[0] ?? null;
+        }
+
+        if (!is_string($answer)) {
+            throw ValidationException::withMessages([
+                'answer' => 'The answer must be a string.',
+            ]);
+        }
+
+        return ['choice' => $answer];
     }
 
     private function imageMultipleChoice(Request $request)
     {
         $validateData = $request->validate([
-            'answer' => 'required|string',
+            'answer' => 'required',
         ]);
 
-        return ['choice' => $validateData['answer']];
+        $answer = $validateData['answer'];
+        if (is_array($answer)) {
+            $answer = $answer[0] ?? null;
+        }
+
+        if (!is_string($answer)) {
+            throw ValidationException::withMessages([
+                'answer' => 'The answer must be a string.',
+            ]);
+        }
+
+        return ['choice' => $answer];
     }
 
     private function multipleSelect(Request $request)
+    {
+        $validateData = $request->validate([
+            'answer' => 'required|array',
+            'answer.*' => 'required|string'
+        ]);
+
+        return ['choices' => $validateData['answer']];
+    }
+
+    private function imageMultipleSelect(Request $request)
     {
         $validateData = $request->validate([
             'answer' => 'required|array',

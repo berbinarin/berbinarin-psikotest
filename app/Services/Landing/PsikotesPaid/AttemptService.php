@@ -169,7 +169,20 @@ class AttemptService
         }
 
         $tool = Tool::with('sections.questions')->find($toolId);
-        $currentSection = $tool->sections->firstWhere('order', $currentSectionOrder);
+        $currentSection = $tool?->sections?->firstWhere('order', $currentSectionOrder);
+
+        if (!$tool || !$currentSection) {
+            \Log::warning('Invalid tool/section in session, destroying session', [
+                'toolId' => $toolId,
+                'currentSectionOrder' => $currentSectionOrder
+            ]);
+            $attemptId = $this->getSession('attempt_id');
+            if ($attemptId) {
+                Attempt::find($attemptId)?->update(['status' => 'unfinished']);
+            }
+            $this->destroySession();
+            return false;
+        }
 
         $totalQuestionsInSection = $currentSection->questions->count();
 

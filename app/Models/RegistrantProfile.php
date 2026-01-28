@@ -16,6 +16,7 @@ class RegistrantProfile extends Model
         'test_type_id',
         'gender',
         'age',
+        'date_of_birth',
         'domicile',
         'phone_number',
         'psikotes_service',

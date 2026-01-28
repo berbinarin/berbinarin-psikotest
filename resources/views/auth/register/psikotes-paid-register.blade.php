@@ -1,11 +1,8 @@
-@extends(
-    "landing.layouts.app",
-    [
-        "title" => "Berbinar Insightful Indonesia",
-    ]
-)
+@extends('landing.layouts.app', [
+    'title' => 'Berbinar Insightful Indonesia',
+])
 
-@push("style")
+@push('style')
     <style>
         .harga-coret {
             text-decoration: line-through;
@@ -13,11 +10,13 @@
             font-size: 15px;
             margin-right: 8px;
         }
+
         .harga-diskon {
             color: #3986A3;
             font-weight: bold;
             font-size: 17px;
         }
+
         .text-gradient {
             background: linear-gradient(to right, #f7b23b, #916823);
             background-clip: text;
@@ -39,21 +38,24 @@
             background-position: right 0.5rem center !important;
             background-size: 0 !important;
         }
+
         select::-ms-expand {
             display: none;
         }
     </style>
 @endpush
 
-@section("content")
-    <div x-data="{ page: 1 }" x-cloak class="mx-4 mb-8 mt-24 flex flex-col justify-center rounded-2xl bg-none px-12 py-6 shadow-none max-md:px-1 sm:mx-24 sm:mb-20 sm:mt-36 md:bg-white md:shadow-lg">
+@section('content')
+    <div x-data="{ page: 1 }" x-cloak
+        class="mx-4 mb-8 mt-24 flex flex-col justify-center rounded-2xl bg-none px-12 py-6 shadow-none max-md:px-1 sm:mx-24 sm:mb-20 sm:mt-36 md:bg-white md:shadow-lg">
         <div class="flex flex-row justify-between">
             {{-- Tombol Kembali --}}
             <div>
                 <template x-if="page === 1">
-                    <a href="{{ route("home.index") }}">
+                    <a href="{{ route('home.index') }}">
                         <div class="flex cursor-pointer items-center space-x-2">
-                            <img src="{{ asset("/assets/landing/icons/left-arrow.webp") }}" alt="Left Arrow" class="h-3 w-auto" />
+                            <img src="{{ asset('/assets/landing/icons/left-arrow.webp') }}" alt="Left Arrow"
+                                class="h-3 w-auto" />
                             <p class="flex text-[15px] font-semibold text-[#3986A3]">Kembali</p>
                         </div>
                     </a>
@@ -62,7 +64,8 @@
                 <template x-if="page === 2">
                     <button @click="page = 1; window.scrollTo({top: 0, behavior: 'smooth'})" type="button">
                         <div class="flex cursor-pointer items-center space-x-2">
-                            <img src="{{ asset("/assets/landing/icons/left-arrow.webp") }}" alt="Left Arrow" class="h-3 w-auto" />
+                            <img src="{{ asset('/assets/landing/icons/left-arrow.webp') }}" alt="Left Arrow"
+                                class="h-3 w-auto" />
                             <p class="flex text-[15px] font-semibold text-[#3986A3]">
                                 Kembali
                                 <span class="ml-0.5 hidden sm:block">ke jadwal</span>
@@ -74,7 +77,8 @@
 
             {{-- Syarat dan Ketentuan --}}
             <div class="flex cursor-pointer items-center space-x-1" id="openModal">
-                <img src="{{ asset("/assets/landing/icons/sk-vector.webp") }}" alt="Syarat & Ketentuan" class="h-3 w-auto" />
+                <img src="{{ asset('/assets/landing/icons/sk-vector.webp') }}" alt="Syarat & Ketentuan"
+                    class="h-3 w-auto" />
                 <p class="text-[15px] font-semibold text-[#3986A3]">
                     <span class="hidden sm:block">Syarat & Ketentuan</span>
                     <span class="block sm:hidden">S&K</span>
@@ -82,11 +86,14 @@
             </div>
 
             <!-- Modal -->
-            <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
-                <div class="max-h-[90vh] w-[90%] max-w-4xl rounded-2xl bg-white p-8 shadow-lg max-sm:overflow-y-auto max-sm:p-4">
+            <div id="modal"
+                class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+                <div
+                    class="max-h-[90vh] w-[90%] max-w-4xl rounded-2xl bg-white p-8 shadow-lg max-sm:overflow-y-auto max-sm:p-4">
                     <div class="overflow-y-auto">
                         <!-- Judul Utama -->
-                        <h1 class="mb-4 text-center text-3xl font-bold text-[#2C5C84] max-sm:text-2xl">Syarat dan Ketentuan</h1>
+                        <h1 class="mb-4 text-center text-3xl font-bold text-[#2C5C84] max-sm:text-2xl">Syarat dan Ketentuan
+                        </h1>
 
                         <!-- Subjudul -->
                         <h2 class="mb-2 text-lg font-semibold text-[#F4A900]">Syarat dan Ketentuan</h2>
@@ -103,12 +110,14 @@
                                         <span class="font-bold">Bank Mandiri</span>
                                         dengan no rekening
                                         <span class="font-bold">1400020763711</span>
-                                        a.n. Berbinar Insightful Indonesia dengan aturan transfer 1×24 jam setelah pengisian formulir.
+                                        a.n. Berbinar Insightful Indonesia dengan aturan transfer 1×24 jam setelah pengisian
+                                        formulir.
                                     </li>
                                     <li>
                                         Jika calon peserta tes
                                         <span class="font-bold">tidak membalas pesan</span>
-                                        admin dalam waktu 1×24 jam setelah pengisian formulir, maka pendaftaran oleh calon peserta tes secara
+                                        admin dalam waktu 1×24 jam setelah pengisian formulir, maka pendaftaran oleh calon
+                                        peserta tes secara
                                         <span class="font-bold">otomatis dibatalkan</span>
                                         .
                                     </li>
@@ -116,7 +125,8 @@
                                         Jika calon peserta tes
                                         <span class="font-bold">tidak membalas pesan</span>
                                         admin dalam 1×24 jam, jadwal yang sudah ditentukan oleh klien
-                                        <span class="font-bold">berhak untuk dirubah oleh Tim Berbinar dan kesepakatan dari klien</span>
+                                        <span class="font-bold">berhak untuk dirubah oleh Tim Berbinar dan kesepakatan dari
+                                            klien</span>
                                         .
                                     </li>
                                     <li>
@@ -129,7 +139,8 @@
                                     <li>
                                         Calon peserta tes
                                         <span class="font-bold">dapat mengajukan pembatalan</span>
-                                        layanan psikotes dalam kurun waktu 1×24 jam setelah proses administrasi dan dana yang telah dibayarkan akan
+                                        layanan psikotes dalam kurun waktu 1×24 jam setelah proses administrasi dan dana
+                                        yang telah dibayarkan akan
                                         <span class="font-bold">dikembalikan 100%</span>
                                         .
                                     </li>
@@ -144,139 +155,176 @@
 
                         <!-- Tombol -->
                         <div class="mt-6 flex justify-center">
-                            <button id="closeModal" class="rounded-md bg-gradient-to-r from-[#3986A3] to-[#15323D] px-6 py-2 font-medium text-white shadow-sm transition">Saya Mengerti</button>
+                            <button id="closeModal"
+                                class="rounded-md bg-gradient-to-r from-[#3986A3] to-[#15323D] px-6 py-2 font-medium text-white shadow-sm transition">Saya
+                                Mengerti</button>
                         </div>
                     </div>
                 </div>
             </div>
 
             {{-- Modal untuk kode voucher --}}
-            <div id="voucher" class="fixed bg-gray-900 bg-opacity-50 backdrop-blur-md hidden inset-0 flex items-center justify-center z-30">
-                <div class="h-auto max-sm:max-h-[90%] max-h-screen w-[70%] overflow-y-auto rounded-2xl bg-white p-6 max-sm:px-2 shadow-md max-lg:h-[90%] max-sm:w-[86%]">
-                    <h1 class="bg-gradient-to-r from-[#3986A3] to-[#15323D] bg-clip-text text-transparent pb-6 text-center text-3xl font-bold max-sm:text-lg">Promo KTM dan Kartu Pelajar <br class=""> Produk Konseling Bersama Psikolog</h1>
+            <div id="voucher"
+                class="fixed bg-gray-900 bg-opacity-50 backdrop-blur-md hidden inset-0 flex items-center justify-center z-30">
+                <div
+                    class="h-auto max-sm:max-h-[90%] max-h-screen w-[70%] overflow-y-auto rounded-2xl bg-white p-6 max-sm:px-2 shadow-md max-lg:h-[90%] max-sm:w-[86%]">
+                    <h1
+                        class="bg-gradient-to-r from-[#3986A3] to-[#15323D] bg-clip-text text-transparent pb-6 text-center text-3xl font-bold max-sm:text-lg">
+                        Promo KTM dan Kartu Pelajar <br class=""> Produk Konseling Bersama Psikolog</h1>
                     <div class="mb-6">
                         <div class="max-h-[440px] lg:max-h-96 overflow-y-auto">
 
-                        <h2 class="bg-gradient-to-r from-amber-400 to-yellow-700 bg-clip-text text-transparent pb-4 text-2xl font-bold max-sm:text-lg">Syarat dan Ketentuan</h2>
-                        <ul class="list-disc text-black marker:text-primary pl-6">
-                            <li class="mb-2">
-                                <p class="font-semibold">Promo Berlaku untuk:</p>
-                                <p class="max-sm:text-sm text-disabled pl-7">
+                            <h2
+                                class="bg-gradient-to-r from-amber-400 to-yellow-700 bg-clip-text text-transparent pb-4 text-2xl font-bold max-sm:text-lg">
+                                Syarat dan Ketentuan</h2>
+                            <ul class="list-disc text-black marker:text-primary pl-6">
+                                <li class="mb-2">
+                                    <p class="font-semibold">Promo Berlaku untuk:</p>
+                                    <p class="max-sm:text-sm text-disabled pl-7">
                                     <ol class="list-decimal text-gray-600 marker:text-disabled pl-5">
                                         <li>Siswa aktif jenjang SMP/SMA/sederajat.</li>
                                         <li>Mahasiswa aktif jenjang D3, D4, atau S1.</li>
-                                        <li>Dibuktikan dengan mengupload Kartu Tanda Mahasiswa (KTM) atau Kartu Pelajar yang masih berlaku saat melakukan pendaftaran</li>
+                                        <li>Dibuktikan dengan mengupload Kartu Tanda Mahasiswa (KTM) atau Kartu Pelajar yang
+                                            masih berlaku saat melakukan pendaftaran</li>
                                     </ol>
-                                </p>
+                                    </p>
 
-                            </li>
-                            <li class="mb-2">
-                                <p class="font-semibold">Diskon/Penawaran:</p>
-                                <p class="max-sm:text-sm text-disabled pl-7">
+                                </li>
+                                <li class="mb-2">
+                                    <p class="font-semibold">Diskon/Penawaran:</p>
+                                    <p class="max-sm:text-sm text-disabled pl-7">
                                     <ol class="list-decimal text-gray-600 marker:text-disabled pl-5">
                                         <li>Potongan harga sebesar 20% untuk setiap sesi konseling individu.</li>
                                         <li>Promo hanya berlaku untuk layanan konseling online.</li>
                                     </ol>
-                                </p>
-                            </li>
+                                    </p>
+                                </li>
 
-                            <li class="mb-2">
-                                <p class="font-semibold">Cara Menggunakan Promo:</p>
-                                <p class="max-sm:text-sm text-disabled pl-7">
+                                <li class="mb-2">
+                                    <p class="font-semibold">Cara Menggunakan Promo:</p>
+                                    <p class="max-sm:text-sm text-disabled pl-7">
                                     <ol class="list-decimal text-gray-600 marker:text-disabled pl-5">
-                                        <li>Daftar melalui website berbinar konseling <br> <a href="https://berbinar.in/produk/konseling" class="text-blue-500">https://berbinar.in/produk/<br class="hidden max-sm:block">konseling</a></li>
+                                        <li>Daftar melalui website berbinar konseling <br> <a
+                                                href="https://berbinar.in/produk/konseling"
+                                                class="text-blue-500">https://berbinar.in/produk/<br
+                                                    class="hidden max-sm:block">konseling</a></li>
                                         <li>Upload KTM/kartu pelajar saat pendaftaran.</li>
                                         <li>Cantumkan kode promo #KONSELINGPELAJAR</li>
                                     </ol>
-                                </p>
-                            </li>
+                                    </p>
+                                </li>
 
-                            <li class="mb-2">
-                                <p class="font-semibold">Ketentuan Tambahan:</p>
-                                <p class="max-sm:text-sm text-disabled pl-7">
+                                <li class="mb-2">
+                                    <p class="font-semibold">Ketentuan Tambahan:</p>
+                                    <p class="max-sm:text-sm text-disabled pl-7">
                                     <ol class="list-decimal text-gray-600 marker:text-disabled pl-5">
                                         <li>Promo hanya berlaku untuk 1x sesi per individu, kecuali dinyatakan lain.</li>
                                         <li>Tidak dapat memilih Psikolog yang akan menangani</li>
                                         <li>Tidak dapat digabungkan dengan promo lainnya.</li>
                                         <li>Tidak berlaku untuk layanan lanjutan atau paket konseling tertentu.</li>
-                                        <li>Pihak penyelenggara berhak membatalkan promo jika ditemukan penyalahgunaan (misalnya kartu tidak valid atau sudah tidak aktif).</li>
+                                        <li>Pihak penyelenggara berhak membatalkan promo jika ditemukan penyalahgunaan
+                                            (misalnya kartu tidak valid atau sudah tidak aktif).</li>
                                     </ol>
-                                </p>
-                            </li>
-                        </ul>
+                                    </p>
+                                </li>
+                            </ul>
                         </div>
                     </div>
 
                     <div class="mt-4 justify-center flex lg:gap-x-3">
-                        <button id="closeVoucher" class="w-[90%] lg:w-1/4 rounded-xl border-[1.5px] bg-gradient-to-r from-[#3986A3] to-[#15323D] border-[#225062] bg-transparent px-4 py-1.5 font-medium text-white max-sm:text-[15px]">Saya Mengerti</button>
+                        <button id="closeVoucher"
+                            class="w-[90%] lg:w-1/4 rounded-xl border-[1.5px] bg-gradient-to-r from-[#3986A3] to-[#15323D] border-[#225062] bg-transparent px-4 py-1.5 font-medium text-white max-sm:text-[15px]">Saya
+                            Mengerti</button>
                     </div>
                 </div>
             </div>
         </div>
 
         {{-- Form --}}
-        <form action="{{ route("auth.psikotes-paid.register") }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('auth.psikotes-paid.register') }}" method="POST" enctype="multipart/form-data">
             @csrf
             {{-- Jadwal --}}
             <div x-show="page === 1">
-                <h1 class="font text-gradient my-6 text-center text-3xl font-semibold max-sm:mx-2 max-sm:text-[29px]">Isi Jadwal Psikotes</h1>
+                <h1 class="font text-gradient my-6 text-center text-3xl font-semibold max-sm:mx-2 max-sm:text-[29px]">Isi
+                    Jadwal Psikotes</h1>
 
                 <div class="flex flex-col space-y-3">
                     <div class="flex flex-col space-y-1">
                         <p class="text-sm text-[#333333] sm:text-[17px]">Tanggal Psikotes</p>
                         <div class="relative">
-                            <input type="date" id="psikotes_date" name="psikotes_date" class="w-full cursor-pointer rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none" placeholder="dd/mm/yy" value="{{ old("psikotes_date") }}" readonly />
-                            <img src="{{ asset("assets/landing/icons/date.webp") }}" class="absolute right-5 top-1/2 h-4 w-auto -translate-y-1/2 object-contain" onclick="document.getElementById('datepicker').focus()" />
+                            <input type="date" id="psikotes_date" name="psikotes_date"
+                                class="w-full cursor-pointer rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none"
+                                placeholder="dd/mm/yy" value="{{ old('psikotes_date') }}" readonly />
+                            <img src="{{ asset('assets/landing/icons/date.webp') }}"
+                                class="absolute right-5 top-1/2 h-4 w-auto -translate-y-1/2 object-contain"
+                                onclick="document.getElementById('datepicker').focus()" />
                         </div>
                     </div>
 
                     <div class="flex flex-col space-y-1">
                         <p class="text-sm text-[#333333] sm:text-[17px]">Waktu Psikotes</p>
                         <div class="relative">
-                            <input type="time" id="psikotes_time" name="psikotes_time" class="w-full cursor-pointer rounded-lg border-none bg-[#F1F3F6] px-3 py-3 pr-16 shadow-md focus:ring-[#3986A3] md:shadow-none" placeholder="--:--" value="{{ old("psikotes_time") }}" readonly />
-                            <span class="pointer-events-none absolute left-[64px] top-1/2 -translate-y-1/2 text-base text-[#333]">WIB</span>
-                            <img src="{{ asset("assets/landing/icons/clock.webp") }}" class="absolute right-5 top-1/2 h-4 w-auto -translate-y-1/2 object-contain" onclick="document.getElementById('timepicker').focus()" />
+                            <input type="time" id="psikotes_time" name="psikotes_time"
+                                class="w-full cursor-pointer rounded-lg border-none bg-[#F1F3F6] px-3 py-3 pr-16 shadow-md focus:ring-[#3986A3] md:shadow-none"
+                                placeholder="--:--" value="{{ old('psikotes_time') }}" readonly />
+                            <span
+                                class="pointer-events-none absolute left-[64px] top-1/2 -translate-y-1/2 text-base text-[#333]">WIB</span>
+                            <img src="{{ asset('assets/landing/icons/clock.webp') }}"
+                                class="absolute right-5 top-1/2 h-4 w-auto -translate-y-1/2 object-contain"
+                                onclick="document.getElementById('timepicker').focus()" />
                         </div>
                     </div>
 
                     <div class="flex flex-col space-y-1">
                         <p class="text-sm text-[#333333] sm:text-[17px]">Layanan Psikotes</p>
                         <div class="relative">
-                            <select id="service" name="service" class="dropdown-select w-full cursor-pointer appearance-none rounded-lg border-none bg-[#F1F3F6] bg-[length:0] bg-right bg-no-repeat px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none">
-                                <option value="offline" {{ old("service") === "offline" ? "selected" : "" }}>Offline</option>
-                                <option value="online" {{ old("service") === "online" ? "selected" : "" }}>Online</option>
+                            <select id="psikotes_service" name="psikotes_service"
+                                class="dropdown-select w-full cursor-pointer appearance-none rounded-lg border-none bg-[#F1F3F6] bg-[length:0] bg-right bg-no-repeat px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none">
+                                <option value="offline" {{ old('psikotes_service') === 'offline' ? 'selected' : '' }}>
+                                    Offline</option>
+                                <option value="online" {{ old('psikotes_service') === 'online' ? 'selected' : '' }}>Online
+                                </option>
                             </select>
-                            <img src="{{ asset("assets/landing/icons/dropdown.webp") }}" class="dropdown-icon pointer-events-none absolute right-5 top-1/2 h-2 w-auto -translate-y-1/2 object-contain transition-transform duration-300" />
+                            <img src="{{ asset('assets/landing/icons/dropdown.webp') }}"
+                                class="dropdown-icon pointer-events-none absolute right-5 top-1/2 h-2 w-auto -translate-y-1/2 object-contain transition-transform duration-300" />
                         </div>
                     </div>
 
                     <div class="flex flex-col space-y-1">
                         <p class="text-sm text-[#333333] sm:text-[17px]">Kategori Psikotes</p>
                         <div class="relative">
-                            <select id="test_category_id" name="test_category_id" class="dropdown-select w-full cursor-pointer appearance-none rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none bg-[length:0] bg-no-repeat bg-right" style="">
+                            <select id="test_category_id" name="test_category_id"
+                                class="dropdown-select w-full cursor-pointer appearance-none rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none bg-[length:0] bg-no-repeat bg-right"
+                                style="">
                                 <option value=""></option>
                                 @foreach ($testCategories as $category)
-                                    <option value="{{ $category->id }}" {{ old("test_category_id") == $category->id ? "selected" : "" }}>{{ $category->name }}</option>
+                                    <option value="{{ $category->id }}"
+                                        {{ old('test_category_id') == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}</option>
                                 @endforeach
                             </select>
-                            <img src="{{ asset("assets/landing/icons/dropdown.webp") }}" class="dropdown-icon pointer-events-none absolute right-5 top-1/2 h-2 w-auto -translate-y-1/2 object-contain transition-transform duration-300" />
+                            <img src="{{ asset('assets/landing/icons/dropdown.webp') }}"
+                                class="dropdown-icon pointer-events-none absolute right-5 top-1/2 h-2 w-auto -translate-y-1/2 object-contain transition-transform duration-300" />
                         </div>
                     </div>
 
                     <div class="flex flex-col space-y-1">
                         <p class="text-sm text-[#333333] sm:text-[17px]">Jenis Psikotes</p>
                         <div class="relative">
-                            <select id="test_type_id" name="test_type_id" class="dropdown-select w-full cursor-pointer appearance-none rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none bg-[length:0] bg-no-repeat bg-right">
+                            <select id="test_type_id" name="test_type_id"
+                                class="dropdown-select w-full cursor-pointer appearance-none rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none bg-[length:0] bg-no-repeat bg-right">
                                 <option value=""></option>
                             </select>
-                            <img src="{{ asset("assets/landing/icons/dropdown.webp") }}" class="dropdown-icon pointer-events-none absolute right-5 top-1/2 h-2 w-auto -translate-y-1/2 object-contain transition-transform duration-300" />
+                            <img src="{{ asset('assets/landing/icons/dropdown.webp') }}"
+                                class="dropdown-icon pointer-events-none absolute right-5 top-1/2 h-2 w-auto -translate-y-1/2 object-contain transition-transform duration-300" />
                         </div>
                     </div>
 
                     <div class="flex flex-col space-y-1">
                         <p class="text-sm text-[#333333] sm:text-[17px]">Harga</p>
                         <div class="relative">
-                            <div id="harga-tampil" class="bg-[#F1F3F6] md:shadow-none shadow-md border-none rounded-lg w-full px-3 py-3 flex items-center">
+                            <div id="harga-tampil"
+                                class="bg-[#F1F3F6] md:shadow-none shadow-md border-none rounded-lg w-full px-3 py-3 flex items-center">
                                 <span id="harga-asli" class="">Rp.0,00</span>
                                 <span id="harga-diskon" class="font-bold text-[#3986A3] text-[17px]"></span>
                             </div>
@@ -288,8 +336,12 @@
                     <div class="flex flex-col space-y-1">
                         <p class="text-[#333333] sm:text-[17px] text-sm">Kode Promo</p>
                         <div class="relative">
-                            <input type="text" id="kode_promo" name="kode_promo" class="bg-[#F1F3F6] md:shadow-none shadow-md border-none rounded-lg w-full px-3 py-3 cursor-pointer focus:ring-[#3986A3]" placeholder="Berbinar">
-                            <button type="button" onclick="redeemVoucher()" class="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer flex bg-[#106681] text-white justify-between gap-2 py-[4px] px-2  rounded-md items-center">Redeem Code</button>
+                            <input type="text" id="kode_promo" name="kode_promo"
+                                class="bg-[#F1F3F6] md:shadow-none shadow-md border-none rounded-lg w-full px-3 py-3 cursor-pointer focus:ring-[#3986A3]"
+                                placeholder="Berbinar">
+                            <button type="button" onclick="redeemVoucher()"
+                                class="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer flex bg-[#106681] text-white justify-between gap-2 py-[4px] px-2  rounded-md items-center">Redeem
+                                Code</button>
                         </div>
                     </div>
                     <input type="hidden" name="voucher_category" id="voucher_category">
@@ -297,13 +349,18 @@
                     <input type="hidden" name="discount_percentage" id="discount_percentage">
 
                     {{-- Bukti Kartu Pelajar --}}
-                    <div class="mb-4 rounded-lg" id="bukti-kartu-pelajar-container" style="background-color: white;display:none;">
+                    <div class="mb-4 rounded-lg" id="bukti-kartu-pelajar-container"
+                        style="background-color: white;display:none;">
                         <label for="student_card">Bukti Kartu Pelajar</label>
                         <div class="relative w-full flex items-center">
-                            <input type="file" id="student_card" name="student_card" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-                            <div class="mt-1 block w-full h-12 pl-2 bg-gray-100 border border-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary pointer-events-none cursor-pointer content-center flex items-center">
-                                <button type="button" class="pointer-events-none border flex justify-between gap-2 py-[4px] px-2 border-[#B3B3B3] rounded-md cursor-pointer items-center">
-                                    <img src="{{ asset('assets/landing/images/psikotes-paid/upload-line-icon.webp') }}" alt="" class="w-4 h-4">
+                            <input type="file" id="student_card" name="student_card"
+                                class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+                            <div
+                                class="mt-1 block w-full h-12 pl-2 bg-gray-100 border border-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary pointer-events-none cursor-pointer content-center flex items-center">
+                                <button type="button"
+                                    class="pointer-events-none border flex justify-between gap-2 py-[4px] px-2 border-[#B3B3B3] rounded-md cursor-pointer items-center">
+                                    <img src="{{ asset('assets/landing/images/psikotes-paid/upload-line-icon.webp') }}"
+                                        alt="" class="w-4 h-4">
                                     Upload
                                 </button>
                                 <span id="fileName" class="ml-3 text-base text-gray-600 truncate"></span>
@@ -314,7 +371,8 @@
 
                     <div class="flex items-center justify-center pt-10">
                         <div class="flex w-full justify-center">
-                            <button @click="page = 2; window.scrollTo({top: 0})" type="button" class="text-md w-full rounded-xl bg-gradient-to-r from-[#3986A3] to-[#225062] px-24 py-2 text-white max-sm:text-[15px] sm:w-auto">Selanjutnya</button>
+                            <button @click="page = 2; window.scrollTo({top: 0})" type="button"
+                                class="text-md w-full rounded-xl bg-gradient-to-r from-[#3986A3] to-[#225062] px-24 py-2 text-white max-sm:text-[15px] sm:w-auto">Selanjutnya</button>
                         </div>
                     </div>
                 </div>
@@ -322,65 +380,88 @@
 
             {{-- Data Diri --}}
             <div x-show="page === 2">
-                <h1 class="font text-gradient my-6 text-center text-3xl font-semibold max-sm:mx-2 max-sm:text-[29px]">Data Diri</h1>
+                <h1 class="font text-gradient my-6 text-center text-3xl font-semibold max-sm:mx-2 max-sm:text-[29px]">Data
+                    Diri</h1>
 
                 <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div class="flex flex-col space-y-1">
                         <p class="text-sm text-[#333333] sm:text-[17px]">Nama Lengkap</p>
                         <div class="relative">
-                            <input type="text" id="name" name="name" class="w-full cursor-pointer rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none" placeholder="Budi Berbinar" value="{{ old("name") }}" />
+                            <input type="text" id="name" name="name"
+                                class="w-full cursor-pointer rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none"
+                                placeholder="Budi Berbinar" value="{{ old('name') }}" />
                         </div>
                     </div>
 
                     <div class="flex flex-col space-y-1">
                         <p class="text-sm text-[#333333] sm:text-[17px]">Email Aktif</p>
                         <div class="relative">
-                            <input type="email" id="email" name="email" class="w-full cursor-pointer rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none" placeholder="email.anda@gmail.com" value="{{ old("email") }}" />
+                            <input type="email" id="email" name="email"
+                                class="w-full cursor-pointer rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none"
+                                placeholder="email.anda@gmail.com" value="{{ old('email') }}" />
                         </div>
                     </div>
 
                     <div class="flex flex-col space-y-1">
-                        <p class="text-sm text-[#333333] sm:text-[17px]">Usia</p>
+                        <p class="text-sm text-[#333333] sm:text-[17px]">Tanggal Lahir</p>
                         <div class="relative">
-                            <input type="number" id="age" name="age" class="w-full cursor-pointer rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none" placeholder="20" value="{{ old("age") }}" />
+                            <input type="date" id="date_of_birth" name="date_of_birth"
+                                class="w-full cursor-pointer rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none"
+                                placeholder="dd/mm/yy" value="{{ old('date_of_birth') }}" />
+                            <img src="{{ asset('assets/landing/icons/date.webp') }}"
+                                class="absolute right-5 top-1/2 h-4 w-auto -translate-y-1/2 object-contain"
+                                onclick="document.getElementById('datepicker').focus()" />
                         </div>
                     </div>
+
+                    <input type="hidden" id="age" name="age" value="{{ old('age') }}" />
 
                     <div class="flex flex-col space-y-1">
                         <p class="text-sm text-[#333333] sm:text-[17px]">Kota Domisili</p>
                         <div class="relative">
-                            <input type="text" id="domicile" name="domicile" class="w-full cursor-pointer rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none" placeholder="Surabaya" value="{{ old("domicile") }}" />
+                            <input type="text" id="domicile" name="domicile"
+                                class="w-full cursor-pointer rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none"
+                                placeholder="Surabaya" value="{{ old('domicile') }}" />
                         </div>
                     </div>
 
                     <div class="flex flex-col space-y-1">
                         <p class="text-sm text-[#333333] sm:text-[17px]">Jenis Kelamin</p>
                         <div class="relative">
-                            <select id="gender" name="gender" class="dropdown-select w-full cursor-pointer appearance-none rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none" value="{{ old("gender") }}">
+                            <select id="gender" name="gender"
+                                class="dropdown-select w-full cursor-pointer appearance-none rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none"
+                                value="{{ old('gender') }}">
                                 <option value="male">Laki-Laki</option>
                                 <option value="female">Perempuan</option>
                             </select>
-                            <img class="dropdown-icon pointer-events-none absolute right-5 top-1/2 h-2 w-auto -translate-y-1/2 object-contain transition-transform duration-300" />
+                            <img
+                                class="dropdown-icon pointer-events-none absolute right-5 top-1/2 h-2 w-auto -translate-y-1/2 object-contain transition-transform duration-300" />
                         </div>
                     </div>
 
                     <div class="flex flex-col space-y-1">
                         <p class="text-sm text-[#333333] sm:text-[17px]">Nomor WhatsApp</p>
                         <div class="relative">
-                            <input type="number" id="phone_number" name="phone_number" class="w-full cursor-pointer rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none" placeholder="08112345XXXX" value="{{ old("phone_number") }}" />
+                            <input type="number" id="phone_number" name="phone_number"
+                                class="w-full cursor-pointer rounded-lg border-none bg-[#F1F3F6] px-3 py-3 shadow-md focus:ring-[#3986A3] md:shadow-none"
+                                placeholder="08112345XXXX" value="{{ old('phone_number') }}" />
                         </div>
                     </div>
                 </div>
 
-                <h1 class="font text-gradient my-10 text-center text-3xl font-semibold max-sm:mx-2 max-sm:text-[29px]">Alasan Mengikuti Psikotes</h1>
+                <h1 class="font text-gradient my-10 text-center text-3xl font-semibold max-sm:mx-2 max-sm:text-[29px]">
+                    Alasan Mengikuti Psikotes</h1>
 
                 <div class="relative">
-                    <textarea id="reason" name="reason" class="h-72 w-full cursor-pointer resize-none rounded-lg border-none bg-[#F1F3F6] px-3 pt-3 text-start shadow-md focus:ring-[#3986A3] md:shadow-none" placeholder="Tidak ada minimum/batas jumlah kata">{{ old("reason") }}</textarea>
+                    <textarea id="reason" name="reason"
+                        class="h-72 w-full cursor-pointer resize-none rounded-lg border-none bg-[#F1F3F6] px-3 pt-3 text-start shadow-md focus:ring-[#3986A3] md:shadow-none"
+                        placeholder="Tidak ada minimum/batas jumlah kata">{{ old('reason') }}</textarea>
                 </div>
 
                 <div class="flex items-center justify-center gap-6 pt-10">
                     <div class="flex justify-center">
-                        <button type="submit" class="text-md w-full rounded-xl bg-gradient-to-r from-[#3986A3] to-[#225062] px-24 py-2 text-white max-sm:text-[15px] sm:w-auto">Kirim</button>
+                        <button type="submit"
+                            class="text-md w-full rounded-xl bg-gradient-to-r from-[#3986A3] to-[#225062] px-24 py-2 text-white max-sm:text-[15px] sm:w-auto">Kirim</button>
                     </div>
                 </div>
             </div>
@@ -388,10 +469,10 @@
     </div>
 @endsection
 
-@push("script")
+@push('script')
     <script>
         // Mengatur input tanggal dan waktu
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             flatpickr('#psikotes_date', {
                 dateFormat: 'Y-m-d', // Ini adalah format yang AKAN DIKIRIM ke Laravel (untuk validasi & DB)
                 altInput: true, // Aktifkan alternate input
@@ -399,7 +480,7 @@
                 allowInput: true, // Memungkinkan input manual (optional)
                 minDate: new Date().fp_incr(7),
                 // Jika Anda menggunakan old() sebagai nilai awal datepicker, tambahkan ini:
-                defaultDate: '{{ old("psikotes_date") ? old("psikotes_date") : "" }}',
+                defaultDate: '{{ old('psikotes_date') ? old('psikotes_date') : '' }}',
             });
 
             flatpickr('#psikotes_time', {
@@ -407,8 +488,34 @@
                 noCalendar: true,
                 dateFormat: 'H:i',
                 time_24hr: true,
-                defaultDate: '{{ old("psikotes_time") ? old("psikotes_time") : "" }}',
+                defaultDate: '{{ old('psikotes_time') ? old('psikotes_time') : '' }}',
             });
+
+            flatpickr('#date_of_birth', {
+                dateFormat: 'Y-m-d',
+                altInput: true,
+                altFormat: 'd/m/Y',
+                allowInput: true,
+                maxDate: 'today',
+                defaultDate: '{{ old('date_of_birth') ?? '' }}',
+
+                onChange: function(selectedDates) {
+                    if (!selectedDates.length) return;
+
+                    const dob = selectedDates[0];
+                    const today = new Date();
+
+                    let age = today.getFullYear() - dob.getFullYear();
+                    const m = today.getMonth() - dob.getMonth();
+
+                    if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+                        age--;
+                    }
+
+                    document.getElementById('age').value = age;
+                }
+            });
+
         });
 
         // Mengatur input jenis, kategoori, harga, dan layanan psikotes
@@ -417,7 +524,7 @@
         const typeSelect = document.getElementById('test_type_id');
         const priceInput = document.getElementById('price');
 
-        categorySelect.addEventListener('change', function () {
+        categorySelect.addEventListener('change', function() {
             const selectedCategoryId = this.value;
             const filteredTypes = testTypes.filter((type) => type.test_category_id == selectedCategoryId);
 
@@ -425,8 +532,9 @@
             typeSelect.innerHTML = '';
 
             // Add the filtered options to the typeSelect
-            filteredTypes.forEach(function (type) {
-                typeSelect.innerHTML += `<option value="${type.id}" data-price="${type.price}">${type.name}</option>`;
+            filteredTypes.forEach(function(type) {
+                typeSelect.innerHTML +=
+                    `<option value="${type.id}" data-price="${type.price}">${type.name}</option>`;
             });
 
             // Trigger change event to update the price field if needed
@@ -462,7 +570,7 @@
             priceInput.dataset.hargaAsli = harga;
         }
 
-        typeSelect.addEventListener('change', function () {
+        typeSelect.addEventListener('change', function() {
             const selectedType = typeSelect.options[typeSelect.selectedIndex];
             const price = selectedType.getAttribute('data-price');
             if (price) {
@@ -475,20 +583,20 @@
         document.querySelectorAll('.dropdown-select').forEach((select, index) => {
             const icon = document.querySelectorAll('.dropdown-icon')[index];
 
-            select.addEventListener('click', function () {
+            select.addEventListener('click', function() {
                 icon.classList.toggle('rotate-180');
             });
 
-            select.addEventListener('blur', function () {
+            select.addEventListener('blur', function() {
                 icon.classList.remove('rotate-180');
             });
         });
 
-        document.getElementById('openModal').addEventListener('click', function () {
+        document.getElementById('openModal').addEventListener('click', function() {
             document.getElementById('modal').classList.remove('hidden');
         });
 
-        document.getElementById('closeModal').addEventListener('click', function () {
+        document.getElementById('closeModal').addEventListener('click', function() {
             document.getElementById('modal').classList.add('hidden');
         });
 
@@ -501,7 +609,8 @@
             }
 
             // Cek kategori voucher dari hasil redeem
-            const kategoriVoucher = document.getElementById('bukti-kartu-pelajar-container').style.display === 'block' ? 'pelajar' : '';
+            const kategoriVoucher = document.getElementById('bukti-kartu-pelajar-container').style.display === 'block' ?
+                'pelajar' : '';
 
             for (let fieldName of requiredFields) {
                 let field;
@@ -534,8 +643,9 @@
         // Data Voucher
         const vouchers = @json($vouchers);
 
-        function isVoucherEligible(voucher, psikotesDate, service, testCategoryName) {
-            const voucherTypeArr = Array.isArray(voucher.voucher_type) ? voucher.voucher_type : JSON.parse(voucher.voucher_type || '[]');
+        function isVoucherEligible(voucher, psikotesDate, psikotes_service, testCategoryName) {
+            const voucherTypeArr = Array.isArray(voucher.voucher_type) ? voucher.voucher_type : JSON.parse(voucher
+                .voucher_type || '[]');
             const detailArr = Array.isArray(voucher.detail) ? voucher.detail : JSON.parse(voucher.detail || '[]');
 
             for (let i = 0; i < voucherTypeArr.length; i++) {
@@ -549,7 +659,7 @@
                     if (detail === 'weekdays' && isWeekend) return false;
                     if (detail === 'weekend' && !isWeekend) return false;
                 }
-                if (voucherType === 'metode' && service.toLowerCase() !== detail.toLowerCase()) return false;
+                if (voucherType === 'metode' && psikotes_service.toLowerCase() !== detail.toLowerCase()) return false;
                 if (voucherType === 'kategori_psikotes' && testCategoryName !== detail.toLowerCase()) return false;
             }
 
@@ -559,7 +669,7 @@
         // Fungsi redeem voucher
         function redeemVoucher() {
             const kode = document.getElementById('kode_promo').value.trim().toLowerCase();
-            const service = document.getElementById('service').value;
+            const psikotes_service = document.getElementById('psikotes_service').value;
             const categorySelect = document.getElementById('test_category_id');
             const testCategoryName = categorySelect.options[categorySelect.selectedIndex]?.text?.toLowerCase() || '';
             const psikotesDate = document.getElementById('psikotes_date').value;
@@ -568,11 +678,12 @@
             vouchers.forEach(function(voucher) {
                 if (voucher.code.toLowerCase() === kode) {
                     // Validasi semua kondisi voucher
-                    if (!isVoucherEligible(voucher, psikotesDate, service, testCategoryName)) return;
+                    if (!isVoucherEligible(voucher, psikotesDate, psikotes_service, testCategoryName)) return;
 
                     found = true;
                     // Hitung diskon
-                    const hargaAsliRaw = document.getElementById('price').dataset.hargaAsli || document.getElementById('price').value.replace(/[^\d]/g, '');
+                    const hargaAsliRaw = document.getElementById('price').dataset.hargaAsli || document
+                        .getElementById('price').value.replace(/[^\d]/g, '');
                     const hargaAsli = parseInt(hargaAsliRaw) || 0;
                     const diskon = voucher.percentage;
                     const hargaDiskon = hargaAsli - (hargaAsli * diskon / 100);
@@ -641,83 +752,88 @@
             } else {
                 fileNameSpan.textContent = '';
             }
-        });
+        });;
 
         // Cek validasi data
-        document.querySelector('form[action="{{ route("auth.psikotes-paid.register") }}"]').addEventListener('submit', async function (e) {
-            e.preventDefault();
+        document.querySelector('form[action="{{ route('auth.psikotes-paid.register') }}"]').addEventListener('submit',
+            async function(e) {
+                e.preventDefault();
 
-            const form = this;
+                const form = this;
 
-            // Ambil semua input yang wajib
-            const psikotes_date = form.psikotes_date.value.trim();
-            const psikotes_time = form.psikotes_time.value.trim();
-            const service = form.service.value.trim();
-            const test_category_id = form.test_category_id.value.trim();
-            const test_type_id = form.test_type_id.value.trim();
+                // Ambil semua input yang wajib
+                const psikotes_date = form.psikotes_date.value.trim();
+                const psikotes_time = form.psikotes_time.value.trim();
+                const psikotes_service = form.psikotes_service.value.trim();
+                const test_category_id = form.test_category_id.value.trim();
+                const test_type_id = form.test_type_id.value.trim();
 
-            const name = form.name.value.trim();
-            const email = form.email.value.trim();
-            const age = form.age.value.trim();
-            const domicile = form.domicile.value.trim();
-            const gender = form.gender.value.trim();
-            const phone_number = form.phone_number.value.trim();
-            const reason = form.reason.value.trim();
+                const name = form.name.value.trim();
+                const email = form.email.value.trim();
+                const date_of_birth = form.date_of_birth.value.trim();
+                const age = form.age.value.trim();
+                const domicile = form.domicile.value.trim();
+                const gender = form.gender.value.trim();
+                const phone_number = form.phone_number.value.trim();
+                const reason = form.reason.value.trim();
 
-            if (phone_number.length < 8) {
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Nomor WhatsApp tidak valid',
-                    text: 'Nomor WhatsApp harus memiliki minimal 8 digit.',
-                    confirmButtonColor: '#3986A3',
-                });
-                return;
-            }
-
-            // Cek input kosong
-            if (!psikotes_date || !psikotes_time || !service || !test_category_id || !test_type_id || !name || !email || !age || !domicile || !gender || !phone_number || !reason) {
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Form Belum Lengkap',
-                    text: 'Mohon pastikan semua bagian telah diisi.',
-                    confirmButtonColor: '#3986A3',
-                });
-                return;
-            }
-
-            // Cek format email sederhana
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Email tidak valid',
-                    text: 'Mohon masukkan alamat email yang benar.',
-                    confirmButtonColor: '#3986A3',
-                });
-                return;
-            }
-
-            // AJAX cek email terdaftar (ganti url dengan route backend yang cek email)
-            try {
-                const response = await fetch('{{ route("auth.psikotes-paid.register.check-email") }}?email=' + encodeURIComponent(email));
-                const data = await response.json();
-
-                if (data.exists) {
+                if (phone_number.length < 8) {
                     Swal.fire({
-                        icon: 'error',
-                        title: 'Email sudah terdaftar',
-                        text: 'Email ini sudah pernah digunakan, silakan gunakan email lain.',
+                        icon: 'warning',
+                        title: 'Nomor WhatsApp tidak valid',
+                        text: 'Nomor WhatsApp harus memiliki minimal 8 digit.',
                         confirmButtonColor: '#3986A3',
                     });
                     return;
                 }
-            } catch (error) {
-                console.error('Error cek email:', error);
-                // Kalau error cek email, bisa lanjut atau tampil pesan lain sesuai kebutuhan
-            }
 
-            // Kalau semua lolos, submit form
-            form.submit();
-        });
+                // Cek input kosong
+                if (!psikotes_date || !psikotes_time || !psikotes_service || !test_category_id || !test_type_id || !
+                    name || !email || !date_of_birth || age === '' || age === null ||
+                    !domicile || !gender || !phone_number || !reason) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Form Belum Lengkap',
+                        text: 'Mohon pastikan semua bagian telah diisi.',
+                        confirmButtonColor: '#3986A3',
+                    });
+                    return;
+                }
+
+                // Cek format email sederhana
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Email tidak valid',
+                        text: 'Mohon masukkan alamat email yang benar.',
+                        confirmButtonColor: '#3986A3',
+                    });
+                    return;
+                }
+
+                // AJAX cek email terdaftar (ganti url dengan route backend yang cek email)
+                try {
+                    const response = await fetch('{{ route('auth.psikotes-paid.register.check-email') }}?email=' +
+                        encodeURIComponent(email));
+                    const data = await response.json();
+
+                    if (data.exists) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Email sudah terdaftar',
+                            text: 'Email ini sudah pernah digunakan, silakan gunakan email lain.',
+                            confirmButtonColor: '#3986A3',
+                        });
+                        return;
+                    }
+                } catch (error) {
+                    console.error('Error cek email:', error);
+                    // Kalau error cek email, bisa lanjut atau tampil pesan lain sesuai kebutuhan
+                }
+
+                // Kalau semua lolos, submit form
+                form.submit();
+            });
     </script>
 @endpush
