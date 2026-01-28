@@ -9,6 +9,7 @@ use App\Models\Response;
 use App\Services\File\FileUploadService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class ResponseService
 {
@@ -57,22 +58,54 @@ class ResponseService
     private function multipleChoice(Request $request)
     {
         $validateData = $request->validate([
-            'answer' => 'required|string',
+            'answer' => 'required',
         ]);
 
-        return ['choice' => $validateData['answer']];
+        $answer = $validateData['answer'];
+        if (is_array($answer)) {
+            $answer = $answer[0] ?? null;
+        }
+
+        if (!is_string($answer)) {
+            throw ValidationException::withMessages([
+                'answer' => 'The answer must be a string.',
+            ]);
+        }
+
+        return ['choice' => $answer];
     }
 
     private function imageMultipleChoice(Request $request)
     {
         $validateData = $request->validate([
-            'answer' => 'required|string',
+            'answer' => 'required',
         ]);
 
-        return ['choice' => $validateData['answer']];
+        $answer = $validateData['answer'];
+        if (is_array($answer)) {
+            $answer = $answer[0] ?? null;
+        }
+
+        if (!is_string($answer)) {
+            throw ValidationException::withMessages([
+                'answer' => 'The answer must be a string.',
+            ]);
+        }
+
+        return ['choice' => $answer];
     }
 
     private function multipleSelect(Request $request)
+    {
+        $validateData = $request->validate([
+            'answer' => 'required|array',
+            'answer.*' => 'required|string'
+        ]);
+
+        return ['choices' => $validateData['answer']];
+    }
+
+    private function imageMultipleSelect(Request $request)
     {
         $validateData = $request->validate([
             'answer' => 'required|array',

@@ -1,14 +1,19 @@
 @php
     $colors = ["#3fa2f6", "#fbb03b", "#406c9b", "#6a3d00"];
+    $options = $question->options ?? [];
+    $optionCount = is_countable($options) ? count($options) : 0;
+    $isCompact = $optionCount > 4;
 @endphp
 
-<p class="text-center text-lg font-medium"></p>
-
-<div class="mx-auto mt-12 flex w-[700px] flex-wrap items-center justify-center gap-x-5 gap-y-6">
-    @foreach ($tool->sections[0]->questions[0]->options as $option)
-        <label for="{{ $option["key"] }}" class="card relative flex h-[180px] w-[330px] select-none items-center justify-center rounded-xl bg-[{{ $colors[$loop->index] }}] px-6 transition-all duration-[200ms] hover:scale-[1.03] hover:shadow-[0_8px_16px_rgba(0,0,0,0.25)]">
-            <input class="hidden" type="checkbox" value="{{ $option["key"] }}" id="{{ $option["key"] }}" name="answer" required />
-            <span class="text-center text-sm font-semibold text-white">{{ $option["text"] }}</span>
+<div class="mx-auto w-full max-w-[860px]">
+    <div class="mx-auto grid w-fit grid-cols-1 gap-5 justify-center sm:grid-cols-2 lg:grid-cols-3">
+    @foreach ($options as $option)
+        <label for="{{ $option["key"] }}" class="card relative flex {{ $isCompact ? "h-[140px] w-[160px]" : "h-[180px] w-[330px]" }} select-none flex-col items-center justify-center gap-3 rounded-xl bg-[{{ $colors[$loop->index % count($colors)] }}] px-6 transition-all duration-[200ms] hover:scale-[1.03] hover:shadow-[0_8px_16px_rgba(0,0,0,0.25)]">
+            <input class="peer hidden" type="checkbox" value="{{ $option["key"] }}" id="{{ $option["key"] }}" name="answer[]" {{ $loop->first ? "required" : "" }} />
+            <img src="{{ asset($option["text"]) }}" alt="Option {{ $option["key"] }}" class="{{ $isCompact ? "h-20 w-20" : "h-24 w-24" }} rounded-lg object-contain transition peer-checked:border-[#3986A3] peer-checked:ring-4 peer-checked:ring-[#3986A3]" />
+            @if (!empty($option["label"]))
+                <span class="text-center {{ $isCompact ? "text-xs" : "text-sm" }} font-semibold text-white">{{ $option["label"] }}</span>
+            @endif
             <div class="absolute bottom-4 right-4 flex h-[18px] w-[18px] items-center justify-center rounded-full border border-white">
                 <svg class="hidden scale-110" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9 0C4.03725 0 0 4.03725 0 9C0 13.9628 4.03725 18 9 18C13.9628 18 18 13.9628 18 9C18 4.03725 13.9628 0 9 0ZM8.93175 11.5642C8.6415 11.8545 8.25975 11.9993 7.8765 11.9993C7.49325 11.9993 7.10775 11.853 6.8145 11.5605L4.728 9.5385L5.77275 8.46075L7.8675 10.491L12.2243 6.21525L13.2773 7.284L8.93175 11.5642Z" fill="white" />
@@ -16,12 +21,13 @@
             </div>
         </label>
     @endforeach
+    </div>
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Mengambil semua input checkbox dengan nama 'answer'
-        const checkboxes = document.querySelectorAll('input[type="checkbox"][name="answer"]');
+        const checkboxes = document.querySelectorAll('input[type="checkbox"][name="answer[]"]');
 
         checkboxes.forEach((checkbox) => {
             checkbox.addEventListener('change', () => {
@@ -34,6 +40,12 @@
                 } else {
                     selectedSvg.classList.add('hidden');
                 }
+
+                // Minimal 1 pilihan: required hanya aktif jika tidak ada yang terpilih
+                const anyChecked = Array.from(checkboxes).some((item) => item.checked);
+                checkboxes.forEach((item, index) => {
+                    item.required = !anyChecked && index === 0;
+                });
             });
         });
     });

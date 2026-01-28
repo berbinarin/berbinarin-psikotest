@@ -91,6 +91,10 @@ class DatabaseSeeder extends Seeder
             Tools\RMIB\RmibSectionSeeder::class,
             Tools\RMIB\RmibQuestionSeeder::class,
 
+            // CFIT
+            Tools\CFIT\CfitSectionSeeder::class,
+            Tools\CFIT\CfitQuestionSeeder::class,
+
             // EPI
             Tools\EPI\EpiSectionSeeder::class,
             Tools\EPI\EpiQuestionSeeder::class,
