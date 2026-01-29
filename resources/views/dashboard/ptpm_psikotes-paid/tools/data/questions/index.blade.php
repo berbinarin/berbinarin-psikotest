@@ -68,6 +68,16 @@
                                                     <span class="text-red-500">Gambar soal tidak tersedia.</span>
                                                 @endif
 
+                                            @elseif ($question->type === 'image_multiple_select')
+                                                {{-- Tampilkan gambar soal --}}
+                                                @if (!empty($question->text))
+                                                    <img src="{{ asset($question->text) }}"
+                                                        alt="Soal Gambar"
+                                                        class="max-w-xs rounded mb-2">
+                                                @else
+                                                    <span class="text-red-500">Gambar soal tidak tersedia.</span>
+                                                @endif
+
                                             @else
                                                 {!! $question->text ?? '<span class="text-red-500">Teks pertanyaan tidak ada.</span>' !!}
                                             @endif
@@ -98,6 +108,10 @@
                                                         $formatJawaban = "Pilihan Ganda ({$count} Opsi)";
                                                         break;
                                                     case 'image_multiple_choice':
+                                                        $count = count($question->options ?? []);
+                                                        $formatJawaban = "Pilihan Ganda Bergambar ({$count} opsi)";
+                                                        break;
+                                                    case 'image_multiple_select':
                                                         $count = count($question->options ?? []);
                                                         $formatJawaban = "Pilihan Ganda Bergambar ({$count} opsi)";
                                                         break;

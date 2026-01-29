@@ -6,7 +6,7 @@
     @foreach ($question->options as $option)
         <label class="flex cursor-pointer flex-col items-center">
             <input type="radio" name="answer" value="{{ $option["key"] }}" class="peer hidden" required />
-            <img src="{{ asset($option["text"]) }}" alt="Option {{ $option["key"] }}" class="h-24 w-24 rounded-lg object-contain transition peer-checked:border-[#3986A3] peer-checked:ring-4 peer-checked:ring-[#3986A3]" />
+            <img src="{{ asset($option["text"]) }}" alt="Option {{ $option["key"] }}" class="h-auto w-24 rounded-sm object-contain transition peer-checked:border-[#3986A3] peer-checked:ring-4 peer-checked:ring-[#3986A3]" />
         </label>
     @endforeach
 </div>
