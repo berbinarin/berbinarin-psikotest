@@ -1058,8 +1058,7 @@ class ResultService
             $userAnswer = $response->answer['choice'] ?? null;
             if ($correctAnswer === null || $userAnswer === null) {
                 continue;
-            }
-
+            }    
             $totalQuestions++;
             if ($userAnswer === $correctAnswer) {
                 $totalScore++;
