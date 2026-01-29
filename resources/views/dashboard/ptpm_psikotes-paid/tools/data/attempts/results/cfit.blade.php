@@ -41,7 +41,6 @@
             <p class="mt-2 text-base text-gray-700">Berikut merupakan visualisasi diagram jawaban alat tes CFIT.</p>
         </div>
 
-        @dd($data)
         <!-- Bar Chart -->
         <div class="flex w-full flex-col items-center">
             <canvas id="verticalBarChart" class="mb-1" style="max-height: 400px; height: 400px; max-width: 500px"></canvas>
