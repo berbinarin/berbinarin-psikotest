@@ -78,9 +78,9 @@
         </div>
     </div>
 
-    <div id="countdownExample" class="absolute right-0 top-0">
+    {{-- <div id="countdownExample" class="absolute right-0 top-0">
         <span class="values"></span>
-    </div>
+    </div> --}}
 
     <!-- Modal Konfirmasi Selesai -->
     <div id="confirm-finish-modal" class="fixed inset-0 z-50 flex hidden items-center justify-center bg-black/40">

@@ -1018,10 +1018,16 @@ class ResultService
 
     private function cfit(Attempt $attempt)
     {
-        $attempt->load('responses.question.section', 'user.profile');
+        $attempt->load('responses.question.section', 'user.profile', 'tool.sections.questions');
 
         $totalScore = 0;
         $totalQuestions = 0;
+        $subtests = collect();
+
+        $sections = $attempt->tool?->sections
+            ?->filter(fn($section) => Str::startsWith($section->title ?? '', 'Subtes'))
+            ?->sortBy('order')
+            ?->values() ?? collect();
 
         foreach ($attempt->responses as $response) {
             $question = $response->question;
@@ -1069,6 +1075,62 @@ class ResultService
             }
         }
 
+        foreach ($sections as $section) {
+            $sectionResponses = $attempt->responses
+                ->filter(fn($response) => $response->question && $response->question->section_id === $section->id)
+                ->sortBy(fn($response) => $response->question->order ?? 0)
+                ->values();
+
+            $correctCount = 0;
+            $answers = [];
+
+            foreach ($sectionResponses as $index => $response) {
+                $question = $response->question;
+                $scoring = $question->scoring ?? null;
+                $userAnswer = null;
+                $correctAnswer = null;
+                $isCorrect = null;
+
+                if ($scoring && in_array($question->type, ['multiple_select', 'image_multiple_select'], true)) {
+                    $scores = $scoring['scores'] ?? null;
+                    $choices = $response->answer['choices'] ?? [];
+                    if (is_array($scores) && is_array($choices)) {
+                        $correctAnswer = array_keys(array_filter($scores, fn($value) => (int) $value === 1));
+                        sort($correctAnswer);
+                        $userAnswer = $choices;
+                        sort($userAnswer);
+                        $isCorrect = $userAnswer === $correctAnswer;
+                    }
+                } elseif ($scoring) {
+                    $correctAnswer = $scoring['correct_answer'] ?? null;
+                    $userAnswer = $response->answer['choice'] ?? null;
+                    if ($correctAnswer !== null && $userAnswer !== null) {
+                        $isCorrect = $userAnswer === $correctAnswer;
+                    }
+                }
+
+                if ($isCorrect === true) {
+                    $correctCount++;
+                }
+
+                $answers[] = [
+                    'number' => $question->order ?? ($index + 1),
+                    'user_answer' => $userAnswer,
+                    'correct_answer' => $correctAnswer,
+                    'is_correct' => $isCorrect,
+                    'question_type' => $question->type,
+                ];
+            }
+
+            $totalInSection = $section->questions?->count() ?? $sectionResponses->count();
+            $subtests->push([
+                'title' => $section->title,
+                'total_questions' => $totalInSection,
+                'correct' => $correctCount,
+                'answers' => $answers,
+            ]);
+        }
+
         $profile = $attempt->user?->profile;
         $ageYears = $profile?->age;
         $ageMonths = null;
@@ -1087,6 +1149,7 @@ class ResultService
         return [
             'total_score' => $totalScore,
             'total_questions' => $totalQuestions,
+            'subtests' => $subtests->toArray(),
             'iq' => $iq,
             'iq_category' => $iqCategory,
             'iq_classification' => $iqClassification,
