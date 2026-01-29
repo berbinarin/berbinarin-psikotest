@@ -280,7 +280,6 @@ class CfitQuestionSeeder extends Seeder
             [
                 'section_id' => $cfit->sections[2]->id,
                 'order' => 2,
-                'text' => 'assets/landing/images/psikotes-paid/questions/cfit/contoh/subtes-2/1/Soal.webp',
                 'type' => 'image_multiple_select',
                 'options' => [
                     ['key' => 'A', 'text' => 'assets/landing/images/psikotes-paid/questions/cfit/contoh/subtes-2/1/A.webp'],
@@ -300,7 +299,6 @@ class CfitQuestionSeeder extends Seeder
             [
                 'section_id' => $cfit->sections[2]->id,
                 'order' => 3,
-                'text' => 'assets/landing/images/psikotes-paid/questions/cfit/contoh/subtes-2/2/Soal.webp',
                 'type' => 'image_multiple_select',
                 'options' => [
                     ['key' => 'A', 'text' => 'assets/landing/images/psikotes-paid/questions/cfit/contoh/subtes-2/2/A.webp'],
@@ -322,7 +320,6 @@ class CfitQuestionSeeder extends Seeder
             [
                 'section_id' => $cfit->sections[3]->id,
                 'order' => 1,
-                'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/1/Soal.webp',
                 'type' => 'image_multiple_select',
                 'options' => [
                     ['key' => 'A', 'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/1/A.webp'],
@@ -342,7 +339,6 @@ class CfitQuestionSeeder extends Seeder
             [
                 'section_id' => $cfit->sections[3]->id,
                 'order' => 2,
-                'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/2/Soal.webp',
                 'type' => 'image_multiple_select',
                 'options' => [
                     ['key' => 'A', 'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/2/A.webp'],
@@ -362,7 +358,6 @@ class CfitQuestionSeeder extends Seeder
             [
                 'section_id' => $cfit->sections[3]->id,
                 'order' => 3,
-                'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/3/Soal.webp',
                 'type' => 'image_multiple_select',
                 'options' => [
                     ['key' => 'A', 'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/3/A.webp'],
@@ -382,7 +377,6 @@ class CfitQuestionSeeder extends Seeder
             [
                 'section_id' => $cfit->sections[3]->id,
                 'order' => 4,
-                'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/4/Soal.webp',
                 'type' => 'image_multiple_select',
                 'options' => [
                     ['key' => 'A', 'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/4/A.webp'],
@@ -402,7 +396,6 @@ class CfitQuestionSeeder extends Seeder
             [
                 'section_id' => $cfit->sections[3]->id,
                 'order' => 5,
-                'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/5/Soal.webp',
                 'type' => 'image_multiple_select',
                 'options' => [
                     ['key' => 'A', 'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/5/A.webp'],
@@ -422,7 +415,6 @@ class CfitQuestionSeeder extends Seeder
             [
                 'section_id' => $cfit->sections[3]->id,
                 'order' => 6,
-                'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/6/Soal.webp',
                 'type' => 'image_multiple_select',
                 'options' => [
                     ['key' => 'A', 'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/6/A.webp'],
@@ -442,7 +434,6 @@ class CfitQuestionSeeder extends Seeder
             [
                 'section_id' => $cfit->sections[3]->id,
                 'order' => 7,
-                'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/7/Soal.webp',
                 'type' => 'image_multiple_select',
                 'options' => [
                     ['key' => 'A', 'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/7/A.webp'],
@@ -462,7 +453,6 @@ class CfitQuestionSeeder extends Seeder
             [
                 'section_id' => $cfit->sections[3]->id,
                 'order' => 8,
-                'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/8/Soal.webp',
                 'type' => 'image_multiple_select',
                 'options' => [
                     ['key' => 'A', 'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/8/A.webp'],
@@ -482,7 +472,6 @@ class CfitQuestionSeeder extends Seeder
             [
                 'section_id' => $cfit->sections[3]->id,
                 'order' => 9,
-                'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/9/Soal.webp',
                 'type' => 'image_multiple_select',
                 'options' => [
                     ['key' => 'A', 'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/9/A.webp'],
@@ -502,7 +491,6 @@ class CfitQuestionSeeder extends Seeder
             [
                 'section_id' => $cfit->sections[3]->id,
                 'order' => 10,
-                'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/10/Soal.webp',
                 'type' => 'image_multiple_select',
                 'options' => [
                     ['key' => 'A', 'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/10/A.webp'],
@@ -522,7 +510,6 @@ class CfitQuestionSeeder extends Seeder
             [
                 'section_id' => $cfit->sections[3]->id,
                 'order' => 11,
-                'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/11/Soal.webp',
                 'type' => 'image_multiple_select',
                 'options' => [
                     ['key' => 'A', 'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/11/A.webp'],
@@ -542,7 +529,6 @@ class CfitQuestionSeeder extends Seeder
             [
                 'section_id' => $cfit->sections[3]->id,
                 'order' => 12,
-                'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/12/Soal.webp',
                 'type' => 'image_multiple_select',
                 'options' => [
                     ['key' => 'A', 'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/12/A.webp'],
@@ -562,7 +548,6 @@ class CfitQuestionSeeder extends Seeder
             [
                 'section_id' => $cfit->sections[3]->id,
                 'order' => 13,
-                'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/13/Soal.webp',
                 'type' => 'image_multiple_select',
                 'options' => [
                     ['key' => 'A', 'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/13/A.webp'],
@@ -582,7 +567,6 @@ class CfitQuestionSeeder extends Seeder
             [
                 'section_id' => $cfit->sections[3]->id,
                 'order' => 14,
-                'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/14/Soal.webp',
                 'type' => 'image_multiple_select',
                 'options' => [
                     ['key' => 'A', 'text' => 'assets/landing/images/psikotes-paid/questions/cfit/soal/subtes-2/14/A.webp'],
