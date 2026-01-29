@@ -13,7 +13,9 @@ use Illuminate\Http\Request;
 
 class SubmittedResponseController extends Controller
 {
-    public function __construct(private ResponseService $responseService, private AttemptService $attemptService) {}
+    public function __construct(private ResponseService $responseService, private AttemptService $attemptService)
+    {
+    }
 
     public function introduce()
     {
@@ -33,6 +35,14 @@ class SubmittedResponseController extends Controller
         $tool = Tool::with('sections.questions')->find($this->attemptService->getSession('tool_id'));
         $currentSection = $tool?->sections?->firstWhere('order', $this->attemptService->getSession('section_order'));
         $question = $currentSection?->questions?->firstWhere('order', $this->attemptService->getSession('question_order'));
+
+        \Log::info('CFIT session check', [
+            'attempt_session' => session('attempt_session'),
+            'tool_id' => $this->attemptService->getSession('tool_id'),
+            'section_order' => $this->attemptService->getSession('section_order'),
+            'question_order' => $this->attemptService->getSession('question_order'),
+        ]);
+
 
         if (!$tool || !$currentSection || !$question) {
             $this->attemptService->destroySession();
@@ -142,7 +152,7 @@ class SubmittedResponseController extends Controller
         $sections = $attempt->tool->sections->sortBy('order')->values();
 
         // Temukan index section berdasarkan order
-        $currentIndex = $sections->search(fn ($s) => $s->order == $currentOrder);
+        $currentIndex = $sections->search(fn($s) => $s->order == $currentOrder);
 
         if ($currentIndex === false) {
             // Jika gagal menemukan section, akhiri saja
