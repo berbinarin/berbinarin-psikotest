@@ -4,6 +4,7 @@ namespace App\Services\Dashboard\PsikotesTool;
 
 use App\Models\Attempt;
 use App\Models\Tool;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
 class ResultService
@@ -1011,7 +1012,201 @@ class ResultService
         ];
     }
 
+    private function cfit(Attempt $attempt)
+    {
+        $attempt->load('responses.question.section', 'user.profile');
 
+        $totalScore = 0;
+        $totalQuestions = 0;
+
+        foreach ($attempt->responses as $response) {
+            $question = $response->question;
+            if (!$question || !$question->section) {
+                continue;
+            }
+
+            $sectionTitle = $question->section->title ?? '';
+            if (Str::startsWith($sectionTitle, 'Contoh')) {
+                continue; // abaikan section contoh
+            }
+
+            $scoring = $question->scoring ?? null;
+            if (!$scoring) {
+                continue;
+            }
+
+            if (in_array($question->type, ['multiple_select', 'image_multiple_select'], true)) {
+                $scores = $scoring['scores'] ?? null;
+                $choices = $response->answer['choices'] ?? [];
+                if (!$scores || !is_array($choices)) {
+                    continue;
+                }
+
+                $correctKeys = array_keys(array_filter($scores, fn($value) => (int) $value === 1));
+                sort($correctKeys);
+                $selected = $choices;
+                sort($selected);
+
+                $totalQuestions++;
+                if ($selected === $correctKeys) {
+                    $totalScore++;
+                }
+                continue;
+            }
+
+            $correctAnswer = $scoring['correct_answer'] ?? null;
+            $userAnswer = $response->answer['choice'] ?? null;
+            if ($correctAnswer === null || $userAnswer === null) {
+                continue;
+            }
+
+            $totalQuestions++;
+            if ($userAnswer === $correctAnswer) {
+                $totalScore++;
+            }
+        }
+
+        $profile = $attempt->user?->profile;
+        $ageYears = $profile?->age;
+        $ageMonths = null;
+        if ($profile?->date_of_birth) {
+            $dob = Carbon::parse($profile->date_of_birth);
+            $refDate = $attempt->created_at ?? now();
+            $ageYears = $dob->diffInYears($refDate);
+            $ageMonths = $dob->diffInMonths($refDate) - ($ageYears * 12);
+        }
+
+        $iq = is_int($ageYears) ? $this->cfitScoreToIq($totalScore, $ageYears, $ageMonths) : null;
+        $iqCategory = $iq !== null ? $this->cfitIqCategory($iq) : null;
+        $iqClassification = $iq !== null ? $this->cfitIqClassification($iq) : null;
+        $iqMessage = $iq !== null ? null : 'IQ tidak dapat dihitung karena data usia belum lengkap atau skor tidak ditemukan di tabel.';
+
+        return [
+            'total_score' => $totalScore,
+            'total_questions' => $totalQuestions,
+            'iq' => $iq,
+            'iq_category' => $iqCategory,
+            'iq_classification' => $iqClassification,
+            'iq_message' => $iqMessage,
+        ];
+    }
+
+    private function cfitScoreToIq(int $totalScore, int $age, ?int $ageMonths = null)
+    {
+        $path = storage_path('app/cfit_score.json');
+        if (!is_file($path)) {
+            return null;
+        }
+
+        $raw = json_decode(file_get_contents($path), true);
+        if (!is_array($raw)) {
+            return null;
+        }
+
+        $ageKey = $this->cfitAgeKey($age, $ageMonths);
+        if (!$ageKey || !isset($raw[$ageKey]) || !is_array($raw[$ageKey])) {
+            return null;
+        }
+
+        $scoreKey = (string) $totalScore;
+        if (!array_key_exists($scoreKey, $raw[$ageKey])) {
+            return null;
+        }
+
+        $value = $raw[$ageKey][$scoreKey];
+        return is_int($value) ? $value : (is_numeric($value) ? (int) $value : null);
+    }
+
+    private function cfitAgeKey(int $age, ?int $ageMonths = null): ?string
+    {
+        if ($age >= 17) {
+            return '17_plus';
+        }
+        if ($age === 16) {
+            return '16';
+        }
+        if ($age === 15) {
+            return '15';
+        }
+        if ($age === 14) {
+            return '14';
+        }
+        if ($age <= 13) {
+            if ($ageMonths !== null) {
+                return $ageMonths <= 4 ? '13_0_13_4' : '13_5_13_11';
+            }
+            return '13_5_13_11';
+        }
+
+        return null;
+    }
+
+    private function cfitIqCategory(int $iq)
+    {
+        if ($iq >= 130) {
+            return 'Sangat Tinggi';
+        } elseif ($iq >= 120) {
+            return 'Tinggi';
+        } elseif ($iq >= 110) {
+            return 'Di Atas Rata-Rata';
+        } elseif ($iq >= 90) {
+            return 'Rata-Rata';
+        } elseif ($iq >= 80) {
+            return 'Di Bawah Rata-Rata';
+        } elseif ($iq >= 70) {
+            return 'Rendah';
+        } else {
+            return 'Sangat Rendah';
+        }
+    }
+
+    private function cfitIqClassification(int $iq)
+    {
+        $classification = null;
+        $clinical = null;
+
+        if ($iq >= 170) {
+            $classification = 'Genius';
+        } elseif ($iq >= 140) {
+            $classification = 'Very Superior';
+        } elseif ($iq >= 120) {
+            $classification = 'Superior';
+        } elseif ($iq >= 110) {
+            $classification = 'High Average';
+        } elseif ($iq >= 90) {
+            $classification = 'Average';
+        } elseif ($iq >= 84) {
+            $classification = 'Low Average';
+        } elseif ($iq >= 80) {
+            $classification = 'Low Average';
+        } elseif ($iq >= 70) {
+            $classification = 'Borderline';
+            $clinical = 'Borderline Mental Retardation';
+        } elseif ($iq >= 68) {
+            $classification = 'Borderline';
+            $clinical = 'Borderline Mental Retardation';
+        } elseif ($iq >= 52) {
+            $classification = 'Mentally - Defective';
+            $clinical = 'Mild Mental Retardation';
+        } elseif ($iq >= 36) {
+            $classification = 'Mentally - Defective';
+            $clinical = 'Moderate Mental Retardation';
+        } elseif ($iq >= 30) {
+            $classification = 'Mentally - Defective';
+            $clinical = 'Severe Mental Retardation';
+        } elseif ($iq >= 20) {
+            $classification = 'Mentally - Defective';
+            $clinical = 'Severe Mental Retardation';
+        } else {
+            $classification = 'Mentally - Defective';
+            $clinical = 'Profound Mental Retardation';
+        }
+
+        return [
+            'classification' => $classification,
+            'clinical_classification' => $clinical,
+        ];
+    }
 
     private function epi(Attempt $attempt)
     {
