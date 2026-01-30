@@ -15,9 +15,7 @@
                 <span class="relative z-10 text-center {{ $isCompact ? "text-xs" : "text-sm" }} font-semibold text-[#101828] peer-checked:text-white">{{ $option["label"] }}</span>
             @endif
             <div class="absolute bottom-4 right-4 z-10 flex h-[18px] w-[18px] items-center justify-center rounded border border-[#BFC5D2] bg-white">
-                <svg class="hidden scale-110" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 0C4.03725 0 0 4.03725 0 9C0 13.9628 4.03725 18 9 18C13.9628 18 18 13.9628 18 9C18 4.03725 13.9628 0 9 0ZM8.93175 11.5642C8.6415 11.8545 8.25975 11.9993 7.8765 11.9993C7.49325 11.9993 7.10775 11.853 6.8145 11.5605L4.728 9.5385L5.77275 8.46075L7.8675 10.491L12.2243 6.21525L13.2773 7.284L8.93175 11.5642Z" fill="#3A86A3" />
-                </svg>
+                <img src="{{ asset('assets/landing/icons/ceklis.svg') }}" class="hidden scale-110" width="18" height="18" alt="Ceklis" />
             </div>
         </label>
     @endforeach
@@ -26,19 +24,18 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Mengambil semua input checkbox dengan nama 'answer'
         const checkboxes = document.querySelectorAll('input[type="checkbox"][name="answer[]"]');
 
         checkboxes.forEach((checkbox) => {
             checkbox.addEventListener('change', () => {
                 const selectedCard = checkbox.closest('.card');
-                const selectedSvg = selectedCard.querySelector('svg');
+                const selectedImg = selectedCard.querySelector('img[alt="Ceklis"]');
 
                 // Toggle Checkbox
                 if (checkbox.checked) {
-                    selectedSvg.classList.remove('hidden');
+                    selectedImg.classList.remove('hidden');
                 } else {
-                    selectedSvg.classList.add('hidden');
+                    selectedImg.classList.add('hidden');
                 }
 
                 // Minimal 1 pilihan: required hanya aktif jika tidak ada yang terpilih
