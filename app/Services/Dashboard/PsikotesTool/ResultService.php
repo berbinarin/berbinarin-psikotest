@@ -1029,6 +1029,15 @@ class ResultService
             ?->sortBy('order')
             ?->values() ?? collect();
 
+        if ($sections->isEmpty()) {
+            $sections = $attempt->responses
+                ->map(fn($response) => $response->question?->section)
+                ->filter()
+                ->unique('id')
+                ->sortBy('order')
+                ->values();
+        }
+
         foreach ($attempt->responses as $response) {
             $question = $response->question;
             if (!$question || !$question->section) {
@@ -1076,22 +1085,30 @@ class ResultService
         }
 
         foreach ($sections as $section) {
-            $sectionResponses = $attempt->responses
-                ->filter(fn($response) => $response->question && $response->question->section_id === $section->id)
-                ->sortBy(fn($response) => $response->question->order ?? 0)
-                ->values();
+            $sectionQuestions = $section->questions
+                ?->sortBy('order')
+                ?->values() ?? collect();
+
+            if ($sectionQuestions->isEmpty()) {
+                $sectionQuestions = $attempt->responses
+                    ->filter(fn($response) => $response->question && $response->question->section_id === $section->id)
+                    ->map(fn($response) => $response->question)
+                    ->unique('id')
+                    ->sortBy('order')
+                    ->values();
+            }
 
             $correctCount = 0;
             $answers = [];
 
-            foreach ($sectionResponses as $index => $response) {
-                $question = $response->question;
+            foreach ($sectionQuestions as $index => $question) {
+                $response = $attempt->responses->firstWhere('question_id', $question->id);
                 $scoring = $question->scoring ?? null;
                 $userAnswer = null;
                 $correctAnswer = null;
                 $isCorrect = null;
 
-                if ($scoring && in_array($question->type, ['multiple_select', 'image_multiple_select'], true)) {
+                if ($response && $scoring && in_array($question->type, ['multiple_select', 'image_multiple_select'], true)) {
                     $scores = $scoring['scores'] ?? null;
                     $choices = $response->answer['choices'] ?? [];
                     if (is_array($scores) && is_array($choices)) {
@@ -1101,9 +1118,9 @@ class ResultService
                         sort($userAnswer);
                         $isCorrect = $userAnswer === $correctAnswer;
                     }
-                } elseif ($scoring) {
+                } elseif ($response && $scoring) {
                     $correctAnswer = $scoring['correct_answer'] ?? null;
-                    $userAnswer = $response->answer['choice'] ?? null;
+                    $userAnswer = $response->answer['choice'] ?? $response->answer['value'] ?? null;
                     if ($correctAnswer !== null && $userAnswer !== null) {
                         $isCorrect = $userAnswer === $correctAnswer;
                     }
@@ -1122,7 +1139,7 @@ class ResultService
                 ];
             }
 
-            $totalInSection = $section->questions?->count() ?? $sectionResponses->count();
+            $totalInSection = $sectionQuestions->count();
             $subtests->push([
                 'title' => $section->title,
                 'total_questions' => $totalInSection,
