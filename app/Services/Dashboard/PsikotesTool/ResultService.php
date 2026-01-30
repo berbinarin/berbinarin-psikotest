@@ -1132,13 +1132,15 @@ class ResultService
         }
 
         $profile = $attempt->user?->profile;
-        $ageYears = $profile?->age;
+        $ageYears = null;
         $ageMonths = null;
+        $refDate = $attempt->created_at ?? now();
         if ($profile?->date_of_birth) {
             $dob = Carbon::parse($profile->date_of_birth);
-            $refDate = $attempt->created_at ?? now();
             $ageYears = $dob->diffInYears($refDate);
             $ageMonths = $dob->diffInMonths($refDate) - ($ageYears * 12);
+        } elseif (is_numeric($profile?->age)) {
+            $ageYears = (int) $profile->age;
         }
 
         $iq = is_int($ageYears) ? $this->cfitScoreToIq($totalScore, $ageYears, $ageMonths) : null;
