@@ -68,6 +68,16 @@
                                                     <span class="text-red-500">Gambar soal tidak tersedia.</span>
                                                 @endif
 
+                                            @elseif ($question->type === 'image_multiple_select')
+                                                {{-- Tampilkan gambar soal --}}
+                                                @if (!empty($question->text))
+                                                    <img src="{{ asset($question->text) }}"
+                                                        alt="Soal Gambar"
+                                                        class="max-w-xs rounded mb-2">
+                                                @else
+                                                    <span class="text-red-500">Gambar soal tidak tersedia.</span>
+                                                @endif
+
                                             @else
                                                 {!! $question->text ?? '<span class="text-red-500">Teks pertanyaan tidak ada.</span>' !!}
                                             @endif
@@ -98,6 +108,10 @@
                                                         $formatJawaban = "Pilihan Ganda ({$count} Opsi)";
                                                         break;
                                                     case 'image_multiple_choice':
+                                                        $count = count($question->options ?? []);
+                                                        $formatJawaban = "Pilihan Ganda Bergambar ({$count} opsi)";
+                                                        break;
+                                                    case 'image_multiple_select':
                                                         $count = count($question->options ?? []);
                                                         $formatJawaban = "Pilihan Ganda Bergambar ({$count} opsi)";
                                                         break;
@@ -206,6 +220,46 @@
                                     <div class="mb-4">
                                         <h4 class="font-bold">Gambar Soal:</h4>
                                         <img src="/${question.text}" class="max-w-xs rounded mb-3" />
+                                    </div>
+                                    <hr class="my-3">
+                                `;
+                            } else {
+                                modalHtml += `
+                                    <div class="mb-4 text-sm text-gray-500 italic">
+                                        Soal tidak tersedia.
+                                    </div>
+                                    <hr class="my-3">
+                                `;
+                            }
+
+                            // Render opsi bergambar
+                            modalHtml += '<ul class="grid grid-cols-2 gap-4 mt-4">';
+
+                            question.options.forEach(opt => {
+                                modalHtml += `
+                                    <li class="border p-3 rounded shadow-sm">
+                                        <div class="font-semibold mb-2">${opt.key}</div>
+                                        <img src="/${opt.text}" class="w-full rounded" />
+                                    </li>
+                                `;
+                            });
+
+                            modalHtml += '</ul>';
+                            break;
+                        case 'image_multiple_select':
+                            // Tampilkan gambar soal (jika ada)
+                            if (question.text) {
+                                modalHtml += `
+                                    <div class="mb-4">
+                                        <h4 class="font-bold">Gambar Soal:</h4>
+                                        <img src="/${question.text}" class="max-w-xs rounded mb-3" />
+                                    </div>
+                                    <hr class="my-3">
+                                `;
+                            } else {
+                                modalHtml += `
+                                    <div class="mb-4 text-sm text-gray-500 italic">
+                                        Soal tidak tersedia.
                                     </div>
                                     <hr class="my-3">
                                 `;

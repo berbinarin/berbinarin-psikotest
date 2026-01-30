@@ -13,7 +13,9 @@ use Illuminate\Http\Request;
 
 class SubmittedResponseController extends Controller
 {
-    public function __construct(private ResponseService $responseService, private AttemptService $attemptService) {}
+    public function __construct(private ResponseService $responseService, private AttemptService $attemptService)
+    {
+    }
 
     public function introduce()
     {
@@ -33,6 +35,14 @@ class SubmittedResponseController extends Controller
         $tool = Tool::with('sections.questions')->find($this->attemptService->getSession('tool_id'));
         $currentSection = $tool?->sections?->firstWhere('order', $this->attemptService->getSession('section_order'));
         $question = $currentSection?->questions?->firstWhere('order', $this->attemptService->getSession('question_order'));
+
+        \Log::info('CFIT session check', [
+            'attempt_session' => session('attempt_session'),
+            'tool_id' => $this->attemptService->getSession('tool_id'),
+            'section_order' => $this->attemptService->getSession('section_order'),
+            'question_order' => $this->attemptService->getSession('question_order'),
+        ]);
+
 
         if (!$tool || !$currentSection || !$question) {
             $this->attemptService->destroySession();
@@ -108,16 +118,28 @@ class SubmittedResponseController extends Controller
         return view('landing.psikotes-paid.attempts.complete');
     }
 
+    // public function timesUp()
+    // {
+    //     $attemptId = $this->attemptService->getSession('attempt_id');
+
+    //     if ($attemptId) {
+    //         $attempt = Attempt::find($attemptId);
+    //         if ($attempt && $attempt->status === 'in_progress') {
+    //             // Kalau habis waktu, tandai jadi unfinished
+    //             $attempt->update(['status' => 'unfinished']);
+    //         }
+    //     }
+
+    //     $this->attemptService->destroySession();
+    // }
+
     public function timesUp()
     {
         $attemptId = $this->attemptService->getSession('attempt_id');
+        $currentOrder = $this->attemptService->getSession('section_order');
 
-        if ($attemptId) {
-            $attempt = Attempt::find($attemptId);
-            if ($attempt && $attempt->status === 'in_progress') {
-                // Kalau habis waktu, tandai jadi unfinished
-                $attempt->update(['status' => 'unfinished']);
-            }
+        if (!$attemptId || $currentOrder === null) {
+            return;
         }
 
         $attempt = Attempt::with('tool.sections.questions')->find($attemptId);
@@ -130,7 +152,7 @@ class SubmittedResponseController extends Controller
         $sections = $attempt->tool->sections->sortBy('order')->values();
 
         // Temukan index section berdasarkan order
-        $currentIndex = $sections->search(fn ($s) => $s->order == $currentOrder);
+        $currentIndex = $sections->search(fn($s) => $s->order == $currentOrder);
 
         if ($currentIndex === false) {
             // Jika gagal menemukan section, akhiri saja
@@ -162,58 +184,6 @@ class SubmittedResponseController extends Controller
 
         $this->attemptService->destroySession();
     }
-
-    // public function timesUp()
-    // {
-    //     $attemptId = $this->attemptService->getSession('attempt_id');
-    //     $currentOrder = $this->attemptService->getSession('section_order');
-
-    //     if (!$attemptId || $currentOrder === null) {
-    //         return;
-    //     }
-
-    //     $attempt = Attempt::with('tool.sections')->find($attemptId);
-
-    //     if (!$attempt || $attempt->status !== 'in_progress') {
-    //         return;
-    //     }
-
-    //     // Ambil semua section urut
-    //     $sections = $attempt->tool->sections->sortBy('order')->values();
-
-    //     // Temukan index section berdasarkan order
-    //     $currentIndex = $sections->search(fn ($s) => $s->order == $currentOrder);
-
-    //     if ($currentIndex === false) {
-    //         // Jika gagal menemukan section, akhiri saja
-    //         $attempt->update(['status' => 'unfinished']);
-    //         $this->attemptService->destroySession();
-    //         return;
-    //     }
-
-    //     // Cek apakah ada next section
-    //     $hasNext = $currentIndex + 1 < $sections->count();
-
-    //     if ($hasNext) {
-    //         // Pindah ke next section
-    //         $next = $sections[$currentIndex + 1];
-
-    //         /// reset question ke awal section
-    //         $firstQuestion = $next->questions->sortBy('order')->first();
-
-    //         $this->attemptService->updateSession([
-    //             'section_order' => $next->order,
-    //             'question_order' => $firstQuestion->order ?? 1,
-    //         ]);
-
-    //         return; // Jangan akhiri attempt
-    //     }
-
-    //     // Kalau tidak ada next section → akhiri tes
-    //     $attempt->update(['status' => 'unfinished']); // atau 'finished'
-
-    //     $this->attemptService->destroySession();
-    // }
 
     public function getCheckpointQuestion()
     {

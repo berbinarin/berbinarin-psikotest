@@ -1018,10 +1018,25 @@ class ResultService
 
     private function cfit(Attempt $attempt)
     {
-        $attempt->load('responses.question.section', 'user.profile');
+        $attempt->load('responses.question.section', 'user.profile', 'tool.sections.questions');
 
         $totalScore = 0;
         $totalQuestions = 0;
+        $subtests = collect();
+
+        $sections = $attempt->tool?->sections
+            ?->filter(fn($section) => Str::startsWith($section->title ?? '', 'Subtes'))
+            ?->sortBy('order')
+            ?->values() ?? collect();
+
+        if ($sections->isEmpty()) {
+            $sections = $attempt->responses
+                ->map(fn($response) => $response->question?->section)
+                ->filter()
+                ->unique('id')
+                ->sortBy('order')
+                ->values();
+        }
 
         foreach ($attempt->responses as $response) {
             $question = $response->question;
@@ -1062,22 +1077,87 @@ class ResultService
             $userAnswer = $response->answer['choice'] ?? null;
             if ($correctAnswer === null || $userAnswer === null) {
                 continue;
-            }
-
+            }    
             $totalQuestions++;
             if ($userAnswer === $correctAnswer) {
                 $totalScore++;
             }
         }
 
+        foreach ($sections as $section) {
+            $sectionQuestions = $section->questions
+                ?->sortBy('order')
+                ?->values() ?? collect();
+
+            if ($sectionQuestions->isEmpty()) {
+                $sectionQuestions = $attempt->responses
+                    ->filter(fn($response) => $response->question && $response->question->section_id === $section->id)
+                    ->map(fn($response) => $response->question)
+                    ->unique('id')
+                    ->sortBy('order')
+                    ->values();
+            }
+
+            $correctCount = 0;
+            $answers = [];
+
+            foreach ($sectionQuestions as $index => $question) {
+                $response = $attempt->responses->firstWhere('question_id', $question->id);
+                $scoring = $question->scoring ?? null;
+                $userAnswer = null;
+                $correctAnswer = null;
+                $isCorrect = null;
+
+                if ($response && $scoring && in_array($question->type, ['multiple_select', 'image_multiple_select'], true)) {
+                    $scores = $scoring['scores'] ?? null;
+                    $choices = $response->answer['choices'] ?? [];
+                    if (is_array($scores) && is_array($choices)) {
+                        $correctAnswer = array_keys(array_filter($scores, fn($value) => (int) $value === 1));
+                        sort($correctAnswer);
+                        $userAnswer = $choices;
+                        sort($userAnswer);
+                        $isCorrect = $userAnswer === $correctAnswer;
+                    }
+                } elseif ($response && $scoring) {
+                    $correctAnswer = $scoring['correct_answer'] ?? null;
+                    $userAnswer = $response->answer['choice'] ?? $response->answer['value'] ?? null;
+                    if ($correctAnswer !== null && $userAnswer !== null) {
+                        $isCorrect = $userAnswer === $correctAnswer;
+                    }
+                }
+
+                if ($isCorrect === true) {
+                    $correctCount++;
+                }
+
+                $answers[] = [
+                    'number' => $question->order ?? ($index + 1),
+                    'user_answer' => $userAnswer,
+                    'correct_answer' => $correctAnswer,
+                    'is_correct' => $isCorrect,
+                    'question_type' => $question->type,
+                ];
+            }
+
+            $totalInSection = $sectionQuestions->count();
+            $subtests->push([
+                'title' => $section->title,
+                'total_questions' => $totalInSection,
+                'correct' => $correctCount,
+                'answers' => $answers,
+            ]);
+        }
+
         $profile = $attempt->user?->profile;
-        $ageYears = $profile?->age;
+        $ageYears = null;
         $ageMonths = null;
+        $refDate = $attempt->created_at ?? now();
         if ($profile?->date_of_birth) {
             $dob = Carbon::parse($profile->date_of_birth);
-            $refDate = $attempt->created_at ?? now();
             $ageYears = $dob->diffInYears($refDate);
             $ageMonths = $dob->diffInMonths($refDate) - ($ageYears * 12);
+        } elseif (is_numeric($profile?->age)) {
+            $ageYears = (int) $profile->age;
         }
 
         $iq = is_int($ageYears) ? $this->cfitScoreToIq($totalScore, $ageYears, $ageMonths) : null;
@@ -1088,6 +1168,7 @@ class ResultService
         return [
             'total_score' => $totalScore,
             'total_questions' => $totalQuestions,
+            'subtests' => $subtests->toArray(),
             'iq' => $iq,
             'iq_category' => $iqCategory,
             'iq_classification' => $iqClassification,
