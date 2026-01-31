@@ -156,12 +156,21 @@
     </head>
     <body>
         @php
-            $subtestTotalQuestions = [17, 7, 18, 13];
-            $subtestScores = [12, 4, 13, 10];
+            $subtests = $data['subtests'] ?? [];
+            $subtestTotalQuestions = collect($subtests)->pluck('total_questions')->values()->all();
+            $subtestScores = collect($subtests)->pluck('correct')->values()->all();
+            $subtestLabels = collect($subtests)->pluck('title')->values()->all();
             $subtestColors = ["#7aa3b3", "#f2d16a", "#7b7fdf", "#e69ce7"];
             $backgroundColor = "#ff6060";
-            $maxScore = 25;
+            $maxScore = max($subtestTotalQuestions ?: [1]);
             $maxHeight = 200;
+            $iqClassification = $data['iq_classification'] ?? null;
+            $iqClassificationText = is_array($iqClassification)
+                ? trim(implode(' - ', array_filter([
+                    $iqClassification['classification'] ?? null,
+                    $iqClassification['clinical_classification'] ?? null,
+                ])))
+                : $iqClassification;
         @endphp
 
         <h2 class="section-title">Hasil Tes Psikologi CFIT</h2>
@@ -171,16 +180,17 @@
                 <!-- Left: bar chart -->
                 <td style="vertical-align: top; width: 250px" class="no-border">
                     <div class="cfit-chart">
-                        @foreach ($subtestScores as $index => $score)
+                        @forelse ($subtestScores as $index => $score)
                             @php
-                                $totalQuestions = $subtestTotalQuestions[$index];
+                                $totalQuestions = $subtestTotalQuestions[$index] ?? 0;
+                                $scoreValue = $score ?? 0;
                                 $totalHeight = ($totalQuestions / $maxScore) * $maxHeight;
-                                $scoreHeight = ($score / $maxScore) * $maxHeight;
-                                $color = $subtestColors[$index];
+                                $scoreHeight = ($scoreValue / $maxScore) * $maxHeight;
+                                $color = $subtestColors[$index % count($subtestColors)];
                             @endphp
 
                             <div class="cfit-bar-wrapper">
-                                <div class="cfit-bar-label" style="margin-bottom: 4px">{{ $score }}</div>
+                                <div class="cfit-bar-label" style="margin-bottom: 4px">{{ $scoreValue }}</div>
                                 <div class="cfit-bar-container" style="height: {{ round($totalHeight) }}px">
                                     <!-- Background bar: total soal -->
                                     <div class="cfit-bar-background" style="height: {{ round($totalHeight) }}px; background: {{ $backgroundColor }}"></div>
@@ -188,7 +198,9 @@
                                     <div class="cfit-bar-foreground" style="height: {{ round($scoreHeight) }}px; background: {{ $color }}"></div>
                                 </div>
                             </div>
-                        @endforeach
+                        @empty
+                            <div style="color: #aaa; font-size: 12px">Subtes tidak tersedia.</div>
+                        @endforelse
                     </div>
                 </td>
 
@@ -196,17 +208,14 @@
                 <td style="vertical-align: bottom; width: 150px" class="no-border">
                     <div style="margin-top: 8px; margin-bottom: 30px; font-size: 13px">
                         <br />
-                        <span style="display: inline-block; width: 12px; height: 12px; border-radius: 2px; background: #7aa3b3; margin: 0 4px 0 0"></span>
-                        Subtes 1
-                        <br />
-                        <span style="display: inline-block; width: 12px; height: 12px; border-radius: 2px; background: #f2d16a; margin: 0 4px 0 0"></span>
-                        Subtes 2
-                        <br />
-                        <span style="display: inline-block; width: 12px; height: 12px; border-radius: 2px; background: #7b7fdf; margin: 0 4px 0 0"></span>
-                        Subtes 3
-                        <br />
-                        <span style="display: inline-block; width: 12px; height: 12px; border-radius: 2px; background: #e69ce7; margin: 0 4px 0 0"></span>
-                        Subtes 4
+                        @forelse ($subtestLabels as $index => $label)
+                            @php $legendColor = $subtestColors[$index % count($subtestColors)]; @endphp
+                            <span style="display: inline-block; width: 12px; height: 12px; border-radius: 2px; background: {{ $legendColor }}; margin: 0 4px 0 0"></span>
+                            {{ $label ?: ('Subtes ' . ($index + 1)) }}
+                            <br />
+                        @empty
+                            <span style="color: #aaa">Subtes tidak tersedia.</span>
+                        @endforelse
                     </div>
                 </td>
 
@@ -214,21 +223,19 @@
                 <td style="vertical-align: top" class="no-border">
                     <div class="summary-box">
                         <div class="summary-label">IQ</div>
-                        <div class="summary-value">70</div>
+                        <div class="summary-value">{{ $data['iq'] ?? '—' }}</div>
 
                         <div class="summary-label">Kategori</div>
-                        <div class="summary-value">Rendah</div>
+                        <div class="summary-value">{{ $data['iq_category'] ?? '—' }}</div>
 
                         <div class="summary-label">Klasifikasi</div>
-                        <div class="summary-value summary-classification">Mentally - Defective Profound Mental Retardation
-
-                        {{--
+                        <div class="summary-value summary-classification">{{ $iqClassificationText ?: '—' }}
                             @if (!empty($data['iq_message']))
-                            <div style="margin-top:6px; font-size:11px; line-height:1.4;">
-                            {{ $data['iq_message'] }}
-                            </div>
+                                <div style="margin-top: 6px; font-size: 11px; line-height: 1.4; color: #777;">
+                                    {{ $data['iq_message'] }}
+                                </div>
                             @endif
-                        --}}
+                        </div>
                     </div>
                 </td>
             </tr>
@@ -237,9 +244,13 @@
         <div class="detail">
             <h3>Detail Jawaban:</h3>
             <div class="subtest-container">
-                @foreach ([1, 2, 3, 4] as $i)
+                @forelse ($subtests as $index => $subtest)
+                    @php
+                        $subtestTitle = $subtest['title'] ?? ('Subtes ' . ($index + 1));
+                        $answers = $subtest['answers'] ?? [];
+                    @endphp
                     <div class="subtest">
-                        <h4>Subtes {{ $i }}</h4>
+                        <h4>{{ $subtestTitle }}</h4>
                         <table>
                             <thead>
                                 <tr>
@@ -249,15 +260,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
-                                    $dummyNumbers = range(1, 15);
-                                @endphp
-
-                                @forelse ($dummyNumbers as $num)
+                                @forelse ($answers as $answer)
+                                    @php
+                                        $userAnswer = $answer['user_answer'] ?? null;
+                                        $correctAnswer = $answer['correct_answer'] ?? null;
+                                        $displayUserAnswer = is_array($userAnswer)
+                                            ? (count($userAnswer) ? implode(', ', $userAnswer) : '—')
+                                            : ($userAnswer ?? '—');
+                                        $displayCorrectAnswer = is_array($correctAnswer)
+                                            ? (count($correctAnswer) ? implode(', ', $correctAnswer) : '—')
+                                            : ($correctAnswer ?? '—');
+                                    @endphp
                                     <tr>
-                                        <td>{{ $num }}.</td>
-                                        <td>A</td>
-                                        <td>B</td>
+                                        <td>{{ $answer['number'] ?? '-' }}.</td>
+                                        <td>{{ $displayUserAnswer }}</td>
+                                        <td>{{ $displayCorrectAnswer }}</td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -267,7 +284,9 @@
                             </tbody>
                         </table>
                     </div>
-                @endforeach
+                @empty
+                    <div style="color: #aaa">Subtes tidak tersedia.</div>
+                @endforelse
             </div>
         </div>
     </body>

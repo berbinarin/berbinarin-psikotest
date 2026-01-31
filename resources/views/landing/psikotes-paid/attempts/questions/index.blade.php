@@ -43,6 +43,11 @@
                         </div>
 
                         <div class="mx-auto flex w-full flex-1 flex-col gap-4">
+                            @if ($question->tool->name === "CFIT" && Str::startsWith($question->section->title ?? "", "Contoh"))
+                                <p class="text-center font-plusJakartaSans text-sm font-semibold text-[#106681]">
+                                    {{ $question->section->title }}
+                                </p>
+                            @endif
                             @if ($question->type)
                                 @include("landing.psikotes-paid.attempts.questions." . Str::slug($question->type))
                             @endif

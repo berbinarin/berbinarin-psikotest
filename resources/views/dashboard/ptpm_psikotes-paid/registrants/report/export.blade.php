@@ -380,12 +380,14 @@
             <div class="section">
                 <h2 class="section-title">Testimoni Pendaftar</h2>
                 <div class="testimoni-container">
-                    @foreach ($registrant->user->testimonials as $testimoni)
+                    @forelse ($registrant->user->testimonials as $testimoni)
                         <div class="testimoni-item">
                             <p class="testimoni-question">{{ $testimoni->question }}</p>
                             <p class="testimoni-answer">{{ $testimoni->answer }}</p>
                         </div>
-                    @endforeach
+                    @empty
+                        <p style="text-align:center; color:#999;">Belum ada testimoni untuk pendaftar ini.</p>
+                    @endforelse
                 </div>
             </div>
         </div>
