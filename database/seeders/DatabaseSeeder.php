@@ -90,6 +90,10 @@ class DatabaseSeeder extends Seeder
             // RMIB
             Tools\RMIB\RmibSectionSeeder::class,
             Tools\RMIB\RmibQuestionSeeder::class,
+            
+            // MSDT
+            Tools\MSDT\MsdtSectionSeeder::class,
+            Tools\MSDT\MsdtQuestionSeeder::class,
 
             // CFIT
             Tools\CFIT\CfitSectionSeeder::class,

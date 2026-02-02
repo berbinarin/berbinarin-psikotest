@@ -1465,6 +1465,402 @@ class ResultService
         ];
     }
 
+    private function msdt(Attempt $attempt)
+    {
+        $attempt->load('responses.question', 'user');
+
+        // Kategori
+        $categories = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+
+        $scores = collect($categories)->mapWithKeys(fn($key) => [$key => 0]);
+
+        foreach ($attempt->responses as $response) {
+            if (!isset($response->question) || !isset($response->question->scoring)) {
+                continue;
+            }
+
+            $userChoice = $response->answer['choice'];
+            $category = $response->question->scoring[$userChoice] ?? null;
+
+            if ($category && $scores->has($category)) {
+
+                $currentScore = $scores->get($category);
+
+                $newScore = $currentScore + 1;
+
+                $scores->put($category, $newScore);
+            }
+        }
+
+        // Penambahan skor akhir
+        $addOnScore = ['A' => 1, 'B' => 2, 'C' => 1, 'D' => 0, 'E' => 3, 'F' - 1, 'G' => 0, 'H' => -4];
+
+        foreach ($categories as $category) {
+            $finalScore = $scores->get($category);
+
+            $newScore = $finalScore + $addOnScore[$category];
+
+            $scores->put($category, $newScore);
+        }
+
+        //  Perhitungan klasifikasi
+        $classification = [
+            'I' => $scores[2] + $scores[3] + $scores[6] + $scores[7],
+            'II' => $scores[1] + $scores[3] + $scores[5] + $scores[7],
+            'III' => $scores[4] + $scores[4] + $scores[6] + $scores[7],
+            'IV' => $scores[0],
+        ];
+
+        $description = $this->getMsdtDescription($classification);
+    }
+
+    private function getMsdtDescription(array $classification): array
+    {
+        $key =
+            ($classification['I'] >= 34 ? '1' : '0') .
+            ($classification['II'] >= 34 ? '1' : '0') .
+            ($classification['III'] >= 34 ? '1' : '0');
+
+        $map = $this->msdtMap();
+
+        return $map[$key] ?? [];
+    }
+
+
+    private function msdtMap(): array
+    {
+        return [
+            /** 111 */
+            '111' => [
+                'type' => 'Executive',
+                'status' => 'Lebih Efektif',
+                'text' => [
+                    'description' => [
+                        'Menampilkan oleh pemimpin yang menggunakan TO dan RO tinggi pada situasi yang tepat, sehingga tingkah lakunya menjadi efektif.',
+                        'Pemimpin ini merupakan motivator yang baik, menentukan standar kerja tinggi, serta menekankan kerja sama kelompok.'
+                    ],
+                    'feature' => [
+                        '1' => [
+                            'general' => 'Berorientasi pada tugas',
+                            'characteristic' => [
+                                'Memandang bahwa pekerjaan orang lain sama baiknya dengan pekerjaan sendiri.',
+                                'Menetapkan standar yang tinggi untuk produksi',
+                                'Membangkitkan partisipasi terhadap bawahan',
+                                'Kepatuhannya terhadap tugas sangat meyakinkan kepada bawahan.',
+                                'Memadukan antara kepentingan individu dengan kepentingan organisasi.',
+                                'Memberikan semangat yang tinggi disertai contoh moral yang tinggi pula.',
+                                'Tidak memeras bawahan, tetapi bawahan tetap bekerja keras dengan penuh kesadaran dan kesukarelaan.',
+                            ]
+                        ],
+
+                        '2' => [
+                            'general' => 'Berorientasi pada hubungan baik',
+                            'characteristic' => [
+                                'Memeperlakukan orang lain sesuai dengan sifat masing-masing orang, dan memandang orang lain sebagia teman kerja yang penting.',
+                                'Pergaulannya dengan ornag lain sangat baik sehingga menjadi teladan bagi semuanya.',
+                                'Menciptakan keinginan maju kearah yang lebih baik kepada bawahannya.',
+                                'Memandang semua bawahannya sebagai orang yang telah dewasa dan matang, sehingga mereka perlu memperoleh kebebasan dan disamping itu juga keterikatan akan tugas dan tanggung jawab.',
+                            ]
+                        ],
+
+                        '3' => [
+                            'general' => 'Berorientasi pada keefektifan',
+                            'characteristic' => [
+                                'Bekerja sangat efektif.',
+                                'Melatih bawahannya untuk menjadi kelompok yang efisien dan bekerja secara lancar.',
+                                'Menyambut baik ketidak-cocokan dan konflik sebagai sesuatu yang wajar dan pasti terjadi dalam suatu organisasi.',
+                                'Tidak menekan, tidak memalingkan muka terhadap konflik, dan tidak menghindarkan diri dari persengketaan yang timbul.',
+                                'Menyelesaikan semua perbedaan pendapat dengan sebaik-baiknya.',
+                                'Tidak menutupi kesalahan timnya.',
+                                'Tahu saat yang tepat untuk membuat putusan.',
+                                'Tahu saat yang tepat kapan tim harus bermusyawarah untuk menyelesaikan hal-hal yang penting.'
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+
+            /** 110 */
+            '110' => [
+                'type' => 'Compromiser',
+                'status' => 'Kurang Efektif',
+                'text' => [
+                    'description' => [
+                        'Ditampilkan oleh pemimpin yang menggunakan TO dan RO tinggi dalam siatuasi tertentu bagi orang tertentu. Oleh karenanya ia kurang efektif. Ia seorang pengambil keputusan yang kurang baik dan membiarkan dirinya dipengaruhi oleh berbagai pihak. Ia merupakan orang yang hanya mampu mengurangi berbagai tekanan dan permasalahan secara minimal tetapi bukan merupakan seorang pemimpin yang mampu menyusun dan menerapkan jangka panjang secara optimal.',
+                        'Tipe pemimpin <i>compromiser</i> adalah tipe pemimpin yang memiliki orientasi pada tugas dan hubungan baik dengan orang lain.'
+                    ],
+                    'feature' => [
+                        '1' => [
+                            'general' => 'Berorientasi pada hubungan baik dengan orang lain',
+                            'characteristic' => [
+                                'Membiarkan semua orang mengatakan pendapatnya agar mereka merasa ikut serta dalam proses pembuatan keputusan',
+                                'Merasa beruntung bila semuanya dapat berjalan baik.',
+                                'Membuat atasan atau orang-orng yang mempengaruhi kariernya menjadi senang, serta suka mengambil muka atau berpura-pura berbuat baik.'
+                            ]
+                        ],
+
+                        '2' => [
+                            'general' => 'Berorientasi pada tugas',
+                            'characteristic' => [
+                                'Selain menilai setiap tugas yang akan dikerjakan',
+                                'Setiap tugas harus merupakan suatu rangkaian kompromi.'
+                            ]
+                        ],
+
+                        '3' => [
+                            'general' => 'Kurang berorientasi pada keefektifan',
+                            'characteristic' => [
+                                'Selalu mendua hati dan selalu mementingkan kompromi dalam menangani segala sesuatu.',
+                                'Tidak pernah mengerjakan sesuatu dengan baik.',
+                                'Dia mendorong bawahan namun tidak sepenuh hati dan tidak bersungguh-sungguh.',
+                                'Memahami manfaat orang-orang yang berorientasi pada tugas dan hubungan baik, namun tidak mampu dan tidak mau menerapkan secara efektif.'
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+
+            '101' => [
+                'type' => 'Benevolent Autocrat',
+                'status' => 'Lebih Efektif',
+                'text' => [
+                    'description' => [
+                        'Ditampilkan oleh pemimpin yang menggunakan TO tinggi, RO rendah dalam situasi yang sesuai sehingga bertingkah laku secara efektif. Ia merupakan manajer yang mengetahui tentang apa yang diinginkan dan bagaimana cara mencapainya tanpa menimpbulkan keresahan bawahan.',
+                        'Pemimpin yang bertipe <i>benevolent autocrat</i> adalah tipe pemimpin yang berorientasi pada tugas dan keefektifan.'
+                    ],
+                    'feature' => [
+                        '1' => [
+                            'general' => 'Berorientasi pada tugas',
+                            'characteristic' => [
+                                'Mahir membuat orang lain mengerjakan apa yang diinginkan namun tanpa menciptakan rasa dendam terhadapnya.',
+                                'Sifat-sifat lain hamper mirip dengan tipe autocrat, namun lebih lancer dan lebih baik sebab dia juga berorientasi pada keefektifan.'
+                            ]
+                        ],
+
+                        '2' => [
+                            'general' => 'Berorientasi pada keefektifan',
+                            'characteristic' => [
+                                'Mementingkan keefektifan dalam memperoleh hasil yang diinginkan.',
+                                'Memperbaiki keterampilan dengan belajar dari pengalaman dan kesalahan.',
+                                'Mengetahui peraturan-peraturan serta metode-metode dengan sangat baik.',
+                            ]
+                        ],
+
+                        '3' => [
+                            'general' => 'Kurang berorientasi pada hubungan baik',
+                            'characteristic' => [
+                                'Kurang yakin sepenuhnya pada dirinya sendiri dalam cara menangani bawahannya.',
+                                'Akibatnya bawahannya banyak yang tidak bertanggung jawab kepadanya, meskipun dia sangat bertanggung jawab terhadap bawahannya.',
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+
+            '100' => [
+                'type' => 'Autocrat',
+                'status' => 'Kurang Efektif',
+                'text' => [
+                    'description' => [
+                        'Ditampilkan oleh pemimpin yang menggunakan TO tinggi RO rendah. Dalam situasi yang tidak sejalan dengan tingkah laku bawahannya sehingga kurang efektif. Ia merupakan pemimpin yang tidak mempercayai orang lain, tidak menyenangkan, dan hanya tertarik pada tugas-tugas yang mendadak dan sesaat.',
+                        'Pemimpin yang bertipe <i>autocrat</i> adalah tipe pemimpin yang mempunyai orientasi pada tugas saja.'
+                    ],
+                    'feature' => [
+                        '1' => [
+                            'general' => 'Berorientasi pada tugas saja',
+                            'characteristic' => [
+                                'Melaksanakan tugas adalah diatas segala-galanya, artinya melaksanaka tugas adalah hal yang paling penting.',
+                                'Berpendapat bahwa orang pada dasarnya tidak suka bekerja atau suka menghindarkan diri dari tugas yang dibebankan. Oleh sebab itu tipe kepemimpinan yang demikian memandang bahwa bawahan tidak memiliki inisiatif sendiri.',
+                            ]
+                        ],
+
+                        '2' => [
+                            'general' => 'Berorientasi pada hubungan baik',
+                            'characteristic' => [
+                                'Kurang mengacuhkan pergaulan sesamanya dan sesame bawahannya.',
+                                'Kurang mempercayai orang lain.',
+                                'Orang pada umumnya takut kepadanya dan kurang menyukainya.',
+                                'Berpendapat bahwa bawahan tidak lebih dari tambahan mesin.',
+                                'Tugas bawahan tidak lain dan tidak lebih dari menuruti perintah pimpinan.',
+                                'Tidak mudah memberikan maaf kepada orang lain.',
+                                'Kepemimpinannya akan memperoleh ketaatan buta dan mungkin sekali akan diasingkan dari kelompoknya.',
+                            ]
+                        ],
+
+                        '3' => [
+                            'general' => 'Berorientasi pada keefektifan',
+                            'characteristic' => [
+                                'Pandangan pada pekerjaan amat sederhana, yaitu hanya korelasi antara pemimpin yang mengeluarkan perintah dan bawahan yang mengerjakan perintah.',
+                                'Tidak memahami arti menggerakan bawahan, kecuali hanya dengan main perintah saja.',
+                                'Tanggung jawab hanya pada tangan pemimpin.',
+                                'Membangkitkan rasa takut kepada bawahan agar bawahan mau bekerja.',
+                                'Menangani konflik yang timbul dengan jalan menekannya.',
+                                'Apabila ada bawahannya yang berbeda pendapat dengan dia berarti menentang kewenangannya.',
+                                'Akibat dari sifat-sifatnya akan menghasilkan kelompok yang terpecah-pecah, pembuat masalah, dan orang-orang yang bertipe deserter.',
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+
+            '011' => [
+                'type' => 'Developer',
+                'status' => 'Lebih Efektif',
+                'text' => [
+                    'description' => [
+                        'Ditampilkan oleh pemimpin yang menggunakan TO rendah, RO tinggi dalam siatusi yang tepat sehingga dapat bertindak secara efektif. Ia merupakan pemimpin yang mempercayai orang lain dalam rangka pengembangan bawahannya secara pribadi.',
+                        'Pemimpin yang bertipe <i>developer</i>, adalah tipe pemimpin yang memiliki orientasi atas keefektifan dan hubungan baik dengan orang lain.'
+                    ],
+                    'feature' => [
+                        '1' => [
+                            'general' => 'Berorientasi pada keefektifan',
+                            'characteristic' => [
+                                'Mahir dalam menciptakan kondisi untuk bekerjasama dalam menciptakan kondisi untuk bertanggungjawab.','Efektif dalam hal bekerjasamadan menggerakan orang lain.',
+                            ]
+                        ],
+
+                        '2' => [
+                            'general' => 'Berorientasi pada hubungan baik dengan orang lain',
+                            'characteristic' => [
+                                ' Percaya penuh kepada orang lain.',
+                                'Mengadakan hubungan baik dengan orang lain untuk mengembangkan bakat-bakat mereka.',
+                                'Percaya bahwa orang lain dapat melakukan pengarahan dan pengendalian diri sendiri.',
+                                'Percaya bahwa orang lain dapat bertanggung jawab penuh.',
+                                'Percaya bahwa kecerdasan, kreativitas dan daya khayal tidak hanya dimiliki oleh para bawahan.',
+                            ]
+                        ],
+
+                        '3' => [
+                            'general' => 'Kurang atau tidak berorientasi pada tugas',
+                            'characteristic' => [
+                                'Memiliki vasibilitas yang rendah terhadap tugas.',
+                                'Berpendapat bahwa kerja adalah biasa saja, sama halnya dengan beristirahat atau bermain.',
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+
+            '010' => [
+                'type' => 'Missionary',
+                'status' => 'Kurang Efektif',
+                'text' => [
+                    'description' => [
+                        'Ditampilkan oleh pemimpin yang menggunakan TO rendah dan RO tinggi dimana ia lebih mementingkan keharmonisan organisasi dari pada pelaksanaan tugas oleh karena itu ia merupakan pemimpin yang kurang efektif.',
+                        'Pemimpin yang bertipe <i>missionary</i>, adalah tipe pemimpin yang hanya mempunyai sifat yang berorientasi pada hubungan kerja saja.'
+                    ],
+                    'feature' => [
+                        '1' => [
+                            'general' => 'Berorientasi pada hubungan baik',
+                            'characteristic' => [
+                                'Peramah dan murah senyum kepada semua orang.',
+                                'Menjalin hubungan yang akrab dengan orang lain.',
+                                'Persahabatan melebihi segala-galanya.',
+                                'Mecegah terjadinya pertentangan walaupun kecil.', 
+                                'Tidak pernah berdebat atau mengadakan konflik dengan orang lain.',
+                            ]
+                        ],
+
+                        '2' => [
+                            'general' => 'Tidak atau kurang berorientasi pada tugas',
+                            'characteristic' => [
+                                'Melaksanakan tugas dengan santai. Yang penting situasi kerja menyenangkan bawahannya.', 
+                                'Membahagiakan bawahan agar mewreka suka melaksanakan tugas dengan baik.',
+                            ]
+                        ],
+
+                        '3' => [
+                            'general' => 'Tidak berorientasi pada keefektifan',
+                            'characteristic' => [
+                                'Mencapai hasil kurang penting. Yang penting adalah hubunagn baik dengan orang lain, khususnya dengan anak buahnya.',
+                                'Hasil yang dicapai minimum sekali.',
+                                'Kurang atau tidak pernah memecahkan persoalan.',
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+
+            '001' => [
+                'type' => 'Bureaucrat',
+                'status' => 'Lebih Efektif',
+                'text' => [
+                    'description' => [
+                        'Ditampilkan oleh pemimpin yang menggunakan TO rendah RO rendah. Dalam situasi yang sesuai sehingga ia dapat bertindak efektif ia merupakan pemimpin yang menekankan pada aturan dan prosedur untuk kepentingan dirinya serta menjalankan pengaturan dan pengawasan dengan caranya sendiri. Ia termasuk pemimpin yang hati-hati dalam bertindak.',
+                        'Pemimpin yang bertipe <i>bureaucrat<i/> adalah tipe pemimpin yang hanya berorientasi pada keefektifan saja.'
+                    ],
+                    'feature' => [
+                        '1' => [
+                            'general' => 'Selalu berorientasi pada keefektifan',
+                            'characteristic' => [
+                                'Bekerja sesuai dengan prosedur yang benar dan peraturan yang berlaku.',
+                                'Taat pada peraturan organisasi serta taat pada perintah secara tepat.',
+                                'Memelihara kepentingan lingkungan dengan selalu mengikuti aturan-aturan manajerial.',
+                            ]
+                        ],
+
+                        '2' => [
+                            'general' => 'Tidak atau kurang berorientasi pada tugas',
+                            'characteristic' => [
+                                'Tidak menyukai tugas yang diserahkan kepadanya.',
+                                'Ide-idenya tidak atau kurang mendorong untuk meningkatkan produksi.',
+                            ]
+                        ],
+
+                        '3' => [
+                            'general' => 'Tidak atau kurang berorientasi pada hubungan dengan orang lain',
+                            'characteristic' => [
+                                'Tidak atau kurang menyukai masyarakat.',
+                                'Tidak atau kurang mengembangkan hubungan dengan bawahannya.',
+                                'Sangat percaya bahwa hubungan baik dengan orang lain sulit dicapai.',
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+
+            '000' => [
+                'type' => 'Deserter',
+                'status' => 'Kurang Efektif',
+                'text' => [
+                    'description' => [
+                        'Ditampilkan oleh pemimpin yang menggunakan TO dan RO rendah dalam situasi yang tidak tepat sehingga ia tidak bertindak secara efektif. Ia merupakan pemimpin yang pasif serta tidak mau terlibat dalam pekerjaannya.',
+                        'Pemimpin yang bertipe <i>deserter</i>,adalah tipe pemimpin yang tidak mempunyai apa-apa, atau hanya sedikit sekali memiliki orientasi tugas, hubungan kerja dan efektivitas'
+                    ],
+                    'feature' => [
+                        '1' => [
+                            'general' => 'Tidak atau kurang menunjukan minatnya pada tugas',
+                            'characteristic' => [
+                                ' Menghindari diri dsari tugas yang dibebankan kepadanya.',
+                                'Hanya melibatkan diri pada tugas yang memerlukan energi secara minim.',
+                                'Hanya suka pada jabatannya, namun kurang menyukai tugas yang harus diselesaikan.',
+                            ]
+                        ],
+
+                        '2' => [
+                            'general' => 'Tidak atau kurang menunjukan minatnya pada hubungan dengan orang lain',
+                            'characteristic' => [
+                                'Secara aktif menyendiri dan kurang suka bergaul dengan orang lain.',
+                                'Mengabaikan orang-orang lain dalam organisasi.',
+                                'Menyabot pekerjaan orang lain dengan jalan mengganggu atau memahami informasi yang diperlukan oleh orang lain.',
+                                'Kerap kali mengecewakan orang lain dan organisasinya dengan cara tidak terpuji.',
+                            ]
+                        ],
+
+                        '3' => [
+                            'general' => 'Tidak atau kurang efektif',
+                            'characteristic' => [
+                                'Bermaksud mencapai hasil minimum saja agar supaya tidak ada orang lain yang mengusahakannya.',
+                                'Mudah menyerah apabila mendapatkan kesulitan pada tingkat permulaan dalam pelaksanaan tugas, khususnya apabila dia tidak brehasil dalam mencapai target yang diharuskan untuk dicapai.',
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+        ];
+    }
+
+
     private function biodataPerusahaan(Attempt $attempt)
     {
         $attempt->load(['responses', 'tool.questions']);

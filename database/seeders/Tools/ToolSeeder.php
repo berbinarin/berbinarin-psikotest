@@ -207,6 +207,13 @@ class ToolSeeder extends Seeder
                 'introduce' => '<p>Pada tes kali ini terdapat 4 bagian tes dengan persoalan yang berbeda. Di setiap bagian tes terdapat instruksi pengerjaan yang berbeda. Di bawah setiap soal tersebut terdapat 5-6 pilihan jawaban. Kerjakan soal yang tersedia secepat mungkin karena waktunya terbatas.</p>',
                 'is_active' => true
             ],
+            [
+                'name' => 'MSDT',
+                'order' => 20,
+                'token' => '20',
+                'introduce' => '<p></p>',
+                'is_active' => true
+            ]
         ];
 
         foreach ($tools as $tool) {
