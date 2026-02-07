@@ -1493,7 +1493,7 @@ class ResultService
         }
 
         // Penambahan skor akhir
-        $addOnScore = ['A' => 1, 'B' => 2, 'C' => 1, 'D' => 0, 'E' => 3, 'F' - 1, 'G' => 0, 'H' => -4];
+        $addOnScore = ['A' => 1, 'B' => 2, 'C' => 1, 'D' => 0, 'E' => 3, 'F' => 1, 'G' => 0, 'H' => -4];
 
         foreach ($categories as $category) {
             $finalScore = $scores->get($category);
@@ -1505,13 +1505,20 @@ class ResultService
 
         //  Perhitungan klasifikasi
         $classification = [
-            'I' => $scores[2] + $scores[3] + $scores[6] + $scores[7],
-            'II' => $scores[1] + $scores[3] + $scores[5] + $scores[7],
-            'III' => $scores[4] + $scores[4] + $scores[6] + $scores[7],
-            'IV' => $scores[0],
+            'I' => $scores['C'] + $scores['D'] + $scores['G'] + $scores['H'],
+            'II' => $scores['B'] + $scores['D'] + $scores['F'] + $scores['H'],
+            'III' => $scores['E'] + $scores['E'] + $scores['G'] + $scores['H'],
+            'IV' => $scores['A'],
         ];
 
         $description = $this->getMsdtDescription($classification);
+
+        $finalResult = collect()->push([
+            'description' => $description,
+            'user_response' =>  $attempt->responses
+        ]);
+
+        return $finalResult;
     }
 
     private function getMsdtDescription(array $classification): array
