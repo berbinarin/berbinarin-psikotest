@@ -106,7 +106,7 @@ class MsdtQuestionSeeder extends Seeder
                 'type' => 'multiple_choice',
                 'options' => [
                     ['key' => 'A', 'text' => 'Bila jumlah dan mutu hasil kerja bagian saya tidak memuaskan, saya mengatakan kepada bawahan-bawahan saya bahwa direktur merasa kecewa. Oleh karena itu, mereka harus memperbaiki kerja mereka.'],
-                    ['key' => 'B', 'text' => 'SSaya membuat keputusan-keputusan sendiri dan kemudian saya mencoba untuk “menjual” keputusan-keputusan itu kepada bawahan saya.'],
+                    ['key' => 'B', 'text' => 'Saya membuat keputusan-keputusan sendiri dan kemudian saya mencoba untuk “menjual” keputusan-keputusan itu kepada bawahan saya.'],
                 ],
                 'scoring' => [
                     'A' => 'A',

@@ -1515,7 +1515,6 @@ class ResultService
 
         $finalResult = collect()->push([
             'description' => $description,
-            'user_response' =>  $attempt->responses
         ]);
 
         return $finalResult;
@@ -1547,7 +1546,7 @@ class ResultService
                         'Pemimpin ini merupakan motivator yang baik, menentukan standar kerja tinggi, serta menekankan kerja sama kelompok.'
                     ],
                     'feature' => [
-                        '1' => [
+                        [
                             'general' => 'Berorientasi pada tugas',
                             'characteristic' => [
                                 'Memandang bahwa pekerjaan orang lain sama baiknya dengan pekerjaan sendiri.',
@@ -1560,7 +1559,7 @@ class ResultService
                             ]
                         ],
 
-                        '2' => [
+                        [
                             'general' => 'Berorientasi pada hubungan baik',
                             'characteristic' => [
                                 'Memeperlakukan orang lain sesuai dengan sifat masing-masing orang, dan memandang orang lain sebagia teman kerja yang penting.',
@@ -1570,7 +1569,7 @@ class ResultService
                             ]
                         ],
 
-                        '3' => [
+                        [
                             'general' => 'Berorientasi pada keefektifan',
                             'characteristic' => [
                                 'Bekerja sangat efektif.',
@@ -1597,7 +1596,7 @@ class ResultService
                         'Tipe pemimpin <i>compromiser</i> adalah tipe pemimpin yang memiliki orientasi pada tugas dan hubungan baik dengan orang lain.'
                     ],
                     'feature' => [
-                        '1' => [
+                        [
                             'general' => 'Berorientasi pada hubungan baik dengan orang lain',
                             'characteristic' => [
                                 'Membiarkan semua orang mengatakan pendapatnya agar mereka merasa ikut serta dalam proses pembuatan keputusan',
@@ -1606,7 +1605,7 @@ class ResultService
                             ]
                         ],
 
-                        '2' => [
+                        [
                             'general' => 'Berorientasi pada tugas',
                             'characteristic' => [
                                 'Selain menilai setiap tugas yang akan dikerjakan',
@@ -1614,7 +1613,7 @@ class ResultService
                             ]
                         ],
 
-                        '3' => [
+                        [
                             'general' => 'Kurang berorientasi pada keefektifan',
                             'characteristic' => [
                                 'Selalu mendua hati dan selalu mementingkan kompromi dalam menangani segala sesuatu.',
@@ -1636,7 +1635,7 @@ class ResultService
                         'Pemimpin yang bertipe <i>benevolent autocrat</i> adalah tipe pemimpin yang berorientasi pada tugas dan keefektifan.'
                     ],
                     'feature' => [
-                        '1' => [
+                        [
                             'general' => 'Berorientasi pada tugas',
                             'characteristic' => [
                                 'Mahir membuat orang lain mengerjakan apa yang diinginkan namun tanpa menciptakan rasa dendam terhadapnya.',
@@ -1644,7 +1643,7 @@ class ResultService
                             ]
                         ],
 
-                        '2' => [
+                        [
                             'general' => 'Berorientasi pada keefektifan',
                             'characteristic' => [
                                 'Mementingkan keefektifan dalam memperoleh hasil yang diinginkan.',
@@ -1653,7 +1652,7 @@ class ResultService
                             ]
                         ],
 
-                        '3' => [
+                        [
                             'general' => 'Kurang berorientasi pada hubungan baik',
                             'characteristic' => [
                                 'Kurang yakin sepenuhnya pada dirinya sendiri dalam cara menangani bawahannya.',
@@ -1673,7 +1672,7 @@ class ResultService
                         'Pemimpin yang bertipe <i>autocrat</i> adalah tipe pemimpin yang mempunyai orientasi pada tugas saja.'
                     ],
                     'feature' => [
-                        '1' => [
+                        [
                             'general' => 'Berorientasi pada tugas saja',
                             'characteristic' => [
                                 'Melaksanakan tugas adalah diatas segala-galanya, artinya melaksanaka tugas adalah hal yang paling penting.',
@@ -1681,7 +1680,7 @@ class ResultService
                             ]
                         ],
 
-                        '2' => [
+                        [
                             'general' => 'Berorientasi pada hubungan baik',
                             'characteristic' => [
                                 'Kurang mengacuhkan pergaulan sesamanya dan sesame bawahannya.',
@@ -1694,7 +1693,7 @@ class ResultService
                             ]
                         ],
 
-                        '3' => [
+                        [
                             'general' => 'Berorientasi pada keefektifan',
                             'characteristic' => [
                                 'Pandangan pada pekerjaan amat sederhana, yaitu hanya korelasi antara pemimpin yang mengeluarkan perintah dan bawahan yang mengerjakan perintah.',
@@ -1719,14 +1718,14 @@ class ResultService
                         'Pemimpin yang bertipe <i>developer</i>, adalah tipe pemimpin yang memiliki orientasi atas keefektifan dan hubungan baik dengan orang lain.'
                     ],
                     'feature' => [
-                        '1' => [
+                        [
                             'general' => 'Berorientasi pada keefektifan',
                             'characteristic' => [
                                 'Mahir dalam menciptakan kondisi untuk bekerjasama dalam menciptakan kondisi untuk bertanggungjawab.','Efektif dalam hal bekerjasamadan menggerakan orang lain.',
                             ]
                         ],
 
-                        '2' => [
+                        [
                             'general' => 'Berorientasi pada hubungan baik dengan orang lain',
                             'characteristic' => [
                                 ' Percaya penuh kepada orang lain.',
@@ -1737,7 +1736,7 @@ class ResultService
                             ]
                         ],
 
-                        '3' => [
+                        [
                             'general' => 'Kurang atau tidak berorientasi pada tugas',
                             'characteristic' => [
                                 'Memiliki vasibilitas yang rendah terhadap tugas.',
@@ -1757,7 +1756,7 @@ class ResultService
                         'Pemimpin yang bertipe <i>missionary</i>, adalah tipe pemimpin yang hanya mempunyai sifat yang berorientasi pada hubungan kerja saja.'
                     ],
                     'feature' => [
-                        '1' => [
+                        [
                             'general' => 'Berorientasi pada hubungan baik',
                             'characteristic' => [
                                 'Peramah dan murah senyum kepada semua orang.',
@@ -1768,7 +1767,7 @@ class ResultService
                             ]
                         ],
 
-                        '2' => [
+                        [
                             'general' => 'Tidak atau kurang berorientasi pada tugas',
                             'characteristic' => [
                                 'Melaksanakan tugas dengan santai. Yang penting situasi kerja menyenangkan bawahannya.', 
@@ -1776,7 +1775,7 @@ class ResultService
                             ]
                         ],
 
-                        '3' => [
+                        [
                             'general' => 'Tidak berorientasi pada keefektifan',
                             'characteristic' => [
                                 'Mencapai hasil kurang penting. Yang penting adalah hubunagn baik dengan orang lain, khususnya dengan anak buahnya.',
@@ -1797,7 +1796,7 @@ class ResultService
                         'Pemimpin yang bertipe <i>bureaucrat<i/> adalah tipe pemimpin yang hanya berorientasi pada keefektifan saja.'
                     ],
                     'feature' => [
-                        '1' => [
+                        [
                             'general' => 'Selalu berorientasi pada keefektifan',
                             'characteristic' => [
                                 'Bekerja sesuai dengan prosedur yang benar dan peraturan yang berlaku.',
@@ -1806,7 +1805,7 @@ class ResultService
                             ]
                         ],
 
-                        '2' => [
+                        [
                             'general' => 'Tidak atau kurang berorientasi pada tugas',
                             'characteristic' => [
                                 'Tidak menyukai tugas yang diserahkan kepadanya.',
@@ -1814,7 +1813,7 @@ class ResultService
                             ]
                         ],
 
-                        '3' => [
+                        [
                             'general' => 'Tidak atau kurang berorientasi pada hubungan dengan orang lain',
                             'characteristic' => [
                                 'Tidak atau kurang menyukai masyarakat.',
@@ -1835,7 +1834,7 @@ class ResultService
                         'Pemimpin yang bertipe <i>deserter</i>,adalah tipe pemimpin yang tidak mempunyai apa-apa, atau hanya sedikit sekali memiliki orientasi tugas, hubungan kerja dan efektivitas'
                     ],
                     'feature' => [
-                        '1' => [
+                        [
                             'general' => 'Tidak atau kurang menunjukan minatnya pada tugas',
                             'characteristic' => [
                                 ' Menghindari diri dsari tugas yang dibebankan kepadanya.',
@@ -1844,7 +1843,7 @@ class ResultService
                             ]
                         ],
 
-                        '2' => [
+                        [
                             'general' => 'Tidak atau kurang menunjukan minatnya pada hubungan dengan orang lain',
                             'characteristic' => [
                                 'Secara aktif menyendiri dan kurang suka bergaul dengan orang lain.',
@@ -1854,7 +1853,7 @@ class ResultService
                             ]
                         ],
 
-                        '3' => [
+                        [
                             'general' => 'Tidak atau kurang efektif',
                             'characteristic' => [
                                 'Bermaksud mencapai hasil minimum saja agar supaya tidak ada orang lain yang mengusahakannya.',
