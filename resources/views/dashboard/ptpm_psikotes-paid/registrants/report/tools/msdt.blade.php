@@ -84,10 +84,15 @@
                 width: 20%;
             }
 
+            .table-wrapper {
+                page-break-inside: avoid;
+                margin-bottom: 6px;
+            }
+
             .detail-table {
                 width: 100%;
-                margin-bottom: 6px;
                 table-layout: fixed;
+                border-collapse: collapse;
             }
 
             .detail-table td {
@@ -164,22 +169,24 @@
                 </thead>
             </table>
             @foreach($attempt->responses->sortBy('question.order') as $response)
-                <table class="detail-table">
-                    <tr>
-                        <td rowspan="2" class="center-text">{{ $loop->iteration }}.</td>
-                        <td>
-                            <span>A.</span>
-                            {{ $response->question['options'][0]['text'] }}
-                        </td>
-                        <td rowspan="2" class="center-text" style="font-weight: bold">{{ collect($response->question['options'])->firstWhere('key', $response->answer['choice'])['key'] ?? '-' }}</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span>B.</span>
-                            {{ $response->question['options'][1]['text'] }}
-                        </td>
-                    </tr>
-                </table>
+                <div class="table-wrapper">
+                    <table class="detail-table">
+                        <tr>
+                            <td rowspan="2" class="center-text">{{ $loop->iteration }}.</td>
+                            <td>
+                                <span>A.</span>
+                                {{ $response->question['options'][0]['text'] }}
+                            </td>
+                            <td rowspan="2" class="center-text" style="font-weight: bold">{{ collect($response->question['options'])->firstWhere('key', $response->answer['choice'])['key'] ?? '-' }}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>B.</span>
+                                {{ $response->question['options'][1]['text'] }}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             @endforeach
         </div>
     </body>

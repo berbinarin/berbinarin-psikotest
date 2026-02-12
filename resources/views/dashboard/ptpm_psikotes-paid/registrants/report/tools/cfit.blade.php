@@ -28,22 +28,22 @@
                 width: 100%;
                 margin: 20px 0;
             }
+
             .chart-table td {
                 vertical-align: top;
                 padding: 0;
             }
 
-            /* Area chart: pakai inline-block, tanpa flex, friendly untuk PDF */
             .cfit-chart {
                 height: 220px;
-                padding: 40px 0 0 10px;
+                padding: 5px 0 0 10px;
                 box-sizing: border-box;
             }
 
             .cfit-bar-wrapper {
                 display: inline-block;
                 vertical-align: bottom;
-                margin-right: 24px;
+                margin-right: 25px;
                 text-align: center;
             }
 
@@ -175,7 +175,7 @@
 
         <h2 class="section-title">Hasil Tes Psikologi CFIT</h2>
         <p>Berikut merupakan hasil dari tiap subtes.</p>
-        <table class="chart-table " cellpadding="0" cellspacing="0">
+        <table class="chart-table" cellpadding="0" cellspacing="0">
             <tr>
                 <!-- Left: bar chart -->
                 <td style="vertical-align: top; width: 250px" class="no-border">
