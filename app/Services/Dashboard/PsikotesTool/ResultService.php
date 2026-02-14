@@ -1493,7 +1493,7 @@ class ResultService
         }
 
         // Penambahan skor akhir
-        $addOnScore = ['A' => 1, 'B' => 2, 'C' => 1, 'D' => 0, 'E' => 3, 'F' => 1, 'G' => 0, 'H' => -4];
+        $addOnScore = ['A' => 1, 'B' => 2, 'C' => 1, 'D' => 0, 'E' => 3, 'F' => -1, 'G' => 0, 'H' => -4];
 
         foreach ($categories as $category) {
             $finalScore = $scores->get($category);
