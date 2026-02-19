@@ -211,7 +211,7 @@ class ToolSeeder extends Seeder
                 'name' => 'MSDT',
                 'order' => 20,
                 'token' => '20',
-                'introduce' => '<p></p>',
+                'introduce' => '<p>Pada tes kali ini terdiri dari beberapa pernyataan yang harus dijawab. Teman-teman diminta untuk membaca seluruh pernyataan dengan hati-hati lalu pertimbangkan apakah pernyataan tersebut dapat menggambarkan diri teman-teman atau tidak. Nantinya, tiap-tiap pernyataan akan berisi dua opsi pilihan jawaban, yang harus dipilih salah satunya. Pilihlah salah satu kolom jawaban A atau kolom jawaban B</p>',
                 'is_active' => true
             ]
         ];
