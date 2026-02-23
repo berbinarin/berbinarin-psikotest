@@ -134,15 +134,24 @@
         const tool = @json($tool);
         const question = @json($question->load("section"));
         const attemptId = {{ $attemptId }};
-        const targetTimeKey = `target-time_${attemptId}`;
-        const sectionOrderKey = `section-order_${attemptId}`;
+        const currentSectionOrder = String(question.section.order);
+        const targetTimeKey = `target-time_${attemptId}_${currentSectionOrder}`;
         const checkpointDeadlineKey = `checkpoint_deadline_${attemptId}`;
         const duration = question.section.duration * 60000;
+        const timerKeyPrefix = `target-time_${attemptId}_`;
 
-        // Tambah target-time ke local storage jika belum dibuat
-        // Hindari mengganti nilai target-time jika sudah ada di local storage
+        function clearAttemptTimerKeys() {
+            Object.keys(localStorage).forEach((key) => {
+                if (key.startsWith(timerKeyPrefix)) {
+                    localStorage.removeItem(key);
+                }
+            });
+        }
+
+        // Simpan deadline timer per section agar refresh tidak mereset waktu.
         const startAtOrder = 4;
         const targetToolName = "D4 Bagian 1";
+        let shouldInitTimer = true;
 
         if (tool.name === targetToolName) {
             if (question.order >= startAtOrder) {
@@ -151,113 +160,106 @@
                 }
             } else {
                 localStorage.removeItem(targetTimeKey);
+                $('#countdownExample .values').html('00:00');
+                shouldInitTimer = false;
             }
         } else {
-            // Alat lain tetap pakai logika default
             if (!localStorage.getItem(targetTimeKey)) {
                 localStorage.setItem(targetTimeKey, new Date().getTime() + duration);
             }
         }
 
-        // Tambah section-order ke local storage jika belum dibuat
-        // Hindari mengganti nilai section-order jika sudah ada di local storage
-        if (!localStorage.getItem(sectionOrderKey)) {
-            localStorage.setItem(sectionOrderKey, question.section.order);
-        }
+        if (shouldInitTimer) {
+            const target = Number(localStorage.getItem(targetTimeKey) || 0);
+            const diff = new Date(target - new Date().getTime());
 
-        // Jika section-order di local storage berbeda dengan section.order di question. (berpindah section)
-        if (localStorage.getItem(sectionOrderKey) != question.section.order) {
-            localStorage.setItem(targetTimeKey, new Date().getTime() + duration);
-            localStorage.setItem(sectionOrderKey, question.section.order);
-        }
+            const timer = new Timer();
+            timer.start({
+                countdown: true,
+                startValues: {
+                    minutes: diff.getMinutes(),
+                    seconds: diff.getSeconds(),
+                },
+            });
 
-        const target = Number(localStorage.getItem(targetTimeKey));
-        const diff = new Date(target - new Date().getTime());
-
-        const timer = new Timer();
-        timer.start({
-            countdown: true,
-            startValues: {
-                minutes: diff.getMinutes(),
-                seconds: diff.getSeconds(),
-            },
-        });
-
-        $('#countdownExample .values').html(timer.getTimeValues().toString());
-
-        timer.addEventListener('secondsUpdated', function (e) {
             $('#countdownExample .values').html(timer.getTimeValues().toString());
-            if (timer.getTimeValues().minutes === 1 && timer.getTimeValues().seconds === 0) {
-                window.dispatchEvent(
-                    new CustomEvent('show-alert', {
-                        detail: {
-                            icon: @json(asset("assets/dashboard/images/warning.webp")),
-                            title: 'Waktu tersisa 1 menit untuk bagian ini!',
-                            message: '',
-                            type: 'info',
+
+            timer.addEventListener('secondsUpdated', function (e) {
+                $('#countdownExample .values').html(timer.getTimeValues().toString());
+                if (timer.getTimeValues().minutes === 1 && timer.getTimeValues().seconds === 0) {
+                    window.dispatchEvent(
+                        new CustomEvent('show-alert', {
+                            detail: {
+                                icon: @json(asset("assets/dashboard/images/warning.webp")),
+                                title: 'Waktu tersisa 1 menit untuk bagian ini!',
+                                message: '',
+                                type: 'info',
+                            },
+                        }),
+                    );
+                }
+            });
+
+            timer.addEventListener('targetAchieved', async function (e) {
+                let shouldRedirectQuestion = false;
+
+                try {
+                    const extendableTests = ['BAUM', 'HTP', 'DAP'];
+
+                    if (extendableTests.includes(tool.name)) {
+                        const result = await Swal.fire({
+                            title: 'Waktu Habis!',
+                            text: 'Apakah Anda ingin melanjutkan tes?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Lanjutkan',
+                            cancelButtonText: 'Selesai',
+                            reverseButtons: true,
+                        });
+
+                        if (result.isConfirmed) {
+                            window.dispatchEvent(
+                                new CustomEvent('show-alert', {
+                                    detail: {
+                                        icon: @json(asset("assets/dashboard/images/success.webp")),
+                                        title: 'Waktu pengerjaan tes telah ditambahkan!',
+                                        message: '',
+                                        type: 'info',
+                                    },
+                                }),
+                            );
+
+                            return; // jangan lanjut ke complete
+                        }
+                    }
+
+                    // Backend menentukan apakah harus pindah section (lanjut soal)
+                    // atau benar-benar selesai.
+                    const response = await fetch('{{ route("psikotes-paid.attempt.times-up") }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Accept: 'application/json',
+                            'X-CSRF-TOKEN': @json(csrf_token()),
                         },
-                    }),
-                );
-            }
-        });
-
-        timer.addEventListener('targetAchieved', async function (e) {
-            let shouldRedirectQuestion = false;
-
-            try {
-                const extendableTests = ['BAUM', 'HTP', 'DAP'];
-
-                if (extendableTests.includes(tool.name)) {
-                    const result = await Swal.fire({
-                        title: 'Waktu Habis!',
-                        text: 'Apakah Anda ingin melanjutkan tes?',
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonText: 'Lanjutkan',
-                        cancelButtonText: 'Selesai',
-                        reverseButtons: true,
                     });
 
-                    if (result.isConfirmed) {
-                        window.dispatchEvent(
-                            new CustomEvent('show-alert', {
-                                detail: {
-                                    icon: @json(asset("assets/dashboard/images/success.webp")),
-                                    title: 'Waktu pengerjaan tes telah ditambahkan!',
-                                    message: '',
-                                    type: 'info',
-                                },
-                            }),
-                        );
-
-                        return; // jangan lanjut ke complete
+                    const payload = await response.json().catch(() => ({}));
+                    shouldRedirectQuestion = Boolean(payload?.should_redirect_question);
+                } catch (error) {
+                    console.error('Fetch to times-up failed:', error);
+                } finally {
+                    localStorage.removeItem(targetTimeKey);
+                    localStorage.removeItem(checkpointDeadlineKey);
+                    if (!shouldRedirectQuestion) {
+                        clearAttemptTimerKeys();
                     }
+                    window.location.href = shouldRedirectQuestion
+                        ? @json(route("psikotes-paid.attempt.question"))
+                        : @json(route("psikotes-paid.attempt.complete"));
                 }
-
-                // Backend menentukan apakah harus pindah section (lanjut soal)
-                // atau benar-benar selesai.
-                const response = await fetch('{{ route("psikotes-paid.attempt.times-up") }}', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
-                        'X-CSRF-TOKEN': @json(csrf_token()),
-                    },
-                });
-
-                const payload = await response.json().catch(() => ({}));
-                shouldRedirectQuestion = Boolean(payload?.should_redirect_question);
-            } catch (error) {
-                console.error('Fetch to times-up failed:', error);
-            } finally {
-                localStorage.removeItem(targetTimeKey);
-                localStorage.removeItem(sectionOrderKey);
-                localStorage.removeItem(checkpointDeadlineKey);
-                window.location.href = shouldRedirectQuestion
-                    ? @json(route("psikotes-paid.attempt.question"))
-                    : @json(route("psikotes-paid.attempt.complete"));
-            }
-        });
+            });
+        }
 
         // Mereset input  ketika back menggunakan browser
         window.addEventListener('pageshow', function (event) {
@@ -307,8 +309,7 @@
                 } catch (error) {
                     console.error('Error finishing test:', error);
                 } finally {
-                    localStorage.removeItem(targetTimeKey);
-                    localStorage.removeItem(sectionOrderKey);
+                    clearAttemptTimerKeys();
                     localStorage.removeItem(checkpointDeadlineKey);
                     window.location.href = @json(route("psikotes-paid.attempt.complete"));
                 }
