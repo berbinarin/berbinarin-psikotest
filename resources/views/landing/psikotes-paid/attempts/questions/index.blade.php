@@ -95,9 +95,9 @@
         </div>
     </div>
 
-    {{-- <div id="countdownExample" class="absolute right-0 top-0">
-        <span class="values"></span>
-    </div> --}}
+        {{-- <div id="countdownExample" class="absolute right-0 top-0">
+            <span class="values"></span>
+        </div> --}}
 
     <!-- Modal Konfirmasi Selesai -->
     <div id="confirm-finish-modal" class="fixed inset-0 z-50 flex hidden items-center justify-center bg-black/40">
@@ -202,6 +202,8 @@
         });
 
         timer.addEventListener('targetAchieved', async function (e) {
+            let shouldRedirectQuestion = false;
+
             try {
                 const extendableTests = ['BAUM', 'HTP', 'DAP'];
 
@@ -232,8 +234,9 @@
                     }
                 }
 
-                // Kirim request untuk menghapus session dan TUNGGU (await) hingga selesai
-                await fetch('{{ route("psikotes-paid.attempt.times-up") }}', {
+                // Backend menentukan apakah harus pindah section (lanjut soal)
+                // atau benar-benar selesai.
+                const response = await fetch('{{ route("psikotes-paid.attempt.times-up") }}', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -241,13 +244,18 @@
                         'X-CSRF-TOKEN': @json(csrf_token()),
                     },
                 });
+
+                const payload = await response.json().catch(() => ({}));
+                shouldRedirectQuestion = Boolean(payload?.should_redirect_question);
             } catch (error) {
                 console.error('Fetch to times-up failed:', error);
             } finally {
                 localStorage.removeItem(targetTimeKey);
                 localStorage.removeItem(sectionOrderKey);
                 localStorage.removeItem(checkpointDeadlineKey);
-                window.location.href = @json(route("psikotes-paid.attempt.complete"));
+                window.location.href = shouldRedirectQuestion
+                    ? @json(route("psikotes-paid.attempt.question"))
+                    : @json(route("psikotes-paid.attempt.complete"));
             }
         });
 
@@ -321,6 +329,36 @@
         const formAction = document.getElementById('form-action');
         const nextButton = document.getElementById('next-button');
         const checkpointModal = document.getElementById('checkpoint-modal');
+        const backButton = document.getElementById('back-button');
+
+        // Enter di form selalu dianggap aksi "next", bukan "back".
+        // Khusus textarea tetap default agar user bisa membuat baris baru.
+        if (mainForm) {
+            mainForm.addEventListener('keydown', (event) => {
+                if (event.key !== 'Enter') {
+                    return;
+                }
+
+                const target = event.target;
+                const tagName = target?.tagName?.toLowerCase();
+                if (tagName === 'textarea') {
+                    return;
+                }
+
+                event.preventDefault();
+                formAction.value = 'next';
+
+                if (nextButton) {
+                    nextButton.click();
+                    return;
+                }
+
+                if (backButton) {
+                    backButton.disabled = true;
+                }
+                mainForm.submit();
+            });
+        }
 
         // Fungsi untuk menampilkan modal
         async function showCheckpointModal() {

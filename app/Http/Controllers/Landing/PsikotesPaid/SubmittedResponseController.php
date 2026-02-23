@@ -160,13 +160,19 @@ class SubmittedResponseController extends Controller
         $currentOrder = $this->attemptService->getSession('section_order');
 
         if (!$attemptId || $currentOrder === null) {
-            return;
+            return response()->json([
+                'should_redirect_question' => false,
+                'message' => 'No active attempt session',
+            ]);
         }
 
         $attempt = Attempt::with('tool.sections.questions')->find($attemptId);
 
         if (!$attempt || $attempt->status !== 'in_progress') {
-            return;
+            return response()->json([
+                'should_redirect_question' => false,
+                'message' => 'Attempt is not active',
+            ]);
         }
 
         // Ambil semua section urut
@@ -179,7 +185,10 @@ class SubmittedResponseController extends Controller
             // Jika gagal menemukan section, akhiri saja
             $attempt->update(['status' => 'unfinished']);
             $this->attemptService->destroySession();
-            return;
+            return response()->json([
+                'should_redirect_question' => false,
+                'message' => 'Invalid section pointer',
+            ]);
         }
 
         // Cek apakah ada next section
@@ -197,13 +206,20 @@ class SubmittedResponseController extends Controller
                 'question_order' => $firstQuestion->order ?? 1,
             ]);
 
-            return; // Jangan akhiri attempt
+            return response()->json([
+                'should_redirect_question' => true,
+                'message' => 'Moved to next section',
+            ]); // Jangan akhiri attempt
         }
 
         // Kalau tidak ada next section → akhiri tes
         $attempt->update(['status' => 'unfinished']); // atau 'finished'
 
         $this->attemptService->destroySession();
+        return response()->json([
+            'should_redirect_question' => false,
+            'message' => 'Attempt finished',
+        ]);
     }
 
     public function getCheckpointQuestion()
