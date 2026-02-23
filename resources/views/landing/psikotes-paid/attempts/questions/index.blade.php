@@ -32,6 +32,8 @@
 
                 <form id="question-form" class="flex-1" action="{{ route("psikotes-paid.attempt.submit") }}" method="post" enctype="multipart/form-data">
                     @csrf
+                    {{-- action digunakan backend untuk membedakan alur next vs back --}}
+                    <input type="hidden" name="action" id="form-action" value="next" />
                     <div class="mx-auto flex h-full w-[565.33px] flex-col items-center gap-8 px-6 pt-7">
                         <div class="relative flex w-full flex-col items-center justify-center">
                             <div class="relative h-[6.67px] w-full rounded-md bg-[#D3D3D3]">
@@ -55,11 +57,21 @@
 
                         @if ($question->tool->name == "D4 Bagian 1" || $question->tool->name == "D4 Bagian 2")
                             <div class="mb-6 mt-2 flex justify-center gap-4">
-                                <button id="submit-button" class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selesai</button>
-                                <button id="next-button" class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selanjutnya</button>
+                                @if (!empty($canGoBack))
+                                    {{-- Tombol back hanya tampil untuk tool yang masuk allowlist di AttemptService::canGoBack --}}
+                                    <button type="submit" name="action" value="back" formnovalidate id="back-button" class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] border border-[#106681] bg-white font-plusJakartaSans text-[13.33px] font-bold text-[#106681]">Sebelumnya</button>
+                                @endif
+                                <button type="button" id="submit-button" class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selesai</button>
+                                <button type="button" id="next-button" class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selanjutnya</button>
                             </div>
                         @elseif ($question->type !== "ordering")
-                            <button id="next-button" class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selanjutnya</button>
+                            <div class="mb-6 mt-2 flex justify-center gap-4">
+                                @if (!empty($canGoBack))
+                                    {{-- Tombol back hanya tampil untuk tool yang masuk allowlist di AttemptService::canGoBack --}}
+                                    <button type="submit" name="action" value="back" formnovalidate id="back-button" class="h-[43.67px] w-[136px] rounded-[6.67px] border border-[#106681] bg-white font-plusJakartaSans text-[13.33px] font-bold text-[#106681]">Sebelumnya</button>
+                                @endif
+                                <button type="button" id="next-button" class="h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selanjutnya</button>
+                            </div>
                         @endif
                     </div>
                 </form>
@@ -306,6 +318,7 @@
 
         // Ambil semua elemen yang dibutuhkan
         const mainForm = document.getElementById('question-form');
+        const formAction = document.getElementById('form-action');
         const nextButton = document.getElementById('next-button');
         const checkpointModal = document.getElementById('checkpoint-modal');
 
@@ -355,24 +368,32 @@
         }
 
         // Listener untuk tombol "Selanjutnya" UTAMA
-        nextButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            const deadline = localStorage.getItem(CHECKPOINT_DEADLINE_KEY);
-            const now = new Date().getTime();
+        if (nextButton) {
+            nextButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                formAction.value = 'next';
+                nextButton.disabled = true;
 
-            if (deadline && now >= parseInt(deadline)) {
-                // WAKTUNYA CHECKPOINT: Tampilkan modal, JANGAN submit form
-                showCheckpointModal();
-            } else {
-                // BUKAN WAKTUNYA CHECKPOINT: Langsung submit form
-                mainForm.submit();
-            }
-        });
+                const deadline = localStorage.getItem(CHECKPOINT_DEADLINE_KEY);
+                const now = new Date().getTime();
+
+                if (deadline && now >= parseInt(deadline)) {
+                    // WAKTUNYA CHECKPOINT: Tampilkan modal, JANGAN submit form
+                    showCheckpointModal().finally(() => {
+                        nextButton.disabled = false;
+                    });
+                } else {
+                    // BUKAN WAKTUNYA CHECKPOINT: Langsung submit form
+                    mainForm.submit();
+                }
+            });
+        }
 
         // Listener untuk tombol "Selanjutnya" DI DALAM MODAL (DENGAN PERBAIKAN)
         document.getElementById('checkpoint-submit-button').addEventListener('click', () => {
             // Ambil form utama
             const mainForm = document.getElementById('question-form');
+            formAction.value = 'next';
 
             // 1. Ambil input jawaban dari modal
             const answer = document.querySelector('[name="checkpoint_answer"]:checked, [name="checkpoint_answer"][type="text"]');

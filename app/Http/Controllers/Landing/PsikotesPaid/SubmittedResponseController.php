@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CheckpointQuestion;
 use App\Models\CheckpointResponse;
 use App\Models\Attempt;
+use App\Models\Response;
 use App\Models\Tool;
 use App\Services\Landing\PsikotesPaid\AttemptService;
 use App\Services\Landing\PsikotesPaid\ResponseService;
@@ -31,7 +32,8 @@ class SubmittedResponseController extends Controller
 
     public function question()
     {
-        // Eager load sections dan questions
+        // Render soal aktif berdasarkan pointer session:
+        // section_order + question_order.
         $tool = Tool::with('sections.questions')->find($this->attemptService->getSession('tool_id'));
         $currentSection = $tool?->sections?->firstWhere('order', $this->attemptService->getSession('section_order'));
         $question = $currentSection?->questions?->firstWhere('order', $this->attemptService->getSession('question_order'));
@@ -49,13 +51,20 @@ class SubmittedResponseController extends Controller
             return redirect()->route('psikotes-paid.attempt.complete');
         }
 
-        // Progress
+        // Progress dipakai untuk progress bar UI.
         $progress = $this->attemptService->calculateProgress($tool);
 
-        // Checkpoint Question
+        // Checkpoint bersifat opsional, aktif berdasarkan flag session.
         $checkpointQuestion = $this->attemptService->getSession('is_checkpoint') ? CheckpointQuestion::inRandomOrder()->first() : null;
         $attemptId = $this->attemptService->getSession('attempt_id');
-        return view('landing.psikotes-paid.attempts.questions.index', compact('question', 'progress', 'checkpointQuestion', 'attemptId', 'tool'));
+        $savedResponse = Response::where('attempt_id', $attemptId)
+            ->where('question_id', $question->id)
+            ->latest('id')
+            ->first();
+        $savedAnswer = $savedResponse?->answer?->toArray() ?? [];
+        $canGoBack = $this->attemptService->canGoBack($tool);
+
+        return view('landing.psikotes-paid.attempts.questions.index', compact('question', 'progress', 'checkpointQuestion', 'attemptId', 'tool', 'canGoBack', 'savedAnswer'));
     }
 
     public function submit(Request $request)
@@ -76,10 +85,20 @@ class SubmittedResponseController extends Controller
             return redirect()->route('psikotes-paid.attempt.complete');
         }
 
+        $action = $request->input('action', 'next');
+        if ($action === 'back') {
+            // Aksi "back" tidak menyimpan jawaban baru.
+            // Hanya menggeser pointer session ke soal sebelumnya.
+            if ($this->attemptService->canGoBack($tool)) {
+                $this->attemptService->progressToPreviousStep();
+            }
+            return redirect()->route('psikotes-paid.attempt.question');
+        }
+
         // Simpan Attempt User
         $attemptId = $this->attemptService->getSession('attempt_id');
 
-        // Simpan Jawaban User
+        // Simpan/replace jawaban untuk soal saat ini.
         $this->responseService->store($request, $question);
 
         // Cek apakah ada jawaban checkpoint yang dikirim dari form
@@ -93,7 +112,7 @@ class SubmittedResponseController extends Controller
                 $this->responseService->storeCheckpoint($request);
             }
 
-            // 3. Matikan status checkpoint di session setelah diproses
+            // Matikan checkpoint agar tidak tampil berulang pada request berikutnya.
             $this->attemptService->updateSession(['is_checkpoint' => false]);
         }
 
@@ -135,6 +154,8 @@ class SubmittedResponseController extends Controller
 
     public function timesUp()
     {
+        // Saat waktu habis, flow saat ini mencoba lanjut ke section berikutnya.
+        // Jika tidak ada section lagi, attempt ditandai unfinished.
         $attemptId = $this->attemptService->getSession('attempt_id');
         $currentOrder = $this->attemptService->getSession('section_order');
 

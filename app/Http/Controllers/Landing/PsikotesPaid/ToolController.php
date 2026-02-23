@@ -12,7 +12,10 @@ class ToolController extends Controller
 {
     public function __construct(private AttemptService $attemptService) {}
 
-    // View Test Page
+    /**
+     * Menampilkan daftar alat psikotes yang tersedia.
+     * Mobile non-tablet diblok agar pengalaman pengerjaan tetap konsisten.
+     */
     public function index()
     {
         $agent = new Agent();
@@ -33,6 +36,9 @@ class ToolController extends Controller
         $tool = Tool::find($request->tool_id);
 
         if ($tool && $tool->token === $request->token) {
+            // Entry point manajemen sesi attempt:
+            // - lanjutkan attempt aktif jika ada
+            // - atau buat attempt baru jika belum ada
             $this->attemptService->startOrResume($tool);
 
             return redirect()->route('psikotes-paid.attempt.introduce');
