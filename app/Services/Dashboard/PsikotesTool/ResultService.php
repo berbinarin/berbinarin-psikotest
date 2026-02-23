@@ -1793,7 +1793,7 @@ class ResultService
                 'text' => [
                     'description' => [
                         'Ditampilkan oleh pemimpin yang menggunakan TO rendah RO rendah. Dalam situasi yang sesuai sehingga ia dapat bertindak efektif ia merupakan pemimpin yang menekankan pada aturan dan prosedur untuk kepentingan dirinya serta menjalankan pengaturan dan pengawasan dengan caranya sendiri. Ia termasuk pemimpin yang hati-hati dalam bertindak.',
-                        'Pemimpin yang bertipe <i>bureaucrat<i/> adalah tipe pemimpin yang hanya berorientasi pada keefektifan saja.'
+                        'Pemimpin yang bertipe <i>bureaucrat</i> adalah tipe pemimpin yang hanya berorientasi pada keefektifan saja.'
                     ],
                     'feature' => [
                         [
