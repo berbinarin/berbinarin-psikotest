@@ -16,8 +16,9 @@
                             <div class="progress-bar ml-[1px] h-3 w-[20px] rounded-full bg-gradient-to-r from-[#3B88A4] to-[#72A9BE] text-end text-[13px] md:ml-0" role="progressbar" style="width: {{ $progress }}%" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100"><span class="ml-1 mr-2 font-semibold text-white"></span></div>
                         </div>
 
-                        <form action="{{ route("psikotes-free.submit") }}" method="POST" class="flex flex-col">
+                        <form id="free-test-form" action="{{ route("psikotes-free.submit") }}" method="POST" class="flex flex-col">
                             @csrf
+                            <input type="hidden" name="question_id" value="{{ $question->id }}" />
                             <div class="question mt-4 whitespace-normal lg:h-[72px] break-words text-lg font-bold text-[#333333] md:text-2xl lg:mt-6" style="max-width: 800px; word-wrap: break-word">
                                 {{ $question->text }}
                             </div>
@@ -43,7 +44,7 @@
                             </div>
                             <div class="button-test mt-10 flex flex-col-reverse justify-center md:flex-row lg:mb-10">
                                 <!-- <button class="rounded-xl border-primary border-3 mb-5 lg:mx-2 bg-gradient-to-tr from-[#3986A3] to-[#225062] bg-clip-text text-transparent px-10 lg:px-14 py-1.5 font-medium text-lg max-sm:text-[15px]">Kembali</button> -->
-                                <button type="submit" class="mb-5 rounded-xl bg-gradient-to-r from-[#3986A3] to-[#225062] px-10 py-1.5 text-lg font-medium text-white max-sm:text-[15px] lg:mx-2 lg:px-14">Selanjutnya</button>
+                                <button id="free-next-button" type="submit" class="mb-5 rounded-xl bg-gradient-to-r from-[#3986A3] to-[#225062] px-10 py-1.5 text-lg font-medium text-white max-sm:text-[15px] lg:mx-2 lg:px-14">Selanjutnya</button>
                             </div>
                         </form>
                         <!-- </div> -->
@@ -80,6 +81,24 @@
 
 @push("script")
     <script>
+        const freeTestForm = document.getElementById('free-test-form');
+        const freeNextButton = document.getElementById('free-next-button');
+        let freeIsSubmitting = false;
+
+        if (freeTestForm) {
+            freeTestForm.addEventListener('submit', (event) => {
+                if (freeIsSubmitting) {
+                    event.preventDefault();
+                    return;
+                }
+
+                freeIsSubmitting = true;
+                if (freeNextButton) {
+                    freeNextButton.disabled = true;
+                }
+            });
+        }
+
         document.querySelectorAll('input[name="answer"]').forEach((radio) => {
             radio.addEventListener('change', function () {
                 // Reset semua label warna

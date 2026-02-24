@@ -32,6 +32,7 @@
 
                 <form id="question-form" class="flex-1" action="{{ route("psikotes-paid.attempt.submit") }}" method="post" enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" name="question_id" value="{{ $question->id }}" />
                     {{-- action digunakan backend untuk membedakan alur next vs back --}}
                     <input type="hidden" name="action" id="form-action" value="next" />
                     <div class="mx-auto flex h-full w-[565.33px] flex-col items-center gap-8 px-6 pt-7">
@@ -331,6 +332,39 @@
         const nextButton = document.getElementById('next-button');
         const checkpointModal = document.getElementById('checkpoint-modal');
         const backButton = document.getElementById('back-button');
+        const checkpointSubmitButton = document.getElementById('checkpoint-submit-button');
+        let isSubmitting = false;
+
+        function lockAndSubmitMainForm() {
+            if (!mainForm || isSubmitting) {
+                return;
+            }
+
+            isSubmitting = true;
+            [nextButton, backButton, submitButton, checkpointSubmitButton].forEach((button) => {
+                if (button) {
+                    button.disabled = true;
+                }
+            });
+
+            mainForm.submit();
+        }
+
+        if (mainForm) {
+            mainForm.addEventListener('submit', (event) => {
+                if (isSubmitting) {
+                    event.preventDefault();
+                    return;
+                }
+
+                isSubmitting = true;
+                [nextButton, backButton, submitButton, checkpointSubmitButton].forEach((button) => {
+                    if (button) {
+                        button.disabled = true;
+                    }
+                });
+            });
+        }
 
         // Enter di form selalu dianggap aksi "next", bukan "back".
         // Khusus textarea tetap default agar user bisa membuat baris baru.
@@ -354,10 +388,7 @@
                     return;
                 }
 
-                if (backButton) {
-                    backButton.disabled = true;
-                }
-                mainForm.submit();
+                lockAndSubmitMainForm();
             });
         }
 
@@ -402,7 +433,7 @@
             } catch (error) {
                 console.error('Could not show checkpoint modal:', error);
                 // Jika gagal memuat modal, kirim saja formnya agar user tidak stuck.
-                mainForm.submit();
+                lockAndSubmitMainForm();
             }
         }
 
@@ -419,17 +450,19 @@
                 if (deadline && now >= parseInt(deadline)) {
                     // WAKTUNYA CHECKPOINT: Tampilkan modal, JANGAN submit form
                     showCheckpointModal().finally(() => {
-                        nextButton.disabled = false;
+                        if (!isSubmitting) {
+                            nextButton.disabled = false;
+                        }
                     });
                 } else {
                     // BUKAN WAKTUNYA CHECKPOINT: Langsung submit form
-                    mainForm.submit();
+                    lockAndSubmitMainForm();
                 }
             });
         }
 
         // Listener untuk tombol "Selanjutnya" DI DALAM MODAL (DENGAN PERBAIKAN)
-        document.getElementById('checkpoint-submit-button').addEventListener('click', () => {
+        checkpointSubmitButton.addEventListener('click', () => {
             // Ambil form utama
             const mainForm = document.getElementById('question-form');
             formAction.value = 'next';
@@ -469,7 +502,7 @@
             localStorage.setItem(CHECKPOINT_DEADLINE_KEY, new Date().getTime() + CHECKPOINT_INTERVAL_MS);
 
             // Submit form utama yang SEKARANG sudah berisi data checkpoint
-            mainForm.submit();
+            lockAndSubmitMainForm();
         });
     </script>
 @endpush

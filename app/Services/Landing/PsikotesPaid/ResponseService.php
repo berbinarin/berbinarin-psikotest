@@ -29,15 +29,16 @@ class ResponseService
                 return;
             }
 
-            Response::updateOrCreate(
-                [
-                    'attempt_id' => $attemptId,
-                    'question_id' => $question->id,
-                ],
-                [
-                    'answer' => $answer,
-                ]
-            );
+            $response = Response::withTrashed()->firstOrNew([
+                'attempt_id' => $attemptId,
+                'question_id' => $question->id,
+            ]);
+
+            $response->answer = $answer;
+            if ($response->trashed()) {
+                $response->deleted_at = null;
+            }
+            $response->save();
         }
     }
 
@@ -57,15 +58,16 @@ class ResponseService
                 return;
             }
 
-            CheckpointResponse::updateOrCreate(
-                [
-                    'attempt_id' => $attemptId,
-                    'checkpoint_question_id' => $checkpointQuestion->id,
-                ],
-                [
-                    'answer' => $answer,
-                ]
-            );
+            $checkpointResponse = CheckpointResponse::withTrashed()->firstOrNew([
+                'attempt_id' => $attemptId,
+                'checkpoint_question_id' => $checkpointQuestion->id,
+            ]);
+
+            $checkpointResponse->answer = $answer;
+            if ($checkpointResponse->trashed()) {
+                $checkpointResponse->deleted_at = null;
+            }
+            $checkpointResponse->save();
         }
     }
 

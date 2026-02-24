@@ -17,11 +17,21 @@ class ResponseService
         $methodName = Str::camel($question->type);
         $answer = $this->{$methodName}($request);
         if ($answer !== null) {
-            PsikotesFreeResponse::create([
-                'psikotes_free_attempt_id' => $this->attemptService->getSession('attempt_id'),
+            $attemptId = $this->attemptService->getSession('attempt_id');
+            if (!$attemptId) {
+                return;
+            }
+
+            $response = PsikotesFreeResponse::withTrashed()->firstOrNew([
+                'psikotes_free_attempt_id' => $attemptId,
                 'question_id' => $question->id,
-                'answer' =>$answer,
             ]);
+
+            $response->answer = $answer;
+            if ($response->trashed()) {
+                $response->deleted_at = null;
+            }
+            $response->save();
         }
     }
 

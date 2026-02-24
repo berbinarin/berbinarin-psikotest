@@ -85,6 +85,12 @@ class SubmittedResponseController extends Controller
             return redirect()->route('psikotes-paid.attempt.complete');
         }
 
+        // Abaikan request lama (duplicate retry) yang bukan lagi soal aktif saat ini.
+        $submittedQuestionId = (int) $request->input('question_id', 0);
+        if ($submittedQuestionId !== (int) $question->id) {
+            return redirect()->route('psikotes-paid.attempt.question');
+        }
+
         $action = $request->input('action', 'next');
         if ($action === 'back') {
             // Aksi "back" tidak menyimpan jawaban baru.

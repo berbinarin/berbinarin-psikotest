@@ -47,6 +47,12 @@ class TestController extends Controller
         $currentSection = $tool->sections->firstWhere('order', $this->attemptService->getSession('section_order'));
         $question = $currentSection->questions->firstWhere('order', $this->attemptService->getSession('question_order'));
 
+        // Abaikan request lama (duplicate retry) yang bukan lagi soal aktif saat ini.
+        $submittedQuestionId = (int) $request->input('question_id', 0);
+        if ($submittedQuestionId !== (int) $question->id) {
+            return redirect()->route('psikotes-free.test');
+        }
+
         // Simpan Jawaban User
         $this->responseService->store($request, $question);
 
