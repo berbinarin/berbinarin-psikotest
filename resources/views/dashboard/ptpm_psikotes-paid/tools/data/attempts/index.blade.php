@@ -33,13 +33,32 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $expectedDurationSeconds = (int) $tool->sections->sum(fn ($section) => ((int) $section->duration) * 60);
+                                @endphp
                                 @foreach ($attempts as $attempt)
+                                    @php
+                                        $startedAt = \Carbon\Carbon::parse($attempt->created_at);
+                                        $endedAt = \Carbon\Carbon::parse($attempt->updated_at);
+                                        $actualSeconds = $startedAt->diffInSeconds($endedAt);
+                                        $lateSeconds = max(0, $actualSeconds - $expectedDurationSeconds);
+
+                                        $lateHours = intdiv($lateSeconds, 3600);
+                                        $lateMinutes = intdiv($lateSeconds % 3600, 60);
+                                        $lateRemainSeconds = $lateSeconds % 60;
+                                        $lateFormatted = sprintf('%02d:%02d:%02d', $lateHours, $lateMinutes, $lateRemainSeconds);
+                                    @endphp
                                     <tr class="data-consume">
                                         <td class="text-center">{{ $loop->iteration }}</td>
                                         <td>{{ $attempt->user->name }}</td>
                                         <td>{{ $attempt->user->username }}</td>
-                                        <td class="text-center">{{ \Carbon\Carbon::parse($attempt->created_at)->format("d-m-Y") }}</td>
-                                        <td class="text-center">{{ \Carbon\Carbon::parse($attempt->created_at)->format("H:i:s") }} - {{ \Carbon\Carbon::parse($attempt->updated_at)->format("H:i:s") }}</td>
+                                        <td class="text-center">{{ $startedAt->format("d-m-Y") }}</td>
+                                        <td class="text-center">
+                                            {{ $startedAt->format("H:i:s") }} - {{ $endedAt->format("H:i:s") }}
+                                            @if ($lateSeconds > 0)
+                                                <div class="mt-1 text-xs font-semibold text-[#F97316]">Terlambat: {{ $lateFormatted }}</div>
+                                            @endif
+                                        </td>
                                         <td class="text-center">
                                             <div class="inline-flex items-center justify-center">
                                                 @if ($attempt->status === 'completed')
