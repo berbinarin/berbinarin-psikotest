@@ -14,6 +14,14 @@ use Illuminate\Http\Request;
 
 class SubmittedResponseController extends Controller
 {
+    /**
+     * Tool yang tetap boleh lanjut saat waktu habis.
+     * Status attempt akan jadi "late" saat submit terakhir (tes selesai).
+     */
+    private const LATE_CONTINUE_TOOLS = [
+        'SSCT',
+    ];
+
     public function __construct(private ResponseService $responseService, private AttemptService $attemptService)
     {
     }
@@ -160,8 +168,9 @@ class SubmittedResponseController extends Controller
 
     public function timesUp()
     {
-        // Saat waktu habis, flow saat ini mencoba lanjut ke section berikutnya.
-        // Jika tidak ada section lagi, attempt ditandai unfinished.
+        // Saat waktu habis, flow default mencoba lanjut ke section berikutnya.
+        // Untuk tool tertentu (LATE_CONTINUE_TOOLS), attempt tetap lanjut
+        // dan ditandai "late" saat tes benar-benar selesai.
         $attemptId = $this->attemptService->getSession('attempt_id');
         $currentOrder = $this->attemptService->getSession('section_order');
 
@@ -173,11 +182,25 @@ class SubmittedResponseController extends Controller
         }
 
         $attempt = Attempt::with('tool.sections.questions')->find($attemptId);
+        $isLateContinueTool = $attempt
+            && $attempt->tool
+            && in_array($attempt->tool->name, self::LATE_CONTINUE_TOOLS, true);
 
         if (!$attempt || $attempt->status !== 'in_progress') {
             return response()->json([
                 'should_redirect_question' => false,
                 'message' => 'Attempt is not active',
+            ]);
+        }
+
+        if ($isLateContinueTool) {
+            $this->attemptService->updateSession(['is_late' => true]);
+        }
+
+        if (!$attempt->tool) {
+            return response()->json([
+                'should_redirect_question' => false,
+                'message' => 'Attempt tool not found',
             ]);
         }
 
@@ -188,7 +211,16 @@ class SubmittedResponseController extends Controller
         $currentIndex = $sections->search(fn($s) => $s->order == $currentOrder);
 
         if ($currentIndex === false) {
-            // Jika gagal menemukan section, akhiri saja
+            // Jika pointer section tidak valid, fallback:
+            // - tool late: tetap lanjut dari posisi saat ini
+            // - tool biasa: akhiri attempt
+            if ($isLateContinueTool) {
+                return response()->json([
+                    'should_redirect_question' => true,
+                    'message' => 'Invalid section pointer, continuing late attempt',
+                ]);
+            }
+
             $attempt->update(['status' => 'unfinished']);
             $this->attemptService->destroySession();
             return response()->json([
@@ -218,7 +250,16 @@ class SubmittedResponseController extends Controller
             ]); // Jangan akhiri attempt
         }
 
-        // Kalau tidak ada next section → akhiri tes
+        if ($isLateContinueTool) {
+            // Untuk tool tertentu: tetap di section saat ini,
+            // biarkan user lanjut walau waktu habis.
+            return response()->json([
+                'should_redirect_question' => true,
+                'message' => 'Continuing late attempt on current section',
+            ]);
+        }
+
+        // Kalau tidak ada next section pada tool biasa -> akhiri tes
         $attempt->update(['status' => 'unfinished']); // atau 'finished'
 
         $this->attemptService->destroySession();

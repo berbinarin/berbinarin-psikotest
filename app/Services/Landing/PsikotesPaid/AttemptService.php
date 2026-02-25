@@ -61,6 +61,7 @@ class AttemptService
                     'section_order' => $lastResponse->question->section->order,
                     'question_order' => $lastResponse->question->order,
                     'is_checkpoint' => false,
+                    'is_late' => false,
                 ]
             ]);
             // Maju ke soal berikutnya
@@ -76,6 +77,7 @@ class AttemptService
                         'section_order' => 1,
                         'question_order' => 1,
                         'is_checkpoint' => false,
+                        'is_late' => false,
                     ]
                 ]);
             }
@@ -88,6 +90,7 @@ class AttemptService
                     'section_order' => $sectionOrder,
                     'question_order' => $questionOrder,
                     'is_checkpoint' => false,
+                    'is_late' => false,
                 ]
             ]);
         }
@@ -112,6 +115,7 @@ class AttemptService
                 'section_order' => 1,
                 'question_order' => 1,
                 'is_checkpoint' => false,
+                'is_late' => false,
             ]
         ]);
     }
@@ -232,9 +236,13 @@ class AttemptService
 
         \Log::info('Test completed, updating attempt status');
 
-        Attempt::find($this->getSession('attempt_id'))->update([
-            'status' => 'completed',
-        ]);
+        $attempt = Attempt::find($this->getSession('attempt_id'));
+        if ($attempt) {
+            $isLate = (bool) $this->getSession('is_late') || $attempt->status === 'late';
+            $attempt->update([
+                'status' => $isLate ? 'late' : 'completed',
+            ]);
+        }
 
         $this->destroySession();
         return false;

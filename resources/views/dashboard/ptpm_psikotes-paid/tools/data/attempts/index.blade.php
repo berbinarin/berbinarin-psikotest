@@ -54,6 +54,10 @@
                                                     <span class="inline-flex items-center rounded-[5px] bg-[#EAB308] px-2.5 py-0.5 text-[15px] font-medium text-white">
                                                         Unfinished
                                                     </span>
+                                                @elseif ($attempt->status === 'late')
+                                                    <span class="inline-flex items-center rounded-[5px] bg-[#F97316] px-2.5 py-0.5 text-[15px] font-medium text-white">
+                                                        Late
+                                                    </span>
                                                 @endif
                                             </div>
                                         </td>
