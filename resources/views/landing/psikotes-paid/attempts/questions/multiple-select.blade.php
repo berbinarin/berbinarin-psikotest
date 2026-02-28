@@ -1,5 +1,6 @@
 @php
     $colors = ["#3fa2f6", "#fbb03b", "#406c9b", "#6a3d00"];
+    $savedChoices = $savedAnswer["choices"] ?? [];
 @endphp
 
 <p class="text-center text-lg font-medium"></p>
@@ -7,7 +8,7 @@
 <div class="mx-auto mt-12 flex w-[700px] flex-wrap items-center justify-center gap-x-5 gap-y-6">
     @foreach ($tool->sections[0]->questions[0]->options as $option)
         <label for="{{ $option["key"] }}" class="card relative flex h-[180px] w-[330px] select-none items-center justify-center rounded-xl bg-[{{ $colors[$loop->index] }}] px-6 transition-all duration-[200ms] hover:scale-[1.03] hover:shadow-[0_8px_16px_rgba(0,0,0,0.25)]">
-            <input class="hidden" type="checkbox" value="{{ $option["key"] }}" id="{{ $option["key"] }}" name="answer" required />
+            <input class="hidden" type="checkbox" value="{{ $option["key"] }}" id="{{ $option["key"] }}" name="answer" required {{ in_array((string) $option["key"], array_map('strval', $savedChoices), true) ? "checked" : "" }} />
             <span class="text-center text-sm font-semibold text-white">{{ $option["text"] }}</span>
             <div class="absolute bottom-4 right-4 flex h-[18px] w-[18px] items-center justify-center rounded-full border border-white">
                 <svg class="hidden scale-110" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,6 +25,12 @@
         const checkboxes = document.querySelectorAll('input[type="checkbox"][name="answer"]');
 
         checkboxes.forEach((checkbox) => {
+            const selectedCard = checkbox.closest('.card');
+            const selectedSvg = selectedCard.querySelector('svg');
+            if (checkbox.checked) {
+                selectedSvg.classList.remove('hidden');
+            }
+
             checkbox.addEventListener('change', () => {
                 const selectedCard = checkbox.closest('.card');
                 const selectedSvg = selectedCard.querySelector('svg');

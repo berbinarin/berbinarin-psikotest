@@ -32,6 +32,9 @@
 
                 <form id="question-form" class="flex-1" action="{{ route("psikotes-paid.attempt.submit") }}" method="post" enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" name="question_id" value="{{ $question->id }}" />
+                    {{-- action digunakan backend untuk membedakan alur next vs back --}}
+                    <input type="hidden" name="action" id="form-action" value="next" />
                     <div class="mx-auto flex h-full w-[565.33px] flex-col items-center gap-8 px-6 pt-7">
                         <div class="relative flex w-full flex-col items-center justify-center">
                             <div class="relative h-[6.67px] w-full rounded-md bg-[#D3D3D3]">
@@ -55,11 +58,21 @@
 
                         @if ($question->tool->name == "D4 Bagian 1" || $question->tool->name == "D4 Bagian 2")
                             <div class="mb-6 mt-2 flex justify-center gap-4">
-                                <button id="submit-button" class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selesai</button>
-                                <button id="next-button" class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selanjutnya</button>
+                                @if (!empty($canGoBack))
+                                    {{-- Tombol back hanya tampil untuk tool yang masuk allowlist di AttemptService::canGoBack --}}
+                                    <button type="submit" name="action" value="back" formnovalidate id="back-button" class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] border border-[#106681] bg-white font-plusJakartaSans text-[13.33px] font-bold text-[#106681]">Sebelumnya</button>
+                                @endif
+                                <button type="button" id="submit-button" class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selesai</button>
+                                <button type="button" id="next-button" class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selanjutnya</button>
                             </div>
                         @elseif ($question->type !== "ordering")
-                            <button id="next-button" class="mb-6 mt-2 h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selanjutnya</button>
+                            <div class="mb-6 mt-2 flex justify-center gap-4">
+                                @if (!empty($canGoBack))
+                                    {{-- Tombol back hanya tampil untuk tool yang masuk allowlist di AttemptService::canGoBack --}}
+                                    <button type="submit" name="action" value="back" formnovalidate id="back-button" class="h-[43.67px] w-[136px] rounded-[6.67px] border border-[#106681] bg-white font-plusJakartaSans text-[13.33px] font-bold text-[#106681]">Sebelumnya</button>
+                                @endif
+                                <button type="button" id="next-button" class="h-[43.67px] w-[136px] rounded-[6.67px] bg-[#106681] font-plusJakartaSans text-[13.33px] font-bold text-white">Selanjutnya</button>
+                            </div>
                         @endif
                     </div>
                 </form>
@@ -83,9 +96,9 @@
         </div>
     </div>
 
-    {{-- <div id="countdownExample" class="absolute right-0 top-0">
-        <span class="values"></span>
-    </div> --}}
+        <div id="countdownExample" class="absolute right-0 top-0">
+            <span class="values"></span>
+        </div>
 
     <!-- Modal Konfirmasi Selesai -->
     <div id="confirm-finish-modal" class="fixed inset-0 z-50 flex hidden items-center justify-center bg-black/40">
@@ -122,15 +135,24 @@
         const tool = @json($tool);
         const question = @json($question->load("section"));
         const attemptId = {{ $attemptId }};
-        const targetTimeKey = `target-time_${attemptId}`;
-        const sectionOrderKey = `section-order_${attemptId}`;
+        const currentSectionOrder = String(question.section.order);
+        const targetTimeKey = `target-time_${attemptId}_${currentSectionOrder}`;
         const checkpointDeadlineKey = `checkpoint_deadline_${attemptId}`;
         const duration = question.section.duration * 60000;
+        const timerKeyPrefix = `target-time_${attemptId}_`;
 
-        // Tambah target-time ke local storage jika belum dibuat
-        // Hindari mengganti nilai target-time jika sudah ada di local storage
+        function clearAttemptTimerKeys() {
+            Object.keys(localStorage).forEach((key) => {
+                if (key.startsWith(timerKeyPrefix)) {
+                    localStorage.removeItem(key);
+                }
+            });
+        }
+
+        // Simpan deadline timer per section agar refresh tidak mereset waktu.
         const startAtOrder = 4;
         const targetToolName = "D4 Bagian 1";
+        let shouldInitTimer = true;
 
         if (tool.name === targetToolName) {
             if (question.order >= startAtOrder) {
@@ -139,105 +161,106 @@
                 }
             } else {
                 localStorage.removeItem(targetTimeKey);
+                $('#countdownExample .values').html('00:00');
+                shouldInitTimer = false;
             }
         } else {
-            // Alat lain tetap pakai logika default
             if (!localStorage.getItem(targetTimeKey)) {
                 localStorage.setItem(targetTimeKey, new Date().getTime() + duration);
             }
         }
 
-        // Tambah section-order ke local storage jika belum dibuat
-        // Hindari mengganti nilai section-order jika sudah ada di local storage
-        if (!localStorage.getItem(sectionOrderKey)) {
-            localStorage.setItem(sectionOrderKey, question.section.order);
-        }
+        if (shouldInitTimer) {
+            const target = Number(localStorage.getItem(targetTimeKey) || 0);
+            const diff = new Date(target - new Date().getTime());
 
-        // Jika section-order di local storage berbeda dengan section.order di question. (berpindah section)
-        if (localStorage.getItem(sectionOrderKey) != question.section.order) {
-            localStorage.setItem(targetTimeKey, new Date().getTime() + duration);
-            localStorage.setItem(sectionOrderKey, question.section.order);
-        }
+            const timer = new Timer();
+            timer.start({
+                countdown: true,
+                startValues: {
+                    minutes: diff.getMinutes(),
+                    seconds: diff.getSeconds(),
+                },
+            });
 
-        const target = Number(localStorage.getItem(targetTimeKey));
-        const diff = new Date(target - new Date().getTime());
-
-        const timer = new Timer();
-        timer.start({
-            countdown: true,
-            startValues: {
-                minutes: diff.getMinutes(),
-                seconds: diff.getSeconds(),
-            },
-        });
-
-        $('#countdownExample .values').html(timer.getTimeValues().toString());
-
-        timer.addEventListener('secondsUpdated', function (e) {
             $('#countdownExample .values').html(timer.getTimeValues().toString());
-            if (timer.getTimeValues().minutes === 1 && timer.getTimeValues().seconds === 0) {
-                window.dispatchEvent(
-                    new CustomEvent('show-alert', {
-                        detail: {
-                            icon: @json(asset("assets/dashboard/images/warning.webp")),
-                            title: 'Waktu tersisa 1 menit untuk bagian ini!',
-                            message: '',
-                            type: 'info',
+
+            timer.addEventListener('secondsUpdated', function (e) {
+                $('#countdownExample .values').html(timer.getTimeValues().toString());
+                if (timer.getTimeValues().minutes === 1 && timer.getTimeValues().seconds === 0) {
+                    window.dispatchEvent(
+                        new CustomEvent('show-alert', {
+                            detail: {
+                                icon: @json(asset("assets/dashboard/images/warning.webp")),
+                                title: 'Waktu tersisa 1 menit untuk bagian ini!',
+                                message: '',
+                                type: 'info',
+                            },
+                        }),
+                    );
+                }
+            });
+
+            timer.addEventListener('targetAchieved', async function (e) {
+                let shouldRedirectQuestion = false;
+
+                try {
+                    const extendableTests = ['BAUM', 'HTP', 'DAP'];
+
+                    if (extendableTests.includes(tool.name)) {
+                        const result = await Swal.fire({
+                            title: 'Waktu Habis!',
+                            text: 'Apakah Anda ingin melanjutkan tes?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Lanjutkan',
+                            cancelButtonText: 'Selesai',
+                            reverseButtons: true,
+                        });
+
+                        if (result.isConfirmed) {
+                            window.dispatchEvent(
+                                new CustomEvent('show-alert', {
+                                    detail: {
+                                        icon: @json(asset("assets/dashboard/images/success.webp")),
+                                        title: 'Waktu pengerjaan tes telah ditambahkan!',
+                                        message: '',
+                                        type: 'info',
+                                    },
+                                }),
+                            );
+
+                            return; // jangan lanjut ke complete
+                        }
+                    }
+
+                    // Backend menentukan apakah harus pindah section (lanjut soal)
+                    // atau benar-benar selesai.
+                    const response = await fetch('{{ route("psikotes-paid.attempt.times-up") }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Accept: 'application/json',
+                            'X-CSRF-TOKEN': @json(csrf_token()),
                         },
-                    }),
-                );
-            }
-        });
-
-        timer.addEventListener('targetAchieved', async function (e) {
-            try {
-                const extendableTests = ['BAUM', 'HTP', 'DAP'];
-
-                if (extendableTests.includes(tool.name)) {
-                    const result = await Swal.fire({
-                        title: 'Waktu Habis!',
-                        text: 'Apakah Anda ingin melanjutkan tes?',
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonText: 'Lanjutkan',
-                        cancelButtonText: 'Selesai',
-                        reverseButtons: true,
                     });
 
-                    if (result.isConfirmed) {
-                        window.dispatchEvent(
-                            new CustomEvent('show-alert', {
-                                detail: {
-                                    icon: @json(asset("assets/dashboard/images/success.webp")),
-                                    title: 'Waktu pengerjaan tes telah ditambahkan!',
-                                    message: '',
-                                    type: 'info',
-                                },
-                            }),
-                        );
-
-                        return; // jangan lanjut ke complete
+                    const payload = await response.json().catch(() => ({}));
+                    shouldRedirectQuestion = Boolean(payload?.should_redirect_question);
+                } catch (error) {
+                    console.error('Fetch to times-up failed:', error);
+                } finally {
+                    localStorage.removeItem(targetTimeKey);
+                    localStorage.removeItem(checkpointDeadlineKey);
+                    if (!shouldRedirectQuestion) {
+                        clearAttemptTimerKeys();
                     }
+                    window.location.href = shouldRedirectQuestion
+                        ? @json(route("psikotes-paid.attempt.question"))
+                        : @json(route("psikotes-paid.attempt.complete"));
                 }
-
-                // Kirim request untuk menghapus session dan TUNGGU (await) hingga selesai
-                await fetch('{{ route("psikotes-paid.attempt.times-up") }}', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
-                        'X-CSRF-TOKEN': @json(csrf_token()),
-                    },
-                });
-            } catch (error) {
-                console.error('Fetch to times-up failed:', error);
-            } finally {
-                localStorage.removeItem(targetTimeKey);
-                localStorage.removeItem(sectionOrderKey);
-                localStorage.removeItem(checkpointDeadlineKey);
-                window.location.href = @json(route("psikotes-paid.attempt.complete"));
-            }
-        });
+            });
+        }
 
         // Mereset input  ketika back menggunakan browser
         window.addEventListener('pageshow', function (event) {
@@ -287,8 +310,7 @@
                 } catch (error) {
                     console.error('Error finishing test:', error);
                 } finally {
-                    localStorage.removeItem(targetTimeKey);
-                    localStorage.removeItem(sectionOrderKey);
+                    clearAttemptTimerKeys();
                     localStorage.removeItem(checkpointDeadlineKey);
                     window.location.href = @json(route("psikotes-paid.attempt.complete"));
                 }
@@ -306,8 +328,69 @@
 
         // Ambil semua elemen yang dibutuhkan
         const mainForm = document.getElementById('question-form');
+        const formAction = document.getElementById('form-action');
         const nextButton = document.getElementById('next-button');
         const checkpointModal = document.getElementById('checkpoint-modal');
+        const backButton = document.getElementById('back-button');
+        const checkpointSubmitButton = document.getElementById('checkpoint-submit-button');
+        let isSubmitting = false;
+
+        function lockAndSubmitMainForm() {
+            if (!mainForm || isSubmitting) {
+                return;
+            }
+
+            isSubmitting = true;
+            [nextButton, backButton, submitButton, checkpointSubmitButton].forEach((button) => {
+                if (button) {
+                    button.disabled = true;
+                }
+            });
+
+            mainForm.submit();
+        }
+
+        if (mainForm) {
+            mainForm.addEventListener('submit', (event) => {
+                if (isSubmitting) {
+                    event.preventDefault();
+                    return;
+                }
+
+                isSubmitting = true;
+                [nextButton, backButton, submitButton, checkpointSubmitButton].forEach((button) => {
+                    if (button) {
+                        button.disabled = true;
+                    }
+                });
+            });
+        }
+
+        // Enter di form selalu dianggap aksi "next", bukan "back".
+        // Khusus textarea tetap default agar user bisa membuat baris baru.
+        if (mainForm) {
+            mainForm.addEventListener('keydown', (event) => {
+                if (event.key !== 'Enter') {
+                    return;
+                }
+
+                const target = event.target;
+                const tagName = target?.tagName?.toLowerCase();
+                if (tagName === 'textarea') {
+                    return;
+                }
+
+                event.preventDefault();
+                formAction.value = 'next';
+
+                if (nextButton) {
+                    nextButton.click();
+                    return;
+                }
+
+                lockAndSubmitMainForm();
+            });
+        }
 
         // Fungsi untuk menampilkan modal
         async function showCheckpointModal() {
@@ -350,29 +433,39 @@
             } catch (error) {
                 console.error('Could not show checkpoint modal:', error);
                 // Jika gagal memuat modal, kirim saja formnya agar user tidak stuck.
-                mainForm.submit();
+                lockAndSubmitMainForm();
             }
         }
 
         // Listener untuk tombol "Selanjutnya" UTAMA
-        nextButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            const deadline = localStorage.getItem(CHECKPOINT_DEADLINE_KEY);
-            const now = new Date().getTime();
+        if (nextButton) {
+            nextButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                formAction.value = 'next';
+                nextButton.disabled = true;
 
-            if (deadline && now >= parseInt(deadline)) {
-                // WAKTUNYA CHECKPOINT: Tampilkan modal, JANGAN submit form
-                showCheckpointModal();
-            } else {
-                // BUKAN WAKTUNYA CHECKPOINT: Langsung submit form
-                mainForm.submit();
-            }
-        });
+                const deadline = localStorage.getItem(CHECKPOINT_DEADLINE_KEY);
+                const now = new Date().getTime();
+
+                if (deadline && now >= parseInt(deadline)) {
+                    // WAKTUNYA CHECKPOINT: Tampilkan modal, JANGAN submit form
+                    showCheckpointModal().finally(() => {
+                        if (!isSubmitting) {
+                            nextButton.disabled = false;
+                        }
+                    });
+                } else {
+                    // BUKAN WAKTUNYA CHECKPOINT: Langsung submit form
+                    lockAndSubmitMainForm();
+                }
+            });
+        }
 
         // Listener untuk tombol "Selanjutnya" DI DALAM MODAL (DENGAN PERBAIKAN)
-        document.getElementById('checkpoint-submit-button').addEventListener('click', () => {
+        checkpointSubmitButton.addEventListener('click', () => {
             // Ambil form utama
             const mainForm = document.getElementById('question-form');
+            formAction.value = 'next';
 
             // 1. Ambil input jawaban dari modal
             const answer = document.querySelector('[name="checkpoint_answer"]:checked, [name="checkpoint_answer"][type="text"]');
@@ -409,7 +502,7 @@
             localStorage.setItem(CHECKPOINT_DEADLINE_KEY, new Date().getTime() + CHECKPOINT_INTERVAL_MS);
 
             // Submit form utama yang SEKARANG sudah berisi data checkpoint
-            mainForm.submit();
+            lockAndSubmitMainForm();
         });
     </script>
 @endpush

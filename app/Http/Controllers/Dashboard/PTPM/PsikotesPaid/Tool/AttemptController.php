@@ -15,7 +15,7 @@ class AttemptController extends Controller
 
     public function index(Tool $tool)
     {
-        $attempts = $tool->load('attempts.user')->attempts;
+        $attempts = $tool->load(['attempts.user', 'sections'])->attempts;
 
         return view('dashboard.ptpm_psikotes-paid.tools.data.attempts.index', compact('tool', 'attempts'));
     }

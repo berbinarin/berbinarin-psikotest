@@ -15,6 +15,10 @@ class ResponseService
 {
     public function __construct(private FileUploadService $fileUploadService, private AttemptService $attemptService) {}
 
+    /**
+     * Menyimpan jawaban utama per soal berdasarkan tipe question.
+     * Tiap tipe dipetakan ke method parser (camelCase dari question->type).
+     */
     public function store(Request $request, Question $question)
     {
         $methodName = Str::camel($question->type);
@@ -25,22 +29,25 @@ class ResponseService
                 return;
             }
 
-            Response::updateOrCreate(
-                [
-                    'attempt_id' => $attemptId,
-                    'question_id' => $question->id,
-                ],
-                [
-                    'answer' => $answer,
-                ]
-            );
+            $response = Response::withTrashed()->firstOrNew([
+                'attempt_id' => $attemptId,
+                'question_id' => $question->id,
+            ]);
+
+            $response->answer = $answer;
+            if ($response->trashed()) {
+                $response->deleted_at = null;
+            }
+            $response->save();
         }
     }
 
     public function storeCheckpoint(Request $request)
     {
         $checkpointQuestion = CheckpointQuestion::find($request->checkpoint_question_id);
-        $methodName = Str::camel($checkpointQuestion->type);
+        // Checkpoint saat ini mendukung 2 pola payload sederhana:
+        // - multiple_choice -> choice
+        // - selain itu -> value
         $answer = $checkpointQuestion->type === 'multiple_choice'
                     ? ['choice' => $request->checkpoint_answer]
                     : ['value' => $request->checkpoint_answer];
@@ -51,15 +58,16 @@ class ResponseService
                 return;
             }
 
-            CheckpointResponse::updateOrCreate(
-                [
-                    'attempt_id' => $attemptId,
-                    'checkpoint_question_id' => $checkpointQuestion->id,
-                ],
-                [
-                    'answer' => $answer,
-                ]
-            );
+            $checkpointResponse = CheckpointResponse::withTrashed()->firstOrNew([
+                'attempt_id' => $attemptId,
+                'checkpoint_question_id' => $checkpointQuestion->id,
+            ]);
+
+            $checkpointResponse->answer = $answer;
+            if ($checkpointResponse->trashed()) {
+                $checkpointResponse->deleted_at = null;
+            }
+            $checkpointResponse->save();
         }
     }
 
@@ -79,6 +87,8 @@ class ResponseService
             'answer' => 'required',
         ]);
 
+        // Guard untuk kasus payload tidak konsisten (misalnya answer berbentuk array).
+        // Sistem tetap mengambil item pertama agar alur submit tidak gagal total.
         $answer = $validateData['answer'];
         if (is_array($answer)) {
             $answer = $answer[0] ?? null;
@@ -99,6 +109,7 @@ class ResponseService
             'answer' => 'required',
         ]);
 
+        // Pola normalisasi sama dengan multipleChoice.
         $answer = $validateData['answer'];
         if (is_array($answer)) {
             $answer = $answer[0] ?? null;
@@ -200,12 +211,13 @@ class ResponseService
 
     private function instruction()
     {
+        // Soal bertipe instruction hanya menampilkan informasi, tanpa jawaban.
         return;
     }
 
     private function form(Request $request)
     {
-        // dd($request->except('_token'));
+        // Simpan semua field form dinamis kecuali CSRF token.
         return $request->except('_token');
     }
 }

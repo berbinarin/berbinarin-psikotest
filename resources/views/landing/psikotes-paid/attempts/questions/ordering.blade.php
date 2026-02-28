@@ -1,3 +1,21 @@
+@php
+    $baseOptions = $question->options["variants"]["male"] ?? [];
+    $savedRankedIds = $savedAnswer["ranked_ids"] ?? [];
+    $orderedOptions = $baseOptions;
+
+    if (!empty($savedRankedIds)) {
+        $byId = collect($baseOptions)->keyBy(fn($item) => (string) ($item["id"] ?? ""));
+        $fromSaved = collect($savedRankedIds)
+            ->map(fn($id) => $byId->get((string) $id))
+            ->filter()
+            ->values();
+        $missing = collect($baseOptions)
+            ->reject(fn($item) => in_array((string) ($item["id"] ?? ""), array_map('strval', $savedRankedIds), true))
+            ->values();
+        $orderedOptions = $fromSaved->concat($missing)->values()->all();
+    }
+@endphp
+
 <div class="flex max-h-[360px] flex-col overflow-y-auto rounded-xl bg-white p-10 drop-shadow-[0_4px_12px_rgba(0,0,0,0.15)]">
     <h3 class="text-center text-lg font-bold uppercase text-[#EF5350]">{{ $question->section->title }}</h3>
     <p class="text-justify">{{ $question->text }}</p>
@@ -6,7 +24,7 @@
 
     {{-- Daftar yang bisa diurutkan --}}
     <ul id="sortable-list" class="mt-6 flex flex-1 flex-col gap-6 pl-0">
-        @foreach ($question->options["variants"]["male"] as $option)
+        @foreach ($orderedOptions as $option)
             <li class="drag-item flex cursor-move items-center gap-4 rounded-md border p-2">
                 <div class="flex w-[40px] flex-shrink-0 justify-center">
                     <span class="flex h-10 w-10 items-center justify-center rounded-md border bg-gray-200 font-semibold text-blue-500">

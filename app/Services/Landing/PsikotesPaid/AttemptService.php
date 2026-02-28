@@ -8,6 +8,10 @@ use App\Models\Response;
 
 class AttemptService
 {
+    /**
+     * Seluruh state pengerjaan tes disimpan dalam satu payload session ini.
+     * Struktur key: tool_id, attempt_id, section_order, question_order, is_checkpoint.
+     */
     private const KEY = 'attempt_session';
 
     /**
@@ -57,6 +61,7 @@ class AttemptService
                     'section_order' => $lastResponse->question->section->order,
                     'question_order' => $lastResponse->question->order,
                     'is_checkpoint' => false,
+                    'is_late' => false,
                 ]
             ]);
             // Maju ke soal berikutnya
@@ -72,6 +77,7 @@ class AttemptService
                         'section_order' => 1,
                         'question_order' => 1,
                         'is_checkpoint' => false,
+                        'is_late' => false,
                     ]
                 ]);
             }
@@ -84,6 +90,7 @@ class AttemptService
                     'section_order' => $sectionOrder,
                     'question_order' => $questionOrder,
                     'is_checkpoint' => false,
+                    'is_late' => false,
                 ]
             ]);
         }
@@ -108,6 +115,7 @@ class AttemptService
                 'section_order' => 1,
                 'question_order' => 1,
                 'is_checkpoint' => false,
+                'is_late' => false,
             ]
         ]);
     }
@@ -127,13 +135,12 @@ class AttemptService
 
     public function updateSession(array $data): void
     {
-        // Ambil semua data session yang ada saat ini
+        // Merge parsial agar update tidak menimpa key state lain.
         $currentSession = session(self::KEY, []);
 
         // Gabungkan data lama dengan data baru (data baru akan menimpa yang lama jika key-nya sama)
         $newSessionData = array_merge($currentSession, $data);
 
-        // Simpan kembali data yang sudah diperbarui ke dalam session
         session([self::KEY => $newSessionData]);
     }
 
@@ -184,6 +191,8 @@ class AttemptService
             return false;
         }
 
+        // Navigasi didasarkan pada field "order" per section/question.
+        // Tujuannya agar urutan tes stabil walau id database tidak berurutan.
         $totalQuestionsInSection = $currentSection->questions->count();
 
         \Log::info('Section info:', [
@@ -193,6 +202,7 @@ class AttemptService
         ]);
 
         if ($currentQuestionOrder < $totalQuestionsInSection) {
+            // Masih di section yang sama, maju ke nomor soal berikutnya.
             session()->increment(self::KEY . '.question_order');
 
             \Log::info('Incremented question order', [
@@ -211,6 +221,7 @@ class AttemptService
 
         if ($currentSectionOrder < $totalSections) {
             $oldSectionOrder = $this->getSession('section_order');
+            // Pindah section dan reset posisi ke soal pertama section berikutnya.
             session()->increment(self::KEY . '.section_order');
             session([self::KEY . '.question_order' => 1]);
 
@@ -225,12 +236,101 @@ class AttemptService
 
         \Log::info('Test completed, updating attempt status');
 
-        Attempt::find($this->getSession('attempt_id'))->update([
-            'status' => 'completed',
-        ]);
+        $attempt = Attempt::find($this->getSession('attempt_id'));
+        if ($attempt) {
+            $isLate = (bool) $this->getSession('is_late') || $attempt->status === 'late';
+            $attempt->update([
+                'status' => $isLate ? 'late' : 'completed',
+            ]);
+        }
 
         $this->destroySession();
         return false;
+    }
+
+    /**
+     * Memundurkan tes ke pertanyaan atau seksi sebelumnya.
+     * Hanya mengubah pointer session, tidak mengubah data jawaban.
+     */
+    public function progressToPreviousStep(): bool
+    {
+        $toolId = $this->getSession('tool_id');
+        $currentSectionOrder = $this->getSession('section_order');
+        $currentQuestionOrder = $this->getSession('question_order');
+
+        if (!$toolId) {
+            return false;
+        }
+
+        $tool = Tool::with('sections.questions')->find($toolId);
+        if (!$tool) {
+            return false;
+        }
+
+        $sections = $tool->sections->sortBy('order')->values();
+        $sectionIndex = $sections->search(fn($section) => (int) $section->order === (int) $currentSectionOrder);
+        if ($sectionIndex === false) {
+            return false;
+        }
+
+        $currentSection = $sections[$sectionIndex];
+        $questions = $currentSection->questions->sortBy('order')->values();
+        $questionIndex = $questions->search(fn($question) => (int) $question->order === (int) $currentQuestionOrder);
+        if ($questionIndex === false) {
+            return false;
+        }
+
+        if ($questionIndex > 0) {
+            // Mundur satu soal di section yang sama.
+            $previousQuestion = $questions[$questionIndex - 1];
+            $this->updateSession([
+                'section_order' => $currentSection->order,
+                'question_order' => $previousQuestion->order,
+            ]);
+            return true;
+        }
+
+        if ($sectionIndex > 0) {
+            // Jika posisi ada di soal pertama section saat ini,
+            // maka mundur ke soal terakhir pada section sebelumnya.
+            $previousSection = $sections[$sectionIndex - 1];
+            $previousSectionQuestions = $previousSection->questions->sortBy('order')->values();
+            $lastQuestion = $previousSectionQuestions->last();
+            if (!$lastQuestion) {
+                return false;
+            }
+
+            $this->updateSession([
+                'section_order' => $previousSection->order,
+                'question_order' => $lastQuestion->order,
+            ]);
+            return true;
+        }
+
+        return false;
+    }
+
+    public function canGoBack(?Tool $tool = null): bool
+    {
+        $targetTool = $tool;
+        if (!$targetTool) {
+            $toolId = $this->getSession('tool_id');
+            if (!$toolId) {
+                return false;
+            }
+            $targetTool = Tool::find($toolId);
+        }
+
+        if (!$targetTool) {
+            return false;
+        }
+
+        // Hardcoded allowlist:
+        // hanya alat yang tercantum di sini yang menampilkan tombol "Sebelumnya".
+        $allowedTools = [
+            'IST',
+        ];
+        return in_array($targetTool->name, $allowedTools, true);
     }
 
     /**

@@ -1,4 +1,7 @@
 <p class="text-justify text-sm">{{ $question->text }}</p>
+@if (!empty($savedAnswer["file_path"]))
+    <p class="mt-1 text-xs text-green-700">File sebelumnya sudah tersimpan. Pilih ulang jika ingin mengganti.</p>
+@endif
 
 <!-- Container luar -->
 <div class="mt-1 w-[full] rounded-xl border border-gray-300 bg-white py-6 px-6  mb-[-35px]">
